@@ -1,8 +1,10 @@
-# Agrivoltaic-Cluster — 영농형 태양광 특구 최적입지 분석
+# 영농형 태양광 — 실행 가능 물량 분석 (25개 분석구역)
 
 경기·충남 15개 시군과 전국 산단 거점을 포함한 **25개 분석구역(원장 물리 코드 30개)**의 200만 필지 전수 원장을 바탕으로, 현행 제도(S0)와 재생에너지지구 지정(S1) 시나리오에서 영농형 태양광 특구 후보의 **실행 가능 물량**을 산정한다. 잠재량이 아니라 개인소유 비율이 낮은 블록의 실행 가능 물량으로 후보를 가린다.
 
-**공개 사이트 (GitHub Pages)**: https://sojin-droid.github.io/Agrivoltaic-Cluster/index.html
+> 별도 공개본입니다. RE100 프레이밍의 기존 사이트(`sojin-droid/Agrivoltaic-Cluster`, Supabase·CLIMADA 기반)와는 다른 갈래로, **실행 가능 물량·구역별 지도(atlas)** 중심으로 재구성한 버전이다.
+>
+> **공개 사이트 (GitHub Pages)**: 배포 후 `https://<owner>.github.io/<repo>/` — 이 레포의 Settings ▸ Pages ▸ Source = main /(root)로 설정.
 
 ## 사이트 구성 (레포 루트 = Pages 루트)
 
