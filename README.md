@@ -4,7 +4,7 @@
 
 > 별도 공개본입니다. RE100 프레이밍의 기존 사이트(`sojin-droid/Agrivoltaic-Cluster`, Supabase·CLIMADA 기반)와는 다른 갈래로, **실행 가능 물량·구역별 지도(atlas)** 중심으로 재구성한 버전이다.
 >
-> **공개 사이트 (GitHub Pages)**: 배포 후 `https://<owner>.github.io/<repo>/` — 이 레포의 Settings ▸ Pages ▸ Source = main /(root)로 설정.
+> **공개 사이트 (GitHub Pages)**: https://sojin-droid.github.io/Agrivoltaic-Feasibility/
 
 ## 사이트 구성 (레포 루트 = Pages 루트)
 
