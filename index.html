@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANiT · 영농형 태양광 — 특구 최적입지 분석</title>
+<meta name="description" content="잠재량이 아니라 실행 가능성이 특구를 가른다. 200만 필지를 원장으로, 개인소유 비율이 낮은 블록의 실행 가능 물량으로 영농형 태양광 특구 후보를 가린다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
+    <span><a href="https://planit.institute/">← planit.institute 메인으로</a></span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="PLANiT 영농형 태양광 홈">
+      <img class="mark-img" src="assets/planit_logo.png" alt="PLANiT">
+      <span class="sector">영농형 태양광</span>
+    </a>
+    <nav class="menu" id="menu">
+      <a class="active" href="index.html">개요</a>
+      <a href="map.html">지도</a>
+      <a href="atlas.html">구역별 지도</a>
+      <a href="method.html">방법론</a>
+      <a href="insight.html">인사이트</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <a class="nav-cta" href="#contact">Contact</a>
+      <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ 히어로 ═══════════ -->
+<div style="border-bottom:1px solid var(--line)">
+  <div class="wrap" style="padding:76px 24px 60px;max-width:900px">
+    <p class="eyebrow">영농형 태양광 · 특구 최적입지 분석</p>
+    <h1>부지도, 수요도 있다.<br>특구를 가르는 건 <em>실행 가능성</em>이다.</h1>
+    <p class="lede">
+      경기·충남 15개 시군과 전국 산단거점 10개 구역 — 25개 분석구역, <b>200만 필지를 전수 원장</b>으로 삼아
+      영농형 태양광 특구 후보를 분석합니다. 잠재량이 아니라 <b>개인소유 비율이 낮은 블록의
+      실행 가능 물량</b>으로 후보를 가릅니다 — 그리고 그 실행성은 시군마다 극명하게 다릅니다.
+    </p>
+    <div style="display:flex;gap:14px;margin-top:30px;flex-wrap:wrap">
+      <a class="btn btn-primary" href="#pipe">분석 파이프라인 보기</a>
+      <a class="btn btn-ghost" href="map.html">지도에서 후보 보기 →</a>
+    </div>
+
+    <!-- 지표 밴드 (실측) -->
+    <div class="statband reveal" aria-label="핵심 지표">
+      <div class="st"><div class="v"><span class="count" data-target="25">0</span><small> 개 분석구역</small></div><div class="k">분석구역 · A 15개 시군 + B 10개 거점</div></div>
+      <div class="st"><div class="v"><span class="lf count" data-target="8">0</span><small> 곳</small></div><div class="k">특구 유력 · ≥100MW (S1)</div></div>
+      <div class="st"><div class="v"><span class="count" data-target="4238">0</span><small> MW</small></div><div class="k">경기·충남(A) 실행 가능 물량 (S1)</div></div>
+      <div class="st"><div class="v">6<small> %</small></div><div class="k">실행/잠재 비율 — 핵심 발견</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 파이프라인 밴드: 5단계 ═══════════ -->
+<div class="routeband" id="pipe">
+  <div class="route-scroll">
+    <div class="route-stage" role="img" aria-label="분석 파이프라인 5단계: 필지 원장, 블록화, 소유 분석, 계통·수요, 판정(현재 결과)">
+      <svg viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
+        <g>
+          <line class="grid-line" x1="0" y1="80"  x2="1200" y2="80"/>
+          <line class="grid-line" x1="0" y1="160" x2="1200" y2="160"/>
+          <line class="grid-line" x1="0" y1="240" x2="1200" y2="240"/>
+          <line class="grid-line" x1="0" y1="320" x2="1200" y2="320"/>
+          <line class="grid-line" x1="200" y1="0" x2="200" y2="400"/>
+          <line class="grid-line" x1="440" y1="0" x2="440" y2="400"/>
+          <line class="grid-line" x1="680" y1="0" x2="680" y2="400"/>
+          <line class="grid-line" x1="920" y1="0" x2="920" y2="400"/>
+        </g>
+        <g>
+          <text class="depth" x="150" y="120">2.0M</text>
+          <text class="depth" x="520" y="90">25m</text>
+          <text class="depth" x="960" y="300">t≤0.30</text>
+          <text class="depth" x="360" y="360">≥3MW</text>
+          <text class="depth" x="760" y="330">99.65%</text>
+        </g>
+        <!-- 누적 분석 레이어: 단계가 갈수록 넓어진다 -->
+        <g aria-hidden="true">
+          <circle class="ring g" cx="90"   cy="330" r="16"/>
+          <circle class="ring g" cx="330"  cy="285" r="16"/><circle class="ring" cx="330"  cy="285" r="30"/>
+          <circle class="ring g" cx="570"  cy="235" r="16"/><circle class="ring" cx="570"  cy="235" r="30"/><circle class="ring" cx="570" cy="235" r="44"/>
+          <circle class="ring g" cx="810"  cy="175" r="16"/><circle class="ring" cx="810"  cy="175" r="30"/><circle class="ring" cx="810" cy="175" r="44"/><circle class="ring" cx="810" cy="175" r="58"/>
+          <circle class="ring g" cx="1090" cy="100" r="16"/><circle class="ring" cx="1090" cy="100" r="30"/><circle class="ring" cx="1090" cy="100" r="44"/><circle class="ring" cx="1090" cy="100" r="58"/><circle class="ring" cx="1090" cy="100" r="72"/>
+        </g>
+        <path class="route-dash" pathLength="100"
+          d="M 90 330 C 190 315, 250 300, 330 285 S 490 255, 570 235 S 730 195, 810 175 S 990 130, 1090 100"/>
+        <path class="route-fill" pathLength="100"
+          d="M 90 330 C 190 315, 250 300, 330 285 S 490 255, 570 235 S 730 195, 810 175 S 990 130, 1090 100"/>
+      </svg>
+
+      <button class="stop done" style="left:7.5%;  top:82.5%" onclick="location.hash='p1'" aria-label="1단계 필지 원장으로 이동"></button>
+      <button class="stop done" style="left:27.5%; top:71.3%" onclick="location.hash='p2'" aria-label="2단계 블록화로 이동"></button>
+      <button class="stop done" style="left:47.5%; top:58.8%" onclick="location.hash='p3'" aria-label="3단계 소유 분석으로 이동"></button>
+      <button class="stop done" style="left:67.5%; top:43.8%" onclick="location.hash='p4'" aria-label="4단계 계통·수요로 이동"></button>
+      <button class="stop here" style="left:90.8%; top:25%"  onclick="location.hash='p5'" aria-label="5단계 판정, 현재 결과로 이동"></button>
+
+      <span class="here-flag" style="left:90.8%; top:25%">판정 · 특구 후보</span>
+
+      <span class="stop-label" style="left:7.5%;  top:87.5%"><span class="no">STAGE 01</span><span class="nm">필지 원장</span><span class="protect">200만 필지</span></span>
+      <span class="stop-label" style="left:27.5%; top:76.3%"><span class="no">STAGE 02</span><span class="nm">블록화</span><span class="protect">+ 연접 25m</span></span>
+      <span class="stop-label" style="left:47.5%; top:63.8%"><span class="no">STAGE 03</span><span class="nm">소유 분석</span><span class="protect">+ 실행성</span></span>
+      <span class="stop-label" style="left:67.5%; top:48.8%"><span class="no">STAGE 04</span><span class="nm">계통·수요</span><span class="protect">+ 계통 여유</span></span>
+      <span class="stop-label" style="left:90.8%; top:30%"><span class="no">STAGE 05</span><span class="nm">판정</span><span class="protect">+ 특구 후보</span></span>
+    </div>
+  </div>
+  <div class="route-cap">
+    <span>ANALYSIS PIPELINE · 필지에서 특구까지 · 다섯 단계 · 각 단계가 데이터를 한 겹씩 얹는다</span>
+    <span>단계를 클릭하면 해당 설명으로 이동합니다</span>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 01 · 필지 원장 ═══════════ -->
+<section class="stage" id="p1">
+  <div class="wrap inner">
+    <div class="txt reveal">
+      <p class="eyebrow">Stage 01 · Ledger · 전수 원장 구축</p>
+      <h2>필지 원장: 분석의 바닥을 깐다</h2>
+      <div class="protect-row" aria-label="누적 레이어"><span class="pchip new">필지</span></div>
+      <p class="body">
+        모든 분석은 필지에서 시작합니다. PNU 기반으로 경기·충남과 전국 산단거점의
+        <b>200만 필지를 전수 원장</b>으로 구축했습니다. 경기·충남 원장은 국토부
+        지적기본통계와 대조해 <b>커버리지 99.65%</b>를 확인했습니다. 지목·소유·연속지적·팜맵을 병합해
+        각 필지에 농지 여부와 소유 구분을 붙입니다. 원장의 완결성이 전체 신뢰도를 결정합니다.
+      </p>
+      <div class="stage-links">
+        <a href="method.html"><span style="display:contents"><span class="t">방법론 · 데이터 계층과 커버리지 감사</span><span class="m">국토부 · LX · 팜맵</span></span></a>
+        <a href="map.html"><span style="display:contents"><span class="t">지도 · 필지 원장 위 후보 블록</span><span class="m">MAP →</span></span></a>
+      </div>
+    </div>
+    <figure class="fig ripple-fig reveal" aria-hidden="true">
+      <svg viewBox="0 0 360 360">
+        <circle class="core" cx="180" cy="180" r="5"/>
+        <circle class="rc new" cx="180" cy="180" r="40"/>
+        <circle class="rc" cx="180" cy="180" r="70"/>
+        <circle class="rc" cx="180" cy="180" r="100"/>
+        <circle class="rc" cx="180" cy="180" r="130"/>
+        <circle class="rc" cx="180" cy="180" r="160"/>
+        <text class="rl new" x="180" y="132" text-anchor="middle">필지</text>
+        <text class="rl" x="180" y="102" text-anchor="middle">블록</text>
+        <text class="rl" x="180" y="72"  text-anchor="middle">소유</text>
+        <text class="rl" x="180" y="42"  text-anchor="middle">계통</text>
+        <text class="rl" x="180" y="13"  text-anchor="middle">판정</text>
+      </svg>
+      <figcaption>ANALYSIS LAYERS · STAGE 01</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="bridge reveal">
+  <div class="wrap">
+    <span class="bl">BRIDGE 01 → 02</span>
+    <p><b>흩어진 필지 하나하나는 사업이 되지 못합니다.</b> 사업의 단위는 연접한 땅의 덩어리 — 블록입니다. 얼마나 많은 필지가 있는지보다 "얼마나 큰 블록"이 그려지는가가 중요합니다.</p>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 02 · 블록화 ═══════════ -->
+<section class="stage alt flip" id="p2">
+  <div class="wrap inner">
+    <div class="txt reveal">
+      <p class="eyebrow">Stage 02 · Blocks · 연접 블록 구성</p>
+      <h2>블록화: 사업의 단위를 만든다</h2>
+      <div class="protect-row" aria-label="누적 레이어"><span class="pchip">필지</span><span class="pchip new">+ 연접</span></div>
+      <p class="body">
+        후보는 필지가 아니라 <b>연접한 블록</b>입니다. 필지 간격 실측 분포(91%가 직접
+        접촉, P90 33.6m)에 근거해 <b>접합 거리 25m</b>로 블록을 잇고, <b>3MW 이상</b>을
+        공식 등재 단위로 봅니다. 50MW를 넘는 큰 블록은 법정리·소유경계·콤팩트 축으로
+        3단 분할하고, 남는 파편은 인접 형제 블록에 재병합합니다. 설치용량은 필지 수가
+        아니라 <b>면적</b>에 비례합니다.
+      </p>
+      <div class="stage-links">
+        <a href="method.html"><span style="display:contents"><span class="t">방법론 · 접합 거리와 블록 분할 규칙</span><span class="m">25m · 3단 분할</span></span></a>
+        <a href="map.html"><span style="display:contents"><span class="t">지도 · 블록 경계와 규모</span><span class="m">MAP →</span></span></a>
+      </div>
+    </div>
+    <figure class="fig ripple-fig reveal" aria-hidden="true">
+      <svg viewBox="0 0 360 360">
+        <circle class="core" cx="180" cy="180" r="5"/>
+        <circle class="rc on"  cx="180" cy="180" r="40"/>
+        <circle class="rc new" cx="180" cy="180" r="70"/>
+        <circle class="rc" cx="180" cy="180" r="100"/>
+        <circle class="rc" cx="180" cy="180" r="130"/>
+        <circle class="rc" cx="180" cy="180" r="160"/>
+        <text class="rl" x="180" y="132" text-anchor="middle">필지</text>
+        <text class="rl new" x="180" y="102" text-anchor="middle">블록</text>
+        <text class="rl" x="180" y="72"  text-anchor="middle">소유</text>
+        <text class="rl" x="180" y="42"  text-anchor="middle">계통</text>
+        <text class="rl" x="180" y="13"  text-anchor="middle">판정</text>
+      </svg>
+      <figcaption>ANALYSIS LAYERS · STAGE 02</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="bridge reveal">
+  <div class="wrap">
+    <span class="bl">BRIDGE 02 → 03</span>
+    <p><b>큰 블록이라고 다 지을 수 있는 건 아닙니다.</b> 개인 소유가 얽힌 땅은 동의를 얻기 어렵습니다. 잠재량과 실행 가능성이 갈라지는 지점 — 여기서 특구의 실현가능한 규모가 드러납니다.</p>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 03 · 소유 분석 ═══════════ -->
+<section class="stage" id="p3">
+  <div class="wrap inner">
+    <div class="txt reveal">
+      <p class="eyebrow">Stage 03 · Ownership · 부지 확보 실행성</p>
+      <h2>소유 분석: 잠재량과 실행성을 가른다</h2>
+      <div class="protect-row" aria-label="누적 레이어"><span class="pchip">필지</span><span class="pchip">블록</span><span class="pchip new">+ 소유</span></div>
+      <p class="body">
+        이 프로젝트의 핵심은 <b>잠재량이 아니라 부지 확보 실행성</b>입니다. 블록 안 개인소유
+        비율이 상한 t 이하(기본 0.30, 0.10~0.50에서 조절 가능)이고 소유주 미확인 필지가
+        20% 이하(t와 별개의 고정 기준)인 블록 — 즉 소유 협의 진입장벽이 낮은 땅을
+        <b>실행 가능 물량</b>으로 집계합니다. 경기·충남 잠재량 7.3만 MW 중 지금 실행 가능한 물량은
+        <b>약 6%</b>. 이 비율이 시군마다 극명하게 다른 것이 이 분석의 가장 중요한 발견입니다.
+      </p>
+      <div class="stage-links">
+        <a href="insight.html"><span style="display:contents"><span class="t">인사이트 · 실행/잠재 비율 순위와 개인소유 상한(t) 탐색</span><span class="m">INSIGHT →</span></span></a>
+        <a href="insight.html"><span style="display:contents"><span class="t">우선 검토 후보 · 개인소유 비율이 낮은 블록</span><span class="m">개인소유 낮은 순</span></span></a>
+      </div>
+    </div>
+    <figure class="fig ripple-fig reveal" aria-hidden="true">
+      <svg viewBox="0 0 360 360">
+        <circle class="core" cx="180" cy="180" r="5"/>
+        <circle class="rc on"  cx="180" cy="180" r="40"/>
+        <circle class="rc on"  cx="180" cy="180" r="70"/>
+        <circle class="rc new" cx="180" cy="180" r="100"/>
+        <circle class="rc" cx="180" cy="180" r="130"/>
+        <circle class="rc" cx="180" cy="180" r="160"/>
+        <text class="rl" x="180" y="132" text-anchor="middle">필지</text>
+        <text class="rl" x="180" y="102" text-anchor="middle">블록</text>
+        <text class="rl new" x="180" y="72" text-anchor="middle">소유</text>
+        <text class="rl" x="180" y="42"  text-anchor="middle">계통</text>
+        <text class="rl" x="180" y="13"  text-anchor="middle">판정</text>
+      </svg>
+      <figcaption>ANALYSIS LAYERS · STAGE 03</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="bridge reveal">
+  <div class="wrap">
+    <span class="bl">BRIDGE 03 → 04</span>
+    <p><b>실행 가능한 땅이 있어도, 전기를 흘려보낼 계통과 쓸 수요가 없으면 무의미합니다.</b></p>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 04 · 계통·수요 ═══════════ -->
+<section class="stage alt flip" id="p4">
+  <div class="wrap inner">
+    <div class="txt reveal">
+      <p class="eyebrow">Stage 04 · Grid & Demand · 계통·수요 연결</p>
+      <h2>계통·수요: 후보의 전력 여건을 확인한다</h2>
+      <div class="protect-row" aria-label="누적 레이어"><span class="pchip">필지</span><span class="pchip">블록</span><span class="pchip">소유</span><span class="pchip new">+ 계통</span></div>
+      <p class="body">
+        한전 배전선로 여유용량(읍면동 단위)과 산업 수요를 각 후보에 연결합니다.
+        후보가 수요처(산단·도시)와 가까울수록 송전 거리가 짧아진다 —
+        「분산에너지 활성화 특별법」이 정의하는 <b>수요지 인근 발전</b>의 입지 논리로
+        후보를 읽습니다. 계통 여유는 KEPCO 전력데이터 개방포털 OpenAPI로
+        분석 대상 25개 분석구역 전체, <b>651개 읍면동에 연결</b>했습니다.
+      </p>
+      <div class="stage-links">
+        <a href="map.html"><span style="display:contents"><span class="t">지도 · 계통 여유 읍면동 단계구분도</span><span class="m">읍면동 색칠</span></span></a>
+        <a href="insight.html"><span style="display:contents"><span class="t">인사이트 · 도시 성격 매트릭스</span><span class="m">수요 구조</span></span></a>
+      </div>
+    </div>
+    <figure class="fig ripple-fig reveal" aria-hidden="true">
+      <svg viewBox="0 0 360 360">
+        <circle class="core" cx="180" cy="180" r="5"/>
+        <circle class="rc on"  cx="180" cy="180" r="40"/>
+        <circle class="rc on"  cx="180" cy="180" r="70"/>
+        <circle class="rc on"  cx="180" cy="180" r="100"/>
+        <circle class="rc new" cx="180" cy="180" r="130"/>
+        <circle class="rc" cx="180" cy="180" r="160"/>
+        <text class="rl" x="180" y="132" text-anchor="middle">필지</text>
+        <text class="rl" x="180" y="102" text-anchor="middle">블록</text>
+        <text class="rl" x="180" y="72"  text-anchor="middle">소유</text>
+        <text class="rl new" x="180" y="42" text-anchor="middle">계통</text>
+        <text class="rl" x="180" y="13"  text-anchor="middle">판정</text>
+      </svg>
+      <figcaption>ANALYSIS LAYERS · STAGE 04</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="bridge reveal">
+  <div class="wrap">
+    <span class="bl">BRIDGE 04 → 05</span>
+    <p><b>모든 레이어가 쌓이면, 마지막은 판정입니다.</b> 실행 가능 물량의 합계가 특구 규모의 문턱을 넘는가. 여기가 파이프라인의 종점입니다.</p>
+  </div>
+</div>
+
+<!-- ═══════════ STAGE 05 · 판정 (HERE) ═══════════ -->
+<section class="stage" id="p5">
+  <div class="wrap inner">
+    <div class="txt reveal">
+      <p class="eyebrow">Stage 05 · Verdict · <span style="color:var(--leaf-deep);font-weight:700">현재 결과</span></p>
+      <h2>판정: 특구 후보를 가린다</h2>
+      <div class="protect-row" aria-label="누적 레이어"><span class="pchip">필지</span><span class="pchip">블록</span><span class="pchip">소유</span><span class="pchip">계통</span><span class="pchip new">+ 특구</span></div>
+      <p class="body">
+        실행 가능 물량의 합계로 시군을 판정합니다 — <b>유력(≥100MW)·지정 가능(50–100MW)·
+        요건 미달</b>. 시나리오는 S0(현행)·S1(재생에너지지구)·S2(확장)로 나뉩니다.
+        기본 시나리오 S1에서 <b>유력 8곳</b>(당진·서산·평택·보령·아산·파주·화성·홍성),
+        <b>지정 가능 4곳</b>(이천·김포·천안, 포항시ᴮ). 자연환경보전지역을 포함(S2)하든 제외(S1)하든
+        판정이 바뀌는 분석구역은 0곳 — 이 결론은 견고합니다.
+      </p>
+      <div class="stage-links">
+        <a href="insight.html"><span style="display:contents"><span class="t">인사이트 · 시군별 판정 순위</span><span class="m">25개 분석구역</span></span></a>
+        <a href="map.html"><span style="display:contents"><span class="t">지도 · 시나리오·문턱 t 조절하며 탐색</span><span class="m">MAP →</span></span></a>
+      </div>
+    </div>
+    <figure class="fig ripple-fig reveal" aria-hidden="true">
+      <svg viewBox="0 0 360 360">
+        <circle class="core" cx="180" cy="180" r="5"/>
+        <circle class="rc on"  cx="180" cy="180" r="40"/>
+        <circle class="rc on"  cx="180" cy="180" r="70"/>
+        <circle class="rc on"  cx="180" cy="180" r="100"/>
+        <circle class="rc on"  cx="180" cy="180" r="130"/>
+        <circle class="rc new" cx="180" cy="180" r="160"/>
+        <text class="rl" x="180" y="132" text-anchor="middle">필지</text>
+        <text class="rl" x="180" y="102" text-anchor="middle">블록</text>
+        <text class="rl" x="180" y="72"  text-anchor="middle">소유</text>
+        <text class="rl" x="180" y="42"  text-anchor="middle">계통</text>
+        <text class="rl new" x="180" y="13" text-anchor="middle">판정</text>
+      </svg>
+      <figcaption>ANALYSIS LAYERS · STAGE 05 · FULL</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═══════════ 핵심 논제 밴드 ═══════════ -->
+<div class="thesis reveal">
+  <div class="wrap">
+    <blockquote>
+      "부지도, 수요도 있다. <mark>제도</mark>가 규모를 가른다 — 현행 제도(S0)의 유력은
+      평택·파주·서산 3곳. 영농형태양광법이 재생에너지지구 지정으로 농업진흥지역의 빗장을 풀면(S1)
+      유력이 8곳으로 늘고, 당진은 37MW에서 1,122MW가 된다."
+    </blockquote>
+    <cite>— PLANiT 영농형 태양광 · 실행 가능 물량 분석</cite>
+  </div>
+</div>
+
+
+<!-- ═══════════ 영농형 태양광이란: 태양·발전·송전 인터랙티브 ═══════════ -->
+<section class="alt" id="agrivolt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><p class="eyebrow">What Agrivoltaic Means</p>
+      <h2>영농형태양광법이 풀면, 들판은 <em>이렇게</em> 움직인다</h2></div>
+    </div>
+    <p class="lede reveal" style="margin-bottom:20px">영농형 태양광은 농지를 전용하는 발전소가 아니다 —
+      <b>패널 아래·이랑 사이에서 농사는 계속된다.</b> 영농형 태양광 발전사업은 원칙적으로
+      <b>농업진흥지역 밖 농지</b>에서 하되, <b>재생에너지지구</b>로 지정되면 농업진흥지역 안에서도
+      발전과 영농을 병행할 수 있다 — <b>농민의 수입원을 지키는 것</b>이 그 취지다.</p>
+    <div class="box" style="padding:0;overflow:hidden"><canvas id="d17" style="width:100%;height:170px;display:block;cursor:ew-resize"></canvas></div>
+      <p class="src">태양 위치에 따라 하늘·들판 밝기·태양 크기가 함께 변합니다 (시각화 전용 산식 e=sin(pπ) — 분석 결과와 무관한 화면 연출)</p>
+      <script>
+      (function(){
+        const cv=document.getElementById('d17'),ctx=cv.getContext('2d');
+        const H=170;
+        let t=0, p=0.32, auto=true;               // p: 태양 위치(0 동 → 1 서)
+        cv.addEventListener('mousemove',e=>{auto=false;const r=cv.getBoundingClientRect();p=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width))});
+        cv.addEventListener('mouseleave',()=>auto=true);
+        function size(){cv.width=cv.clientWidth*devicePixelRatio;cv.height=H*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+        size();addEventListener('resize',size);
+        const lerp=(a,b,u)=>a+(b-a)*u;
+        const mixc=(c1,c2,u)=>'rgb('+c1.map((v,i)=>Math.round(lerp(v,c2[i],u))).join(',')+')';
+        // [낮 색, 밤 색] — 들판 3겹: 지평선 골드 띠(뒤) → 연녹(중) → 짙은 녹(앞)
+        const layers=[
+          {day:[221,181,92], night:[70,58,32],  a:8, f:.023,sp:2.3, base:104},
+          {day:[110,168,84], night:[36,64,32],  a:13,f:.017,sp:1.6, base:118},
+          {day:[62,122,46],  night:[22,44,20],  a:16,f:.012,sp:1.0, base:136},
+        ];
+        // 감속모드: 자동 일주·들판 흔들림은 멈추되, 마우스 주도 태양은 계속 렌더
+        const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function frame(){
+          const W=cv.clientWidth;
+          if(auto&&!reduced){p+=0.0012; if(p>1.08)p=-0.08;} // 자동 일주(약 15초/하루)
+          const pc=Math.min(1,Math.max(0,p));
+          const e=Math.sin(pc*Math.PI);                    // 태양 고도 0~1
+          window._sunE=e;                                  // 17-B와 공유: 발전 계수 g=e
+          const dusk=Math.max(0,1-Math.abs(pc-.5)*2)<.5?1-e:0; // 새벽·해질녘 강도
+          // 하늘: 밤 네이비 ↔ 낮 하늘색, 지평선엔 노을
+          const sky=ctx.createLinearGradient(0,0,0,H);
+          sky.addColorStop(0, mixc([16,32,64],[188,224,244],e));
+          sky.addColorStop(1, mixc([30,48,80],[236,246,252],e*.9));
+          ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
+          if(dusk>0.25){                                    // 노을 밴드
+            const g=ctx.createLinearGradient(0,H*.45,0,H*.75);
+            g.addColorStop(0,'rgba(233,150,60,0)');g.addColorStop(1,'rgba(233,150,60,'+(dusk*.5)+')');
+            ctx.fillStyle=g;ctx.fillRect(0,H*.45,W,H*.3);
+          }
+          // 태양: 동→서 원호, 정오에 크고 강함
+          const sx=lerp(30,W-30,pc), sy=lerp(H*.78,H*.22,e), sr=11+e*9;
+          const glow=ctx.createRadialGradient(sx,sy,2,sx,sy,sr*3.2);
+          glow.addColorStop(0,'rgba(255,214,110,'+(0.55+e*.35)+')');glow.addColorStop(1,'rgba(255,214,110,0)');
+          ctx.fillStyle=glow;ctx.beginPath();ctx.arc(sx,sy,sr*3.2,0,7);ctx.fill();
+          ctx.beginPath();ctx.arc(sx,sy,sr,0,7);
+          ctx.fillStyle=mixc([233,120,60],[255,214,90],e);ctx.fill();
+          // 들판 3겹: 밝기 = 고도
+          layers.forEach(L=>{
+            ctx.beginPath();ctx.moveTo(0,H);
+            for(let x=0;x<=W;x+=4){
+              ctx.lineTo(x, L.base - Math.sin(x*L.f + t*L.sp)*L.a - Math.sin(x*L.f*0.5 + t*L.sp*0.7)*L.a*0.5);
+            }
+            ctx.lineTo(W,H);ctx.closePath();
+            ctx.fillStyle=mixc(L.night,L.day,.25+e*.75);ctx.fill();
+          });
+          if(!reduced) t+=0.03;                            // 들판 흔들림도 감속모드에선 정지
+          requestAnimationFrame(frame);                    // 루프는 항상 유지 → 마우스 상호작용 즉시 반영
+        }
+        frame();
+      })();
+      </script>
+    <p class="fignote" style="font-family:var(--mono);font-size:10.5px;color:#9FB4C4;margin:8px 0 26px;letter-spacing:.04em">마우스 좌우 = 태양 위치(동→서) · 정오에 가장 밝고 강함 · 놓으면 하루가 저절로 흐름</p>
+    <div class="box" style="padding:10px">
+        <div style="display:flex;gap:12px;align-items:center;margin:4px 6px 10px;flex-wrap:wrap">
+          <label style="font-family:var(--mono);font-size:11px;color:var(--muted)">시군</label>
+          <select id="d17sel" style="font-size:13px;padding:4px 10px;border:1px solid var(--line);border-radius:6px"></select>
+          <div class="tabs" id="d17scn" style="margin:0;gap:5px">
+            <button class="tab" data-s="S0" style="padding:4px 11px">현행 S0</button>
+            <button class="tab on" data-s="S1" style="padding:4px 11px">재생E지구 S1</button>
+            <button class="tab" data-s="S2" style="padding:4px 11px">확장 S2</button>
+          </div>
+          <label style="font-family:var(--mono);font-size:11px;color:var(--muted)">개인소유 상한</label>
+          <select id="d17t" style="font-size:12px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;font-family:var(--mono)">
+            <option value="0.10">t ≤ 0.10</option><option value="0.20">t ≤ 0.20</option>
+            <option value="0.30" selected>t ≤ 0.30</option><option value="0.40">t ≤ 0.40</option>
+            <option value="0.50">t ≤ 0.50</option>
+          </select>
+          <span id="d17cnt" style="font-family:var(--mono);font-size:12px;color:var(--leaf-deep)"></span>
+        </div>
+        <svg id="d17av" viewBox="0 0 760 320" style="width:100%;height:auto;display:block">
+          <!-- 들판(항공뷰 논배미) -->
+          <g id="d17fld"></g>
+          <!-- 농업진흥지역 내 재생에너지지구 지정(S1) -->
+          <rect x="55" y="62" width="272" height="206" rx="10" fill="var(--leaf)" opacity=".10"/>
+          <rect id="d17zb" x="55" y="62" width="272" height="206" rx="10" fill="none" stroke="var(--leaf)" stroke-width="2" stroke-dasharray="8 6"/>
+          <text id="d17zl" x="62" y="50" font-family="var(--mono)" font-size="12.5" fill="var(--leaf-deep)" font-weight="700">재생에너지지구 (농업진흥지역 내)</text>
+          <!-- 태양광 패널 어레이 (발광 ∝ g) -->
+          <g id="d17pn"></g>
+          <!-- 패널 사이 이랑 작물: 영농 병행 -->
+          <g id="d17cr" pointer-events="none"></g>
+          <!-- 비닐하우스 + 지붕형 태양광 -->
+          <g id="d17gh"></g>
+          <!-- 송전선(동적: 시군별 산단 수만큼) -->
+          <g id="d17wr"></g>
+          <!-- 빛 펄스 -->
+          <g id="d17pl"></g>
+          <!-- 산단(동적) -->
+          <g id="d17fc"></g>
+          <!-- 밤 오버레이 -->
+          <rect id="d17night" x="0" y="0" width="760" height="320" fill="#0A1E3C" opacity="0" pointer-events="none"/>
+          <!-- 발전율 판 -->
+          <g pointer-events="none">
+            <rect x="588" y="14" width="158" height="26" rx="13" fill="rgba(255,255,255,.85)"/>
+            <text id="d17st" x="667" y="31" text-anchor="middle" font-family="var(--mono)" font-size="13" fill="var(--navy)" font-weight="700">발전율 0%</text>
+          </g>
+        </svg>
+      </div>
+      <p class="src">산단 = 산업단지 DB 실데이터(이름·업종·추정 MW — 마우스를 올리면 표시) · 송전선 흐름·패널 발광·창불빛·밤 밝기는 위 들판의 태양 고도에 비례하는 화면 연출입니다</p>
+      <script>
+      window._d17init=function(C,CPX){
+        // 좌 = 논밭(항공뷰 필지 패치워크) · 우 = 도시(도로·건물 블록, 산단 구역)
+        const fld=document.getElementById('d17fld');
+        const PALS=['#CDE0AE','#C2D8A0','#D6E6BC','#BFD49A','#D9E3AC','#E4DCA0','#CFE2B4'];  // 초록들 + 익은 논 골드 1
+        let fh2='<rect x="0" y="0" width="760" height="320" fill="#B9C89A"/>';               // 두렁·땅
+        for(let r=0;r<5;r++)for(let c=0;c<4;c++){                                            // 농지 필지는 좌측만
+          const i=r*7+c, px=c*110-6, py=r*66-4, col=PALS[(i*3+r)%7];
+          fh2+=`<rect x="${px}" y="${py}" width="103" height="59" rx="4" fill="${col}"/>`;
+          const vert=(r+c)%2===0, dk='rgba(90,110,60,.22)';
+          if(vert){for(let lx=px+9;lx<px+100;lx+=9) fh2+=`<line x1="${lx}" y1="${py+5}" x2="${lx}" y2="${py+54}" stroke="${dk}" stroke-width="2.4"/>`;}
+          else{for(let ly=py+9;ly<py+56;ly+=9) fh2+=`<line x1="${px+5}" y1="${ly}" x2="${px+98}" y2="${ly}" stroke="${dk}" stroke-width="2.4"/>`;}
+        }
+        // ── 도시(우측 x≥400): 회색 기반 + 도로망 + 건물 블록 ──
+        fh2+='<rect x="400" y="0" width="360" height="320" fill="#E3E4DE"/>';
+        // 도로: 세로 2 + 가로 2 (중앙 점선)
+        const road=(x,y,w,h,vert2)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#CACBC4"/>`+
+          (vert2?`<line x1="${x+w/2}" y1="${y+4}" x2="${x+w/2}" y2="${y+h-4}" stroke="#fff" stroke-width="1.6" stroke-dasharray="8 7"/>`
+                :`<line x1="${x+4}" y1="${y+h/2}" x2="${x+w-4}" y2="${y+h/2}" stroke="#fff" stroke-width="1.6" stroke-dasharray="8 7"/>`);
+        fh2+=road(400,0,10,320,true);                       // 농지-도시 경계 간선
+        fh2+=road(524,0,12,320,true)+road(642,0,12,320,true);
+        fh2+=road(400,96,360,12,false)+road(400,216,360,12,false);
+        // 건물 블록: 도로 사이 격자에 소형 건물들 (결정론적 배치)
+        const BCOL=['#C2C8CE','#B4BCC6','#AEB8C2','#CBD0D6','#9FA9B5'];
+        const CELLX=[[414,516],[540,634],[658,752]], CELLY=[[8,88],[116,208],[236,312]];
+        let bi=0;
+        CELLY.forEach(([cy0,cy1],ri)=>CELLX.forEach(([bx0,bx1],ci)=>{
+          const nB=3+((ri+ci)%2);                            // 셀당 3~4동
+          for(let b=0;b<nB;b++){
+            const w=15+((bi*7)%13), h=9+((bi*5)%9);
+            const bx=bx0+((bi*29)%(bx1-bx0-w)), by=cy0+((bi*17)%(cy1-cy0-h));
+            fh2+=`<rect x="${bx}" y="${by}" width="${w}" height="${h}" rx="1.5" fill="${BCOL[bi%5]}"/>`;
+            bi++;
+          }
+        }));
+        fld.innerHTML=fh2;
+        // ── 비닐하우스 + 지붕형 태양광 (특구 아래 농지 띠) ──
+        const gh=document.getElementById('d17gh');
+        let gh2='';
+        [64,128,192,256].forEach((gx,gi)=>{
+          gh2+=`<g><title>시설재배 비닐하우스 · 지붕형 태양광 (실증 계수 대기)</title>
+            <path d="M ${gx} 312 v-20 q 0 -15 15 -15 h 24 q 15 0 15 15 v 20 z" fill="#F5F7F2" stroke="#C4CCC0" stroke-width="1.2"/>
+            <path d="M ${gx+13} 312 v-33 M ${gx+27} 312 v-35 M ${gx+41} 312 v-33" stroke="#DDE4DA" stroke-width="1.1"/>
+            <rect class="d17rp" x="${gx+13}" y="273" width="28" height="7" rx="1.5" fill="var(--navy)" stroke="var(--gold)" stroke-width=".9"/>
+          </g>`;
+        });
+        gh2+='<text x="330" y="300" font-family="var(--mono)" font-size="10" fill="var(--ink)" style="paint-order:stroke;stroke:#F6FAF4;stroke-width:3px">◀ 시설재배 비닐하우스</text>'+
+             '<text x="330" y="311" font-family="var(--mono)" font-size="10" fill="var(--muted)" style="paint-order:stroke;stroke:#F6FAF4;stroke-width:3px">지붕형 태양광 (실증 대기)</text>';
+        gh.innerHTML=gh2;
+        // 특구 안 작물: 노란 벼 + 초록 풀 다발 (전면 — 패널 사이로 보임)
+        const cr=document.getElementById('d17cr');
+        let ch='';
+        for(let cy=82;cy<=258;cy+=15){
+          for(let cx2=76;cx2<=316;cx2+=13){
+            const rice=((cx2+cy)%3)!==0;             // 2/3 벼(골드), 1/3 풀(그린)
+            const col=rice?'#C0A238':'#3E7A2E';
+            ch+=`<path d="M ${cx2} ${cy} l -2.2 -6 M ${cx2} ${cy} l 0 -7 M ${cx2} ${cy} l 2.2 -6" stroke="${col}" stroke-width="1.2" fill="none" opacity=".85"/>`+
+                (rice?`<circle cx="${cx2}" cy="${cy-7.5}" r="1.1" fill="#D3B54A"/>`:'');
+          }
+        }
+        cr.innerHTML=ch;
+        // 패널: 1개 = 10MW — 시군 실행 가능 물량에 비례해 개수 변동
+        const pn=document.getElementById('d17pn');
+        const CELL={w:16,h:7,dx:20,dy:14,x0:74,y0:80,cols:12,maxRows:12};
+        function setPanels(mw){
+          const want=Math.round((mw||0)/10);
+          const cap=CELL.cols*CELL.maxRows;
+          const cells=Math.min(want,cap);
+          let ps='';
+          for(let i=0;i<cells;i++){
+            const r=Math.floor(i/CELL.cols), c=i%CELL.cols;
+            const x=CELL.x0+c*CELL.dx, y=CELL.y0+r*CELL.dy;
+            ps+=`<g><rect x="${x}" y="${y}" width="${CELL.w}" height="${CELL.h}" rx="1.5" fill="var(--navy)" stroke="var(--gold)" stroke-width=".8"/><line x1="${x+CELL.w/2}" y1="${y}" x2="${x+CELL.w/2}" y2="${y+CELL.h}" stroke="#3C64A0" stroke-width=".8"/></g>`;
+          }
+          pn.innerHTML=ps;
+          return {cells,want};
+        }
+        // 시군 셀렉트: A(산단 보유, 산단 수순) + B 전국 산단거점(산단 목록 수집 예정)
+        const sel=document.getElementById('d17sel');
+        const codes=Object.keys(CPX).filter(k=>C[k]&&C[k].region==='A').sort((a,b)=>CPX[b].length-CPX[a].length);
+        const codesB=Object.keys(C).filter(k=>C[k].region==='B').sort((a,b)=>(C[b].S1.b_mw_t30||0)-(C[a].S1.b_mw_t30||0));
+        sel.innerHTML=
+          `<optgroup label="A · 경기·충남">${codes.map(k=>`<option value="${k}">${C[k].name} (산단 ${CPX[k].length})</option>`).join('')}</optgroup>`+
+          `<optgroup label="B · 전국 산단거점 — 산단 목록 수집 예정">${codesB.map(k=>`<option value="${k}">${C[k].name}</option>`).join('')}</optgroup>`;
+        let wires=[],lens=[],pulses=[],wins=[];
+        let scn='S1', tt='0.30', curN=0;
+        // 시나리오·t 반영: 패널 수, 지붕형 가시성, 특구 라벨, 집계 문구
+        function refresh(){
+          const code=sel.value;
+          const mw=(((C[code][scn]||{}).by_t||{})[tt]||{}).b_mw||0;
+          const pr=setPanels(mw);
+          // 현행법(S0): 농업진흥지역 영농형 불가 + 시설(비닐하우스) 지붕형도 불가
+          document.querySelectorAll('#d17gh .d17rp').forEach(rp=>rp.style.display=scn==='S0'?'none':'');
+          const zl=document.getElementById('d17zl'), zb=document.getElementById('d17zb');
+          if(scn==='S0'){ zl.textContent='농업진흥지역 · 현행법 — 영농형·지붕형 불가'; zl.setAttribute('fill','#A0522D'); zb.setAttribute('stroke','#B08A6A'); }
+          else if(scn==='S1'){ zl.textContent='재생에너지지구 (농업진흥지역 내, S1)'; zl.setAttribute('fill','var(--leaf-deep)'); zb.setAttribute('stroke','var(--leaf)'); }
+          else { zl.textContent='재생에너지지구 확장 (S2 · +자연환경)'; zl.setAttribute('fill','var(--leaf-deep)'); zb.setAttribute('stroke','var(--leaf)'); }
+          document.getElementById('d17cnt').textContent=
+            `${curN?`산단 ${curN}곳`:'산단 수집 예정'} · 패널 ${pr.cells}개×10MW`+(pr.want>pr.cells?`(+${pr.want-pr.cells})`:'')+
+            ` ≈ 실행 ${Math.round(mw).toLocaleString()}MW · ${scn} · t≤${tt} (개인소유 필지 ${Math.round(+tt*100)}% 이하 블록만)`;
+        }
+        function build(code){
+          const list=(CPX[code]||[]).slice(0,8);                 // 최대 8곳 (B = 목록 없음)
+          const n=list.length; curN=n;
+          const wr=document.getElementById('d17wr'), fc=document.getElementById('d17fc'), pl=document.getElementById('d17pl');
+          // 2열 배치: 라벨이 이웃 산단과 겹치지 않게 (좌 552 / 우 664, 행 간격 넉넉히)
+          const two=n>4, s=two?0.8:1;
+          const rows=two?Math.ceil(n/2):n;
+          const y0=64, y1=304, step=(y1-y0)/rows;
+          let wh='',fh='',ph='';
+          list.forEach((cx,i)=>{
+            const col=two?(i%2):0, ri=two?Math.floor(i/2):i;
+            const fx=two?(col?664:552):612;
+            const fy=y0+step*(ri+0.5)-19*s;
+            const sy=100+(i/(Math.max(n-1,1)))*130;               // 특구 출구 지점 분산
+            wh+=`<path class="d17w" d="M 327 ${sy.toFixed(0)} C ${((327+fx)/2).toFixed(0)} ${((sy+fy+18)/2-24).toFixed(0)}, ${(fx-56).toFixed(0)} ${(fy+18).toFixed(0)}, ${fx} ${(fy+22*s).toFixed(0)}" fill="none" stroke="var(--gold)" stroke-width="${two?2:2.5}" stroke-linecap="round" stroke-dasharray="10 8"/>`;
+            const w=64*s, nm=cx.n.replace('산업단지','산단');
+            const maxCh=two?8:10;
+            fh+=`<g style="cursor:default"><title>${cx.n} · ${cx.ind||''} · 약 ${Math.round(cx.mw).toLocaleString()}MW 밀도</title>
+              <rect x="${fx}" y="${(fy+10*s).toFixed(1)}" width="${w}" height="${26*s}" rx="3" fill="var(--navy)"/>
+              <rect x="${fx+7*s}" y="${fy.toFixed(1)}" width="${8*s}" height="${13*s}" fill="var(--navy)"/>
+              <path d="M ${fx} ${(fy+10*s).toFixed(1)} l ${15*s} -6 v 6 l ${15*s} -6 v 6 l ${15*s} -6 v 6 z" fill="#3C64A0"/>
+              <rect class="d17win" x="${(fx+6*s).toFixed(1)}"  y="${(fy+17*s).toFixed(1)}" width="${11*s}" height="${8*s}" rx="1.5" fill="var(--gold)" opacity="0"/>
+              <rect class="d17win" x="${(fx+24*s).toFixed(1)}" y="${(fy+17*s).toFixed(1)}" width="${11*s}" height="${8*s}" rx="1.5" fill="var(--gold)" opacity="0"/>
+              <rect class="d17win" x="${(fx+42*s).toFixed(1)}" y="${(fy+17*s).toFixed(1)}" width="${11*s}" height="${8*s}" rx="1.5" fill="var(--gold)" opacity="0"/>
+              <text x="${fx+w/2}" y="${(fy+26*s+13).toFixed(1)}" text-anchor="middle" font-size="${two?10:11}" font-family="var(--mono)" fill="var(--ink)" style="paint-order:stroke;stroke:#F6FAF4;stroke-width:3px">${nm.length>maxCh?nm.slice(0,maxCh)+'…':nm}</text></g>`;
+            ph+=`<circle data-w="${i}" r="3" fill="#FFDD82" opacity="0"/><circle data-w="${i}" r="3" fill="#FFDD82" opacity="0"/>`;
+          });
+          if(n===0){                                             // B: 산단 목록 미수집 안내
+            fh=`<text x="565" y="150" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--muted)" style="paint-order:stroke;stroke:#E3E4DE;stroke-width:4px">산단 목록 수집 예정 (한국산업단지공단)</text>`+
+               `<text x="565" y="168" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="#9AA8B8" style="paint-order:stroke;stroke:#E3E4DE;stroke-width:4px">관내 실행 물량 부재 시 인접 농업 시군 연계</text>`;
+          }
+          wr.innerHTML=wh; fc.innerHTML=fh; pl.innerHTML=ph;
+          wires=[...wr.querySelectorAll('.d17w')];
+          lens=wires.map(w=>w.getTotalLength());
+          pulses=[...pl.querySelectorAll('circle')];
+          wins=[...fc.querySelectorAll('.d17win')];
+          refresh();
+        }
+        sel.addEventListener('change',()=>build(sel.value));
+        document.getElementById('d17scn').addEventListener('click',e=>{
+          const b=e.target.closest('.tab'); if(!b) return;
+          document.querySelectorAll('#d17scn .tab').forEach(x=>x.classList.toggle('on',x===b));
+          scn=b.dataset.s; refresh();
+        });
+        document.getElementById('d17t').addEventListener('change',e=>{tt=e.target.value; refresh();});
+        build(codes[0]);
+        const night=document.getElementById('d17night'), st=document.getElementById('d17st');
+        const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let off=0, pt=0;
+        function frame(){
+          const g=window._sunE ?? 0.75;
+          if(!reduced){ off+=3.8*g; pt+=0.0045*g; }
+          wires.forEach(w=>{
+            w.setAttribute('stroke-dashoffset',(-off).toFixed(1));
+            w.setAttribute('stroke-opacity',(0.08+0.87*g).toFixed(3));
+          });
+          pulses.forEach((c,idx)=>{
+            const wi=+c.dataset.w, L=lens[wi]; if(!L)return;
+            const p=((pt+(idx%2)*0.5+wi*0.13)%1)*L;
+            const pos=wires[wi].getPointAtLength(p);
+            c.setAttribute('cx',pos.x.toFixed(1)); c.setAttribute('cy',pos.y.toFixed(1));
+            c.setAttribute('opacity',g<0.06?0:(0.25+0.75*g).toFixed(3));
+            c.setAttribute('r',(2+2*g).toFixed(2));
+          });
+          pn.style.filter=`drop-shadow(0 0 ${(4*g).toFixed(1)}px rgba(233,185,74,${(0.8*g).toFixed(2)}))`;
+          gh.style.filter=pn.style.filter;               // 지붕형 패널도 같이 발광
+          wins.forEach(w=>w.setAttribute('opacity',(0.94*g).toFixed(3)));
+          night.setAttribute('opacity',((1-g)*0.45).toFixed(3));
+          st.textContent=`발전율 ${Math.round(g*100)}%`;
+          requestAnimationFrame(frame);
+        }
+        frame();
+      };
+      </script>
+    <p class="fignote" style="font-family:var(--mono);font-size:10.5px;color:#9FB4C4;margin-top:10px;letter-spacing:.04em">시군·시나리오·개인소유 상한을 바꿔 보라 — 패널 1개=10MW(실행 물량 비례) · 현행 S0에선 농업진흥지역 영농형·비닐하우스 지붕형 모두 불가 · 산단·계통·수요는 실측 데이터(미수집분은 '수집 예정'으로 표기)</p>
+  </div>
+</section>
+
+<!-- ═══════════ NOW: 지금 진행 중 ═══════════ -->
+<section id="now">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">Now · 이번 단계의 현장</p>
+        <h2>지금 채우고 있는 것들</h2>
+      </div>
+      <a class="more" href="method.html">방법론 전체 →</a>
+    </div>
+    <div class="now-grid">
+      <div class="now-card reveal">
+        <p class="meta">STAGE 04 · 계통·수요</p>
+        <h3>KEPCO OpenAPI 계통 여유 — 651개 읍면동 연결</h3>
+        <div class="pbar"><div class="fill" data-progress="100"></div></div>
+        <p class="pnum"><span>읍면동 단계구분도 색칠 완료</span><span>완료</span></p>
+      </div>
+      <div class="now-card reveal">
+        <p class="meta">STAGE 04 · 산단 카드</p>
+        <h3>전국 산단거점(B) 산단 목록 연결 — 한국산업단지공단(KICOX)</h3>
+        <div class="pbar"><div class="fill" data-progress="35"></div></div>
+        <p class="pnum"><span>공공데이터 확장 대기</span><span>수집 예정</span></p>
+      </div>
+      <div class="now-card reveal">
+        <p class="meta">결론부 · 정책 제언</p>
+        <h3>영농형태양광법 활용 논거 — 법률 감수 병행</h3>
+        <div class="pbar"><div class="fill" data-progress="55"></div></div>
+        <p class="pnum"><span>조문·시행령 확인 중</span><span>비공개</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 살펴보기 ═══════════ -->
+<section class="alt" id="explore">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">Explore · 세 개의 창</p>
+        <h2>결과를 세 관점으로 본다</h2>
+      </div>
+      <a class="more" href="map.html">지도로 →</a>
+    </div>
+    <div class="grid">
+      <a class="card reveal" href="map.html">
+        <div class="meta"><span class="tag">지도</span><span>인터랙티브</span></div>
+        <h3>후보 지도</h3>
+        <p>시나리오·문턱 t를 조절하며 블록 경계, 계통 여유 읍면동 단계구분도, 산단 위치를 탐색합니다.</p>
+        <span class="foot">열기 <span class="arrow">→</span></span>
+      </a>
+      <a class="card reveal" href="insight.html">
+        <div class="meta"><span class="tag">인사이트</span><span>다섯 프레임</span></div>
+        <h3>실행성이 그리는 경계</h3>
+        <p>잠재량 트랩 사분면, 시나리오×개인소유 상한 민감도, 100MW 충족도 링, 도시 성격 매트릭스, 전국 판정표.</p>
+        <span class="foot">열기 <span class="arrow">→</span></span>
+      </a>
+      <a class="card reveal" href="method.html">
+        <div class="meta"><span class="tag">방법론</span><span>10 섹션</span></div>
+        <h3>어떻게 계량했는가</h3>
+        <p>데이터 계층, 블록 접합 25m, 3단 분할, 시나리오 S0/S1/S2, 발전량·계통 산식과 한계까지.</p>
+        <span class="foot">열기 <span class="arrow">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 컨택트 ═══════════ -->
+<section class="contact" id="contact">
+  <div class="wrap box">
+    <div class="reveal">
+      <p class="eyebrow">Contact</p>
+      <h2>어느 시군을 함께 <em>설계</em>하시겠어요?</h2>
+      <p style="margin-top:14px">
+        정책 담당자, 지자체, 발전 사업자, 그리고 농업계와 함께 일합니다.
+        특구 후보 시군의 실행 가능 물량과 우선 검토 목록을 함께 검토합니다.
+      </p>
+    </div>
+    <div class="panel reveal">
+      <div class="row"><span class="k">EMAIL</span><a href="mailto:sojin@planit.institute">sojin@planit.institute</a></div>
+      <div class="row"><span class="k">SECTOR</span><span>Agrivoltaic · 영농형 태양광</span></div>
+      <div class="row"><span class="k">FOCUS</span><span>특구 최적입지 · 실행 가능 물량</span></div>
+      <div class="row"><span class="k">MAIN</span><a href="https://planit.institute/">planit.institute ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<div id="appendix"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="brandline">PLANiT · 영농형 태양광</div>
+        <p style="max-width:34ch;word-break:keep-all">
+          잠재량이 아니라 실행 가능성으로 영농형 태양광 특구 후보를 가리는
+          PLANiT Institute의 재생에너지 섹터입니다.
+        </p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html">개요</a></li>
+          <li><a href="map.html">지도</a></li>
+          <li><a href="method.html">방법론</a></li>
+          <li><a href="insight.html">인사이트</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Pipeline</h4>
+        <ul>
+          <li><a href="index.html#p1">01 필지 원장</a></li>
+          <li><a href="index.html#p2">02 블록화</a></li>
+          <li><a href="index.html#p3">03 소유 분석</a></li>
+          <li><a href="index.html#p4">04 계통·수요</a></li>
+          <li><a href="index.html#p5">05 판정 · 결과</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Org</h4>
+        <ul>
+          <li><a href="https://planit.institute/">planit.institute ↗</a></li>
+          <li><a href="mailto:sojin@planit.institute">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fine">
+      <span>데이터: 국토부 지적통계 · LX · 팜맵 · 한전 전력데이터 개방포털 · V-World</span>
+      <span>© 2026 PLANiT Institute · 내부 검수본</span>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script src="assets/appendix.js"></script>
+<script>
+Promise.all([
+  fetch('data/summary.json',{cache:'no-cache'}).then(r=>r.json()),
+  fetch('data/sgg_complex.json',{cache:'no-cache'}).then(r=>r.json())
+]).then(([D,CPX])=>{ if(window._d17init) window._d17init(D.codes,CPX); })
+  .catch(()=>{ /* 데이터 로드 실패 시 산단 시각화만 생략 — 히어로 지표는 정적(data-target) */ });
+</script>
+</body>
+</html>

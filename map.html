@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANiT · 영농형 태양광 — 지도</title>
+<meta name="description" content="시군 진단 도구와 블록 단위 후보 지도 — 계통 단계구분도·산단·시나리오·t 조절.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.figbox{background:var(--chart-bg);border:1px solid var(--line);border-radius:12px;padding:24px;position:relative}
+.mapframe{width:100%;height:820px;border:1px solid var(--line);border-radius:12px;background:#fff}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
+    <span><a href="https://planit.institute/">← planit.institute 메인으로</a></span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="mark-img" src="assets/planit_logo.png" alt="PLANiT"><span class="sector">영농형 태양광</span></a>
+    <nav class="menu" id="menu">
+      <a href="index.html">개요</a>
+      <a class="active" href="map.html">지도</a>
+      <a href="atlas.html">구역별 지도</a>
+      <a href="method.html">방법론</a>
+      <a href="insight.html">인사이트</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <a class="nav-cta" href="index.html#contact">Contact</a>
+      <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Map · 진단하고, 확인한다</p>
+    <h1>내 시군은 <em>특구가 될 수 있는가</em>.</h1>
+    <p class="lede">먼저 30초 자가진단 — 그 다음 지도에서 블록 하나하나를 확인하라.
+      25개 분석구역 전체, 시나리오·개인소유 상한 조절 가능.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 시군 진단 위저드 ═══════════ -->
+<section style="padding:44px 0 34px">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Diagnosis · 30-second Check</p><h2>시군 진단 도구</h2></div></div>
+    <div class="figbox">
+      <div class="box">
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px">
+          <div class="field" style="margin:0;min-width:170px"><label>시군 선택</label><select id="d20s"></select></div>
+          <div class="field" style="margin:0;min-width:170px"><label>개인소유 상한 t</label><select id="d20t">
+            <option value="0.10">t ≤ 0.10 (엄격)</option><option value="0.20">t ≤ 0.20</option>
+            <option value="0.30" selected>t ≤ 0.30 (기본)</option><option value="0.40">t ≤ 0.40</option>
+            <option value="0.50">t ≤ 0.50 (완화)</option></select></div>
+        </div>
+        <div class="dz-cards" style="grid-template-columns:repeat(4,1fr)">
+          <div class="dz-card"><span class="k">실행 가능 물량</span><div class="v" id="d20a">—</div><div class="d">공식 등재 블록 합</div></div>
+          <div class="dz-card"><span class="k">잠재 물량</span><div class="v" id="d20b">—</div><div class="d">소유 무관 전체</div></div>
+          <div class="dz-card"><span class="k">계통 여유</span><div class="v" id="d20c">—</div><div class="d">읍면동 합 (상한 추정)</div></div>
+          <div class="dz-card"><span class="k">판정</span><div class="v" id="d20d">—</div><div class="d" id="d20dd">t=0.30 기준</div></div>
+        </div>
+        <div class="verdict" id="d20v"><span class="vh">VERDICT · 자동 생성</span><span id="d20vt">시군을 선택하세요.</span></div>
+        <button class="btn btn-primary copybtn" id="d20copy">진단 요약 복사</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 블록 지도 ═══════════ -->
+<section class="alt" style="padding:44px 0 60px">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Block Map</p><h2>블록 단위 후보 지도</h2></div>
+      <a class="more" href="map_full.html" target="_blank">새 창에서 크게 보기 ↗</a></div>
+    <p class="lede" style="margin-bottom:18px">시나리오 3탭 · t 버튼 · 계통 여유 단계구분도(651개 읍면동 실측) · 산단 마커 · 우선 검토 후보 순위.</p>
+    <iframe id="mapfr" class="mapframe" src="map_full.html" title="블록 단위 후보 지도"></iframe>
+  </div>
+</section>
+
+<div id="appendix"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="fine" style="border-top:none;padding-top:0">
+      <span>PLANiT Institute · 영농형 태양광 — 내부 검수본 (배포 전 스테이징)</span>
+      <span>© 2026 PLANiT Institute</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ?sgg= 쿼리를 지도 iframe에 전달 + 위저드 초기 선택
+const q=new URLSearchParams(location.search);
+if(q.get('sgg')) document.getElementById('mapfr').src='map_full.html?sgg='+q.get('sgg');
+
+fetch('data/summary.json',{cache:'no-cache'}).then(r=>r.json()).then(D=>{
+  const C=D.codes;
+  const byMw=(a,b)=>(C[b].S1.b_mw_t30||0)-(C[a].S1.b_mw_t30||0);
+  const A=Object.keys(C).filter(k=>C[k].region==='A').sort(byMw);
+  const B=Object.keys(C).filter(k=>C[k].region==='B').sort(byMw);
+  const mw=v=>v==null?'—':Math.round(v).toLocaleString();
+  /* 20 위저드 — 전국 29코드 (A+B) */
+  (function(){
+    const sel=document.getElementById('d20s'), tsel=document.getElementById('d20t');
+    const opt=k=>`<option value="${k}">${C[k].name}</option>`;
+    sel.innerHTML=
+      `<optgroup label="A · 경기·충남">${A.map(opt).join('')}</optgroup>`+
+      `<optgroup label="B · 전국 산단거점">${B.map(opt).join('')}</optgroup>`;
+    function diag(){
+      const k=sel.value, t=tsel.value, c=C[k];
+      const e=((c.S1.by_t||{})[t]||{}).b_mw ?? c.S1.b_mw_t30 ?? 0;
+      const st=e>=100?'유력':e>=50?'지정 가능':'요건 미달';
+      document.getElementById('d20a').textContent=Math.round(e).toLocaleString()+' MW';
+      document.getElementById('d20a').className='v '+(st==='유력'?'good':'');
+      document.getElementById('d20b').textContent=mw(c.S1.seg_mw)+' MW';
+      document.getElementById('d20c').textContent=mw(c.grid_pool_mw)+' MW';
+      document.getElementById('d20d').textContent=st;
+      document.getElementById('d20d').className='v '+(st==='유력'?'good':'');
+      document.getElementById('d20dd').textContent='t='+t+' 기준';
+      const gen=e*8760*0.15/1000;
+      const isB=c.region==='B';
+      document.getElementById('d20vt').innerHTML=
+        `<b>${c.name}</b>${isB?' (산단거점)':''}은(는) 개인소유 상한 <b>t≤${t}</b>에서 실행 가능 물량 <b>${Math.round(e).toLocaleString()}MW</b>로 <b>${st}</b>입니다. `+
+        (st==='유력'?'이 연구가 가정한 특구 요건선(≥100MW)을 넘으며, 우선 검토 후보의 소유 협의부터 시작할 수 있습니다. ':
+         st==='지정 가능'?'50–100MW 구간 — 소유주 미확인 블록 조사 시 승격 가능성이 있습니다. ':
+         isB?'산업도시 특성상 관내 실행 물량이 부재합니다 — <b>인접 농업 시군과의 연계 공급</b>이 현실적 경로입니다. ':
+         '단독으로는 요건에 미달합니다 — 인접 시군 연계 또는 t 완화 시나리오를 검토하세요. ')+
+        (gen>0?`연간 발전 추정 <b>${gen.toFixed(0)}GWh</b>는 수요처(산단·도시) 인근에서 생산됩니다 — 송전 거리를 최소화하는 <b>수요지 인근 발전</b>(분산에너지) 입지입니다.`:'');
+    }
+    sel.addEventListener('change',diag); tsel.addEventListener('change',diag); diag();
+    document.getElementById('d20copy').addEventListener('click',async function(){
+      try{await navigator.clipboard.writeText(document.getElementById('d20vt').textContent);this.textContent='복사됨 ✓'}
+      catch(e){this.textContent='복사 실패'}
+      setTimeout(()=>this.textContent='진단 요약 복사',1800);
+    });
+  })();
+  if(q.get('sgg')&&C[q.get('sgg')]){const s=document.getElementById('d20s');s.value=q.get('sgg');s.dispatchEvent(new Event('change'));}
+});
+</script>
+<script src="site.js"></script>
+<script src="assets/appendix.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANiT · 영농형 태양광 — 방법론</title>
+<meta name="description" content="필지 전수원장 → 연접 블록화 → 소유 기반 선별 → 계통·수요 연결 → 특구 판정. 다섯 단계 분석 여정과 핵심 정의.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.figbox{background:var(--chart-bg);border:1px solid var(--line);border-radius:12px;padding:24px;position:relative}
+.formula{background:var(--navy);color:#CFE0F2;font-family:var(--mono);font-size:13px;line-height:1.9;border-radius:10px;padding:18px 22px;overflow-x:auto;white-space:pre}
+table.mt{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
+.mt th{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted);font-weight:500;text-align:left;padding:9px 10px;border-bottom:2px solid var(--line)}
+.mt td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;word-break:keep-all}
+.mt td:first-child{font-weight:700;color:var(--navy);white-space:nowrap}
+.lim{background:var(--sky);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:10px;padding:18px 22px;font-size:14px;word-break:keep-all;margin-top:14px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
+    <span><a href="https://planit.institute/">← planit.institute 메인으로</a></span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="mark-img" src="assets/planit_logo.png" alt="PLANiT"><span class="sector">영농형 태양광</span></a>
+    <nav class="menu" id="menu">
+      <a href="index.html">개요</a>
+      <a href="map.html">지도</a>
+      <a href="atlas.html">구역별 지도</a>
+      <a class="active" href="method.html">방법론</a>
+      <a href="insight.html">인사이트</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <a class="nav-cta" href="index.html#contact">Contact</a>
+      <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Method · 필지에서 특구까지</p>
+    <h1>다섯 정거장의 <em>분석 여정</em>.</h1>
+    <p class="lede">모든 결론은 이 노선 위에서 만들어진다. 역을 클릭하면 그 단계의 상세가 강조된다.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 분석 여정 노선도 ═══════════ -->
+<section style="padding-top:44px">
+  <div class="wrap">
+    <style>
+        .d19c{background:var(--white);border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:8px;padding:14px 14px 12px;transition:border-color .25s,box-shadow .25s;cursor:pointer}
+        .d19c .no{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);display:block}
+        .d19c b{font-family:var(--serif);font-size:14.5px;color:var(--navy);display:block;margin:2px 0 6px;word-break:keep-all}
+        .d19c p{font-size:12px;color:var(--muted);line-height:1.6;word-break:keep-all;margin:0}
+        .d19c .key{font-family:var(--mono);font-size:10.5px;color:var(--leaf-deep);display:block;margin-top:8px}
+        .d19c.on{border-color:var(--gold);border-top-color:var(--gold);box-shadow:0 10px 24px -16px rgba(12,53,106,.5)}
+        .d19cards{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:2px}
+        @media(max-width:960px){.d19cards{grid-template-columns:repeat(2,1fr)}}
+        @media(max-width:640px){.d19cards{grid-template-columns:1fr}}
+      </style>
+      <div class="box" style="padding:14px">
+        <div id="d19w" style="position:relative">
+          <svg viewBox="0 0 760 110" style="width:100%;height:auto;display:block">
+            <!-- 본선 -->
+            <path class="d19l" id="m1" pathLength="100" d="M 76 52 H 684" fill="none" stroke="var(--navy)" stroke-width="4" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="100"/>
+            <!-- 역 5 + 카드로 내려가는 스템 -->
+            <g class="d19s" data-i="0" style="opacity:0;transition:opacity .4s;cursor:pointer"><line x1="76"  y1="62" x2="76"  y2="104" stroke="var(--line)" stroke-dasharray="3 3"/><circle cx="76"  cy="52" r="9" fill="#fff" stroke="var(--navy)" stroke-width="3"/><text x="76"  y="32" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">🗂 ① 필지 전수원장</text></g>
+            <g class="d19s" data-i="1" style="opacity:0;transition:opacity .4s;cursor:pointer"><line x1="228" y1="62" x2="228" y2="104" stroke="var(--line)" stroke-dasharray="3 3"/><circle cx="228" cy="52" r="9" fill="#fff" stroke="var(--navy)" stroke-width="3"/><text x="228" y="32" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">🧩 ② 연접 블록화</text></g>
+            <g class="d19s" data-i="2" style="opacity:0;transition:opacity .4s;cursor:pointer"><line x1="380" y1="62" x2="380" y2="104" stroke="var(--line)" stroke-dasharray="3 3"/><circle cx="380" cy="52" r="9" fill="#fff" stroke="var(--navy)" stroke-width="3"/><text x="380" y="32" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">🔑 ③ 소유 기반 선별</text></g>
+            <g class="d19s" data-i="3" style="opacity:0;transition:opacity .4s;cursor:pointer"><line x1="532" y1="62" x2="532" y2="104" stroke="var(--line)" stroke-dasharray="3 3"/><circle cx="532" cy="52" r="9" fill="#fff" stroke="var(--navy)" stroke-width="3"/><text x="532" y="32" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">⚡ ④ 계통·수요 연결</text></g>
+            <g class="d19s" data-i="4" style="opacity:0;transition:opacity .4s;cursor:pointer"><line x1="684" y1="62" x2="684" y2="104" stroke="var(--line)" stroke-dasharray="3 3"/><circle class="term-pulse" cx="684" cy="52" r="14" fill="none" stroke="var(--gold)" stroke-width="2"/><circle cx="684" cy="52" r="9" fill="var(--gold)" stroke="#fff" stroke-width="3"/><text x="684" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="var(--navy)">🏅 ⑤ 특구 판정</text></g>
+          </svg>
+        </div>
+        <div class="d19cards" id="d19cards">
+          <div class="d19c" data-i="0">
+            <span class="no" style="font-size:12px">🗂 <span style="font-size:11px;letter-spacing:.1em">STAGE 01 · 데이터</span></span><b>필지 전수원장 구축</b>
+            <p>대상 25개 분석구역의 <b style="display:inline;font-family:inherit;font-size:inherit">모든 필지</b>를 지적도 기준으로 수집·정제하고, 필지마다 지목·면적·농지 여부를 부여합니다. 국가 지적통계와 대조해 누락을 검증합니다.</p>
+            <span class="key">200만 필지 · 커버리지 99.65%(경기·충남 기준)</span>
+          </div>
+          <div class="d19c" data-i="1">
+            <span class="no" style="font-size:12px">🧩 <span style="font-size:11px;letter-spacing:.1em">STAGE 02 · 공간</span></span><b>연접 블록화</b>
+            <p>경계가 25m 이내로 맞닿은 농지 필지들을 하나의 '사업 블록'으로 묶습니다. 3MW(약 6.7ha) 이상만 후보로 등재하고, 50MW 초과 블록은 행정리·소유 경계로 나눕니다.</p>
+            <span class="key">접합 25m · ≥3MW 등재 · 3단 분할</span>
+          </div>
+          <div class="d19c" data-i="2">
+            <span class="no" style="font-size:12px">🔑 <span style="font-size:11px;letter-spacing:.1em">STAGE 03 · 소유</span></span><b>소유 기반 선별</b>
+            <p>필지 소유자를 개인·법인·공공 등으로 분류합니다. 블록 안 개인소유 비율이 기준(t ≤ 0.30) 이하이고 소유 미확인이 20% 이하인 블록만 '실행 가능 물량'으로 인정합니다.</p>
+            <span class="key">개인소유 t ≤ 0.30 · 미확인 ≤ 20%</span>
+          </div>
+          <div class="d19c" data-i="3">
+            <span class="no" style="font-size:12px">⚡ <span style="font-size:11px;letter-spacing:.1em">STAGE 04 · 전력</span></span><b>계통·수요 연결</b>
+            <p>한전 배전망의 남은 접속 가능 용량을 읍면동 단위로 산정해 지도에 색칠하고, 산업 수요와의 근접(수요지 인근 발전)을 각 후보에 연결합니다.</p>
+            <span class="key">651개 읍면동 · KEPCO OpenAPI 계통 연결</span>
+          </div>
+          <div class="d19c" data-i="4">
+            <span class="no" style="font-size:12px">🏅 <span style="font-size:11px;letter-spacing:.1em">STAGE 05 · 결과</span></span><b>특구 후보 판정</b>
+            <p>시군별 실행 가능 물량 합계로 3등급 판정합니다. 시나리오(S0 현행 / S1 재생에너지지구 / S2 확장)를 비교해 결론의 견고함을 검증합니다.</p>
+            <span class="key">유력(≥100MW) 8곳 · 지정 가능 3곳</span>
+          </div>
+        </div>
+      </div>
+      <script>
+      (function(){
+        const w=document.getElementById('d19w');
+        const sts=[...w.querySelectorAll('.d19s')];
+        const cards=[...document.querySelectorAll('#d19cards .d19c')];
+        function play(){
+          const m1=document.getElementById('m1');
+          m1.style.transition='none';m1.style.strokeDashoffset=100;
+          sts.forEach(s=>s.style.opacity=0);
+          requestAnimationFrame(()=>requestAnimationFrame(()=>{
+            m1.style.transition='stroke-dashoffset 1.4s ease';m1.style.strokeDashoffset=0;
+            sts.forEach((s,i)=>setTimeout(()=>s.style.opacity=1,250+i*220));
+          }));
+        }
+        play();
+        function pick(i){
+          cards.forEach(c=>c.classList.toggle('on',c.dataset.i===String(i)));
+        }
+        w.addEventListener('click',e=>{const g=e.target.closest('.d19s');if(g)pick(g.dataset.i)});
+        cards.forEach(c=>c.addEventListener('click',()=>pick(c.dataset.i)));
+        pick(4);   // 기본 = 판정 강조
+      })();
+      </script>
+  </div>
+</section>
+
+<!-- ═══════════ 시나리오 정의 ═══════════ -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Scenarios</p><h2>세 개의 제도 시나리오</h2></div></div>
+    <table class="mt">
+      <tr><th>시나리오</th><th>정의</th><th>농업진흥지역</th><th>시설(지붕형)</th><th>자연환경보전</th></tr>
+      <tr><td>S0 현행</td><td>현행 농지법 기준 — 농업진흥지역 태양광 원칙 제한</td><td>제외</td><td>제외</td><td>제외</td></tr>
+      <tr><td>S1 재생에너지지구 <span class="badge gold">기본</span></td><td>영농형태양광법 — 재생에너지지구 지정 시 진흥·보호구역 포함</td><td>포함</td><td>포함(별도 산식 대기)</td><td>제외</td></tr>
+      <tr><td>S2 확장</td><td>S1 + 자연환경보전지역까지 확장</td><td>포함</td><td>포함</td><td>포함</td></tr>
+    </table>
+    <p style="font-size:13.5px;color:var(--muted);margin-top:10px;word-break:keep-all">S1↔S2 판정 변화 <b>0곳</b> — 자연환경보전지역을 제외해도 특구가 성립한다는 것이 결론의 견고성을 보여준다.</p>
+  </div>
+</section>
+
+<!-- ═══════════ 핵심 산식·판정 ═══════════ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Formulas &amp; Judgment</p><h2>핵심 산식과 판정 기준</h2></div></div>
+    <div class="formula">설치용량(MW)   = 면적(㎡) × 0.045 / 1000
+                 · 0.045 kW/㎡ = 패널 지면피복률 22.5% × 패널효율 20% (STC 1kW/㎡)
+                 · 지면피복률 = 필지 면적 중 패널(수평투영) 면적 비율 — 명목 차광률과 동일값 · 문헌 범위 20~35%의 하단 (농식품부 R&amp;D 설계 기준·일본 MAFF 기준안 차광률 30% 미만 · Dupraz 2024 GCR&lt;25% 권고)
+                 · 패널효율 20% = 예시 모듈(한화큐셀 Q.TRON G2급) 공식 22.0~23.1% · 상용 범위 19~25% 대비 보수 채택
+                 · 전남 영암 실증(1,000㎡당 45kW) 역산 — 이격·통로 등 설치 제약 내재
+                 · 정합성: GCR(20~35%) × 효율(19~25%) = 0.38~0.88 MW/ha ≈ 영농형 설치밀도 문헌 범위 0.3~0.8 MW/ha
+연간발전(MWh)  = 설치용량(MW) × 1,314
+                 · 1,314 = 8,760h × 설비이용률 15% (일평균 3.6h) · 국내 실측 13.3~15.4%(EPSIS·보급통계) · 정책 가정 15.0~15.4%(KEEI LCOE) · 민감도 12.3~15.4%
+                 · 영암 실증(첫해 실측 12.3%)은 설치밀도의 근거 — 이용률은 전국 통계·선행연구(순병민·신동원 2021, 3.6h/일) 가정을 따름 (역할 분리)
+실행 가능 물량 = Σ( 블록 MW | 공식 등재(≥3MW) ∧ 개인소유 ≤ t(0.30) ∧ 미확인 ≤ 20% )
+                 · 개인소유 비율 = 소유 확인 필지 기준(미확인 제외 분모)
+                 · 대체 합산: 조건 탈락 모블록 안의 비개인 소유(공공·법인 등 확정) 연접 ≥3MW 하위구획은 대신 합산 (이중 계상 금지)
+계통 여유      = 한전 배전선로(DL) 접속가능용량 → 읍면동 안분(균등) + 상위설비 캡</div>
+    <!-- [보류] 자급률 산식 — 2026-07-20 화면 지표 철거(수요지 인근 발전 프레이밍 대체)로 비표시. 자문 보강 후 재사용 예정. 원문:
+         자급률(%) = 연간발전 ÷ (지역 최대수요MW × 8,760 × 60%) × 100  (한전 실측 연수요가 있는 시군은 그 값을 분모로 사용) -->
+    <table class="mt" style="margin-top:18px">
+      <tr><th>판정</th><th>기준 (S1 · t ≤ 0.30)</th><th>결과</th></tr>
+      <tr><td><span style="color:var(--leaf-deep)">특구 유력</span></td><td>실행 가능 물량 ≥ 100MW</td><td>8곳 — 당진·서산·평택·보령·아산·파주·화성·홍성</td></tr>
+      <tr><td><span style="color:#B08A28">지정 가능</span></td><td>50 ~ 100MW</td><td>4곳 — 이천·김포·천안 · 포항시ᴮ</td></tr>
+      <tr><td>요건 미달</td><td>&lt; 50MW</td><td>13곳 — B 산단거점(9곳)은 "관내 실행 물량 부재 → 인접 농업 시군 연계" 프레임</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════ 한계·데이터 ═══════════ -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Limits &amp; Data</p><h2>한계를 숨기지 않는다</h2></div></div>
+    <div class="lim"><b>계통 여유의 합산 과대평가</b> — 읍면동 개별 여유를 합산하면 같은 상위설비(변압기·변전소)를 공유하는 만큼 실계통보다 커질 수 있다. 동간 재분배는 수행하지 않았고, 캡 적용 여부를 플래그로 남겼다.</div>
+    <div class="lim"><b>지붕형(시설재배) 별도 산식 대기</b> — 비닐하우스 지붕형은 실증 계수(효율·설치비) 확보 후 별도 산정한다. 그 전까지 지붕형 물량 수치는 화면에 표기하지 않는다.</div>
+    <div class="lim"><b>소유 미확인 필지</b> — 미확인 &gt;20% 블록은 실행 물량에서 분리했다. 소유 조사 시 승격 가능성이 있는 후보로 별도 관리한다.</div>
+    <div class="lim"><b>특구 지정 요건선(50/100MW)은 법령 기준이 아닌 정책 가정</b> — 본 연구는 <b>실행 가능 물량 ≥ 50MW(지정 가능)·≥ 100MW(유력)이면 특구 지정이 가능할 것</b>이라 가정한다. 현행 법령·고시에 이 규모 기준은 존재하지 않으며, 최근접 실재 기준은 신재생에너지 <b>집적화단지(40MW 초과, 2021~)</b>다. 이 문턱과, S0 배제의 근거인 농지법 농업진흥지역 조문 해석, 재생에너지지구 지정 요건(시행령 제정 중)은 <b>법률 감수 후 확정 표기</b>한다.</div>
+    <div class="lim"><b>판정의 t 의존성은 등급별로 다르다</b> — 유력 8곳은 전부 개인소유 상한을 최저치(t=0.10)로 잡아도 100MW를 통과해 <b>유력 판정은 t 가정에 의존하지 않는다</b>. 지정 가능 4곳(이천·김포·천안·포항시ᴮ)도 t=0.10에서 50MW를 통과한다. t 민감성은 <b>미달↔지정 가능 경계의 예산(42.6MW)·용인(38.9MW)에만 존재</b>한다 — 두 곳은 t=0.40에서 처음 50MW를 통과한다. 즉 t를 완화해도 새 유력은 생기지 않으며, 움직이는 것은 지정 가능의 하한 경계뿐이다.</div>
+    <div class="lim"><b>블록 접합 25m는 거리 대리(proxy)</b> — 접합 거리는 당진 116,625필지 간격 분포에서 도출했고(직접 접촉 91%·농로/구거 P90 33.6m), 총량은 15~50m에서 ±4% 강건하다. 다만 폭 25m 미만의 소하천·철도를 횡단하는 접합을 허용한다 — 실측 추정(당진·파주·평택 3개 시군, 표본 검증 기반)으로 <b>접합쌍의 약 0.1~0.2%</b>이며, 이로 인한 등재 가능 총량 변화는 <b>시군당 0.03~0.18%</b>로 판정에 영향 없다. 공식 하천·철도망 GIS 기반 단절 정의가 차기 개선 항목.</div>
+    <p style="font-size:13.5px;color:var(--muted);margin-top:18px;word-break:keep-all">
+      데이터: 국토부 연속지적·지적통계(2024) · LX 토지대장 · 팜맵 · V-World ·
+      한전 전력데이터 개방포털(배전선로 접속가능용량 / 산업분류별 전력사용량, 2023–2025) · 산업단지 통합 DB.
+      코드: <a href="https://github.com/sojin-droid/Agrivoltaic-Cluster" style="color:var(--navy);font-weight:700">github.com/sojin-droid/Agrivoltaic-Cluster</a>
+    </p>
+  </div>
+</section>
+
+<div id="appendix"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="fine" style="border-top:none;padding-top:0">
+      <span>PLANiT Institute · 영농형 태양광 — 내부 검수본 (배포 전 스테이징)</span>
+      <span>© 2026 PLANiT Institute</span>
+    </div>
+  </div>
+</footer>
+<script src="site.js"></script>
+<script src="assets/appendix.js"></script>
+</body>
+</html>

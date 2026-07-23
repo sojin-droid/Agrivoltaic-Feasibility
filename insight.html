@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANiT · 영농형 태양광 — 인사이트</title>
+<meta name="description" content="잠재량 트랩 사분면, 시나리오×소유상한 연동, 특구 지정 요건 충족도, 도시 성격 매트릭스 — 실행 가능성의 지도.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.figbox{background:var(--chart-bg);border:1px solid var(--line);border-radius:12px;padding:24px;position:relative}
+.fignote{font-family:var(--mono);font-size:10.5px;color:#9FB4C4;margin-top:12px;letter-spacing:.04em}
+.legend15{display:flex;gap:18px 26px;flex-wrap:wrap;margin-top:12px;padding:12px 14px;background:var(--white);border:1px solid var(--line);border-radius:8px;font-size:12.5px;color:var(--muted)}
+.hoverline{font-family:var(--mono);font-size:12px;color:var(--navy);min-height:18px;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
+    <span><a href="https://planit.institute/">← planit.institute 메인으로</a></span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="mark-img" src="assets/planit_logo.png" alt="PLANiT"><span class="sector">영농형 태양광</span></a>
+    <nav class="menu" id="menu">
+      <a href="index.html">개요</a>
+      <a href="map.html">지도</a>
+      <a href="atlas.html">구역별 지도</a>
+      <a href="method.html">방법론</a>
+      <a class="active" href="insight.html">인사이트</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <a class="nav-cta" href="index.html#contact">Contact</a>
+      <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Insight · 실행 가능성의 지도</p>
+    <h1>잠재량이 아니라 <em>실행 가능성</em>이다.</h1>
+    <p class="lede">잠재량 숫자는 어디나 크다. 특구를 가르는 것은 <b>누가 그 땅을 갖고 있는가</b> —
+      같은 데이터를 다섯 개의 프레임으로 읽는다. 모든 그림은 25개 분석구역 실측 데이터로 그려진다.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 1. 잠재량 트랩 사분면 ═══════════ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Frame 01 · The Potential Trap</p>
+      <h2>잠재량 트랩 — 크지만 지을 수 없는 땅</h2></div>
+    </div>
+    <p class="lede" style="margin-bottom:22px">X = 잠재량, Y = 개인소유 필지 비율. 십자 교차점은 (1,000MW · 80%).
+      <b>우상단(Ⅰ)이 잠재량 트랩</b> — 숫자는 크지만 개인 동의를 일일이 얻어야 하는 땅. <b>우하단(Ⅳ)이 실행형 후보</b>다.</p>
+    <div class="figbox">
+      <svg id="d15" viewBox="0 0 640 260" style="width:100%"></svg>
+      <p id="d15t" class="hoverline"></p>
+      <div class="legend15">
+        <span><b style="color:var(--ink)">X축</b> 잠재량(MW, √스케일) — 소유 무관 전체 물량</span>
+        <span><b style="color:var(--ink)">Y축</b> 개인소유 필지 비율 = 개인소유 필지수 ÷ S1 적격 필지수</span>
+        <span><b style="color:var(--ink)">원 크기</b> ∝ 실행 가능 물량(S1·t≤0.30, MW)</span>
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gold);vertical-align:-1px"></span> 잠재량 트랩(&gt;1,000MW·&gt;80%)</span>
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--leaf);vertical-align:-1px"></span> 실행형 후보(&gt;1,000MW·≤80%)</span>
+        <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--navy);opacity:.75;vertical-align:-1px"></span> 그 외(반투명 = B 산단거점)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 2. 시나리오 × t ═══════════ -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Frame 02 · Institution × Assumption</p>
+      <h2>제도와 가정이 결론을 얼마나 흔드는가</h2></div>
+    </div>
+    <p class="lede" style="margin-bottom:22px">시나리오(S0 현행 / S1 재생에너지지구 / S2 확장)와 개인소유 상한 t를 함께 움직여 보라.
+      유력 후보 8곳의 실행 가능 물량이 즉시 반응한다 — <b>영농형태양광법(S1)이 열어주는 물량</b>이 이 그림이 보여주려는 핵심이다.</p>
+    <div class="figbox">
+      <div class="tabs" id="d9tabs" style="margin-bottom:12px">
+        <button class="tab" data-s="S0">현행 S0</button>
+        <button class="tab on" data-s="S1">재생에너지지구 S1</button>
+        <button class="tab" data-s="S2">확장 S2</button>
+      </div>
+      <label style="font-family:var(--mono);font-size:11px;color:var(--muted)">개인소유 상한 t ≤ <span id="d9v">0.30</span> · 합계 <span id="d9sum" style="color:var(--navy);font-weight:700">—</span> MW</label><br>
+      <input id="d9r" type="range" min="0" max="4" value="2" step="1" style="width:100%;accent-color:var(--navy)">
+      <svg id="d9s" viewBox="0 0 665 200" style="width:100%;margin-top:12px"></svg>
+      <p class="fignote">막대 = S1 t≤0.30 기준 유력 8곳 · 점선 = 특구 유력 100 / 지정 가능 50 · ⚠ 세로축 비선형: 판정 문턱 구간(0~100MW)을 확대해 그림</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 3. 링 게이지 그리드 ═══════════ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Frame 03 · 100MW Threshold</p>
+      <h2>특구 지정 요건 충족도 — 25개 분석구역을 한눈에</h2></div>
+    </div>
+    <p class="lede" style="margin-bottom:22px">링 하나 = 시군 하나. 채워진 정도 = 특구 지정 요건(100MW) 충족도, 중앙 숫자 = 실행 가능 MW.
+      시나리오를 토글하면 25개 링이 동시에 바뀐다 — <b>S0으로 바꿔 보라. 유력이 평택·파주·서산 3곳으로 줄고, 당진의 링은 37MW로 잦아든다.</b></p>
+    <div class="figbox">
+      <div class="tabs" id="d16tabs" style="margin-bottom:16px">
+        <button class="tab" data-s="S0">현행 S0</button>
+        <button class="tab on" data-s="S1">재생에너지지구 S1</button>
+        <button class="tab" data-s="S2">확장 S2</button>
+      </div>
+      <div id="d16grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:10px"></div>
+      <p class="fignote">링 = min(실행 MW / 100MW, 100%) · 색 = 판정(그린 유력 · 골드 지정 가능 · 회색 미달)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 4. 도시 성격 매트릭스 ═══════════ -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Frame 04 · City Criteria</p>
+      <h2>도시 성격 매트릭스 — 수요 구조로 시군을 분류한다</h2></div>
+    </div>
+    <p class="lede" style="margin-bottom:22px">한전 수요 데이터로 도시의 성격을 정의한다. 열 = 연수요 · 제조업 비중 · 실행 가능 물량(막대 길이는 각 열 안에서의 상대값).
+      마지막 열 = <b>상위 업종 TOP3</b>(1위 칩 색 = 유형: 골드 제조업 기반 / 하늘 혼합 / 회색 생활·서비스).
+      ※ 연수요는 한전 시군구 통계 기준. 천안·용인·안산·포항은 시 단위 병합 분석구역이라 연수요(시 전체값)와 분석 단위가 정합한다. 유형 구분(제조업 ≥60%/35~60%/미만)은 시각화 전용 분류다.
+      제조업이 어디나 1위라 <b>2·3위가 도시의 진짜 결</b>을 보여준다.</p>
+    <div class="figbox" style="overflow-x:auto">
+      <div id="d14" style="display:grid;grid-template-columns:80px repeat(3,minmax(64px,1fr)) 218px;gap:3px;font-size:12px;min-width:620px"></div>
+      <p id="d14t" class="hoverline"></p>
+      <p class="fignote">유형 = 제조업 전력사용량 ÷ 전체 (한전 2025) · 칸에 마우스를 올리면 실제 값</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 5. 전국 판정표 ═══════════ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Frame 05 · Full Table</p>
+      <h2>전국 판정표 — 걸러 보고, 줄 세워 본다</h2></div>
+      <a class="more" href="map.html">지도에서 블록 단위로 보기 →</a>
+    </div>
+    <p class="lede" style="margin-bottom:22px">탭 = 판정 필터, 헤더 클릭 = 그 열 기준 정렬(재클릭 = 역순). 25개 분석구역 전체(ᴮ = 산단거점).</p>
+    <div class="figbox" style="overflow-x:auto">
+      <div class="tabs" id="d7tabs" style="margin-bottom:14px">
+        <button class="tab on" data-f="all">ALL</button>
+        <button class="tab" data-f="유력">유력 ≥100MW</button>
+        <button class="tab" data-f="지정 가능">지정 가능</button>
+        <button class="tab" data-f="요건 미달">요건 미달</button>
+      </div>
+      <table class="rt" id="d8t"></table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 컨택트 ═══════════ -->
+<section class="contact" id="contact">
+  <div class="wrap box">
+    <div>
+      <p class="eyebrow">Work with us</p>
+      <h2>어느 시군을 함께 <em>설계</em>하시겠어요?</h2>
+      <p>특구 후보 검토, 소유 협의 전략, 계통 연계 설계 — 데이터가 준비되어 있습니다.</p>
+    </div>
+    <div class="panel">
+      <div class="row"><span class="k">EMAIL</span><a href="mailto:sojin@planit.institute">sojin@planit.institute</a></div>
+      <div class="row"><span class="k">SECTOR</span><span>영농형 태양광 · 특구 최적입지</span></div>
+      <div class="row"><span class="k">DATA</span><span>200만 필지 · 25개 분석구역 · 한전 전력데이터</span></div>
+    </div>
+  </div>
+</section>
+
+<div id="appendix"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="fine" style="border-top:none;padding-top:0">
+      <span>PLANiT Institute · 영농형 태양광 — 내부 검수본 (배포 전 스테이징)</span>
+      <span>© 2026 PLANiT Institute</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+Promise.all([
+  fetch('data/summary.json',{cache:'no-cache'}).then(r=>r.json()),
+  fetch('data/sgg_owner.json',{cache:'no-cache'}).then(r=>r.json()),
+  fetch('data/sgg_demand.json',{cache:'no-cache'}).then(r=>r.json()),
+  fetch('data/sgg_industry.json',{cache:'no-cache'}).then(r=>r.json())
+]).then(([D,OWN,DEM,IND])=>{
+  const C=D.codes;
+  const byMw=(a,b)=>(C[b].S1.b_mw_t30||0)-(C[a].S1.b_mw_t30||0);
+  const A=Object.keys(C).filter(k=>C[k].region==='A').sort(byMw);
+  const B=Object.keys(C).filter(k=>C[k].region==='B').sort(byMw);
+  const ALL=[...A,...B];
+  const TS=['0.10','0.20','0.30','0.40','0.50'];
+  const mw=v=>v==null?'—':Math.round(v).toLocaleString();
+
+  /* ── 1. 잠재량 트랩 사분면 ── */
+  (function(){
+    const P=ALL.filter(k=>OWN[k]&&OWN[k].indiv_pct!=null).map(k=>{
+      const seg=C[k].S1.seg_mw||0, ip=OWN[k].indiv_pct, e=C[k].S1.b_mw_t30||0;
+      return [C[k].name, seg, ip, e, C[k].region, OWN[k].n_indiv, OWN[k].n_parcels];
+    });
+    const maxSeg=Math.max(...P.map(p=>p[1]),1), maxE=Math.max(...P.map(p=>p[3]),1);
+    const Y0=30, Y1=100;
+    const x=v=>60+Math.sqrt(v/maxSeg)*530;
+    const y=v=>228-(v-Y0)/(Y1-Y0)*192;
+    const R=e=>4+Math.sqrt(e/maxE)*13;
+    const midX=x(1000), midY=y(80);
+    const XL=44, XR=x(maxSeg)+30, YT=y(Y1)-16, YB=y(Y0)+12;
+    const svg=document.getElementById('d15');
+    svg.innerHTML=
+      '<defs><marker id="arr15" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink)"/></marker></defs>'+
+      '<rect x="'+midX+'" y="'+YT+'" width="'+(XR-midX)+'" height="'+(midY-YT)+'" fill="var(--gold)" opacity=".14"/>'+
+      '<rect x="'+midX+'" y="'+midY+'" width="'+(XR-midX)+'" height="'+(YB-midY)+'" fill="var(--leaf)" opacity=".10"/>'+
+      '<rect x="'+XL+'" y="'+YT+'" width="'+(midX-XL)+'" height="'+(midY-YT)+'" fill="#8FA6BC" opacity=".05"/>'+
+      '<rect x="'+XL+'" y="'+midY+'" width="'+(midX-XL)+'" height="'+(YB-midY)+'" fill="#8FA6BC" opacity=".03"/>'+
+      '<line x1="'+XL+'" y1="'+midY+'" x2="'+XR+'" y2="'+midY+'" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#arr15)"/>'+
+      '<line x1="'+midX+'" y1="'+YB+'" x2="'+midX+'" y2="'+YT+'" stroke="var(--ink)" stroke-width="1.5" marker-end="url(#arr15)"/>'+
+      '<text x="'+(XR-4)+'" y="'+(midY+18)+'" text-anchor="end" font-family="var(--mono)" font-size="11.5" fill="var(--ink)" font-weight="700">잠재량(MW) →</text>'+
+      '<text x="'+(midX+8)+'" y="'+(YT+4)+'" font-family="var(--mono)" font-size="11.5" fill="var(--ink)" font-weight="700">개인소유 % ↑</text>'+
+      '<text x="'+(midX-6)+'" y="'+(midY+16)+'" text-anchor="end" font-family="var(--mono)" font-size="10.5" fill="var(--muted)">(1,000 · 80%)</text>'+
+      '<text x="'+(XR-6)+'" y="'+(YT+18)+'" text-anchor="end" font-family="var(--mono)" font-size="11" fill="#B08A28" font-weight="700">Ⅰ 잠재량 트랩</text>'+
+      '<text x="'+(XR-6)+'" y="'+(YB-8)+'" text-anchor="end" font-family="var(--mono)" font-size="11" fill="var(--leaf-deep)" font-weight="700">Ⅳ 실행형 후보</text>'+
+      '<text x="'+(XL+6)+'" y="'+(YT+18)+'" font-family="var(--mono)" font-size="11" fill="#9AA8B8">Ⅱ 소규모·개인비율 높음</text>'+
+      '<text x="'+(XL+6)+'" y="'+(YB-8)+'" font-family="var(--mono)" font-size="11" fill="#9AA8B8">Ⅲ 소규모·개인비율 낮음</text>'+
+      P.map(([n,seg,ip,e,reg,ni,np])=>{
+        const trap=seg>1000&&ip>80, cand=seg>1000&&ip<=80, r=R(e);
+        return '<circle data-n="'+n+(reg==='B'?' (산단거점)':'')+' — 잠재 '+Math.round(seg).toLocaleString()+'MW · 개인소유 '+ip+'% ('+ni.toLocaleString()+'/'+np.toLocaleString()+'필지) · 실행 '+Math.round(e).toLocaleString()+'MW" data-r="'+r.toFixed(1)+'" cx="'+x(seg)+'" cy="'+y(ip)+'" r="'+r.toFixed(1)+'" fill="'+(trap?'var(--gold)':cand?'var(--leaf)':'var(--navy)')+'" opacity="'+(reg==='B'?.75:1)+'" stroke="#fff" stroke-width="1.5" style="cursor:default;transition:r .15s"/>';
+      }).join('');
+    svg.addEventListener('mouseover',e=>{const c=e.target.closest('circle');if(!c||!c.dataset.n)return;
+      c.setAttribute('r',(+c.dataset.r+3).toFixed(1));document.getElementById('d15t').textContent=c.dataset.n});
+    svg.addEventListener('mouseout',e=>{const c=e.target.closest('circle');if(c&&c.dataset.n)c.setAttribute('r',c.dataset.r)});
+  })();
+
+  /* ── 2. 시나리오 × t ── */
+  (function(){
+    const ELIG=A.filter(k=>C[k].S1.status_t30==='유력');
+    const svg=document.getElementById('d9s'), rng=document.getElementById('d9r');
+    let scn='S1';
+    const max=Math.max(...ELIG.flatMap(k=>['S0','S1','S2'].flatMap(s=>TS.map(t=>(((C[k][s]||{}).by_t||{})[t]||{}).b_mw||0))),1);
+    const COL={S0:'#8FA6BC',S1:'var(--leaf)',S2:'var(--gold)'};
+    function draw(){
+      const t=TS[+rng.value]; document.getElementById('d9v').textContent=t;
+      const vals=ELIG.map(k=>(((C[k][scn]||{}).by_t||{})[t]||{}).b_mw||0);
+      document.getElementById('d9sum').textContent=Math.round(vals.reduce((a,b)=>a+b,0)).toLocaleString();
+      const BASE=172, SEG=104, TOP=162;
+      const hmap=v=>v<=100 ? v/100*SEG : SEG+(v-100)/(max-100)*(TOP-SEG);
+      const y100=BASE-SEG, y50=BASE-SEG/2;
+      svg.innerHTML=
+        ELIG.map((k,i)=>{
+          const v=vals[i], h=hmap(v), x=26+i*67;
+          return `<rect x="${x}" y="${BASE-h}" width="46" height="${Math.max(h,1)}" rx="3" fill="${COL[scn]}" style="transition:all .35s ease"/>
+            <text x="${x+23}" y="${BASE-h-7}" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--navy)" font-weight="700">${Math.round(v).toLocaleString()}</text>
+            <text x="${x+23}" y="${BASE+15}" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--muted)">${C[k].name}</text>`;
+        }).join('')+
+        `<line x1="20" y1="${y100}" x2="566" y2="${y100}" stroke="#B08A28" stroke-width="1.8" stroke-dasharray="6 4"/>`+
+        `<line x1="20" y1="${y50}" x2="566" y2="${y50}" stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="3 4"/>`+
+        `<text x="572" y="${y100+4}" font-family="var(--mono)" font-size="10.5" fill="#B08A28" font-weight="700">특구 유력 100</text>`+
+        `<text x="572" y="${y50+4}" font-family="var(--mono)" font-size="10.5" fill="#C9A84C" font-weight="700">지정 가능 50</text>`;
+    }
+    document.getElementById('d9tabs').addEventListener('click',e=>{
+      const b=e.target.closest('.tab');if(!b)return;
+      document.querySelectorAll('#d9tabs .tab').forEach(x=>x.classList.toggle('on',x===b));
+      scn=b.dataset.s; draw();
+    });
+    rng.addEventListener('input',draw); draw();
+  })();
+
+  /* ── 3. 링 게이지 그리드 ── */
+  (function(){
+    const grid=document.getElementById('d16grid');
+    function ring(k){
+      return `<div style="text-align:center">
+        <svg viewBox="0 0 90 90" style="width:100%;max-width:88px">
+          <circle cx="45" cy="45" r="36" fill="none" stroke="var(--card)" stroke-width="9"/>
+          <circle class="d16r" data-k="${k}" cx="45" cy="45" r="36" fill="none" stroke="var(--line)" stroke-width="9" stroke-linecap="round"
+            pathLength="100" stroke-dasharray="0 100" transform="rotate(-90 45 45)" style="transition:stroke-dasharray .8s ease,stroke .4s"/>
+          <text class="d16v" data-k="${k}" x="45" y="49" text-anchor="middle" font-family="var(--serif)" font-weight="700" font-size="15" fill="var(--navy)">0</text>
+        </svg>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px">${C[k].name}</div>
+      </div>`;
+    }
+    grid.innerHTML=
+      '<div style="grid-column:1/-1;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em">A · 경기·충남</div>'+
+      A.map(k=>ring(k)).join('')+
+      '<div style="grid-column:1/-1;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em;padding-top:6px">B · 전국 산단거점</div>'+
+      B.map(k=>ring(k)).join('');
+    function show(s){
+      document.querySelectorAll('#d16grid .d16r').forEach(r=>{
+        const v=(C[r.dataset.k][s]||{}).b_mw_t30||0;
+        r.setAttribute('stroke-dasharray',Math.min(v,100)+' 100');
+        r.setAttribute('stroke',v>=100?'var(--leaf)':v>=50?'var(--gold)':'#C9D2C7');
+      });
+      document.querySelectorAll('#d16grid .d16v').forEach(t=>{
+        t.textContent=Math.round((C[t.dataset.k][s]||{}).b_mw_t30||0).toLocaleString();
+      });
+    }
+    document.getElementById('d16tabs').addEventListener('click',e=>{
+      const b=e.target.closest('.tab');if(!b)return;
+      document.querySelectorAll('#d16tabs .tab').forEach(x=>x.classList.toggle('on',x===b));
+      show(b.dataset.s);
+    });
+    show('S1');
+  })();
+
+  /* ── 4. 도시 성격 매트릭스 ── */
+  (function(){
+    const box=document.getElementById('d14');
+    const rows=ALL.map(k=>{
+      const dm=DEM[k]||{}; const tot=dm.t ?? C[k].demand_gwh; const m=dm.m;
+      const share=(tot&&m!=null)?m/tot*100:null;
+      const e=C[k].S1.b_mw_t30||0;
+      const type=share==null?null:share>=60?'제조업 기반':share>=35?'혼합':'생활·서비스';
+      return {k,name:C[k].name,reg:C[k].region,tot,share,e,type,top3:IND[k]||null};
+    });
+    const scales={
+      tot:  {vals:rows.map(r=>r.tot),  a:[236,242,248], b:[12,53,106],  fmt:v=>Math.round(v).toLocaleString()+' GWh'},
+      share:{vals:rows.map(r=>r.share),a:[250,244,228], b:[176,138,40], fmt:v=>v.toFixed(0)+'%'},
+      e:    {vals:rows.map(r=>r.e),    a:[238,246,234], b:[62,122,46],  fmt:v=>Math.round(v).toLocaleString()+' MW'},
+    };
+    const col=(key,v)=>{
+      if(v==null) return '#F2F2EE';
+      const vs=scales[key].vals.filter(x=>x!=null);
+      const lo=Math.min(...vs), hi=Math.max(...vs);
+      const u=hi>lo?Math.sqrt((v-lo)/(hi-lo)):0;
+      const {a,b}=scales[key];
+      return 'rgb('+a.map((av,i)=>Math.round(av+(b[i]-av)*u)).join(',')+')';
+    };
+    const TYPEC={'제조업 기반':'background:var(--gold);color:var(--navy)','혼합':'background:var(--sky);color:var(--navy)','생활·서비스':'background:var(--card);color:var(--muted)'};
+    const HEAD='<span></span>'+['연수요','제조업 비중','실행 S1'].map(h=>'<span style="text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted)">'+h+'</span>').join('')+'<span style="font-family:var(--mono);font-size:11px;color:var(--muted)">상위 업종 TOP3</span>';
+    const cell=(r,key)=>{
+      const v=r[key];
+      const label=v==null?'수집예정':scales[key].fmt(v);
+      return '<div data-t="'+r.name+' · '+label+'" style="height:20px;border-radius:4px;cursor:default;background:'+col(key,v)+';transition:transform .15s"></div>';
+    };
+    const top3txt=r=>{
+      if(!r.top3) return '<span style="font-family:var(--mono);font-size:10.5px;color:#BBB;line-height:20px">—</span>';
+      const t1=r.top3[0], rest=r.top3.slice(1).map(([n,p])=>n+' '+Math.round(p)).join(' · ');
+      const c1=r.type?TYPEC[r.type]:'';
+      return '<span style="font-family:var(--mono);font-size:10.5px;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+
+        '<span style="border-radius:99px;padding:1px 6px;'+c1+'">'+t1[0]+' '+Math.round(t1[1])+'%</span> '+
+        '<span style="color:var(--muted)">'+rest+'</span></span>';
+    };
+    const row=r=>'<span style="color:var(--muted);line-height:20px">'+r.name+'</span>'+
+      ['tot','share','e'].map(k=>cell(r,k)).join('')+top3txt(r);
+    box.innerHTML=HEAD+
+      '<span style="grid-column:1/-1;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em;padding-top:4px">A · 경기·충남</span>'+
+      rows.filter(r=>r.reg==='A').map(row).join('')+
+      '<span style="grid-column:1/-1;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em;padding-top:6px">B · 전국 산단거점</span>'+
+      rows.filter(r=>r.reg==='B').map(row).join('');
+    box.addEventListener('mouseover',e=>{const c=e.target.closest('[data-t]');if(!c)return;
+      c.style.transform='scale(1.08)';document.getElementById('d14t').textContent=c.dataset.t});
+    box.addEventListener('mouseout',e=>{const c=e.target.closest('[data-t]');if(c)c.style.transform=''});
+  })();
+
+  /* ── 5. 전국 판정표 (탭 필터 + 정렬) ── */
+  (function(){
+    const ROWS=ALL.map(k=>({k,n:C[k].name+(C[k].region==='B'?' ᴮ':''),st:C[k].S1.status_t30,
+      e:C[k].S1.b_mw_t30||0,s:C[k].S1.seg_mw||0,
+      r:C[k].S1.seg_mw?(C[k].S1.b_mw_t30||0)/C[k].S1.seg_mw*100:0,g:C[k].grid_pool_mw||0}));
+    const t=document.getElementById('d8t'); let key='e',asc=false,flt='all';
+    const badge=s=>s==='유력'?'<span style="background:var(--leaf);color:#fff;border-radius:99px;padding:1px 9px;font-size:11px;font-weight:700">유력</span>'
+      :s==='지정 가능'?'<span style="background:var(--gold);color:var(--navy);border-radius:99px;padding:1px 9px;font-size:11px;font-weight:700">지정 가능</span>'
+      :'<span style="background:var(--card);color:var(--muted);border-radius:99px;padding:1px 9px;font-size:11px">미달</span>';
+    function render(){
+      const rows=ROWS.filter(r=>flt==='all'||r.st===flt);
+      rows.sort((a,b)=>(a[key]>b[key]?1:-1)*(asc?1:-1));
+      t.innerHTML=`<tr><th data-k="n" style="cursor:pointer">시군 ⇅</th><th>판정</th><th data-k="e" style="cursor:pointer">실행 MW ⇅</th><th data-k="s" style="cursor:pointer">잠재 MW ⇅</th><th data-k="r" style="cursor:pointer">실행률 ⇅</th><th data-k="g" style="cursor:pointer">계통 MW ⇅</th></tr>`+
+        rows.map(r=>`<tr><td><a href="map.html?sgg=${r.k}" style="color:var(--navy);font-weight:600">${r.n}</a></td><td style="text-align:center">${badge(r.st)}</td><td><b>${mw(r.e)}</b></td><td>${mw(r.s)}</td><td class="su">${r.r.toFixed(1)}%</td><td>${mw(r.g)}</td></tr>`).join('');
+    }
+    t.addEventListener('click',e=>{const th=e.target.closest('th');if(!th||!th.dataset.k)return;
+      asc=th.dataset.k===key?!asc:false;key=th.dataset.k;render();});
+    document.getElementById('d7tabs').addEventListener('click',e=>{
+      const b=e.target.closest('.tab');if(!b)return;
+      document.querySelectorAll('#d7tabs .tab').forEach(x=>x.classList.toggle('on',x===b));
+      flt=b.dataset.f; render();
+    });
+    render();
+  })();
+});
+</script>
+<script src="site.js"></script>
+<script src="assets/appendix.js"></script>
+</body>
+</html>
