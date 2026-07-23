@@ -65,6 +65,11 @@
   header.snav .menu a.active { color:var(--site-navy); font-weight:700; }
   header.snav .menu a.active::after { width:100%; background:var(--site-teal); }
   header.snav .ham { display:none; background:none; border:none; font-size:22px; color:var(--site-navy); cursor:pointer; }
+  .lang-toggle{display:inline-flex;border:1.5px solid var(--navy);border-radius:999px;overflow:hidden;margin-left:auto;margin-right:16px}
+  .lang-toggle button{font:inherit;font-size:11px;font-weight:700;letter-spacing:.05em;padding:6px 11px;border:none;background:transparent;color:var(--navy);cursor:pointer;line-height:1;transition:background .2s,color .2s}
+  .lang-toggle button+button{border-left:1.5px solid var(--navy)}
+  .lang-toggle button.active{background:var(--navy);color:#fff}
+  .lang-toggle button:not(.active):hover{background:#f4f1e9}
   body > .wrap { padding-top:34px; }
   footer.sfoot { border-top:1px solid var(--site-line); margin-top:50px; padding:26px 20px; text-align:center;
                  font-size:12.5px; color:var(--site-muted); }
@@ -81,27 +86,31 @@
 <header class="snav">
   <div class="bar">
     <a class="brand" href="index.html" aria-label="PLANiT 영농형 태양광 홈">
-      <img src="assets/planit_logo.png" alt="PLANiT"><span class="sector">영농형 태양광</span>
+      <img src="assets/planit_logo.png" alt="PLANiT"><span class="sector" data-i18n="brand-sector">영농형 태양광</span>
     </a>
     <nav class="menu" id="menu">
-      <a href="index.html">개요</a>
-      <a href="map.html">지도</a>
-      <a class="active" href="atlas.html">구역별 지도</a>
-      <a href="method.html">방법론</a>
-      <a href="insight.html">인사이트</a>
+      <a href="index.html" data-i18n="nav-overview">개요</a>
+      <a href="map.html" data-i18n="nav-map">지도</a>
+      <a class="active" href="atlas.html" data-i18n="nav-atlas">구역별 지도</a>
+      <a href="method.html" data-i18n="nav-method">방법론</a>
+      <a href="insight.html" data-i18n="nav-insight">인사이트</a>
     </nav>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="ko">KO</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
     <button class="ham" aria-label="메뉴" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
   </div>
 </header>
 
 <div class="wrap">
 
-<h1>분석구역별 S0→S1 블록 지도 아틀라스</h1>
-<p class="meta">영농형 태양광 특구 후보 분석 — 내부 검토 자료 (2026-07-23 카드 개편판 · 비배포) ·
+<h1 data-i18n="h1">분석구역별 S0→S1 블록 지도 아틀라스</h1>
+<p class="meta" data-i18n="meta">영농형 태양광 특구 후보 분석 — 내부 검토 자료 (2026-07-23 카드 개편판 · 비배포) ·
 데이터: <code>site_v2\data\{코드}_S0/S1.json</code> · 수치: <code>summary.json = blocks_sweep_summary.json</code> (t≤0.30) ·
 통합 검증(2026-07-22) 11항목 전부 통과 · 배포 전 자동 점검 전체 통과</p>
 
-<div class="note">
+<div class="note" data-i18n="note-main">
 <b>읽는 법.</b> 각 카드의 왼쪽 열은 동일 좌표범위의 지도 2장(위 = S0 현행, 아래 = S1 재생에너지지구 지정),
 오른쪽 열은 현행(S0)→지정 시(S1) 대비 표이다. 블록은 경계 간 거리 25m 이내로 서로 이어진 필지의 묶음이며,
 3MW 이상 구획만 등재한다. 잠재 물량 = 전체 등재 구획의 합, 실행 가능 물량 = 그중 소유요건(개인소유 비율 ≤0.30 ·
@@ -116,16 +125,16 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
 
 <div class="band">
   <div>
-    <div class="hdband" style="background:var(--navy)">현 행 — S0</div>
-    <div class="bandbody">
+    <div class="hdband" style="background:var(--navy)" data-i18n="band-s0-hd">현 행 — S0</div>
+    <div class="bandbody" data-i18n="band-s0-body">
       <p>◇ A군 15구역 실행 가능 물량 합계: <b>1,153.9 MW</b> <span class="mut">(잠재 물량 17,711.4 MW)</span></p>
       <p>◇ 판정: 유력 3곳(평택·파주·서산) · 지정 가능 3곳(아산·화성·보령) · 요건 미달 19곳(전체 25구역 기준)</p>
       <p>◇ 적격 범위가 농업진흥지역 밖 농지로 한정되어, 간척 농지의 대규모 비개인 소유 필지 대부분이 배제된다.</p>
     </div>
   </div>
   <div>
-    <div class="hdband" style="background:var(--grn)">재생에너지지구 지정 시 — S1</div>
-    <div class="bandbody">
+    <div class="hdband" style="background:var(--grn)" data-i18n="band-s1-hd">재생에너지지구 지정 시 — S1</div>
+    <div class="bandbody" data-i18n="band-s1-body">
       <p>◇ A군 실행 가능 물량 합계: <b>4,238.4 MW</b> (3.7배) · <b>신규 유력 진입 5곳</b>(당진·홍성·보령·아산·화성)</p>
       <p>◇ 판정: 유력 8곳 · 지정 가능 4곳(이천·김포·천안 + 포항시ᴮ)</p>
       <p>◇ B군 6구역: 5곳 요건 미달 · 포항시 지정 가능 · 유력 0곳</p>
@@ -135,15 +144,15 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
 </div>
 
 
-<h3 class="group" id="targets">주요 연구대상지 — 서해안 간척 클러스터 (당진·서산·홍성·보령)</h3>
-<p style="font-size:13.5px;color:var(--ink2)">재생에너지지구 지정 시 실행 가능 물량 증가가 크고, 실행 통과 구획이 특정 지대에 모여 성립하는 네 구역을
+<h3 class="group" id="targets" data-i18n="grp-targets">주요 연구대상지 — 서해안 간척 클러스터 (당진·서산·홍성·보령)</h3>
+<p style="font-size:13.5px;color:var(--ink2)" data-i18n="targets-intro">재생에너지지구 지정 시 실행 가능 물량 증가가 크고, 실행 통과 구획이 특정 지대에 모여 성립하는 네 구역을
 본 연구의 주요 대상지로 삼는다. 네 구역의 실행 가능 물량 증가량 합계는 2,321 MW로 A군 전체 증가량
 (3,085 MW)의 75%를 차지한다.</p>
-<table class="sum">
+<table class="sum" data-i18n="targets-table">
 <tr><th>구역</th><th>S0 (MW)</th><th>S1 (MW)</th><th>증가량</th><th>판정 전이</th><th>최대 규모 실행 통과 블록</th></tr>
 <tr><td>당진</td><td>36.5</td><td><b>1,121.9</b></td><td class='up'>Δ+1,085.4 (30.7배)</td><td>요건 미달 → <b>유력</b></td><td>석문면 삼화리 50.6MW·112ha·개인 0%</td></tr><tr><td>서산</td><td>134.3</td><td><b>1,055.5</b></td><td class='up'>Δ+921.2 (7.9배)</td><td>유력 → <b>유력</b></td><td>고북면 사기리 49.8MW·111ha·개인 1%</td></tr><tr><td>홍성</td><td>3.1</td><td><b>149.5</b></td><td class='up'>Δ+146.4 (48.2배)</td><td>요건 미달 → <b>유력</b></td><td>갈산면 기산리 46.5MW·103ha·개인 0%</td></tr><tr><td>보령</td><td>56.3</td><td><b>224.6</b></td><td class='up'>Δ+168.3 (4.0배)</td><td>지정 가능 → <b>유력</b></td><td>웅천읍 소황리 48.2MW·107ha·개인 0%</td></tr>
 </table>
-<div class="note" style="margin-top:8px">
+<div class="note" style="margin-top:8px" data-i18n="targets-note">
 <b>왜 이 네 구역인가 — 간척지의 세 조건이 겹치는 곳.</b>
 ① <b>농업진흥지역 집중</b>: 서해안 간척 농지는 대부분 농업진흥지역으로 지정되어 있어, 현행 제도(S0)에서는 일괄
 배제되나 재생에너지지구 지정(S1)으로 한꺼번에 적격이 된다. ② <b>대규모 연속 필지</b>: 간척으로 조성된 반듯하고
@@ -159,8 +168,8 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
 </div>
 
 
-<h3 class="group">요약 — S0→S1 전이 유형 (A 15개 분석구역 · 대표 수치 = 증가량 ΔMW, 배율은 보조)</h3>
-<table class="sum">
+<h3 class="group" data-i18n="grp-summary">요약 — S0→S1 전이 유형 (A 15개 분석구역 · 대표 수치 = 증가량 ΔMW, 배율은 보조)</h3>
+<table class="sum" data-i18n="summary-table">
 <tr><th>전이 유형 (S1 판정 기준)</th><th>분석구역 — Δ증가량 MW (S0→S1 · 배율)</th><th>해석 역할</th></tr>
 <tr><td><b>신규 진입</b> (요건 미달→유력)</td><td>당진 Δ+1,085.4 (36.5→1,121.9 · 30.7배) / 홍성 Δ+146.4 (3.1→149.5 · 48.2배)</td><td>지정에 따른 실행 가능 물량 증가가 가장 큰 유형 — 본문 사례 서술의 중심</td></tr>
 <tr><td><b>규모 증폭</b> (유력→유력)</td><td>서산 Δ+921.2 (134.3→1,055.5 · 7.9배)</td><td>S0 유력 구역의 실행 가능 물량 증폭</td></tr>
@@ -169,24 +178,24 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
 <tr><td><b>문턱 진입</b> (요건 미달→지정 가능)</td><td>김포 Δ+51.0 (17.3→68.3 · 3.9배) / 이천 Δ+48.1 (33.8→81.9 · 2.4배) / 천안시 Δ+26.9 (37.1→64.0 · 1.7배)</td><td>지정 가능 등급 진입의 확대</td></tr>
 <tr><td><b>무반응</b> (요건 미달 유지)</td><td>예산 Δ+37.0 (5.6→42.6 · 7.6배) / 용인시 Δ+24.4 (14.5→38.9 · 2.7배) / 안산시 Δ+0.0 (0.0→0.0) / 시흥 Δ-2.6 (24.0→21.4 · 0.9배)</td><td>지정 효과가 미미한 구역 — 예산·용인은 개인소유 상한 0.40에서 50MW 도달(경계)</td></tr>
 </table>
-<p class="fn">메커니즘: 실행 가능 물량 증가 상위 4곳(당진·서산·홍성·보령)은 모두 서해안 간척 농지 시군이다 — 간척지는
+<p class="fn" data-i18n="summary-fn">메커니즘: 실행 가능 물량 증가 상위 4곳(당진·서산·홍성·보령)은 모두 서해안 간척 농지 시군이다 — 간척지는
 ①거의 전부 농업진흥지역으로 현행(S0)에서 일괄 배제되고 ②필지가 대규모로 이어져 있어 블록 형성에 유리하며
 ③국·공유 등 비개인 소유 비중이 높아 소유요건을 통과한다. 국공유 간척 농지의 경우 소유권 협의의 제약이 임차농의
 동의·수익 배분 설계의 문제로 이전되며, 영농 병행 구조는 이 협의 구조와 정합적이다.</p>
 
-<h3 class="group">Ⅰ. 신규 진입 (요건 미달→유력)</h3>
+<h3 class="group" data-i18n="grp-1">Ⅰ. 신규 진입 (요건 미달→유력)</h3>
 
 <div class="card" id="c44270">
-<h2>당진 (44270)<span class="tag">신규 진입 (요건 미달→유력)</span></h2>
+<h2 data-i18n="h2-44270">당진 (44270)<span class="tag">신규 진입 (요건 미달→유력)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_44270_S0.png?v=3" alt="당진 S0 현행 블록 지도">
     <img src="atlas_img/map_44270_S1.png?v=3" alt="당진 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-44270">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>36.5</td><td><b>1,121.9</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+1,085.4 MW (30.7배)</td></tr>
@@ -196,10 +205,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.10 <span class='mut'>(100MW 최초 통과 상한 0.10)</span></td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">석문면 삼화리 · 50.6 MW · 61필지 · 112ha · 개인소유 0%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_44270.png?v=3" alt="당진 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -208,20 +217,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">실행 가능 물량 증가량(+1,085.4 MW) 기준 A군 최대 분석구역이다. S0 패널에서는 소유요건 미통과 구획만 넓게 분포하고 실행 통과 구획이 8개소에 그치나, S1 패널에서는 북서부 간척 농지 일대(석문면·대호지면·송산면 방면)가 대규모 실행 통과 구획 군집으로 전환된다. 최대 실행 블록(석문면 삼화리)은 112ha 규모로 이어져 있고 개인소유 비율이 0%로, 간척지의 세 조건(농업진흥지역 지정에 따른 현행 배제·대규모로 이어진 필지·비개인 소유)을 그대로 보여준다. 개인소유 상한을 최저치(0.10)로 설정하여도 100MW를 상회하므로 판정이 상한 설정에 좌우되지 않는다.</p>
+<p class="expl" data-i18n="expl-44270">실행 가능 물량 증가량(+1,085.4 MW) 기준 A군 최대 분석구역이다. S0 패널에서는 소유요건 미통과 구획만 넓게 분포하고 실행 통과 구획이 8개소에 그치나, S1 패널에서는 북서부 간척 농지 일대(석문면·대호지면·송산면 방면)가 대규모 실행 통과 구획 군집으로 전환된다. 최대 실행 블록(석문면 삼화리)은 112ha 규모로 이어져 있고 개인소유 비율이 0%로, 간척지의 세 조건(농업진흥지역 지정에 따른 현행 배제·대규모로 이어진 필지·비개인 소유)을 그대로 보여준다. 개인소유 상한을 최저치(0.10)로 설정하여도 100MW를 상회하므로 판정이 상한 설정에 좌우되지 않는다.</p>
 </div>
 
 <div class="card" id="c44800">
-<h2>홍성 (44800)<span class="tag">신규 진입 (요건 미달→유력)</span></h2>
+<h2 data-i18n="h2-44800">홍성 (44800)<span class="tag">신규 진입 (요건 미달→유력)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_44800_S0.png?v=3" alt="홍성 S0 현행 블록 지도">
     <img src="atlas_img/map_44800_S1.png?v=3" alt="홍성 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-44800">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>3.1</td><td><b>149.5</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+146.4 MW (48.2배)</td></tr>
@@ -231,10 +240,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.10 <span class='mut'>(100MW 최초 통과 상한 0.10)</span></td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">갈산면 기산리 · 46.5 MW · 108필지 · 103ha · 개인소유 0%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_44800.png?v=3" alt="홍성 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -243,22 +252,22 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">배율(48.2배)은 A군 최대이나 S0 출발값이 3.1 MW로 작으므로 배율 단독 인용은 과장의 우려가 있어 증가량(+146.4 MW) 중심으로 서술한다. S0에서 실행 통과 구획이 1개소였던 구역이 지정과 함께 서부(갈산면·결성면 방면, 천수만 간척지대 인접)에 15개소로 성립한다. 현행 제도에서 실행 가능 물량이 사실상 없던 구역이 유력으로 판정되는 사례이다.</p>
+<p class="expl" data-i18n="expl-44800">배율(48.2배)은 A군 최대이나 S0 출발값이 3.1 MW로 작으므로 배율 단독 인용은 과장의 우려가 있어 증가량(+146.4 MW) 중심으로 서술한다. S0에서 실행 통과 구획이 1개소였던 구역이 지정과 함께 서부(갈산면·결성면 방면, 천수만 간척지대 인접)에 15개소로 성립한다. 현행 제도에서 실행 가능 물량이 사실상 없던 구역이 유력으로 판정되는 사례이다.</p>
 </div>
-<h3 class="group">Ⅱ. 규모 증폭 — S0 유력 구역의 실행 가능 물량 확대</h3>
-<p style="font-size:13.5px;color:var(--ink2);margin:6px 0 4px">간척 농지의 상당수는 국·공유 또는 공공기관 소유로, 소유권 확보 협의의 진입장벽이 상대적으로 낮다. 다만 국공유 농지에도 임차농이 경작하고 있으므로 제약이 소멸하는 것은 아니며, 소유권 협의의 문제가 임차농의 동의와 수익 배분 설계의 문제로 이전된다. 영농형 태양광은 농지를 전용하지 않고 경작을 유지한 채 발전 수익을 더하는 구조이므로, 이 협의 구조와 정합적이다.</p>
+<h3 class="group" data-i18n="grp-2">Ⅱ. 규모 증폭 — S0 유력 구역의 실행 가능 물량 확대</h3>
+<p style="font-size:13.5px;color:var(--ink2);margin:6px 0 4px" data-i18n="grp-2-intro">간척 농지의 상당수는 국·공유 또는 공공기관 소유로, 소유권 확보 협의의 진입장벽이 상대적으로 낮다. 다만 국공유 농지에도 임차농이 경작하고 있으므로 제약이 소멸하는 것은 아니며, 소유권 협의의 문제가 임차농의 동의와 수익 배분 설계의 문제로 이전된다. 영농형 태양광은 농지를 전용하지 않고 경작을 유지한 채 발전 수익을 더하는 구조이므로, 이 협의 구조와 정합적이다.</p>
 
 <div class="card" id="c44210">
-<h2>서산 (44210)<span class="tag">규모 증폭 (유력→유력)</span></h2>
+<h2 data-i18n="h2-44210">서산 (44210)<span class="tag">규모 증폭 (유력→유력)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_44210_S0.png?v=3" alt="서산 S0 현행 블록 지도">
     <img src="atlas_img/map_44210_S1.png?v=3" alt="서산 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-44210">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>134.3</td><td><b>1,055.5</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+921.2 MW (7.9배)</td></tr>
@@ -268,10 +277,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.10 <span class='mut'>(100MW 최초 통과 상한 0.10)</span></td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">고북면 사기리 · 49.8 MW · 114필지 · 111ha · 개인소유 1%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_44210.png?v=3" alt="서산 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -280,21 +289,21 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">실행 가능 물량 증가량(+921.2 MW) 기준 A군 2위 분석구역이다. S0에서 이미 유력(134.3 MW)이나, 지정 시 남부 천수만 방면(고북면·부석면 일대 간척 농지)이 실행 통과 구획으로 전환되며 1,055.5 MW가 된다. 당진이 지정 없이는 유력이 성립하지 않는 구역(신규 진입)이라면, 서산은 지정이 기존 유력 구역의 실행 가능 물량을 7.9배로 확대하는 구역(규모 증폭)으로, 지정 효과의 두 유형을 당진·서산 대비로 제시할 수 있다. 실행 통과 구획 78개소는 A군 최다이며, 물량이 소수 블록에 집중되지 않아 소유 협의 관점에서 유리한 분포이다.</p>
+<p class="expl" data-i18n="expl-44210">실행 가능 물량 증가량(+921.2 MW) 기준 A군 2위 분석구역이다. S0에서 이미 유력(134.3 MW)이나, 지정 시 남부 천수만 방면(고북면·부석면 일대 간척 농지)이 실행 통과 구획으로 전환되며 1,055.5 MW가 된다. 당진이 지정 없이는 유력이 성립하지 않는 구역(신규 진입)이라면, 서산은 지정이 기존 유력 구역의 실행 가능 물량을 7.9배로 확대하는 구역(규모 증폭)으로, 지정 효과의 두 유형을 당진·서산 대비로 제시할 수 있다. 실행 통과 구획 78개소는 A군 최다이며, 물량이 소수 블록에 집중되지 않아 소유 협의 관점에서 유리한 분포이다.</p>
 </div>
-<h3 class="group">Ⅲ. 승격 (지정 가능→유력)</h3>
+<h3 class="group" data-i18n="grp-3">Ⅲ. 승격 (지정 가능→유력)</h3>
 
 <div class="card" id="c44180">
-<h2>보령 (44180)<span class="tag">승격 (지정 가능→유력)</span></h2>
+<h2 data-i18n="h2-44180">보령 (44180)<span class="tag">승격 (지정 가능→유력)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_44180_S0.png?v=3" alt="보령 S0 현행 블록 지도">
     <img src="atlas_img/map_44180_S1.png?v=3" alt="보령 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-44180">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>56.3</td><td><b>224.6</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+168.3 MW (4.0배)</td></tr>
@@ -304,10 +313,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.10 <span class='mut'>(100MW 최초 통과 상한 0.10)</span></td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">웅천읍 소황리 · 48.2 MW · 113필지 · 107ha · 개인소유 0%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_44180.png?v=3" alt="보령 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -316,20 +325,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">서해안 간척 그룹의 네 번째 구역이다. S0에서도 지정 가능 등급(56.3 MW)이나, 지정 시 남부 해안(웅천읍 방면)에 대형 실행 통과 구획이 성립하며 유력으로 승격한다. 최대 실행 블록(웅천읍 소황리 107ha·개인소유 0%)의 구성이 당진 삼화리·서산 사기리와 동형으로, 간척지 메커니즘이 구역을 바꾸어 반복 재현된다.</p>
+<p class="expl" data-i18n="expl-44180">서해안 간척 그룹의 네 번째 구역이다. S0에서도 지정 가능 등급(56.3 MW)이나, 지정 시 남부 해안(웅천읍 방면)에 대형 실행 통과 구획이 성립하며 유력으로 승격한다. 최대 실행 블록(웅천읍 소황리 107ha·개인소유 0%)의 구성이 당진 삼화리·서산 사기리와 동형으로, 간척지 메커니즘이 구역을 바꾸어 반복 재현된다.</p>
 </div>
 
 <div class="card" id="c44200">
-<h2>아산 (44200)<span class="tag">승격 (지정 가능→유력)</span></h2>
+<h2 data-i18n="h2-44200">아산 (44200)<span class="tag">승격 (지정 가능→유력)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_44200_S0.png?v=3" alt="아산 S0 현행 블록 지도">
     <img src="atlas_img/map_44200_S1.png?v=3" alt="아산 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-44200">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>93.4</td><td><b>222.2</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+128.8 MW (2.4배)</td></tr>
@@ -339,10 +348,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.10 <span class='mut'>(100MW 최초 통과 상한 0.10)</span></td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">탕정면 호산리 · 21.8 MW · 380필지 · 48ha · 개인소유 0%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_44200.png?v=3" alt="아산 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -351,20 +360,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">S0에서 이미 93.4 MW로 유력 기준(100MW)에 근접해 있던 구역으로, 지정으로 유력 판정이 확정된다. 아산만 방면 농지와 내륙(탕정면 등)에 실행 통과 구획이 고르게 증가한다(20→38개소). 최대 실행 블록이 380필지로 구성된다는 점(당진 삼화리는 61필지·112ha)은 필지 세분화 정도가 구역마다 다름을 보여주므로 방법 서술 시 참고한다.</p>
+<p class="expl" data-i18n="expl-44200">S0에서 이미 93.4 MW로 유력 기준(100MW)에 근접해 있던 구역으로, 지정으로 유력 판정이 확정된다. 아산만 방면 농지와 내륙(탕정면 등)에 실행 통과 구획이 고르게 증가한다(20→38개소). 최대 실행 블록이 380필지로 구성된다는 점(당진 삼화리는 61필지·112ha)은 필지 세분화 정도가 구역마다 다름을 보여주므로 방법 서술 시 참고한다.</p>
 </div>
 
 <div class="card" id="c41590">
-<h2>화성 (41590)<span class="tag">승격 (지정 가능→유력)</span></h2>
+<h2 data-i18n="h2-41590">화성 (41590)<span class="tag">승격 (지정 가능→유력)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_41590_S0.png?v=3" alt="화성 S0 현행 블록 지도">
     <img src="atlas_img/map_41590_S1.png?v=3" alt="화성 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-41590">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>68.4</td><td><b>185.5</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+117.1 MW (2.7배)</td></tr>
@@ -374,10 +383,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.10 <span class='mut'>(100MW 최초 통과 상한 0.10)</span></td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">장안면 장안리 · 17.9 MW · 100필지 · 40ha · 개인소유 3%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_41590.png?v=3" alt="화성 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -386,21 +395,21 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">경기 서해안의 승격 사례로, 서부(장안면·우정읍 방면, 화옹 간척지대)에 실행 통과 구획이 집중된다. 충남 간척 그룹과 달리 최대 실행 블록이 17.9 MW의 중형으로, 실행 가능 물량이 대형 블록 소수가 아니라 중형 블록 다수(36개소)로 구성되는 유형이다. S2(자연환경보전지역 포함)와 실행 가능 물량이 동일하여 보전지역 논점이 발생하지 않는 구역이기도 하다.</p>
+<p class="expl" data-i18n="expl-41590">경기 서해안의 승격 사례로, 서부(장안면·우정읍 방면, 화옹 간척지대)에 실행 통과 구획이 집중된다. 충남 간척 그룹과 달리 최대 실행 블록이 17.9 MW의 중형으로, 실행 가능 물량이 대형 블록 소수가 아니라 중형 블록 다수(36개소)로 구성되는 유형이다. S2(자연환경보전지역 포함)와 실행 가능 물량이 동일하여 보전지역 논점이 발생하지 않는 구역이기도 하다.</p>
 </div>
-<h3 class="group">Ⅳ. S0 자립 — 현행 제도에서도 유력 (대조군)</h3>
+<h3 class="group" data-i18n="grp-4">Ⅳ. S0 자립 — 현행 제도에서도 유력 (대조군)</h3>
 
 <div class="card" id="c41220">
-<h2>평택 (41220)<span class="tag">S0 자립 (현행에서도 유력)</span></h2>
+<h2 data-i18n="h2-41220">평택 (41220)<span class="tag">S0 자립 (현행에서도 유력)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_41220_S0.png?v=3" alt="평택 S0 현행 블록 지도">
     <img src="atlas_img/map_41220_S1.png?v=3" alt="평택 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-41220">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>483.4</td><td><b>741.4</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+258.0 MW (1.5배)</td></tr>
@@ -410,10 +419,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.10 <span class='mut'>(100MW 최초 통과 상한 0.10)</span></td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">팽성읍 대추리 · 48.2 MW · 431필지 · 107ha · 개인소유 0%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_41220.png?v=3" alt="평택 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -422,20 +431,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">S0 실행 가능 물량 483.4 MW로 현행 제도 기준 A군 1위이며, 21개 분석구역 중 유일하게 S0 패널부터 실행 통과 구획이 뚜렷하다 — 농업진흥지역 밖 농지에 이미 대형 비개인 소유 블록이 존재하는 예외적 구역이다. 해석상 역할은 대조군으로, 지정이 모든 실행 가능 물량을 만드는 것이 아니라 평택·파주·서산은 현행 제도에서도 유력임을 보여 준다. 이는 과도한 일반화를 방지하는 근거이자 제도 개정 전 우선 검토 대상 제언의 근거가 된다.</p>
+<p class="expl" data-i18n="expl-41220">S0 실행 가능 물량 483.4 MW로 현행 제도 기준 A군 1위이며, 21개 분석구역 중 유일하게 S0 패널부터 실행 통과 구획이 뚜렷하다 — 농업진흥지역 밖 농지에 이미 대형 비개인 소유 블록이 존재하는 예외적 구역이다. 해석상 역할은 대조군으로, 지정이 모든 실행 가능 물량을 만드는 것이 아니라 평택·파주·서산은 현행 제도에서도 유력임을 보여 준다. 이는 과도한 일반화를 방지하는 근거이자 제도 개정 전 우선 검토 대상 제언의 근거가 된다.</p>
 </div>
 
 <div class="card" id="c41480">
-<h2>파주 (41480)<span class="tag">S0 자립 (현행에서도 유력)</span></h2>
+<h2 data-i18n="h2-41480">파주 (41480)<span class="tag">S0 자립 (현행에서도 유력)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_41480_S0.png?v=3" alt="파주 S0 현행 블록 지도">
     <img src="atlas_img/map_41480_S1.png?v=3" alt="파주 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-41480">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>146.2</td><td><b>220.7</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+74.5 MW (1.5배)</td></tr>
@@ -445,10 +454,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.10 <span class='mut'>(100MW 최초 통과 상한 0.10)</span></td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">파주시 서패동 · 21.7 MW · 335필지 · 48ha · 개인소유 20%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_41480.png?v=3" alt="파주 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -457,21 +466,21 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">접경 구역(군사 통제보호구역 필지는 공통 제외 적용)임에도 S0부터 실행 통과 구획 30개소가 성립해 있는 S0 자립 구역이다. 최대 실행 블록의 개인소유 비율이 20%로 다른 상위 구역(0~3%)보다 높고 잠재 물량(3,196.0 MW)이 상위 구역 중 가장 작아, 간척형 대량 확보가 아니라 수도권 인접 중형 블록형에 해당한다.</p>
+<p class="expl" data-i18n="expl-41480">접경 구역(군사 통제보호구역 필지는 공통 제외 적용)임에도 S0부터 실행 통과 구획 30개소가 성립해 있는 S0 자립 구역이다. 최대 실행 블록의 개인소유 비율이 20%로 다른 상위 구역(0~3%)보다 높고 잠재 물량(3,196.0 MW)이 상위 구역 중 가장 작아, 간척형 대량 확보가 아니라 수도권 인접 중형 블록형에 해당한다.</p>
 </div>
-<h3 class="group">Ⅴ. 문턱 진입 (요건 미달→지정 가능)</h3>
+<h3 class="group" data-i18n="grp-5">Ⅴ. 문턱 진입 (요건 미달→지정 가능)</h3>
 
 <div class="card" id="c41570">
-<h2>김포 (41570)<span class="tag">문턱 진입 (요건 미달→지정 가능)</span></h2>
+<h2 data-i18n="h2-41570">김포 (41570)<span class="tag">문턱 진입 (요건 미달→지정 가능)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_41570_S0.png?v=3" alt="김포 S0 현행 블록 지도">
     <img src="atlas_img/map_41570_S1.png?v=3" alt="김포 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-41570">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>17.3</td><td><b>68.3</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+51.0 MW (3.9배)</td></tr>
@@ -481,10 +490,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.10</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">하성면 후평리 · 10.4 MW · 49필지 · 23ha · 개인소유 0%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_41570.png?v=3" alt="김포 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -493,20 +502,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">한강 하구 농지(하성면 방면)에 중소형 실행 통과 구획이 성립하며 지정 가능 등급에 진입한다. 유력(100MW)에는 미달하는 중간 구역으로, 판정 기준을 50/100MW의 두 단계로 둔 설계가 이러한 구역을 별도 등급으로 구분하는 효과를 보여 준다.</p>
+<p class="expl" data-i18n="expl-41570">한강 하구 농지(하성면 방면)에 중소형 실행 통과 구획이 성립하며 지정 가능 등급에 진입한다. 유력(100MW)에는 미달하는 중간 구역으로, 판정 기준을 50/100MW의 두 단계로 둔 설계가 이러한 구역을 별도 등급으로 구분하는 효과를 보여 준다.</p>
 </div>
 
 <div class="card" id="c41500">
-<h2>이천 (41500)<span class="tag">문턱 진입 (요건 미달→지정 가능)</span></h2>
+<h2 data-i18n="h2-41500">이천 (41500)<span class="tag">문턱 진입 (요건 미달→지정 가능)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_41500_S0.png?v=3" alt="이천 S0 현행 블록 지도">
     <img src="atlas_img/map_41500_S1.png?v=3" alt="이천 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-41500">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>33.8</td><td><b>81.9</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+48.1 MW (2.4배)</td></tr>
@@ -516,10 +525,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.10</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">부발읍 아미리 · 9.2 MW · 152필지 · 20ha · 개인소유 21%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_41500.png?v=3" alt="이천 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -528,20 +537,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">잠재 물량은 5,780.0 MW로 크지만 실행 가능 물량은 81.9 MW에 그치는 내륙 평야형의 전형이다. 농지는 넓으나 개인소유가 지배적이어서(최대 실행 블록조차 개인소유 21%) 잠재가 실행으로 전환되지 않는다. 간척형(당진·서산)과의 대비를 통해, 소유 구조가 실행 가능 물량을 가른다는 본 연구의 핵심 대비(잠재량-실행 가능 물량의 간극)를 A군 내부에서 보여 주는 사례이다.</p>
+<p class="expl" data-i18n="expl-41500">잠재 물량은 5,780.0 MW로 크지만 실행 가능 물량은 81.9 MW에 그치는 내륙 평야형의 전형이다. 농지는 넓으나 개인소유가 지배적이어서(최대 실행 블록조차 개인소유 21%) 잠재가 실행으로 전환되지 않는다. 간척형(당진·서산)과의 대비를 통해, 소유 구조가 실행 가능 물량을 가른다는 본 연구의 핵심 대비(잠재량-실행 가능 물량의 간극)를 A군 내부에서 보여 주는 사례이다.</p>
 </div>
 
 <div class="card" id="c44130">
-<h2>천안시 (44130) <span class="mut" style="font-size:13px">생활권 병합 분석구역</span><span class="tag">문턱 진입 (요건 미달→지정 가능)</span></h2>
+<h2 data-i18n="h2-44130">천안시 (44130) <span class="mut" style="font-size:13px">생활권 병합 분석구역</span><span class="tag">문턱 진입 (요건 미달→지정 가능)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_44130_S0.png?v=3" alt="천안시 S0 현행 블록 지도">
     <img src="atlas_img/map_44130_S1.png?v=3" alt="천안시 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-44130">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>37.1</td><td><b>64.0</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+26.9 MW (1.7배)</td></tr>
@@ -551,10 +560,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.10</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">풍세면 보성리 · 7.2 MW · 171필지 · 16ha · 개인소유 0%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_44130.png?v=3" alt="천안시 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -563,21 +572,21 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">생활권 병합 규칙이 판정을 가른 사례이다. 동남구 32.6 · 서북구 31.6 MW로 구별 판정 시 모두 요건 미달이나, 병합(44130) 후 64.0 MW로 지정 가능이 된다. 이 사례가 용인·안산·포항까지 병합 규칙을 일관 적용(재분리 금지)하게 된 출발점이다. 최대 실행 블록이 7.2 MW인 소형 다수 분산형이다.</p>
+<p class="expl" data-i18n="expl-44130">생활권 병합 규칙이 판정을 가른 사례이다. 동남구 32.6 · 서북구 31.6 MW로 구별 판정 시 모두 요건 미달이나, 병합(44130) 후 64.0 MW로 지정 가능이 된다. 이 사례가 용인·안산·포항까지 병합 규칙을 일관 적용(재분리 금지)하게 된 출발점이다. 최대 실행 블록이 7.2 MW인 소형 다수 분산형이다.</p>
 </div>
-<h3 class="group">Ⅵ. 무반응 — 지정 효과가 미미한 A 구역 (요건 미달 유지)</h3>
+<h3 class="group" data-i18n="grp-6">Ⅵ. 무반응 — 지정 효과가 미미한 A 구역 (요건 미달 유지)</h3>
 
 <div class="card" id="c44810">
-<h2>예산 (44810)<span class="tag">무반응 (요건 미달 유지)</span></h2>
+<h2 data-i18n="h2-44810">예산 (44810)<span class="tag">무반응 (요건 미달 유지)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_44810_S0.png?v=3" alt="예산 S0 현행 블록 지도">
     <img src="atlas_img/map_44810_S1.png?v=3" alt="예산 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-44810">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>5.6</td><td><b>42.6</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+37.0 MW (7.6배)</td></tr>
@@ -587,10 +596,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.40</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">신암면 종경리 · 13.9 MW · 69필지 · 31ha · 개인소유 0%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_44810.png?v=3" alt="예산 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -599,20 +608,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">실행 가능 물량 42.6 MW로 기준(50MW)에 미달하나, 개인소유 상한을 기본값 0.30에서 0.40으로 완화하면 50MW에 도달하는 경계 구역이다. 잠재 물량(5,950.2 MW)이 보령보다 커서 소유 협의가 진전되면 순위가 변동할 수 있다. 신규 편입 지역으로 커버리지 정밀 재감사(§R급)는 미수행 상태임을 병기한다.</p>
+<p class="expl" data-i18n="expl-44810">실행 가능 물량 42.6 MW로 기준(50MW)에 미달하나, 개인소유 상한을 기본값 0.30에서 0.40으로 완화하면 50MW에 도달하는 경계 구역이다. 잠재 물량(5,950.2 MW)이 보령보다 커서 소유 협의가 진전되면 순위가 변동할 수 있다. 신규 편입 지역으로 커버리지 정밀 재감사(§R급)는 미수행 상태임을 병기한다.</p>
 </div>
 
 <div class="card" id="c41390">
-<h2>시흥 (41390)<span class="tag">무반응 (요건 미달 유지)</span></h2>
+<h2 data-i18n="h2-41390">시흥 (41390)<span class="tag">무반응 (요건 미달 유지)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_41390_S0.png?v=3" alt="시흥 S0 현행 블록 지도">
     <img src="atlas_img/map_41390_S1.png?v=3" alt="시흥 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-41390">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>24.0</td><td><b>21.4</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ-2.6 MW (0.9배)</td></tr>
@@ -622,10 +631,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">도달하지 않음</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">시흥시 매화동 · 6.7 MW · 133필지 · 15ha · 개인소유 1%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_41390.png?v=3" alt="시흥 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -634,20 +643,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">21개 분석구역 중 유일하게 S1 실행 가능 물량이 S0보다 감소(-2.6 MW)한 구역이다. 설치 가능 필지가 늘면 블록이 더 크게 결합되는데, 그 과정에서 블록의 개인소유 비율이 상승하여 소유요건에서 탈락할 수 있다 — 설치 가능 범위의 확대가 실행 가능 물량의 증가를 보장하지 않음을 보여 주는 실측 사례로, 방법 한계 서술에 반영할 근거이다.</p>
+<p class="expl" data-i18n="expl-41390">21개 분석구역 중 유일하게 S1 실행 가능 물량이 S0보다 감소(-2.6 MW)한 구역이다. 설치 가능 필지가 늘면 블록이 더 크게 결합되는데, 그 과정에서 블록의 개인소유 비율이 상승하여 소유요건에서 탈락할 수 있다 — 설치 가능 범위의 확대가 실행 가능 물량의 증가를 보장하지 않음을 보여 주는 실측 사례로, 방법 한계 서술에 반영할 근거이다.</p>
 </div>
 
 <div class="card" id="c41460">
-<h2>용인시 (41460) <span class="mut" style="font-size:13px">생활권 병합 분석구역</span><span class="tag">무반응 (요건 미달 유지)</span></h2>
+<h2 data-i18n="h2-41460">용인시 (41460) <span class="mut" style="font-size:13px">생활권 병합 분석구역</span><span class="tag">무반응 (요건 미달 유지)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_41460_S0.png?v=3" alt="용인시 S0 현행 블록 지도">
     <img src="atlas_img/map_41460_S1.png?v=3" alt="용인시 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-41460">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>14.5</td><td><b>38.9</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+24.4 MW (2.7배)</td></tr>
@@ -657,10 +666,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.40</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">백암면 장평리 · 13.5 MW · 85필지 · 30ha · 개인소유 23%</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_41460.png?v=3" alt="용인시 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -669,20 +678,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">천안과 동일한 생활권 병합(재블록화)을 적용한 결과이며 판정은 요건 미달로 변하지 않는다(병합 전 구별 합 39.0 MW ↔ 재블록화 38.9 MW — 차이는 구 경계를 넘어 블록이 재결합하며 발생). 변화는 한 가지로, 구 단위에서는 어느 구도 50MW에 이르지 못했으나 병합 단위에서는 개인소유 상한 0.40에서 50MW에 도달한다 — 예산과 같은 경계 그룹이다. 실행 가능 물량의 대부분은 처인 내륙 농지(백암면 등)에서 나오며 기흥·수지는 도시화로 기여가 미미하다.</p>
+<p class="expl" data-i18n="expl-41460">천안과 동일한 생활권 병합(재블록화)을 적용한 결과이며 판정은 요건 미달로 변하지 않는다(병합 전 구별 합 39.0 MW ↔ 재블록화 38.9 MW — 차이는 구 경계를 넘어 블록이 재결합하며 발생). 변화는 한 가지로, 구 단위에서는 어느 구도 50MW에 이르지 못했으나 병합 단위에서는 개인소유 상한 0.40에서 50MW에 도달한다 — 예산과 같은 경계 그룹이다. 실행 가능 물량의 대부분은 처인 내륙 농지(백암면 등)에서 나오며 기흥·수지는 도시화로 기여가 미미하다.</p>
 </div>
 
 <div class="card" id="c41270">
-<h2>안산시 (41270) <span class="mut" style="font-size:13px">생활권 병합 분석구역</span><span class="tag">무반응 (요건 미달 유지)</span></h2>
+<h2 data-i18n="h2-41270">안산시 (41270) <span class="mut" style="font-size:13px">생활권 병합 분석구역</span><span class="tag">무반응 (요건 미달 유지)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_41270_S0.png?v=3" alt="안산시 S0 현행 블록 지도">
     <img src="atlas_img/map_41270_S1.png?v=3" alt="안산시 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-41270">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>0.0</td><td><b>0.0</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+0.0 MW</td></tr>
@@ -692,10 +701,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">도달하지 않음</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">— (실행 통과 구획 없음)</td></tr>
     </table>
-    <p class="fn">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-a">아래 계통 지도의 <span style="color:#c0392b">■</span> = 산업단지 위치(참고). 블록 지도는 농지 필지만 표시한다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_41270.png?v=3" alt="안산시 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
+      <div class="leg gleg" data-i18n="gleg-a">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼 · <span style="color:#c0392b">■</span> 산업단지 위치
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -704,21 +713,21 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">병합 후에도 실행 통과 구획이 성립하지 않는다 — 잠재 물량(479.6 MW)은 있으나 전부 소유요건 미통과이다. 도시화 구역의 전형으로, 병합 규칙의 일관 적용이 결과를 바꾸지 않음을 그대로 기록한다(재분리 금지). 이 구역의 존재는 지정 효과가 농지의 규모와 소유 구조가 갖추어진 구역에서만 나타난다는 결론의 반대편 근거이다.</p>
+<p class="expl" data-i18n="expl-41270">병합 후에도 실행 통과 구획이 성립하지 않는다 — 잠재 물량(479.6 MW)은 있으나 전부 소유요건 미통과이다. 도시화 구역의 전형으로, 병합 규칙의 일관 적용이 결과를 바꾸지 않음을 그대로 기록한다(재분리 금지). 이 구역의 존재는 지정 효과가 농지의 규모와 소유 구조가 갖추어진 구역에서만 나타난다는 결론의 반대편 근거이다.</p>
 </div>
-<h3 class="group">Ⅶ. B 산단거점 6구역 — 잠재 물량은 크나 실행 가능 물량이 희소 (대비군)</h3>
+<h3 class="group" data-i18n="grp-7">Ⅶ. B 산단거점 6구역 — 잠재 물량은 크나 실행 가능 물량이 희소 (대비군)</h3>
 
 <div class="card" id="c47110">
-<h2>포항시 (47110) <span class="mut" style="font-size:13px">생활권 병합 분석구역</span><span class="tag">문턱 진입 (요건 미달→지정 가능)</span></h2>
+<h2 data-i18n="h2-47110">포항시 (47110) <span class="mut" style="font-size:13px">생활권 병합 분석구역</span><span class="tag">문턱 진입 (요건 미달→지정 가능)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_47110_S0.png?v=3" alt="포항시 S0 현행 블록 지도">
     <img src="atlas_img/map_47110_S1.png?v=3" alt="포항시 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-47110">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>46.4</td><td><b>88.1</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+41.7 MW (1.9배)</td></tr>
@@ -728,10 +737,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">0.10</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">송라면 조사리 · 14.3 MW · 305필지 · 32ha · 개인소유 0%</td></tr>
     </table>
-    <p class="fn">개별 산업단지 위치 좌표는 미수집(경기·충남 외 지역)이라 표시하지 않는다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-b">개별 산업단지 위치 좌표는 미수집(경기·충남 외 지역)이라 표시하지 않는다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_47110.png?v=3" alt="포항시 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼
+      <div class="leg gleg" data-i18n="gleg-b">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -740,20 +749,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">생활권 병합에서 판정이 변경된 유일한 사례이다. 남구 48.5 · 북구 39.6 MW로 구별 판정 시 각각 요건 미달이었으나, 자치권 없는 일반구를 해소하는 병합(재블록화)으로 88.1 MW·지정 가능이 된다. 개인소유 상한을 최저치(0.10)로 두어도 50MW를 상회하고 S2에서도 동일 판정이다. 잠재 물량(4,359.4 MW)은 B군 최대이다. 산단 거점과 부지 실행성의 괴리라는 B군의 일반 결론은 유지되나, 포항시는 시 단위 기준으로 지정 가능 등급에 드는 경계 사례이다 — 다만 유력(100MW 이상)은 B군에 여전히 없다.</p>
+<p class="expl" data-i18n="expl-47110">생활권 병합에서 판정이 변경된 유일한 사례이다. 남구 48.5 · 북구 39.6 MW로 구별 판정 시 각각 요건 미달이었으나, 자치권 없는 일반구를 해소하는 병합(재블록화)으로 88.1 MW·지정 가능이 된다. 개인소유 상한을 최저치(0.10)로 두어도 50MW를 상회하고 S2에서도 동일 판정이다. 잠재 물량(4,359.4 MW)은 B군 최대이다. 산단 거점과 부지 실행성의 괴리라는 B군의 일반 결론은 유지되나, 포항시는 시 단위 기준으로 지정 가능 등급에 드는 경계 사례이다 — 다만 유력(100MW 이상)은 B군에 여전히 없다.</p>
 </div>
 
 <div class="card" id="c47190">
-<h2>구미 (47190)<span class="tag">실행 물량 부재 (산단거점 B)</span></h2>
+<h2 data-i18n="h2-47190">구미 (47190)<span class="tag">실행 물량 부재 (산단거점 B)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_47190_S0.png?v=3" alt="구미 S0 현행 블록 지도">
     <img src="atlas_img/map_47190_S1.png?v=3" alt="구미 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-47190">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>15.8</td><td><b>37.1</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+21.3 MW (2.3배)</td></tr>
@@ -763,10 +772,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">도달하지 않음</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">산동읍 성수리 · 7.6 MW · 90필지 · 17ha · 개인소유 3%</td></tr>
     </table>
-    <p class="fn">개별 산업단지 위치 좌표는 미수집(경기·충남 외 지역)이라 표시하지 않는다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-b">개별 산업단지 위치 좌표는 미수집(경기·충남 외 지역)이라 표시하지 않는다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_47190.png?v=3" alt="구미 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼
+      <div class="leg gleg" data-i18n="gleg-b">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -775,20 +784,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">산업단지의 전력 수요는 크나 주변 농지의 개인소유가 지배적이어서 실행 가능 물량이 성립하지 않는, 산단 거점과 부지 실행성의 괴리를 보여 주는 대표 사례이다. 잠재 물량(3,548.0 MW)은 B군 2위이나 실행 가능 물량은 37.1 MW에 그친다. 정책적 함의는 관내 확보가 아니라 인접 농업 시군과의 연계(수요권 단위)이다.</p>
+<p class="expl" data-i18n="expl-47190">산업단지의 전력 수요는 크나 주변 농지의 개인소유가 지배적이어서 실행 가능 물량이 성립하지 않는, 산단 거점과 부지 실행성의 괴리를 보여 주는 대표 사례이다. 잠재 물량(3,548.0 MW)은 B군 2위이나 실행 가능 물량은 37.1 MW에 그친다. 정책적 함의는 관내 확보가 아니라 인접 농업 시군과의 연계(수요권 단위)이다.</p>
 </div>
 
 <div class="card" id="c31000">
-<h2>울산광역시 (31000)<span class="tag">실행 물량 부재 (산단거점 B)</span></h2>
+<h2 data-i18n="h2-31000">울산광역시 (31000)<span class="tag">실행 물량 부재 (산단거점 B)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_31000_S0.png?v=3" alt="울산광역시 S0 현행 블록 지도">
     <img src="atlas_img/map_31000_S1.png?v=3" alt="울산광역시 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-31000">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>33.4</td><td><b>29.8</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ-3.6 MW (0.9배)</td></tr>
@@ -798,10 +807,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">도달하지 않음</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">서생면 신암리 · 9.2 MW · 179필지 · 20ha · 개인소유 0%</td></tr>
     </table>
-    <p class="fn">개별 산업단지 위치 좌표는 미수집(경기·충남 외 지역)이라 표시하지 않는다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-b">개별 산업단지 위치 좌표는 미수집(경기·충남 외 지역)이라 표시하지 않는다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_31000.png?v=3" alt="울산광역시 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼
+      <div class="leg gleg" data-i18n="gleg-b">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -810,20 +819,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">중·남·동·북구와 울주군을 묶은 울산광역시 단위 분석구역이다(2026-07-23 병합). 도심 자치구는 농지가 거의 없고 울주군의 남부 농지가 대부분을 차지하나, 잠재 물량(2,462.4 MW) 대비 실행 가능 물량은 29.8 MW에 그쳐 요건 미달이다. 지정 후 오히려 소폭 감소하는데, 이는 블록 재결합 과정에서 개인소유 비율이 상승하여 소유요건에서 탈락하는 기제로 시흥과 동일하다. 중공업 도시로 전력 수요는 매우 크나(연 29,318 GWh) 관내 실행 가능 물량이 부재한, 산단 거점과 부지 실행성의 괴리를 보여 주는 사례이다.</p>
+<p class="expl" data-i18n="expl-31000">중·남·동·북구와 울주군을 묶은 울산광역시 단위 분석구역이다(2026-07-23 병합). 도심 자치구는 농지가 거의 없고 울주군의 남부 농지가 대부분을 차지하나, 잠재 물량(2,462.4 MW) 대비 실행 가능 물량은 29.8 MW에 그쳐 요건 미달이다. 지정 후 오히려 소폭 감소하는데, 이는 블록 재결합 과정에서 개인소유 비율이 상승하여 소유요건에서 탈락하는 기제로 시흥과 동일하다. 중공업 도시로 전력 수요는 매우 크나(연 29,318 GWh) 관내 실행 가능 물량이 부재한, 산단 거점과 부지 실행성의 괴리를 보여 주는 사례이다.</p>
 </div>
 
 <div class="card" id="c46130">
-<h2>여수 (46130)<span class="tag">실행 물량 부재 (산단거점 B)</span></h2>
+<h2 data-i18n="h2-46130">여수 (46130)<span class="tag">실행 물량 부재 (산단거점 B)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_46130_S0.png?v=3" alt="여수 S0 현행 블록 지도">
     <img src="atlas_img/map_46130_S1.png?v=3" alt="여수 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-46130">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>39.1</td><td><b>39.3</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+0.2 MW (1.0배)</td></tr>
@@ -833,10 +842,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">도달하지 않음</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">여수시 둔덕동 · 6.5 MW · 188필지 · 14ha · 개인소유 0%</td></tr>
     </table>
-    <p class="fn">개별 산업단지 위치 좌표는 미수집(경기·충남 외 지역)이라 표시하지 않는다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-b">개별 산업단지 위치 좌표는 미수집(경기·충남 외 지역)이라 표시하지 않는다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_46130.png?v=3" alt="여수 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼
+      <div class="leg gleg" data-i18n="gleg-b">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -845,20 +854,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">포항시를 제외한 B군 5구역 중 실행 가능 물량이 가장 크나(39.3 MW) 기준(50MW)에 미달한다. 지정에 따른 증가도 미미하여, 농업진흥지역 농지가 적은 B군의 공통 특성을 보여 준다.</p>
+<p class="expl" data-i18n="expl-46130">포항시를 제외한 B군 5구역 중 실행 가능 물량이 가장 크나(39.3 MW) 기준(50MW)에 미달한다. 지정에 따른 증가도 미미하여, 농업진흥지역 농지가 적은 B군의 공통 특성을 보여 준다.</p>
 </div>
 
 <div class="card" id="c46230">
-<h2>광양 (46230)<span class="tag">실행 물량 부재 (산단거점 B)</span></h2>
+<h2 data-i18n="h2-46230">광양 (46230)<span class="tag">실행 물량 부재 (산단거점 B)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_46230_S0.png?v=3" alt="광양 S0 현행 블록 지도">
     <img src="atlas_img/map_46230_S1.png?v=3" alt="광양 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-46230">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>11.5</td><td><b>21.1</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+9.6 MW (1.8배)</td></tr>
@@ -868,10 +877,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">도달하지 않음</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">광양읍 도월리 · 6.9 MW · 53필지 · 15ha · 개인소유 0%</td></tr>
     </table>
-    <p class="fn">개별 산업단지 위치 좌표는 미수집(경기·충남 외 지역)이라 표시하지 않는다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-b">개별 산업단지 위치 좌표는 미수집(경기·충남 외 지역)이라 표시하지 않는다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_46230.png?v=3" alt="광양 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼
+      <div class="leg gleg" data-i18n="gleg-b">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -880,20 +889,20 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">잠재 물량 1,326.7 MW 중 실행 가능 물량은 21.1 MW이다. 광양읍 방면에 소수의 실행 통과 구획이 성립하나 기준에 미달한다.</p>
+<p class="expl" data-i18n="expl-46230">잠재 물량 1,326.7 MW 중 실행 가능 물량은 21.1 MW이다. 광양읍 방면에 소수의 실행 통과 구획이 성립하나 기준에 미달한다.</p>
 </div>
 
 <div class="card" id="c28200">
-<h2>인천남동 (28200)<span class="tag">실행 물량 부재 (산단거점 B)</span></h2>
+<h2 data-i18n="h2-28200">인천남동 (28200)<span class="tag">실행 물량 부재 (산단거점 B)</span></h2>
 <div class="duo2">
   <div class="mapcol">
     <img src="atlas_img/map_28200_S0.png?v=3" alt="인천남동 S0 현행 블록 지도">
     <img src="atlas_img/map_28200_S1.png?v=3" alt="인천남동 S1 재생에너지지구 지정 블록 지도">
-    <div class="leg"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
+    <div class="leg" data-i18n="leg-map"><span class="sw" style="background:#3D8B5F"></span> 실행 통과 구획 (개인소유 ≤0.30 · 소유 미확인 ≤20%)
       &nbsp;&nbsp;<span class="sw" style="background:#E6E3DC;border:1px solid #BDB8AC"></span> 소유요건 미통과 구획 (등재 3MW 이상 · 잠재 물량에 포함)</div>
   </div>
   <div class="tabcol">
-    <table class="cmp">
+    <table class="cmp" data-i18n="tbl-28200">
       <tr><th>항목</th><th>현행 (S0)</th><th>지정 시 (S1)</th></tr>
       <tr><td>실행 가능 물량 (MW)</td><td>0.0</td><td><b>0.0</b></td></tr>
       <tr><td>증가량</td><td colspan="2" class="up">Δ+0.0 MW</td></tr>
@@ -903,10 +912,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
       <tr><td>50MW 최초 통과 개인소유 상한</td><td colspan="2">도달하지 않음</td></tr>
       <tr><td>최대 규모 실행 통과 블록<br><span class="mut" style="font-weight:400">(실행 가능 물량이 가장 큰 단일 블록)</span></td><td colspan="2">— (실행 통과 구획 없음)</td></tr>
     </table>
-    <p class="fn">개별 산업단지 위치 좌표는 미수집(경기·충남 외 지역)이라 표시하지 않는다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
+    <p class="fn" data-i18n="fn-b">개별 산업단지 위치 좌표는 미수집(경기·충남 외 지역)이라 표시하지 않는다. 배경지도 없는 기하 렌더 · 축척은 구역마다 상이 · S2(자연환경보전지역 포함)는 판정 변화 0곳으로 제외 · 판정선 50/100MW는 연구 가정.</p>
     <div class="gridmap">
       <img src="atlas_img/grid_28200.png?v=3" alt="인천남동 읍면동 계통 여유 용량 지도">
-      <div class="leg gleg">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼
+      <div class="leg gleg" data-i18n="gleg-b">읍면동 추가 접속 가능 용량(MW) — 5분위, 진할수록 여유 큼
         <div class="gscale">
           <span><i style="background:#edf8e9"></i>~6</span><span><i style="background:#bae4b3"></i>6–12</span><span><i style="background:#74c476"></i>12–19</span><span><i style="background:#31a354"></i>19–46</span><span><i style="background:#006d2c"></i>46+</span>
         </div>
@@ -915,10 +924,10 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
     </div>
   </div>
 </div>
-<p class="expl">도심 구역으로 등재 구획이 15개소에 불과하며 실행 통과 구획은 성립하지 않는다.</p>
+<p class="expl" data-i18n="expl-28200">도심 구역으로 등재 구획이 15개소에 불과하며 실행 통과 구획은 성립하지 않는다.</p>
 </div>
 
-<p class="fn" style="margin-top:36px">
+<p class="fn" style="margin-top:36px" data-i18n="method-fn">
 방법 각주: 블록 = 설치 가능(적격) 필지를 경계 간 25m 이내 기준으로 결합한 단위(양측 12.5m 버퍼) · 등재 하한 3MW ·
 50MW 초과 시 3단계 분할. 구획 = 등재 집계 단위(분할 반영) — 잠재 물량(seg_mw) = 전체 등재 구획 MW 합,
 실행 가능 물량(b_mw_t30) = 실행 통과 구획 MW 합. 밀도 0.045 kW/㎡. 판정선 50/100MW는 법령 기준이 아닌 연구 가정이다.
@@ -927,7 +936,11 @@ A군은 각 분석구역이 1개 기초자치단체에 대응하고, B군은 산
 생활권 병합의 코드 근거는 <code>18_block_production.py</code>의 MERGE 주석을 참조한다.
 </p>
 
-<footer class="sfoot">PLANiT Institute · 영농형 태양광 · 구역별 지도집 (내부 검토 자료) — <a href="index.html">개요로</a> · <a href="map.html">인터랙티브 지도</a></footer>
+<footer class="sfoot" data-i18n="sfoot">PLANiT Institute · 영농형 태양광 · 구역별 지도집 (내부 검토 자료) — <a href="index.html">개요로</a> · <a href="map.html">인터랙티브 지도</a></footer>
 </div>
+<script>
+window.I18N = {"en": {"brand-sector": "Agrivoltaics", "nav-overview": "Overview", "nav-map": "Map", "nav-atlas": "Atlas", "nav-method": "Method", "nav-insight": "Insight", "sfoot": "PLANiT Institute · Agrivoltaics · Zone map atlas (internal review) — <a href=\"index.html\">Overview</a> · <a href=\"map.html\">Interactive map</a>", "h1": "S0→S1 block-map atlas by study zone", "meta": "Agrivoltaic special-district candidate analysis — internal review material (2026-07-23 card revision · not for release) · Data: <code>site_v2\\data\\{코드}_S0/S1.json</code> · Figures: <code>summary.json = blocks_sweep_summary.json</code> (t≤0.30) · Integration check (2026-07-22) all 11 items passed · all pre-release automated checks passed", "note-main": "<b>How to read.</b> In each card, the left column shows two maps of the same coordinate range (top = S0 Current, bottom = S1 Renewable Energy District designated), and the right column is a Current (S0) → once designated (S1) comparison table. A block is a group of parcels connected within 25 m of each other’s boundaries, and only segments of 3 MW or more are listed. Potential capacity = the sum of all listed segments; executable capacity = the sum of segments among them that pass the ownership requirement (individual-ownership ratio ≤0.30 · unverified ownership ≤20%). S2 (including Nature Conservation Areas) is an upper-bound reference line with zero change in verdict, so it is not covered in this atlas.<br><br><b>Living-zone merge.</b> Cheonan (44130), Yongin (41460), Ansan (41270), and Pohang (47110) are study zones formed by merging, at the city level, the register codes that had been split into non-autonomous wards (no split-back allowed). The merge is not simple summation but re-blocking — block joining (25 m basis) and the split above 50 MW are re-run over all parcels of the merged city. The unit of analysis is 21 study zones (A: 15 cities/counties + B: 6 industrial-complex hubs); in Group A each study zone corresponds to one basic local government, while in Group B, at the industrial-complex-hub level, Ulsan Metropolitan City bundles 5 basic local governments (4 autonomous wards + Ulju-gun) (30 physical register codes in total — footnote only). The Agrivoltaics Act was enacted in 2026-05, with its enforcement decree under preparation (yet to take effect); S1 is a scenario assuming designation of a Renewable Energy District under that Act.", "band-s0-hd": "CURRENT — S0", "band-s0-body": "<p>◇ Group A (15 zones) total executable capacity: <b>1,153.9 MW</b> <span class=\"mut\">(potential capacity 17,711.4 MW)</span></p><p>◇ Verdict: Strong 3 (Pyeongtaek · Paju · Seosan) · Designatable 3 (Asan · Hwaseong · Boryeong) · Below threshold 19 (of all 25 zones)</p><p>◇ The eligible scope is limited to farmland outside Agricultural Promotion Areas, so most large non-individually-owned parcels of reclaimed farmland are excluded.</p>", "band-s1-hd": "ONCE RENEWABLE ENERGY DISTRICT DESIGNATED — S1", "band-s1-body": "<p>◇ Group A total executable capacity: <b>4,238.4 MW</b> (3.7×) · <b>5 new entries into Strong</b> (Dangjin · Hongseong · Boryeong · Asan · Hwaseong)</p><p>◇ Verdict: Strong 8 · Designatable 4 (Icheon · Gimpo · Cheonan + Pohangᴮ)</p><p>◇ Group B (6 zones): 5 below threshold · Pohang designatable · Strong 0</p><p class=\"fn\">The 50/100 MW threshold lines are a research assumption (policy scenario), not a legal standard · figures on a t≤0.30 basis</p>", "grp-targets": "Primary study sites — West Coast reclamation cluster (Dangjin · Seosan · Hongseong · Boryeong)", "targets-intro": "These four zones — where the executable-capacity increase upon Renewable Energy District designation is large and executable segments cluster in specific belts — are taken as the primary study sites of this research. The four zones’ combined executable-capacity increase is 2,321 MW, accounting for 75% of Group A’s total increase (3,085 MW).", "targets-table": "<tr><th>Zone</th><th>S0 (MW)</th><th>S1 (MW)</th><th>Increase</th><th>Verdict transition</th><th>Largest executable block</th></tr><tr><td>Dangjin</td><td>36.5</td><td><b>1,121.9</b></td><td class='up'>Δ+1,085.4 (30.7×)</td><td>Below threshold → <b>Strong</b></td><td>Seokmun-myeon Samhwa-ri 50.6MW·112ha·indiv 0%</td></tr><tr><td>Seosan</td><td>134.3</td><td><b>1,055.5</b></td><td class='up'>Δ+921.2 (7.9×)</td><td>Strong → <b>Strong</b></td><td>Gobuk-myeon Sagi-ri 49.8MW·111ha·indiv 1%</td></tr><tr><td>Hongseong</td><td>3.1</td><td><b>149.5</b></td><td class='up'>Δ+146.4 (48.2×)</td><td>Below threshold → <b>Strong</b></td><td>Galsan-myeon Gisan-ri 46.5MW·103ha·indiv 0%</td></tr><tr><td>Boryeong</td><td>56.3</td><td><b>224.6</b></td><td class='up'>Δ+168.3 (4.0×)</td><td>Designatable → <b>Strong</b></td><td>Ungcheon-eup Sohwang-ri 48.2MW·107ha·indiv 0%</td></tr>", "targets-note": "<b>Why these four zones — where three conditions of reclaimed land overlap.</b> ① <b>Concentration of Agricultural Promotion Areas</b>: West Coast reclaimed farmland is mostly designated as Agricultural Promotion Area, so it is excluded wholesale under the current system (S0) but becomes eligible all at once upon Renewable Energy District designation (S1). ② <b>Large contiguous parcels</b>: the flat, wide parcels created by reclamation abut one another and connect, forming large executable segments in the 25 m block joining (Dangjin Samhwa-ri 112 ha, Seosan Sagi-ri 111 ha, Boryeong Sohwang-ri 107 ha, etc. — the largest blocks are all above 100 ha, of a similar type). ③ <b>Predominantly non-individual ownership</b>: the high share of state/public and public-institution ownership passes the individual-ownership-ratio ceiling — the individual-ownership ratio of the largest block in each of the four zones is all 0–1%.<br><br><b>What executability actually means, and the remaining challenge.</b> This ownership structure means the entry barrier to negotiating land-rights acquisition is low, but tenant farmers still cultivate state/public reclaimed farmland, so the constraint does not disappear. The land-rights negotiation problem is merely shifted to the problem of tenant-farmer consent and revenue-sharing design. Because agrivoltaics adds generation revenue while maintaining cultivation without converting the farmland, it is consistent with this negotiation structure; and the geographic contiguity of the four zones (Dangjin–Seosan–Hongseong–Boryeong run continuously along the Cheonsu Bay and Garorim Bay coasts) is also advantageous for wide-area grid connection and project bundling. See each zone card below for detail.", "grp-summary": "Summary — S0→S1 transition types (A: 15 study zones · representative figure = increase ΔMW, multiple as secondary)", "summary-table": "<tr><th>Transition type (S1 verdict basis)</th><th>Study zone — Δincrease MW (S0→S1 · multiple)</th><th>Interpretive role</th></tr><tr><td><b>New entry</b> (below threshold→Strong)</td><td>Dangjin Δ+1,085.4 (36.5→1,121.9 · 30.7×) / Hongseong Δ+146.4 (3.1→149.5 · 48.2×)</td><td>The type with the largest executable-capacity increase upon designation — the center of the case narrative in the main text</td></tr><tr><td><b>Scale amplification</b> (Strong→Strong)</td><td>Seosan Δ+921.2 (134.3→1,055.5 · 7.9×)</td><td>Amplification of executable capacity in an S0 Strong zone</td></tr><tr><td><b>Promotion</b> (designatable→Strong)</td><td>Boryeong Δ+168.3 (56.3→224.6 · 4.0×) / Asan Δ+128.8 (93.4→222.2 · 2.4×) / Hwaseong Δ+117.1 (68.4→185.5 · 2.7×)</td><td>Expansion of zones entering the Strong grade</td></tr><tr><td><b>S0 self-sufficient</b> (Strong even under current system)</td><td>Pyeongtaek Δ+258.0 (483.4→741.4 · 1.5×) / Paju Δ+74.5 (146.2→220.7 · 1.5×)</td><td>Control group — already Strong under the current system (priority-review candidates)</td></tr><tr><td><b>Threshold entry</b> (below threshold→designatable)</td><td>Gimpo Δ+51.0 (17.3→68.3 · 3.9×) / Icheon Δ+48.1 (33.8→81.9 · 2.4×) / Cheonan Δ+26.9 (37.1→64.0 · 1.7×)</td><td>Expansion of entries into the Designatable grade</td></tr><tr><td><b>No response</b> (stays below threshold)</td><td>Yesan Δ+37.0 (5.6→42.6 · 7.6×) / Yongin Δ+24.4 (14.5→38.9 · 2.7×) / Ansan Δ+0.0 (0.0→0.0) / Siheung Δ-2.6 (24.0→21.4 · 0.9×)</td><td>Zones with negligible designation effect — Yesan and Yongin reach 50 MW at the individual-ownership ceiling of 0.40 (borderline)</td></tr>", "summary-fn": "Mechanism: the top four in executable-capacity increase (Dangjin · Seosan · Hongseong · Boryeong) are all West Coast reclaimed-farmland cities/counties — reclaimed land is ① almost entirely Agricultural Promotion Area and thus excluded wholesale under the current system (S0), ② favorable for block formation because its parcels connect at large scale, and ③ passes the ownership requirement because of the high share of non-individual ownership such as state/public land. For state/public reclaimed farmland, the constraint of land-rights negotiation is shifted to the problem of tenant-farmer consent and revenue-sharing design, and the cultivation-parallel structure is consistent with this negotiation structure.", "grp-1": "Ⅰ. New entry (below threshold→Strong)", "grp-2": "Ⅱ. Scale amplification — expansion of executable capacity in S0 Strong zones", "grp-2-intro": "A large share of reclaimed farmland is state/public- or public-institution-owned, so the entry barrier to negotiating land-rights acquisition is relatively low. That said, tenant farmers still cultivate state/public farmland, so the constraint does not disappear; the land-rights negotiation problem is shifted to the problem of tenant-farmer consent and revenue-sharing design. Because agrivoltaics adds generation revenue while maintaining cultivation without converting the farmland, it is consistent with this negotiation structure.", "grp-3": "Ⅲ. Promotion (designatable→Strong)", "grp-4": "Ⅳ. S0 self-sufficient — Strong even under the current system (control group)", "grp-5": "Ⅴ. Threshold entry (below threshold→designatable)", "grp-6": "Ⅵ. No response — Group A zones with negligible designation effect (stay below threshold)", "grp-7": "Ⅶ. Group B 6 industrial-complex-hub zones — large potential capacity but scarce executable capacity (comparison group)", "leg-map": "<span class=\"sw\" style=\"background:#3D8B5F\"></span> Executable segment (individual ownership ≤0.30 · unverified ownership ≤20%)\n      &nbsp;&nbsp;<span class=\"sw\" style=\"background:#E6E3DC;border:1px solid #BDB8AC\"></span> Segment failing the ownership requirement (listed ≥3 MW · included in potential capacity)", "fn-a": "The <span style=\"color:#c0392b\">■</span> on the grid map below = industrial-complex location (reference). The block map shows farmland parcels only. Geometric render with no basemap · scale varies by zone · S2 (including Nature Conservation Areas) is excluded with zero change in verdict · the 50/100 MW threshold lines are a research assumption.", "fn-b": "Individual industrial-complex coordinates are not collected (outside Gyeonggi/Chungnam) and are not shown. Geometric render with no basemap · scale varies by zone · S2 (including Nature Conservation Areas) is excluded with zero change in verdict · the 50/100 MW threshold lines are a research assumption.", "gleg-a": "Additional connectable capacity by township (MW) — quintiles, darker = greater headroom · <span style=\"color:#c0392b\">■</span> industrial-complex location\n        <div class=\"gscale\">\n          <span><i style=\"background:#edf8e9\"></i>~6</span><span><i style=\"background:#bae4b3\"></i>6–12</span><span><i style=\"background:#74c476\"></i>12–19</span><span><i style=\"background:#31a354\"></i>19–46</span><span><i style=\"background:#006d2c\"></i>46+</span>\n        </div>\n        <span class=\"mut\">KEPCO distribution-line headroom · values are per township, and summing adjacent townships may differ from the actual grid due to shared upstream equipment (reference indicator, does not affect the verdict).</span>", "gleg-b": "Additional connectable capacity by township (MW) — quintiles, darker = greater headroom\n        <div class=\"gscale\">\n          <span><i style=\"background:#edf8e9\"></i>~6</span><span><i style=\"background:#bae4b3\"></i>6–12</span><span><i style=\"background:#74c476\"></i>12–19</span><span><i style=\"background:#31a354\"></i>19–46</span><span><i style=\"background:#006d2c\"></i>46+</span>\n        </div>\n        <span class=\"mut\">KEPCO distribution-line headroom · values are per township, and summing adjacent townships may differ from the actual grid due to shared upstream equipment (reference indicator, does not affect the verdict).</span>", "h2-44270": "Dangjin (44270)<span class=\"tag\">New entry (below threshold→Strong)</span>", "h2-44800": "Hongseong (44800)<span class=\"tag\">New entry (below threshold→Strong)</span>", "h2-44210": "Seosan (44210)<span class=\"tag\">Scale amplification (Strong→Strong)</span>", "h2-44180": "Boryeong (44180)<span class=\"tag\">Promotion (designatable→Strong)</span>", "h2-44200": "Asan (44200)<span class=\"tag\">Promotion (designatable→Strong)</span>", "h2-41590": "Hwaseong (41590)<span class=\"tag\">Promotion (designatable→Strong)</span>", "h2-41220": "Pyeongtaek (41220)<span class=\"tag\">S0 self-sufficient (Strong even under current system)</span>", "h2-41480": "Paju (41480)<span class=\"tag\">S0 self-sufficient (Strong even under current system)</span>", "h2-41570": "Gimpo (41570)<span class=\"tag\">Threshold entry (below threshold→designatable)</span>", "h2-41500": "Icheon (41500)<span class=\"tag\">Threshold entry (below threshold→designatable)</span>", "h2-44130": "Cheonan (44130) <span class=\"mut\" style=\"font-size:13px\">living-zone merge study zone</span><span class=\"tag\">Threshold entry (below threshold→designatable)</span>", "h2-44810": "Yesan (44810)<span class=\"tag\">No response (stays below threshold)</span>", "h2-41390": "Siheung (41390)<span class=\"tag\">No response (stays below threshold)</span>", "h2-41460": "Yongin (41460) <span class=\"mut\" style=\"font-size:13px\">living-zone merge study zone</span><span class=\"tag\">No response (stays below threshold)</span>", "h2-41270": "Ansan (41270) <span class=\"mut\" style=\"font-size:13px\">living-zone merge study zone</span><span class=\"tag\">No response (stays below threshold)</span>", "h2-47110": "Pohang (47110) <span class=\"mut\" style=\"font-size:13px\">living-zone merge study zone</span><span class=\"tag\">Threshold entry (below threshold→designatable)</span>", "h2-47190": "Gumi (47190)<span class=\"tag\">No executable capacity (industrial-complex hub B)</span>", "h2-31000": "Ulsan Metropolitan City (31000)<span class=\"tag\">No executable capacity (industrial-complex hub B)</span>", "h2-46130": "Yeosu (46130)<span class=\"tag\">No executable capacity (industrial-complex hub B)</span>", "h2-46230": "Gwangyang (46230)<span class=\"tag\">No executable capacity (industrial-complex hub B)</span>", "h2-28200": "Incheon Namdong (28200)<span class=\"tag\">No executable capacity (industrial-complex hub B)</span>", "expl-44270": "It is Group A’s largest study zone by executable-capacity increase (+1,085.4 MW). In the S0 panel only ownership-failing segments are widely distributed and executable segments number just 8, but in the S1 panel the northwestern reclaimed-farmland belt (toward Seokmun-myeon · Daehoji-myeon · Songsan-myeon) turns into a cluster of large executable segments. The largest executable block (Seokmun-myeon Samhwa-ri) is a contiguous 112 ha with an individual-ownership ratio of 0%, directly illustrating the three conditions of reclaimed land (current-system exclusion due to Agricultural Promotion Area designation · large contiguous parcels · non-individual ownership). Even with the individual-ownership ceiling set to its lowest value (0.10), it exceeds 100 MW, so the verdict does not hinge on the ceiling setting.", "expl-44800": "Its multiple (48.2×) is the largest in Group A, but because the S0 starting value is a small 3.1 MW, citing the multiple alone risks exaggeration, so it is described around the increase (+146.4 MW). A zone that had 1 executable segment in S0 comes to have 15 in the west (toward Galsan-myeon · Gyeolseong-myeon, adjacent to the Cheonsu Bay reclamation belt) upon designation. It is a case where a zone with virtually no executable capacity under the current system is judged Strong.", "expl-44210": "It is Group A’s second study zone by executable-capacity increase (+921.2 MW). Already Strong in S0 (134.3 MW), upon designation the southern Cheonsu Bay area (reclaimed farmland around Gobuk-myeon · Buseok-myeon) turns into executable segments, reaching 1,055.5 MW. If Dangjin is a zone where Strong does not hold without designation (new entry), Seosan is a zone where designation expands the executable capacity of an existing Strong zone 7.9-fold (scale amplification) — the two types of designation effect can be presented as a Dangjin–Seosan contrast. Its 78 executable segments are the most in Group A, and because the capacity is not concentrated in a few blocks it is a favorable distribution from an ownership-negotiation standpoint.", "expl-44180": "It is the fourth zone of the West Coast reclamation group. Already at the Designatable grade in S0 (56.3 MW), upon designation a large executable segment forms on the southern coast (toward Ungcheon-eup) and it is promoted to Strong. The composition of the largest executable block (Ungcheon-eup Sohwang-ri, 107 ha · individual ownership 0%) is of the same type as Dangjin Samhwa-ri and Seosan Sagi-ri, so the reclaimed-land mechanism is reproduced across zones.", "expl-44200": "A zone that was already near the Strong threshold (100 MW) in S0 at 93.4 MW, its Strong verdict is confirmed by designation. Executable segments increase evenly in farmland toward Asan Bay and inland (Tangjeong-myeon, etc.) (20→38). That its largest executable block consists of 380 parcels (Dangjin Samhwa-ri is 61 parcels · 112 ha) shows that the degree of parcel fragmentation differs by zone, so it is noted for the methodology description.", "expl-41590": "As a promotion case on the Gyeonggi West Coast, executable segments concentrate in the west (toward Jangan-myeon · Ujeong-eup, the Hwaong reclamation belt). Unlike the Chungnam reclamation group, its largest executable block is a mid-sized 17.9 MW, a type in which executable capacity consists not of a few large blocks but of many mid-sized blocks (36). It is also a zone where no conservation-area issue arises because its executable capacity is identical to S2 (including Nature Conservation Areas).", "expl-41220": "At 483.4 MW of S0 executable capacity, it is Group A’s top under the current system, and the only one of the 21 study zones with clearly visible executable segments from the S0 panel — an exceptional zone where large non-individually-owned blocks already exist on farmland outside Agricultural Promotion Areas. Its interpretive role is as a control group, showing that designation does not create all executable capacity: Pyeongtaek, Paju, and Seosan are Strong even under the current system. This serves both as grounds against over-generalization and as grounds for the recommendation of priority-review candidates before the system is amended.", "expl-41480": "Despite being a border zone (military controlled-protection-area parcels are subject to the common exclusion), it is an S0 self-sufficient zone with 30 executable segments already established from S0. The individual-ownership ratio of its largest executable block, at 20%, is higher than that of other top zones (0–3%), and its potential capacity (3,196.0 MW) is the smallest among the top zones, so it corresponds to a metro-adjacent mid-sized-block type rather than a reclamation-type mass acquisition.", "expl-41570": "Mid- and small-sized executable segments form on Han River estuary farmland (toward Haseong-myeon) and it enters the Designatable grade. As an intermediate zone below the Strong threshold (100 MW), it shows how the design of setting the verdict criteria in two steps of 50/100 MW distinguishes such zones as a separate grade.", "expl-41500": "It is typical of the inland-plain type, where potential capacity is a large 5,780.0 MW but executable capacity stops at 81.9 MW. The farmland is wide but individual ownership is dominant (even the largest executable block is 21% individually owned), so the potential does not convert into executable. Through the contrast with the reclamation type (Dangjin · Seosan), it is a case within Group A illustrating this research’s core contrast (the gap between potential and executable capacity), namely that ownership structure divides executable capacity.", "expl-44130": "A case where the living-zone merge rule determined the verdict. Judged by ward, Dongnam-gu 32.6 and Seobuk-gu 31.6 MW are both below threshold, but after the merge (44130) it becomes 64.0 MW and Designatable. This case is the starting point for consistently applying the merge rule (no split-back) through Yongin, Ansan, and Pohang. Its largest executable block is a small 7.2 MW, of a many-small-blocks distributed type.", "expl-44810": "At 42.6 MW of executable capacity it is below the threshold (50 MW), but it is a borderline zone that reaches 50 MW if the individual-ownership ceiling is relaxed from the default 0.30 to 0.40. Because its potential capacity (5,950.2 MW) is larger than Boryeong’s, its ranking could shift if ownership negotiations progress. As a newly incorporated area, it is noted that a precision coverage re-audit (§R-grade) has not been performed.", "expl-41390": "It is the only one of the 21 study zones where S1 executable capacity decreases relative to S0 (-2.6 MW). As installable parcels increase, blocks join more extensively, and in that process a block’s individual-ownership ratio can rise so that it drops out on the ownership requirement — a measured case showing that expansion of the installable scope does not guarantee an increase in executable capacity, grounds to reflect in the methodology-limits description.", "expl-41460": "This is the result of applying the same living-zone merge (re-blocking) as Cheonan, and the verdict does not change from below threshold (pre-merge ward sum 39.0 MW ↔ re-blocked 38.9 MW — the difference arises as blocks re-join across ward boundaries). The one change is that while no ward reached 50 MW at the ward level, at the merged level it reaches 50 MW at the individual-ownership ceiling of 0.40 — the same borderline group as Yesan. Most of the executable capacity comes from Cheoin inland farmland (Baegam-myeon, etc.), while Giheung and Suji contribute little due to urbanization.", "expl-41270": "Even after the merge no executable segment forms — there is potential capacity (479.6 MW) but it all fails the ownership requirement. Typical of an urbanized zone, it records as-is that consistent application of the merge rule does not change the result (no split-back). The existence of this zone is counter-evidence for the conclusion that the designation effect appears only in zones that possess the requisite farmland scale and ownership structure.", "expl-47110": "The only case where the living-zone merge changed the verdict. Judged by ward, Nam-gu 48.5 and Buk-gu 39.6 MW were each below threshold, but the merge (re-blocking) that dissolves the non-autonomous wards makes it 88.1 MW · Designatable. Even with the individual-ownership ceiling set to its lowest value (0.10) it exceeds 50 MW, and the verdict is the same under S2. Its potential capacity (4,359.4 MW) is the largest in Group B. Group B’s general conclusion — the gap between industrial-complex hubs and site executability — still holds, but Pohang is a borderline case that enters the Designatable grade on a city-level basis — though Strong (100 MW or more) is still absent in Group B.", "expl-47190": "A representative case showing the gap between industrial-complex hubs and site executability: the industrial complex’s power demand is large, but individual ownership of surrounding farmland is dominant, so no executable capacity forms. Its potential capacity (3,548.0 MW) is second in Group B, but executable capacity stops at 37.1 MW. The policy implication is not in-jurisdiction acquisition but linkage with adjacent agricultural cities/counties (at the demand-area level).", "expl-31000": "A study zone at the Ulsan Metropolitan City level, bundling Jung-gu, Nam-gu, Dong-gu, Buk-gu, and Ulju-gun (merged 2026-07-23). The downtown autonomous wards have almost no farmland and southern Ulju-gun farmland makes up most of it, but against a potential capacity of 2,462.4 MW the executable capacity stops at 29.8 MW and is below threshold. It even decreases slightly after designation — the same mechanism as Siheung, where individual-ownership ratios rise in the block-rejoining process and drop out on the ownership requirement. As a heavy-industry city its power demand is very large (29,318 GWh/yr), yet it has no in-jurisdiction executable capacity — a case illustrating the gap between industrial-complex hubs and site executability.", "expl-46130": "Among the 5 Group B zones excluding Pohang, it has the largest executable capacity (39.3 MW), but it is below the threshold (50 MW). The increase from designation is also negligible, showing the common characteristic of Group B, which has little Agricultural Promotion Area farmland.", "expl-46230": "Of the 1,326.7 MW of potential capacity, executable capacity is 21.1 MW. A few executable segments form toward Gwangyang-eup, but it is below the threshold.", "expl-28200": "As a downtown zone it has only 15 listed segments, and no executable segment forms.", "method-fn": "Methodology footnote: a block = a unit joining installable (eligible) parcels within 25 m of each other’s boundaries (12.5 m buffer on each side) · listing floor 3 MW · 3-step split when above 50 MW. A segment = the listing aggregation unit (reflecting splits) — potential capacity (seg_mw) = the sum of MW of all listed segments, executable capacity (b_mw_t30) = the sum of MW of executable segments. Density 0.045 kW/m². The 50/100 MW threshold lines are a research assumption, not a legal standard. Images = 21 study zones × (S0 · S1 block panels + township grid panel) = 63 (<code>map_atlas\\map_{코드}_{S0|S1}.png</code>) · figure source = <code>atlas_facts.json</code>. Pre-merge ward-level maps are preserved in <code>map_atlas\\legacy\\</code> (not the current verdict unit). For the code basis of the living-zone merge, see the MERGE comments in <code>18_block_production.py</code>.", "tbl-44270": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>36.5</td><td><b>1,121.9</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+1,085.4 MW (30.7×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Strong</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>8</td><td><b>59</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">10,088.7 MW · 447 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.10 <span class='mut'>(first crossing 100 MW at 0.10)</span></td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Seokmun-myeon Samhwa-ri · 50.6 MW · 61 parcels · 112 ha · individual 0%</td></tr>", "tbl-44800": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>3.1</td><td><b>149.5</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+146.4 MW (48.2×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Strong</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>1</td><td><b>15</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">5,287.4 MW · 251 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.10 <span class='mut'>(first crossing 100 MW at 0.10)</span></td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Galsan-myeon Gisan-ri · 46.5 MW · 108 parcels · 103 ha · individual 0%</td></tr>", "tbl-44210": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>134.3</td><td><b>1,055.5</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+921.2 MW (7.9×)</td></tr>\n      <tr><td>Verdict</td><td>Strong</td><td><b>Strong</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>12</td><td><b>78</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">9,459.4 MW · 452 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.10 <span class='mut'>(first crossing 100 MW at 0.10)</span></td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Gobuk-myeon Sagi-ri · 49.8 MW · 114 parcels · 111 ha · individual 1%</td></tr>", "tbl-44180": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>56.3</td><td><b>224.6</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+168.3 MW (4.0×)</td></tr>\n      <tr><td>Verdict</td><td>Designatable</td><td><b>Strong</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>7</td><td><b>19</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">4,833.2 MW · 271 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.10 <span class='mut'>(first crossing 100 MW at 0.10)</span></td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Ungcheon-eup Sohwang-ri · 48.2 MW · 113 parcels · 107 ha · individual 0%</td></tr>", "tbl-44200": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>93.4</td><td><b>222.2</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+128.8 MW (2.4×)</td></tr>\n      <tr><td>Verdict</td><td>Designatable</td><td><b>Strong</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>20</td><td><b>38</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">5,692.9 MW · 321 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.10 <span class='mut'>(first crossing 100 MW at 0.10)</span></td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Tangjeong-myeon Hosan-ri · 21.8 MW · 380 parcels · 48 ha · individual 0%</td></tr>", "tbl-41590": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>68.4</td><td><b>185.5</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+117.1 MW (2.7×)</td></tr>\n      <tr><td>Verdict</td><td>Designatable</td><td><b>Strong</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>11</td><td><b>36</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">6,555.4 MW · 400 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.10 <span class='mut'>(first crossing 100 MW at 0.10)</span></td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Jangan-myeon Jangan-ri · 17.9 MW · 100 parcels · 40 ha · individual 3%</td></tr>", "tbl-41220": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>483.4</td><td><b>741.4</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+258.0 MW (1.5×)</td></tr>\n      <tr><td>Verdict</td><td>Strong</td><td><b>Strong</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>31</td><td><b>70</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">6,319.1 MW · 340 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.10 <span class='mut'>(first crossing 100 MW at 0.10)</span></td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Paengseong-eup Daechu-ri · 48.2 MW · 431 parcels · 107 ha · individual 0%</td></tr>", "tbl-41480": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>146.2</td><td><b>220.7</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+74.5 MW (1.5×)</td></tr>\n      <tr><td>Verdict</td><td>Strong</td><td><b>Strong</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>30</td><td><b>42</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">3,196.0 MW · 247 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.10 <span class='mut'>(first crossing 100 MW at 0.10)</span></td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Paju-si Seopae-dong · 21.7 MW · 335 parcels · 48 ha · individual 20%</td></tr>", "tbl-41570": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>17.3</td><td><b>68.3</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+51.0 MW (3.9×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Designatable</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>4</td><td><b>12</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">2,270.2 MW · 141 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.10</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Haseong-myeon Hupyeong-ri · 10.4 MW · 49 parcels · 23 ha · individual 0%</td></tr>", "tbl-41500": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>33.8</td><td><b>81.9</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+48.1 MW (2.4×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Designatable</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>9</td><td><b>20</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">5,780.0 MW · 328 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.10</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Bubal-eup Ami-ri · 9.2 MW · 152 parcels · 20 ha · individual 21%</td></tr>", "tbl-44130": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>37.1</td><td><b>64.0</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+26.9 MW (1.7×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Designatable</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>10</td><td><b>16</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">4,521.7 MW · 325 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.10</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Pungse-myeon Boseong-ri · 7.2 MW · 171 parcels · 16 ha · individual 0%</td></tr>", "tbl-44810": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>5.6</td><td><b>42.6</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+37.0 MW (7.6×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Below threshold</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>1</td><td><b>6</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">5,950.2 MW · 319 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.40</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Sinam-myeon Jonggyeong-ri · 13.9 MW · 69 parcels · 31 ha · individual 0%</td></tr>", "tbl-41390": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>24.0</td><td><b>21.4</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ-2.6 MW (0.9×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Below threshold</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>6</td><td><b>5</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">613.5 MW · 55 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">not reached</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Siheung-si Maehwa-dong · 6.7 MW · 133 parcels · 15 ha · individual 1%</td></tr>", "tbl-41460": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>14.5</td><td><b>38.9</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+24.4 MW (2.7×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Below threshold</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>4</td><td><b>8</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">1,965.6 MW · 151 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.40</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Baegam-myeon Jangpyeong-ri · 13.5 MW · 85 parcels · 30 ha · individual 23%</td></tr>", "tbl-41270": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>0.0</td><td><b>0.0</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+0.0 MW</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Below threshold</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>0</td><td><b>0</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">479.6 MW · 36 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">not reached</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">— (no executable segment)</td></tr>", "tbl-47110": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>46.4</td><td><b>88.1</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+41.7 MW (1.9×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Designatable</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>10</td><td><b>17</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">4,359.4 MW · 308 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">0.10</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Songna-myeon Josa-ri · 14.3 MW · 305 parcels · 32 ha · individual 0%</td></tr>", "tbl-47190": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>15.8</td><td><b>37.1</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+21.3 MW (2.3×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Below threshold</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>3</td><td><b>8</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">3,548.0 MW · 228 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">not reached</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Sandong-eup Seongsu-ri · 7.6 MW · 90 parcels · 17 ha · individual 3%</td></tr>", "tbl-31000": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>33.4</td><td><b>29.8</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ-3.6 MW (0.9×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Below threshold</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>4</td><td><b>4</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">2,462.4 MW · 229 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">not reached</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Seosaeng-myeon Sinam-ri · 9.2 MW · 179 parcels · 20 ha · individual 0%</td></tr>", "tbl-46130": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>39.1</td><td><b>39.3</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+0.2 MW (1.0×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Below threshold</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>11</td><td><b>11</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">1,918.4 MW · 142 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">not reached</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Yeosu-si Dundeok-dong · 6.5 MW · 188 parcels · 14 ha · individual 0%</td></tr>", "tbl-46230": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>11.5</td><td><b>21.1</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+9.6 MW (1.8×)</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Below threshold</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>2</td><td><b>4</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">1,326.7 MW · 111 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">not reached</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">Gwangyang-eup Dowol-ri · 6.9 MW · 53 parcels · 15 ha · individual 0%</td></tr>", "tbl-28200": "<tr><th>Item</th><th>Current (S0)</th><th>Once designated (S1)</th></tr>\n      <tr><td>Executable capacity (MW)</td><td>0.0</td><td><b>0.0</b></td></tr>\n      <tr><td>Increase</td><td colspan=\"2\" class=\"up\">Δ+0.0 MW</td></tr>\n      <tr><td>Verdict</td><td>Below threshold</td><td><b>Below threshold</b></td></tr>\n      <tr><td>Executable segments (count)</td><td>0</td><td><b>0</b></td></tr>\n      <tr><td>Potential capacity (S1 basis)</td><td colspan=\"2\">159.3 MW · 15 listed segments <span class=\"mut\">(includes segments failing the ownership requirement)</span></td></tr>\n      <tr><td>Individual-ownership ceiling for first 50 MW crossing</td><td colspan=\"2\">not reached</td></tr>\n      <tr><td>Largest executable block<br><span class=\"mut\" style=\"font-weight:400\">(single block with the largest executable capacity)</span></td><td colspan=\"2\">— (no executable segment)</td></tr>"}, "meta": {"en": {"title": "Zone map atlas — Agrivoltaic special-district candidates · PLANiT", "desc": "S0→S1 block-map atlas by study zone for agrivoltaic special-district candidates — internal review."}}};
+</script>
+<script src="site.js"></script>
 </body>
 </html>

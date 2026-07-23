@@ -14,8 +14,8 @@
 
 <div class="topbar">
   <div class="wrap">
-    <span>Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
-    <span><a href="https://planit.institute/">← planit.institute 메인으로</a></span>
+    <span data-i18n="tb-tag">Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
+    <span><a href="https://planit.institute/" data-i18n="tb-link">← planit.institute 메인으로</a></span>
   </div>
 </div>
 
@@ -23,16 +23,20 @@
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="PLANiT 영농형 태양광 홈">
       <img class="mark-img" src="assets/planit_logo.png" alt="PLANiT">
-      <span class="sector">영농형 태양광</span>
+      <span class="sector" data-i18n="brand-sector">영농형 태양광</span>
     </a>
     <nav class="menu" id="menu">
-      <a class="active" href="index.html">개요</a>
-      <a href="map.html">지도</a>
-      <a href="atlas.html">구역별 지도</a>
-      <a href="method.html">방법론</a>
-      <a href="insight.html">인사이트</a>
+      <a class="active" href="index.html" data-i18n="nav-overview">개요</a>
+      <a href="map.html" data-i18n="nav-map">지도</a>
+      <a href="atlas.html" data-i18n="nav-atlas">구역별 지도</a>
+      <a href="method.html" data-i18n="nav-method">방법론</a>
+      <a href="insight.html" data-i18n="nav-insight">인사이트</a>
     </nav>
     <div style="display:flex;gap:12px;align-items:center">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="ko">KO</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
       <a class="nav-cta" href="#contact">Contact</a>
       <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
     </div>
@@ -42,24 +46,24 @@
 <!-- ═══════════ 히어로 ═══════════ -->
 <div style="border-bottom:1px solid var(--line)">
   <div class="wrap" style="padding:76px 24px 60px;max-width:900px">
-    <p class="eyebrow">영농형 태양광 · 특구 최적입지 분석</p>
-    <h1>부지도, 수요도 있다.<br>특구를 가르는 건 <em>실행 가능성</em>이다.</h1>
-    <p class="lede">
+    <p class="eyebrow" data-i18n="hero-eyebrow">영농형 태양광 · 특구 최적입지 분석</p>
+    <h1 data-i18n="hero-h1">부지도, 수요도 있다.<br>특구를 가르는 건 <em>실행 가능성</em>이다.</h1>
+    <p class="lede" data-i18n="hero-lede">
       경기·충남 15개 시군과 전국 산단거점 10개 구역 — 25개 분석구역, <b>200만 필지를 전수 원장</b>으로 삼아
       영농형 태양광 특구 후보를 분석합니다. 잠재량이 아니라 <b>개인소유 비율이 낮은 블록의
       실행 가능 물량</b>으로 후보를 가릅니다 — 그리고 그 실행성은 시군마다 극명하게 다릅니다.
     </p>
     <div style="display:flex;gap:14px;margin-top:30px;flex-wrap:wrap">
-      <a class="btn btn-primary" href="#pipe">분석 파이프라인 보기</a>
-      <a class="btn btn-ghost" href="map.html">지도에서 후보 보기 →</a>
+      <a class="btn btn-primary" href="#pipe" data-i18n="hero-btn1">분석 파이프라인 보기</a>
+      <a class="btn btn-ghost" href="map.html" data-i18n="hero-btn2">지도에서 후보 보기 →</a>
     </div>
 
     <!-- 지표 밴드 (실측) -->
     <div class="statband reveal" aria-label="핵심 지표">
-      <div class="st"><div class="v"><span class="count" data-target="25">0</span><small> 개 분석구역</small></div><div class="k">분석구역 · A 15개 시군 + B 10개 거점</div></div>
-      <div class="st"><div class="v"><span class="lf count" data-target="8">0</span><small> 곳</small></div><div class="k">특구 유력 · ≥100MW (S1)</div></div>
-      <div class="st"><div class="v"><span class="count" data-target="4238">0</span><small> MW</small></div><div class="k">경기·충남(A) 실행 가능 물량 (S1)</div></div>
-      <div class="st"><div class="v">6<small> %</small></div><div class="k">실행/잠재 비율 — 핵심 발견</div></div>
+      <div class="st"><div class="v"><span class="count" data-target="25">0</span><small data-i18n="stat1-u"> 개 분석구역</small></div><div class="k" data-i18n="stat1-k">분석구역 · A 15개 시군 + B 10개 거점</div></div>
+      <div class="st"><div class="v"><span class="lf count" data-target="8">0</span><small data-i18n="stat2-u"> 곳</small></div><div class="k" data-i18n="stat2-k">특구 유력 · ≥100MW (S1)</div></div>
+      <div class="st"><div class="v"><span class="count" data-target="4238">0</span><small data-i18n="stat3-u"> MW</small></div><div class="k" data-i18n="stat3-k">경기·충남(A) 실행 가능 물량 (S1)</div></div>
+      <div class="st"><div class="v">6<small data-i18n="stat4-u"> %</small></div><div class="k" data-i18n="stat4-k">실행/잠재 비율 — 핵심 발견</div></div>
     </div>
   </div>
 </div>
@@ -106,18 +110,18 @@
       <button class="stop done" style="left:67.5%; top:43.8%" onclick="location.hash='p4'" aria-label="4단계 계통·수요로 이동"></button>
       <button class="stop here" style="left:90.8%; top:25%"  onclick="location.hash='p5'" aria-label="5단계 판정, 현재 결과로 이동"></button>
 
-      <span class="here-flag" style="left:90.8%; top:25%">판정 · 특구 후보</span>
+      <span class="here-flag" style="left:90.8%; top:25%" data-i18n="rt-flag">판정 · 특구 후보</span>
 
-      <span class="stop-label" style="left:7.5%;  top:87.5%"><span class="no">STAGE 01</span><span class="nm">필지 원장</span><span class="protect">200만 필지</span></span>
-      <span class="stop-label" style="left:27.5%; top:76.3%"><span class="no">STAGE 02</span><span class="nm">블록화</span><span class="protect">+ 연접 25m</span></span>
-      <span class="stop-label" style="left:47.5%; top:63.8%"><span class="no">STAGE 03</span><span class="nm">소유 분석</span><span class="protect">+ 실행성</span></span>
-      <span class="stop-label" style="left:67.5%; top:48.8%"><span class="no">STAGE 04</span><span class="nm">계통·수요</span><span class="protect">+ 계통 여유</span></span>
-      <span class="stop-label" style="left:90.8%; top:30%"><span class="no">STAGE 05</span><span class="nm">판정</span><span class="protect">+ 특구 후보</span></span>
+      <span class="stop-label" style="left:7.5%;  top:87.5%"><span class="no">STAGE 01</span><span class="nm" data-i18n="rt-nm1">필지 원장</span><span class="protect" data-i18n="rt-pr1">200만 필지</span></span>
+      <span class="stop-label" style="left:27.5%; top:76.3%"><span class="no">STAGE 02</span><span class="nm" data-i18n="rt-nm2">블록화</span><span class="protect" data-i18n="rt-pr2">+ 연접 25m</span></span>
+      <span class="stop-label" style="left:47.5%; top:63.8%"><span class="no">STAGE 03</span><span class="nm" data-i18n="rt-nm3">소유 분석</span><span class="protect" data-i18n="rt-pr3">+ 실행성</span></span>
+      <span class="stop-label" style="left:67.5%; top:48.8%"><span class="no">STAGE 04</span><span class="nm" data-i18n="rt-nm4">계통·수요</span><span class="protect" data-i18n="rt-pr4">+ 계통 여유</span></span>
+      <span class="stop-label" style="left:90.8%; top:30%"><span class="no">STAGE 05</span><span class="nm" data-i18n="rt-nm5">판정</span><span class="protect" data-i18n="rt-pr5">+ 특구 후보</span></span>
     </div>
   </div>
   <div class="route-cap">
-    <span>ANALYSIS PIPELINE · 필지에서 특구까지 · 다섯 단계 · 각 단계가 데이터를 한 겹씩 얹는다</span>
-    <span>단계를 클릭하면 해당 설명으로 이동합니다</span>
+    <span data-i18n="rt-cap1">ANALYSIS PIPELINE · 필지에서 특구까지 · 다섯 단계 · 각 단계가 데이터를 한 겹씩 얹는다</span>
+    <span data-i18n="rt-cap2">단계를 클릭하면 해당 설명으로 이동합니다</span>
   </div>
 </div>
 
@@ -125,18 +129,18 @@
 <section class="stage" id="p1">
   <div class="wrap inner">
     <div class="txt reveal">
-      <p class="eyebrow">Stage 01 · Ledger · 전수 원장 구축</p>
-      <h2>필지 원장: 분석의 바닥을 깐다</h2>
-      <div class="protect-row" aria-label="누적 레이어"><span class="pchip new">필지</span></div>
-      <p class="body">
+      <p class="eyebrow" data-i18n="s1-eye">Stage 01 · Ledger · 전수 원장 구축</p>
+      <h2 data-i18n="s1-h2">필지 원장: 분석의 바닥을 깐다</h2>
+      <div class="protect-row" aria-label="누적 레이어"><span class="pchip new" data-i18n="s1-chip">필지</span></div>
+      <p class="body" data-i18n="s1-body">
         모든 분석은 필지에서 시작합니다. PNU 기반으로 경기·충남과 전국 산단거점의
         <b>200만 필지를 전수 원장</b>으로 구축했습니다. 경기·충남 원장은 국토부
         지적기본통계와 대조해 <b>커버리지 99.65%</b>를 확인했습니다. 지목·소유·연속지적·팜맵을 병합해
         각 필지에 농지 여부와 소유 구분을 붙입니다. 원장의 완결성이 전체 신뢰도를 결정합니다.
       </p>
       <div class="stage-links">
-        <a href="method.html"><span style="display:contents"><span class="t">방법론 · 데이터 계층과 커버리지 감사</span><span class="m">국토부 · LX · 팜맵</span></span></a>
-        <a href="map.html"><span style="display:contents"><span class="t">지도 · 필지 원장 위 후보 블록</span><span class="m">MAP →</span></span></a>
+        <a href="method.html"><span style="display:contents"><span class="t" data-i18n="s1-l1t">방법론 · 데이터 계층과 커버리지 감사</span><span class="m" data-i18n="s1-l1m">국토부 · LX · 팜맵</span></span></a>
+        <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s1-l2t">지도 · 필지 원장 위 후보 블록</span><span class="m">MAP →</span></span></a>
       </div>
     </div>
     <figure class="fig ripple-fig reveal" aria-hidden="true">
@@ -147,11 +151,11 @@
         <circle class="rc" cx="180" cy="180" r="100"/>
         <circle class="rc" cx="180" cy="180" r="130"/>
         <circle class="rc" cx="180" cy="180" r="160"/>
-        <text class="rl new" x="180" y="132" text-anchor="middle">필지</text>
-        <text class="rl" x="180" y="102" text-anchor="middle">블록</text>
-        <text class="rl" x="180" y="72"  text-anchor="middle">소유</text>
-        <text class="rl" x="180" y="42"  text-anchor="middle">계통</text>
-        <text class="rl" x="180" y="13"  text-anchor="middle">판정</text>
+        <text class="rl new" x="180" y="132" text-anchor="middle" data-i18n="rl-p">필지</text>
+        <text class="rl" x="180" y="102" text-anchor="middle" data-i18n="rl-b">블록</text>
+        <text class="rl" x="180" y="72"  text-anchor="middle" data-i18n="rl-o">소유</text>
+        <text class="rl" x="180" y="42"  text-anchor="middle" data-i18n="rl-g">계통</text>
+        <text class="rl" x="180" y="13"  text-anchor="middle" data-i18n="rl-v">판정</text>
       </svg>
       <figcaption>ANALYSIS LAYERS · STAGE 01</figcaption>
     </figure>
@@ -161,7 +165,7 @@
 <div class="bridge reveal">
   <div class="wrap">
     <span class="bl">BRIDGE 01 → 02</span>
-    <p><b>흩어진 필지 하나하나는 사업이 되지 못합니다.</b> 사업의 단위는 연접한 땅의 덩어리 — 블록입니다. 얼마나 많은 필지가 있는지보다 "얼마나 큰 블록"이 그려지는가가 중요합니다.</p>
+    <p data-i18n="br1"><b>흩어진 필지 하나하나는 사업이 되지 못합니다.</b> 사업의 단위는 연접한 땅의 덩어리 — 블록입니다. 얼마나 많은 필지가 있는지보다 "얼마나 큰 블록"이 그려지는가가 중요합니다.</p>
   </div>
 </div>
 
@@ -169,10 +173,10 @@
 <section class="stage alt flip" id="p2">
   <div class="wrap inner">
     <div class="txt reveal">
-      <p class="eyebrow">Stage 02 · Blocks · 연접 블록 구성</p>
-      <h2>블록화: 사업의 단위를 만든다</h2>
-      <div class="protect-row" aria-label="누적 레이어"><span class="pchip">필지</span><span class="pchip new">+ 연접</span></div>
-      <p class="body">
+      <p class="eyebrow" data-i18n="s2-eye">Stage 02 · Blocks · 연접 블록 구성</p>
+      <h2 data-i18n="s2-h2">블록화: 사업의 단위를 만든다</h2>
+      <div class="protect-row" aria-label="누적 레이어"><span class="pchip" data-i18n="s2-chip1">필지</span><span class="pchip new" data-i18n="s2-chip2">+ 연접</span></div>
+      <p class="body" data-i18n="s2-body">
         후보는 필지가 아니라 <b>연접한 블록</b>입니다. 필지 간격 실측 분포(91%가 직접
         접촉, P90 33.6m)에 근거해 <b>접합 거리 25m</b>로 블록을 잇고, <b>3MW 이상</b>을
         공식 등재 단위로 봅니다. 50MW를 넘는 큰 블록은 법정리·소유경계·콤팩트 축으로
@@ -180,8 +184,8 @@
         아니라 <b>면적</b>에 비례합니다.
       </p>
       <div class="stage-links">
-        <a href="method.html"><span style="display:contents"><span class="t">방법론 · 접합 거리와 블록 분할 규칙</span><span class="m">25m · 3단 분할</span></span></a>
-        <a href="map.html"><span style="display:contents"><span class="t">지도 · 블록 경계와 규모</span><span class="m">MAP →</span></span></a>
+        <a href="method.html"><span style="display:contents"><span class="t" data-i18n="s2-l1t">방법론 · 접합 거리와 블록 분할 규칙</span><span class="m" data-i18n="s2-l1m">25m · 3단 분할</span></span></a>
+        <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s2-l2t">지도 · 블록 경계와 규모</span><span class="m">MAP →</span></span></a>
       </div>
     </div>
     <figure class="fig ripple-fig reveal" aria-hidden="true">
@@ -192,11 +196,11 @@
         <circle class="rc" cx="180" cy="180" r="100"/>
         <circle class="rc" cx="180" cy="180" r="130"/>
         <circle class="rc" cx="180" cy="180" r="160"/>
-        <text class="rl" x="180" y="132" text-anchor="middle">필지</text>
-        <text class="rl new" x="180" y="102" text-anchor="middle">블록</text>
-        <text class="rl" x="180" y="72"  text-anchor="middle">소유</text>
-        <text class="rl" x="180" y="42"  text-anchor="middle">계통</text>
-        <text class="rl" x="180" y="13"  text-anchor="middle">판정</text>
+        <text class="rl" x="180" y="132" text-anchor="middle" data-i18n="rl-p">필지</text>
+        <text class="rl new" x="180" y="102" text-anchor="middle" data-i18n="rl-b">블록</text>
+        <text class="rl" x="180" y="72"  text-anchor="middle" data-i18n="rl-o">소유</text>
+        <text class="rl" x="180" y="42"  text-anchor="middle" data-i18n="rl-g">계통</text>
+        <text class="rl" x="180" y="13"  text-anchor="middle" data-i18n="rl-v">판정</text>
       </svg>
       <figcaption>ANALYSIS LAYERS · STAGE 02</figcaption>
     </figure>
@@ -206,7 +210,7 @@
 <div class="bridge reveal">
   <div class="wrap">
     <span class="bl">BRIDGE 02 → 03</span>
-    <p><b>큰 블록이라고 다 지을 수 있는 건 아닙니다.</b> 개인 소유가 얽힌 땅은 동의를 얻기 어렵습니다. 잠재량과 실행 가능성이 갈라지는 지점 — 여기서 특구의 실현가능한 규모가 드러납니다.</p>
+    <p data-i18n="br2"><b>큰 블록이라고 다 지을 수 있는 건 아닙니다.</b> 개인 소유가 얽힌 땅은 동의를 얻기 어렵습니다. 잠재량과 실행 가능성이 갈라지는 지점 — 여기서 특구의 실현가능한 규모가 드러납니다.</p>
   </div>
 </div>
 
@@ -214,10 +218,10 @@
 <section class="stage" id="p3">
   <div class="wrap inner">
     <div class="txt reveal">
-      <p class="eyebrow">Stage 03 · Ownership · 부지 확보 실행성</p>
-      <h2>소유 분석: 잠재량과 실행성을 가른다</h2>
-      <div class="protect-row" aria-label="누적 레이어"><span class="pchip">필지</span><span class="pchip">블록</span><span class="pchip new">+ 소유</span></div>
-      <p class="body">
+      <p class="eyebrow" data-i18n="s3-eye">Stage 03 · Ownership · 부지 확보 실행성</p>
+      <h2 data-i18n="s3-h2">소유 분석: 잠재량과 실행성을 가른다</h2>
+      <div class="protect-row" aria-label="누적 레이어"><span class="pchip" data-i18n="s3-chip1">필지</span><span class="pchip" data-i18n="s3-chip2">블록</span><span class="pchip new" data-i18n="s3-chip3">+ 소유</span></div>
+      <p class="body" data-i18n="s3-body">
         이 프로젝트의 핵심은 <b>잠재량이 아니라 부지 확보 실행성</b>입니다. 블록 안 개인소유
         비율이 상한 t 이하(기본 0.30, 0.10~0.50에서 조절 가능)이고 소유주 미확인 필지가
         20% 이하(t와 별개의 고정 기준)인 블록 — 즉 소유 협의 진입장벽이 낮은 땅을
@@ -225,8 +229,8 @@
         <b>약 6%</b>. 이 비율이 시군마다 극명하게 다른 것이 이 분석의 가장 중요한 발견입니다.
       </p>
       <div class="stage-links">
-        <a href="insight.html"><span style="display:contents"><span class="t">인사이트 · 실행/잠재 비율 순위와 개인소유 상한(t) 탐색</span><span class="m">INSIGHT →</span></span></a>
-        <a href="insight.html"><span style="display:contents"><span class="t">우선 검토 후보 · 개인소유 비율이 낮은 블록</span><span class="m">개인소유 낮은 순</span></span></a>
+        <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s3-l1t">인사이트 · 실행/잠재 비율 순위와 개인소유 상한(t) 탐색</span><span class="m">INSIGHT →</span></span></a>
+        <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s3-l2t">우선 검토 후보 · 개인소유 비율이 낮은 블록</span><span class="m" data-i18n="s3-l2m">개인소유 낮은 순</span></span></a>
       </div>
     </div>
     <figure class="fig ripple-fig reveal" aria-hidden="true">
@@ -237,11 +241,11 @@
         <circle class="rc new" cx="180" cy="180" r="100"/>
         <circle class="rc" cx="180" cy="180" r="130"/>
         <circle class="rc" cx="180" cy="180" r="160"/>
-        <text class="rl" x="180" y="132" text-anchor="middle">필지</text>
-        <text class="rl" x="180" y="102" text-anchor="middle">블록</text>
-        <text class="rl new" x="180" y="72" text-anchor="middle">소유</text>
-        <text class="rl" x="180" y="42"  text-anchor="middle">계통</text>
-        <text class="rl" x="180" y="13"  text-anchor="middle">판정</text>
+        <text class="rl" x="180" y="132" text-anchor="middle" data-i18n="rl-p">필지</text>
+        <text class="rl" x="180" y="102" text-anchor="middle" data-i18n="rl-b">블록</text>
+        <text class="rl new" x="180" y="72" text-anchor="middle" data-i18n="rl-o">소유</text>
+        <text class="rl" x="180" y="42"  text-anchor="middle" data-i18n="rl-g">계통</text>
+        <text class="rl" x="180" y="13"  text-anchor="middle" data-i18n="rl-v">판정</text>
       </svg>
       <figcaption>ANALYSIS LAYERS · STAGE 03</figcaption>
     </figure>
@@ -251,7 +255,7 @@
 <div class="bridge reveal">
   <div class="wrap">
     <span class="bl">BRIDGE 03 → 04</span>
-    <p><b>실행 가능한 땅이 있어도, 전기를 흘려보낼 계통과 쓸 수요가 없으면 무의미합니다.</b></p>
+    <p data-i18n="br3"><b>실행 가능한 땅이 있어도, 전기를 흘려보낼 계통과 쓸 수요가 없으면 무의미합니다.</b></p>
   </div>
 </div>
 
@@ -259,10 +263,10 @@
 <section class="stage alt flip" id="p4">
   <div class="wrap inner">
     <div class="txt reveal">
-      <p class="eyebrow">Stage 04 · Grid & Demand · 계통·수요 연결</p>
-      <h2>계통·수요: 후보의 전력 여건을 확인한다</h2>
-      <div class="protect-row" aria-label="누적 레이어"><span class="pchip">필지</span><span class="pchip">블록</span><span class="pchip">소유</span><span class="pchip new">+ 계통</span></div>
-      <p class="body">
+      <p class="eyebrow" data-i18n="s4-eye">Stage 04 · Grid & Demand · 계통·수요 연결</p>
+      <h2 data-i18n="s4-h2">계통·수요: 후보의 전력 여건을 확인한다</h2>
+      <div class="protect-row" aria-label="누적 레이어"><span class="pchip" data-i18n="s4-chip1">필지</span><span class="pchip" data-i18n="s4-chip2">블록</span><span class="pchip" data-i18n="s4-chip3">소유</span><span class="pchip new" data-i18n="s4-chip4">+ 계통</span></div>
+      <p class="body" data-i18n="s4-body">
         한전 배전선로 여유용량(읍면동 단위)과 산업 수요를 각 후보에 연결합니다.
         후보가 수요처(산단·도시)와 가까울수록 송전 거리가 짧아진다 —
         「분산에너지 활성화 특별법」이 정의하는 <b>수요지 인근 발전</b>의 입지 논리로
@@ -270,8 +274,8 @@
         분석 대상 25개 분석구역 전체, <b>651개 읍면동에 연결</b>했습니다.
       </p>
       <div class="stage-links">
-        <a href="map.html"><span style="display:contents"><span class="t">지도 · 계통 여유 읍면동 단계구분도</span><span class="m">읍면동 색칠</span></span></a>
-        <a href="insight.html"><span style="display:contents"><span class="t">인사이트 · 도시 성격 매트릭스</span><span class="m">수요 구조</span></span></a>
+        <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s4-l1t">지도 · 계통 여유 읍면동 단계구분도</span><span class="m" data-i18n="s4-l1m">읍면동 색칠</span></span></a>
+        <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s4-l2t">인사이트 · 도시 성격 매트릭스</span><span class="m" data-i18n="s4-l2m">수요 구조</span></span></a>
       </div>
     </div>
     <figure class="fig ripple-fig reveal" aria-hidden="true">
@@ -282,11 +286,11 @@
         <circle class="rc on"  cx="180" cy="180" r="100"/>
         <circle class="rc new" cx="180" cy="180" r="130"/>
         <circle class="rc" cx="180" cy="180" r="160"/>
-        <text class="rl" x="180" y="132" text-anchor="middle">필지</text>
-        <text class="rl" x="180" y="102" text-anchor="middle">블록</text>
-        <text class="rl" x="180" y="72"  text-anchor="middle">소유</text>
-        <text class="rl new" x="180" y="42" text-anchor="middle">계통</text>
-        <text class="rl" x="180" y="13"  text-anchor="middle">판정</text>
+        <text class="rl" x="180" y="132" text-anchor="middle" data-i18n="rl-p">필지</text>
+        <text class="rl" x="180" y="102" text-anchor="middle" data-i18n="rl-b">블록</text>
+        <text class="rl" x="180" y="72"  text-anchor="middle" data-i18n="rl-o">소유</text>
+        <text class="rl new" x="180" y="42" text-anchor="middle" data-i18n="rl-g">계통</text>
+        <text class="rl" x="180" y="13"  text-anchor="middle" data-i18n="rl-v">판정</text>
       </svg>
       <figcaption>ANALYSIS LAYERS · STAGE 04</figcaption>
     </figure>
@@ -296,7 +300,7 @@
 <div class="bridge reveal">
   <div class="wrap">
     <span class="bl">BRIDGE 04 → 05</span>
-    <p><b>모든 레이어가 쌓이면, 마지막은 판정입니다.</b> 실행 가능 물량의 합계가 특구 규모의 문턱을 넘는가. 여기가 파이프라인의 종점입니다.</p>
+    <p data-i18n="br4"><b>모든 레이어가 쌓이면, 마지막은 판정입니다.</b> 실행 가능 물량의 합계가 특구 규모의 문턱을 넘는가. 여기가 파이프라인의 종점입니다.</p>
   </div>
 </div>
 
@@ -304,10 +308,10 @@
 <section class="stage" id="p5">
   <div class="wrap inner">
     <div class="txt reveal">
-      <p class="eyebrow">Stage 05 · Verdict · <span style="color:var(--leaf-deep);font-weight:700">현재 결과</span></p>
-      <h2>판정: 특구 후보를 가린다</h2>
-      <div class="protect-row" aria-label="누적 레이어"><span class="pchip">필지</span><span class="pchip">블록</span><span class="pchip">소유</span><span class="pchip">계통</span><span class="pchip new">+ 특구</span></div>
-      <p class="body">
+      <p class="eyebrow" data-i18n="s5-eye">Stage 05 · Verdict · <span style="color:var(--leaf-deep);font-weight:700">현재 결과</span></p>
+      <h2 data-i18n="s5-h2">판정: 특구 후보를 가린다</h2>
+      <div class="protect-row" aria-label="누적 레이어"><span class="pchip" data-i18n="s5-chip1">필지</span><span class="pchip" data-i18n="s5-chip2">블록</span><span class="pchip" data-i18n="s5-chip3">소유</span><span class="pchip" data-i18n="s5-chip4">계통</span><span class="pchip new" data-i18n="s5-chip5">+ 특구</span></div>
+      <p class="body" data-i18n="s5-body">
         실행 가능 물량의 합계로 시군을 판정합니다 — <b>유력(≥100MW)·지정 가능(50–100MW)·
         요건 미달</b>. 시나리오는 S0(현행)·S1(재생에너지지구)·S2(확장)로 나뉩니다.
         기본 시나리오 S1에서 <b>유력 8곳</b>(당진·서산·평택·보령·아산·파주·화성·홍성),
@@ -315,8 +319,8 @@
         판정이 바뀌는 분석구역은 0곳 — 이 결론은 견고합니다.
       </p>
       <div class="stage-links">
-        <a href="insight.html"><span style="display:contents"><span class="t">인사이트 · 시군별 판정 순위</span><span class="m">25개 분석구역</span></span></a>
-        <a href="map.html"><span style="display:contents"><span class="t">지도 · 시나리오·문턱 t 조절하며 탐색</span><span class="m">MAP →</span></span></a>
+        <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s5-l1t">인사이트 · 시군별 판정 순위</span><span class="m" data-i18n="s5-l1m">25개 분석구역</span></span></a>
+        <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s5-l2t">지도 · 시나리오·문턱 t 조절하며 탐색</span><span class="m">MAP →</span></span></a>
       </div>
     </div>
     <figure class="fig ripple-fig reveal" aria-hidden="true">
@@ -327,11 +331,11 @@
         <circle class="rc on"  cx="180" cy="180" r="100"/>
         <circle class="rc on"  cx="180" cy="180" r="130"/>
         <circle class="rc new" cx="180" cy="180" r="160"/>
-        <text class="rl" x="180" y="132" text-anchor="middle">필지</text>
-        <text class="rl" x="180" y="102" text-anchor="middle">블록</text>
-        <text class="rl" x="180" y="72"  text-anchor="middle">소유</text>
-        <text class="rl" x="180" y="42"  text-anchor="middle">계통</text>
-        <text class="rl new" x="180" y="13" text-anchor="middle">판정</text>
+        <text class="rl" x="180" y="132" text-anchor="middle" data-i18n="rl-p">필지</text>
+        <text class="rl" x="180" y="102" text-anchor="middle" data-i18n="rl-b">블록</text>
+        <text class="rl" x="180" y="72"  text-anchor="middle" data-i18n="rl-o">소유</text>
+        <text class="rl" x="180" y="42"  text-anchor="middle" data-i18n="rl-g">계통</text>
+        <text class="rl new" x="180" y="13" text-anchor="middle" data-i18n="rl-v">판정</text>
       </svg>
       <figcaption>ANALYSIS LAYERS · STAGE 05 · FULL</figcaption>
     </figure>
@@ -341,12 +345,12 @@
 <!-- ═══════════ 핵심 논제 밴드 ═══════════ -->
 <div class="thesis reveal">
   <div class="wrap">
-    <blockquote>
+    <blockquote data-i18n="thesis-q">
       "부지도, 수요도 있다. <mark>제도</mark>가 규모를 가른다 — 현행 제도(S0)의 유력은
       평택·파주·서산 3곳. 영농형태양광법이 재생에너지지구 지정으로 농업진흥지역의 빗장을 풀면(S1)
       유력이 8곳으로 늘고, 당진은 37MW에서 1,122MW가 된다."
     </blockquote>
-    <cite>— PLANiT 영농형 태양광 · 실행 가능 물량 분석</cite>
+    <cite data-i18n="thesis-cite">— PLANiT 영농형 태양광 · 실행 가능 물량 분석</cite>
   </div>
 </div>
 
@@ -355,15 +359,15 @@
 <section class="alt" id="agrivolt">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><p class="eyebrow">What Agrivoltaic Means</p>
-      <h2>영농형태양광법이 풀면, 들판은 <em>이렇게</em> 움직인다</h2></div>
+      <div><p class="eyebrow" data-i18n="av-eye">What Agrivoltaic Means</p>
+      <h2 data-i18n="av-h2">영농형태양광법이 풀면, 들판은 <em>이렇게</em> 움직인다</h2></div>
     </div>
-    <p class="lede reveal" style="margin-bottom:20px">영농형 태양광은 농지를 전용하는 발전소가 아니다 —
+    <p class="lede reveal" style="margin-bottom:20px" data-i18n="av-lede">영농형 태양광은 농지를 전용하는 발전소가 아니다 —
       <b>패널 아래·이랑 사이에서 농사는 계속된다.</b> 영농형 태양광 발전사업은 원칙적으로
       <b>농업진흥지역 밖 농지</b>에서 하되, <b>재생에너지지구</b>로 지정되면 농업진흥지역 안에서도
       발전과 영농을 병행할 수 있다 — <b>농민의 수입원을 지키는 것</b>이 그 취지다.</p>
     <div class="box" style="padding:0;overflow:hidden"><canvas id="d17" style="width:100%;height:170px;display:block;cursor:ew-resize"></canvas></div>
-      <p class="src">태양 위치에 따라 하늘·들판 밝기·태양 크기가 함께 변합니다 (시각화 전용 산식 e=sin(pπ) — 분석 결과와 무관한 화면 연출)</p>
+      <p class="src" data-i18n="av-src1">태양 위치에 따라 하늘·들판 밝기·태양 크기가 함께 변합니다 (시각화 전용 산식 e=sin(pπ) — 분석 결과와 무관한 화면 연출)</p>
       <script>
       (function(){
         const cv=document.getElementById('d17'),ctx=cv.getContext('2d');
@@ -422,17 +426,17 @@
         frame();
       })();
       </script>
-    <p class="fignote" style="font-family:var(--mono);font-size:10.5px;color:#9FB4C4;margin:8px 0 26px;letter-spacing:.04em">마우스 좌우 = 태양 위치(동→서) · 정오에 가장 밝고 강함 · 놓으면 하루가 저절로 흐름</p>
+    <p class="fignote" style="font-family:var(--mono);font-size:10.5px;color:#9FB4C4;margin:8px 0 26px;letter-spacing:.04em" data-i18n="av-fig1">마우스 좌우 = 태양 위치(동→서) · 정오에 가장 밝고 강함 · 놓으면 하루가 저절로 흐름</p>
     <div class="box" style="padding:10px">
         <div style="display:flex;gap:12px;align-items:center;margin:4px 6px 10px;flex-wrap:wrap">
-          <label style="font-family:var(--mono);font-size:11px;color:var(--muted)">시군</label>
+          <label style="font-family:var(--mono);font-size:11px;color:var(--muted)" data-i18n="av-lab1">시군</label>
           <select id="d17sel" style="font-size:13px;padding:4px 10px;border:1px solid var(--line);border-radius:6px"></select>
           <div class="tabs" id="d17scn" style="margin:0;gap:5px">
-            <button class="tab" data-s="S0" style="padding:4px 11px">현행 S0</button>
-            <button class="tab on" data-s="S1" style="padding:4px 11px">재생E지구 S1</button>
-            <button class="tab" data-s="S2" style="padding:4px 11px">확장 S2</button>
+            <button class="tab" data-s="S0" style="padding:4px 11px" data-i18n="av-tab0">현행 S0</button>
+            <button class="tab on" data-s="S1" style="padding:4px 11px" data-i18n="av-tab1">재생E지구 S1</button>
+            <button class="tab" data-s="S2" style="padding:4px 11px" data-i18n="av-tab2">확장 S2</button>
           </div>
-          <label style="font-family:var(--mono);font-size:11px;color:var(--muted)">개인소유 상한</label>
+          <label style="font-family:var(--mono);font-size:11px;color:var(--muted)" data-i18n="av-lab2">개인소유 상한</label>
           <select id="d17t" style="font-size:12px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;font-family:var(--mono)">
             <option value="0.10">t ≤ 0.10</option><option value="0.20">t ≤ 0.20</option>
             <option value="0.30" selected>t ≤ 0.30</option><option value="0.40">t ≤ 0.40</option>
@@ -468,7 +472,7 @@
           </g>
         </svg>
       </div>
-      <p class="src">산단 = 산업단지 DB 실데이터(이름·업종·추정 MW — 마우스를 올리면 표시) · 송전선 흐름·패널 발광·창불빛·밤 밝기는 위 들판의 태양 고도에 비례하는 화면 연출입니다</p>
+      <p class="src" data-i18n="av-src2">산단 = 산업단지 DB 실데이터(이름·업종·추정 MW — 마우스를 올리면 표시) · 송전선 흐름·패널 발광·창불빛·밤 밝기는 위 들판의 태양 고도에 비례하는 화면 연출입니다</p>
       <script>
       window._d17init=function(C,CPX){
         // 좌 = 논밭(항공뷰 필지 패치워크) · 우 = 도시(도로·건물 블록, 산단 구역)
@@ -644,7 +648,7 @@
         frame();
       };
       </script>
-    <p class="fignote" style="font-family:var(--mono);font-size:10.5px;color:#9FB4C4;margin-top:10px;letter-spacing:.04em">시군·시나리오·개인소유 상한을 바꿔 보라 — 패널 1개=10MW(실행 물량 비례) · 현행 S0에선 농업진흥지역 영농형·비닐하우스 지붕형 모두 불가 · 산단·계통·수요는 실측 데이터(미수집분은 '수집 예정'으로 표기)</p>
+    <p class="fignote" style="font-family:var(--mono);font-size:10.5px;color:#9FB4C4;margin-top:10px;letter-spacing:.04em" data-i18n="av-fig2">시군·시나리오·개인소유 상한을 바꿔 보라 — 패널 1개=10MW(실행 물량 비례) · 현행 S0에선 농업진흥지역 영농형·비닐하우스 지붕형 모두 불가 · 산단·계통·수요는 실측 데이터(미수집분은 '수집 예정'으로 표기)</p>
   </div>
 </section>
 
@@ -653,29 +657,29 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <p class="eyebrow">Now · 이번 단계의 현장</p>
-        <h2>지금 채우고 있는 것들</h2>
+        <p class="eyebrow" data-i18n="now-eye">Now · 이번 단계의 현장</p>
+        <h2 data-i18n="now-h2">지금 채우고 있는 것들</h2>
       </div>
-      <a class="more" href="method.html">방법론 전체 →</a>
+      <a class="more" href="method.html" data-i18n="now-more">방법론 전체 →</a>
     </div>
     <div class="now-grid">
       <div class="now-card reveal">
-        <p class="meta">STAGE 04 · 계통·수요</p>
-        <h3>KEPCO OpenAPI 계통 여유 — 651개 읍면동 연결</h3>
+        <p class="meta" data-i18n="now-c1-meta">STAGE 04 · 계통·수요</p>
+        <h3 data-i18n="now-c1-h3">KEPCO OpenAPI 계통 여유 — 651개 읍면동 연결</h3>
         <div class="pbar"><div class="fill" data-progress="100"></div></div>
-        <p class="pnum"><span>읍면동 단계구분도 색칠 완료</span><span>완료</span></p>
+        <p class="pnum"><span data-i18n="now-c1-s1">읍면동 단계구분도 색칠 완료</span><span data-i18n="now-c1-s2">완료</span></p>
       </div>
       <div class="now-card reveal">
-        <p class="meta">STAGE 04 · 산단 카드</p>
-        <h3>전국 산단거점(B) 산단 목록 연결 — 한국산업단지공단(KICOX)</h3>
+        <p class="meta" data-i18n="now-c2-meta">STAGE 04 · 산단 카드</p>
+        <h3 data-i18n="now-c2-h3">전국 산단거점(B) 산단 목록 연결 — 한국산업단지공단(KICOX)</h3>
         <div class="pbar"><div class="fill" data-progress="35"></div></div>
-        <p class="pnum"><span>공공데이터 확장 대기</span><span>수집 예정</span></p>
+        <p class="pnum"><span data-i18n="now-c2-s1">공공데이터 확장 대기</span><span data-i18n="now-c2-s2">수집 예정</span></p>
       </div>
       <div class="now-card reveal">
-        <p class="meta">결론부 · 정책 제언</p>
-        <h3>영농형태양광법 활용 논거 — 법률 감수 병행</h3>
+        <p class="meta" data-i18n="now-c3-meta">결론부 · 정책 제언</p>
+        <h3 data-i18n="now-c3-h3">영농형태양광법 활용 논거 — 법률 감수 병행</h3>
         <div class="pbar"><div class="fill" data-progress="55"></div></div>
-        <p class="pnum"><span>조문·시행령 확인 중</span><span>비공개</span></p>
+        <p class="pnum"><span data-i18n="now-c3-s1">조문·시행령 확인 중</span><span data-i18n="now-c3-s2">비공개</span></p>
       </div>
     </div>
   </div>
@@ -686,29 +690,29 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <p class="eyebrow">Explore · 세 개의 창</p>
-        <h2>결과를 세 관점으로 본다</h2>
+        <p class="eyebrow" data-i18n="ex-eye">Explore · 세 개의 창</p>
+        <h2 data-i18n="ex-h2">결과를 세 관점으로 본다</h2>
       </div>
-      <a class="more" href="map.html">지도로 →</a>
+      <a class="more" href="map.html" data-i18n="ex-more">지도로 →</a>
     </div>
     <div class="grid">
       <a class="card reveal" href="map.html">
-        <div class="meta"><span class="tag">지도</span><span>인터랙티브</span></div>
-        <h3>후보 지도</h3>
-        <p>시나리오·문턱 t를 조절하며 블록 경계, 계통 여유 읍면동 단계구분도, 산단 위치를 탐색합니다.</p>
-        <span class="foot">열기 <span class="arrow">→</span></span>
+        <div class="meta"><span class="tag" data-i18n="ex-c1-tag">지도</span><span data-i18n="ex-c1-sub">인터랙티브</span></div>
+        <h3 data-i18n="ex-c1-h3">후보 지도</h3>
+        <p data-i18n="ex-c1-p">시나리오·문턱 t를 조절하며 블록 경계, 계통 여유 읍면동 단계구분도, 산단 위치를 탐색합니다.</p>
+        <span class="foot" data-i18n="ex-c1-foot">열기 <span class="arrow">→</span></span>
       </a>
       <a class="card reveal" href="insight.html">
-        <div class="meta"><span class="tag">인사이트</span><span>다섯 프레임</span></div>
-        <h3>실행성이 그리는 경계</h3>
-        <p>잠재량 트랩 사분면, 시나리오×개인소유 상한 민감도, 100MW 충족도 링, 도시 성격 매트릭스, 전국 판정표.</p>
-        <span class="foot">열기 <span class="arrow">→</span></span>
+        <div class="meta"><span class="tag" data-i18n="ex-c2-tag">인사이트</span><span data-i18n="ex-c2-sub">다섯 프레임</span></div>
+        <h3 data-i18n="ex-c2-h3">실행성이 그리는 경계</h3>
+        <p data-i18n="ex-c2-p">잠재량 트랩 사분면, 시나리오×개인소유 상한 민감도, 100MW 충족도 링, 도시 성격 매트릭스, 전국 판정표.</p>
+        <span class="foot" data-i18n="ex-c2-foot">열기 <span class="arrow">→</span></span>
       </a>
       <a class="card reveal" href="method.html">
-        <div class="meta"><span class="tag">방법론</span><span>10 섹션</span></div>
-        <h3>어떻게 계량했는가</h3>
-        <p>데이터 계층, 블록 접합 25m, 3단 분할, 시나리오 S0/S1/S2, 발전량·계통 산식과 한계까지.</p>
-        <span class="foot">열기 <span class="arrow">→</span></span>
+        <div class="meta"><span class="tag" data-i18n="ex-c3-tag">방법론</span><span data-i18n="ex-c3-sub">10 섹션</span></div>
+        <h3 data-i18n="ex-c3-h3">어떻게 계량했는가</h3>
+        <p data-i18n="ex-c3-p">데이터 계층, 블록 접합 25m, 3단 분할, 시나리오 S0/S1/S2, 발전량·계통 산식과 한계까지.</p>
+        <span class="foot" data-i18n="ex-c3-foot">열기 <span class="arrow">→</span></span>
       </a>
     </div>
   </div>
@@ -718,17 +722,17 @@
 <section class="contact" id="contact">
   <div class="wrap box">
     <div class="reveal">
-      <p class="eyebrow">Contact</p>
-      <h2>어느 시군을 함께 <em>설계</em>하시겠어요?</h2>
-      <p style="margin-top:14px">
+      <p class="eyebrow" data-i18n="ct-eye">Contact</p>
+      <h2 data-i18n="ct-h2">어느 시군을 함께 <em>설계</em>하시겠어요?</h2>
+      <p style="margin-top:14px" data-i18n="ct-p">
         정책 담당자, 지자체, 발전 사업자, 그리고 농업계와 함께 일합니다.
         특구 후보 시군의 실행 가능 물량과 우선 검토 목록을 함께 검토합니다.
       </p>
     </div>
     <div class="panel reveal">
       <div class="row"><span class="k">EMAIL</span><a href="mailto:sojin@planit.institute">sojin@planit.institute</a></div>
-      <div class="row"><span class="k">SECTOR</span><span>Agrivoltaic · 영농형 태양광</span></div>
-      <div class="row"><span class="k">FOCUS</span><span>특구 최적입지 · 실행 가능 물량</span></div>
+      <div class="row"><span class="k">SECTOR</span><span data-i18n="ct-sector">Agrivoltaic · 영농형 태양광</span></div>
+      <div class="row"><span class="k">FOCUS</span><span data-i18n="ct-focus">특구 최적입지 · 실행 가능 물량</span></div>
       <div class="row"><span class="k">MAIN</span><a href="https://planit.institute/">planit.institute ↗</a></div>
     </div>
   </div>
@@ -740,8 +744,8 @@
   <div class="wrap">
     <div class="cols">
       <div>
-        <div class="brandline">PLANiT · 영농형 태양광</div>
-        <p style="max-width:34ch;word-break:keep-all">
+        <div class="brandline" data-i18n="foot-brand">PLANiT · 영농형 태양광</div>
+        <p style="max-width:34ch;word-break:keep-all" data-i18n="foot-desc">
           잠재량이 아니라 실행 가능성으로 영농형 태양광 특구 후보를 가리는
           PLANiT Institute의 재생에너지 섹터입니다.
         </p>
@@ -749,20 +753,20 @@
       <div>
         <h4>Site</h4>
         <ul>
-          <li><a href="index.html">개요</a></li>
-          <li><a href="map.html">지도</a></li>
-          <li><a href="method.html">방법론</a></li>
-          <li><a href="insight.html">인사이트</a></li>
+          <li><a href="index.html" data-i18n="foot-site1">개요</a></li>
+          <li><a href="map.html" data-i18n="foot-site2">지도</a></li>
+          <li><a href="method.html" data-i18n="foot-site3">방법론</a></li>
+          <li><a href="insight.html" data-i18n="foot-site4">인사이트</a></li>
         </ul>
       </div>
       <div>
         <h4>Pipeline</h4>
         <ul>
-          <li><a href="index.html#p1">01 필지 원장</a></li>
-          <li><a href="index.html#p2">02 블록화</a></li>
-          <li><a href="index.html#p3">03 소유 분석</a></li>
-          <li><a href="index.html#p4">04 계통·수요</a></li>
-          <li><a href="index.html#p5">05 판정 · 결과</a></li>
+          <li><a href="index.html#p1" data-i18n="foot-pipe1">01 필지 원장</a></li>
+          <li><a href="index.html#p2" data-i18n="foot-pipe2">02 블록화</a></li>
+          <li><a href="index.html#p3" data-i18n="foot-pipe3">03 소유 분석</a></li>
+          <li><a href="index.html#p4" data-i18n="foot-pipe4">04 계통·수요</a></li>
+          <li><a href="index.html#p5" data-i18n="foot-pipe5">05 판정 · 결과</a></li>
         </ul>
       </div>
       <div>
@@ -774,12 +778,210 @@
       </div>
     </div>
     <div class="fine">
-      <span>데이터: 국토부 지적통계 · LX · 팜맵 · 한전 전력데이터 개방포털 · V-World</span>
-      <span>© 2026 PLANiT Institute · 내부 검수본</span>
+      <span data-i18n="foot-data">데이터: 국토부 지적통계 · LX · 팜맵 · 한전 전력데이터 개방포털 · V-World</span>
+      <span data-i18n="foot-copy">© 2026 PLANiT Institute · 내부 검수본</span>
     </div>
   </div>
 </footer>
 
+<script>
+window.I18N = {
+  meta: {
+    en: {
+      title: "PLANiT · Agrivoltaics — Optimal siting for special districts",
+      desc: "Not potential, but executability decides the districts. With 2 million parcels as the ledger, we screen agrivoltaic special-district candidates by the executable capacity of low individual-ownership blocks."
+    }
+  },
+  en: {
+    // ── 리플 도식 라벨 (파이프라인 5단계, SVG) ──
+    "rl-p": "Parcel",
+    "rl-b": "Block",
+    "rl-o": "Ownership",
+    "rl-g": "Grid",
+    "rl-v": "Verdict",
+    // ── chrome ──
+    "tb-tag": "Agrivoltaic · PLANiT Institute's agrivoltaics sector",
+    "tb-link": "← Back to planit.institute",
+    "brand-sector": "Agrivoltaics",
+    "nav-overview": "Overview",
+    "nav-map": "Map",
+    "nav-atlas": "Atlas",
+    "nav-method": "Method",
+    "nav-insight": "Insight",
+    "foot-data": "Data: MOLIT cadastral statistics · LX · FarmMap · KEPCO power-data portal · V-World",
+    "foot-copy": "© 2026 PLANiT Institute · internal review build",
+
+    // ── hero ──
+    "hero-eyebrow": "Agrivoltaics · Optimal siting for special districts",
+    "hero-h1": "The land and the demand are both there.<br>What decides a district is <em>executability</em>.",
+    "hero-lede": "Across 25 analysis zones — 15 cities/counties in Gyeonggi and Chungnam plus 10 nationwide industrial-complex hubs — we screen agrivoltaic special-district candidates against a full ledger of <b>2 million parcels</b>. Candidates are ranked not by potential but by the <b>executable capacity of blocks with a low individual-ownership ratio</b> — and that executability differs starkly from one city/county to the next.",
+    "hero-btn1": "See the analysis pipeline",
+    "hero-btn2": "See candidates on the map →",
+    "stat1-u": " analysis zones",
+    "stat1-k": "Analysis zones · A: 15 cities/counties + B: 10 hubs",
+    "stat2-u": " zones",
+    "stat2-k": "Strong districts · ≥100MW (S1)",
+    "stat3-u": " MW",
+    "stat3-k": "Executable capacity, Gyeonggi·Chungnam (A) (S1)",
+    "stat4-u": " %",
+    "stat4-k": "Executable/potential ratio — the key finding",
+
+    // ── pipeline band ──
+    "rt-flag": "Verdict · District candidates",
+    "rt-nm1": "Parcel ledger",
+    "rt-pr1": "2M parcels",
+    "rt-nm2": "Blocking",
+    "rt-pr2": "+ 25m adjacency",
+    "rt-nm3": "Ownership",
+    "rt-pr3": "+ executability",
+    "rt-nm4": "Grid & demand",
+    "rt-pr4": "+ grid headroom",
+    "rt-nm5": "Verdict",
+    "rt-pr5": "+ district candidates",
+    "rt-cap1": "ANALYSIS PIPELINE · from parcel to district · five stages · each stage adds one data layer",
+    "rt-cap2": "Click a stage to jump to its explanation",
+
+    // ── Stage 01 ──
+    "s1-eye": "Stage 01 · Ledger · Building the full ledger",
+    "s1-h2": "Parcel ledger: laying the foundation",
+    "s1-chip": "Parcel",
+    "s1-body": "Every analysis begins with the parcel. On a PNU basis we built a full ledger of <b>2 million parcels</b> across Gyeonggi·Chungnam and the nationwide industrial-complex hubs. Cross-checked against MOLIT cadastral base statistics, the Gyeonggi·Chungnam ledger reaches <b>99.65% coverage</b>. Merging land category, ownership, continuous cadastre and FarmMap, we tag each parcel with farmland status and ownership type. The completeness of the ledger determines the reliability of everything downstream.",
+    "s1-l1t": "Method · data layers and coverage audit",
+    "s1-l1m": "MOLIT · LX · FarmMap",
+    "s1-l2t": "Map · candidate blocks over the parcel ledger",
+
+    "br1": "<b>Scattered individual parcels cannot become a project.</b> The unit of a project is a contiguous cluster of land — a block. What matters is not how many parcels there are, but how large a block can be drawn.",
+
+    // ── Stage 02 ──
+    "s2-eye": "Stage 02 · Blocks · Forming contiguous blocks",
+    "s2-h2": "Blocking: creating the unit of a project",
+    "s2-chip1": "Parcel",
+    "s2-chip2": "+ adjacency",
+    "s2-body": "A candidate is not a parcel but a <b>contiguous block</b>. Based on the measured distribution of parcel gaps (91% in direct contact, P90 33.6m), we join parcels into blocks at a <b>25m adjacency distance</b> and treat <b>3MW or more</b> as the official listing unit. Blocks over 50MW are split three ways along administrative, ownership-boundary and compactness axes, with leftover fragments re-merged into adjacent sibling blocks. Installed capacity scales with <b>area</b>, not parcel count.",
+    "s2-l1t": "Method · adjacency distance and block-split rules",
+    "s2-l1m": "25m · 3-way split",
+    "s2-l2t": "Map · block boundaries and scale",
+
+    "br2": "<b>A large block is not necessarily buildable.</b> Land entangled with individual ownership is hard to secure consent for. This is where potential and executability diverge — and where the feasible scale of a district emerges.",
+
+    // ── Stage 03 ──
+    "s3-eye": "Stage 03 · Ownership · Feasibility of land assembly",
+    "s3-h2": "Ownership analysis: separating potential from executability",
+    "s3-chip1": "Parcel",
+    "s3-chip2": "Block",
+    "s3-chip3": "+ ownership",
+    "s3-body": "The heart of this project is <b>not potential but the feasibility of land assembly</b>. Blocks where the individual-ownership ratio is at or below a threshold t (default 0.30, adjustable 0.10–0.50) and unverified-ownership parcels are at most 20% (a fixed criterion separate from t) — that is, land with low barriers to ownership negotiation — are counted as <b>executable capacity</b>. Of Gyeonggi·Chungnam's 73,000 MW of potential, only <b>about 6%</b> is executable today. That this ratio differs starkly across cities/counties is the single most important finding of this analysis.",
+    "s3-l1t": "Insight · executable/potential ranking and the ownership threshold (t)",
+    "s3-l2t": "Priority candidates · blocks with a low individual-ownership ratio",
+    "s3-l2m": "Lowest ownership first",
+
+    "br3": "<b>Even executable land is meaningless without a grid to carry the power and demand to consume it.</b>",
+
+    // ── Stage 04 ──
+    "s4-eye": "Stage 04 · Grid & Demand · Linking grid and demand",
+    "s4-h2": "Grid & demand: checking each candidate's power conditions",
+    "s4-chip1": "Parcel",
+    "s4-chip2": "Block",
+    "s4-chip3": "Ownership",
+    "s4-chip4": "+ grid",
+    "s4-body": "We link KEPCO distribution-line headroom (at township level) and industrial demand to each candidate. The closer a candidate is to demand (industrial complexes, cities), the shorter the transmission distance — we read candidates through the siting logic of <b>generation near demand</b> as defined by the Distributed Energy Act. Grid headroom was connected across all 25 analysis zones, spanning <b>651 townships</b>, via the KEPCO power-data portal OpenAPI.",
+    "s4-l1t": "Map · grid-headroom township choropleth",
+    "s4-l1m": "Township shading",
+    "s4-l2t": "Insight · city-character matrix",
+    "s4-l2m": "Demand structure",
+
+    "br4": "<b>Once every layer is stacked, the last step is the verdict.</b> Does the sum of executable capacity clear the threshold for a special district? This is the terminus of the pipeline.",
+
+    // ── Stage 05 ──
+    "s5-eye": "Stage 05 · Verdict · <span style=\"color:var(--leaf-deep);font-weight:700\">Current results</span>",
+    "s5-h2": "Verdict: screening the district candidates",
+    "s5-chip1": "Parcel",
+    "s5-chip2": "Block",
+    "s5-chip3": "Ownership",
+    "s5-chip4": "Grid",
+    "s5-chip5": "+ district",
+    "s5-body": "Cities/counties are judged by the sum of executable capacity — <b>strong (≥100MW), designatable (50–100MW), below threshold</b>. Scenarios split into S0 (Current), S1 (Renewable Energy District) and S2 (Expanded). Under the default scenario S1 there are <b>8 strong zones</b> (Dangjin, Seosan, Pyeongtaek, Boryeong, Asan, Paju, Hwaseong, Hongseong) and <b>4 designatable zones</b> (Icheon, Gimpo, Cheonan, Pohangᴮ). Whether Nature Conservation Areas are included (S2) or excluded (S1), the verdict changes for zero analysis zones — this conclusion is robust.",
+    "s5-l1t": "Insight · verdict ranking by city/county",
+    "s5-l1m": "25 analysis zones",
+    "s5-l2t": "Map · explore by adjusting scenario and threshold t",
+
+    // ── thesis ──
+    "thesis-q": "\"The land and the demand are both there. <mark>Policy</mark> decides the scale — under current policy (S0), only Pyeongtaek, Paju and Seosan are strong. When the Agrivoltaics Act unlocks Agricultural Promotion Areas through Renewable Energy District designation (S1), strong zones rise to 8 and Dangjin goes from 37MW to 1,122MW.\"",
+    "thesis-cite": "— PLANiT Agrivoltaics · executable-capacity analysis",
+
+    // ── What Agrivoltaic Means ──
+    "av-eye": "What Agrivoltaic Means",
+    "av-h2": "When the Agrivoltaics Act unlocks it, the fields move <em>like this</em>",
+    "av-lede": "Agrivoltaics is not a power plant that converts farmland — <b>farming continues under the panels and between the rows.</b> Agrivoltaic generation is, in principle, carried out on <b>farmland outside Agricultural Promotion Areas</b>, but once an area is designated a <b>Renewable Energy District</b>, generation and farming can proceed together even inside Agricultural Promotion Areas — the aim being to <b>protect farmers' income.</b>",
+    "av-src1": "Sky, field brightness and sun size all shift with the sun's position (visualization-only formula e=sin(pπ) — a screen effect unrelated to the analysis results)",
+    "av-fig1": "Mouse left/right = sun position (east→west) · brightest and strongest at noon · release and the day flows on its own",
+    "av-lab1": "City/county",
+    "av-tab0": "Current S0",
+    "av-tab1": "Renew. District S1",
+    "av-tab2": "Expanded S2",
+    "av-lab2": "Ownership cap",
+    "av-src2": "Industrial complex = real data from the industrial-complex DB (name · sector · estimated MW — shown on hover) · transmission-line flow, panel glow, window light and night brightness are screen effects scaled to the sun's altitude above",
+    "av-fig2": "Try changing the city/county, scenario and ownership cap — 1 panel = 10MW (scaled to executable capacity) · under current S0, both agrivoltaics in Agricultural Promotion Areas and rooftop solar on greenhouses are prohibited · industrial complexes, grid and demand use measured data (uncollected items marked “to be collected”)",
+
+    // ── Now ──
+    "now-eye": "Now · the field of this stage",
+    "now-h2": "What we are filling in now",
+    "now-more": "Full method →",
+    "now-c1-meta": "STAGE 04 · Grid & demand",
+    "now-c1-h3": "KEPCO OpenAPI grid headroom — 651 townships linked",
+    "now-c1-s1": "Township choropleth shading complete",
+    "now-c1-s2": "Done",
+    "now-c2-meta": "STAGE 04 · Industrial-complex cards",
+    "now-c2-h3": "Linking industrial-complex lists for nationwide hubs (B) — KICOX",
+    "now-c2-s1": "Awaiting open-data expansion",
+    "now-c2-s2": "To be collected",
+    "now-c3-meta": "Conclusion · policy recommendations",
+    "now-c3-h3": "The case for using the Agrivoltaics Act — with legal review",
+    "now-c3-s1": "Reviewing statutes and enforcement decrees",
+    "now-c3-s2": "Private",
+
+    // ── Explore ──
+    "ex-eye": "Explore · three windows",
+    "ex-h2": "See the results from three perspectives",
+    "ex-more": "To the map →",
+    "ex-c1-tag": "Map",
+    "ex-c1-sub": "Interactive",
+    "ex-c1-h3": "Candidate map",
+    "ex-c1-p": "Explore block boundaries, the grid-headroom township choropleth and industrial-complex locations while adjusting scenario and threshold t.",
+    "ex-c1-foot": "Open <span class=\"arrow\">→</span>",
+    "ex-c2-tag": "Insight",
+    "ex-c2-sub": "Five frames",
+    "ex-c2-h3": "The boundary executability draws",
+    "ex-c2-p": "The potential-trap quadrant, scenario × ownership-cap sensitivity, the 100MW sufficiency ring, the city-character matrix, and the nationwide verdict table.",
+    "ex-c2-foot": "Open <span class=\"arrow\">→</span>",
+    "ex-c3-tag": "Method",
+    "ex-c3-sub": "10 sections",
+    "ex-c3-h3": "How it was quantified",
+    "ex-c3-p": "Data layers, 25m block adjacency, three-way splits, scenarios S0/S1/S2, and the generation and grid formulas — down to the limitations.",
+    "ex-c3-foot": "Open <span class=\"arrow\">→</span>",
+
+    // ── Contact ──
+    "ct-eye": "Contact",
+    "ct-h2": "Which city or county would you like to <em>design</em> with us?",
+    "ct-p": "We work with policymakers, local governments, developers and the agricultural sector, reviewing together the executable capacity and priority shortlist for candidate cities and counties.",
+    "ct-sector": "Agrivoltaic · agrivoltaics",
+    "ct-focus": "Optimal district siting · executable capacity",
+
+    // ── Footer ──
+    "foot-brand": "PLANiT · Agrivoltaics",
+    "foot-desc": "PLANiT Institute's renewable-energy sector, screening agrivoltaic special-district candidates by executability rather than potential.",
+    "foot-site1": "Overview",
+    "foot-site2": "Map",
+    "foot-site3": "Method",
+    "foot-site4": "Insight",
+    "foot-pipe1": "01 Parcel ledger",
+    "foot-pipe2": "02 Blocking",
+    "foot-pipe3": "03 Ownership",
+    "foot-pipe4": "04 Grid & demand",
+    "foot-pipe5": "05 Verdict · results"
+  }
+};
+</script>
 <script src="site.js"></script>
 <script src="assets/appendix.js"></script>
 <script>
