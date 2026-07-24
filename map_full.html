@@ -32,7 +32,7 @@
 </head><body>
 <nav>
  <a href="index.html" data-m="navOv">개요</a><a class="active" href="map.html" data-m="navMap">지도</a><a href="atlas.html" data-m="navAtlas">구역별 지도</a><a href="method.html" data-m="navMethod">방법론</a>
- <a href="insight.html" data-m="navInsight">인사이트</a><a href="about.html" data-m="navAbout">영농형 태양광이란</a><a class="cta" href="index.html#contact">Contact</a>
+ <a href="insight.html" data-m="navInsight">인사이트</a><a href="about.html" data-m="navAbout">영농형 태양광</a><a class="cta" href="index.html#contact">Contact</a>
 </nav>
 <div id="map"></div>
 <div id="panel">
@@ -69,7 +69,7 @@ const HOW_EN={'무분할':'no split','①리':'① admin-ri','②소유+병합':
 const howL=h=>(LANG==='en'&&HOW_EN[h])?HOW_EN[h]:h;
 const M={
   ko:{
-    navOv:'개요',navMap:'지도',navAtlas:'구역별 지도',navMethod:'방법론',navInsight:'인사이트',navAbout:'영농형 태양광이란',
+    navOv:'개요',navMap:'지도',navAtlas:'구역별 지도',navMethod:'방법론',navInsight:'인사이트',navAbout:'영농형 태양광',
     title:'지도 — 영농형 태양광 특구 후보',
     selectSgg:'시군 선택', sgg:'시군', scenario:'시나리오',
     scnS1:'재생에너지지구 S1', scnS2:'확장 S2', scnS0:'현행 S0',
@@ -105,7 +105,7 @@ const M={
     cardNote:need=>`<span class="mut" style="font-size:11px">계통=한전 배전선로 여유. 동간 재분배 미수행 — 합산은 상한 추정. ${need?'이 시군은 계통 데이터 수집 예정.':''}</span>`
   },
   en:{
-    navOv:'Overview',navMap:'Map',navAtlas:'Atlas',navMethod:'Method',navInsight:'Insight',navAbout:'About',
+    navOv:'Overview',navMap:'Map',navAtlas:'Atlas',navMethod:'Method',navInsight:'Insight',navAbout:'Agrivoltaics',
     title:'Map — agrivoltaic special-district candidates',
     selectSgg:'Select a city/county', sgg:'City/county', scenario:'Scenario',
     scnS1:'Renewable Energy District S1', scnS2:'Expanded S2', scnS0:'Current S0',
