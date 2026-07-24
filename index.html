@@ -108,6 +108,7 @@
       <div class="st"><div class="v"><span class="count" data-target="4238">0</span><small data-i18n="stat3-u"> MW</small></div><div class="k" data-i18n="stat3-k">경기·충남(A) 실행 가능 물량 (S1)</div></div>
       <div class="st"><div class="v">6<small data-i18n="stat4-u"> %</small></div><div class="k" data-i18n="stat4-k">실행/잠재 비율 — 핵심 발견</div></div>
     </div>
+    <p class="scope-note" data-i18n="scope-note" style="margin-top:20px;padding:11px 15px;border-left:3px solid var(--leaf);background:var(--sky);border-radius:0 8px 8px 0;font-size:13px;color:var(--muted);word-break:keep-all;line-height:1.6">전국 기초지자체 전 시군을 대상으로 분석이 진행 중이며, 현재 공개본은 전력 소비가 많은 대표 산업단지 인근 지역을 1차로 분석한 결과입니다.</p>
   </div>
 </div>
 
@@ -457,6 +458,7 @@ window.I18N = {
     "stat3-k": "Executable capacity, Gyeonggi·Chungnam (A) (S1)",
     "stat4-u": " %",
     "stat4-k": "Executable/potential ratio — the key finding",
+    "scope-note": "Analysis is under way for every city and county nationwide; this release is a first pass covering areas near representative industrial complexes with high electricity consumption.",
 
     // ── pipeline band ──
     "rt-flag": "Verdict · District candidates",
@@ -691,8 +693,7 @@ window.I18N = {
     var stage=document.getElementById('ls-stage');
     planes=LAYERS.map(function(html,i){
       var d=document.createElement('div'); d.className='ls-plane'; d.innerHTML=html; stage.appendChild(d);
-      var tg=document.createElement('div'); tg.className='ls-tag'+(i===4?' v':''); stage.appendChild(tg);
-      return {d:d,t:tg};
+      return {d:d};
     });
     FUN={nP:nParcels,nB:nonsub.length,nE:exec.length,mw:officialMW,st:status};
 
@@ -721,10 +722,6 @@ window.I18N = {
         p.d.classList.toggle('active',i===k-1);
         var lift=on?(i*46+(i===k-1?26:0)):(i*46-60);
         p.d.style.transform='rotateX(59deg) rotateZ(-31deg) translateY('+(-lift)+'px) translateZ('+(i*4)+'px) scale('+(i===k-1?1.02:1)+')';
-        p.t.classList.toggle('show',on);
-        p.t.textContent=t.tags[i];
-        p.t.style.left='calc(50% + 150px)';
-        p.t.style.top='calc(50% - '+(lift+70)+'px)';
       });
       var btns=document.querySelectorAll('.ls-step');
       btns.forEach(function(b,i){b.classList.toggle('on',i===k-1);b.classList.toggle('done',i<k-1);});
