@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANiT · 영농형 태양광이란</title>
+<meta name="description" content="영농형 태양광이란 무엇인가 — 농지에서 영농과 발전을 병행하는 방식, 그리고 재생에너지지구 지정이 들판을 어떻게 바꾸는지 인터랙티브로 설명한다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span data-i18n="tb-tag">Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
+    <span><a href="https://planit.institute/" data-i18n="tb-link">← planit.institute 메인으로</a></span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="PLANiT 영농형 태양광 홈">
+      <img class="mark-img" src="assets/planit_logo.png" alt="PLANiT">
+      <span class="sector" data-i18n="brand-sector">영농형 태양광</span>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="index.html" data-i18n="nav-overview">개요</a>
+      <a href="map.html" data-i18n="nav-map">지도</a>
+      <a href="atlas.html" data-i18n="nav-atlas">구역별 지도</a>
+      <a href="method.html" data-i18n="nav-method">방법론</a>
+      <a href="insight.html" data-i18n="nav-insight">인사이트</a>
+      <a class="active" href="about.html" data-i18n="nav-about">영농형 태양광이란</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="ko">KO</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a class="nav-cta" href="index.html#contact">Contact</a>
+      <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="alt" id="agrivolt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><p class="eyebrow" data-i18n="av-eye">What Agrivoltaic Means</p>
+      <h2 data-i18n="av-h2">영농형태양광법이 풀면, 들판은 <em>이렇게</em> 움직인다</h2></div>
+    </div>
+    <p class="lede reveal" style="margin-bottom:20px" data-i18n="av-lede">영농형 태양광은 농지를 전용하는 발전소가 아니다 —
+      <b>패널 아래·이랑 사이에서 농사는 계속된다.</b> 영농형 태양광 발전사업은 원칙적으로
+      <b>농업진흥지역 밖 농지</b>에서 하되, <b>재생에너지지구</b>로 지정되면 농업진흥지역 안에서도
+      발전과 영농을 병행할 수 있다 — <b>농민의 수입원을 지키는 것</b>이 그 취지다.</p>
+    <div class="box" style="padding:0;overflow:hidden"><canvas id="d17" style="width:100%;height:170px;display:block;cursor:ew-resize"></canvas></div>
+      <p class="src" data-i18n="av-src1">태양 위치에 따라 하늘·들판 밝기·태양 크기가 함께 변합니다 (시각화 전용 산식 e=sin(pπ) — 분석 결과와 무관한 화면 연출)</p>
+      <script>
+      (function(){
+        const cv=document.getElementById('d17'),ctx=cv.getContext('2d');
+        const H=170;
+        let t=0, p=0.32, auto=true;               // p: 태양 위치(0 동 → 1 서)
+        cv.addEventListener('mousemove',e=>{auto=false;const r=cv.getBoundingClientRect();p=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width))});
+        cv.addEventListener('mouseleave',()=>auto=true);
+        function size(){cv.width=cv.clientWidth*devicePixelRatio;cv.height=H*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+        size();addEventListener('resize',size);
+        const lerp=(a,b,u)=>a+(b-a)*u;
+        const mixc=(c1,c2,u)=>'rgb('+c1.map((v,i)=>Math.round(lerp(v,c2[i],u))).join(',')+')';
+        // [낮 색, 밤 색] — 들판 3겹: 지평선 골드 띠(뒤) → 연녹(중) → 짙은 녹(앞)
+        const layers=[
+          {day:[221,181,92], night:[70,58,32],  a:8, f:.023,sp:2.3, base:104},
+          {day:[110,168,84], night:[36,64,32],  a:13,f:.017,sp:1.6, base:118},
+          {day:[62,122,46],  night:[22,44,20],  a:16,f:.012,sp:1.0, base:136},
+        ];
+        // 감속모드: 자동 일주·들판 흔들림은 멈추되, 마우스 주도 태양은 계속 렌더
+        const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function frame(){
+          const W=cv.clientWidth;
+          if(auto&&!reduced){p+=0.0012; if(p>1.08)p=-0.08;} // 자동 일주(약 15초/하루)
+          const pc=Math.min(1,Math.max(0,p));
+          const e=Math.sin(pc*Math.PI);                    // 태양 고도 0~1
+          window._sunE=e;                                  // 17-B와 공유: 발전 계수 g=e
+          const dusk=Math.max(0,1-Math.abs(pc-.5)*2)<.5?1-e:0; // 새벽·해질녘 강도
+          // 하늘: 밤 네이비 ↔ 낮 하늘색, 지평선엔 노을
+          const sky=ctx.createLinearGradient(0,0,0,H);
+          sky.addColorStop(0, mixc([16,32,64],[188,224,244],e));
+          sky.addColorStop(1, mixc([30,48,80],[236,246,252],e*.9));
+          ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
+          if(dusk>0.25){                                    // 노을 밴드
+            const g=ctx.createLinearGradient(0,H*.45,0,H*.75);
+            g.addColorStop(0,'rgba(233,150,60,0)');g.addColorStop(1,'rgba(233,150,60,'+(dusk*.5)+')');
+            ctx.fillStyle=g;ctx.fillRect(0,H*.45,W,H*.3);
+          }
+          // 태양: 동→서 원호, 정오에 크고 강함
+          const sx=lerp(30,W-30,pc), sy=lerp(H*.78,H*.22,e), sr=11+e*9;
+          const glow=ctx.createRadialGradient(sx,sy,2,sx,sy,sr*3.2);
+          glow.addColorStop(0,'rgba(255,214,110,'+(0.55+e*.35)+')');glow.addColorStop(1,'rgba(255,214,110,0)');
+          ctx.fillStyle=glow;ctx.beginPath();ctx.arc(sx,sy,sr*3.2,0,7);ctx.fill();
+          ctx.beginPath();ctx.arc(sx,sy,sr,0,7);
+          ctx.fillStyle=mixc([233,120,60],[255,214,90],e);ctx.fill();
+          // 들판 3겹: 밝기 = 고도
+          layers.forEach(L=>{
+            ctx.beginPath();ctx.moveTo(0,H);
+            for(let x=0;x<=W;x+=4){
+              ctx.lineTo(x, L.base - Math.sin(x*L.f + t*L.sp)*L.a - Math.sin(x*L.f*0.5 + t*L.sp*0.7)*L.a*0.5);
+            }
+            ctx.lineTo(W,H);ctx.closePath();
+            ctx.fillStyle=mixc(L.night,L.day,.25+e*.75);ctx.fill();
+          });
+          if(!reduced) t+=0.03;                            // 들판 흔들림도 감속모드에선 정지
+          requestAnimationFrame(frame);                    // 루프는 항상 유지 → 마우스 상호작용 즉시 반영
+        }
+        frame();
+      })();
+      </script>
+    <p class="fignote" style="font-family:var(--mono);font-size:10.5px;color:#9FB4C4;margin:8px 0 26px;letter-spacing:.04em" data-i18n="av-fig1">마우스 좌우 = 태양 위치(동→서) · 정오에 가장 밝고 강함 · 놓으면 하루가 저절로 흐름</p>
+    <div class="box" style="padding:10px">
+        <div style="display:flex;gap:12px;align-items:center;margin:4px 6px 10px;flex-wrap:wrap">
+          <label style="font-family:var(--mono);font-size:11px;color:var(--muted)" data-i18n="av-lab1">시군</label>
+          <select id="d17sel" style="font-size:13px;padding:4px 10px;border:1px solid var(--line);border-radius:6px"></select>
+          <div class="tabs" id="d17scn" style="margin:0;gap:5px">
+            <button class="tab" data-s="S0" style="padding:4px 11px" data-i18n="av-tab0">현행 S0</button>
+            <button class="tab on" data-s="S1" style="padding:4px 11px" data-i18n="av-tab1">재생E지구 S1</button>
+            <button class="tab" data-s="S2" style="padding:4px 11px" data-i18n="av-tab2">확장 S2</button>
+          </div>
+          <label style="font-family:var(--mono);font-size:11px;color:var(--muted)" data-i18n="av-lab2">개인소유 상한</label>
+          <select id="d17t" style="font-size:12px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;font-family:var(--mono)">
+            <option value="0.10">t ≤ 0.10</option><option value="0.20">t ≤ 0.20</option>
+            <option value="0.30" selected>t ≤ 0.30</option><option value="0.40">t ≤ 0.40</option>
+            <option value="0.50">t ≤ 0.50</option>
+          </select>
+          <span id="d17cnt" style="font-family:var(--mono);font-size:12px;color:var(--leaf-deep)"></span>
+        </div>
+        <svg id="d17av" viewBox="0 0 760 320" style="width:100%;height:auto;display:block">
+          <!-- 들판(항공뷰 논배미) -->
+          <g id="d17fld"></g>
+          <!-- 농업진흥지역 내 재생에너지지구 지정(S1) -->
+          <rect x="55" y="62" width="272" height="206" rx="10" fill="var(--leaf)" opacity=".10"/>
+          <rect id="d17zb" x="55" y="62" width="272" height="206" rx="10" fill="none" stroke="var(--leaf)" stroke-width="2" stroke-dasharray="8 6"/>
+          <text id="d17zl" x="62" y="50" font-family="var(--mono)" font-size="12.5" fill="var(--leaf-deep)" font-weight="700">재생에너지지구 (농업진흥지역 내)</text>
+          <!-- 태양광 패널 어레이 (발광 ∝ g) -->
+          <g id="d17pn"></g>
+          <!-- 패널 사이 이랑 작물: 영농 병행 -->
+          <g id="d17cr" pointer-events="none"></g>
+          <!-- 비닐하우스 + 지붕형 태양광 -->
+          <g id="d17gh"></g>
+          <!-- 송전선(동적: 시군별 산단 수만큼) -->
+          <g id="d17wr"></g>
+          <!-- 빛 펄스 -->
+          <g id="d17pl"></g>
+          <!-- 산단(동적) -->
+          <g id="d17fc"></g>
+          <!-- 밤 오버레이 -->
+          <rect id="d17night" x="0" y="0" width="760" height="320" fill="#0A1E3C" opacity="0" pointer-events="none"/>
+          <!-- 발전율 판 -->
+          <g pointer-events="none">
+            <rect x="588" y="14" width="158" height="26" rx="13" fill="rgba(255,255,255,.85)"/>
+            <text id="d17st" x="667" y="31" text-anchor="middle" font-family="var(--mono)" font-size="13" fill="var(--navy)" font-weight="700">발전율 0%</text>
+          </g>
+        </svg>
+      </div>
+      <p class="src" data-i18n="av-src2">산단 = 산업단지 DB 실데이터(이름·업종·추정 MW — 마우스를 올리면 표시) · 송전선 흐름·패널 발광·창불빛·밤 밝기는 위 들판의 태양 고도에 비례하는 화면 연출입니다</p>
+      <script>
+      window._d17init=function(C,CPX){
+        // ── 동적 라벨 i18n 사전 + 시군명 로마자 (window.__curLang 를 렌더 시점에 읽음) ──
+        const ROMAN={'44270':'Dangjin','44180':'Boryeong','44200':'Asan','44130':'Cheonan','44210':'Seosan','44800':'Hongseong','41590':'Hwaseong','41220':'Pyeongtaek','41460':'Yongin','41270':'Ansan','41390':'Siheung','41500':'Icheon','41480':'Paju','41570':'Gimpo','44810':'Yesan','28200':'Incheon-Namdong','46230':'Gwangyang','46130':'Yeosu','47110':'Pohang','47190':'Gumi','31000':'Ulsan'};
+        const NM=k=>(window.__curLang==='en'&&ROMAN[k])?ROMAN[k]:C[k].name;
+        const D17={
+          ko:{
+            ogA:'A · 경기·충남', ogB:'B · 전국 산단거점 — 산단 목록 수집 예정',
+            cpx:n=>` (산단 ${n})`,
+            zoneS0:'농업진흥지역 · 현행법 — 영농형·지붕형 불가',
+            zoneS1:'재생에너지지구 (농업진흥지역 내, S1)',
+            zoneS2:'재생에너지지구 확장 (S2 · +자연환경)',
+            ghTip:'시설재배 비닐하우스 · 지붕형 태양광 (실증 계수 대기)',
+            ghL1:'◀ 시설재배 비닐하우스', ghL2:'지붕형 태양광 (실증 대기)',
+            genRate:p=>`발전율 ${p}%`,
+            fcTip:(n,ind,mw)=>`${n} · ${ind} · 약 ${mw}MW 밀도`,
+            noListT:'산단 목록 수집 예정 (한국산업단지공단)',
+            noListS:'관내 실행 물량 부재 시 인접 농업 시군 연계',
+            cap:o=>`${o.n?`산단 ${o.n}곳`:'산단 수집 예정'} · 패널 ${o.cells}개×10MW`+(o.extra?`(+${o.extra})`:'')+` ≈ 실행 ${o.mw}MW · ${o.scn} · t≤${o.tt} (개인소유 필지 ${o.pct}% 이하 블록만)`
+          },
+          en:{
+            ogA:'A · Gyeonggi·Chungnam', ogB:'B · National hubs — complex list to be collected',
+            cpx:n=>` (${n} complexes)`,
+            zoneS0:'Agri. Promotion Area · current law — agrivoltaics/rooftop prohibited',
+            zoneS1:'Renewable Energy District (inside Agri. Promotion Area, S1)',
+            zoneS2:'Renewable Energy District expanded (S2 · +Nature Conservation)',
+            ghTip:'Greenhouse (protected cultivation) · rooftop solar (pilot coefficients pending)',
+            ghL1:'◀ Greenhouse (protected cultivation)', ghL2:'Rooftop solar (pilot pending)',
+            genRate:p=>`Generation rate ${p}%`,
+            fcTip:(n,ind,mw)=>`${n} · ${ind} · ~${mw}MW density`,
+            noListT:'Complex list to be collected (KICOX)',
+            noListS:'If no in-district capacity, link to adjacent farming counties',
+            cap:o=>`${o.n?`${o.n} complexes`:'complexes to be collected'} · ${o.cells} panels×10MW`+(o.extra?`(+${o.extra})`:'')+` ≈ ${o.mw}MW executable · ${o.scn} · t≤${o.tt} (only blocks with ≤${o.pct}% individually-owned parcels)`
+          }
+        };
+        const WL=()=>D17[window.__curLang||'ko']||D17.ko;
+        // 좌 = 논밭(항공뷰 필지 패치워크) · 우 = 도시(도로·건물 블록, 산단 구역)
+        const fld=document.getElementById('d17fld');
+        const PALS=['#CDE0AE','#C2D8A0','#D6E6BC','#BFD49A','#D9E3AC','#E4DCA0','#CFE2B4'];  // 초록들 + 익은 논 골드 1
+        let fh2='<rect x="0" y="0" width="760" height="320" fill="#B9C89A"/>';               // 두렁·땅
+        for(let r=0;r<5;r++)for(let c=0;c<4;c++){                                            // 농지 필지는 좌측만
+          const i=r*7+c, px=c*110-6, py=r*66-4, col=PALS[(i*3+r)%7];
+          fh2+=`<rect x="${px}" y="${py}" width="103" height="59" rx="4" fill="${col}"/>`;
+          const vert=(r+c)%2===0, dk='rgba(90,110,60,.22)';
+          if(vert){for(let lx=px+9;lx<px+100;lx+=9) fh2+=`<line x1="${lx}" y1="${py+5}" x2="${lx}" y2="${py+54}" stroke="${dk}" stroke-width="2.4"/>`;}
+          else{for(let ly=py+9;ly<py+56;ly+=9) fh2+=`<line x1="${px+5}" y1="${ly}" x2="${px+98}" y2="${ly}" stroke="${dk}" stroke-width="2.4"/>`;}
+        }
+        // ── 도시(우측 x≥400): 회색 기반 + 도로망 + 건물 블록 ──
+        fh2+='<rect x="400" y="0" width="360" height="320" fill="#E3E4DE"/>';
+        // 도로: 세로 2 + 가로 2 (중앙 점선)
+        const road=(x,y,w,h,vert2)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#CACBC4"/>`+
+          (vert2?`<line x1="${x+w/2}" y1="${y+4}" x2="${x+w/2}" y2="${y+h-4}" stroke="#fff" stroke-width="1.6" stroke-dasharray="8 7"/>`
+                :`<line x1="${x+4}" y1="${y+h/2}" x2="${x+w-4}" y2="${y+h/2}" stroke="#fff" stroke-width="1.6" stroke-dasharray="8 7"/>`);
+        fh2+=road(400,0,10,320,true);                       // 농지-도시 경계 간선
+        fh2+=road(524,0,12,320,true)+road(642,0,12,320,true);
+        fh2+=road(400,96,360,12,false)+road(400,216,360,12,false);
+        // 건물 블록: 도로 사이 격자에 소형 건물들 (결정론적 배치)
+        const BCOL=['#C2C8CE','#B4BCC6','#AEB8C2','#CBD0D6','#9FA9B5'];
+        const CELLX=[[414,516],[540,634],[658,752]], CELLY=[[8,88],[116,208],[236,312]];
+        let bi=0;
+        CELLY.forEach(([cy0,cy1],ri)=>CELLX.forEach(([bx0,bx1],ci)=>{
+          const nB=3+((ri+ci)%2);                            // 셀당 3~4동
+          for(let b=0;b<nB;b++){
+            const w=15+((bi*7)%13), h=9+((bi*5)%9);
+            const bx=bx0+((bi*29)%(bx1-bx0-w)), by=cy0+((bi*17)%(cy1-cy0-h));
+            fh2+=`<rect x="${bx}" y="${by}" width="${w}" height="${h}" rx="1.5" fill="${BCOL[bi%5]}"/>`;
+            bi++;
+          }
+        }));
+        fld.innerHTML=fh2;
+        // ── 비닐하우스 + 지붕형 태양광 (특구 아래 농지 띠) ──
+        const gh=document.getElementById('d17gh');
+        function drawGH(){
+        let gh2='';
+        [64,128,192,256].forEach((gx,gi)=>{
+          gh2+=`<g><title>${WL().ghTip}</title>
+            <path d="M ${gx} 312 v-20 q 0 -15 15 -15 h 24 q 15 0 15 15 v 20 z" fill="#F5F7F2" stroke="#C4CCC0" stroke-width="1.2"/>
+            <path d="M ${gx+13} 312 v-33 M ${gx+27} 312 v-35 M ${gx+41} 312 v-33" stroke="#DDE4DA" stroke-width="1.1"/>
+            <rect class="d17rp" x="${gx+13}" y="273" width="28" height="7" rx="1.5" fill="var(--navy)" stroke="var(--gold)" stroke-width=".9"/>
+          </g>`;
+        });
+        gh2+='<text x="330" y="300" font-family="var(--mono)" font-size="10" fill="var(--ink)" style="paint-order:stroke;stroke:#F6FAF4;stroke-width:3px">'+WL().ghL1+'</text>'+
+             '<text x="330" y="311" font-family="var(--mono)" font-size="10" fill="var(--muted)" style="paint-order:stroke;stroke:#F6FAF4;stroke-width:3px">'+WL().ghL2+'</text>';
+        gh.innerHTML=gh2;
+        }
+        drawGH();
+        // 특구 안 작물: 노란 벼 + 초록 풀 다발 (전면 — 패널 사이로 보임)
+        const cr=document.getElementById('d17cr');
+        let ch='';
+        for(let cy=82;cy<=258;cy+=15){
+          for(let cx2=76;cx2<=316;cx2+=13){
+            const rice=((cx2+cy)%3)!==0;             // 2/3 벼(골드), 1/3 풀(그린)
+            const col=rice?'#C0A238':'#3E7A2E';
+            ch+=`<path d="M ${cx2} ${cy} l -2.2 -6 M ${cx2} ${cy} l 0 -7 M ${cx2} ${cy} l 2.2 -6" stroke="${col}" stroke-width="1.2" fill="none" opacity=".85"/>`+
+                (rice?`<circle cx="${cx2}" cy="${cy-7.5}" r="1.1" fill="#D3B54A"/>`:'');
+          }
+        }
+        cr.innerHTML=ch;
+        // 패널: 1개 = 10MW — 시군 실행 가능 물량에 비례해 개수 변동
+        const pn=document.getElementById('d17pn');
+        const CELL={w:16,h:7,dx:20,dy:14,x0:74,y0:80,cols:12,maxRows:12};
+        function setPanels(mw){
+          const want=Math.round((mw||0)/10);
+          const cap=CELL.cols*CELL.maxRows;
+          const cells=Math.min(want,cap);
+          let ps='';
+          for(let i=0;i<cells;i++){
+            const r=Math.floor(i/CELL.cols), c=i%CELL.cols;
+            const x=CELL.x0+c*CELL.dx, y=CELL.y0+r*CELL.dy;
+            ps+=`<g><rect x="${x}" y="${y}" width="${CELL.w}" height="${CELL.h}" rx="1.5" fill="var(--navy)" stroke="var(--gold)" stroke-width=".8"/><line x1="${x+CELL.w/2}" y1="${y}" x2="${x+CELL.w/2}" y2="${y+CELL.h}" stroke="#3C64A0" stroke-width=".8"/></g>`;
+          }
+          pn.innerHTML=ps;
+          return {cells,want};
+        }
+        // 시군 셀렉트: A(산단 보유, 산단 수순) + B 전국 산단거점(산단 목록 수집 예정)
+        const sel=document.getElementById('d17sel');
+        const codes=Object.keys(CPX).filter(k=>C[k]&&C[k].region==='A').sort((a,b)=>CPX[b].length-CPX[a].length);
+        const codesB=Object.keys(C).filter(k=>C[k].region==='B').sort((a,b)=>(C[b].S1.b_mw_t30||0)-(C[a].S1.b_mw_t30||0));
+        function buildSelect(){
+          const prev=sel.value;
+          sel.innerHTML=
+            `<optgroup label="${WL().ogA}">${codes.map(k=>`<option value="${k}">${NM(k)}${WL().cpx(CPX[k].length)}</option>`).join('')}</optgroup>`+
+            `<optgroup label="${WL().ogB}">${codesB.map(k=>`<option value="${k}">${NM(k)}</option>`).join('')}</optgroup>`;
+          if(prev&&C[prev])sel.value=prev;
+        }
+        buildSelect();
+        let wires=[],lens=[],pulses=[],wins=[];
+        let scn='S1', tt='0.30', curN=0;
+        // 시나리오·t 반영: 패널 수, 지붕형 가시성, 특구 라벨, 집계 문구
+        function refresh(){
+          const code=sel.value;
+          const mw=(((C[code][scn]||{}).by_t||{})[tt]||{}).b_mw||0;
+          const pr=setPanels(mw);
+          // 현행법(S0): 농업진흥지역 영농형 불가 + 시설(비닐하우스) 지붕형도 불가
+          document.querySelectorAll('#d17gh .d17rp').forEach(rp=>rp.style.display=scn==='S0'?'none':'');
+          const zl=document.getElementById('d17zl'), zb=document.getElementById('d17zb');
+          if(scn==='S0'){ zl.textContent=WL().zoneS0; zl.setAttribute('fill','#A0522D'); zb.setAttribute('stroke','#B08A6A'); }
+          else if(scn==='S1'){ zl.textContent=WL().zoneS1; zl.setAttribute('fill','var(--leaf-deep)'); zb.setAttribute('stroke','var(--leaf)'); }
+          else { zl.textContent=WL().zoneS2; zl.setAttribute('fill','var(--leaf-deep)'); zb.setAttribute('stroke','var(--leaf)'); }
+          document.getElementById('d17cnt').textContent=WL().cap({
+            n:curN, cells:pr.cells, extra:(pr.want>pr.cells?pr.want-pr.cells:0),
+            mw:Math.round(mw).toLocaleString(), scn:scn, tt:tt, pct:Math.round(+tt*100)
+          });
+        }
+        function build(code){
+          const list=(CPX[code]||[]).slice(0,8);                 // 최대 8곳 (B = 목록 없음)
+          const n=list.length; curN=n;
+          const wr=document.getElementById('d17wr'), fc=document.getElementById('d17fc'), pl=document.getElementById('d17pl');
+          // 2열 배치: 라벨이 이웃 산단과 겹치지 않게 (좌 552 / 우 664, 행 간격 넉넉히)
+          const two=n>4, s=two?0.8:1;
+          const rows=two?Math.ceil(n/2):n;
+          const y0=64, y1=304, step=(y1-y0)/rows;
+          let wh='',fh='',ph='';
+          list.forEach((cx,i)=>{
+            const col=two?(i%2):0, ri=two?Math.floor(i/2):i;
+            const fx=two?(col?664:552):612;
+            const fy=y0+step*(ri+0.5)-19*s;
+            const sy=100+(i/(Math.max(n-1,1)))*130;               // 특구 출구 지점 분산
+            wh+=`<path class="d17w" d="M 327 ${sy.toFixed(0)} C ${((327+fx)/2).toFixed(0)} ${((sy+fy+18)/2-24).toFixed(0)}, ${(fx-56).toFixed(0)} ${(fy+18).toFixed(0)}, ${fx} ${(fy+22*s).toFixed(0)}" fill="none" stroke="var(--gold)" stroke-width="${two?2:2.5}" stroke-linecap="round" stroke-dasharray="10 8"/>`;
+            const w=64*s, nm=cx.n.replace('산업단지','산단');
+            const maxCh=two?8:10;
+            fh+=`<g style="cursor:default"><title>${WL().fcTip(cx.n, cx.ind||'', Math.round(cx.mw).toLocaleString())}</title>
+              <rect x="${fx}" y="${(fy+10*s).toFixed(1)}" width="${w}" height="${26*s}" rx="3" fill="var(--navy)"/>
+              <rect x="${fx+7*s}" y="${fy.toFixed(1)}" width="${8*s}" height="${13*s}" fill="var(--navy)"/>
+              <path d="M ${fx} ${(fy+10*s).toFixed(1)} l ${15*s} -6 v 6 l ${15*s} -6 v 6 l ${15*s} -6 v 6 z" fill="#3C64A0"/>
+              <rect class="d17win" x="${(fx+6*s).toFixed(1)}"  y="${(fy+17*s).toFixed(1)}" width="${11*s}" height="${8*s}" rx="1.5" fill="var(--gold)" opacity="0"/>
+              <rect class="d17win" x="${(fx+24*s).toFixed(1)}" y="${(fy+17*s).toFixed(1)}" width="${11*s}" height="${8*s}" rx="1.5" fill="var(--gold)" opacity="0"/>
+              <rect class="d17win" x="${(fx+42*s).toFixed(1)}" y="${(fy+17*s).toFixed(1)}" width="${11*s}" height="${8*s}" rx="1.5" fill="var(--gold)" opacity="0"/>
+              <text x="${fx+w/2}" y="${(fy+26*s+13).toFixed(1)}" text-anchor="middle" font-size="${two?10:11}" font-family="var(--mono)" fill="var(--ink)" style="paint-order:stroke;stroke:#F6FAF4;stroke-width:3px">${nm.length>maxCh?nm.slice(0,maxCh)+'…':nm}</text></g>`;
+            ph+=`<circle data-w="${i}" r="3" fill="#FFDD82" opacity="0"/><circle data-w="${i}" r="3" fill="#FFDD82" opacity="0"/>`;
+          });
+          if(n===0){                                             // B: 산단 목록 미수집 안내
+            fh=`<text x="565" y="150" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--muted)" style="paint-order:stroke;stroke:#E3E4DE;stroke-width:4px">${WL().noListT}</text>`+
+               `<text x="565" y="168" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="#9AA8B8" style="paint-order:stroke;stroke:#E3E4DE;stroke-width:4px">${WL().noListS}</text>`;
+          }
+          wr.innerHTML=wh; fc.innerHTML=fh; pl.innerHTML=ph;
+          wires=[...wr.querySelectorAll('.d17w')];
+          lens=wires.map(w=>w.getTotalLength());
+          pulses=[...pl.querySelectorAll('circle')];
+          wins=[...fc.querySelectorAll('.d17win')];
+          refresh();
+        }
+        sel.addEventListener('change',()=>build(sel.value));
+        document.getElementById('d17scn').addEventListener('click',e=>{
+          const b=e.target.closest('.tab'); if(!b) return;
+          document.querySelectorAll('#d17scn .tab').forEach(x=>x.classList.toggle('on',x===b));
+          scn=b.dataset.s; refresh();
+        });
+        document.getElementById('d17t').addEventListener('change',e=>{tt=e.target.value; refresh();});
+        build(codes[0]);
+        // 언어 전환 시 동적 라벨 재렌더 (site.js 공용 엔진이 호출)
+        (function(){var _p=window.onLangChange;window.onLangChange=function(l){if(typeof _p==='function')_p(l);buildSelect();drawGH();build(sel.value);};})();
+        const night=document.getElementById('d17night'), st=document.getElementById('d17st');
+        const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let off=0, pt=0;
+        function frame(){
+          const g=window._sunE ?? 0.75;
+          if(!reduced){ off+=3.8*g; pt+=0.0045*g; }
+          wires.forEach(w=>{
+            w.setAttribute('stroke-dashoffset',(-off).toFixed(1));
+            w.setAttribute('stroke-opacity',(0.08+0.87*g).toFixed(3));
+          });
+          pulses.forEach((c,idx)=>{
+            const wi=+c.dataset.w, L=lens[wi]; if(!L)return;
+            const p=((pt+(idx%2)*0.5+wi*0.13)%1)*L;
+            const pos=wires[wi].getPointAtLength(p);
+            c.setAttribute('cx',pos.x.toFixed(1)); c.setAttribute('cy',pos.y.toFixed(1));
+            c.setAttribute('opacity',g<0.06?0:(0.25+0.75*g).toFixed(3));
+            c.setAttribute('r',(2+2*g).toFixed(2));
+          });
+          pn.style.filter=`drop-shadow(0 0 ${(4*g).toFixed(1)}px rgba(233,185,74,${(0.8*g).toFixed(2)}))`;
+          gh.style.filter=pn.style.filter;               // 지붕형 패널도 같이 발광
+          wins.forEach(w=>w.setAttribute('opacity',(0.94*g).toFixed(3)));
+          night.setAttribute('opacity',((1-g)*0.45).toFixed(3));
+          st.textContent=WL().genRate(Math.round(g*100));
+          requestAnimationFrame(frame);
+        }
+        frame();
+      };
+      </script>
+    <p class="fignote" style="font-family:var(--mono);font-size:10.5px;color:#9FB4C4;margin-top:10px;letter-spacing:.04em" data-i18n="av-fig2">시군·시나리오·개인소유 상한을 바꿔 보라 — 패널 1개=10MW(실행 물량 비례) · 현행 S0에선 농업진흥지역 영농형·비닐하우스 지붕형 모두 불가 · 산단·계통·수요는 실측 데이터(미수집분은 '수집 예정'으로 표기)</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="brandline" data-i18n="foot-brand">PLANiT · 영농형 태양광</div>
+        <p style="max-width:34ch;word-break:keep-all" data-i18n="foot-desc">
+          잠재량이 아니라 실행 가능성으로 영농형 태양광 특구 후보를 가리는
+          PLANiT Institute의 재생에너지 섹터입니다.
+        </p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html" data-i18n="foot-site1">개요</a></li>
+          <li><a href="map.html" data-i18n="foot-site2">지도</a></li>
+          <li><a href="method.html" data-i18n="foot-site3">방법론</a></li>
+          <li><a href="insight.html" data-i18n="foot-site4">인사이트</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Pipeline</h4>
+        <ul>
+          <li><a href="index.html#p1" data-i18n="foot-pipe1">01 필지 원장</a></li>
+          <li><a href="index.html#p2" data-i18n="foot-pipe2">02 블록화</a></li>
+          <li><a href="index.html#p3" data-i18n="foot-pipe3">03 소유 분석</a></li>
+          <li><a href="index.html#p4" data-i18n="foot-pipe4">04 계통·수요</a></li>
+          <li><a href="index.html#p5" data-i18n="foot-pipe5">05 판정 · 결과</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Org</h4>
+        <ul>
+          <li><a href="https://planit.institute/">planit.institute ↗</a></li>
+          <li><a href="mailto:sojin@planit.institute">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fine">
+      <span data-i18n="foot-data">데이터: 국토부 지적통계 · LX · 팜맵 · 한전 전력데이터 개방포털 · V-World</span>
+      <span data-i18n="foot-copy">© 2026 PLANiT Institute · 내부 검수본</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.I18N = {
+  meta: {
+    en: {
+      title: "PLANiT · About agrivoltaics",
+      desc: "Not potential, but executability decides the districts. With 2 million parcels as the ledger, we screen agrivoltaic special-district candidates by the executable capacity of low individual-ownership blocks."
+    }
+  },
+  en: {
+    // ── 리플 도식 라벨 (파이프라인 5단계, SVG) ──
+    "rl-p": "Parcel",
+    "rl-b": "Block",
+    "rl-o": "Ownership",
+    "rl-g": "Grid",
+    "rl-v": "Verdict",
+    // ── chrome ──
+    "tb-tag": "Agrivoltaic · PLANiT Institute's agrivoltaics sector",
+    "tb-link": "← Back to planit.institute",
+    "brand-sector": "Agrivoltaics",
+    "nav-overview": "Overview",
+    "nav-map": "Map",
+    "nav-atlas": "Atlas",
+    "nav-method": "Method",
+    "nav-insight": "Insight",
+    "nav-about": "About",
+    "foot-data": "Data: MOLIT cadastral statistics · LX · FarmMap · KEPCO power-data portal · V-World",
+    "foot-copy": "© 2026 PLANiT Institute · internal review build",
+
+    // ── hero ──
+    "hero-eyebrow": "Agrivoltaics · Optimal siting for special districts",
+    "hero-h1": "The land and the demand are both there.<br>What decides a district is <em>executability</em>.",
+    "hero-lede": "Across 25 analysis zones — 15 cities/counties in Gyeonggi and Chungnam plus 10 nationwide industrial-complex hubs — we screen agrivoltaic special-district candidates against a full ledger of <b>2 million parcels</b>. Candidates are ranked not by potential but by the <b>executable capacity of blocks with a low individual-ownership ratio</b> — and that executability differs starkly from one city/county to the next.",
+    "hero-btn1": "See the analysis pipeline",
+    "hero-btn2": "See candidates on the map →",
+    "stat1-u": " analysis zones",
+    "stat1-k": "Analysis zones · A: 15 cities/counties + B: 10 hubs",
+    "stat2-u": " zones",
+    "stat2-k": "Strong districts · ≥100MW (S1)",
+    "stat3-u": " MW",
+    "stat3-k": "Executable capacity, Gyeonggi·Chungnam (A) (S1)",
+    "stat4-u": " %",
+    "stat4-k": "Executable/potential ratio — the key finding",
+
+    // ── pipeline band ──
+    "rt-flag": "Verdict · District candidates",
+    "rt-nm1": "Parcel ledger",
+    "rt-pr1": "2M parcels",
+    "rt-nm2": "Blocking",
+    "rt-pr2": "+ 25m adjacency",
+    "rt-nm3": "Ownership",
+    "rt-pr3": "+ executability",
+    "rt-nm4": "Grid & demand",
+    "rt-pr4": "+ grid headroom",
+    "rt-nm5": "Verdict",
+    "rt-pr5": "+ district candidates",
+    "rt-cap1": "ANALYSIS PIPELINE · from parcel to district · five stages · each stage adds one data layer",
+    "rt-cap2": "Click a stage to jump to its explanation",
+
+    // ── Stage 01 ──
+    "s1-eye": "Stage 01 · Ledger · Building the full ledger",
+    "s1-h2": "Parcel ledger: laying the foundation",
+    "s1-chip": "Parcel",
+    "s1-body": "Every analysis begins with the parcel. On a PNU basis we built a full ledger of <b>2 million parcels</b> across Gyeonggi·Chungnam and the nationwide industrial-complex hubs. Cross-checked against MOLIT cadastral base statistics, the Gyeonggi·Chungnam ledger reaches <b>99.65% coverage</b>. Merging land category, ownership, continuous cadastre and FarmMap, we tag each parcel with farmland status and ownership type. The completeness of the ledger determines the reliability of everything downstream.",
+    "s1-l1t": "Method · data layers and coverage audit",
+    "s1-l1m": "MOLIT · LX · FarmMap",
+    "s1-l2t": "Map · candidate blocks over the parcel ledger",
+
+    "br1": "<b>Scattered individual parcels cannot become a project.</b> The unit of a project is a contiguous cluster of land — a block. What matters is not how many parcels there are, but how large a block can be drawn.",
+
+    // ── Stage 02 ──
+    "s2-eye": "Stage 02 · Blocks · Forming contiguous blocks",
+    "s2-h2": "Blocking: creating the unit of a project",
+    "s2-chip1": "Parcel",
+    "s2-chip2": "+ adjacency",
+    "s2-body": "A candidate is not a parcel but a <b>contiguous block</b>. Based on the measured distribution of parcel gaps (91% in direct contact, P90 33.6m), we join parcels into blocks at a <b>25m adjacency distance</b> and treat <b>3MW or more</b> as the official listing unit. Blocks over 50MW are split three ways along administrative, ownership-boundary and compactness axes, with leftover fragments re-merged into adjacent sibling blocks. Installed capacity scales with <b>area</b>, not parcel count.",
+    "s2-l1t": "Method · adjacency distance and block-split rules",
+    "s2-l1m": "25m · 3-way split",
+    "s2-l2t": "Map · block boundaries and scale",
+
+    "br2": "<b>A large block is not necessarily buildable.</b> Land entangled with individual ownership is hard to secure consent for. This is where potential and executability diverge — and where the feasible scale of a district emerges.",
+
+    // ── Stage 03 ──
+    "s3-eye": "Stage 03 · Ownership · Feasibility of land assembly",
+    "s3-h2": "Ownership analysis: separating potential from executability",
+    "s3-chip1": "Parcel",
+    "s3-chip2": "Block",
+    "s3-chip3": "+ ownership",
+    "s3-body": "The heart of this project is <b>not potential but the feasibility of land assembly</b>. Blocks where the individual-ownership ratio is at or below a threshold t (default 0.30, adjustable 0.10–0.50) and unverified-ownership parcels are at most 20% (a fixed criterion separate from t) — that is, land with low barriers to ownership negotiation — are counted as <b>executable capacity</b>. Of Gyeonggi·Chungnam's 73,000 MW of potential, only <b>about 6%</b> is executable today. That this ratio differs starkly across cities/counties is the single most important finding of this analysis.",
+    "s3-l1t": "Insight · executable/potential ranking and the ownership threshold (t)",
+    "s3-l2t": "Priority candidates · blocks with a low individual-ownership ratio",
+    "s3-l2m": "Lowest ownership first",
+
+    "br3": "<b>Even executable land is meaningless without a grid to carry the power and demand to consume it.</b>",
+
+    // ── Stage 04 ──
+    "s4-eye": "Stage 04 · Grid & Demand · Linking grid and demand",
+    "s4-h2": "Grid & demand: checking each candidate's power conditions",
+    "s4-chip1": "Parcel",
+    "s4-chip2": "Block",
+    "s4-chip3": "Ownership",
+    "s4-chip4": "+ grid",
+    "s4-body": "We link KEPCO distribution-line headroom (at township level) and industrial demand to each candidate. The closer a candidate is to demand (industrial complexes, cities), the shorter the transmission distance — we read candidates through the siting logic of <b>generation near demand</b> as defined by the Distributed Energy Act. Grid headroom was connected across all 25 analysis zones, spanning <b>651 townships</b>, via the KEPCO power-data portal OpenAPI.",
+    "s4-l1t": "Map · grid-headroom township choropleth",
+    "s4-l1m": "Township shading",
+    "s4-l2t": "Insight · city-character matrix",
+    "s4-l2m": "Demand structure",
+
+    "br4": "<b>Once every layer is stacked, the last step is the verdict.</b> Does the sum of executable capacity clear the threshold for a special district? This is the terminus of the pipeline.",
+
+    // ── Stage 05 ──
+    "s5-eye": "Stage 05 · Verdict · <span style=\"color:var(--leaf-deep);font-weight:700\">Current results</span>",
+    "s5-h2": "Verdict: screening the district candidates",
+    "s5-chip1": "Parcel",
+    "s5-chip2": "Block",
+    "s5-chip3": "Ownership",
+    "s5-chip4": "Grid",
+    "s5-chip5": "+ district",
+    "s5-body": "Cities/counties are judged by the sum of executable capacity — <b>strong (≥100MW), designatable (50–100MW), below threshold</b>. Scenarios split into S0 (Current), S1 (Renewable Energy District) and S2 (Expanded). Under the default scenario S1 there are <b>8 strong zones</b> (Dangjin, Seosan, Pyeongtaek, Boryeong, Asan, Paju, Hwaseong, Hongseong) and <b>4 designatable zones</b> (Icheon, Gimpo, Cheonan, Pohangᴮ). Whether Nature Conservation Areas are included (S2) or excluded (S1), the verdict changes for zero analysis zones — this conclusion is robust.",
+    "s5-l1t": "Insight · verdict ranking by city/county",
+    "s5-l1m": "25 analysis zones",
+    "s5-l2t": "Map · explore by adjusting scenario and threshold t",
+
+    // ── thesis ──
+    "thesis-q": "\"The land and the demand are both there. <mark>Policy</mark> decides the scale — under current policy (S0), only Pyeongtaek, Paju and Seosan are strong. When the Agrivoltaics Act unlocks Agricultural Promotion Areas through Renewable Energy District designation (S1), strong zones rise to 8 and Dangjin goes from 37MW to 1,122MW.\"",
+    "thesis-cite": "— PLANiT Agrivoltaics · executable-capacity analysis",
+
+    // ── What Agrivoltaic Means ──
+    "av-eye": "What Agrivoltaic Means",
+    "av-h2": "When the Agrivoltaics Act unlocks it, the fields move <em>like this</em>",
+    "av-lede": "Agrivoltaics is not a power plant that converts farmland — <b>farming continues under the panels and between the rows.</b> Agrivoltaic generation is, in principle, carried out on <b>farmland outside Agricultural Promotion Areas</b>, but once an area is designated a <b>Renewable Energy District</b>, generation and farming can proceed together even inside Agricultural Promotion Areas — the aim being to <b>protect farmers' income.</b>",
+    "av-src1": "Sky, field brightness and sun size all shift with the sun's position (visualization-only formula e=sin(pπ) — a screen effect unrelated to the analysis results)",
+    "av-fig1": "Mouse left/right = sun position (east→west) · brightest and strongest at noon · release and the day flows on its own",
+    "av-lab1": "City/county",
+    "av-tab0": "Current S0",
+    "av-tab1": "Renew. District S1",
+    "av-tab2": "Expanded S2",
+    "av-lab2": "Ownership cap",
+    "av-src2": "Industrial complex = real data from the industrial-complex DB (name · sector · estimated MW — shown on hover) · transmission-line flow, panel glow, window light and night brightness are screen effects scaled to the sun's altitude above",
+    "av-fig2": "Try changing the city/county, scenario and ownership cap — 1 panel = 10MW (scaled to executable capacity) · under current S0, both agrivoltaics in Agricultural Promotion Areas and rooftop solar on greenhouses are prohibited · industrial complexes, grid and demand use measured data (uncollected items marked “to be collected”)",
+
+    // ── Now ──
+    "now-eye": "Now · the field of this stage",
+    "now-h2": "What we are filling in now",
+    "now-more": "Full method →",
+    "now-c1-meta": "STAGE 04 · Grid & demand",
+    "now-c1-h3": "KEPCO OpenAPI grid headroom — 651 townships linked",
+    "now-c1-s1": "Township choropleth shading complete",
+    "now-c1-s2": "Done",
+    "now-c2-meta": "STAGE 04 · Industrial-complex cards",
+    "now-c2-h3": "Linking industrial-complex lists for nationwide hubs (B) — KICOX",
+    "now-c2-s1": "Awaiting open-data expansion",
+    "now-c2-s2": "To be collected",
+    "now-c3-meta": "Conclusion · policy recommendations",
+    "now-c3-h3": "The case for using the Agrivoltaics Act — with legal review",
+    "now-c3-s1": "Reviewing statutes and enforcement decrees",
+    "now-c3-s2": "Private",
+
+    // ── Explore ──
+    "ex-eye": "Explore · three windows",
+    "ex-h2": "See the results from three perspectives",
+    "ex-more": "To the map →",
+    "ex-c1-tag": "Map",
+    "ex-c1-sub": "Interactive",
+    "ex-c1-h3": "Candidate map",
+    "ex-c1-p": "Explore block boundaries, the grid-headroom township choropleth and industrial-complex locations while adjusting scenario and threshold t.",
+    "ex-c1-foot": "Open <span class=\"arrow\">→</span>",
+    "ex-c2-tag": "Insight",
+    "ex-c2-sub": "Five frames",
+    "ex-c2-h3": "The boundary executability draws",
+    "ex-c2-p": "The potential-trap quadrant, scenario × ownership-cap sensitivity, the 100MW sufficiency ring, the city-character matrix, and the nationwide verdict table.",
+    "ex-c2-foot": "Open <span class=\"arrow\">→</span>",
+    "ex-c3-tag": "Method",
+    "ex-c3-sub": "10 sections",
+    "ex-c3-h3": "How it was quantified",
+    "ex-c3-p": "Data layers, 25m block adjacency, three-way splits, scenarios S0/S1/S2, and the generation and grid formulas — down to the limitations.",
+    "ex-c3-foot": "Open <span class=\"arrow\">→</span>",
+
+    // ── Contact ──
+    "ct-eye": "Contact",
+    "ct-h2": "Which city or county would you like to <em>design</em> with us?",
+    "ct-p": "We work with policymakers, local governments, developers and the agricultural sector, reviewing together the executable capacity and priority shortlist for candidate cities and counties.",
+    "ct-sector": "Agrivoltaic · agrivoltaics",
+    "ct-focus": "Optimal district siting · executable capacity",
+
+    // ── Footer ──
+    "foot-brand": "PLANiT · Agrivoltaics",
+    "foot-desc": "PLANiT Institute's renewable-energy sector, screening agrivoltaic special-district candidates by executability rather than potential.",
+    "foot-site1": "Overview",
+    "foot-site2": "Map",
+    "foot-site3": "Method",
+    "foot-site4": "Insight",
+    "foot-pipe1": "01 Parcel ledger",
+    "foot-pipe2": "02 Blocking",
+    "foot-pipe3": "03 Ownership",
+    "foot-pipe4": "04 Grid & demand",
+    "foot-pipe5": "05 Verdict · results"
+  }
+};
+</script>
+<script src="site.js"></script>
+<script src="assets/appendix.js"></script>
+<script>
+Promise.all([
+  fetch('data/summary.json',{cache:'no-cache'}).then(r=>r.json()),
+  fetch('data/sgg_complex.json',{cache:'no-cache'}).then(r=>r.json())
+]).then(([D,CPX])=>{ if(window._d17init) window._d17init(D.codes,CPX); })
+  .catch(()=>{});
+</script>
+</body>
+</html>
