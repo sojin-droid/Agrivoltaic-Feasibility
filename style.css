@@ -61,6 +61,12 @@ nav.menu a.active::after{width:100%;background:var(--teal)}
 .nav-cta{font-size:13px;font-weight:700;color:var(--navy);border:1.5px solid var(--navy);padding:7px 16px;border-radius:999px;transition:background .2s,color .2s}
 .nav-cta:hover{background:var(--navy);color:#fff}
 .hamburger{display:none;background:none;border:none;font-size:22px;color:var(--navy);cursor:pointer}
+/* 언어 토글 (KO/EN) */
+.lang-toggle{display:inline-flex;border:1.5px solid var(--navy);border-radius:999px;overflow:hidden}
+.lang-toggle button{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.05em;padding:6px 11px;border:none;background:transparent;color:var(--navy);cursor:pointer;line-height:1;transition:background .2s,color .2s}
+.lang-toggle button+button{border-left:1.5px solid var(--navy)}
+.lang-toggle button.active{background:var(--navy);color:#fff}
+.lang-toggle button:not(.active):hover{background:var(--sky)}
 
 /* ── 공통 타이포 ─────────────────────────────── */
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:18px}

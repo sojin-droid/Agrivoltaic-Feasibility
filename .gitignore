@@ -12,6 +12,9 @@ data/legacy_pre_merge/
 lab.html
 policy.html
 
+# 로컬 도구 설정 (Claude Code 미리보기 서버 등 — 배포 무관)
+.claude/
+
 # 백업·임시
 *.bak
 *_pre_*.json

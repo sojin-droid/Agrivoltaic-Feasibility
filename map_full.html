@@ -11,6 +11,7 @@
  nav{position:absolute;top:0;left:0;right:0;z-index:1200;background:#fff;border-bottom:1px solid #e2e8f0;
    display:flex;gap:16px;padding:9px 18px;font-size:14px}
  nav a{color:#1a202c;text-decoration:none;font-weight:600} nav a:hover{color:#2b6cb0} nav a.dim{color:#a0aec0;font-weight:400}
+ nav a.active{color:#2b6cb0;border-bottom:2px solid #2b6cb0} nav a.cta{margin-left:auto;border:1.5px solid #2b3a55;border-radius:999px;padding:2px 12px;font-size:13px;font-weight:700;color:#2b3a55}
  #panel{position:absolute;top:46px;right:10px;z-index:1100;background:#fff;border-radius:8px;
    box-shadow:0 1px 10px rgba(0,0,0,.25);width:330px;font-size:12.5px;line-height:1.55;max-height:calc(100vh - 58px);overflow-y:auto;padding:12px 14px}
  h1{font-size:15px;margin:0 0 8px}
@@ -24,10 +25,14 @@
  details.grp summary{cursor:pointer;padding:2px 0;font-weight:600}
  .area-lbl{background:rgba(229,62,62,.92);color:#fff;border:none;font-weight:700;font-size:12px;box-shadow:none}
  .area-lbl::before{display:none}
-</style></head><body>
+ /* iframe(map.html 블록지도)로 삽입되면 자체 nav 숨김 — 단독 페이지에서는 그대로 표시 */
+ html.embedded nav{display:none} html.embedded #panel{top:10px}
+</style>
+<script>try{if(window.self!==window.top)document.documentElement.classList.add('embedded')}catch(e){document.documentElement.classList.add('embedded')}</script>
+</head><body>
 <nav>
- <a href="index.html">개요</a><a href="map.html">지도</a><a href="method.html">방법론</a>
- <a href="insight.html">인사이트</a><a class="dim" href="#" title="법률 감수 후 공개">정책 제언 (준비중)</a>
+ <a href="index.html">개요</a><a class="active" href="map.html">지도</a><a href="atlas.html">구역별 지도</a><a href="method.html">방법론</a>
+ <a href="insight.html">인사이트</a><a class="cta" href="index.html#contact">Contact</a>
 </nav>
 <div id="map"></div>
 <div id="panel">
