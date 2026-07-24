@@ -46,7 +46,7 @@
  <div style="margin-top:6px"><b data-m="choroLabel">계통 여유 단계구분도</b>
    <button id="choroBtn" data-m="choroOn">읍면동 색칠 켜기</button>
    <div id="legend" style="display:none;margin-top:3px"></div></div>
- <div style="margin-top:6px"><b data-m="tcap">개인소유 상한 t</b>
+ <div style="margin-top:6px"><b data-m="tcap">개인소유 비율 상한</b>
    <span id="tbtns"></span></div>
  <table id="stat" style="margin-top:6px"></table>
  <div id="judge"></div>
@@ -74,13 +74,13 @@ const M={
     selectSgg:'시군 선택', sgg:'시군', scenario:'시나리오',
     scnS1:'재생에너지지구 S1', scnS2:'확장 S2', scnS0:'현행 S0',
     choroLabel:'계통 여유 단계구분도', choroOn:'읍면동 색칠 켜기', choroOff:'읍면동 색칠 끄기',
-    tcap:'개인소유 상한 t', priority:'우선 검토 후보', prioritySub:'개인소유 낮은 순 · 클릭 이동',
+    tcap:'개인소유 비율 상한', priority:'우선 검토 후보', prioritySub:'개인소유 낮은 순 · 클릭 이동',
     noListed:'등재 구획 없음', toColl:'수집 예정',
     ttlSuffix:n=>`${n} — 특구 후보`,
     loadFail:(sgg,scn)=>`⚠ <b>${sgg}_${scn}.json 로드 실패</b> — 강력 새로고침(Ctrl+F5) 후에도 반복되면 로컬 서버 실행 여부를 확인하세요. (병합 개편으로 사라진 구 코드가 캐시에 남은 경우일 수 있음)`,
-    exploring:(tt,mw)=>`탐색 중 (개인소유 상한 ${tt}) — 공식 판정은 <b>30% 기준</b> · 공식 실행 <b>${mw}MW</b>`,
-    statRow:(exp,tt,n,mw)=>`<tr><td>${exp?'탐색':'공식'} 집계(개인 ≤${tt} · 미확인 ≤20%)</td><td><b>${n}</b>구획 · <b>${mw} MW</b></td></tr>`,
-    judge:(badge,mw,thr)=>`공식 판정: ${badge} · 실행 ${mw}MW <span class="mut">(t=0.30)</span> · 50MW 통과 최소 t=${thr}`,
+    exploring:(tt,mw)=>`탐색 중 (개인소유 비율 상한 ${Math.round(tt*100)}%) — 공식 판정은 <b>30% 기준</b> · 공식 실행 <b>${mw}MW</b>`,
+    statRow:(exp,tt,n,mw)=>`<tr><td>${exp?'탐색':'공식'} 집계(개인소유 ≤${Math.round(tt*100)}% · 미확인 ≤20%)</td><td><b>${n}</b>구획 · <b>${mw} MW</b></td></tr>`,
+    judge:(badge,mw,thr)=>`공식 판정: ${badge} · 실행 ${mw}MW <span class="mut">(개인소유 30%)</span> · 50MW 통과 최소 개인소유 비율 ${thr==='—'?'—':Math.round(thr*100)+'%'}`,
     lbl:(bid,loc,ha,mw,n)=>`블록 ${bid} · ${loc} · <b>${ha}ha · ${mw}MW</b> <span class="mut">(${n}필지)</span>`,
     popSub:(sub,parent,how)=>sub?`하위구획 — 모블록 #${parent}이 소유 조건 탈락일 때 대신 집계`:`분할: ${how}`,
     popOwn:(iv,uk)=>`개인소유 ${iv}% · 미확인 ${uk}%`,
@@ -110,13 +110,13 @@ const M={
     selectSgg:'Select a city/county', sgg:'City/county', scenario:'Scenario',
     scnS1:'Renewable Energy District S1', scnS2:'Expanded S2', scnS0:'Current S0',
     choroLabel:'Grid-headroom choropleth', choroOn:'Township shading on', choroOff:'Township shading off',
-    tcap:'Individual-ownership cap t', priority:'Priority candidates', prioritySub:'lowest individual ownership · click to jump',
+    tcap:'Individual-ownership cap', priority:'Priority candidates', prioritySub:'lowest individual ownership · click to jump',
     noListed:'No listed segments', toColl:'to be collected',
     ttlSuffix:n=>`${n} — district candidates`,
     loadFail:(sgg,scn)=>`⚠ <b>Failed to load ${sgg}_${scn}.json</b> — if it persists after a hard refresh (Ctrl+F5), check whether the local server is running. (An old code removed in the merge revision may remain cached.)`,
-    exploring:(tt,mw)=>`Exploring (individual-ownership cap ${tt}) — official verdict uses the <b>30% basis</b> · official executable <b>${mw}MW</b>`,
-    statRow:(exp,tt,n,mw)=>`<tr><td>${exp?'Exploring':'Official'} count (individual ≤${tt} · unverified ≤20%)</td><td><b>${n}</b> segments · <b>${mw} MW</b></td></tr>`,
-    judge:(badge,mw,thr)=>`Official verdict: ${badge} · executable ${mw}MW <span class="mut">(t=0.30)</span> · min t to clear 50MW = ${thr}`,
+    exploring:(tt,mw)=>`Exploring (individual-ownership cap ${Math.round(tt*100)}%) — official verdict uses the <b>30% basis</b> · official executable <b>${mw}MW</b>`,
+    statRow:(exp,tt,n,mw)=>`<tr><td>${exp?'Exploring':'Official'} count (individual ≤${Math.round(tt*100)}% · unverified ≤20%)</td><td><b>${n}</b> segments · <b>${mw} MW</b></td></tr>`,
+    judge:(badge,mw,thr)=>`Official verdict: ${badge} · executable ${mw}MW <span class="mut">(30% ownership)</span> · min ownership to clear 50MW = ${thr==='—'?'—':Math.round(thr*100)+'%'}`,
     lbl:(bid,loc,ha,mw,n)=>`Block ${bid} · ${loc} · <b>${ha}ha · ${mw}MW</b> <span class="mut">(${n} parcels)</span>`,
     popSub:(sub,parent,how)=>sub?`Subdivision — counted instead when parent block #${parent} fails the ownership test`:`Split: ${how}`,
     popOwn:(iv,uk)=>`individual ownership ${iv}% · unverified ${uk}%`,
@@ -174,7 +174,7 @@ Promise.all([fetch('data/summary.json',{cache:'no-cache'}).then(r=>r.json()),fet
   document.getElementById('sggSel').innerHTML=
     `<optgroup label="${grpA}">${A.map(mkOpt).join('')}</optgroup>`+
     `<optgroup label="${grpB}">${B.map(mkOpt).join('')}</optgroup>`;
-  document.getElementById('tbtns').innerHTML=[0.10,0.20,0.30,0.40,0.50].map(t=>`<button class="tf${t===0.30?' on':''}" data-v="${t}">${t.toFixed(2)}</button>`).join('');
+  document.getElementById('tbtns').innerHTML=[0.10,0.20,0.30,0.40,0.50].map(t=>`<button class="tf${t===0.30?' on':''}" data-v="${t}">${Math.round(t*100)}%</button>`).join('');
   load();});
 
 function load(){

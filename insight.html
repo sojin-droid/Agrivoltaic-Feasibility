@@ -71,7 +71,7 @@
       <div class="legend15">
         <span data-i18n="f1-lg-x"><b style="color:var(--ink)">X축</b> 잠재량(MW, √스케일) — 소유 무관 전체 물량</span>
         <span data-i18n="f1-lg-y"><b style="color:var(--ink)">Y축</b> 개인소유 필지 비율 = 개인소유 필지수 ÷ S1 적격 필지수</span>
-        <span data-i18n="f1-lg-r"><b style="color:var(--ink)">원 크기</b> ∝ 실행 가능 물량(S1·t≤0.30, MW)</span>
+        <span data-i18n="f1-lg-r"><b style="color:var(--ink)">원 크기</b> ∝ 실행 가능 물량(S1·개인소유 30% 이하, MW)</span>
         <span data-i18n="f1-lg-trap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gold);vertical-align:-1px"></span> 잠재량 트랩(&gt;1,000MW·&gt;80%)</span>
         <span data-i18n="f1-lg-cand"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--leaf);vertical-align:-1px"></span> 실행형 후보(&gt;1,000MW·≤80%)</span>
         <span data-i18n="f1-lg-other"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--navy);opacity:.75;vertical-align:-1px"></span> 그 외(반투명 = B 산단거점)</span>
@@ -87,7 +87,7 @@
       <div><p class="eyebrow" data-i18n="f2-eyebrow">Frame 02 · Institution × Assumption</p>
       <h2 data-i18n="f2-h2">제도와 가정이 결론을 얼마나 흔드는가</h2></div>
     </div>
-    <p class="lede" style="margin-bottom:22px" data-i18n="f2-lede">시나리오(S0 현행 / S1 재생에너지지구 / S2 확장)와 개인소유 상한 t를 함께 움직여 보라.
+    <p class="lede" style="margin-bottom:22px" data-i18n="f2-lede">시나리오(S0 현행 / S1 재생에너지지구 / S2 확장)와 개인소유 비율 상한을 함께 움직여 보라.
       유력 후보 8곳의 실행 가능 물량이 즉시 반응한다 — <b>영농형태양광법(S1)이 열어주는 물량</b>이 이 그림이 보여주려는 핵심이다.</p>
     <div class="figbox">
       <div class="tabs" id="d9tabs" style="margin-bottom:12px">
@@ -95,10 +95,10 @@
         <button class="tab on" data-s="S1" data-i18n="f2-tab-s1">재생에너지지구 S1</button>
         <button class="tab" data-s="S2" data-i18n="f2-tab-s2">확장 S2</button>
       </div>
-      <label style="font-family:var(--mono);font-size:11px;color:var(--muted)"><span data-i18n="f2-label-a">개인소유 상한 t ≤ </span><span id="d9v">0.30</span><span data-i18n="f2-label-b"> · 합계 </span><span id="d9sum" style="color:var(--navy);font-weight:700">—</span> MW</label><br>
+      <label style="font-family:var(--mono);font-size:11px;color:var(--muted)"><span data-i18n="f2-label-a">개인소유 비율 상한 </span><span id="d9v">0.30</span><span data-i18n="f2-label-b"> · 합계 </span><span id="d9sum" style="color:var(--navy);font-weight:700">—</span> MW</label><br>
       <input id="d9r" type="range" min="0" max="4" value="2" step="1" style="width:100%;accent-color:var(--navy)">
       <svg id="d9s" viewBox="0 0 665 200" style="width:100%;margin-top:12px"></svg>
-      <p class="fignote" data-i18n="f2-note">막대 = S1 t≤0.30 기준 유력 8곳 · 점선 = 특구 유력 100 / 지정 가능 50 · ⚠ 세로축 비선형: 판정 문턱 구간(0~100MW)을 확대해 그림</p>
+      <p class="fignote" data-i18n="f2-note">막대 = S1·개인소유 30% 이하 기준 유력 8곳 · 점선 = 특구 유력 100 / 지정 가능 50 · ⚠ 세로축 비선형: 판정 문턱 구간(0~100MW)을 확대해 그림</p>
     </div>
   </div>
 </section>
@@ -295,7 +295,7 @@ Promise.all([
     const max=Math.max(...ELIG.flatMap(k=>['S0','S1','S2'].flatMap(s=>TS.map(t=>(((C[k][s]||{}).by_t||{})[t]||{}).b_mw||0))),1);
     const COL={S0:'#8FA6BC',S1:'var(--leaf)',S2:'var(--gold)'};
     function draw(){
-      const t=TS[+rng.value]; document.getElementById('d9v').textContent=t;
+      const t=TS[+rng.value]; document.getElementById('d9v').textContent=Math.round(+t*100)+'%';
       const vals=ELIG.map(k=>(((C[k][scn]||{}).by_t||{})[t]||{}).b_mw||0);
       document.getElementById('d9sum').textContent=Math.round(vals.reduce((a,b)=>a+b,0)).toLocaleString();
       const BASE=172, SEG=104, TOP=162;
@@ -476,20 +476,20 @@ window.I18N = {
     'f1-lede': "X = potential capacity, Y = individual-ownership ratio. Crosshair at (1,000MW · 80%). <b>Upper-right (Ⅰ) is the potential trap</b> — big numbers, but every parcel needs individual consent. <b>Lower-right (Ⅳ) is the executable candidate.</b>",
     'f1-lg-x': "<b style=\"color:var(--ink)\">X-axis</b> potential capacity (MW, √ scale) — total volume regardless of ownership",
     'f1-lg-y': "<b style=\"color:var(--ink)\">Y-axis</b> individual-ownership ratio = individual parcels ÷ S1-eligible parcels",
-    'f1-lg-r': "<b style=\"color:var(--ink)\">Circle size</b> ∝ executable capacity (S1 · t≤0.30, MW)",
+    'f1-lg-r': "<b style=\"color:var(--ink)\">Circle size</b> ∝ executable capacity (S1 · individual ≤30%, MW)",
     'f1-lg-trap': "<span style=\"display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gold);vertical-align:-1px\"></span> potential trap (&gt;1,000MW · &gt;80%)",
     'f1-lg-cand': "<span style=\"display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--leaf);vertical-align:-1px\"></span> executable candidate (&gt;1,000MW · ≤80%)",
     'f1-lg-other': "<span style=\"display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--navy);opacity:.75;vertical-align:-1px\"></span> other (semi-transparent = B industrial-complex hubs)",
     /* Frame 02 */
     'f2-eyebrow': "Frame 02 · Institution × Assumption",
     'f2-h2': "How far institution and assumption shift the conclusion",
-    'f2-lede': "Move the scenario (S0 Current / S1 Renewable Energy District / S2 Expanded) and the individual-ownership cap t together. Executable capacity across the 8 strong candidates responds instantly — <b>the volume unlocked by the Agrivoltaics Act (S1)</b> is what this figure is meant to show.",
+    'f2-lede': "Move the scenario (S0 Current / S1 Renewable Energy District / S2 Expanded) and the individual-ownership cap together. Executable capacity across the 8 strong candidates responds instantly — <b>the volume unlocked by the Agrivoltaics Act (S1)</b> is what this figure is meant to show.",
     'f2-tab-s0': "Current S0",
     'f2-tab-s1': "Renewable Energy District S1",
     'f2-tab-s2': "Expanded S2",
-    'f2-label-a': "Individual-ownership cap t ≤ ",
+    'f2-label-a': "Individual-ownership cap ",
     'f2-label-b': " · total ",
-    'f2-note': "Bars = 8 strong districts under S1 t≤0.30 · dashed = special district strong 100 / designatable 50 · ⚠ non-linear Y-axis: the threshold band (0–100MW) is magnified",
+    'f2-note': "Bars = 8 strong districts under S1 · individual ≤30% · dashed = special district strong 100 / designatable 50 · ⚠ non-linear Y-axis: the threshold band (0–100MW) is magnified",
     /* Frame 03 */
     'f3-eyebrow': "Frame 03 · 100MW Threshold",
     'f3-h2': "Special-district eligibility — all 25 analysis zones at a glance",

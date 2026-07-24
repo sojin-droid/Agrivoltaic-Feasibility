@@ -124,11 +124,11 @@
             <button class="tab on" data-s="S1" style="padding:4px 11px" data-i18n="av-tab1">재생E지구 S1</button>
             <button class="tab" data-s="S2" style="padding:4px 11px" data-i18n="av-tab2">확장 S2</button>
           </div>
-          <label style="font-family:var(--mono);font-size:11px;color:var(--muted)" data-i18n="av-lab2">개인소유 상한</label>
+          <label style="font-family:var(--mono);font-size:11px;color:var(--muted)" data-i18n="av-lab2">개인소유 비율 상한</label>
           <select id="d17t" style="font-size:12px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;font-family:var(--mono)">
-            <option value="0.10">t ≤ 0.10</option><option value="0.20">t ≤ 0.20</option>
-            <option value="0.30" selected>t ≤ 0.30</option><option value="0.40">t ≤ 0.40</option>
-            <option value="0.50">t ≤ 0.50</option>
+            <option value="0.10">≤ 10%</option><option value="0.20">≤ 20%</option>
+            <option value="0.30" selected>≤ 30%</option><option value="0.40">≤ 40%</option>
+            <option value="0.50">≤ 50%</option>
           </select>
           <span id="d17cnt" style="font-family:var(--mono);font-size:12px;color:var(--leaf-deep)"></span>
         </div>
@@ -179,7 +179,7 @@
             fcTip:(n,ind,mw)=>`${n} · ${ind} · 약 ${mw}MW 밀도`,
             noListT:'산단 목록 수집 예정 (한국산업단지공단)',
             noListS:'관내 실행 물량 부재 시 인접 농업 시군 연계',
-            cap:o=>`${o.n?`산단 ${o.n}곳`:'산단 수집 예정'} · 패널 ${o.cells}개×10MW`+(o.extra?`(+${o.extra})`:'')+` ≈ 실행 ${o.mw}MW · ${o.scn} · t≤${o.tt} (개인소유 필지 ${o.pct}% 이하 블록만)`
+            cap:o=>`${o.n?`산단 ${o.n}곳`:'산단 수집 예정'} · 패널 ${o.cells}개×10MW`+(o.extra?`(+${o.extra})`:'')+` ≈ 실행 ${o.mw}MW · ${o.scn} · 개인소유 ${o.pct}% 이하 블록만`
           },
           en:{
             ogA:'A · Gyeonggi·Chungnam', ogB:'B · National hubs — complex list to be collected',
@@ -193,7 +193,7 @@
             fcTip:(n,ind,mw)=>`${n} · ${ind} · ~${mw}MW density`,
             noListT:'Complex list to be collected (KICOX)',
             noListS:'If no in-district capacity, link to adjacent farming counties',
-            cap:o=>`${o.n?`${o.n} complexes`:'complexes to be collected'} · ${o.cells} panels×10MW`+(o.extra?`(+${o.extra})`:'')+` ≈ ${o.mw}MW executable · ${o.scn} · t≤${o.tt} (only blocks with ≤${o.pct}% individually-owned parcels)`
+            cap:o=>`${o.n?`${o.n} complexes`:'complexes to be collected'} · ${o.cells} panels×10MW`+(o.extra?`(+${o.extra})`:'')+` ≈ ${o.mw}MW executable · ${o.scn} · only blocks with ≤${o.pct}% individual ownership`
           }
         };
         const WL=()=>D17[window.__curLang||'ko']||D17.ko;
@@ -381,7 +381,7 @@
         frame();
       };
       </script>
-    <p class="fignote" style="font-family:var(--mono);font-size:10.5px;color:#9FB4C4;margin-top:10px;letter-spacing:.04em" data-i18n="av-fig2">시군·시나리오·개인소유 상한을 바꿔 보라 — 패널 1개=10MW(실행 물량 비례) · 현행 S0에선 농업진흥지역 영농형·비닐하우스 지붕형 모두 불가 · 산단·계통·수요는 실측 데이터(미수집분은 '수집 예정'으로 표기)</p>
+    <p class="fignote" style="font-family:var(--mono);font-size:10.5px;color:#9FB4C4;margin-top:10px;letter-spacing:.04em" data-i18n="av-fig2">시군·시나리오·개인소유 비율 상한을 바꿔 보라 — 패널 1개=10MW(실행 물량 비례) · 현행 S0에선 농업진흥지역 영농형·비닐하우스 지붕형 모두 불가 · 산단·계통·수요는 실측 데이터(미수집분은 '수집 예정'으로 표기)</p>
   </div>
 </section>
 
@@ -516,8 +516,8 @@ window.I18N = {
     "s3-chip1": "Parcel",
     "s3-chip2": "Block",
     "s3-chip3": "+ ownership",
-    "s3-body": "The heart of this project is <b>not potential but the feasibility of land assembly</b>. Blocks where the individual-ownership ratio is at or below a threshold t (default 0.30, adjustable 0.10–0.50) and unverified-ownership parcels are at most 20% (a fixed criterion separate from t) — that is, land with low barriers to ownership negotiation — are counted as <b>executable capacity</b>. Of Gyeonggi·Chungnam's 73,000 MW of potential, only <b>about 6%</b> is executable today. That this ratio differs starkly across cities/counties is the single most important finding of this analysis.",
-    "s3-l1t": "Insight · executable/potential ranking and the ownership threshold (t)",
+    "s3-body": "The heart of this project is <b>not potential but the feasibility of land assembly</b>. Blocks where the individual-ownership ratio is at or below a cap (default 30%, adjustable 10–50%) and unverified-ownership parcels are at most 20% (a separate fixed criterion) — that is, land with low barriers to ownership negotiation — are counted as <b>executable capacity</b>. Of Gyeonggi·Chungnam's 73,000 MW of potential, only <b>about 6%</b> is executable today. That this ratio differs starkly across cities/counties is the single most important finding of this analysis.",
+    "s3-l1t": "Insight · executable/potential ranking and the ownership cap",
     "s3-l2t": "Priority candidates · blocks with a low individual-ownership ratio",
     "s3-l2m": "Lowest ownership first",
 
@@ -549,7 +549,7 @@ window.I18N = {
     "s5-body": "Cities/counties are judged by the sum of executable capacity — <b>strong (≥100MW), designatable (50–100MW), below threshold</b>. Scenarios split into S0 (Current), S1 (Renewable Energy District) and S2 (Expanded). Under the default scenario S1 there are <b>8 strong zones</b> (Dangjin, Seosan, Pyeongtaek, Boryeong, Asan, Paju, Hwaseong, Hongseong) and <b>4 designatable zones</b> (Icheon, Gimpo, Cheonan, Pohangᴮ). Whether Nature Conservation Areas are included (S2) or excluded (S1), the verdict changes for zero analysis zones — this conclusion is robust.",
     "s5-l1t": "Insight · verdict ranking by city/county",
     "s5-l1m": "25 analysis zones",
-    "s5-l2t": "Map · explore by adjusting scenario and threshold t",
+    "s5-l2t": "Map · explore by adjusting scenario and ownership cap",
 
     // ── thesis ──
     "thesis-q": "\"The land and the demand are both there. <mark>Policy</mark> decides the scale — under current policy (S0), only Pyeongtaek, Paju and Seosan are strong. When the Agrivoltaics Act unlocks Agricultural Promotion Areas through Renewable Energy District designation (S1), strong zones rise to 8 and Dangjin goes from 37MW to 1,122MW.\"",
@@ -593,7 +593,7 @@ window.I18N = {
     "ex-c1-tag": "Map",
     "ex-c1-sub": "Interactive",
     "ex-c1-h3": "Candidate map",
-    "ex-c1-p": "Explore block boundaries, the grid-headroom township choropleth and industrial-complex locations while adjusting scenario and threshold t.",
+    "ex-c1-p": "Explore block boundaries, the grid-headroom township choropleth and industrial-complex locations while adjusting scenario and ownership cap.",
     "ex-c1-foot": "Open <span class=\"arrow\">→</span>",
     "ex-c2-tag": "Insight",
     "ex-c2-sub": "Five frames",

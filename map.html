@@ -50,7 +50,7 @@
     <p class="eyebrow" data-i18n="hero-eyebrow">Map · 진단하고, 확인한다</p>
     <h1 data-i18n="hero-h1">내 시군은 <em>특구가 될 수 있는가</em>.</h1>
     <p class="lede" data-i18n="hero-lede">먼저 30초 자가진단 — 그 다음 지도에서 블록 하나하나를 확인하라.
-      25개 분석구역 전체, 시나리오·개인소유 상한 조절 가능.</p>
+      25개 분석구역 전체, 시나리오·개인소유 비율 상한 조절 가능.</p>
   </div>
 </div>
 
@@ -62,16 +62,16 @@
       <div class="box">
         <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px">
           <div class="field" style="margin:0;min-width:170px"><label data-i18n="diag-l-sgg">시군 선택</label><select id="d20s"></select></div>
-          <div class="field" style="margin:0;min-width:170px"><label data-i18n="diag-l-t">개인소유 상한 t</label><select id="d20t">
-            <option value="0.10" data-i18n="diag-t10">t ≤ 0.10 (엄격)</option><option value="0.20">t ≤ 0.20</option>
-            <option value="0.30" selected data-i18n="diag-t30">t ≤ 0.30 (기본)</option><option value="0.40">t ≤ 0.40</option>
-            <option value="0.50" data-i18n="diag-t50">t ≤ 0.50 (완화)</option></select></div>
+          <div class="field" style="margin:0;min-width:170px"><label data-i18n="diag-l-t">개인소유 비율 상한</label><select id="d20t">
+            <option value="0.10" data-i18n="diag-t10">개인소유 10% 이하 (엄격)</option><option value="0.20">개인소유 20% 이하</option>
+            <option value="0.30" selected data-i18n="diag-t30">개인소유 30% 이하 (기본)</option><option value="0.40">개인소유 40% 이하</option>
+            <option value="0.50" data-i18n="diag-t50">개인소유 50% 이하 (완화)</option></select></div>
         </div>
         <div class="dz-cards" style="grid-template-columns:repeat(4,1fr)">
           <div class="dz-card"><span class="k" data-i18n="diag-k-exec">실행 가능 물량</span><div class="v" id="d20a">—</div><div class="d" data-i18n="diag-d-exec">공식 등재 블록 합</div></div>
           <div class="dz-card"><span class="k" data-i18n="diag-k-pot">잠재 물량</span><div class="v" id="d20b">—</div><div class="d" data-i18n="diag-d-pot">소유 무관 전체</div></div>
           <div class="dz-card"><span class="k" data-i18n="diag-k-grid">계통 여유</span><div class="v" id="d20c">—</div><div class="d" data-i18n="diag-d-grid">읍면동 합 (상한 추정)</div></div>
-          <div class="dz-card"><span class="k" data-i18n="diag-k-verdict">판정</span><div class="v" id="d20d">—</div><div class="d" id="d20dd">t=0.30 기준</div></div>
+          <div class="dz-card"><span class="k" data-i18n="diag-k-verdict">판정</span><div class="v" id="d20d">—</div><div class="d" id="d20dd">개인소유 30% 기준</div></div>
         </div>
         <div class="verdict" id="d20v"><span class="vh" data-i18n="diag-vh">VERDICT · 자동 생성</span><span id="d20vt">시군을 선택하세요.</span></div>
         <button class="btn btn-primary copybtn" id="d20copy">진단 요약 복사</button>
@@ -128,11 +128,11 @@ var T = {
   ko:{
     og_A:"A · 경기·충남", og_B:"B · 전국 산단거점",
     st_strong:"유력", st_desig:"지정 가능", st_below:"요건 미달",
-    unit_mw:" MW", tbasis:function(t){return 't='+t+' 기준';},
+    unit_mw:" MW", tbasis:function(t){return '개인소유 '+Math.round(t*100)+'% 기준';},
     copy:"진단 요약 복사", copied:"복사됨 ✓", copyfail:"복사 실패",
     prompt:"시군을 선택하세요.",
     verdict:function(o){
-      return `<b>${o.name}</b>${o.isB?' (산단거점)':''}은(는) 개인소유 상한 <b>t≤${o.t}</b>에서 실행 가능 물량 <b>${o.eStr}MW</b>로 <b>${o.st}</b>입니다. `+
+      return `<b>${o.name}</b>${o.isB?' (산단거점)':''}은(는) <b>개인소유 ${Math.round(o.t*100)}% 이하</b>에서 실행 가능 물량 <b>${o.eStr}MW</b>로 <b>${o.st}</b>입니다. `+
         (o.st===T.ko.st_strong?'이 연구가 가정한 특구 요건선(≥100MW)을 넘으며, 우선 검토 후보의 소유 협의부터 시작할 수 있습니다. ':
          o.st===T.ko.st_desig?'50–100MW 구간 — 소유주 미확인 블록 조사 시 승격 가능성이 있습니다. ':
          o.isB?'산업도시 특성상 관내 실행 물량이 부재합니다 — <b>인접 농업 시군과의 연계 공급</b>이 현실적 경로입니다. ':
@@ -143,11 +143,11 @@ var T = {
   en:{
     og_A:"A · Gyeonggi·Chungnam", og_B:"B · National industrial-complex hubs",
     st_strong:"strong", st_desig:"designatable", st_below:"below threshold",
-    unit_mw:" MW", tbasis:function(t){return 'basis t='+t;},
+    unit_mw:" MW", tbasis:function(t){return 'individual ≤'+Math.round(t*100)+'%';},
     copy:"Copy diagnosis summary", copied:"Copied ✓", copyfail:"Copy failed",
     prompt:"Select a city/county.",
     verdict:function(o){
-      return `<b>${o.name}</b>${o.isB?' (industrial-complex hub)':''} is <b>${o.st}</b> at individual-ownership cap <b>t≤${o.t}</b>, with executable capacity <b>${o.eStr}MW</b>. `+
+      return `<b>${o.name}</b>${o.isB?' (industrial-complex hub)':''} is <b>${o.st}</b> at <b>individual ownership ≤${Math.round(o.t*100)}%</b>, with executable capacity <b>${o.eStr}MW</b>. `+
         (o.st===T.en.st_strong?'It clears this study’s special-district threshold (≥100MW); start with ownership negotiation on the top candidate blocks. ':
          o.st===T.en.st_desig?'In the 50–100MW band — surveying unverified-ownership blocks could push it over. ':
          o.isB?'As an industrial city it has no in-district executable capacity — <b>linked supply from adjacent farming counties</b> is the realistic path. ':
@@ -234,10 +234,10 @@ window.I18N = { en: {
     "diag-eye":"Diagnosis · 30-second Check",
     "diag-h2":"City/county diagnosis tool",
     "diag-l-sgg":"Select city/county",
-    "diag-l-t":"Individual-ownership cap t",
-    "diag-t10":"t ≤ 0.10 (strict)",
-    "diag-t30":"t ≤ 0.30 (default)",
-    "diag-t50":"t ≤ 0.50 (relaxed)",
+    "diag-l-t":"Individual-ownership cap",
+    "diag-t10":"individual ≤10% (strict)",
+    "diag-t30":"individual ≤30% (default)",
+    "diag-t50":"individual ≤50% (relaxed)",
     "diag-k-exec":"Executable capacity", "diag-d-exec":"Sum of officially listed blocks",
     "diag-k-pot":"Potential capacity", "diag-d-pot":"All blocks, ownership-agnostic",
     "diag-k-grid":"Grid headroom", "diag-d-grid":"Township sum (upper-bound estimate)",

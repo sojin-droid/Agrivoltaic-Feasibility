@@ -198,13 +198,13 @@
       <div class="protect-row" aria-label="누적 레이어"><span class="pchip" data-i18n="s3-chip1">필지</span><span class="pchip" data-i18n="s3-chip2">블록</span><span class="pchip new" data-i18n="s3-chip3">+ 소유</span></div>
       <p class="body" data-i18n="s3-body">
         이 프로젝트의 핵심은 <b>잠재량이 아니라 부지 확보 실행성</b>입니다. 블록 안 개인소유
-        비율이 상한 t 이하(기본 0.30, 0.10~0.50에서 조절 가능)이고 소유주 미확인 필지가
+        비율이 상한(기본 30%, 10~50%에서 조절 가능) 이하이고 소유주 미확인 필지가
         20% 이하(t와 별개의 고정 기준)인 블록 — 즉 소유 협의 진입장벽이 낮은 땅을
         <b>실행 가능 물량</b>으로 집계합니다. 경기·충남 잠재량 7.3만 MW 중 지금 실행 가능한 물량은
         <b>약 6%</b>. 이 비율이 시군마다 극명하게 다른 것이 이 분석의 가장 중요한 발견입니다.
       </p>
       <div class="stage-links">
-        <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s3-l1t">인사이트 · 실행/잠재 비율 순위와 개인소유 상한(t) 탐색</span><span class="m">INSIGHT →</span></span></a>
+        <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s3-l1t">인사이트 · 실행/잠재 비율 순위와 개인소유 비율 상한 탐색</span><span class="m">INSIGHT →</span></span></a>
         <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s3-l2t">우선 검토 후보 · 개인소유 비율이 낮은 블록</span><span class="m" data-i18n="s3-l2m">개인소유 낮은 순</span></span></a>
       </div>
     </div>
@@ -263,7 +263,7 @@
       </p>
       <div class="stage-links">
         <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s5-l1t">인사이트 · 시군별 판정 순위</span><span class="m" data-i18n="s5-l1m">25개 분석구역</span></span></a>
-        <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s5-l2t">지도 · 시나리오·문턱 t 조절하며 탐색</span><span class="m">MAP →</span></span></a>
+        <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s5-l2t">지도 · 시나리오·개인소유 비율 상한 조절하며 탐색</span><span class="m">MAP →</span></span></a>
       </div>
     </div>
   </div>
@@ -331,13 +331,13 @@
       <a class="card reveal" href="map.html">
         <div class="meta"><span class="tag" data-i18n="ex-c1-tag">지도</span><span data-i18n="ex-c1-sub">인터랙티브</span></div>
         <h3 data-i18n="ex-c1-h3">후보 지도</h3>
-        <p data-i18n="ex-c1-p">시나리오·문턱 t를 조절하며 블록 경계, 계통 여유 읍면동 단계구분도, 산단 위치를 탐색합니다.</p>
+        <p data-i18n="ex-c1-p">시나리오·개인소유 비율 상한을 조절하며 블록 경계, 계통 여유 읍면동 단계구분도, 산단 위치를 탐색합니다.</p>
         <span class="foot" data-i18n="ex-c1-foot">열기 <span class="arrow">→</span></span>
       </a>
       <a class="card reveal" href="insight.html">
         <div class="meta"><span class="tag" data-i18n="ex-c2-tag">인사이트</span><span data-i18n="ex-c2-sub">다섯 프레임</span></div>
         <h3 data-i18n="ex-c2-h3">실행성이 그리는 경계</h3>
-        <p data-i18n="ex-c2-p">잠재량 트랩 사분면, 시나리오×개인소유 상한 민감도, 100MW 충족도 링, 도시 성격 매트릭스, 전국 판정표.</p>
+        <p data-i18n="ex-c2-p">잠재량 트랩 사분면, 시나리오×개인소유 비율 상한 민감도, 100MW 충족도 링, 도시 성격 매트릭스, 전국 판정표.</p>
         <span class="foot" data-i18n="ex-c2-foot">열기 <span class="arrow">→</span></span>
       </a>
       <a class="card reveal" href="method.html">
@@ -504,8 +504,8 @@ window.I18N = {
     "s3-chip1": "Parcel",
     "s3-chip2": "Block",
     "s3-chip3": "+ ownership",
-    "s3-body": "The heart of this project is <b>not potential but the feasibility of land assembly</b>. Blocks where the individual-ownership ratio is at or below a threshold t (default 0.30, adjustable 0.10–0.50) and unverified-ownership parcels are at most 20% (a fixed criterion separate from t) — that is, land with low barriers to ownership negotiation — are counted as <b>executable capacity</b>. Of Gyeonggi·Chungnam's 73,000 MW of potential, only <b>about 6%</b> is executable today. That this ratio differs starkly across cities/counties is the single most important finding of this analysis.",
-    "s3-l1t": "Insight · executable/potential ranking and the ownership threshold (t)",
+    "s3-body": "The heart of this project is <b>not potential but the feasibility of land assembly</b>. Blocks where the individual-ownership ratio is at or below a cap (default 30%, adjustable 10–50%) and unverified-ownership parcels are at most 20% (a separate fixed criterion) — that is, land with low barriers to ownership negotiation — are counted as <b>executable capacity</b>. Of Gyeonggi·Chungnam's 73,000 MW of potential, only <b>about 6%</b> is executable today. That this ratio differs starkly across cities/counties is the single most important finding of this analysis.",
+    "s3-l1t": "Insight · executable/potential ranking and the ownership cap",
     "s3-l2t": "Priority candidates · blocks with a low individual-ownership ratio",
     "s3-l2m": "Lowest ownership first",
 
@@ -537,7 +537,7 @@ window.I18N = {
     "s5-body": "Cities/counties are judged by the sum of executable capacity — <b>strong (≥100MW), designatable (50–100MW), below threshold</b>. Scenarios split into S0 (Current), S1 (Renewable Energy District) and S2 (Expanded). Under the default scenario S1 there are <b>8 strong zones</b> (Dangjin, Seosan, Pyeongtaek, Boryeong, Asan, Paju, Hwaseong, Hongseong) and <b>4 designatable zones</b> (Icheon, Gimpo, Cheonan, Pohangᴮ). Whether Nature Conservation Areas are included (S2) or excluded (S1), the verdict changes for zero analysis zones — this conclusion is robust.",
     "s5-l1t": "Insight · verdict ranking by city/county",
     "s5-l1m": "25 analysis zones",
-    "s5-l2t": "Map · explore by adjusting scenario and threshold t",
+    "s5-l2t": "Map · explore by adjusting scenario and ownership cap",
 
     // ── thesis ──
     "thesis-q": "\"The land and the demand are both there. <mark>Policy</mark> decides the scale — under current policy (S0), only Pyeongtaek, Paju and Seosan are strong. When the Agrivoltaics Act unlocks Agricultural Promotion Areas through Renewable Energy District designation (S1), strong zones rise to 8 and Dangjin goes from 37MW to 1,122MW.\"",
@@ -581,7 +581,7 @@ window.I18N = {
     "ex-c1-tag": "Map",
     "ex-c1-sub": "Interactive",
     "ex-c1-h3": "Candidate map",
-    "ex-c1-p": "Explore block boundaries, the grid-headroom township choropleth and industrial-complex locations while adjusting scenario and threshold t.",
+    "ex-c1-p": "Explore block boundaries, the grid-headroom township choropleth and industrial-complex locations while adjusting scenario and ownership cap.",
     "ex-c1-foot": "Open <span class=\"arrow\">→</span>",
     "ex-c2-tag": "Insight",
     "ex-c2-sub": "Five frames",
