@@ -475,6 +475,40 @@
       <p class="src" data-i18n="av-src2">산단 = 산업단지 DB 실데이터(이름·업종·추정 MW — 마우스를 올리면 표시) · 송전선 흐름·패널 발광·창불빛·밤 밝기는 위 들판의 태양 고도에 비례하는 화면 연출입니다</p>
       <script>
       window._d17init=function(C,CPX){
+        // ── 동적 라벨 i18n 사전 + 시군명 로마자 (window.__curLang 를 렌더 시점에 읽음) ──
+        const ROMAN={'44270':'Dangjin','44180':'Boryeong','44200':'Asan','44130':'Cheonan','44210':'Seosan','44800':'Hongseong','41590':'Hwaseong','41220':'Pyeongtaek','41460':'Yongin','41270':'Ansan','41390':'Siheung','41500':'Icheon','41480':'Paju','41570':'Gimpo','44810':'Yesan','28200':'Incheon-Namdong','46230':'Gwangyang','46130':'Yeosu','47110':'Pohang','47190':'Gumi','31000':'Ulsan'};
+        const NM=k=>(window.__curLang==='en'&&ROMAN[k])?ROMAN[k]:C[k].name;
+        const D17={
+          ko:{
+            ogA:'A · 경기·충남', ogB:'B · 전국 산단거점 — 산단 목록 수집 예정',
+            cpx:n=>` (산단 ${n})`,
+            zoneS0:'농업진흥지역 · 현행법 — 영농형·지붕형 불가',
+            zoneS1:'재생에너지지구 (농업진흥지역 내, S1)',
+            zoneS2:'재생에너지지구 확장 (S2 · +자연환경)',
+            ghTip:'시설재배 비닐하우스 · 지붕형 태양광 (실증 계수 대기)',
+            ghL1:'◀ 시설재배 비닐하우스', ghL2:'지붕형 태양광 (실증 대기)',
+            genRate:p=>`발전율 ${p}%`,
+            fcTip:(n,ind,mw)=>`${n} · ${ind} · 약 ${mw}MW 밀도`,
+            noListT:'산단 목록 수집 예정 (한국산업단지공단)',
+            noListS:'관내 실행 물량 부재 시 인접 농업 시군 연계',
+            cap:o=>`${o.n?`산단 ${o.n}곳`:'산단 수집 예정'} · 패널 ${o.cells}개×10MW`+(o.extra?`(+${o.extra})`:'')+` ≈ 실행 ${o.mw}MW · ${o.scn} · t≤${o.tt} (개인소유 필지 ${o.pct}% 이하 블록만)`
+          },
+          en:{
+            ogA:'A · Gyeonggi·Chungnam', ogB:'B · National hubs — complex list to be collected',
+            cpx:n=>` (${n} complexes)`,
+            zoneS0:'Agri. Promotion Area · current law — agrivoltaics/rooftop prohibited',
+            zoneS1:'Renewable Energy District (inside Agri. Promotion Area, S1)',
+            zoneS2:'Renewable Energy District expanded (S2 · +Nature Conservation)',
+            ghTip:'Greenhouse (protected cultivation) · rooftop solar (pilot coefficients pending)',
+            ghL1:'◀ Greenhouse (protected cultivation)', ghL2:'Rooftop solar (pilot pending)',
+            genRate:p=>`Generation rate ${p}%`,
+            fcTip:(n,ind,mw)=>`${n} · ${ind} · ~${mw}MW density`,
+            noListT:'Complex list to be collected (KICOX)',
+            noListS:'If no in-district capacity, link to adjacent farming counties',
+            cap:o=>`${o.n?`${o.n} complexes`:'complexes to be collected'} · ${o.cells} panels×10MW`+(o.extra?`(+${o.extra})`:'')+` ≈ ${o.mw}MW executable · ${o.scn} · t≤${o.tt} (only blocks with ≤${o.pct}% individually-owned parcels)`
+          }
+        };
+        const WL=()=>D17[window.__curLang||'ko']||D17.ko;
         // 좌 = 논밭(항공뷰 필지 패치워크) · 우 = 도시(도로·건물 블록, 산단 구역)
         const fld=document.getElementById('d17fld');
         const PALS=['#CDE0AE','#C2D8A0','#D6E6BC','#BFD49A','#D9E3AC','#E4DCA0','#CFE2B4'];  // 초록들 + 익은 논 골드 1
@@ -511,17 +545,20 @@
         fld.innerHTML=fh2;
         // ── 비닐하우스 + 지붕형 태양광 (특구 아래 농지 띠) ──
         const gh=document.getElementById('d17gh');
+        function drawGH(){
         let gh2='';
         [64,128,192,256].forEach((gx,gi)=>{
-          gh2+=`<g><title>시설재배 비닐하우스 · 지붕형 태양광 (실증 계수 대기)</title>
+          gh2+=`<g><title>${WL().ghTip}</title>
             <path d="M ${gx} 312 v-20 q 0 -15 15 -15 h 24 q 15 0 15 15 v 20 z" fill="#F5F7F2" stroke="#C4CCC0" stroke-width="1.2"/>
             <path d="M ${gx+13} 312 v-33 M ${gx+27} 312 v-35 M ${gx+41} 312 v-33" stroke="#DDE4DA" stroke-width="1.1"/>
             <rect class="d17rp" x="${gx+13}" y="273" width="28" height="7" rx="1.5" fill="var(--navy)" stroke="var(--gold)" stroke-width=".9"/>
           </g>`;
         });
-        gh2+='<text x="330" y="300" font-family="var(--mono)" font-size="10" fill="var(--ink)" style="paint-order:stroke;stroke:#F6FAF4;stroke-width:3px">◀ 시설재배 비닐하우스</text>'+
-             '<text x="330" y="311" font-family="var(--mono)" font-size="10" fill="var(--muted)" style="paint-order:stroke;stroke:#F6FAF4;stroke-width:3px">지붕형 태양광 (실증 대기)</text>';
+        gh2+='<text x="330" y="300" font-family="var(--mono)" font-size="10" fill="var(--ink)" style="paint-order:stroke;stroke:#F6FAF4;stroke-width:3px">'+WL().ghL1+'</text>'+
+             '<text x="330" y="311" font-family="var(--mono)" font-size="10" fill="var(--muted)" style="paint-order:stroke;stroke:#F6FAF4;stroke-width:3px">'+WL().ghL2+'</text>';
         gh.innerHTML=gh2;
+        }
+        drawGH();
         // 특구 안 작물: 노란 벼 + 초록 풀 다발 (전면 — 패널 사이로 보임)
         const cr=document.getElementById('d17cr');
         let ch='';
@@ -554,9 +591,14 @@
         const sel=document.getElementById('d17sel');
         const codes=Object.keys(CPX).filter(k=>C[k]&&C[k].region==='A').sort((a,b)=>CPX[b].length-CPX[a].length);
         const codesB=Object.keys(C).filter(k=>C[k].region==='B').sort((a,b)=>(C[b].S1.b_mw_t30||0)-(C[a].S1.b_mw_t30||0));
-        sel.innerHTML=
-          `<optgroup label="A · 경기·충남">${codes.map(k=>`<option value="${k}">${C[k].name} (산단 ${CPX[k].length})</option>`).join('')}</optgroup>`+
-          `<optgroup label="B · 전국 산단거점 — 산단 목록 수집 예정">${codesB.map(k=>`<option value="${k}">${C[k].name}</option>`).join('')}</optgroup>`;
+        function buildSelect(){
+          const prev=sel.value;
+          sel.innerHTML=
+            `<optgroup label="${WL().ogA}">${codes.map(k=>`<option value="${k}">${NM(k)}${WL().cpx(CPX[k].length)}</option>`).join('')}</optgroup>`+
+            `<optgroup label="${WL().ogB}">${codesB.map(k=>`<option value="${k}">${NM(k)}</option>`).join('')}</optgroup>`;
+          if(prev&&C[prev])sel.value=prev;
+        }
+        buildSelect();
         let wires=[],lens=[],pulses=[],wins=[];
         let scn='S1', tt='0.30', curN=0;
         // 시나리오·t 반영: 패널 수, 지붕형 가시성, 특구 라벨, 집계 문구
@@ -567,12 +609,13 @@
           // 현행법(S0): 농업진흥지역 영농형 불가 + 시설(비닐하우스) 지붕형도 불가
           document.querySelectorAll('#d17gh .d17rp').forEach(rp=>rp.style.display=scn==='S0'?'none':'');
           const zl=document.getElementById('d17zl'), zb=document.getElementById('d17zb');
-          if(scn==='S0'){ zl.textContent='농업진흥지역 · 현행법 — 영농형·지붕형 불가'; zl.setAttribute('fill','#A0522D'); zb.setAttribute('stroke','#B08A6A'); }
-          else if(scn==='S1'){ zl.textContent='재생에너지지구 (농업진흥지역 내, S1)'; zl.setAttribute('fill','var(--leaf-deep)'); zb.setAttribute('stroke','var(--leaf)'); }
-          else { zl.textContent='재생에너지지구 확장 (S2 · +자연환경)'; zl.setAttribute('fill','var(--leaf-deep)'); zb.setAttribute('stroke','var(--leaf)'); }
-          document.getElementById('d17cnt').textContent=
-            `${curN?`산단 ${curN}곳`:'산단 수집 예정'} · 패널 ${pr.cells}개×10MW`+(pr.want>pr.cells?`(+${pr.want-pr.cells})`:'')+
-            ` ≈ 실행 ${Math.round(mw).toLocaleString()}MW · ${scn} · t≤${tt} (개인소유 필지 ${Math.round(+tt*100)}% 이하 블록만)`;
+          if(scn==='S0'){ zl.textContent=WL().zoneS0; zl.setAttribute('fill','#A0522D'); zb.setAttribute('stroke','#B08A6A'); }
+          else if(scn==='S1'){ zl.textContent=WL().zoneS1; zl.setAttribute('fill','var(--leaf-deep)'); zb.setAttribute('stroke','var(--leaf)'); }
+          else { zl.textContent=WL().zoneS2; zl.setAttribute('fill','var(--leaf-deep)'); zb.setAttribute('stroke','var(--leaf)'); }
+          document.getElementById('d17cnt').textContent=WL().cap({
+            n:curN, cells:pr.cells, extra:(pr.want>pr.cells?pr.want-pr.cells:0),
+            mw:Math.round(mw).toLocaleString(), scn:scn, tt:tt, pct:Math.round(+tt*100)
+          });
         }
         function build(code){
           const list=(CPX[code]||[]).slice(0,8);                 // 최대 8곳 (B = 목록 없음)
@@ -591,7 +634,7 @@
             wh+=`<path class="d17w" d="M 327 ${sy.toFixed(0)} C ${((327+fx)/2).toFixed(0)} ${((sy+fy+18)/2-24).toFixed(0)}, ${(fx-56).toFixed(0)} ${(fy+18).toFixed(0)}, ${fx} ${(fy+22*s).toFixed(0)}" fill="none" stroke="var(--gold)" stroke-width="${two?2:2.5}" stroke-linecap="round" stroke-dasharray="10 8"/>`;
             const w=64*s, nm=cx.n.replace('산업단지','산단');
             const maxCh=two?8:10;
-            fh+=`<g style="cursor:default"><title>${cx.n} · ${cx.ind||''} · 약 ${Math.round(cx.mw).toLocaleString()}MW 밀도</title>
+            fh+=`<g style="cursor:default"><title>${WL().fcTip(cx.n, cx.ind||'', Math.round(cx.mw).toLocaleString())}</title>
               <rect x="${fx}" y="${(fy+10*s).toFixed(1)}" width="${w}" height="${26*s}" rx="3" fill="var(--navy)"/>
               <rect x="${fx+7*s}" y="${fy.toFixed(1)}" width="${8*s}" height="${13*s}" fill="var(--navy)"/>
               <path d="M ${fx} ${(fy+10*s).toFixed(1)} l ${15*s} -6 v 6 l ${15*s} -6 v 6 l ${15*s} -6 v 6 z" fill="#3C64A0"/>
@@ -602,8 +645,8 @@
             ph+=`<circle data-w="${i}" r="3" fill="#FFDD82" opacity="0"/><circle data-w="${i}" r="3" fill="#FFDD82" opacity="0"/>`;
           });
           if(n===0){                                             // B: 산단 목록 미수집 안내
-            fh=`<text x="565" y="150" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--muted)" style="paint-order:stroke;stroke:#E3E4DE;stroke-width:4px">산단 목록 수집 예정 (한국산업단지공단)</text>`+
-               `<text x="565" y="168" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="#9AA8B8" style="paint-order:stroke;stroke:#E3E4DE;stroke-width:4px">관내 실행 물량 부재 시 인접 농업 시군 연계</text>`;
+            fh=`<text x="565" y="150" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--muted)" style="paint-order:stroke;stroke:#E3E4DE;stroke-width:4px">${WL().noListT}</text>`+
+               `<text x="565" y="168" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="#9AA8B8" style="paint-order:stroke;stroke:#E3E4DE;stroke-width:4px">${WL().noListS}</text>`;
           }
           wr.innerHTML=wh; fc.innerHTML=fh; pl.innerHTML=ph;
           wires=[...wr.querySelectorAll('.d17w')];
@@ -620,6 +663,8 @@
         });
         document.getElementById('d17t').addEventListener('change',e=>{tt=e.target.value; refresh();});
         build(codes[0]);
+        // 언어 전환 시 동적 라벨 재렌더 (site.js 공용 엔진이 호출)
+        window.onLangChange=function(){ buildSelect(); drawGH(); build(sel.value); };
         const night=document.getElementById('d17night'), st=document.getElementById('d17st');
         const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
         let off=0, pt=0;
@@ -642,7 +687,7 @@
           gh.style.filter=pn.style.filter;               // 지붕형 패널도 같이 발광
           wins.forEach(w=>w.setAttribute('opacity',(0.94*g).toFixed(3)));
           night.setAttribute('opacity',((1-g)*0.45).toFixed(3));
-          st.textContent=`발전율 ${Math.round(g*100)}%`;
+          st.textContent=WL().genRate(Math.round(g*100));
           requestAnimationFrame(frame);
         }
         frame();

@@ -205,6 +205,12 @@ Promise.all([
   const TS=['0.10','0.20','0.30','0.40','0.50'];
   const mw=v=>v==null?'—':Math.round(v).toLocaleString();
 
+  /* ── 시군명 로마자 · 업종명 매핑 (EN 동적 라벨용) ── */
+  const ROMAN={'44270':'Dangjin','44180':'Boryeong','44200':'Asan','44130':'Cheonan','44210':'Seosan','44800':'Hongseong','41590':'Hwaseong','41220':'Pyeongtaek','41460':'Yongin','41270':'Ansan','41390':'Siheung','41500':'Icheon','41480':'Paju','41570':'Gimpo','44810':'Yesan','28200':'Incheon-Namdong','46230':'Gwangyang','46130':'Yeosu','47110':'Pohang','47190':'Gumi','31000':'Ulsan'};
+  const SECEN={'제조':'Mfg','부동산':'Real estate','도소매':'Retail','농림어업':'Agri.','전기가스':'Power/gas','운수':'Transport','정보통신':'ICT','숙박음식':'Food/lodging','교육':'Education','수도재생':'Water/waste','광업':'Mining','국제기관':'Intl. orgs'};
+  const NM=k=>(window.__curLang==='en'&&ROMAN[k])?ROMAN[k]:C[k].name;
+  const SC=s=>(window.__curLang==='en'&&SECEN[s])?SECEN[s]:s;
+
   /* ── 차트 텍스트 i18n (정적 data-i18n와 별개, SVG/DOM 주입용) ── */
   var CT={
     ko:{
@@ -241,7 +247,7 @@ Promise.all([
   (function(){
     const P=ALL.filter(k=>OWN[k]&&OWN[k].indiv_pct!=null).map(k=>{
       const seg=C[k].S1.seg_mw||0, ip=OWN[k].indiv_pct, e=C[k].S1.b_mw_t30||0;
-      return [C[k].name, seg, ip, e, C[k].region, OWN[k].n_indiv, OWN[k].n_parcels];
+      return [k, seg, ip, e, C[k].region, OWN[k].n_indiv, OWN[k].n_parcels];
     });
     const maxSeg=Math.max(...P.map(p=>p[1]),1), maxE=Math.max(...P.map(p=>p[3]),1);
     const Y0=30, Y1=100;
@@ -267,9 +273,9 @@ Promise.all([
       '<text x="'+(XR-6)+'" y="'+(YB-8)+'" text-anchor="end" font-family="var(--mono)" font-size="11" fill="var(--leaf-deep)" font-weight="700">'+L('f1-q4')+'</text>'+
       '<text x="'+(XL+6)+'" y="'+(YT+18)+'" font-family="var(--mono)" font-size="11" fill="#9AA8B8">'+L('f1-q2')+'</text>'+
       '<text x="'+(XL+6)+'" y="'+(YB-8)+'" font-family="var(--mono)" font-size="11" fill="#9AA8B8">'+L('f1-q3')+'</text>'+
-      P.map(([n,seg,ip,e,reg,ni,np])=>{
+      P.map(([code,seg,ip,e,reg,ni,np])=>{
         const trap=seg>1000&&ip>80, cand=seg>1000&&ip<=80, r=R(e);
-        return '<circle data-n="'+n+(reg==='B'?L('f1-hub'):'')+' — '+L('f1-tt-pot')+' '+Math.round(seg).toLocaleString()+'MW · '+L('f1-tt-indiv')+' '+ip+'% ('+ni.toLocaleString()+'/'+np.toLocaleString()+L('f1-tt-parcels')+') · '+L('f1-tt-exec')+' '+Math.round(e).toLocaleString()+'MW" data-r="'+r.toFixed(1)+'" cx="'+x(seg)+'" cy="'+y(ip)+'" r="'+r.toFixed(1)+'" fill="'+(trap?'var(--gold)':cand?'var(--leaf)':'var(--navy)')+'" opacity="'+(reg==='B'?.75:1)+'" stroke="#fff" stroke-width="1.5" style="cursor:default;transition:r .15s"/>';
+        return '<circle data-n="'+NM(code)+(reg==='B'?L('f1-hub'):'')+' — '+L('f1-tt-pot')+' '+Math.round(seg).toLocaleString()+'MW · '+L('f1-tt-indiv')+' '+ip+'% ('+ni.toLocaleString()+'/'+np.toLocaleString()+L('f1-tt-parcels')+') · '+L('f1-tt-exec')+' '+Math.round(e).toLocaleString()+'MW" data-r="'+r.toFixed(1)+'" cx="'+x(seg)+'" cy="'+y(ip)+'" r="'+r.toFixed(1)+'" fill="'+(trap?'var(--gold)':cand?'var(--leaf)':'var(--navy)')+'" opacity="'+(reg==='B'?.75:1)+'" stroke="#fff" stroke-width="1.5" style="cursor:default;transition:r .15s"/>';
       }).join('');
     document.getElementById('d15t').textContent='';
     }
@@ -299,7 +305,7 @@ Promise.all([
           const v=vals[i], h=hmap(v), x=26+i*67;
           return `<rect x="${x}" y="${BASE-h}" width="46" height="${Math.max(h,1)}" rx="3" fill="${COL[scn]}" style="transition:all .35s ease"/>
             <text x="${x+23}" y="${BASE-h-7}" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--navy)" font-weight="700">${Math.round(v).toLocaleString()}</text>
-            <text x="${x+23}" y="${BASE+15}" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--muted)">${C[k].name}</text>`;
+            <text x="${x+23}" y="${BASE+15}" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--muted)">${NM(k)}</text>`;
         }).join('')+
         `<line x1="20" y1="${y100}" x2="566" y2="${y100}" stroke="#B08A28" stroke-width="1.8" stroke-dasharray="6 4"/>`+
         `<line x1="20" y1="${y50}" x2="566" y2="${y50}" stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="3 4"/>`+
@@ -326,7 +332,7 @@ Promise.all([
             pathLength="100" stroke-dasharray="0 100" transform="rotate(-90 45 45)" style="transition:stroke-dasharray .8s ease,stroke .4s"/>
           <text class="d16v" data-k="${k}" x="45" y="49" text-anchor="middle" font-family="var(--serif)" font-weight="700" font-size="15" fill="var(--navy)">0</text>
         </svg>
-        <div style="font-size:11.5px;color:var(--muted);margin-top:2px">${C[k].name}</div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:2px">${NM(k)}</div>
       </div>`;
     }
     let scn='S1';
@@ -388,17 +394,17 @@ Promise.all([
     const cell=(r,key)=>{
       const v=r[key];
       const label=v==null?L('f4-pending'):fmt[key](v);
-      return '<div data-t="'+r.name+' · '+label+'" style="height:20px;border-radius:4px;cursor:default;background:'+col(key,v)+';transition:transform .15s"></div>';
+      return '<div data-t="'+NM(r.k)+' · '+label+'" style="height:20px;border-radius:4px;cursor:default;background:'+col(key,v)+';transition:transform .15s"></div>';
     };
     const top3txt=r=>{
       if(!r.top3) return '<span style="font-family:var(--mono);font-size:10.5px;color:#BBB;line-height:20px">—</span>';
-      const t1=r.top3[0], rest=r.top3.slice(1).map(([n,p])=>n+' '+Math.round(p)).join(' · ');
+      const t1=r.top3[0], rest=r.top3.slice(1).map(([n,p])=>SC(n)+' '+Math.round(p)).join(' · ');
       const c1=r.type?TYPEC[r.type]:'';
       return '<span style="font-family:var(--mono);font-size:10.5px;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+
-        '<span style="border-radius:99px;padding:1px 6px;'+c1+'">'+t1[0]+' '+Math.round(t1[1])+'%</span> '+
+        '<span style="border-radius:99px;padding:1px 6px;'+c1+'">'+SC(t1[0])+' '+Math.round(t1[1])+'%</span> '+
         '<span style="color:var(--muted)">'+rest+'</span></span>';
     };
-    const row=r=>'<span style="color:var(--muted);line-height:20px">'+r.name+'</span>'+
+    const row=r=>'<span style="color:var(--muted);line-height:20px">'+NM(r.k)+'</span>'+
       ['tot','share','e'].map(k=>cell(r,k)).join('')+top3txt(r);
     box.innerHTML=HEAD+
       '<span style="grid-column:1/-1;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em;padding-top:4px">'+L('grpA')+'</span>'+
@@ -427,7 +433,7 @@ Promise.all([
       const rows=ROWS.filter(r=>flt==='all'||r.st===flt);
       rows.sort((a,b)=>(a[key]>b[key]?1:-1)*(asc?1:-1));
       t.innerHTML=`<tr><th data-k="n" style="cursor:pointer">${L('f5-h-sgg')}</th><th>${L('f5-h-verdict')}</th><th data-k="e" style="cursor:pointer">${L('f5-h-e')}</th><th data-k="s" style="cursor:pointer">${L('f5-h-s')}</th><th data-k="r" style="cursor:pointer">${L('f5-h-r')}</th><th data-k="g" style="cursor:pointer">${L('f5-h-g')}</th></tr>`+
-        rows.map(r=>`<tr><td><a href="map.html?sgg=${r.k}" style="color:var(--navy);font-weight:600">${r.n}</a></td><td style="text-align:center">${badge(r.st)}</td><td><b>${mw(r.e)}</b></td><td>${mw(r.s)}</td><td class="su">${r.r.toFixed(1)}%</td><td>${mw(r.g)}</td></tr>`).join('');
+        rows.map(r=>`<tr><td><a href="map.html?sgg=${r.k}" style="color:var(--navy);font-weight:600">${NM(r.k)}${C[r.k].region==='B'?' ᴮ':''}</a></td><td style="text-align:center">${badge(r.st)}</td><td><b>${mw(r.e)}</b></td><td>${mw(r.s)}</td><td class="su">${r.r.toFixed(1)}%</td><td>${mw(r.g)}</td></tr>`).join('');
     }
     t.onclick=e=>{const th=e.target.closest('th');if(!th||!th.dataset.k)return;
       asc=th.dataset.k===key?!asc:false;key=th.dataset.k;render();};
@@ -462,7 +468,7 @@ window.I18N = {
     /* hero */
     'hero-eyebrow': "Insight · A map of executability",
     'hero-h1': "Not potential — <em>executability</em>.",
-    'hero-lede': "Potential figures are large everywhere. What separates a special district is <b>who owns the land</b> — the same data read through five frames. Every figure is drawn from measured data across 25 analysis segments.",
+    'hero-lede': "Potential figures are large everywhere. What separates a special district is <b>who owns the land</b> — the same data read through five frames. Every figure is drawn from measured data across 25 analysis zones.",
     /* Frame 01 */
     'f1-eyebrow': "Frame 01 · The Potential Trap",
     'f1-h2': "The potential trap — land that is large but unbuildable",
@@ -485,7 +491,7 @@ window.I18N = {
     'f2-note': "Bars = 8 strong districts under S1 t≤0.30 · dashed = special district strong 100 / designatable 50 · ⚠ non-linear Y-axis: the threshold band (0–100MW) is magnified",
     /* Frame 03 */
     'f3-eyebrow': "Frame 03 · 100MW Threshold",
-    'f3-h2': "Special-district eligibility — all 25 analysis segments at a glance",
+    'f3-h2': "Special-district eligibility — all 25 analysis zones at a glance",
     'f3-lede': "One ring = one city/county. Fill = eligibility against the 100MW threshold, center number = executable MW. Toggling the scenario updates all 25 rings at once — <b>switch to S0: strong districts shrink to Pyeongtaek, Paju and Seosan, and Dangjin's ring settles to 37MW.</b>",
     'f3-tab-s0': "Current S0",
     'f3-tab-s1': "Renewable Energy District S1",
@@ -500,7 +506,7 @@ window.I18N = {
     'f5-eyebrow': "Frame 05 · Full Table",
     'f5-h2': "National verdict table — filter it, sort it",
     'f5-more': "See it by block on the map →",
-    'f5-lede': "Tabs = verdict filter, click a header = sort by that column (click again = reverse). All 25 analysis segments (ᴮ = industrial-complex hub).",
+    'f5-lede': "Tabs = verdict filter, click a header = sort by that column (click again = reverse). All 25 analysis zones (ᴮ = industrial-complex hub).",
     'f5-tab-all': "ALL",
     'f5-tab-strong': "Strong ≥100MW",
     'f5-tab-desig': "Designatable",
@@ -510,7 +516,7 @@ window.I18N = {
     'ct-h2': "Which city or county will you <em>design</em> with us?",
     'ct-p': "Special-district candidate review, ownership-negotiation strategy, grid-connection design — the data is ready.",
     'ct-sector': "Agrivoltaics · optimal special-district siting",
-    'ct-data': "2 million parcels · 25 analysis segments · KEPCO power data"
+    'ct-data': "2 million parcels · 25 analysis zones · KEPCO power data"
   },
   meta: {
     en: {

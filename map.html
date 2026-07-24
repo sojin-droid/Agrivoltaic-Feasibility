@@ -105,6 +105,10 @@
 const q=new URLSearchParams(location.search);
 if(q.get('sgg')) document.getElementById('mapfr').src='map_full.html?sgg='+q.get('sgg');
 
+/* ── 시군명 로마자 매핑 (EN 드롭다운·판정문용) ── */
+var ROMAN={'44270':'Dangjin','44180':'Boryeong','44200':'Asan','44130':'Cheonan','44210':'Seosan','44800':'Hongseong','41590':'Hwaseong','41220':'Pyeongtaek','41460':'Yongin','41270':'Ansan','41390':'Siheung','41500':'Icheon','41480':'Paju','41570':'Gimpo','44810':'Yesan','28200':'Incheon-Namdong','46230':'Gwangyang','46130':'Yeosu','47110':'Pohang','47190':'Gumi','31000':'Ulsan'};
+function NM(k){return (window.__curLang==='en'&&ROMAN[k])?ROMAN[k]:_D.codes[k].name;}
+
 /* ── 동적 생성 문자열 사전 (KO/EN). 렌더 시점에 window.__curLang 를 읽어 선택. ── */
 var T = {
   ko:{
@@ -152,7 +156,7 @@ function render(){
   const mw=v=>v==null?'—':Math.round(v).toLocaleString();
   const sel=document.getElementById('d20s'), tsel=document.getElementById('d20t');
   const prevSel=sel.value; // 언어 재렌더 시 선택 유지
-  const opt=k=>`<option value="${k}">${C[k].name}</option>`;
+  const opt=k=>`<option value="${k}">${NM(k)}</option>`;
   sel.innerHTML=
     `<optgroup label="${tr.og_A}">${A.map(opt).join('')}</optgroup>`+
     `<optgroup label="${tr.og_B}">${B.map(opt).join('')}</optgroup>`;
@@ -172,7 +176,7 @@ function render(){
     const gen=e*8760*0.15/1000;
     const isB=c.region==='B';
     document.getElementById('d20vt').innerHTML=tr.verdict({
-      name:c.name, isB:isB, t:t, eStr:Math.round(e).toLocaleString(),
+      name:NM(k), isB:isB, t:t, eStr:Math.round(e).toLocaleString(),
       st:st, gen:gen, genStr:gen.toFixed(0)
     });
   }
@@ -211,7 +215,7 @@ window.I18N = { en: {
     /* hero */
     "hero-eyebrow":"Map · Diagnose, then verify",
     "hero-h1":"Can my city/county <em>become a special district</em>?",
-    "hero-lede":"Start with the 30-second self-diagnosis — then verify each block on the map. All 25 study zones, with scenario and individual-ownership-cap controls.",
+    "hero-lede":"Start with the 30-second self-diagnosis — then verify each block on the map. All 25 analysis zones, with scenario and individual-ownership-cap controls.",
     /* diagnosis tool */
     "diag-eye":"Diagnosis · 30-second Check",
     "diag-h2":"City/county diagnosis tool",
