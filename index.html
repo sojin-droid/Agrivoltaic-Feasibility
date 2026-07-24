@@ -9,6 +9,48 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+#pipe .eyebrow{margin-bottom:6px}
+.ls-rig{display:grid;grid-template-columns:1.5fr .92fr;gap:22px;align-items:center;margin-top:20px}
+@media(max-width:820px){.ls-rig{grid-template-columns:1fr}}
+.ls-stage3d{position:relative;height:540px;perspective:1500px;perspective-origin:50% 42%}
+@media(max-width:820px){.ls-stage3d{height:430px}}
+.ls-floor{position:absolute;left:50%;top:50%;width:560px;height:400px;margin:-150px 0 0 -280px;
+  transform:rotateX(59deg) rotateZ(-31deg);
+  background:repeating-linear-gradient(0deg,rgba(12,53,106,.05) 0 1px,transparent 1px 40px),
+  repeating-linear-gradient(90deg,rgba(12,53,106,.05) 0 1px,transparent 1px 40px);
+  border:1px dashed rgba(12,53,106,.15);border-radius:6px}
+.ls-plane{position:absolute;left:50%;top:50%;width:560px;height:400px;margin:-150px 0 0 -280px;
+  transform-origin:center;opacity:0;transition:transform .7s cubic-bezier(.2,.75,.25,1),opacity .5s ease;pointer-events:none}
+.ls-plane svg{width:100%;height:100%;display:block;filter:drop-shadow(0 18px 22px rgba(8,37,72,.18))}
+.ls-plane .sheet{fill:#fff;stroke:rgba(12,53,106,.35);stroke-width:1.2}
+.ls-plane.show{opacity:1}
+.ls-plane.active .sheet{stroke:var(--gold);stroke-width:2.4}
+.ls-tag{position:absolute;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--leaf-deep);
+  background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;padding:3px 11px;
+  white-space:nowrap;opacity:0;transition:opacity .4s;box-shadow:0 2px 8px rgba(8,37,72,.12);pointer-events:none}
+.ls-tag.show{opacity:1}.ls-tag.v{color:var(--navy);border-color:var(--gold)}
+.ls-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 16px 18px}
+.ls-steps{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.ls-step{display:flex;gap:11px;align-items:flex-start;text-align:left;background:none;border:1px solid transparent;
+  border-radius:9px;padding:7px 9px;cursor:pointer;font:inherit;color:var(--muted);transition:.2s}
+.ls-step:hover{background:var(--sky)}
+.ls-step.on{background:#fff;border-color:var(--line);color:var(--ink);box-shadow:0 1px 6px rgba(8,37,72,.07)}
+.ls-step .dot{flex:none;width:22px;height:22px;border-radius:50%;background:var(--line);color:#fff;
+  font-family:var(--mono);font-size:11px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.ls-step.on .dot{background:var(--leaf)}.ls-step.done .dot{background:var(--leaf-deep)}
+.ls-step .nm{font-weight:700;font-size:13.5px;line-height:1.25}
+.ls-step .ds{font-size:11px;color:var(--muted);margin-top:1px}.ls-step.on .ds{color:var(--leaf-deep)}
+.ls-funnel{border-top:1px solid var(--line);padding-top:12px}
+.ls-fr{display:flex;justify-content:space-between;align-items:baseline;padding:3px 0;font-size:13px}
+.ls-fr .k{color:var(--muted)}.ls-fr .v{font-weight:800;font-variant-numeric:tabular-nums;color:var(--navy);font-size:15px}
+.ls-fr.hl .v{color:var(--leaf-deep)}.ls-fr.vd .v{color:#B8860B}
+.ls-play{margin-top:13px;display:flex;gap:8px}
+.ls-play button{flex:1;font:inherit;font-size:13px;font-weight:700;padding:8px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--navy);background:var(--navy);color:#fff}
+.ls-play button.ghost{background:#fff;color:var(--navy)}
+.ls-cap{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.05em;margin:18px 0 0;text-align:center}
+</style>
 </head>
 <body>
 
@@ -69,65 +111,28 @@
 </div>
 
 <!-- ═══════════ 파이프라인 밴드: 5단계 ═══════════ -->
-<div class="routeband" id="pipe">
-  <div class="route-scroll">
-    <div class="route-stage" role="img" aria-label="분석 파이프라인 5단계: 필지 원장, 블록화, 소유 분석, 계통·수요, 판정(현재 결과)">
-      <svg viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
-        <g>
-          <line class="grid-line" x1="0" y1="80"  x2="1200" y2="80"/>
-          <line class="grid-line" x1="0" y1="160" x2="1200" y2="160"/>
-          <line class="grid-line" x1="0" y1="240" x2="1200" y2="240"/>
-          <line class="grid-line" x1="0" y1="320" x2="1200" y2="320"/>
-          <line class="grid-line" x1="200" y1="0" x2="200" y2="400"/>
-          <line class="grid-line" x1="440" y1="0" x2="440" y2="400"/>
-          <line class="grid-line" x1="680" y1="0" x2="680" y2="400"/>
-          <line class="grid-line" x1="920" y1="0" x2="920" y2="400"/>
-        </g>
-        <g>
-          <text class="depth" x="150" y="120">2.0M</text>
-          <text class="depth" x="520" y="90">25m</text>
-          <text class="depth" x="960" y="300">t≤0.30</text>
-          <text class="depth" x="360" y="360">≥3MW</text>
-          <text class="depth" x="760" y="330">99.65%</text>
-        </g>
-        <!-- 누적 분석 레이어: 단계가 갈수록 넓어진다 -->
-        <g aria-hidden="true">
-          <circle class="ring g" cx="90"   cy="330" r="16"/>
-          <circle class="ring g" cx="330"  cy="285" r="16"/><circle class="ring" cx="330"  cy="285" r="30"/>
-          <circle class="ring g" cx="570"  cy="235" r="16"/><circle class="ring" cx="570"  cy="235" r="30"/><circle class="ring" cx="570" cy="235" r="44"/>
-          <circle class="ring g" cx="810"  cy="175" r="16"/><circle class="ring" cx="810"  cy="175" r="30"/><circle class="ring" cx="810" cy="175" r="44"/><circle class="ring" cx="810" cy="175" r="58"/>
-          <circle class="ring g" cx="1090" cy="100" r="16"/><circle class="ring" cx="1090" cy="100" r="30"/><circle class="ring" cx="1090" cy="100" r="44"/><circle class="ring" cx="1090" cy="100" r="58"/><circle class="ring" cx="1090" cy="100" r="72"/>
-        </g>
-        <path class="route-dash" pathLength="100"
-          d="M 90 330 C 190 315, 250 300, 330 285 S 490 255, 570 235 S 730 195, 810 175 S 990 130, 1090 100"/>
-        <path class="route-fill" pathLength="100"
-          d="M 90 330 C 190 315, 250 300, 330 285 S 490 255, 570 235 S 730 195, 810 175 S 990 130, 1090 100"/>
-      </svg>
-
-      <button class="stop done" style="left:7.5%;  top:82.5%" onclick="location.hash='p1'" aria-label="1단계 필지 원장으로 이동"></button>
-      <button class="stop done" style="left:27.5%; top:71.3%" onclick="location.hash='p2'" aria-label="2단계 블록화로 이동"></button>
-      <button class="stop done" style="left:47.5%; top:58.8%" onclick="location.hash='p3'" aria-label="3단계 소유 분석으로 이동"></button>
-      <button class="stop done" style="left:67.5%; top:43.8%" onclick="location.hash='p4'" aria-label="4단계 계통·수요로 이동"></button>
-      <button class="stop here" style="left:90.8%; top:25%"  onclick="location.hash='p5'" aria-label="5단계 판정, 현재 결과로 이동"></button>
-
-      <span class="here-flag" style="left:90.8%; top:25%" data-i18n="rt-flag">판정 · 특구 후보</span>
-
-      <span class="stop-label" style="left:7.5%;  top:87.5%"><span class="no">STAGE 01</span><span class="nm" data-i18n="rt-nm1">필지 원장</span><span class="protect" data-i18n="rt-pr1">200만 필지</span></span>
-      <span class="stop-label" style="left:27.5%; top:76.3%"><span class="no">STAGE 02</span><span class="nm" data-i18n="rt-nm2">블록화</span><span class="protect" data-i18n="rt-pr2">+ 연접 25m</span></span>
-      <span class="stop-label" style="left:47.5%; top:63.8%"><span class="no">STAGE 03</span><span class="nm" data-i18n="rt-nm3">소유 분석</span><span class="protect" data-i18n="rt-pr3">+ 실행성</span></span>
-      <span class="stop-label" style="left:67.5%; top:48.8%"><span class="no">STAGE 04</span><span class="nm" data-i18n="rt-nm4">계통·수요</span><span class="protect" data-i18n="rt-pr4">+ 계통 여유</span></span>
-      <span class="stop-label" style="left:90.8%; top:30%"><span class="no">STAGE 05</span><span class="nm" data-i18n="rt-nm5">판정</span><span class="protect" data-i18n="rt-pr5">+ 특구 후보</span></span>
+<section class="alt" id="pipe">
+  <div class="wrap">
+    <p class="eyebrow" id="ls-eye">Analysis Pipeline</p>
+    <h2 id="ls-h2" style="margin:2px 0 8px"></h2>
+    <p class="lede" id="ls-lede" style="max-width:62ch;color:var(--muted)"></p>
+    <div class="ls-rig">
+      <div class="ls-stage3d" id="ls-stage"><div class="ls-floor"></div></div>
+      <div class="ls-panel">
+        <div class="ls-steps" id="ls-steps"></div>
+        <div class="ls-funnel" id="ls-funnel"></div>
+        <div class="ls-play">
+          <button id="ls-play"></button><button class="ghost" id="ls-reset"></button>
+        </div>
+      </div>
     </div>
+    <p class="ls-cap" id="ls-cap"></p>
   </div>
-  <div class="route-cap">
-    <span data-i18n="rt-cap1">ANALYSIS PIPELINE · 필지에서 특구까지 · 다섯 단계 · 각 단계가 데이터를 한 겹씩 얹는다</span>
-    <span data-i18n="rt-cap2">단계를 클릭하면 해당 설명으로 이동합니다</span>
-  </div>
-</div>
+</section>
 
 <!-- ═══════════ STAGE 01 · 필지 원장 ═══════════ -->
 <section class="stage" id="p1">
-  <div class="wrap inner">
+  <div class="wrap">
     <div class="txt reveal">
       <p class="eyebrow" data-i18n="s1-eye">Stage 01 · Ledger · 전수 원장 구축</p>
       <h2 data-i18n="s1-h2">필지 원장: 분석의 바닥을 깐다</h2>
@@ -143,22 +148,6 @@
         <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s1-l2t">지도 · 필지 원장 위 후보 블록</span><span class="m">MAP →</span></span></a>
       </div>
     </div>
-    <figure class="fig ripple-fig reveal" aria-hidden="true">
-      <svg viewBox="0 0 360 360">
-        <circle class="core" cx="180" cy="180" r="5"/>
-        <circle class="rc new" cx="180" cy="180" r="40"/>
-        <circle class="rc" cx="180" cy="180" r="70"/>
-        <circle class="rc" cx="180" cy="180" r="100"/>
-        <circle class="rc" cx="180" cy="180" r="130"/>
-        <circle class="rc" cx="180" cy="180" r="160"/>
-        <text class="rl new" x="180" y="132" text-anchor="middle" data-i18n="rl-p">필지</text>
-        <text class="rl" x="180" y="102" text-anchor="middle" data-i18n="rl-b">블록</text>
-        <text class="rl" x="180" y="72"  text-anchor="middle" data-i18n="rl-o">소유</text>
-        <text class="rl" x="180" y="42"  text-anchor="middle" data-i18n="rl-g">계통</text>
-        <text class="rl" x="180" y="13"  text-anchor="middle" data-i18n="rl-v">판정</text>
-      </svg>
-      <figcaption>ANALYSIS LAYERS · STAGE 01</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -171,7 +160,7 @@
 
 <!-- ═══════════ STAGE 02 · 블록화 ═══════════ -->
 <section class="stage alt flip" id="p2">
-  <div class="wrap inner">
+  <div class="wrap">
     <div class="txt reveal">
       <p class="eyebrow" data-i18n="s2-eye">Stage 02 · Blocks · 연접 블록 구성</p>
       <h2 data-i18n="s2-h2">블록화: 사업의 단위를 만든다</h2>
@@ -188,22 +177,6 @@
         <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s2-l2t">지도 · 블록 경계와 규모</span><span class="m">MAP →</span></span></a>
       </div>
     </div>
-    <figure class="fig ripple-fig reveal" aria-hidden="true">
-      <svg viewBox="0 0 360 360">
-        <circle class="core" cx="180" cy="180" r="5"/>
-        <circle class="rc on"  cx="180" cy="180" r="40"/>
-        <circle class="rc new" cx="180" cy="180" r="70"/>
-        <circle class="rc" cx="180" cy="180" r="100"/>
-        <circle class="rc" cx="180" cy="180" r="130"/>
-        <circle class="rc" cx="180" cy="180" r="160"/>
-        <text class="rl" x="180" y="132" text-anchor="middle" data-i18n="rl-p">필지</text>
-        <text class="rl new" x="180" y="102" text-anchor="middle" data-i18n="rl-b">블록</text>
-        <text class="rl" x="180" y="72"  text-anchor="middle" data-i18n="rl-o">소유</text>
-        <text class="rl" x="180" y="42"  text-anchor="middle" data-i18n="rl-g">계통</text>
-        <text class="rl" x="180" y="13"  text-anchor="middle" data-i18n="rl-v">판정</text>
-      </svg>
-      <figcaption>ANALYSIS LAYERS · STAGE 02</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -216,7 +189,7 @@
 
 <!-- ═══════════ STAGE 03 · 소유 분석 ═══════════ -->
 <section class="stage" id="p3">
-  <div class="wrap inner">
+  <div class="wrap">
     <div class="txt reveal">
       <p class="eyebrow" data-i18n="s3-eye">Stage 03 · Ownership · 부지 확보 실행성</p>
       <h2 data-i18n="s3-h2">소유 분석: 잠재량과 실행성을 가른다</h2>
@@ -233,22 +206,6 @@
         <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s3-l2t">우선 검토 후보 · 개인소유 비율이 낮은 블록</span><span class="m" data-i18n="s3-l2m">개인소유 낮은 순</span></span></a>
       </div>
     </div>
-    <figure class="fig ripple-fig reveal" aria-hidden="true">
-      <svg viewBox="0 0 360 360">
-        <circle class="core" cx="180" cy="180" r="5"/>
-        <circle class="rc on"  cx="180" cy="180" r="40"/>
-        <circle class="rc on"  cx="180" cy="180" r="70"/>
-        <circle class="rc new" cx="180" cy="180" r="100"/>
-        <circle class="rc" cx="180" cy="180" r="130"/>
-        <circle class="rc" cx="180" cy="180" r="160"/>
-        <text class="rl" x="180" y="132" text-anchor="middle" data-i18n="rl-p">필지</text>
-        <text class="rl" x="180" y="102" text-anchor="middle" data-i18n="rl-b">블록</text>
-        <text class="rl new" x="180" y="72" text-anchor="middle" data-i18n="rl-o">소유</text>
-        <text class="rl" x="180" y="42"  text-anchor="middle" data-i18n="rl-g">계통</text>
-        <text class="rl" x="180" y="13"  text-anchor="middle" data-i18n="rl-v">판정</text>
-      </svg>
-      <figcaption>ANALYSIS LAYERS · STAGE 03</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -261,7 +218,7 @@
 
 <!-- ═══════════ STAGE 04 · 계통·수요 ═══════════ -->
 <section class="stage alt flip" id="p4">
-  <div class="wrap inner">
+  <div class="wrap">
     <div class="txt reveal">
       <p class="eyebrow" data-i18n="s4-eye">Stage 04 · Grid & Demand · 계통·수요 연결</p>
       <h2 data-i18n="s4-h2">계통·수요: 후보의 전력 여건을 확인한다</h2>
@@ -278,22 +235,6 @@
         <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s4-l2t">인사이트 · 도시 성격 매트릭스</span><span class="m" data-i18n="s4-l2m">수요 구조</span></span></a>
       </div>
     </div>
-    <figure class="fig ripple-fig reveal" aria-hidden="true">
-      <svg viewBox="0 0 360 360">
-        <circle class="core" cx="180" cy="180" r="5"/>
-        <circle class="rc on"  cx="180" cy="180" r="40"/>
-        <circle class="rc on"  cx="180" cy="180" r="70"/>
-        <circle class="rc on"  cx="180" cy="180" r="100"/>
-        <circle class="rc new" cx="180" cy="180" r="130"/>
-        <circle class="rc" cx="180" cy="180" r="160"/>
-        <text class="rl" x="180" y="132" text-anchor="middle" data-i18n="rl-p">필지</text>
-        <text class="rl" x="180" y="102" text-anchor="middle" data-i18n="rl-b">블록</text>
-        <text class="rl" x="180" y="72"  text-anchor="middle" data-i18n="rl-o">소유</text>
-        <text class="rl new" x="180" y="42" text-anchor="middle" data-i18n="rl-g">계통</text>
-        <text class="rl" x="180" y="13"  text-anchor="middle" data-i18n="rl-v">판정</text>
-      </svg>
-      <figcaption>ANALYSIS LAYERS · STAGE 04</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -306,7 +247,7 @@
 
 <!-- ═══════════ STAGE 05 · 판정 (HERE) ═══════════ -->
 <section class="stage" id="p5">
-  <div class="wrap inner">
+  <div class="wrap">
     <div class="txt reveal">
       <p class="eyebrow" data-i18n="s5-eye">Stage 05 · Verdict · <span style="color:var(--leaf-deep);font-weight:700">현재 결과</span></p>
       <h2 data-i18n="s5-h2">판정: 특구 후보를 가린다</h2>
@@ -323,22 +264,6 @@
         <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s5-l2t">지도 · 시나리오·문턱 t 조절하며 탐색</span><span class="m">MAP →</span></span></a>
       </div>
     </div>
-    <figure class="fig ripple-fig reveal" aria-hidden="true">
-      <svg viewBox="0 0 360 360">
-        <circle class="core" cx="180" cy="180" r="5"/>
-        <circle class="rc on"  cx="180" cy="180" r="40"/>
-        <circle class="rc on"  cx="180" cy="180" r="70"/>
-        <circle class="rc on"  cx="180" cy="180" r="100"/>
-        <circle class="rc on"  cx="180" cy="180" r="130"/>
-        <circle class="rc new" cx="180" cy="180" r="160"/>
-        <text class="rl" x="180" y="132" text-anchor="middle" data-i18n="rl-p">필지</text>
-        <text class="rl" x="180" y="102" text-anchor="middle" data-i18n="rl-b">블록</text>
-        <text class="rl" x="180" y="72"  text-anchor="middle" data-i18n="rl-o">소유</text>
-        <text class="rl" x="180" y="42"  text-anchor="middle" data-i18n="rl-g">계통</text>
-        <text class="rl new" x="180" y="13" text-anchor="middle" data-i18n="rl-v">판정</text>
-      </svg>
-      <figcaption>ANALYSIS LAYERS · STAGE 05 · FULL</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -664,7 +589,7 @@
         document.getElementById('d17t').addEventListener('change',e=>{tt=e.target.value; refresh();});
         build(codes[0]);
         // 언어 전환 시 동적 라벨 재렌더 (site.js 공용 엔진이 호출)
-        window.onLangChange=function(){ buildSelect(); drawGH(); build(sel.value); };
+        (function(){var _p=window.onLangChange;window.onLangChange=function(l){if(typeof _p==='function')_p(l);buildSelect();drawGH();build(sel.value);};})();
         const night=document.getElementById('d17night'), st=document.getElementById('d17st');
         const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
         let off=0, pt=0;
@@ -1035,6 +960,142 @@ Promise.all([
   fetch('data/sgg_complex.json',{cache:'no-cache'}).then(r=>r.json())
 ]).then(([D,CPX])=>{ if(window._d17init) window._d17init(D.codes,CPX); })
   .catch(()=>{ /* 데이터 로드 실패 시 산단 시각화만 생략 — 히어로 지표는 정적(data-target) */ });
+</script>
+<script>
+/* ── OVERVIEW 폴리곤 레이어 스택 (당진 고정) ── */
+(function(){
+  function curLang(){
+    if(window.__curLang==='en'||window.__curLang==='ko') return window.__curLang;
+    var p=new URLSearchParams(location.search).get('lang'); if(p==='en'||p==='ko') return p;
+    try{var s=localStorage.getItem('planit_lang'); if(s==='en'||s==='ko') return s;}catch(e){}
+    return 'ko';
+  }
+  var DICT={
+    ko:{eye:'Analysis Pipeline · 폴리곤 레이어 스택',
+      h1:'필지에서 특구까지 — 데이터를 한 겹씩 얹는다',
+      lede:'경기·충남 대표 사례 <b>당진</b>. 원장(필지)에서 시작해 블록·소유·계통을 겹겹이 얹으면, 200만 규모의 잠재량이 실행 가능한 특구 후보로 좁혀집니다.',
+      cap:'단계를 클릭하거나 ▶ 자동재생 — 실측 폴리곤(당진 · S1 · t≤0.30)',
+      play:'▶ 자동 재생',pause:'❚❚ 일시정지',reset:'처음부터',
+      steps:[['필지 원장','전수 원장 · PNU'],['블록화','+ 연접 25m'],['소유 분석','+ 실행성 t≤0.30'],['계통·수요','+ 계통 여유'],['판정','+ 특구 후보']],
+      fun:['필지','블록','실행 블록','실행 물량','판정'],
+      verdict:{'유력':'유력','지정 가능':'지정 가능','요건 미달':'요건 미달'},
+      tags:['필지 원장','블록','실행 블록','계통 여유','특구 후보']},
+    en:{eye:'Analysis Pipeline · polygon layer stack',
+      h1:'From parcel to district — one data layer at a time',
+      lede:'Flagship case <b>Dangjin</b> (Gyeonggi·Chungnam). Starting from the parcel ledger and stacking block, ownership and grid layers, a 2-million-scale potential narrows to executable special-district candidates.',
+      cap:'Click a stage or press ▶ autoplay — measured polygons (Dangjin · S1 · t≤0.30)',
+      play:'▶ Autoplay',pause:'❚❚ Pause',reset:'Restart',
+      steps:[['Parcel ledger','full ledger · PNU'],['Blocking','+ 25m adjacency'],['Ownership','+ executability t≤0.30'],['Grid & demand','+ grid headroom'],['Verdict','+ district candidate']],
+      fun:['Parcels','Blocks','Executable blocks','Executable capacity','Verdict'],
+      verdict:{'유력':'Strong','지정 가능':'Designatable','요건 미달':'Below threshold'},
+      tags:['Parcel ledger','Blocks','Executable blocks','Grid headroom','District candidate']}
+  };
+  var T=function(){return DICT[curLang()];};
+  var W=560,H=400,PAD=26,step=0,timer=null,built=false,planes=[],FUN={};
+
+  function setStatic(){
+    var t=T();
+    var eye=document.getElementById('ls-eye'); if(eye)eye.textContent=t.eye;
+    var h2=document.getElementById('ls-h2'); if(h2)h2.textContent=t.h1;
+    var lede=document.getElementById('ls-lede'); if(lede)lede.innerHTML=t.lede;
+    var cap=document.getElementById('ls-cap'); if(cap)cap.textContent=t.cap;
+    var rs=document.getElementById('ls-reset'); if(rs)rs.textContent=t.reset;
+    var pb=document.getElementById('ls-play'); if(pb)pb.textContent=(timer?t.pause:t.play);
+  }
+
+  Promise.all([
+    fetch('data/44270_S1.json').then(function(r){return r.json();}),
+    fetch('data/summary.json').then(function(r){return r.json();})
+  ]).then(function(res){
+    var D=res[0],S=res[1];
+    var recs=D.records, cc=S.codes['44270'].S1;
+    var status=cc.status_t30, officialMW=cc.b_mw_t30;
+    var lons=[],lats=[];
+    recs.forEach(function(r){r.poly[0].forEach(function(p){lons.push(p[0]);lats.push(p[1]);});});
+    var minLon=Math.min.apply(0,lons),maxLon=Math.max.apply(0,lons),minLat=Math.min.apply(0,lats),maxLat=Math.max.apply(0,lats);
+    var latMid=(minLat+maxLat)/2, kx=Math.cos(latMid*Math.PI/180);
+    var kmLon=(maxLon-minLon)*111*kx, kmLat=(maxLat-minLat)*111;
+    var sc=Math.min((W-2*PAD)/kmLon,(H-2*PAD)/kmLat);
+    var offX=(W-kmLon*sc)/2, offY=(H-kmLat*sc)/2;
+    var px=function(lon){return offX+(lon-minLon)*111*kx*sc;};
+    var py=function(lat){return offY+(maxLat-lat)*111*sc;};
+    function dOf(poly){return poly.map(function(ring){return 'M'+ring.map(function(p){return px(p[0]).toFixed(1)+','+py(p[1]).toFixed(1);}).join('L')+'Z';}).join(' ');}
+    var nonsub=recs.filter(function(r){return !r.sub;});
+    var exec=recs.filter(function(r){return !r.sub&&r.indiv!=null&&r.indiv<=0.30&&r.unk<=0.20;});
+    var execIds={}; exec.forEach(function(r){execIds[r.bid]=1;});
+    var nParcels=recs.reduce(function(s,r){return s+(r.n||0);},0);
+    recs.forEach(function(r){r._d=dOf(r.poly);});
+    var sheet='<rect class="sheet" x="6" y="6" width="'+(W-12)+'" height="'+(H-12)+'" rx="9"/>';
+    function svg(inner){return '<svg viewBox="0 0 '+W+' '+H+'">'+sheet+inner+'</svg>';}
+    var L1=svg(nonsub.map(function(r){return '<path d="'+r._d+'" fill="#CFE0B0" stroke="#B7CC93" stroke-width=".4"/>';}).join(''));
+    var L2=svg(nonsub.map(function(r){return '<path d="'+r._d+'" fill="#E4EFD6" stroke="var(--navy)" stroke-width=".7" stroke-opacity=".55"/>';}).join(''));
+    var L3=svg(nonsub.map(function(r){var ok=execIds[r.bid];return '<path d="'+r._d+'" fill="'+(ok?'var(--leaf)':'#C9D2C7')+'" fill-opacity="'+(ok?.92:.4)+'" stroke="'+(ok?'var(--leaf-deep)':'#B7BEB6')+'" stroke-width="'+(ok?.8:.4)+'"/>';}).join(''));
+    var L4=svg('<defs><linearGradient id="lsgg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#EDF8E9"/><stop offset="1" stop-color="#74C476" stop-opacity=".55"/></linearGradient></defs><rect x="6" y="6" width="'+(W-12)+'" height="'+(H-12)+'" rx="9" fill="url(#lsgg)"/>'+nonsub.map(function(r){var ok=execIds[r.bid];return '<path d="'+r._d+'" fill="'+(ok?'var(--leaf)':'none')+'" fill-opacity=".85" stroke="'+(ok?'var(--leaf-deep)':'rgba(12,53,106,.25)')+'" stroke-width="'+(ok?.8:.35)+'"/>';}).join(''));
+    var L5=svg('<defs><filter id="lsgl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'+exec.map(function(r){return '<path d="'+r._d+'" fill="var(--leaf)" stroke="var(--gold)" stroke-width="1.4" filter="url(#lsgl)"/>';}).join(''));
+    var LAYERS=[L1,L2,L3,L4,L5];
+    var stage=document.getElementById('ls-stage');
+    planes=LAYERS.map(function(html,i){
+      var d=document.createElement('div'); d.className='ls-plane'; d.innerHTML=html; stage.appendChild(d);
+      var tg=document.createElement('div'); tg.className='ls-tag'+(i===4?' v':''); stage.appendChild(tg);
+      return {d:d,t:tg};
+    });
+    FUN={nP:nParcels,nB:nonsub.length,nE:exec.length,mw:officialMW,st:status};
+
+    var stepsEl=document.getElementById('ls-steps');
+    function buildSteps(){
+      var t=T();
+      stepsEl.innerHTML='';
+      t.steps.forEach(function(s,i){
+        var b=document.createElement('button'); b.className='ls-step'; b.dataset.i=i;
+        b.innerHTML='<span class="dot">'+(i+1)+'</span><span><span class="nm">'+s[0]+'</span><span class="ds">'+s[1]+'</span></span>';
+        b.onclick=function(){stopPlay();setStep(i+1);};
+        stepsEl.appendChild(b);
+      });
+    }
+    function fmt(n){return Math.round(n).toLocaleString();}
+    function renderFunnel(k){
+      var t=T();
+      var rows=[['k0',t.fun[0],fmt(FUN.nP),''],['k1',t.fun[1],fmt(FUN.nB),''],['k2',t.fun[2],fmt(FUN.nE),'hl'],['k3',t.fun[3],fmt(FUN.mw)+' MW','hl'],['k4',t.fun[4],(t.verdict[FUN.st]||FUN.st),'vd']].slice(0,Math.max(k,1));
+      document.getElementById('ls-funnel').innerHTML=rows.map(function(r){return '<div class="ls-fr '+r[3]+'"><span class="k">'+r[1]+'</span><span class="v">'+r[2]+'</span></div>';}).join('');
+    }
+    function setStep(k){
+      step=k; var t=T();
+      planes.forEach(function(p,i){
+        var on=i<k;
+        p.d.classList.toggle('show',on);
+        p.d.classList.toggle('active',i===k-1);
+        var lift=on?(i*46+(i===k-1?26:0)):(i*46-60);
+        p.d.style.transform='rotateX(59deg) rotateZ(-31deg) translateY('+(-lift)+'px) translateZ('+(i*4)+'px) scale('+(i===k-1?1.02:1)+')';
+        p.t.classList.toggle('show',on);
+        p.t.textContent=t.tags[i];
+        p.t.style.left='calc(50% + 150px)';
+        p.t.style.top='calc(50% - '+(lift+70)+'px)';
+      });
+      var btns=document.querySelectorAll('.ls-step');
+      btns.forEach(function(b,i){b.classList.toggle('on',i===k-1);b.classList.toggle('done',i<k-1);});
+      renderFunnel(k);
+    }
+    function stopPlay(){if(timer){clearInterval(timer);timer=null;setStatic();}}
+    document.getElementById('ls-play').onclick=function(){
+      if(timer){stopPlay();return;}
+      if(step>=5)setStep(0);
+      timer=setInterval(function(){if(step>=5){stopPlay();return;}setStep(step+1);},1100);
+      setStatic();
+    };
+    document.getElementById('ls-reset').onclick=function(){stopPlay();setStep(1);};
+
+    built=true;
+    window.__lsRelang=function(){ setStatic(); buildSteps(); setStep(step||1); };
+    buildSteps();
+    setStatic();
+    setStep(1);
+  }).catch(function(e){ var s=document.getElementById('ls-stage'); if(s)s.innerHTML='<p style="padding:16px;color:#b00">data load failed: '+e.message+'</p>'; });
+
+  // 언어 전환 체이닝
+  (function(){var _p=window.onLangChange;window.onLangChange=function(l){if(typeof _p==='function')_p(l); if(window.__lsRelang)window.__lsRelang();};})();
+  // 초기 정적 텍스트(데이터 로드 전에도)
+  setStatic();
+})();
 </script>
 </body>
 </html>
