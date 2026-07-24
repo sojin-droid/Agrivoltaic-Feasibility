@@ -108,7 +108,7 @@ table.mt{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
           </div>
           <div class="d19c" data-i="4">
             <span class="no" style="font-size:12px">🏅 <span style="font-size:11px;letter-spacing:.1em" data-i18n="c5-stage">STAGE 05 · 결과</span></span><b data-i18n="c5-title">특구 후보 판정</b>
-            <p data-i18n="c5-body">시군별 실행 가능 물량 합계로 3등급 판정합니다. 시나리오(S0 현행 / S1 재생에너지지구 / S2 확장)를 비교해 결론의 견고함을 검증합니다.</p>
+            <p data-i18n="c5-body">시군별 실행 가능 물량 합계로 3등급 판정합니다. 현행(S0)과 재생에너지지구(S1) 두 시나리오를 1:1로 비교합니다.</p>
             <span class="key" data-i18n="c5-key">유력(≥100MW) 8곳 · 지정 가능 3곳</span>
           </div>
         </div>
@@ -142,14 +142,13 @@ table.mt{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
 <!-- ═══════════ 시나리오 정의 ═══════════ -->
 <section class="alt">
   <div class="wrap">
-    <div class="sec-head"><div><p class="eyebrow">Scenarios</p><h2 data-i18n="sc-h2">세 개의 제도 시나리오</h2></div></div>
+    <div class="sec-head"><div><p class="eyebrow">Scenarios</p><h2 data-i18n="sc-h2">두 개의 제도 시나리오</h2></div></div>
     <table class="mt">
-      <tr><th data-i18n="th-scen">시나리오</th><th data-i18n="th-def">정의</th><th data-i18n="th-ap">농업진흥지역</th><th data-i18n="th-fac">시설(지붕형)</th><th data-i18n="th-nc">자연환경보전</th></tr>
-      <tr><td data-i18n="s0-n">S0 현행</td><td data-i18n="s0-def">현행 농지법 기준 — 농업진흥지역 태양광 원칙 제한</td><td data-i18n="s0-ap">제외</td><td data-i18n="s0-fac">제외</td><td data-i18n="s0-nc">제외</td></tr>
-      <tr><td data-i18n="s1-n">S1 재생에너지지구 <span class="badge gold">기본</span></td><td data-i18n="s1-def">영농형태양광법 — 재생에너지지구 지정 시 진흥·보호구역 포함</td><td data-i18n="s1-ap">포함</td><td data-i18n="s1-fac">포함(별도 산식 대기)</td><td data-i18n="s1-nc">제외</td></tr>
-      <tr><td data-i18n="s2-n">S2 확장</td><td data-i18n="s2-def">S1 + 자연환경보전지역까지 확장</td><td data-i18n="s2-ap">포함</td><td data-i18n="s2-fac">포함</td><td data-i18n="s2-nc">포함</td></tr>
+      <tr><th data-i18n="th-scen">시나리오</th><th data-i18n="th-def">정의</th><th data-i18n="th-ap">농업진흥지역</th><th data-i18n="th-fac">시설(지붕형)</th></tr>
+      <tr><td data-i18n="s0-n">S0 현행</td><td data-i18n="s0-def">현행 농지법 기준 — 농업진흥지역 태양광 원칙 제한</td><td data-i18n="s0-ap">제외</td><td data-i18n="s0-fac">제외</td></tr>
+      <tr><td data-i18n="s1-n">S1 재생에너지지구 <span class="badge gold">기본</span></td><td data-i18n="s1-def">영농형태양광법 — 재생에너지지구 지정 시 진흥·보호구역 포함</td><td data-i18n="s1-ap">포함</td><td data-i18n="s1-fac">포함(별도 산식 대기)</td></tr>
     </table>
-    <p style="font-size:13.5px;color:var(--muted);margin-top:10px;word-break:keep-all" data-i18n="sc-take">S1↔S2 판정 변화 <b>0곳</b> — 자연환경보전지역을 제외해도 특구가 성립한다는 것이 결론의 견고성을 보여준다.</p>
+    <p style="font-size:13.5px;color:var(--muted);margin-top:10px;word-break:keep-all" data-i18n="sc-take">본 분석은 <b>자연환경보전지역을 건드리지 않고 농지만</b>을 대상으로 한다 — 특구는 보전지역 없이 성립한다.</p>
   </div>
 </section>
 
@@ -238,10 +237,10 @@ window.I18N = { en: {
     "c4-body":"We estimate KEPCO's remaining available interconnection capacity per township and map it, then link each candidate to nearby industrial demand (generation close to load).",
     "c4-key":"651 townships · KEPCO OpenAPI grid data",
     "c5-stage":"STAGE 05 · Result", "c5-title":"Special-district determination",
-    "c5-body":"Executable capacity is summed by city/county and graded into three tiers. Scenarios (S0 current / S1 Renewable Energy District / S2 expanded) are compared to test how robust the conclusion is.",
+    "c5-body":"Executable capacity is summed by city/county and graded into three tiers. The current (S0) and Renewable Energy District (S1) scenarios are compared one-to-one.",
     "c5-key":"8 strong (≥100 MW) · 3 designatable",
     /* scenarios */
-    "sc-h2":"Three policy scenarios",
+    "sc-h2":"Two policy scenarios",
     "th-scen":"Scenario", "th-def":"Definition", "th-ap":"Agri. Promotion Area",
     "th-fac":"Facility (rooftop)", "th-nc":"Nature Conservation",
     "s0-n":"S0 Current", "s0-def":"Current Farmland Act — solar restricted in Agricultural Promotion Areas",
@@ -251,7 +250,7 @@ window.I18N = { en: {
     "s1-ap":"Included", "s1-fac":"Included (formula pending)", "s1-nc":"Excluded",
     "s2-n":"S2 Expanded", "s2-def":"S1 + extends to Nature Conservation Areas",
     "s2-ap":"Included", "s2-fac":"Included", "s2-nc":"Included",
-    "sc-take":"S1↔S2 changes <b>0 outcomes</b> — special districts hold even without Nature Conservation Areas, showing the conclusion is robust.",
+    "sc-take":"This analysis touches <b>no Nature Conservation Areas</b> and uses farmland only — the special districts hold without them.",
     /* formulas */
     "fm-h2":"Core formulas & criteria",
     "formula":"Installed capacity (MW) = area (m²) × 0.045 / 1000\nAnnual generation (MWh) = installed capacity (MW) × 1,314\nExecutable capacity = Σ( block MW | listed ≥3 MW ∧ individual ≤ 30% ∧ unverified ≤ 20% )\nGrid headroom = KEPCO feeder (DL) available capacity → apportioned equally to townships\n                + upstream-equipment cap",

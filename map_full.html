@@ -41,7 +41,6 @@
  <div><b data-m="sgg">시군</b> <select id="sggSel"></select></div>
  <div style="margin-top:6px"><b data-m="scenario">시나리오</b>
    <button class="scn on" data-v="S1" data-m="scnS1">재생에너지지구 S1</button>
-   <button class="scn" data-v="S2" data-m="scnS2">확장 S2</button>
    <button class="scn" data-v="S0" data-m="scnS0">현행 S0</button></div>
  <div style="margin-top:6px"><b data-m="choroLabel">계통 여유 단계구분도</b>
    <button id="choroBtn" data-m="choroOn">읍면동 색칠 켜기</button>
@@ -97,7 +96,7 @@ const M={
     legNote2:'⚠ 읍면동 개별 여유 — 인접 동 합산은 상위설비 공유로 실계통과 다를 수 있음',
     choroFail:'⚠ 계통 지도(grid_choropleth.json) 로드 실패 — 강력 새로고침(Ctrl+F5) 또는 서버 확인',
     cardTitle:nm=>`<b>${nm} 요약</b>`, bTag:'(B 산단 거점)',
-    c1:(s1,s2,s0)=>`① 잠재 물량: S1 ${s1}MW / S2 ${s2}MW / S0 ${s0}MW`,
+    c1:(s1,s2,s0)=>`① 잠재 물량: S1 ${s1}MW / S0 ${s0}MW`,
     c2:d=>`② 연간 수요: ${d}`,
     c3:(g,u)=>`③ 계통 여유(읍면동 합): ${g}${u}`,
     units:n=>` (표준단위 ${n}개분)`,
@@ -133,7 +132,7 @@ const M={
     legNote2:'⚠ Per-township headroom — summing adjacent townships may differ from the real grid due to shared upstream equipment',
     choroFail:'⚠ Failed to load grid map (grid_choropleth.json) — hard refresh (Ctrl+F5) or check server',
     cardTitle:nm=>`<b>${nm} summary</b>`, bTag:'(B industrial-complex hub)',
-    c1:(s1,s2,s0)=>`① Potential capacity: S1 ${s1}MW / S2 ${s2}MW / S0 ${s0}MW`,
+    c1:(s1,s2,s0)=>`① Potential capacity: S1 ${s1}MW / S0 ${s0}MW`,
     c2:d=>`② Annual demand: ${d}`,
     c3:(g,u)=>`③ Grid headroom (township sum): ${g}${u}`,
     units:n=>` (${n} standard units)`,
