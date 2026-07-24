@@ -11,14 +11,15 @@
   };
   const DEFAULT_SCENARIO = "S1";  // 기본 탭
 
-  // 판정 3단
+  // 판정 3단 (label_en/sub_en = 영어 표시)
   const STATUS = {
-    "유력":      { label: "유력",      sub: "특구 지정 요건 확보 (≥100MW)", fg: "#276749", bg: "#c6f6d5" },
-    "지정 가능": { label: "지정 가능", sub: "특구 지정 가능 (50–100MW)", fg: "#975a16", bg: "#fefcbf" },
-    "요건 미달": { label: "요건 미달", sub: "관내 실행 물량 부재",       fg: "#9b2c2c", bg: "#fed7d7" },
+    "유력":      { label: "유력",      sub: "특구 지정 요건 확보 (≥100MW)", label_en: "Strong",         sub_en: "meets special-district requirement (≥100MW)", fg: "#276749", bg: "#c6f6d5" },
+    "지정 가능": { label: "지정 가능", sub: "특구 지정 가능 (50–100MW)", label_en: "Designatable",   sub_en: "special-district designation possible (50–100MW)", fg: "#975a16", bg: "#fefcbf" },
+    "요건 미달": { label: "요건 미달", sub: "관내 실행 물량 부재",       label_en: "Below threshold", sub_en: "no in-district executable capacity", fg: "#9b2c2c", bg: "#fed7d7" },
   };
   // B(산단 거점) 전용 프레이밍 — "요건 미달" 대신
   const B_FRAME = "관내 실행 물량 부재 → 인접 농업 시군 연계 필요";
+  const B_FRAME_EN = "no in-district executable capacity → link with adjacent farming counties";
 
   // 지표 표시명 (필드→한글). '저소유/저개인소유/저(低)' 계열 전면 금지.
   const METRIC = {
@@ -50,11 +51,14 @@
     "원장 물리 코드 기준 총 30개. 울산은 구·군별 판정, 표시만 광역 그룹.";
 
   const T = {
-    SCENARIO, DEFAULT_SCENARIO, STATUS, B_FRAME, METRIC, PHRASE, UNIT, COVERAGE_NOTE,
+    SCENARIO, DEFAULT_SCENARIO, STATUS, B_FRAME, B_FRAME_EN, METRIC, PHRASE, UNIT, COVERAGE_NOTE,
     // 헬퍼
+    isEN() { return (typeof window !== "undefined" && window.__curLang === "en"); },
+    bFrame() { return this.isEN() ? B_FRAME_EN : B_FRAME; },
     statusBadge(status) {
       const s = STATUS[status] || { label: status, fg: "#555", bg: "#eee" };
-      return `<span class="badge" style="color:${s.fg};background:${s.bg}">${s.label}</span>`;
+      const label = this.isEN() ? (s.label_en || s.label) : s.label;
+      return `<span class="badge" style="color:${s.fg};background:${s.bg}">${label}</span>`;
     },
     mw(v, digits) { return v == null ? "—" : Number(v).toLocaleString("ko-KR",
       { maximumFractionDigits: digits == null ? 0 : digits }); },

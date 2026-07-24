@@ -103,7 +103,20 @@
 <script>
 // ?sgg= 쿼리를 지도 iframe에 전달 + 위저드 초기 선택
 const q=new URLSearchParams(location.search);
-if(q.get('sgg')) document.getElementById('mapfr').src='map_full.html?sgg='+q.get('sgg');
+// iframe(map_full) 언어 동기화 — site.js 로드 전에도 동작하도록 URL/localStorage 폴백
+function curLang(){
+  if(window.__curLang==='en'||window.__curLang==='ko') return window.__curLang;
+  const p=new URLSearchParams(location.search).get('lang'); if(p==='en'||p==='ko') return p;
+  try{const s=localStorage.getItem('planit_lang'); if(s==='en'||s==='ko') return s;}catch(e){}
+  return 'ko';
+}
+function setMapFrame(){
+  const sgg=q.get('sgg');
+  const src='map_full.html?'+(sgg?('sgg='+encodeURIComponent(sgg)+'&'):'')+'lang='+curLang();
+  const fr=document.getElementById('mapfr'); if(fr) fr.src=src;
+  const more=document.querySelector('a[data-i18n="bm-more"]'); if(more) more.href=src;
+}
+setMapFrame();
 
 /* ── 시군명 로마자 매핑 (EN 드롭다운·판정문용) ── */
 var ROMAN={'44270':'Dangjin','44180':'Boryeong','44200':'Asan','44130':'Cheonan','44210':'Seosan','44800':'Hongseong','41590':'Hwaseong','41220':'Pyeongtaek','41460':'Yongin','41270':'Ansan','41390':'Siheung','41500':'Icheon','41480':'Paju','41570':'Gimpo','44810':'Yesan','28200':'Incheon-Namdong','46230':'Gwangyang','46130':'Yeosu','47110':'Pohang','47190':'Gumi','31000':'Ulsan'};
@@ -194,8 +207,8 @@ function render(){
   diag();
 }
 
-// 언어 전환 시 재렌더 (데이터 로드 후에만 동작)
-window.onLangChange=function(){ render(); };
+// 언어 전환 시 재렌더 + iframe 지도 언어 동기화(재로드)
+window.onLangChange=function(){ render(); setMapFrame(); };
 
 fetch('data/summary.json',{cache:'no-cache'}).then(r=>r.json()).then(D=>{
   _D=D;
