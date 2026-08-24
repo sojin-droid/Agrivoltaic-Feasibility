@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>근거 — 조합 매트릭스와 소유 구조</title>
+<link rel="stylesheet" href="assets/v4.css">
+<script src="assets/v4.js"></script>
+</head>
+<body>
+<nav><div class="wrap"></div></nav>
+<div class="wrap">
+
+<span class="genre">수치표 — 전체 값 참조</span>
+<h1>근거: 조합 매트릭스 · 풀 분해 · 소유 세 무리</h1>
+<div class="lead">모든 표는 정본 DB 조회값. 필지 수와 면적(km²)이 1차 산출, MW는 참고 환산(0.045 kW/㎡ 가정).</div>
+
+<div class="card">
+  <h2 style="margin-top:2px">표 1. 조합 매트릭스 — 전국</h2>
+  <table id="t-matrix-nat"></table>
+  <div class="fn">각 행은 독립 조합(단계 사다리 아님). R1−R0 = 보호구역 풀, R2−R0 = 진흥구역 풀,
+  R0+두 풀 = R3 — 세 풀이 서로 겹치지 않아 정확히 가산된다.</div>
+</div>
+
+<div class="card">
+  <h2 style="margin-top:2px">표 2. 조합 매트릭스 — 간척 확정 농지</h2>
+  <table id="t-matrix-rec"></table>
+  <div class="fn">간척 = 농어촌공사 지구·공구 원장 등재분(민간 매립 미등재).
+  간척 농지는 대부분 농업진흥구역 안에 있어, 규모가 진흥구역 개방(R2)에서 움직인다.</div>
+</div>
+
+<div class="card">
+  <h2 style="margin-top:2px">표 3. 풀 분해 — 어느 구역에 얼마가 있나</h2>
+  <table id="t-pools"></table>
+  <div class="fn">풀 = 해당 구역 안에서 다른 모든 판정 조건(지목·구조물·경사·용도지역 3종·실경작)을
+  통과한 필지. 매트릭스에서 산술로만 유도(R1−R0, R2−R0).</div>
+</div>
+
+<div class="card">
+  <h2 style="margin-top:2px">표 4. 소유 세 무리 — 간척 내 법인 · 간척 내 비법인 · 간척 밖 법인</h2>
+  <table id="t-owner"></table>
+  <div class="fn">실경작 확인 농지 기준. 소유는 지적 원장의 유형 구분(개인 식별 아님) —
+  법인 유형에 농업법인 여부는 원장에 없어 구분 못 함(명부 조달 시 정밀화).</div>
+</div>
+
+<div class="card">
+  <h2 style="margin-top:2px">간척 활용 조문이 시행되면 — 세 무리의 처지</h2>
+  <div id="ordinance-story" style="font-size:13.5px"></div>
+</div>
+
+<footer></footer>
+</div>
+
+<script>
+(async () => {
+  V4.nav('evidence.html');
+  const s = await V4.data('summary_v4');
+
+  const matRows = (M) => `
+    <tr><th>조합</th><th>실경작 전<br>필지</th><th>실경작 전<br>km²</th>
+        <th>실경작 후<br>필지</th><th>실경작 후<br>km²</th><th>참고 MW<br>(후)</th></tr>` +
+    ['R0', 'R1', 'R2', 'R3'].map(c => `
+    <tr class="${c === 'R0' ? 'hl' : ''}"><td class="l">${c} ${M[c].name}</td>
+      <td>${V4.n(M[c]['전'].n)}</td><td>${V4.km2(M[c]['전'].km2)}</td>
+      <td>${V4.n(M[c]['후'].n)}</td><td>${V4.km2(M[c]['후'].km2)}</td>
+      <td style="color:#999">${V4.mw(M[c]['후'].m2)}</td></tr>`).join('');
+  document.getElementById('t-matrix-nat').innerHTML = matRows(s.matrix['전국']);
+  document.getElementById('t-matrix-rec').innerHTML = matRows(s.matrix['간척']);
+
+  const P = s.pools, M0 = s.matrix;
+  document.getElementById('t-pools').innerHTML = `
+    <tr><th>구역</th><th>전국 · 후 필지</th><th>전국 · 후 km²</th><th>간척 · 후 필지</th><th>간척 · 후 km²</th></tr>
+    <tr><td class="l">농업진흥지역 밖 (현행 = R0)</td>
+      <td>${V4.n(M0['전국'].R0['후'].n)}</td><td>${V4.km2(M0['전국'].R0['후'].km2)}</td>
+      <td>${V4.n(M0['간척'].R0['후'].n)}</td><td>${V4.km2(M0['간척'].R0['후'].km2)}</td></tr>
+    <tr><td class="l">농업보호구역 풀 (R1−R0)</td>
+      <td>${V4.n(P['전국']['보호구역']['후'].n)}</td><td>${V4.km2(P['전국']['보호구역']['후'].km2)}</td>
+      <td>${V4.n(P['간척']['보호구역']['후'].n)}</td><td>${V4.km2(P['간척']['보호구역']['후'].km2)}</td></tr>
+    <tr><td class="l">농업진흥구역 풀 (R2−R0)</td>
+      <td>${V4.n(P['전국']['진흥구역']['후'].n)}</td><td>${V4.km2(P['전국']['진흥구역']['후'].km2)}</td>
+      <td>${V4.n(P['간척']['진흥구역']['후'].n)}</td><td>${V4.km2(P['간척']['진흥구역']['후'].km2)}</td></tr>`;
+
+  const og = s.owner_groups;
+  const z = (g, k) => g.zones[k] ? `${V4.km2(g.zones[k].km2)}` : '0.0';
+  document.getElementById('t-owner').innerHTML = `
+    <tr><th>무리</th><th>필지</th><th>전체 km²</th><th>진흥 밖<br>km²</th><th>보호구역<br>km²</th>
+        <th>진흥구역<br>km²</th><th>현행법 적격<br>km²</th></tr>` +
+    og.map(g => `<tr><td class="l">${g.group}</td>
+      <td>${V4.n(g.n)}</td><td><b>${V4.km2(g.km2)}</b></td>
+      <td>${z(g, '진흥 밖')}</td><td>${z(g, '보호구역')}</td><td>${z(g, '진흥구역')}</td>
+      <td>${V4.km2(g.anchor_km2)}</td></tr>`).join('');
+
+  const inC = og.find(g => g.group === '간척 내 법인');
+  const outC = og.find(g => g.group === '간척 밖 법인');
+  const inO = og.find(g => g.group === '간척 내 비법인');
+  document.getElementById('ordinance-story').innerHTML = `
+    <p>농업법인의 영농형 태양광을 간척지 등으로 한정하는 조문이 추진될 경우, 표 4의 세 무리는
+    서로 다른 처지에 놓인다.</p>
+    <p><b>① 간척에 땅이 있는 법인(${V4.km2(inC.km2)} km²)은 자기 지구에서 바로 실행할 수 있다.</b>
+    다만 이 땅의 대부분(${V4.km2(inC.zones['진흥구역'].km2)} km²)이 농업진흥구역 안에 있어,
+    현행법으로 가능한 면적은 ${V4.km2(inC.anchor_km2)} km²뿐이다 —
+    진흥구역 내 허용이 함께 입법되지 않으면 조문은 실행 수단이 없다.</p>
+    <p><b>② 간척 밖에 땅이 있는 법인(${V4.km2(outC.km2)} km²)은 자기 땅을 쓸 수 없게 된다.</b>
+    이들의 현행법 적격 면적은 ${V4.km2(outC.anchor_km2)} km² — 조문 시행 시 이 면적 대신
+    간척지를 임차해야 하므로, 접근할 수 있는 규모가 ${V4.km2(inC.anchor_km2)} km²
+    (간척 내 법인 소유 중 현행 적격) 수준으로 줄어든다.</p>
+    <p><b>③ 간척 내 비법인 소유(${V4.km2(inO.km2)} km²)가 임차 공급원이다.</b>
+    간척 밖 법인이 사업하려면 이 땅의 사용승낙·임차가 필요하다 —
+    임차 절차가 정비되지 않으면 조문이 있어도 움직이지 않는 물량이다.
+    지역별 분포는 <a href="atlas.html">아틀라스</a>에서 필지 단위로 볼 수 있다.</p>`;
+
+  V4.footer();
+})();
+</script>
+</body>
+</html>

@@ -1,751 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PLANiT · 영농형 태양광 — 특구 최적입지 분석</title>
-<meta name="description" content="잠재량이 아니라 실행 가능성이 특구를 가른다. 200만 필지를 원장으로, 개인소유 비율이 낮은 블록의 실행 가능 물량으로 영농형 태양광 특구 후보를 가린다.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<style>
-#pipe .eyebrow{margin-bottom:6px}
-.ls-rig{display:grid;grid-template-columns:1.5fr .92fr;gap:22px;align-items:center;margin-top:20px}
-@media(max-width:820px){.ls-rig{grid-template-columns:1fr}}
-.ls-stage3d{position:relative;height:540px;perspective:1500px;perspective-origin:50% 42%}
-@media(max-width:820px){.ls-stage3d{height:430px}}
-.ls-floor{position:absolute;left:50%;top:50%;width:560px;height:400px;margin:-150px 0 0 -280px;
-  transform:rotateX(59deg) rotateZ(-31deg);
-  background:repeating-linear-gradient(0deg,rgba(12,53,106,.05) 0 1px,transparent 1px 40px),
-  repeating-linear-gradient(90deg,rgba(12,53,106,.05) 0 1px,transparent 1px 40px);
-  border:1px dashed rgba(12,53,106,.15);border-radius:6px}
-.ls-plane{position:absolute;left:50%;top:50%;width:560px;height:400px;margin:-150px 0 0 -280px;
-  transform-origin:center;opacity:0;transition:transform .7s cubic-bezier(.2,.75,.25,1),opacity .5s ease;pointer-events:none}
-.ls-plane svg{width:100%;height:100%;display:block;filter:drop-shadow(0 18px 22px rgba(8,37,72,.18))}
-.ls-plane .sheet{fill:#fff;stroke:rgba(12,53,106,.35);stroke-width:1.2}
-.ls-plane.show{opacity:1}
-.ls-plane.active .sheet{stroke:var(--gold);stroke-width:2.4}
-.ls-tag{position:absolute;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--leaf-deep);
-  background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;padding:3px 11px;
-  white-space:nowrap;opacity:0;transition:opacity .4s;box-shadow:0 2px 8px rgba(8,37,72,.12);pointer-events:none}
-.ls-tag.show{opacity:1}.ls-tag.v{color:var(--navy);border-color:var(--gold)}
-.ls-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 16px 18px}
-.ls-steps{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.ls-step{display:flex;gap:11px;align-items:flex-start;text-align:left;background:none;border:1px solid transparent;
-  border-radius:9px;padding:7px 9px;cursor:pointer;font:inherit;color:var(--muted);transition:.2s}
-.ls-step:hover{background:var(--sky)}
-.ls-step.on{background:#fff;border-color:var(--line);color:var(--ink);box-shadow:0 1px 6px rgba(8,37,72,.07)}
-.ls-step .dot{flex:none;width:22px;height:22px;border-radius:50%;background:var(--line);color:#fff;
-  font-family:var(--mono);font-size:11px;font-weight:700;display:grid;place-items:center;margin-top:1px}
-.ls-step.on .dot{background:var(--leaf)}.ls-step.done .dot{background:var(--leaf-deep)}
-.ls-step .nm{font-weight:700;font-size:13.5px;line-height:1.25}
-.ls-step .ds{font-size:11px;color:var(--muted);margin-top:1px}.ls-step.on .ds{color:var(--leaf-deep)}
-.ls-funnel{border-top:1px solid var(--line);padding-top:12px}
-.ls-fr{display:flex;justify-content:space-between;align-items:baseline;padding:3px 0;font-size:13px}
-.ls-fr .k{color:var(--muted)}.ls-fr .v{font-weight:800;font-variant-numeric:tabular-nums;color:var(--navy);font-size:15px}
-.ls-fr.hl .v{color:var(--leaf-deep)}.ls-fr.vd .v{color:#B8860B}
-.ls-play{margin-top:13px;display:flex;gap:8px}
-.ls-play button{flex:1;font:inherit;font-size:13px;font-weight:700;padding:8px;border-radius:8px;cursor:pointer;
-  border:1px solid var(--navy);background:var(--navy);color:#fff}
-.ls-play button.ghost{background:#fff;color:var(--navy)}
-.ls-cap{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.05em;margin:18px 0 0;text-align:center}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>영농형 태양광 설치 가능 농지 — 전국 분석</title>
+<link rel="stylesheet" href="assets/v4.css">
+<script src="assets/v4.js"></script>
 </head>
 <body>
+<nav><div class="wrap"></div></nav>
+<div class="wrap">
 
-<div class="topbar">
-  <div class="wrap">
-    <span data-i18n="tb-tag">Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
-    <span><a href="https://planit.institute/" data-i18n="tb-link">← planit.institute 메인으로</a></span>
-  </div>
+<span class="genre">결론장 — 핵심 수치 4개</span>
+<h1>영농형 태양광 설치 가능 농지: 규모는 제도 변수 두 가지가 결정한다</h1>
+<div class="lead">전국 필지 전수 분석 · 1차 단위는 면적(km²) · 실경작 확인(위성 실측 30% 이상) 농지 기준
+— 실경작 필터 적용 전 값은 회색으로 병기</div>
+
+<div class="stats" id="stat-row"></div>
+
+<div class="card">
+  <h2 style="margin-top:2px">네 가지 제도 조합 — 각각 독립된 경우의 수 (단계가 아님)</h2>
+  <div class="bar-wrap" id="bars"></div>
+  <div class="fn">막대 진한 부분 = 실경작 확인 후 · 연한 부분 = 적용 전 추가분.
+  세 풀(농업진흥지역 밖 · 농업보호구역 · 농업진흥구역)은 서로 겹치지 않아 정확히 더해진다.</div>
 </div>
 
-<header class="nav">
-  <div class="wrap">
-    <a class="brand" href="index.html" aria-label="PLANiT 영농형 태양광 홈">
-      <img class="mark-img" src="assets/planit_logo.png" alt="PLANiT">
-      <span class="sector" data-i18n="brand-sector">영농형 태양광</span>
-    </a>
-    <nav class="menu" id="menu">
-      <a class="active" href="index.html" data-i18n="nav-overview">개요</a>
-      <a href="map.html" data-i18n="nav-map">지도</a>
-      <a href="atlas.html" data-i18n="nav-atlas">구역별 지도</a>
-      <a href="method.html" data-i18n="nav-method">방법론</a>
-      <a href="insight.html" data-i18n="nav-insight">인사이트</a>
-          <a href="about.html" data-i18n="nav-about">영농형 태양광</a>
-    </nav>
-    <div style="display:flex;gap:12px;align-items:center">
-      <div class="lang-toggle" role="group" aria-label="Language">
-        <button type="button" data-lang="ko">KO</button>
-        <button type="button" data-lang="en">EN</button>
-      </div>
-      <a class="nav-cta" href="#contact">Contact</a>
-      <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
-    </div>
-  </div>
-</header>
+<div class="callout" id="co-reclaim"></div>
 
-<!-- ═══════════ 히어로 ═══════════ -->
-<div style="border-bottom:1px solid var(--line)">
-  <div class="wrap" style="padding:76px 24px 60px;max-width:900px">
-    <p class="eyebrow" data-i18n="hero-eyebrow">영농형 태양광 · 특구 최적입지 분석</p>
-    <h1 data-i18n="hero-h1">부지도, 수요도 있다.<br>특구를 가르는 건 <em>실행 가능성</em>이다.</h1>
-    <p class="lede" data-i18n="hero-lede">
-      경기·충남 15개 시군과 전국 산단 거점 6개 구역 — 21개 분석구역, <b>200만 필지를 전수 원장</b>으로 삼아
-      영농형 태양광 특구 후보를 분석합니다. 잠재량이 아니라 <b>개인소유 비율이 낮은 블록의
-      실행 가능 물량</b>으로 후보를 가릅니다 — 그리고 그 실행성은 시군마다 극명하게 다릅니다.
-    </p>
-    <div style="display:flex;gap:14px;margin-top:30px;flex-wrap:wrap">
-      <a class="btn btn-primary" href="#pipe" data-i18n="hero-btn1">분석 파이프라인 보기</a>
-      <a class="btn btn-ghost" href="map.html" data-i18n="hero-btn2">지도에서 후보 보기 →</a>
-    </div>
-
-    <!-- 지표 밴드 (실측) -->
-    <div class="statband reveal" aria-label="핵심 지표">
-      <div class="st"><div class="v"><span class="count" data-target="21">0</span><small data-i18n="stat1-u"> 개 분석구역</small></div><div class="k" data-i18n="stat1-k">분석구역 · A 15개 시군 + B 6개 거점</div></div>
-      <div class="st"><div class="v"><span class="lf count" data-target="8">0</span><small data-i18n="stat2-u"> 곳</small></div><div class="k" data-i18n="stat2-k">특구 유력 · ≥100MW (S1)</div></div>
-      <div class="st"><div class="v"><span class="count" data-target="4238">0</span><small data-i18n="stat3-u"> MW</small></div><div class="k" data-i18n="stat3-k">경기·충남(A) 실행 가능 물량 (S1)</div></div>
-      <div class="st"><div class="v">6<small data-i18n="stat4-u"> %</small></div><div class="k" data-i18n="stat4-k">실행/잠재 비율 — 핵심 발견</div></div>
-    </div>
-    <p class="scope-note" data-i18n="scope-note" style="margin-top:20px;padding:11px 15px;border-left:3px solid var(--leaf);background:var(--sky);border-radius:0 8px 8px 0;font-size:13px;color:var(--muted);word-break:keep-all;line-height:1.6">전국 기초지자체 전 시군을 대상으로 분석이 진행 중이며, 현재 공개본은 전력 소비가 많은 대표 산업단지 인근 지역을 1차로 분석한 결과입니다.</p>
-  </div>
+<div class="callout">
+  <b>읽는 법.</b> 위 네 값은 "보호구역을 열면, 진흥구역을 열면, 둘 다 열면"이라는
+  <b>독립 조합</b>이다 — 순서대로 밟는 단계 사다리가 아니다. 어느 조합이든 실경작 필터
+  적용 전·후 두 값을 함께 제시한다.
+  참고 발전용량 환산은 <span id="mw-note"></span> — 면적이 1차 산출이고 환산은 가정이 얹힌 파생값이다.
 </div>
 
-<!-- ═══════════ 파이프라인 밴드: 5단계 ═══════════ -->
-<section class="alt" id="pipe">
-  <div class="wrap">
-    <p class="eyebrow" id="ls-eye">Analysis Pipeline</p>
-    <h2 id="ls-h2" style="margin:2px 0 8px"></h2>
-    <p class="lede" id="ls-lede" style="max-width:62ch;color:var(--muted)"></p>
-    <div class="ls-rig">
-      <div class="ls-stage3d" id="ls-stage"><div class="ls-floor"></div></div>
-      <div class="ls-panel">
-        <div class="ls-steps" id="ls-steps"></div>
-        <div class="ls-funnel" id="ls-funnel"></div>
-        <div class="ls-play">
-          <button id="ls-play"></button><button class="ghost" id="ls-reset"></button>
-        </div>
-      </div>
-    </div>
-    <p class="ls-cap" id="ls-cap"></p>
-  </div>
-</section>
-
-<!-- ═══════════ STAGE 01 · 필지 원장 ═══════════ -->
-<section class="stage" id="p1">
-  <div class="wrap">
-    <div class="txt reveal">
-      <p class="eyebrow" data-i18n="s1-eye">Stage 01 · Ledger · 전수 원장 구축</p>
-      <h2 data-i18n="s1-h2">필지 원장: 분석의 바닥을 깐다</h2>
-      <div class="protect-row" aria-label="누적 레이어"><span class="pchip new" data-i18n="s1-chip">필지</span></div>
-      <p class="body" data-i18n="s1-body">
-        모든 분석은 필지에서 시작합니다. PNU 기반으로 경기·충남과 전국 산단거점의
-        <b>200만 필지를 전수 원장</b>으로 구축했습니다. 경기·충남 원장은 국토부
-        지적기본통계와 대조해 <b>커버리지 99.65%</b>를 확인했습니다. 지목·소유·연속지적·팜맵을 병합해
-        각 필지에 농지 여부와 소유 구분을 붙입니다. 원장의 완결성이 전체 신뢰도를 결정합니다.
-      </p>
-      <div class="stage-links">
-        <a href="method.html"><span style="display:contents"><span class="t" data-i18n="s1-l1t">방법론 · 데이터 계층과 커버리지 감사</span><span class="m" data-i18n="s1-l1m">국토부 · LX · 팜맵</span></span></a>
-        <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s1-l2t">지도 · 필지 원장 위 후보 블록</span><span class="m">MAP →</span></span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="bridge reveal">
-  <div class="wrap">
-    <span class="bl">BRIDGE 01 → 02</span>
-    <p data-i18n="br1"><b>흩어진 필지 하나하나는 사업이 되지 못합니다.</b> 사업의 단위는 연접한 땅의 덩어리 — 블록입니다. 얼마나 많은 필지가 있는지보다 "얼마나 큰 블록"이 그려지는가가 중요합니다.</p>
-  </div>
+<h2>더 보기</h2>
+<div class="card" style="font-size:13.5px">
+  <b><a href="evidence.html">근거</a></b> — 조합 매트릭스 전체 표(전국·간척), 풀 분해, 소유 세 무리 비교<br>
+  <b><a href="atlas.html">간척 아틀라스</a></b> — 당진·영암·해남·고흥 위성 지도, 필지 단위 소유 구분<br>
+  <b><a href="method.html">방법·재현</a></b> — 전국 필지 깔때기, 판정 조건, 검증 체계<br>
+  <b><a href="about.html">자료·한계</a></b> — 데이터 계보, 한계와 미확보 자료
 </div>
 
-<!-- ═══════════ STAGE 02 · 블록화 ═══════════ -->
-<section class="stage alt flip" id="p2">
-  <div class="wrap">
-    <div class="txt reveal">
-      <p class="eyebrow" data-i18n="s2-eye">Stage 02 · Blocks · 연접 블록 구성</p>
-      <h2 data-i18n="s2-h2">블록화: 사업의 단위를 만든다</h2>
-      <div class="protect-row" aria-label="누적 레이어"><span class="pchip" data-i18n="s2-chip1">필지</span><span class="pchip new" data-i18n="s2-chip2">+ 연접</span></div>
-      <p class="body" data-i18n="s2-body">
-        후보는 필지가 아니라 <b>연접한 블록</b>입니다. 필지 간격 실측 분포(91%가 직접
-        접촉, P90 33.6m)에 근거해 <b>접합 거리 25m</b>로 블록을 잇고, <b>3MW 이상</b>을
-        공식 등재 단위로 봅니다. 50MW를 넘는 큰 블록은 법정리·소유경계·콤팩트 축으로
-        3단 분할하고, 남는 파편은 인접 형제 블록에 재병합합니다. 설치용량은 필지 수가
-        아니라 <b>면적</b>에 비례합니다.
-      </p>
-      <div class="stage-links">
-        <a href="method.html"><span style="display:contents"><span class="t" data-i18n="s2-l1t">방법론 · 접합 거리와 블록 분할 규칙</span><span class="m" data-i18n="s2-l1m">25m · 3단 분할</span></span></a>
-        <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s2-l2t">지도 · 블록 경계와 규모</span><span class="m">MAP →</span></span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="bridge reveal">
-  <div class="wrap">
-    <span class="bl">BRIDGE 02 → 03</span>
-    <p data-i18n="br2"><b>큰 블록이라고 다 지을 수 있는 건 아닙니다.</b> 개인 소유가 얽힌 땅은 동의를 얻기 어렵습니다. 잠재량과 실행 가능성이 갈라지는 지점 — 여기서 특구의 실현가능한 규모가 드러납니다.</p>
-  </div>
+<footer></footer>
 </div>
-
-<!-- ═══════════ STAGE 03 · 소유 분석 ═══════════ -->
-<section class="stage" id="p3">
-  <div class="wrap">
-    <div class="txt reveal">
-      <p class="eyebrow" data-i18n="s3-eye">Stage 03 · Ownership · 부지 확보 실행성</p>
-      <h2 data-i18n="s3-h2">소유 분석: 잠재량과 실행성을 가른다</h2>
-      <div class="protect-row" aria-label="누적 레이어"><span class="pchip" data-i18n="s3-chip1">필지</span><span class="pchip" data-i18n="s3-chip2">블록</span><span class="pchip new" data-i18n="s3-chip3">+ 소유</span></div>
-      <p class="body" data-i18n="s3-body">
-        이 프로젝트의 핵심은 <b>잠재량이 아니라 부지 확보 실행성</b>입니다. 블록 안 개인소유
-        비율이 상한(기본 30%, 10~50%에서 조절 가능) 이하이고 소유주 미확인 필지가
-        20% 이하(t와 별개의 고정 기준)인 블록 — 즉 소유 협의 진입장벽이 낮은 땅을
-        <b>실행 가능 물량</b>으로 집계합니다. 경기·충남 잠재량 7.3만 MW 중 지금 실행 가능한 물량은
-        <b>약 6%</b>. 이 비율이 시군마다 극명하게 다른 것이 이 분석의 가장 중요한 발견입니다.
-      </p>
-      <div class="stage-links">
-        <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s3-l1t">인사이트 · 실행/잠재 비율 순위와 개인소유 비율 상한 탐색</span><span class="m">INSIGHT →</span></span></a>
-        <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s3-l2t">우선 검토 후보 · 개인소유 비율이 낮은 블록</span><span class="m" data-i18n="s3-l2m">개인소유 낮은 순</span></span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="bridge reveal">
-  <div class="wrap">
-    <span class="bl">BRIDGE 03 → 04</span>
-    <p data-i18n="br3"><b>실행 가능한 땅이 있어도, 전기를 흘려보낼 계통과 쓸 수요가 없으면 무의미합니다.</b></p>
-  </div>
-</div>
-
-<!-- ═══════════ STAGE 04 · 계통·수요 ═══════════ -->
-<section class="stage alt flip" id="p4">
-  <div class="wrap">
-    <div class="txt reveal">
-      <p class="eyebrow" data-i18n="s4-eye">Stage 04 · Grid & Demand · 계통·수요 연결</p>
-      <h2 data-i18n="s4-h2">계통·수요: 후보의 전력 여건을 확인한다</h2>
-      <div class="protect-row" aria-label="누적 레이어"><span class="pchip" data-i18n="s4-chip1">필지</span><span class="pchip" data-i18n="s4-chip2">블록</span><span class="pchip" data-i18n="s4-chip3">소유</span><span class="pchip new" data-i18n="s4-chip4">+ 계통</span></div>
-      <p class="body" data-i18n="s4-body">
-        한전 배전선로 여유용량(읍면동 단위)과 산업 수요를 각 후보에 연결합니다.
-        후보가 수요처(산단·도시)와 가까울수록 송전 거리가 짧아진다 —
-        「분산에너지 활성화 특별법」이 정의하는 <b>수요지 인근 발전</b>의 입지 논리로
-        후보를 읽습니다. 계통 여유는 KEPCO 전력데이터 개방포털 OpenAPI로
-        분석 대상 21개 분석구역 전체, <b>651개 읍면동에 연결</b>했습니다.
-      </p>
-      <div class="stage-links">
-        <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s4-l1t">지도 · 계통 여유 읍면동 단계구분도</span><span class="m" data-i18n="s4-l1m">읍면동 색칠</span></span></a>
-        <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s4-l2t">인사이트 · 도시 성격 매트릭스</span><span class="m" data-i18n="s4-l2m">수요 구조</span></span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="bridge reveal">
-  <div class="wrap">
-    <span class="bl">BRIDGE 04 → 05</span>
-    <p data-i18n="br4"><b>모든 레이어가 쌓이면, 마지막은 판정입니다.</b> 실행 가능 물량의 합계가 특구 규모의 문턱을 넘는가. 여기가 파이프라인의 종점입니다.</p>
-  </div>
-</div>
-
-<!-- ═══════════ STAGE 05 · 판정 (HERE) ═══════════ -->
-<section class="stage" id="p5">
-  <div class="wrap">
-    <div class="txt reveal">
-      <p class="eyebrow" data-i18n="s5-eye">Stage 05 · Verdict · <span style="color:var(--leaf-deep);font-weight:700">현재 결과</span></p>
-      <h2 data-i18n="s5-h2">판정: 특구 후보를 가린다</h2>
-      <div class="protect-row" aria-label="누적 레이어"><span class="pchip" data-i18n="s5-chip1">필지</span><span class="pchip" data-i18n="s5-chip2">블록</span><span class="pchip" data-i18n="s5-chip3">소유</span><span class="pchip" data-i18n="s5-chip4">계통</span><span class="pchip new" data-i18n="s5-chip5">+ 특구</span></div>
-      <p class="body" data-i18n="s5-body">
-        실행 가능 물량의 합계로 시군을 판정합니다 — <b>유력(≥100MW)·지정 가능(50–100MW)·
-        요건 미달</b>. 시나리오는 S0(현행)과 S1(재생에너지지구) 두 가지입니다.
-        기본 시나리오 S1에서 <b>유력 8곳</b>(당진·서산·평택·보령·아산·파주·화성·홍성),
-        <b>지정 가능 4곳</b>(이천·김포·천안, 포항시ᴮ). 이 특구들은 자연환경보전지역을 건드리지 않고 농지만으로 성립합니다.
-      </p>
-      <div class="stage-links">
-        <a href="insight.html"><span style="display:contents"><span class="t" data-i18n="s5-l1t">인사이트 · 시군별 판정 순위</span><span class="m" data-i18n="s5-l1m">21개 분석구역</span></span></a>
-        <a href="map.html"><span style="display:contents"><span class="t" data-i18n="s5-l2t">지도 · 시나리오·개인소유 비율 상한 조절하며 탐색</span><span class="m">MAP →</span></span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ 핵심 논제 밴드 ═══════════ -->
-<div class="thesis reveal">
-  <div class="wrap">
-    <blockquote data-i18n="thesis-q">
-      "부지도, 수요도 있다. <mark>제도</mark>가 규모를 가른다 — 현행 제도(S0)의 유력은
-      평택·파주·서산 3곳. 영농형태양광법이 재생에너지지구 지정으로 농업진흥지역의 빗장을 풀면(S1)
-      유력이 8곳으로 늘고, 당진은 37MW에서 1,122MW가 된다."
-    </blockquote>
-    <cite data-i18n="thesis-cite">— PLANiT 영농형 태양광 · 실행 가능 물량 분석</cite>
-  </div>
-</div>
-
-
-
-
-<!-- ═══════════ NOW: 지금 진행 중 ═══════════ -->
-<section id="now">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <p class="eyebrow" data-i18n="now-eye">Now · 이번 단계의 현장</p>
-        <h2 data-i18n="now-h2">지금 채우고 있는 것들</h2>
-      </div>
-      <a class="more" href="method.html" data-i18n="now-more">방법론 전체 →</a>
-    </div>
-    <div class="now-grid">
-      <div class="now-card reveal">
-        <p class="meta" data-i18n="now-c1-meta">STAGE 04 · 계통·수요</p>
-        <h3 data-i18n="now-c1-h3">KEPCO OpenAPI 계통 여유 — 651개 읍면동 연결</h3>
-        <div class="pbar"><div class="fill" data-progress="100"></div></div>
-        <p class="pnum"><span data-i18n="now-c1-s1">읍면동 단계구분도 색칠 완료</span><span data-i18n="now-c1-s2">완료</span></p>
-      </div>
-      <div class="now-card reveal">
-        <p class="meta" data-i18n="now-c2-meta">STAGE 04 · 산단 카드</p>
-        <h3 data-i18n="now-c2-h3">전국 산단거점(B) 산단 목록 연결 — 한국산업단지공단(KICOX)</h3>
-        <div class="pbar"><div class="fill" data-progress="35"></div></div>
-        <p class="pnum"><span data-i18n="now-c2-s1">공공데이터 확장 대기</span><span data-i18n="now-c2-s2">수집 예정</span></p>
-      </div>
-      <div class="now-card reveal">
-        <p class="meta" data-i18n="now-c3-meta">결론부 · 정책 제언</p>
-        <h3 data-i18n="now-c3-h3">영농형태양광법 활용 논거 — 법률 감수 병행</h3>
-        <div class="pbar"><div class="fill" data-progress="55"></div></div>
-        <p class="pnum"><span data-i18n="now-c3-s1">조문·시행령 확인 중</span><span data-i18n="now-c3-s2">비공개</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ 살펴보기 ═══════════ -->
-<section class="alt" id="explore">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <p class="eyebrow" data-i18n="ex-eye">Explore · 세 개의 창</p>
-        <h2 data-i18n="ex-h2">결과를 세 관점으로 본다</h2>
-      </div>
-      <a class="more" href="map.html" data-i18n="ex-more">지도로 →</a>
-    </div>
-    <div class="grid">
-      <a class="card reveal" href="map.html">
-        <div class="meta"><span class="tag" data-i18n="ex-c1-tag">지도</span><span data-i18n="ex-c1-sub">인터랙티브</span></div>
-        <h3 data-i18n="ex-c1-h3">후보 지도</h3>
-        <p data-i18n="ex-c1-p">시나리오·개인소유 비율 상한을 조절하며 블록 경계, 계통 여유 읍면동 단계구분도, 산단 위치를 탐색합니다.</p>
-        <span class="foot" data-i18n="ex-c1-foot">열기 <span class="arrow">→</span></span>
-      </a>
-      <a class="card reveal" href="insight.html">
-        <div class="meta"><span class="tag" data-i18n="ex-c2-tag">인사이트</span><span data-i18n="ex-c2-sub">다섯 프레임</span></div>
-        <h3 data-i18n="ex-c2-h3">실행성이 그리는 경계</h3>
-        <p data-i18n="ex-c2-p">잠재량 트랩 사분면, 시나리오×개인소유 비율 상한 민감도, 100MW 충족도 링, 도시 성격 매트릭스, 전국 판정표.</p>
-        <span class="foot" data-i18n="ex-c2-foot">열기 <span class="arrow">→</span></span>
-      </a>
-      <a class="card reveal" href="method.html">
-        <div class="meta"><span class="tag" data-i18n="ex-c3-tag">방법론</span><span data-i18n="ex-c3-sub">10 섹션</span></div>
-        <h3 data-i18n="ex-c3-h3">어떻게 계량했는가</h3>
-        <p data-i18n="ex-c3-p">데이터 계층, 블록 접합 25m, 3단 분할, 시나리오 S0/S1, 발전량·계통 산식과 한계까지.</p>
-        <span class="foot" data-i18n="ex-c3-foot">열기 <span class="arrow">→</span></span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ 컨택트 ═══════════ -->
-<section class="contact" id="contact">
-  <div class="wrap box">
-    <div class="reveal">
-      <p class="eyebrow" data-i18n="ct-eye">Contact</p>
-      <h2 data-i18n="ct-h2">어느 시군을 함께 <em>설계</em>하시겠어요?</h2>
-      <p style="margin-top:14px" data-i18n="ct-p">
-        정책 담당자, 지자체, 발전 사업자, 그리고 농업계와 함께 일합니다.
-        특구 후보 시군의 실행 가능 물량과 우선 검토 목록을 함께 검토합니다.
-      </p>
-    </div>
-    <div class="panel reveal">
-      <div class="row"><span class="k">EMAIL</span><a href="mailto:sojin@planit.institute">sojin@planit.institute</a></div>
-      <div class="row"><span class="k">SECTOR</span><span data-i18n="ct-sector">Agrivoltaic · 영농형 태양광</span></div>
-      <div class="row"><span class="k">FOCUS</span><span data-i18n="ct-focus">특구 최적입지 · 실행 가능 물량</span></div>
-      <div class="row"><span class="k">MAIN</span><a href="https://planit.institute/">planit.institute ↗</a></div>
-    </div>
-  </div>
-</section>
-
-<div id="appendix"></div>
-
-<footer>
-  <div class="wrap">
-    <div class="cols">
-      <div>
-        <div class="brandline" data-i18n="foot-brand">PLANiT · 영농형 태양광</div>
-        <p style="max-width:34ch;word-break:keep-all" data-i18n="foot-desc">
-          잠재량이 아니라 실행 가능성으로 영농형 태양광 특구 후보를 가리는
-          PLANiT Institute의 재생에너지 섹터입니다.
-        </p>
-      </div>
-      <div>
-        <h4>Site</h4>
-        <ul>
-          <li><a href="index.html" data-i18n="foot-site1">개요</a></li>
-          <li><a href="map.html" data-i18n="foot-site2">지도</a></li>
-          <li><a href="method.html" data-i18n="foot-site3">방법론</a></li>
-          <li><a href="insight.html" data-i18n="foot-site4">인사이트</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Pipeline</h4>
-        <ul>
-          <li><a href="index.html#p1" data-i18n="foot-pipe1">01 필지 원장</a></li>
-          <li><a href="index.html#p2" data-i18n="foot-pipe2">02 블록화</a></li>
-          <li><a href="index.html#p3" data-i18n="foot-pipe3">03 소유 분석</a></li>
-          <li><a href="index.html#p4" data-i18n="foot-pipe4">04 계통·수요</a></li>
-          <li><a href="index.html#p5" data-i18n="foot-pipe5">05 판정 · 결과</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Org</h4>
-        <ul>
-          <li><a href="https://planit.institute/">planit.institute ↗</a></li>
-          <li><a href="mailto:sojin@planit.institute">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="fine">
-      <span data-i18n="foot-data">데이터: 국토부 지적통계 · LX · 팜맵 · 한전 전력데이터 개방포털 · V-World</span>
-      <span data-i18n="foot-copy">© 2026 PLANiT Institute · 내부 검수본</span>
-    </div>
-  </div>
-</footer>
 
 <script>
-window.I18N = {
-  meta: {
-    en: {
-      title: "PLANiT · Agrivoltaics — Optimal siting for special districts",
-      desc: "Not potential, but executability decides the districts. With 2 million parcels as the ledger, we screen agrivoltaic special-district candidates by the executable capacity of low individual-ownership blocks."
-    }
-  },
-  en: {
-    // ── 리플 도식 라벨 (파이프라인 5단계, SVG) ──
-    "rl-p": "Parcel",
-    "rl-b": "Block",
-    "rl-o": "Ownership",
-    "rl-g": "Grid",
-    "rl-v": "Verdict",
-    // ── chrome ──
-    "tb-tag": "Agrivoltaic · PLANiT Institute's agrivoltaics sector",
-    "tb-link": "← Back to planit.institute",
-    "brand-sector": "Agrivoltaics",
-    "nav-overview": "Overview",
-    "nav-map": "Map",
-    "nav-atlas": "Atlas",
-    "nav-method": "Method",
-    "nav-insight": "Insight",
-    "nav-about": "Agrivoltaics",
-    "foot-data": "Data: MOLIT cadastral statistics · LX · FarmMap · KEPCO power-data portal · V-World",
-    "foot-copy": "© 2026 PLANiT Institute · internal review build",
+(async () => {
+  V4.nav('index.html');
+  const s = await V4.data('summary_v4');
+  const M = s.matrix['전국'], K = s.matrix['간척'];
 
-    // ── hero ──
-    "hero-eyebrow": "Agrivoltaics · Optimal siting for special districts",
-    "hero-h1": "The land and the demand are both there.<br>What decides a district is <em>executability</em>.",
-    "hero-lede": "Across 21 analysis zones — 15 cities/counties in Gyeonggi and Chungnam plus 6 nationwide industrial-complex hubs — we screen agrivoltaic special-district candidates against a full ledger of <b>2 million parcels</b>. Candidates are ranked not by potential but by the <b>executable capacity of blocks with a low individual-ownership ratio</b> — and that executability differs starkly from one city/county to the next.",
-    "hero-btn1": "See the analysis pipeline",
-    "hero-btn2": "See candidates on the map →",
-    "stat1-u": " analysis zones",
-    "stat1-k": "Analysis zones · A: 15 cities/counties + B: 6 hubs",
-    "stat2-u": " zones",
-    "stat2-k": "Strong districts · ≥100MW (S1)",
-    "stat3-u": " MW",
-    "stat3-k": "Executable capacity, Gyeonggi·Chungnam (A) (S1)",
-    "stat4-u": " %",
-    "stat4-k": "Executable/potential ratio — the key finding",
-    "scope-note": "Analysis is under way for every city and county nationwide; this release is a first pass covering areas near representative industrial complexes with high electricity consumption.",
+  // 강조 숫자 4개 (결론장 상한)
+  const cells = [
+    ['R0', '현행법 기준', '농업진흥지역 밖의 농지'],
+    ['R1', '농업보호구역 개방 시', '현행 + 보호구역'],
+    ['R2', '농업진흥구역 개방 시', '현행 + 진흥구역'],
+    ['R3', '둘 다 개방 시', '농업진흥지역 전체 포함'],
+  ];
+  document.getElementById('stat-row').innerHTML = cells.map(([c, k, sub]) => `
+    <div class="stat"><div class="k">${k}</div>
+      <div class="v">${V4.km2(M[c]['후'].km2)}<span class="u"> km²</span></div>
+      <div class="s">${sub} · ${V4.n(M[c]['후'].n)}필지
+      <span style="color:#aaa">(실경작 적용 전 ${V4.km2(M[c]['전'].km2)})</span></div>
+    </div>`).join('');
 
-    // ── pipeline band ──
-    "rt-flag": "Verdict · District candidates",
-    "rt-nm1": "Parcel ledger",
-    "rt-pr1": "2M parcels",
-    "rt-nm2": "Blocking",
-    "rt-pr2": "+ 25m adjacency",
-    "rt-nm3": "Ownership",
-    "rt-pr3": "+ executability",
-    "rt-nm4": "Grid & demand",
-    "rt-pr4": "+ grid headroom",
-    "rt-nm5": "Verdict",
-    "rt-pr5": "+ district candidates",
-    "rt-cap1": "ANALYSIS PIPELINE · from parcel to district · five stages · each stage adds one data layer",
-    "rt-cap2": "Click a stage to jump to its explanation",
+  // 막대 4개 — R3 기준 스케일
+  const max = M['R3']['전'].km2;
+  document.getElementById('bars').innerHTML = cells.map(([c, k]) => `
+    <div class="bar-row"><div>${k}</div>
+      <div class="bar-track">
+        <div class="bar-pre" style="width:${100 * M[c]['전'].km2 / max}%"></div>
+        <div class="bar-post" style="width:${100 * M[c]['후'].km2 / max}%"></div>
+      </div>
+      <div class="bar-num">${V4.km2(M[c]['후'].km2)} km²
+        <div class="bar-sub">${V4.n(M[c]['후'].n)}필지</div></div>
+    </div>`).join('');
 
-    // ── Stage 01 ──
-    "s1-eye": "Stage 01 · Ledger · Building the full ledger",
-    "s1-h2": "Parcel ledger: laying the foundation",
-    "s1-chip": "Parcel",
-    "s1-body": "Every analysis begins with the parcel. On a PNU basis we built a full ledger of <b>2 million parcels</b> across Gyeonggi·Chungnam and the nationwide industrial-complex hubs. Cross-checked against MOLIT cadastral base statistics, the Gyeonggi·Chungnam ledger reaches <b>99.65% coverage</b>. Merging land category, ownership, continuous cadastre and FarmMap, we tag each parcel with farmland status and ownership type. The completeness of the ledger determines the reliability of everything downstream.",
-    "s1-l1t": "Method · data layers and coverage audit",
-    "s1-l1m": "MOLIT · LX · FarmMap",
-    "s1-l2t": "Map · candidate blocks over the parcel ledger",
+  document.getElementById('co-reclaim').innerHTML =
+    `<b>간척 농지는 진흥구역 개방과 함께 움직인다.</b> 간척 확정 농지의 설치 가능 면적은
+     현행 ${V4.km2(K['R0']['후'].km2)} km² → 농업진흥구역 개방 시 ${V4.km2(K['R2']['후'].km2)} km²
+     (${V4.n(K['R2']['후'].n)}필지). 간척 농지 대부분이 농업진흥구역 안에 있기 때문이다.
+     <a href="atlas.html">아틀라스에서 지구별로 보기 →</a>`;
 
-    "br1": "<b>Scattered individual parcels cannot become a project.</b> The unit of a project is a contiguous cluster of land — a block. What matters is not how many parcels there are, but how large a block can be drawn.",
+  document.getElementById('mw-note').textContent =
+    `현행 ${V4.km2(M['R0']['후'].km2)} km² ≈ ${V4.mw(M['R0']['후'].m2)} MW (0.045 kW/㎡ 가정)`;
 
-    // ── Stage 02 ──
-    "s2-eye": "Stage 02 · Blocks · Forming contiguous blocks",
-    "s2-h2": "Blocking: creating the unit of a project",
-    "s2-chip1": "Parcel",
-    "s2-chip2": "+ adjacency",
-    "s2-body": "A candidate is not a parcel but a <b>contiguous block</b>. Based on the measured distribution of parcel gaps (91% in direct contact, P90 33.6m), we join parcels into blocks at a <b>25m adjacency distance</b> and treat <b>3MW or more</b> as the official listing unit. Blocks over 50MW are split three ways along administrative, ownership-boundary and compactness axes, with leftover fragments re-merged into adjacent sibling blocks. Installed capacity scales with <b>area</b>, not parcel count.",
-    "s2-l1t": "Method · adjacency distance and block-split rules",
-    "s2-l1m": "25m · 3-way split",
-    "s2-l2t": "Map · block boundaries and scale",
-
-    "br2": "<b>A large block is not necessarily buildable.</b> Land entangled with individual ownership is hard to secure consent for. This is where potential and executability diverge — and where the feasible scale of a district emerges.",
-
-    // ── Stage 03 ──
-    "s3-eye": "Stage 03 · Ownership · Feasibility of land assembly",
-    "s3-h2": "Ownership analysis: separating potential from executability",
-    "s3-chip1": "Parcel",
-    "s3-chip2": "Block",
-    "s3-chip3": "+ ownership",
-    "s3-body": "The heart of this project is <b>not potential but the feasibility of land assembly</b>. Blocks where the individual-ownership ratio is at or below a cap (default 30%, adjustable 10–50%) and unverified-ownership parcels are at most 20% (a separate fixed criterion) — that is, land with low barriers to ownership negotiation — are counted as <b>executable capacity</b>. Of Gyeonggi·Chungnam's 73,000 MW of potential, only <b>about 6%</b> is executable today. That this ratio differs starkly across cities/counties is the single most important finding of this analysis.",
-    "s3-l1t": "Insight · executable/potential ranking and the ownership cap",
-    "s3-l2t": "Priority candidates · blocks with a low individual-ownership ratio",
-    "s3-l2m": "Lowest ownership first",
-
-    "br3": "<b>Even executable land is meaningless without a grid to carry the power and demand to consume it.</b>",
-
-    // ── Stage 04 ──
-    "s4-eye": "Stage 04 · Grid & Demand · Linking grid and demand",
-    "s4-h2": "Grid & demand: checking each candidate's power conditions",
-    "s4-chip1": "Parcel",
-    "s4-chip2": "Block",
-    "s4-chip3": "Ownership",
-    "s4-chip4": "+ grid",
-    "s4-body": "We link KEPCO distribution-line headroom (at township level) and industrial demand to each candidate. The closer a candidate is to demand (industrial complexes, cities), the shorter the transmission distance — we read candidates through the siting logic of <b>generation near demand</b> as defined by the Distributed Energy Act. Grid headroom was connected across all 21 analysis zones, spanning <b>651 townships</b>, via the KEPCO power-data portal OpenAPI.",
-    "s4-l1t": "Map · grid-headroom township choropleth",
-    "s4-l1m": "Township shading",
-    "s4-l2t": "Insight · city-character matrix",
-    "s4-l2m": "Demand structure",
-
-    "br4": "<b>Once every layer is stacked, the last step is the verdict.</b> Does the sum of executable capacity clear the threshold for a special district? This is the terminus of the pipeline.",
-
-    // ── Stage 05 ──
-    "s5-eye": "Stage 05 · Verdict · <span style=\"color:var(--leaf-deep);font-weight:700\">Current results</span>",
-    "s5-h2": "Verdict: screening the district candidates",
-    "s5-chip1": "Parcel",
-    "s5-chip2": "Block",
-    "s5-chip3": "Ownership",
-    "s5-chip4": "Grid",
-    "s5-chip5": "+ district",
-    "s5-body": "Cities/counties are judged by the sum of executable capacity — <b>strong (≥100MW), designatable (50–100MW), below threshold</b>. Scenarios are S0 (Current) and S1 (Renewable Energy District). Under S1 there are <b>8 strong zones</b> (Dangjin, Seosan, Pyeongtaek, Boryeong, Asan, Paju, Hwaseong, Hongseong) and <b>4 designatable zones</b> (Icheon, Gimpo, Cheonan, Pohangᴮ). These districts hold on farmland alone, without touching Nature Conservation Areas.",
-    "s5-l1t": "Insight · verdict ranking by city/county",
-    "s5-l1m": "21 analysis zones",
-    "s5-l2t": "Map · explore by adjusting scenario and ownership cap",
-
-    // ── thesis ──
-    "thesis-q": "\"The land and the demand are both there. <mark>Policy</mark> decides the scale — under current policy (S0), only Pyeongtaek, Paju and Seosan are strong. When the Agrivoltaics Act unlocks Agricultural Promotion Areas through Renewable Energy District designation (S1), strong zones rise to 8 and Dangjin goes from 37MW to 1,122MW.\"",
-    "thesis-cite": "— PLANiT Agrivoltaics · executable-capacity analysis",
-
-    // ── What Agrivoltaic Means ──
-    "av-eye": "What Agrivoltaic Means",
-    "av-h2": "When the Agrivoltaics Act unlocks it, the fields move <em>like this</em>",
-    "av-lede": "Agrivoltaics is not a power plant that converts farmland — <b>farming continues under the panels and between the rows.</b> Agrivoltaic generation is, in principle, carried out on <b>farmland outside Agricultural Promotion Areas</b>, but once an area is designated a <b>Renewable Energy District</b>, generation and farming can proceed together even inside Agricultural Promotion Areas — the aim being to <b>protect farmers' income.</b>",
-    "av-src1": "Sky, field brightness and sun size all shift with the sun's position (visualization-only formula e=sin(pπ) — a screen effect unrelated to the analysis results)",
-    "av-fig1": "Mouse left/right = sun position (east→west) · brightest and strongest at noon · release and the day flows on its own",
-    "av-lab1": "City/county",
-    "av-tab0": "Current S0",
-    "av-tab1": "Renew. District S1",
-    "av-tab2": "Expanded S2",
-    "av-lab2": "Ownership cap",
-    "av-src2": "Industrial complex = real data from the industrial-complex DB (name · sector · estimated MW — shown on hover) · transmission-line flow, panel glow, window light and night brightness are screen effects scaled to the sun's altitude above",
-    "av-fig2": "Try changing the city/county, scenario and ownership cap — 1 panel = 10MW (scaled to executable capacity) · under current S0, both agrivoltaics in Agricultural Promotion Areas and rooftop solar on greenhouses are prohibited · industrial complexes, grid and demand use measured data (uncollected items marked “to be collected”)",
-
-    // ── Now ──
-    "now-eye": "Now · the field of this stage",
-    "now-h2": "What we are filling in now",
-    "now-more": "Full method →",
-    "now-c1-meta": "STAGE 04 · Grid & demand",
-    "now-c1-h3": "KEPCO OpenAPI grid headroom — 651 townships linked",
-    "now-c1-s1": "Township choropleth shading complete",
-    "now-c1-s2": "Done",
-    "now-c2-meta": "STAGE 04 · Industrial-complex cards",
-    "now-c2-h3": "Linking industrial-complex lists for nationwide hubs (B) — KICOX",
-    "now-c2-s1": "Awaiting open-data expansion",
-    "now-c2-s2": "To be collected",
-    "now-c3-meta": "Conclusion · policy recommendations",
-    "now-c3-h3": "The case for using the Agrivoltaics Act — with legal review",
-    "now-c3-s1": "Reviewing statutes and enforcement decrees",
-    "now-c3-s2": "Private",
-
-    // ── Explore ──
-    "ex-eye": "Explore · three windows",
-    "ex-h2": "See the results from three perspectives",
-    "ex-more": "To the map →",
-    "ex-c1-tag": "Map",
-    "ex-c1-sub": "Interactive",
-    "ex-c1-h3": "Candidate map",
-    "ex-c1-p": "Explore block boundaries, the grid-headroom township choropleth and industrial-complex locations while adjusting scenario and ownership cap.",
-    "ex-c1-foot": "Open <span class=\"arrow\">→</span>",
-    "ex-c2-tag": "Insight",
-    "ex-c2-sub": "Five frames",
-    "ex-c2-h3": "The boundary executability draws",
-    "ex-c2-p": "The potential-trap quadrant, scenario × ownership-cap sensitivity, the 100MW sufficiency ring, the city-character matrix, and the nationwide verdict table.",
-    "ex-c2-foot": "Open <span class=\"arrow\">→</span>",
-    "ex-c3-tag": "Method",
-    "ex-c3-sub": "10 sections",
-    "ex-c3-h3": "How it was quantified",
-    "ex-c3-p": "Data layers, 25m block adjacency, three-way splits, scenarios S0/S1, and the generation and grid formulas — down to the limitations.",
-    "ex-c3-foot": "Open <span class=\"arrow\">→</span>",
-
-    // ── Contact ──
-    "ct-eye": "Contact",
-    "ct-h2": "Which city or county would you like to <em>design</em> with us?",
-    "ct-p": "We work with policymakers, local governments, developers and the agricultural sector, reviewing together the executable capacity and priority shortlist for candidate cities and counties.",
-    "ct-sector": "Agrivoltaic · agrivoltaics",
-    "ct-focus": "Optimal district siting · executable capacity",
-
-    // ── Footer ──
-    "foot-brand": "PLANiT · Agrivoltaics",
-    "foot-desc": "PLANiT Institute's renewable-energy sector, screening agrivoltaic special-district candidates by executability rather than potential.",
-    "foot-site1": "Overview",
-    "foot-site2": "Map",
-    "foot-site3": "Method",
-    "foot-site4": "Insight",
-    "foot-pipe1": "01 Parcel ledger",
-    "foot-pipe2": "02 Blocking",
-    "foot-pipe3": "03 Ownership",
-    "foot-pipe4": "04 Grid & demand",
-    "foot-pipe5": "05 Verdict · results"
-  }
-};
-</script>
-<script src="site.js"></script>
-<script src="assets/appendix.js"></script>
-<script>
-/* ── OVERVIEW 폴리곤 레이어 스택 (당진 고정) ── */
-(function(){
-  function curLang(){
-    if(window.__curLang==='en'||window.__curLang==='ko') return window.__curLang;
-    var p=new URLSearchParams(location.search).get('lang'); if(p==='en'||p==='ko') return p;
-    try{var s=localStorage.getItem('planit_lang'); if(s==='en'||s==='ko') return s;}catch(e){}
-    return 'ko';
-  }
-  var DICT={
-    ko:{eye:'Analysis Pipeline · 폴리곤 레이어 스택',
-      h1:'필지에서 특구까지 — 데이터를 한 겹씩 얹는다',
-      lede:'경기·충남 대표 사례 <b>당진</b>. 원장(필지)에서 시작해 블록·소유·계통을 겹겹이 얹으면, 200만 규모의 잠재량이 실행 가능한 특구 후보로 좁혀집니다.',
-      cap:'단계를 클릭하거나 ▶ 자동재생 — 실측 폴리곤(당진 · S1 · 개인소유 비율 30% 이하)',
-      play:'▶ 자동 재생',pause:'❚❚ 일시정지',reset:'처음부터',
-      steps:[['필지 원장','전수 원장 · PNU'],['블록화','+ 연접 25m'],['소유 분석','+ 개인소유 비율 30% 이하'],['계통·수요','+ 계통 여유'],['판정','+ 특구 후보']],
-      fun:['필지','블록','실행 블록','실행 물량','판정'],
-      verdict:{'유력':'유력','지정 가능':'지정 가능','요건 미달':'요건 미달'},
-      tags:['필지 원장','블록','실행 블록','계통 여유','특구 후보']},
-    en:{eye:'Analysis Pipeline · polygon layer stack',
-      h1:'From parcel to district — one data layer at a time',
-      lede:'Flagship case <b>Dangjin</b> (Gyeonggi·Chungnam). Starting from the parcel ledger and stacking block, ownership and grid layers, a 2-million-scale potential narrows to executable special-district candidates.',
-      cap:'Click a stage or press ▶ autoplay — measured polygons (Dangjin · S1 · individual ownership ≤30%)',
-      play:'▶ Autoplay',pause:'❚❚ Pause',reset:'Restart',
-      steps:[['Parcel ledger','full ledger · PNU'],['Blocking','+ 25m adjacency'],['Ownership','+ individual ownership ≤30%'],['Grid & demand','+ grid headroom'],['Verdict','+ district candidate']],
-      fun:['Parcels','Blocks','Executable blocks','Executable capacity','Verdict'],
-      verdict:{'유력':'Strong','지정 가능':'Designatable','요건 미달':'Below threshold'},
-      tags:['Parcel ledger','Blocks','Executable blocks','Grid headroom','District candidate']}
-  };
-  var T=function(){return DICT[curLang()];};
-  var W=560,H=400,PAD=26,step=0,timer=null,built=false,planes=[],FUN={};
-
-  function setStatic(){
-    var t=T();
-    var eye=document.getElementById('ls-eye'); if(eye)eye.textContent=t.eye;
-    var h2=document.getElementById('ls-h2'); if(h2)h2.textContent=t.h1;
-    var lede=document.getElementById('ls-lede'); if(lede)lede.innerHTML=t.lede;
-    var cap=document.getElementById('ls-cap'); if(cap)cap.textContent=t.cap;
-    var rs=document.getElementById('ls-reset'); if(rs)rs.textContent=t.reset;
-    var pb=document.getElementById('ls-play'); if(pb)pb.textContent=(timer?t.pause:t.play);
-  }
-
-  Promise.all([
-    fetch('data/44270_S1.json').then(function(r){return r.json();}),
-    fetch('data/summary.json').then(function(r){return r.json();})
-  ]).then(function(res){
-    var D=res[0],S=res[1];
-    var recs=D.records, cc=S.codes['44270'].S1;
-    var status=cc.status_t30, officialMW=cc.b_mw_t30;
-    var lons=[],lats=[];
-    recs.forEach(function(r){r.poly[0].forEach(function(p){lons.push(p[0]);lats.push(p[1]);});});
-    var minLon=Math.min.apply(0,lons),maxLon=Math.max.apply(0,lons),minLat=Math.min.apply(0,lats),maxLat=Math.max.apply(0,lats);
-    var latMid=(minLat+maxLat)/2, kx=Math.cos(latMid*Math.PI/180);
-    var kmLon=(maxLon-minLon)*111*kx, kmLat=(maxLat-minLat)*111;
-    var sc=Math.min((W-2*PAD)/kmLon,(H-2*PAD)/kmLat);
-    var offX=(W-kmLon*sc)/2, offY=(H-kmLat*sc)/2;
-    var px=function(lon){return offX+(lon-minLon)*111*kx*sc;};
-    var py=function(lat){return offY+(maxLat-lat)*111*sc;};
-    function dOf(poly){return poly.map(function(ring){return 'M'+ring.map(function(p){return px(p[0]).toFixed(1)+','+py(p[1]).toFixed(1);}).join('L')+'Z';}).join(' ');}
-    var nonsub=recs.filter(function(r){return !r.sub;});
-    var exec=recs.filter(function(r){return !r.sub&&r.indiv!=null&&r.indiv<=0.30&&r.unk<=0.20;});
-    var execIds={}; exec.forEach(function(r){execIds[r.bid]=1;});
-    var nParcels=recs.reduce(function(s,r){return s+(r.n||0);},0);
-    recs.forEach(function(r){r._d=dOf(r.poly);});
-    var sheet='<rect class="sheet" x="6" y="6" width="'+(W-12)+'" height="'+(H-12)+'" rx="9"/>';
-    function svg(inner){return '<svg viewBox="0 0 '+W+' '+H+'">'+sheet+inner+'</svg>';}
-    var L1=svg(nonsub.map(function(r){return '<path d="'+r._d+'" fill="#CFE0B0" stroke="#B7CC93" stroke-width=".4"/>';}).join(''));
-    var L2=svg(nonsub.map(function(r){return '<path d="'+r._d+'" fill="#E4EFD6" stroke="var(--navy)" stroke-width=".7" stroke-opacity=".55"/>';}).join(''));
-    var L3=svg(nonsub.map(function(r){var ok=execIds[r.bid];return '<path d="'+r._d+'" fill="'+(ok?'var(--leaf)':'#C9D2C7')+'" fill-opacity="'+(ok?.92:.4)+'" stroke="'+(ok?'var(--leaf-deep)':'#B7BEB6')+'" stroke-width="'+(ok?.8:.4)+'"/>';}).join(''));
-    var L4=svg('<defs><linearGradient id="lsgg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#EDF8E9"/><stop offset="1" stop-color="#74C476" stop-opacity=".55"/></linearGradient></defs><rect x="6" y="6" width="'+(W-12)+'" height="'+(H-12)+'" rx="9" fill="url(#lsgg)"/>'+nonsub.map(function(r){var ok=execIds[r.bid];return '<path d="'+r._d+'" fill="'+(ok?'var(--leaf)':'none')+'" fill-opacity=".85" stroke="'+(ok?'var(--leaf-deep)':'rgba(12,53,106,.25)')+'" stroke-width="'+(ok?.8:.35)+'"/>';}).join(''));
-    var L5=svg('<defs><filter id="lsgl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'+exec.map(function(r){return '<path d="'+r._d+'" fill="var(--leaf)" stroke="var(--gold)" stroke-width="1.4" filter="url(#lsgl)"/>';}).join(''));
-    var LAYERS=[L1,L2,L3,L4,L5];
-    var stage=document.getElementById('ls-stage');
-    planes=LAYERS.map(function(html,i){
-      var d=document.createElement('div'); d.className='ls-plane'; d.innerHTML=html; stage.appendChild(d);
-      return {d:d};
-    });
-    FUN={nP:nParcels,nB:nonsub.length,nE:exec.length,mw:officialMW,st:status};
-
-    var stepsEl=document.getElementById('ls-steps');
-    function buildSteps(){
-      var t=T();
-      stepsEl.innerHTML='';
-      t.steps.forEach(function(s,i){
-        var b=document.createElement('button'); b.className='ls-step'; b.dataset.i=i;
-        b.innerHTML='<span class="dot">'+(i+1)+'</span><span><span class="nm">'+s[0]+'</span><span class="ds">'+s[1]+'</span></span>';
-        b.onclick=function(){stopPlay();setStep(i+1);};
-        stepsEl.appendChild(b);
-      });
-    }
-    function fmt(n){return Math.round(n).toLocaleString();}
-    function renderFunnel(k){
-      var t=T();
-      var rows=[['k0',t.fun[0],fmt(FUN.nP),''],['k1',t.fun[1],fmt(FUN.nB),''],['k2',t.fun[2],fmt(FUN.nE),'hl'],['k3',t.fun[3],fmt(FUN.mw)+' MW','hl'],['k4',t.fun[4],(t.verdict[FUN.st]||FUN.st),'vd']].slice(0,Math.max(k,1));
-      document.getElementById('ls-funnel').innerHTML=rows.map(function(r){return '<div class="ls-fr '+r[3]+'"><span class="k">'+r[1]+'</span><span class="v">'+r[2]+'</span></div>';}).join('');
-    }
-    function setStep(k){
-      step=k; var t=T();
-      planes.forEach(function(p,i){
-        var on=i<k;
-        p.d.classList.toggle('show',on);
-        p.d.classList.toggle('active',i===k-1);
-        var lift=on?(i*46+(i===k-1?26:0)):(i*46-60);
-        p.d.style.transform='rotateX(59deg) rotateZ(-31deg) translateY('+(-lift)+'px) translateZ('+(i*4)+'px) scale('+(i===k-1?1.02:1)+')';
-      });
-      var btns=document.querySelectorAll('.ls-step');
-      btns.forEach(function(b,i){b.classList.toggle('on',i===k-1);b.classList.toggle('done',i<k-1);});
-      renderFunnel(k);
-    }
-    function stopPlay(){if(timer){clearInterval(timer);timer=null;setStatic();}}
-    document.getElementById('ls-play').onclick=function(){
-      if(timer){stopPlay();return;}
-      if(step>=5)setStep(0);
-      timer=setInterval(function(){if(step>=5){stopPlay();return;}setStep(step+1);},1100);
-      setStatic();
-    };
-    document.getElementById('ls-reset').onclick=function(){stopPlay();setStep(1);};
-
-    built=true;
-    window.__lsRelang=function(){ setStatic(); buildSteps(); setStep(step||1); };
-    buildSteps();
-    setStatic();
-    setStep(1);
-  }).catch(function(e){ var s=document.getElementById('ls-stage'); if(s)s.innerHTML='<p style="padding:16px;color:#b00">data load failed: '+e.message+'</p>'; });
-
-  // 언어 전환 체이닝
-  (function(){var _p=window.onLangChange;window.onLangChange=function(l){if(typeof _p==='function')_p(l); if(window.__lsRelang)window.__lsRelang();};})();
-  // 초기 정적 텍스트(데이터 로드 전에도)
-  setStatic();
+  V4.footer();
 })();
 </script>
 </body>
