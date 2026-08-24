@@ -1,50 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>간척 아틀라스 — 필지 단위 소유 구분</title>
-<link rel="stylesheet" href="assets/v4.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANiT · 간척 아틀라스 — 필지 단위 소유 구분</title>
+<meta name="description" content="당진·영암·해남·고흥 — 위성 배경 위 간척 확정 농지의 필지 단위 소유 구분(법인/개인).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Serif+KR:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <script src="assets/v4.js"></script>
 </head>
 <body>
-<nav><div class="wrap"></div></nav>
-<div class="wrap">
 
-<span class="genre">아틀라스 — 상세 참조</span>
-<h1>간척 아틀라스: 당진 · 영암 · 해남 · 고흥</h1>
-<div class="lead">위성 배경 위에 간척 확정 농지를 필지 단위로 표시.
-<b style="color:#c96a00">주황 = 법인</b> · <b style="color:#0e8a72">청록 = 개인</b> · 연회색 = 국공유·기타 ·
-흐린 색 = 실경작 30% 미만/미확인. 지도 위 번호 ○는 각 패널 아래 표의 지구.</div>
-
-<div class="card" style="font-size:13.5px">
-  <h2 style="margin-top:2px">네 지역이 보여주는 네 가지 사례</h2>
-  <p><b>해남 — 지구 전체가 법인 소유인 사례.</b> 영산강(3-1)·(3-2)지구는 지구 하나가
-  사실상 한 색이다. 간척 한정 조문이 시행되면 이 법인들은 임차 없이 자기 지구에서
-  바로 실행할 수 있다. 바로 옆 해남지구는 반대로 개인·기타 소유가 대부분 —
-  같은 시군 안에서도 지구에 따라 처지가 갈린다.</p>
-  <p><b>고흥 — 소형판 같은 구조.</b> 고흥지구도 지구 대부분이 법인 소유로,
-  해남형 사례가 한 곳의 특수 사례가 아님을 보여준다.</p>
-  <p><b>당진 — 한 시군, 두 구조.</b> 석문지구는 대부분 법인 소유, 대호지구는
-  법인·개인이 필지 단위로 섞여 있다(모자이크). 섞인 지구의 법인은 이웃 필지를
-  임차로 이어 붙여야 사업 규모가 나온다 — 임차 절차가 조문의 짝이어야 하는 이유가
-  이 지구 하나에서 보인다.</p>
-  <p><b>영암 — 개인 소유가 대부분인 사례.</b> 영산강2지구는 개인 소유가 지배적이다.
-  간척에 땅이 없는 법인이 와야 할 곳이 이런 지역인데, 전부 사용승낙·임차를 거쳐야
-  한다. 임차 제도 정비가 성패를 가르는 지역이다.</p>
-  <p style="color:#555">네 패널 공통의 전제: 이 농지 대부분이 농업진흥구역 안에 있어,
-  진흥구역 내 허용이 함께 입법되지 않으면 어느 소유든 실행 수단이 없다
-  (<a href="evidence.html">근거 표 2·4</a>).</p>
+<div class="topbar">
+  <div class="wrap">
+    <span data-i18n="tb-tag">Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
+    <span><a href="https://planit.institute/" data-i18n="tb-link">← planit.institute 메인으로</a></span>
+  </div>
 </div>
 
-<iframe class="atlas" src="assets/atlas_sat_v4.html" title="간척 아틀라스 위성판"></iframe>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="mark-img" src="assets/planit_logo.png" alt="PLANiT"><span class="sector" data-i18n="brand-sector">영농형 태양광</span></a>
+    <nav class="menu" id="menu">
+      <a href="index.html" data-i18n="nav-index">결론</a>
+      <a href="evidence.html" data-i18n="nav-evidence">근거</a>
+      <a class="active" href="atlas.html" data-i18n="nav-atlas">간척 아틀라스</a>
+      <a href="method.html" data-i18n="nav-method">방법·재현</a>
+      <a href="about.html" data-i18n="nav-about">자료·한계</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="ko">KO</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a class="nav-cta" href="about.html#contact">Contact</a>
+      <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
 
-<div class="fn">배경 위성: Esri World Imagery © Esri, Maxar, Earthstar Geographics (타일 내장 — 외부 로드 없음) ·
-간척 = 농어촌공사 지구·공구 원장 · 소유 = 지적 원장 유형 구분(개인 식별 아님) ·
-실경작 = 팜맵 위성 실측 · 지구가 여러 시군에 걸친 경우 표의 값은 해당 시군 구간만.</div>
-
-<footer></footer>
+<div class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Atlas · 상세 참조</p>
+    <h1>간척 아틀라스: <em>당진 · 영암 · 해남 · 고흥</em></h1>
+    <p class="lede">위성 배경 위에 간척 확정 농지를 필지 단위로 표시.
+    <b style="color:#c96a00">주황 = 법인</b> · <b style="color:#0e8a72">청록 = 개인</b> · 연회색 = 국공유·기타 ·
+    흐린 색 = 실경작 30% 미만/미확인. 지도 위 번호 ○는 각 패널 아래 표의 지구.</p>
+  </div>
 </div>
-<script>V4.nav('atlas.html'); V4.footer();</script>
+
+<section style="padding:52px 0 30px">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Four Cases</p><h2>네 지역이 보여주는 <em>네 가지 사례</em></h2></div></div>
+    <div class="grid two">
+      <div class="card reveal">
+        <div class="meta"><span class="tag">해남</span><span>영산강(3-1) · (3-2) · 해남지구</span></div>
+        <h3>지구 전체가 법인 소유인 사례</h3>
+        <p>영산강(3-1)·(3-2)지구는 지구 하나가 사실상 한 색이다. 간척 한정 조문이 시행되면
+        이 법인들은 임차 없이 자기 지구에서 바로 실행할 수 있다. 바로 옆 해남지구는 반대로
+        개인·기타 소유가 대부분 — 같은 시군 안에서도 지구에 따라 처지가 갈린다.</p>
+      </div>
+      <div class="card reveal">
+        <div class="meta"><span class="tag">고흥</span><span>고흥지구</span></div>
+        <h3>소형판 같은 구조</h3>
+        <p>고흥지구도 지구 대부분이 법인 소유로, 해남형 사례가 한 곳의 특수 사례가
+        아님을 보여준다.</p>
+      </div>
+      <div class="card reveal">
+        <div class="meta"><span class="tag">당진</span><span>석문지구 · 대호지구</span></div>
+        <h3>한 시군, 두 구조</h3>
+        <p>석문지구는 대부분 법인 소유, 대호지구는 법인·개인이 필지 단위로 섞여 있다(모자이크).
+        섞인 지구의 법인은 이웃 필지를 임차로 이어 붙여야 사업 규모가 나온다 —
+        임차 절차가 조문의 짝이어야 하는 이유가 이 지구 하나에서 보인다.</p>
+      </div>
+      <div class="card reveal">
+        <div class="meta"><span class="tag">영암</span><span>영산강2지구</span></div>
+        <h3>개인 소유가 대부분인 사례</h3>
+        <p>영산강2지구는 개인 소유가 지배적이다. 간척에 땅이 없는 법인이 와야 할 곳이
+        이런 지역인데, 전부 사용승낙·임차를 거쳐야 한다. 임차 제도 정비가 성패를
+        가르는 지역이다.</p>
+      </div>
+    </div>
+    <div class="callout-v4 reveal">네 패널 공통의 전제 — 이 농지 대부분이 농업진흥구역 안에 있어,
+    진흥구역 내 허용이 함께 입법되지 않으면 어느 소유든 실행 수단이 없다
+    (<a href="evidence.html" style="color:var(--leaf-deep)"><b>근거 표 2·표 4</b></a>).</div>
+  </div>
+</section>
+
+<section class="alt" style="padding:56px 0">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Satellite Atlas</p><h2>위성 아틀라스 — 필지 단위</h2></div></div>
+    <iframe class="atlas reveal" src="assets/atlas_sat_v4.html" title="간척 아틀라스 위성판"></iframe>
+    <div class="fn">배경 위성: Esri World Imagery © Esri, Maxar, Earthstar Geographics (타일 내장 — 외부 로드 없음) ·
+    간척 = 농어촌공사 지구·공구 원장 · 소유 = 지적 원장 유형 구분(개인 식별 아님) ·
+    실경작 = 팜맵 위성 실측 · 지구가 여러 시군에 걸친 경우 표의 값은 해당 시군 구간만.</div>
+  </div>
+</section>
+
+<footer class="v4"><div class="wrap"></div></footer>
+
+<script>V4.footer();</script>
+<script src="site.js"></script>
 </body>
 </html>

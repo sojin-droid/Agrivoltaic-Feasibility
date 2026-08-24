@@ -1,63 +1,115 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>자료·한계 — 데이터 계보</title>
-<link rel="stylesheet" href="assets/v4.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANiT · 자료·한계 — 데이터 계보</title>
+<meta name="description" content="모든 자산의 구축 시점·출처 계보와 읽을 때 전제할 한계.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Serif+KR:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <script src="assets/v4.js"></script>
 </head>
 <body>
-<nav><div class="wrap"></div></nav>
-<div class="wrap">
 
-<span class="genre">수치표 — 계보·한계</span>
-<h1>자료·한계: 이 숫자들은 어디서 왔고, 어디까지 믿을 수 있나</h1>
-<div class="lead">모든 자산의 구축 시점·출처를 아래 계보 표에 그대로 공개한다.
-값이 보수적(하한)인 지점과 아직 확보하지 못한 자료도 함께 적는다.</div>
-
-<div class="card">
-  <h2 style="margin-top:2px">한계 — 읽을 때 전제할 것</h2>
-  <table>
-    <tr><th style="text-align:left">항목</th><th style="text-align:left">내용</th></tr>
-    <tr><td class="l">간척의 범위</td><td class="l">농어촌공사 지구·공구 원장 등재분만 —
-      민간 공유수면 매립지는 원장에 없어 미포함(매립 준공 대장 조달 시 확장).</td></tr>
-    <tr><td class="l">소유 구분</td><td class="l">지적 원장의 소유 유형 구분(법인/개인/국공유 등)까지만 —
-      개인 식별 아님. 법인이 농업법인인지는 원장에 없다(명부 조달 시 정밀화).</td></tr>
-    <tr><td class="l">공간 미분해 17종</td><td class="l">하천·문화유산·군사기지 등 17종 배제 항목은
-      공간 분해 레이어 미확보로 이 판에 반영되지 않음 — 강한 배제(HARD) 계열 값은 하한.</td></tr>
-    <tr><td class="l">실경작 판정</td><td class="l">팜맵 위성 실측의 경작 확인이며 경작 의사·권리가 아니다.
-      실측이 없는 필지는 대장 배분 잔존분으로 보수 처리.</td></tr>
-    <tr><td class="l">이격거리</td><td class="l">이 판에 미반영 — 구 실측분은 검증 실패로 전량 무효 처리했고,
-      상한제(200m) 기준 재도출 후 별도 판으로 병기 예정.</td></tr>
-    <tr><td class="l">계통 여유</td><td class="l">읍면동 단위 전량 수집 완료했으나 일부 지역은
-      원천 비공개(NULL)로 남는다 — 해당 물량은 상한으로 별도 병기.</td></tr>
-  </table>
+<div class="topbar">
+  <div class="wrap">
+    <span data-i18n="tb-tag">Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
+    <span><a href="https://planit.institute/" data-i18n="tb-link">← planit.institute 메인으로</a></span>
+  </div>
 </div>
 
-<div class="card">
-  <h2 style="margin-top:2px">단위·환산 가정</h2>
-  <div style="font-size:13.5px" id="unit-note"></div>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="mark-img" src="assets/planit_logo.png" alt="PLANiT"><span class="sector" data-i18n="brand-sector">영농형 태양광</span></a>
+    <nav class="menu" id="menu">
+      <a href="index.html" data-i18n="nav-index">결론</a>
+      <a href="evidence.html" data-i18n="nav-evidence">근거</a>
+      <a href="atlas.html" data-i18n="nav-atlas">간척 아틀라스</a>
+      <a href="method.html" data-i18n="nav-method">방법·재현</a>
+      <a class="active" href="about.html" data-i18n="nav-about">자료·한계</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="ko">KO</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a class="nav-cta" href="#contact">Contact</a>
+      <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Data · 계보와 한계</p>
+    <h1>이 숫자들은 어디서 왔고, <em>어디까지 믿을 수 있나</em></h1>
+    <p class="lede">모든 자산의 구축 시점·출처를 계보 표에 그대로 공개한다.
+    값이 보수적(하한)인 지점과 아직 확보하지 못한 자료도 함께 적는다.</p>
+  </div>
 </div>
 
-<div class="card">
-  <h2 style="margin-top:2px">데이터 계보 — 자산별 구축 시점과 출처</h2>
-  <table id="t-lineage"></table>
-  <div class="fn">이 표는 정본 DB의 자산 버전 기록을 그대로 출력한 것이다 (export 시점 기준).</div>
-</div>
+<section style="padding:52px 0 40px">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Caveats</p><h2>한계 — 읽을 때 전제할 것</h2></div></div>
+    <div class="figbox reveal">
+      <div style="overflow-x:auto"><table class="v4">
+        <tr><th style="text-align:left">항목</th><th style="text-align:left">내용</th></tr>
+        <tr><td class="l"><b>간척의 범위</b></td><td class="l">농어촌공사 지구·공구 원장 등재분만 —
+          민간 공유수면 매립지는 원장에 없어 미포함(매립 준공 대장 조달 시 확장).</td></tr>
+        <tr><td class="l"><b>소유 구분</b></td><td class="l">지적 원장의 소유 유형 구분(법인/개인/국공유 등)까지만 —
+          개인 식별 아님. 법인이 농업법인인지는 원장에 없다(명부 조달 시 정밀화).</td></tr>
+        <tr><td class="l"><b>공간 미분해 17종</b></td><td class="l">하천·문화유산·군사기지 등 17종 배제 항목은
+          공간 분해 레이어 미확보로 이 판에 반영되지 않음 — 강한 배제(HARD) 계열 값은 하한.</td></tr>
+        <tr><td class="l"><b>실경작 판정</b></td><td class="l">팜맵 위성 실측의 경작 확인이며 경작 의사·권리가 아니다.
+          실측이 없는 필지는 대장 배분 잔존분으로 보수 처리.</td></tr>
+        <tr><td class="l"><b>이격거리</b></td><td class="l">이 판에 미반영 — 구 실측분은 검증 실패로 전량 무효 처리했고,
+          상한제(200m) 기준 재도출 후 별도 판으로 병기 예정.</td></tr>
+        <tr><td class="l"><b>계통 여유</b></td><td class="l">읍면동 단위 전량 수집 완료했으나 일부 지역은
+          원천 비공개(NULL)로 남는다 — 해당 물량은 상한으로 별도 병기.</td></tr>
+      </table></div>
+    </div>
+  </div>
+</section>
 
-<footer></footer>
-</div>
+<section class="alt" style="padding:56px 0">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Units</p><h2>단위·환산 가정</h2></div></div>
+    <div class="figbox reveal"><div style="font-size:14.5px;word-break:keep-all;line-height:1.8" id="unit-note"></div></div>
+  </div>
+</section>
+
+<section style="padding:56px 0 30px">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Lineage</p><h2>데이터 계보 — <em>자산별 구축 시점과 출처</em></h2></div></div>
+    <div class="figbox reveal">
+      <div style="overflow-x:auto"><table class="v4" id="t-lineage"></table></div>
+      <div class="fn">이 표는 정본 DB의 자산 버전 기록을 그대로 출력한 것이다 (export 시점 기준).</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="contact" style="padding:56px 0">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Contact</p><h2>문의</h2></div></div>
+    <div class="figbox reveal" style="font-size:14.5px">
+      PLANiT Institute · 영농형 태양광 섹터 —
+      <a href="https://planit.institute/" style="color:var(--leaf-deep)"><b>planit.institute</b></a>
+    </div>
+  </div>
+</section>
+
+<footer class="v4"><div class="wrap"></div></footer>
 
 <script>
 (async () => {
-  V4.nav('about.html');
   const s = await V4.data('summary_v4');
   const m = await V4.data('meta_v4');
   document.getElementById('unit-note').innerHTML =
     `1차 단위는 <b>면적(km²)</b>이다 — 근거 법령이 사업 규모를 부지면적부터 쓰고,
      발전용량(MW) 환산은 계수 가정이 얹힌 파생값이기 때문. ${s.unit_note}.<br>
-     현행법 기준값(상수): ${V4.n(s.anchor.n)}필지 · ${V4.km2(s.anchor.km2, 2)} km² —
+     현행법 기준값(상수): <b>${V4.n(s.anchor.n)}필지 · ${V4.km2(s.anchor.km2, 2)} km²</b> —
      ${s.anchor.def}. ${s.anchor.touchstone}.`;
   document.getElementById('t-lineage').innerHTML =
     `<tr><th style="text-align:left">자산</th><th style="text-align:left">구축</th><th style="text-align:left">출처·방법</th></tr>` +
@@ -66,5 +118,6 @@
   V4.footer();
 })();
 </script>
+<script src="site.js"></script>
 </body>
 </html>

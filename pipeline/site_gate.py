@@ -25,7 +25,9 @@ FORBIDDEN_WORDS = [
     (r'밖만', "임의 축약 금지 — '농업진흥지역 밖의 농지'"),
     (r'지렛대', "은유 금지"),
 ]
-# ④ 외부 자원 로드 (원칙 10) — 하이퍼링크(<a href>)는 허용, '로드'만 금지
+# ④ 외부 자원 로드 (원칙 10) — 하이퍼링크(<a href>)는 허용, '로드'만 금지.
+# 예외(원칙 10 개정 2026-08-25): Google Fonts(폴백 필수)만 허용. 라이브러리는 내장(vendored).
+FONT_OK = re.compile(r'https?://fonts\.(googleapis|gstatic)\.com')
 EXTERNAL_LOAD = [
     (r'src\s*=\s*["\']https?://', '외부 스크립트/이미지 로드'),
     (r'<link[^>]+href\s*=\s*["\']https?://', '외부 스타일시트'),
@@ -48,10 +50,15 @@ def scan(fp, rel):
                 fails.append(f"{rel}: {msg} — …{txt[max(0,m.start()-20):m.end()+20]}…")
     if rel.endswith('.html'):
         for pat, msg in EXTERNAL_LOAD:
-            if re.search(pat, txt):
-                fails.append(f"{rel}: {msg} (자족형 위반)")
+            for m in re.finditer(pat, txt):
+                seg = txt[m.start():m.start()+160]
+                if FONT_OK.search(seg):
+                    continue                      # 웹폰트 예외 (원칙 10 개정)
+                fails.append(f"{rel}: {msg} (자족형 위반) — …{seg[:80]}…")
         # ⑤ 하드코딩 수치: 본문에 콤마 큰 수가 직접 있으면 경고 (수치는 data_v4에서 렌더)
         body = re.sub(r'<script.*?</script>', '', txt, flags=re.S)
+        body = re.sub(r'<link[^>]*>', '', body)              # 폰트 URL 웨이트 숫자 오탐 제거
+        body = re.sub(r'(?:href|src)\s*=\s*"[^"]*"', '', body)
         for m in set(re.findall(r'\d{1,3}(?:,\d{3}){1,}', body)):
             warns.append(f"{rel}: 본문 하드코딩 수치 의심 '{m}' — data_v4 렌더로 옮길 것")
 

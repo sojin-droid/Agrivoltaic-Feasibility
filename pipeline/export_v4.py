@@ -37,13 +37,14 @@ matrix = {pop: {code: {'name': name, '전': cell(pop, code, '전'), '후': cell(
                 for code, name, _ in Q.MATRIX_ZONES}
           for pop in ['전국', '간척']}
 
-# 풀 분해(서로소·가산): 보호 = R1−R0, 진흥 = R2−R0 — 정본 매트릭스에서 산술로만 유도
+# 풀 분해(서로소·가산): 보호 = R1−R0, 진흥 = R2−R0 — ㎡ 원값 차분 후 반올림 (반올림값끼리 빼면 0.1 오차)
 pools = {}
 for pop in ['전국', '간척']:
     pools[pop] = {}
     for pool, hi in [('보호구역', 'R1'), ('진흥구역', 'R2')]:
         pools[pop][pool] = {ph: {'n': cell(pop, hi, ph)['n'] - cell(pop, 'R0', ph)['n'],
-                                 'km2': round(cell(pop, hi, ph)['km2'] - cell(pop, 'R0', ph)['km2'], 1)}
+                                 'km2': round((cell(pop, hi, ph)['m2'] - cell(pop, 'R0', ph)['m2'])/1e6, 1),
+                                 'm2': round(cell(pop, hi, ph)['m2'] - cell(pop, 'R0', ph)['m2'], 2)}
                             for ph in ['전', '후']}
 
 groups = Q.owner_groups_data()
@@ -79,9 +80,26 @@ save('funnel_v4.json', {'generated': GEN, 'national': funnel,
 
 # ── 2. sgg_matrix: 시군별 R0–R3 (지도 채색·시군 표) ─────────────────────────
 srows = Q.matrix_data(group_by='sgg')
+# 시군 이름: 표준 경계 자산(sgg_boundary)에서 — 전 시군 커버 (config.toml 경로 단일 출처)
+import toolconf
+import geopandas as gpd
+SIDO = {'11': '서울', '26': '부산', '27': '대구', '28': '인천', '29': '광주', '30': '대전',
+        '31': '울산', '36': '세종', '41': '경기', '43': '충북', '44': '충남', '46': '전남',
+        '47': '경북', '48': '경남', '50': '제주', '51': '강원', '52': '전북'}
+bnd = gpd.read_file(toolconf.BND, columns=['sgg_cd', 'sgg_cd_new', 'sgg_nm'],
+                    ignore_geometry=True)
+names = {}
+for r in bnd.itertuples():                    # 신구 코드 모두 등록 (PNU는 신코드 체계)
+    for c in {str(r.sgg_cd), str(getattr(r, 'sgg_cd_new', '') or r.sgg_cd)}:
+        names[c] = f"{SIDO.get(c[:2], '')} {r.sgg_nm}".strip()
+# 2023 경계 이후 신설·개편 구 보완 (행정 표준명 — 수치 아님)
+names.update({'27720': '대구 군위군', '28177': '인천 미추홀구',
+              '41192': '경기 부천시원미구', '41194': '경기 부천시소사구',
+              '41196': '경기 부천시오정구', '41670': '경기 여주시',
+              '43112': '충북 청주시서원구', '43114': '충북 청주시청원구'})
 sgg = {}
 for r in srows:
-    d = sgg.setdefault(r['sgg'], {})
+    d = sgg.setdefault(r['sgg'], {'name': names.get(r['sgg'], r['sgg'])})
     d.setdefault(r['cell'], {})[r['phase']] = {'n': r['n'], 'km2': round(r['m2']/1e6, 2)}
 save('sgg_matrix.json', {'generated': GEN, 'codes': sgg,
                          'note': '시군별 실측값이 1차 산출 — 반경·구간 묶음 없음'})
