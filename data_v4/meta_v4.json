@@ -1,6 +1,6 @@
 {
- "generated": "2026-08-25 13:32",
- "data_generation": "v4 (앵커 개정판 2026-08-21 기준)",
+ "generated": "2026-08-25 16:18",
+ "data_generation": "v4 · 2판 (지목 복구 적용, ADR-0035 · 2026-08-25)",
  "verification": "export 시 T14 정확 일치 검증 통과",
  "lineage": [
   {

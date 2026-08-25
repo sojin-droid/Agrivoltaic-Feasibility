@@ -116,7 +116,8 @@ con = Q.db()
 lineage = [{'tbl': t, 'built': str(b), 'source': s}
            for t, b, s in con.execute("SELECT tbl, built, source FROM meta_versions").fetchall()]
 con.close()
-save('meta_v4.json', {'generated': GEN, 'data_generation': 'v4 (앵커 개정판 2026-08-21 기준)',
+save('meta_v4.json', {'generated': GEN,
+                      'data_generation': 'v4 · 2판 (지목 복구 적용, ADR-0035 · 2026-08-25)',
                       'verification': 'export 시 T14 정확 일치 검증 통과', 'lineage': lineage})
 
 print(f"완료 — data_v4/ (생성 {GEN})")

@@ -71,9 +71,12 @@
         <tr><td class="l"><b>구조·입지 제외</b></td><td class="l">건축물·수역·산업단지·기제외 필지 아님</td><td class="l">토지 특성 원장</td></tr>
         <tr><td class="l"><b>경사</b></td><td class="l">15% 초과 제외</td><td class="l">경사 판정 레이어</td></tr>
         <tr><td class="l"><b>용도지역 3종</b></td><td class="l">개발제한구역 · 보전관리지역 · 보전녹지지역 제외
-          (원문 재검증으로 확정한 배제 3종)</td><td class="l">용도지역 원장</td></tr>
-        <tr><td class="l"><b>농업진흥지역</b></td><td class="l">현행(R0)은 농업진흥지역 밖의 농지 — 보호구역·진흥구역은
-          제도 변수로 조합(R1–R3)</td><td class="l">진흥지역 경계(재조달본, 필지 대표점 교차)</td></tr>
+          — 원문 재검증으로 확정한 배제 3종. 용도지역 정보가 결측인 필지는 해당 여부를
+          확인할 수 없어 보수적으로 제외하고 별도 병기한다
+          (<a href="about.html" style="color:var(--leaf-deep)">자료·한계의 판정 보류</a>)</td><td class="l">용도지역 원장</td></tr>
+        <tr><td class="l"><b>농업진흥지역</b></td><td class="l">현행법 기준은 농업진흥지역 밖의 농지만 —
+          보호구역·진흥구역 개방은 제도 변수로 따로 계산해 조합한다
+          (<a href="evidence.html" style="color:var(--leaf-deep)">근거 탭의 조합 R0–R3</a>)</td><td class="l">진흥지역 경계(재조달본, 필지 대표점 교차)</td></tr>
         <tr><td class="l"><b>실경작</b></td><td class="l">위성 실측 경작 비율 30% 이상 — 적용 전·후 모두 제시</td><td class="l">팜맵</td></tr>
       </table></div>
       <div class="fn">시나리오 판정은 필지 단위 규칙으로, 임의 필지의 지번으로 같은 판정을 재현할 수 있다.</div>
@@ -100,7 +103,8 @@
       <div class="card reveal">
         <div class="meta"><span class="tag">ADDITIVITY</span></div>
         <h3>가산성 검사</h3>
-        <p>세 풀(진흥 밖·보호·진흥)이 서로소이므로 R0+풀 합 = R3가 정확히 성립해야 한다 —
+        <p>세 풀(농업진흥지역 밖 · 보호구역 · 진흥구역)이 서로 겹치지 않으므로,
+        현행법 값에 두 풀을 더한 합이 "둘 다 개방" 값과 정확히 일치해야 한다 —
         어긋나면 게이트가 막는다.</p>
       </div>
       <div class="card reveal">
@@ -112,10 +116,14 @@
     </div>
 
     <div class="callout-v4 reveal" style="margin-top:26px">
-      <b>이격거리(주거 이격)가 이 판에 없는 이유.</b> 시군 조례의 이격거리 실측 반영분은
-      2026-08-10 전량 무효 판정했다(산출 검증 실패). 현행 제도는 영농형 태양광에 대해
-      이격거리 <b>상한제</b>(조례 상한 200m)로 정비되는 방향이며, 이격 반영값은 재도출·검증을
-      거쳐 <b>별도 판(2판)으로 병기</b>한다 — 이 판의 값과 섞지 않는다.
+      <b>이격거리(주거 이격) 반영값의 성격 — 보수 하한.</b> 현행 제도는 영농형 태양광의
+      이격거리를 <b>상한제</b>(조례 상한 200m)로 정비하는 방향이다. 본 분석의 "이격 보수"
+      값은 이 상한 200m를 전국에 일률 적용한 것으로, 주택 판정을 대지 필지로 대신하는
+      보수적 하한이다 — 측정 방법 고시가 제정되면 정밀화한다. 값은
+      <a href="evidence.html#t32" style="color:var(--leaf-deep)"><b>근거 표 5(32칸 완성표)</b></a>와
+      <a href="map.html" style="color:var(--leaf-deep)"><b>지도의 이격 토글</b></a>에 있다.
+      과거 시군 조례를 개별 실측해 반영했던 구판 값은 산출 검증에 실패해 전량 폐기했고,
+      본 판에 포함되지 않는다.
     </div>
     <div class="fn">공간 미분해 배제 항목 17종(하천·문화유산 등)은 현재 판에 반영되지 않았다 —
     따라서 강한 배제(HARD) 계열 값은 <b>하한</b>이다. 분해 레이어 조달 시 판을 올려 반영한다.</div>
@@ -139,10 +147,12 @@
       <div class="bar-track"><div class="bar-post" style="width:${Math.max(100 * v / max, 1.2)}%"></div></div>
       <div class="bar-num">${V4.n(v)}<div class="bar-sub">필지</div></div>
     </div>`).join('');
-  document.getElementById('funnel-fn').textContent =
+  document.getElementById('funnel-fn').innerHTML =
     `지목 전·답·과수원 중 팜맵 공간교차 실측 ${V4.n(f['  그중 팜맵 공간교차 실측'])}필지 — 나머지는 대장 배분 잔존분. ` +
-    `지목 미상 ${V4.n(f['_지목결측'])}필지는 구제 필지로 별도 관리(현행법 적격에 불포함) — ` +
-    `1단계 원본 지적 복구는 적용 완료, 잔여분은 2단계 재조회 대상.`;
+    `지목을 확인할 수 없는 ${V4.n(f['_지목결측'])}필지는 집계에서 제외하고 별도 관리한다 — ` +
+    `원본 지적자료 1단계 복구는 적용 완료, 잔여분은 2단계 재조회 대상. ` +
+    `이 깔때기는 필지 수 기준이며, 면적(km²) 기준 전체 값은 ` +
+    `<a href="evidence.html" style="color:var(--leaf-deep)">근거 탭의 조합 매트릭스</a>에 있다.`;
   V4.footer();
 })();
 </script>
