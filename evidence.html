@@ -26,6 +26,7 @@
     <nav class="menu" id="menu">
       <a href="index.html" data-i18n="nav-index">결론</a>
       <a class="active" href="evidence.html" data-i18n="nav-evidence">근거</a>
+      <a href="map.html" data-i18n="nav-map">지도</a>
       <a href="atlas.html" data-i18n="nav-atlas">간척 아틀라스</a>
       <a href="method.html" data-i18n="nav-method">방법·재현</a>
       <a href="about.html" data-i18n="nav-about">자료·한계</a>
@@ -103,11 +104,22 @@
       통과한 필지. 매트릭스에서 산술로만 유도(R1−R0, R2−R0).</div>
     </div>
 
-    <div class="figbox reveal">
+    <div class="figbox reveal" style="margin-bottom:22px">
       <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 4. 소유 세 무리 — 간척 내 법인 · 간척 내 비법인 · 간척 밖 법인</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-owner"></table></div>
       <div class="fn">실경작 확인 농지 기준. 소유는 지적 원장의 유형 구분(개인 식별 아님) —
       법인이 농업법인인지는 원장에 없어 구분 못 함(명부 조달 시 정밀화).</div>
+    </div>
+
+    <div class="figbox reveal">
+      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 5. 사업규모(구획) 층 — 연접 병합 후 6.67ha 이상 등재 구획</h3>
+      <div style="overflow-x:auto"><table class="v4" id="t-grid"></table></div>
+      <div class="fn">구획 = 필지를 연접 거리 21m로 병합한 성분 중 6.67ha 이상.
+      이격 보수 적용 = 주거 200m 상한을 대지 필지 대리로 일률 적용한 하한.
+      필지→구획 전환에서 현행법 기준은 크게 줄고 진흥지역 전체 개방은 덜 줄어 —
+      진흥구역 농지가 크게 뭉쳐 있어 병합 문턱을 잘 넘기기 때문 —
+      <b>사업규모 관점에서는 두 시나리오의 격차가 더 벌어진다</b>.
+      <a href="map.html" style="color:var(--leaf-deep)"><b>지도에서 구획 직접 보기 →</b></a></div>
     </div>
   </div>
 </section>
@@ -179,6 +191,24 @@
     간척 밖 법인이 사업하려면 이 땅의 사용승낙·임차가 필요하다 —
     임차 절차가 정비되지 않으면 조문이 있어도 움직이지 않는 물량이다.
     지역별 분포는 <a href="atlas.html" style="color:var(--leaf-deep)"><b>아틀라스</b></a>에서 필지 단위로 볼 수 있다.</p>`;
+
+  // ── 표 5: 구획 층 (1판 격자) ──
+  const res = await V4.data('results_v4');
+  const GRID5 = [
+    ['ANCHOR', '현행법 기준'], ['ANCHOR_SB', '현행법 + 이격 보수'],
+    ['SOFT_A1', '+농업보호구역 개방'], ['SOFT_A1_SB', '+보호구역 + 이격 보수'],
+    ['SOFT_A2', '진흥지역 전체 개방'], ['SOFT_A2_SB', '진흥 전체 + 이격 보수'],
+  ];
+  document.getElementById('t-grid').innerHTML = `
+    <tr><th>칸</th><th>필지 면적 km²</th><th>등재 구획 수</th><th>구획 면적 km²</th><th>참고 MW</th></tr>` +
+    GRID5.map(([c, t]) => {
+      const r = res.runs[c];
+      if (!r) return '';
+      return `<tr class="${c === 'ANCHOR' ? 'hl' : ''}"><td class="l">${t}</td>
+        <td>${V4.km2(r.eligible_area_km2, 2)}</td><td>${V4.n(r.n_listed)}</td>
+        <td><b>${V4.km2(r.listed_area_km2)}</b></td>
+        <td class="ref">${r.M_mw != null ? V4.n(Math.round(r.M_mw)) : '—'}</td></tr>`;
+    }).join('');
 
   // ── 시군 진단 도구 ──
   const sg = await V4.data('sgg_matrix');
