@@ -53,12 +53,19 @@ owner = [{'group': g['group'], 'n': g['n'], 'km2': round(g['m2']/1e6, 1),
           'zones': {z: {'n': v[0], 'km2': round(v[1]/1e6, 1)} for z, v in g['zones'].items()}}
          for g in groups]
 
+# 판정 보류(용도지역 미상) 병기값 — 엔진 ANCHOR summary에서 (ADR-0035)
+pend = {}
+_asp = os.path.join(r"C:\Users\user\새 폴더\Ledger_Rebuild", 'scenario_runs', 'ANCHOR', 'summary.json')
+if os.path.exists(_asp):
+    pend = json.load(open(_asp, encoding='utf-8')).get('pending_zone_null', {})
+
 save('summary_v4.json', {
     'generated': GEN,
     'unit_note': '1차 단위 km². 참고 MW = 면적(㎡)×0.045/1000 (GCR 0.225×효율 0.20 가정) — 표시 시 가정 병기',
     'anchor': {'n': Q.T14_N, 'km2': round(Q.T14_M2/1e6, 2), 'm2': Q.T14_M2,
-               'def': 'n_s0_ge30 ∧ ¬개발제한 ∧ ¬보전관리 ∧ ¬보전녹지 (ADR-0024 개정판)',
-               'touchstone': 'T14 정확 일치 검증 통과'},
+               'def': 'n_s0_ge30 ∧ ¬개발제한 ∧ ¬보전관리 ∧ ¬보전녹지 (T14 v7 — ADR-0035 판 개정)',
+               'touchstone': 'T14 정확 일치 검증 통과',
+               'pending_zone_null': pend},
     'matrix': matrix,          # 독립 조합 R0–R3 · 각 실경작 전/후 — 누적 사다리 아님
     'pools': pools,            # R1−R0(보호)·R2−R0(진흥), 서로소라 정확
     'owner_groups': owner,     # 유형 구분(개인 식별 아님)

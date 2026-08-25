@@ -25,7 +25,8 @@ SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(SITE, 'data_v4', 'clusters')
 os.makedirs(OUT, exist_ok=True)
 
-CELLS = ['ANCHOR', 'ANCHOR_SB', 'SOFT_A1', 'SOFT_A1_SB', 'SOFT_A2', 'SOFT_A2_SB']
+CELLS = ['ANCHOR', 'ANCHOR_SB', 'SOFT_A1', 'SOFT_A1_SB',
+         'SOFT_R2', 'SOFT_R2_SB', 'SOFT_A2', 'SOFT_A2_SB']   # 2판: R2(진흥구역만) 추가
 SIMPLIFY_M = 15.0
 GEN = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
 

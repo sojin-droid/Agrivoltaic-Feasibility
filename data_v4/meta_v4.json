@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-25 01:33",
+ "generated": "2026-08-25 13:32",
  "data_generation": "v4 (앵커 개정판 2026-08-21 기준)",
  "verification": "export 시 T14 정확 일치 검증 통과",
  "lineage": [
@@ -17,16 +17,6 @@
    "tbl": "fm2025",
    "built": "2026-08-14",
    "source": "팜맵 2025 공공데이터포털 시도별 SHP(15104481~91), 촬영 2019~2024 혼재"
-  },
-  {
-   "tbl": "spatial_v2",
-   "built": "2026-08-15",
-   "source": "팜맵 2025(data.go.kr 15104481·83~91) × Cadastre_All 공간교차 252시군, model/stages/v2_02_intersect.py"
-  },
-  {
-   "tbl": "elig_v2",
-   "built": "2026-08-15",
-   "source": "ratio=true_farm/calculatedarea(2025) + elig_nat 구조플래그 승계. 공식은 v1 역설계 검증본, model/stages/v2_03_elig.py"
   },
   {
    "tbl": "kepco_record_v3",
@@ -122,6 +112,31 @@
    "tbl": "agpromo_tag",
    "built": "2026-08-21",
    "source": "필지 대표점 PIP × agpromo_bnd(zone, v6_02 재조달본) — 진흥구역 5,279,842·보호구역 1,076,333·계 6,379,921필지. 겹침은 엄격(UEA110) 우선. 원장 subagpromo(무효·라벨 뒤집힘 의심) 대체. v6_03"
+  },
+  {
+   "tbl": "jimok_recovered",
+   "built": "2026-08-25",
+   "source": "지목 결측 복구 1단계 — 로컬 LSMD 원본 JIBUN 부호 추출(다운로드 0). 결측 4,423,152 중 복구 3,868,483(87.5%), 농지(전답과) 519,077. ⚠️ 미적용 — elig_v2/앵커 반영은 판 개정 절차(ADR-0030). v6_04"
+  },
+  {
+   "tbl": "jimok_apply_v7",
+   "built": "2026-08-25",
+   "source": "LSMD 복구 지목 적용(ADR-0030 판 개정, ADR-0035) — ledger.jimok_src=lsmd_v7 표시, 되돌리기 가능. v7_01"
+  },
+  {
+   "tbl": "spatial_v2",
+   "built": "2026-08-15",
+   "source": "팜맵 2025(data.go.kr 15104481·83~91) × Cadastre_All 공간교차 252시군, model/stages/v2_02_intersect.py"
+  },
+  {
+   "tbl": "elig_v2",
+   "built": "2026-08-25",
+   "source": "ratio=true_farm/calculatedarea(2025) + elig_nat 구조플래그 승계(지목 v7 적용분 포함). 공식은 v1 역설계 검증본, model/stages/v2_03_elig.py"
+  },
+  {
+   "tbl": "scenario_runs_edition1",
+   "built": "2026-08-25",
+   "source": "1판(ADR-0034 자산) 런 기록 아카이브 — 판 개정(ADR-0035)으로 현역 테이블 초기화. 차이 보고용"
   }
  ]
 }

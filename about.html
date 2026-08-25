@@ -65,6 +65,9 @@
           공간 분해 레이어 미확보로 이 판에 반영되지 않음 — 강한 배제(HARD) 계열 값은 하한.</td></tr>
         <tr><td class="l"><b>실경작 판정</b></td><td class="l">팜맵 위성 실측의 경작 확인이며 경작 의사·권리가 아니다.
           실측이 없는 필지는 대장 배분 잔존분으로 보수 처리.</td></tr>
+        <tr><td class="l"><b>용도지역 미상 — 판정 보류</b></td><td class="l" id="cav-pending">지목은
+          복구됐으나 용도지역 정보가 결측인 필지는 배제 3종 해당 여부를 확인할 수 없어
+          기준값에서 보수적으로 제외하고 별도 병기한다 — 기준값의 잠재적 상향 여지.</td></tr>
         <tr><td class="l"><b>이격거리</b></td><td class="l">이 판에 미반영 — 구 실측분은 검증 실패로 전량 무효 처리했고,
           상한제(200m) 기준 재도출 후 별도 판으로 병기 예정.</td></tr>
         <tr><td class="l"><b>계통 여유</b></td><td class="l">읍면동 단위 전량 수집 완료했으나 일부 지역은
@@ -107,6 +110,9 @@
 (async () => {
   const s = await V4.data('summary_v4');
   const m = await V4.data('meta_v4');
+  const pz = s.anchor.pending_zone_null;
+  if (pz && pz.n) document.getElementById('cav-pending').innerHTML +=
+    ` 현재 보류: <b>${V4.n(pz.n)}필지 · ${V4.km2(pz.km2, 2)} km²</b>.`;
   document.getElementById('unit-note').innerHTML =
     `1차 단위는 <b>면적(km²)</b>이다 — 근거 법령이 사업 규모를 부지면적부터 쓰고,
      발전용량(MW) 환산은 계수 가정이 얹힌 파생값이기 때문. ${s.unit_note}.<br>
