@@ -28,6 +28,7 @@
       <a href="evidence.html" data-i18n="nav-evidence">근거</a>
       <a href="map.html" data-i18n="nav-map">지도</a>
       <a class="active" href="atlas.html" data-i18n="nav-atlas">간척 아틀라스</a>
+      <a href="insight.html" data-i18n="nav-insight">인사이트</a>
       <a href="method.html" data-i18n="nav-method">방법·재현</a>
       <a href="about.html" data-i18n="nav-about">자료·한계</a>
     </nav>
@@ -113,6 +114,11 @@
   (<a href="evidence.html" style="color:var(--leaf-deep)"><b>근거 표 2·표 4</b></a> ·
   <a href="map.html" style="color:var(--leaf-deep)"><b>지도에서 개방분 직접 보기</b></a>).</div>
 
+  <h2 class="art-h">핵심 발견 요약</h2>
+  <div id="atlas-ins" class="figbox" style="font-size:13.5px;line-height:1.85;word-break:keep-all">—</div>
+  <p style="font-size:13px;margin-top:10px"><a href="insight.html" style="color:var(--leaf-deep);font-weight:700">
+  전국 전수 탐색 인사이트 전체(시각화·재현 경로 포함) → 인사이트 탭</a></p>
+
   <div class="fn">간척 = 농어촌공사 지구·공구 원장<sup class="fnref">[3]</sup> ·
   소유 = 지적 원장 유형 구분(개인 식별 아님)<sup class="fnref">[1]</sup> ·
   실경작 = 팜맵 위성 실측 30% 이상<sup class="fnref">[2]</sup>.</div>
@@ -174,6 +180,19 @@ setTimeout(fitFrames, 1500); setTimeout(fitFrames, 4000);
   const zsum = own.zones['진흥구역'].km2 + pool.zones['진흥구역'].km2
              + (own.zones['보호구역'] ? own.zones['보호구역'].km2 : 0)
              + (pool.zones['보호구역'] ? pool.zones['보호구역'].km2 : 0);
+  // 핵심 발견 요약 — 인사이트 export에서 (간척 계열 3건)
+  try {
+    const I = await V4.data('insights_v4');
+    const R = I.reclaim;
+    document.getElementById('atlas-ins').innerHTML =
+      `① 간척 농지의 실경작 탈락률은 <b>${R.drop_reclaim}%</b>로 전국(${R.drop_nat}%)의
+       10분의 1 수준 — 실제로 경작 중인 우량 농지다.<br>
+       ② 간척의 보호구역 개방 증분은 ${V4.km2(R.prot_inc)} km²에 불과 — 개방 증분의
+       <b>${R.r2_share}%가 진흥구역</b>에서 나온다.<br>
+       ③ 간척 한정 조문은 법인의 현행 접근 면적을 ${V4.km2(R.out_anchor)} →
+       ${V4.km2(R.in_anchor)} km²로 줄이며(96% 축소), 임차 공급원은 상실분의
+       ${R.lease_ratio}배(${V4.km2(R.pool)} km²)가 있으나 전부 사용승낙 절차를 요한다.`;
+  } catch (e) {}
   document.getElementById('art-cond').innerHTML =
     `간척 두 무리의 실경작 농지 ${V4.km2(own.km2 + pool.km2)} km² 중
      <b>${V4.km2(zsum)} km²가 농업진흥지역 안</b>에 있다. 현행법은 농업진흥지역 밖의

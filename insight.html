@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANiT · 인사이트 — 전수 탐색에서 확인된 구조적 사실</title>
+<meta name="description" content="전 시군 × 구역 조합 × 이격 데이터를 전수 계산해 확인한 구조적 사실 — 논문 인용 적합성 평가 포함.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="assets/v4.js"></script>
+<style>
+.ins-card{margin-bottom:22px}
+.ins-card .rbadge{margin-right:6px}
+.ins-quote{border-left:3px solid var(--navy);background:#fff;border-radius:0 8px 8px 0;
+ padding:12px 16px;font-size:14px;line-height:1.8;word-break:keep-all;margin:12px 0}
+.dumb-row{display:grid;grid-template-columns:150px 1fr 150px;gap:12px;align-items:center;margin:6px 0;font-size:12.5px}
+.dumb-track{position:relative;height:16px}
+.dumb-line{position:absolute;top:7px;height:2.5px;background:#d9a0a0;border-radius:2px}
+.dumb-a{position:absolute;top:2px;width:12px;height:12px;border-radius:50%;background:var(--leaf);border:1.5px solid var(--leaf-deep)}
+.dumb-b{position:absolute;top:2px;width:12px;height:12px;border-radius:50%;background:#E5484D;border:1.5px solid #B3261E}
+.dotstrip{position:relative;height:64px;background:linear-gradient(90deg,#fdf1f0,#eef6ea);border:1px solid var(--line);border-radius:8px;margin:10px 0}
+.dotstrip .dot{position:absolute;top:26px;width:9px;height:9px;border-radius:50%;background:var(--navy);opacity:.45}
+.dotstrip .lab{position:absolute;font-size:10.5px;font-family:var(--mono);color:var(--ink);white-space:nowrap}
+.dotstrip .axis{position:absolute;bottom:4px;font-size:10px;color:var(--muted);font-family:var(--mono)}
+.repro{font-size:12px;margin-top:10px}
+.repro a{color:var(--leaf-deep);font-weight:700}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span data-i18n="tb-tag">Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
+    <span><a href="https://planit.institute/" data-i18n="tb-link">← planit.institute 메인으로</a></span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="mark-img" src="assets/planit_logo.png" alt="PLANiT"><span class="sector" data-i18n="brand-sector">영농형 태양광</span></a>
+    <nav class="menu" id="menu">
+      <a href="index.html" data-i18n="nav-index">결론</a>
+      <a href="evidence.html" data-i18n="nav-evidence">근거</a>
+      <a href="map.html" data-i18n="nav-map">지도</a>
+      <a href="atlas.html" data-i18n="nav-atlas">간척 아틀라스</a>
+      <a class="active" href="insight.html" data-i18n="nav-insight">인사이트</a>
+      <a href="method.html" data-i18n="nav-method">방법·재현</a>
+      <a href="about.html" data-i18n="nav-about">자료·한계</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="ko">KO</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a class="nav-cta" href="about.html#contact">Contact</a>
+      <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Insights · 구조적 사실</p>
+    <h1>인사이트 — 전수 탐색에서 확인된 구조적 사실</h1>
+    <p class="lede">전 시군 × 구역 조합 × 이격 데이터를 전수 계산해 확인한 사실들<sup class="fnref">[12]</sup>.
+    각 항목에 논문 인용 적합성(◎ 바로 인용 가능 · ○ 단서 병기 조건부)과 재현 경로를 붙였다.
+    부정 결과도 기록한다.</p>
+  </div>
+</div>
+
+<section style="padding:44px 0 30px">
+  <div class="wrap">
+    <div class="tabs" id="fil">
+      <button class="tab on" data-f="all">전체</button>
+      <button class="tab" data-f="setback">이격거리</button>
+      <button class="tab" data-f="cluster">구획·병합</button>
+      <button class="tab" data-f="reclaim">간척·소유</button>
+      <button class="tab" data-f="null">부정 결과</button>
+    </div>
+    <div id="cards"></div>
+    <div class="fn">계산식·전체 목록: 인사이트 노트(2026-08-25) · 값은 전부 정본 export의
+    재계산<sup class="fnref">[12]</sup> · 시군별 구획 값은 경계에 걸친 구획의 전체 면적을
+    해당 시군에 산입(시군 간 합산 금지).</div>
+  </div>
+</section>
+
+<footer class="v4"><div class="wrap"></div></footer>
+
+<script>
+(async () => {
+  const D = await V4.data('insights_v4');
+  const K = (x, d = 1) => V4.km2(x, d);
+  const cards = [];
+
+  const card = (f, badge, grade, title, quote, viz, repro) => cards.push(
+    `<div class="figbox ins-card" data-f="${f}">
+      <span class="rbadge series">${badge}</span><span class="rbadge op">${grade}</span>
+      <h3 style="font-family:var(--serif);color:var(--navy);margin:8px 0 2px">${title}</h3>
+      <div class="ins-quote">${quote}</div>${viz}
+      <div class="repro">${repro}</div>
+    </div>`);
+
+  // ── I1. 보호 증분 이격 소멸형 (덤벨 차트) ──
+  const wmax = Math.max(...D.wipe.map(w => w.protInc));
+  const dumb = D.wipe.slice(0, 10).map(w => `
+    <div class="dumb-row"><div><b>${w.nm}</b></div>
+      <div class="dumb-track">
+        <div class="dumb-line" style="left:${100*w.protIncS/wmax}%;width:${100*(w.protInc-w.protIncS)/wmax}%"></div>
+        <div class="dumb-a" style="left:calc(${100*w.protInc/wmax}% - 6px)"></div>
+        <div class="dumb-b" style="left:calc(${100*w.protIncS/wmax}% - 6px)"></div>
+      </div>
+      <div style="font-variant-numeric:tabular-nums"><b>${K(w.protInc)}</b> → ${K(w.protIncS)} km²</div>
+    </div>`).join('');
+  card('setback', '이격 × 보호구역', '◎ 바로 인용 가능',
+    '보호구역 개방 효과가 이격 규제에 전량 상쇄되는 시군이 있다',
+    `농업보호구역 개방으로 발생하는 구획 증분이 주거 이격 200m 보수 적용 시 사실상 소멸하는
+     시군이 <b>${D.wipe.length}곳</b> 확인되었다(증분 0.3km² 이상 보유 ${D.n_base}개 시군 대비).
+     해당 시군들의 보호구역 개방분은 대부분 주거 200m 이내에 위치한다. 반대 극단은
+     ${D.keepers.length ? D.keepers[0].nm + ` 1곳(${K(D.keepers[0].protInc)}→${K(D.keepers[0].protIncS)} km², 95% 온존)` : '없다'}.`,
+    `<div style="font-size:11px;color:var(--muted);margin-bottom:4px">
+     <span style="color:var(--leaf-deep)">●</span> 이격 미적용 증분 →
+     <span style="color:#B3261E">●</span> 이격 적용 시 (상위 10곳, km²)</div>` + dumb,
+    `재현: <a href="map.html?sgg=${D.wipe.slice(0,3).map(w=>w.c).join(',')}">지도에서 상위 3곳 보기</a> — 보호구역 개방분 켠 뒤 이격 토글`);
+
+  // ── I2. 전국 이격 감소율 구역 비대칭 (막대) ──
+  const nmax = Math.max(...D.nat.map(n => n.pre));
+  const natBars = D.nat.map(n => `
+    <div class="bar-row"><div><b>${n.t}</b></div>
+      <div class="bar-track">
+        <div class="bar-pre" style="width:${100*n.pre/nmax}%"></div>
+        <div class="bar-post" style="width:${100*n.post/nmax}%"></div>
+      </div>
+      <div class="bar-num">−${n.drop}%<div class="bar-sub">${K(n.pre,0)} → ${K(n.post,0)} km²</div></div>
+    </div>`).join('');
+  card('setback', '이격 × 구역', '◎ 바로 인용 가능',
+    '이격 보수의 타격은 구역에 따라 다르다 — 현행 −74% 대 진흥 개방 −53%',
+    `주거 이격 200m 보수 적용 시 전국 등재 구획 면적은 현행법 기준에서 ${D.nat[0].drop}%
+     감소하는 반면, 진흥구역 개방 조합에서는 ${D.nat[2].drop}% 감소에 그친다 — 농업진흥구역
+     농지가 상대적으로 주거에서 먼 대규모 평야에 분포하기 때문이다. 이격 규제 환경에서는
+     진흥구역 개방의 상대 가치가 더 커진다.`,
+    natBars,
+    `재현: <a href="evidence.html#t32">근거 표 5(32칸)</a>의 구획 열 비교`);
+
+  // ── I3. 생존율 분포 1%–99% (점 스트립) ──
+  const dots = D.surv.map(s =>
+    `<div class="dot" style="left:calc(${s.pct}% - 4px)" title="${s.nm} ${s.pct}%"></div>`).join('');
+  const lo = D.surv[0], hi = D.surv[D.surv.length-1], hi2 = D.surv[D.surv.length-2];
+  card('setback', '이격 × 시군 편차', '◎ 바로 인용 가능',
+    '이격 생존율의 시군 편차가 1%에서 99%에 달한다',
+    `현행법 기준 등재 구획(5km² 이상 보유 ${D.surv.length}개 시군)의 이격 보수 생존율은
+     <b>${lo.nm} ${lo.pct}%</b>(${K(lo.r0)}→${K(lo.r0s)} km²)에서
+     <b>${hi.nm} ${hi.pct}%</b>(${K(hi.r0)}→${K(hi.r0s)} km²)까지 벌어진다.
+     전국 평균 감소율(−${D.nat[0].drop}%)은 시군 단위 판단에 쓸 수 없다 —
+     시군별 실측값이 1차 산출이어야 하는 이유의 실증이다.`,
+    `<div class="dotstrip">${dots}
+      <div class="lab" style="left:calc(${lo.pct}% - 4px);top:6px">${lo.nm} ${lo.pct}%</div>
+      <div class="lab" style="right:2px;top:6px;text-align:right">${hi.nm} ${hi.pct}% · ${hi2.nm} ${hi2.pct}%</div>
+      <div class="axis" style="left:6px">0%</div><div class="axis" style="right:6px">100%</div>
+      <div class="axis" style="left:50%;transform:translateX(-50%)">이격 후 잔존 비율 (시군당 점 1개)</div>
+    </div>`,
+    `재현: <a href="map.html?sgg=${lo.c},${hi.c}">지도에서 양 극단 비교</a> — 이격 토글 전환`);
+
+  // ── I4. 병합 시너지 (막대) ──
+  const smax = D.syn[0].syn;
+  const synBars = D.syn.map(s => `
+    <div class="bar-row"><div><b>${s.nm}</b><div class="bar-sub">보호 단독 +${K(s.prot)}</div></div>
+      <div class="bar-track"><div class="bar-post" style="width:${100*s.syn/smax}%;background:var(--gold)"></div></div>
+      <div class="bar-num">+${K(s.syn)} km²</div>
+    </div>`).join('');
+  card('cluster', '구획 병합', '◎ 바로 인용 가능',
+    '보호·진흥 동시 개방의 결합 효과 — 전국 +' + K(D.syn_nat, 0) + ' km²',
+    `구획 층에서 보호구역 증분은 진흥구역과 동시에 개방될 때 단독 개방보다 크다 —
+     전국 기준 초가산 결합이 <b>+${K(D.syn_nat)} km²</b>다(격자 산출: (R3−R2)−(R1−R0)).
+     보호구역 필지가 인접 진흥구역 필지와 병합되어 6.67ha 문턱을 함께 넘기 때문이다.
+     ${D.syn[1].nm}(보호 단독 증분 ${K(D.syn[1].prot)} km²)처럼 단독으로는 문턱에 못 미치던
+     보호구역 농지가 동시 개방 때만 살아나는 순수 결합형도 있다.`,
+    `<div style="font-size:11px;color:var(--muted);margin-bottom:4px">시군별 결합 효과 상위 10
+     (시군 걸침 구획은 전체 면적 산입 — 참고)</div>` + synBars,
+    `재현: <a href="map.html?sgg=${D.syn[0].c},${D.syn[1].c}">지도 상위 2곳</a> — 보호만 켠 화면과 둘 다 켠 화면 비교`);
+
+  // ── I5. 필지→구획 전환율 (양극단 막대) ──
+  const cl = D.conv.slice(0, 6), ch = D.conv.slice(-6).reverse();
+  const convRow = x => `
+    <div class="bar-row"><div><b>${x.nm}</b></div>
+      <div class="bar-track"><div class="bar-post" style="width:${x.pct}%"></div></div>
+      <div class="bar-num">${x.pct}%<div class="bar-sub">필지 ${K(x.pk,0)} → 구획 ${K(x.ck,0)} km²</div></div>
+    </div>`;
+  card('cluster', '필지→구획', '◎ 바로 인용 가능',
+    '필지→구획 전환율이 지형을 그대로 읽는다 — 평야 66–90% 대 산간 12–16%',
+    `현행법 적격 필지 면적 대비 등재 구획 면적의 비율(필지 10km² 이상 ${D.conv.length}개 시군)은
+     ${ch[0].nm} ${ch[0].pct}%·제주 83–84%·전북 평야 66–73%에 달하는 반면, 산간·해안
+     시군은 ${cl[0].nm}·${cl[1].nm} ${cl[0].pct}% 수준에 그친다 — 같은 필지 면적이라도 사업규모로
+     묶이는 정도가 7배 이상 차이 난다. 필지 면적 기준 잠재량은 산간 시군을 체계적으로
+     과대평가한다.`,
+    `<div style="font-size:11px;color:var(--muted);margin-bottom:4px">전환율 하위 6 (산간·해안)</div>`
+    + cl.map(convRow).join('')
+    + `<div style="font-size:11px;color:var(--muted);margin:10px 0 4px">전환율 상위 6 (평야)</div>`
+    + ch.map(convRow).join(''),
+    `재현: <a href="map.html?sgg=${cl[0].c},${ch[0].c}">지도에서 양 극단 비교</a> · <a href="evidence.html#diag">시군별 조회(필지층)</a>와 대조`);
+
+  // ── I6. 간척: 실경작 탈락률 ──
+  const R = D.reclaim;
+  card('reclaim', '간척 × 실경작', '◎ 바로 인용 가능',
+    '간척 농지는 거의 전부가 실제 경작 중이다 — 탈락률 ' + R.drop_reclaim + '% 대 전국 ' + R.drop_nat + '%',
+    `실경작 필터(위성 실측 30%) 적용 시 전국 농지는 ${R.drop_nat}%가 탈락하는 반면,
+     간척 확정 농지는 <b>${R.drop_reclaim}%</b>만 탈락한다. 간척지가 실제로 경작되고 있는
+     우량 농지라는 뜻이며, 영농형 태양광의 '영농 지속' 요건과 정합적인 입지임을 시사한다.`,
+    `<div class="bar-row"><div><b>전국 농지</b></div>
+      <div class="bar-track"><div class="bar-post" style="width:${R.drop_nat*4}%;background:#B3261E"></div></div>
+      <div class="bar-num">−${R.drop_nat}%</div></div>
+     <div class="bar-row"><div><b>간척 농지</b></div>
+      <div class="bar-track"><div class="bar-post" style="width:${R.drop_reclaim*4}%;background:#B3261E"></div></div>
+      <div class="bar-num">−${R.drop_reclaim}%</div></div>`,
+    `재현: <a href="evidence.html#tables">근거 표 1·표 2</a>의 실경작 전/후 열 비교`);
+
+  // ── I7. 간척: 보호구역 개방 무효 · 진흥 의존 ──
+  card('reclaim', '간척 × 구역', '◎ 바로 인용 가능',
+    '간척에서 보호구역 개방은 사실상 무효 — 증분의 ' + R.r2_share + '%가 진흥구역 개방에서 나온다',
+    `간척 확정 농지의 보호구역 개방 증분은 <b>${K(R.prot_inc)} km²</b>에 불과하고, 전체 개방
+     증분의 ${R.r2_share}%가 진흥구역 개방에서 나온다(현행 ${K(R.r0)} → 진흥 개방
+     ${K(R.r2)} km²). 간척 활용을 전제하는 어떤 제도도 진흥구역 내 허용 없이는 작동하지
+     않는다.`,
+    ``,
+    `재현: <a href="evidence.html#tables">근거 표 2</a> · <a href="atlas.html">간척 아틀라스 §4</a>`);
+
+  // ── I8. 간척: 조문의 접근 면적 축소 + 임차 수급 ──
+  card('reclaim', '간척 × 소유', '◎ 바로 인용 가능',
+    '간척 한정 조문은 법인의 현행 접근 면적을 ' + K(R.out_anchor) + ' → ' + K(R.in_anchor) + ' km²로 줄인다',
+    `간척지 외 법인이 현행법으로 접근 가능한 ${K(R.out_anchor)} km²는 조문 시행 시 쓸 수
+     없게 되고, 간척지 내 법인 기소유 중 현행 가능분은 ${K(R.in_anchor)} km²뿐이다 —
+     96% 축소다. 대체 경로인 임차 공급원(간척지 내 비법인 소유)은 ${K(R.pool)} km²로,
+     상실분 대비 ${R.lease_ratio}배가 존재하나 전부 사용승낙 절차를 요한다.`,
+    `<div class="dumb-row"><div><b>법인 접근 면적</b></div>
+      <div class="dumb-track">
+        <div class="dumb-line" style="left:${100*R.in_anchor/R.out_anchor}%;width:${100*(1-R.in_anchor/R.out_anchor)}%"></div>
+        <div class="dumb-a" style="left:calc(100% - 6px)"></div>
+        <div class="dumb-b" style="left:calc(${100*R.in_anchor/R.out_anchor}% - 6px)"></div>
+      </div>
+      <div style="font-variant-numeric:tabular-nums"><b>${K(R.out_anchor)}</b> → ${K(R.in_anchor)} km²</div></div>`,
+    `재현: <a href="atlas.html">간척 아틀라스 그림 3</a> · <a href="evidence.html#tables">근거 표 4</a>`);
+
+  // ── I9·10. 부정 결과 ──
+  card('null', '부정 결과', '◎ 기록 가치',
+    '"현행 전무·개방 의존" 시군은 존재하지 않는다',
+    `현행 구획 0.5km² 미만이면서 진흥구역 개방 시 20km² 이상이 되는 시군은 전국에 없다 —
+     진흥 개방의 수혜 시군은 이미 현행법 물량도 일정 수준 보유한다.`, ``,
+    `재현: <a href="evidence.html#diag">시군별 조회</a>로 임의 시군 확인`);
+  card('null', '부정 결과', '◎ 기록 가치',
+    '이격 배제가 구획 수를 늘리는 역전 사례는 없다',
+    `이격 적용으로 구획이 쪼개져 수가 늘어나는 시군은 0곳 — 이격 배제는 전 시군에서
+     구획 수와 면적을 함께 줄인다.`, ``,
+    `재현: <a href="map.html">지도</a> 임의 시군에서 이격 토글`);
+
+  document.getElementById('cards').innerHTML = cards.join('');
+
+  // 필터
+  document.querySelectorAll('#fil .tab').forEach(t => t.onclick = () => {
+    document.querySelectorAll('#fil .tab').forEach(x => x.classList.toggle('on', x === t));
+    const f = t.dataset.f;
+    document.querySelectorAll('.ins-card').forEach(c =>
+      c.style.display = (f === 'all' || c.dataset.f === f) ? '' : 'none');
+  });
+
+  V4.footer();
+})();
+</script>
+<script src="site.js"></script>
+</body>
+</html>
