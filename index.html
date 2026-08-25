@@ -313,7 +313,7 @@
   document.getElementById('one-liner').innerHTML =
     `농업진흥구역이 재생에너지지구로 개방되면, 개인 필지 없이 — <b>법인·국공유 필지만으로</b> —
      특구급(50MW 이상) 구획이 전국 <b>${V4.n(R.ANCHOR_CP.ge50)}곳에서 ${V4.n(R.SOFT_R2_CP.ge50)}곳
-     (${V4.n(R.SOFT_R2_CP.mw)}MW)</b>으로 늘어나며, 그중 ${V4.n(cpBigRec)}곳이 <b>간척 지구</b>다.`;
+     (합 ${V4.n(R.SOFT_R2_CP.ge50_mw)}MW)</b>으로 늘어나며, 그중 ${V4.n(cpBigRec)}곳이 <b>간척 지구</b>다.`;
 
   const STEPS = [
     ['①', '현재 수준', `현행법(농업진흥지역 밖 한정)으로 가능한 농지는
@@ -333,7 +333,8 @@
       농업진흥구역 개방 시 <b>+${V4.km2(R.SOFT_R2.listed_km2 - R.ANCHOR.listed_km2)} km²</b>
       (약 +${mwK(R.SOFT_R2.listed_km2 - R.ANCHOR.listed_km2)}MW, 특구급 ${V4.n(R.SOFT_R2.ge50)}곳).
       법인·국공유만으로 좁혀도 진흥구역 개방은 특구급을 ${V4.n(R.ANCHOR_CP.ge50)}곳 →
-      <b>${V4.n(R.SOFT_R2_CP.ge50)}곳(${V4.n(R.SOFT_R2_CP.mw)}MW)</b>으로 늘리며,
+      <b>${V4.n(R.SOFT_R2_CP.ge50)}곳(합 ${V4.n(R.SOFT_R2_CP.ge50_mw)}MW)</b>으로 늘리며
+      — 6.67ha 이상 등재 전체는 ${V4.km2(R.SOFT_R2_CP.listed_km2)} km²·${V4.n(R.SOFT_R2_CP.mw)}MW —
       그중 ${V4.n(cpBigRec)}곳이 석문·대호·고흥·영산강 수계의 간척 지구.`,
      'candidates.html', '특구 후보 탭 — 24곳의 소재와 지도'],
     ['④', '이격 단서', `주거 이격 200m 보수 적용 시(하한) 현행 구획은

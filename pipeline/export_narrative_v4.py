@@ -31,6 +31,8 @@ for name, ne, ek, nl, lk, mw in con.execute(f"""
     runs[name] = {'n_eligible': ne, 'eligible_km2': ek, 'n_listed': nl,
                   'listed_km2': lk, 'mw': round(mw),
                   'ge50': s.get('ge50'), 'ge100': s.get('ge100'),
+                  'ge50_km2': round(s.get('ge50_km2', 0.0), 1),
+                  'ge50_mw': round(s.get('ge50_km2', 0.0) * 1e6 * Q.KW / 1e3),
                   'max_ha': round(s.get('max_ha', 0))}
 
 # ── 소유 × 이격 (필지층) ──

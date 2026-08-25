@@ -98,8 +98,9 @@
   "동의 조직화 없이 성립하는 물량"의 하한이 나온다.</p>
   <p>결과는 극명하다: 현행법에서 특구급은 <b id="c-cp-a50">—</b>곳(제주 서귀포,
   <span id="c-cp-a-mw">—</span>MW)으로 줄고 100MW급은 <span id="c-cp-a100">—</span>곳,
-  농업진흥구역을 열면 <b id="c-cp-r50">—</b>곳(<span id="c-cp-r-mw">—</span>MW)으로
-  늘어난다.</p>
+  농업진흥구역을 열면 <b id="c-cp-r50">—</b>곳(특구급 합 <span id="c-cp-r-mw50">—</span>MW)으로
+  늘어난다. 6.67ha 이상 등재 전체로는 <span id="c-cp-r-km2">—</span> km²
+  (<span id="c-cp-r-mw">—</span>MW)가 성립한다.</p>
 
   <figure class="art-fig">
     <div class="figbox"><div id="fig1"></div></div>
@@ -147,9 +148,10 @@
   <figure class="art-fig">
     <div class="figbox">
       <div style="overflow-x:auto"><table class="v4" id="t-cand"></table></div>
-      <div class="figcap">표 2. 특구급 후보 구획 목록 — 규모 순. 간척 = 농어촌공사 지구·공구
-      원장 등재분<sup class="fnref">[3]</sup>, 시군은 구획의 주 소재지(걸침 구획은 전체 면적 기준).
-      행 클릭 = 지도 이동.</div>
+      <div class="figcap">표 2. 특구급 후보 구획 목록 — 규모 순. 간척 표기 = 구성 필지 중
+      농어촌공사 원장 등재<sup class="fnref">[3]</sup> 필지의 비중 50% 이상(실제 분포는 86–100%
+      대 0–17%로 양극이라 경계 사례 없음 — 유일한 중간값은 고흥 해창만 17%로 비간척 분류).
+      시군은 구획의 주 소재지(걸침 구획은 전체 면적 기준). 행 클릭 = 지도 이동.</div>
     </div>
   </figure>
 
@@ -191,6 +193,8 @@
   put('c-cp-a-mw', V4.n((N.cp_big_anchor[0] || {mw: 0}).mw));
   put('c-cp-a100', V4.n(R.ANCHOR_CP.ge100));
   put('c-cp-r50', V4.n(R.SOFT_R2_CP.ge50));
+  put('c-cp-r-mw50', V4.n(R.SOFT_R2_CP.ge50_mw));
+  put('c-cp-r-km2', V4.km2(R.SOFT_R2_CP.listed_km2));
   put('c-cp-r-mw', V4.n(R.SOFT_R2_CP.mw));
   put('c-sb-from', V4.km2(R.SOFT_R2_CP.listed_km2));
   put('c-sb-to', V4.km2(R.SOFT_R2_CP_SB.listed_km2));
