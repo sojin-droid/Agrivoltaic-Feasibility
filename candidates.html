@@ -18,6 +18,20 @@
 .cand-leg .sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
 #t-cand tr.rowbtn{cursor:pointer}
 #t-cand tr.rowbtn:hover td{background:var(--sky)}
+.cand-list-btn{background:#fff;border:2px solid rgba(0,0,0,.2);border-radius:6px;
+ font:700 12px/1.4 'Noto Sans KR',sans-serif;color:var(--navy);padding:5px 10px;cursor:pointer;
+ box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.cand-list{display:none;background:#fff;border:2px solid rgba(0,0,0,.2);border-radius:8px;
+ margin-top:6px;max-height:300px;overflow-y:auto;width:230px;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.cand-list.open{display:block}
+.cand-list .row{display:flex;gap:8px;align-items:baseline;padding:7px 10px;font-size:12px;
+ border-bottom:1px solid var(--line);cursor:pointer;word-break:keep-all}
+.cand-list .row:hover{background:var(--sky)}
+.cand-list .rk{font-family:var(--mono);font-size:10.5px;color:var(--muted);min-width:16px}
+.cand-list .mw{font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;min-width:52px}
+.cand-list .rec{margin-left:auto;font-size:10px;padding:1px 6px;border-radius:999px}
+.cand-list .rec.y{background:#fdf6ec;color:#C96A00;border:1px solid #C96A00}
+.cand-list .rec.n{background:#fdf1f0;color:#B3261E;border:1px solid #B3261E}
 .sb-toggle{display:inline-flex;gap:0;border:1.5px solid var(--navy);border-radius:999px;overflow:hidden;margin:8px 0}
 .sb-toggle button{font:inherit;font-size:12px;font-weight:700;padding:6px 14px;border:none;
  background:#fff;color:var(--navy);cursor:pointer}
@@ -291,6 +305,34 @@
     });
   }
   await renderMap();
+
+  // 지도 우상단 목록 토글 — 순위·규모·소재지 스크롤 목록, 클릭 = 해당 구획 이동
+  const listCtl = L.control({position: 'topright'});
+  listCtl.onAdd = () => {
+    const d = L.DomUtil.create('div');
+    d.innerHTML = `<button class="cand-list-btn" id="clBtn">목록 ▾ (${bigList.length})</button>
+      <div class="cand-list" id="clPanel">` +
+      bigList.map((b, i) => `<div class="row" data-id="${b.id}">
+        <span class="rk">${i + 1}</span><span class="mw">${V4.n(b.mw)}MW</span>
+        <span>${b.reclaim_pct >= 50 ? (b.district || '간척').replace('지구', '') + ' · ' : ''}${nameOf(b.sgg)}</span>
+        <span class="rec ${b.reclaim_pct >= 50 ? 'y' : 'n'}">${b.reclaim_pct >= 50 ? '간척' : '비간척'}</span>
+      </div>`).join('') + '</div>';
+    L.DomEvent.disableClickPropagation(d);
+    L.DomEvent.disableScrollPropagation(d);
+    return d;
+  };
+  listCtl.addTo(map);
+  const clBtn = document.getElementById('clBtn');
+  const clPanel = document.getElementById('clPanel');
+  clBtn.onclick = () => {
+    clPanel.classList.toggle('open');
+    clBtn.textContent = clPanel.classList.contains('open')
+      ? `목록 ▴ (${bigList.length})` : `목록 ▾ (${bigList.length})`;
+  };
+  clPanel.querySelectorAll('.row').forEach(el => el.onclick = () => {
+    const bd = boundsById[+el.dataset.id];
+    if (bd) map.fitBounds(bd.pad(0.3));
+  });
 
   // 빠른 이동 칩 — 지역 이름 클릭 = 해당 특구급 구획(들)로 이동
   const chipsEl = document.getElementById('candchips');
