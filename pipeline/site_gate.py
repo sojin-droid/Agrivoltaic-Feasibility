@@ -57,6 +57,7 @@ def scan(fp, rel):
                 fails.append(f"{rel}: {msg} (자족형 위반) — …{seg[:80]}…")
         # ⑤ 하드코딩 수치: 본문에 콤마 큰 수가 직접 있으면 경고 (수치는 data_v4에서 렌더)
         body = re.sub(r'<script.*?</script>', '', txt, flags=re.S)
+        body = re.sub(r'<style.*?</style>', '', body, flags=re.S)   # rgba(12,53,106) 오탐 제거
         body = re.sub(r'<link[^>]*>', '', body)              # 폰트 URL 웨이트 숫자 오탐 제거
         body = re.sub(r'(?:href|src)\s*=\s*"[^"]*"', '', body)
         for m in set(re.findall(r'\d{1,3}(?:,\d{3}){1,}', body)):
