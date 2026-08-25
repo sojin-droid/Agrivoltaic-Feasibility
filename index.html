@@ -10,6 +10,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="assets/v4.js"></script>
+<style>
+/* 3D 레이어 스테이지 (구판 ls-* 모듈 이식 — 데이터는 1판 당진 실측) */
+.ls-rig{display:grid;grid-template-columns:1.5fr .92fr;gap:22px;align-items:center;margin-top:8px}
+@media(max-width:820px){.ls-rig{grid-template-columns:1fr}}
+.ls-stage3d{position:relative;height:520px;perspective:1500px;perspective-origin:50% 42%}
+@media(max-width:820px){.ls-stage3d{height:420px}}
+.ls-floor{position:absolute;left:50%;top:50%;width:560px;height:400px;margin:-150px 0 0 -280px;
+  transform:rotateX(59deg) rotateZ(-31deg);
+  background:repeating-linear-gradient(0deg,rgba(12,53,106,.05) 0 1px,transparent 1px 40px),
+  repeating-linear-gradient(90deg,rgba(12,53,106,.05) 0 1px,transparent 1px 40px);
+  border:1px dashed rgba(12,53,106,.15);border-radius:6px}
+.ls-plane{position:absolute;left:50%;top:50%;width:560px;height:400px;margin:-150px 0 0 -280px;
+  transform-origin:center;opacity:0;transition:transform .7s cubic-bezier(.2,.75,.25,1),opacity .5s ease;pointer-events:none}
+.ls-plane svg{width:100%;height:100%;display:block;filter:drop-shadow(0 18px 22px rgba(8,37,72,.18))}
+.ls-plane .sheet{fill:#fff;stroke:rgba(12,53,106,.35);stroke-width:1.2}
+.ls-plane.show{opacity:1}
+.ls-plane.active .sheet{stroke:var(--gold);stroke-width:2.4}
+.ls-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 16px 18px}
+.ls-steps{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.ls-step{display:flex;gap:11px;align-items:flex-start;text-align:left;background:none;border:1px solid transparent;
+  border-radius:9px;padding:7px 9px;cursor:pointer;font:inherit;color:var(--muted);transition:.2s}
+.ls-step:hover{background:var(--sky)}
+.ls-step.on{background:#fff;border-color:var(--line);color:var(--ink);box-shadow:0 1px 6px rgba(8,37,72,.07)}
+.ls-step .dot{flex:none;width:22px;height:22px;border-radius:50%;background:var(--line);color:#fff;
+  font-family:var(--mono);font-size:11px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.ls-step.on .dot{background:var(--leaf)}.ls-step.done .dot{background:var(--leaf-deep)}
+.ls-step .nm{font-weight:700;font-size:13.5px;line-height:1.25}
+.ls-step .ds{font-size:11px;color:var(--muted);margin-top:1px}.ls-step.on .ds{color:var(--leaf-deep)}
+.ls-play{margin-top:5px;display:flex;gap:8px}
+.ls-play button{flex:1;font:inherit;font-size:13px;font-weight:700;padding:8px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--navy);background:var(--navy);color:#fff}
+.ls-play button.ghost{background:#fff;color:var(--navy)}
+.ls-cap{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.05em;margin:14px 0 0;text-align:center}
+</style>
 </head>
 <body>
 
@@ -88,6 +122,28 @@
   </div>
 </section>
 
+<!-- ═══════════ 3D 레이어 스테이지 ═══════════ -->
+<section id="pipe">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Layers · 판정의 층위</p>
+      <h2>한 시군에서 다섯 장을 쌓아 보면 — <em>당진</em></h2></div>
+      <a class="more" href="method.html">판정 조건 전체 보기 →</a>
+    </div>
+    <div class="ls-rig">
+      <div class="ls-stage3d" id="ls-stage"><div class="ls-floor"></div></div>
+      <div class="ls-panel">
+        <div class="ls-steps" id="ls-steps"></div>
+        <div class="ls-play">
+          <button id="ls-playbtn">처음부터 재생</button>
+          <button class="ghost" id="ls-allbtn">전부 쌓기</button>
+        </div>
+      </div>
+    </div>
+    <p class="ls-cap" id="ls-cap"></p>
+  </div>
+</section>
+
 <!-- ═══════════ 더 보기 카드 ═══════════ -->
 <section id="explore">
   <div class="wrap">
@@ -155,6 +211,60 @@
      <a href="atlas.html"><b>아틀라스에서 지구별로 보기 →</b></a>`;
 
   V4.footer();
+
+  // ── 3D 레이어 스테이지 — 당진 판정 층위 (data_v4/stage_44270.json) ──
+  const st = await V4.data('stage_44270');
+  const STYLE = {
+    L1: 'fill="#E4EFD6" stroke="#B7CC93" stroke-width="1"',
+    L2: 'fill="#CBDCBF" stroke="#9DBE8C" stroke-width="1"',
+    L3: 'fill="#F4F7F4" stroke="#0C356A" stroke-width="1.1" stroke-opacity=".6"',
+    L4: 'fill="#5A9E43" fill-opacity=".92" stroke="#3E7A2E" stroke-width="1.2"',
+    L5: 'fill="#FFC436" fill-opacity=".4" stroke="#B8860B" stroke-width="1.6"',
+  };
+  const stage = document.getElementById('ls-stage');
+  const planes = st.layers.map((ly) => {
+    const d = document.createElement('div');
+    d.className = 'ls-plane';
+    d.innerHTML = `<svg viewBox="0 0 ${st.w} ${st.h}">
+      <rect class="sheet" x="0" y="0" width="${st.w}" height="${st.h}" rx="6"/>
+      <path d="${ly.path}" ${STYLE[ly.k]} fill-rule="evenodd"/></svg>`;
+    stage.appendChild(d);
+    return d;
+  });
+  const stepsEl = document.getElementById('ls-steps');
+  stepsEl.innerHTML = st.layers.map((ly, i) => `
+    <button class="ls-step" data-i="${i}"><span class="dot">${i + 1}</span>
+      <span><span class="nm">${ly.t}</span><br><span class="ds">${ly.d}</span></span></button>`).join('');
+  const stepBtns = [...stepsEl.querySelectorAll('.ls-step')];
+  let timer = null;
+  function setStep(k) {
+    planes.forEach((p, i) => {
+      const show = i <= k;
+      p.classList.toggle('show', show);
+      p.classList.toggle('active', i === k);
+      p.style.transform = `rotateX(59deg) rotateZ(-31deg) translateZ(${show ? i * 30 : i * 30 - 60}px)`;
+    });
+    stepBtns.forEach((b, i) => {
+      b.classList.toggle('on', i === k);
+      b.classList.toggle('done', i < k);
+    });
+    document.getElementById('ls-cap').textContent =
+      `${st.name} · ${st.layers[k].t} — ${st.layers[k].d} (표시 지오메트리는 간소화본, 수치는 정본 조회값)`;
+  }
+  function stopPlay() { if (timer) { clearInterval(timer); timer = null; } }
+  function play() {
+    stopPlay();
+    let k = 0;
+    setStep(0);
+    timer = setInterval(() => { k += 1; if (k >= planes.length) return stopPlay(); setStep(k); }, 1400);
+  }
+  stepBtns.forEach((b, i) => b.onclick = () => { stopPlay(); setStep(i); });
+  document.getElementById('ls-playbtn').onclick = play;
+  document.getElementById('ls-allbtn').onclick = () => { stopPlay(); setStep(planes.length - 1); };
+  const pio = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { pio.disconnect(); play(); } });
+  }, {threshold: .35});
+  pio.observe(stage);
 })();
 </script>
 <script src="site.js"></script>

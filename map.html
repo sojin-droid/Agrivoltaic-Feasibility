@@ -126,8 +126,12 @@
   async function fc(sgg, cell) {
     const k = sgg + '_' + cell;
     if (!(k in cache)) {
-      try { cache[k] = await (await fetch('data_v4/clusters/' + k + '.json')).json(); }
-      catch (e) { cache[k] = null; }
+      try {  // 구획 파일은 gzip 저장(.json.gz) — 브라우저에서 해제
+        const r = await fetch('data_v4/clusters/' + k + '.json.gz');
+        if (!r.ok) throw 0;
+        const ds = r.body.pipeThrough(new DecompressionStream('gzip'));
+        cache[k] = JSON.parse(await new Response(ds).text());
+      } catch (e) { cache[k] = null; }
     }
     return cache[k];
   }

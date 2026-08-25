@@ -1,0 +1,103 @@
+# -*- coding: utf-8 -*-
+"""3D 레이어 스테이지 데이터 — 당진(44270) 판정 층위 5장 + 깔때기 수치.
+
+층: L1 지목 전·답·과수원(우주) → L2 실경작 30% 이상 → L3 현행법 적격(앵커)
+    → L4 등재 구획(ANCHOR) → L5 진흥지역 전체 개방 시 등재 구획(SOFT_A2)
+지오메트리: 층별 dissolve → 간소화 60m(표시용) → 5186 평면 좌표(뷰박스 0-560×0-400 정규화)
+수치: 정본 DB·scenario_runs 조회값 (표시 지오메트리와 무관하게 원본 기준)
+산출: data_v4/stage_44270.json
+사용: python pipeline/export_stage_v4.py"""
+import os, sys, json, datetime
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+import numpy as np, pandas as pd, duckdb
+import geopandas as gpd
+import shapely
+
+ROOT = r"C:\Users\user\새 폴더"
+LR = os.path.join(ROOT, 'Ledger_Rebuild')
+SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SGG = '44270'
+W, H = 560, 400
+
+con = duckdb.connect(os.path.join(LR, 'agrivoltaic_ledger_v1.duckdb'), read_only=True)
+flags = con.execute("""
+  SELECT e.pnu,
+         (COALESCE(e.ratio_v2_final,0)>=0.30) live,
+         (e.n_s0_ge30
+          AND NOT (l.class1_name LIKE '%개발제한구역%' OR l.class2_name LIKE '%개발제한구역%')
+          AND l.class1_name NOT IN ('보전관리지역','보전녹지지역')
+          AND COALESCE(l.class2_name,'') NOT IN ('보전관리지역','보전녹지지역')) anchor
+  FROM elig_v2 e JOIN ledger l USING(pnu)
+  WHERE e.sgg = ? AND l.category IN ('01','02','03')""", [SGG]).fetch_df()
+con.close()
+print(f"당진 전답과 우주 {len(flags):,} · 실경작 {int(flags['live'].sum()):,} · "
+      f"앵커 {int(flags['anchor'].sum()):,}", flush=True)
+
+g = gpd.read_file(os.path.join(ROOT, 'Cadastre_All', f'{SGG}.gpkg')).to_crs(5186)
+g = g.drop_duplicates('pnu').set_index('pnu')
+
+MIN_PART = 80_000.0     # 표시 최소 조각 8ha — 그 미만 섬·구멍은 장식 지도에서 생략
+
+def blob(pnus, tol=120.0):
+    sub = g.reindex(pnus)
+    geo = sub.geometry[sub.geometry.notna()].values
+    u = shapely.union_all(geo)
+    u = shapely.simplify(u, tol)
+    geos = u.geoms if u.geom_type == 'MultiPolygon' else [u]
+    keep = []
+    for p in geos:
+        if p.area < MIN_PART:
+            continue
+        holes = [h for h in p.interiors if shapely.Polygon(h).area >= MIN_PART]
+        keep.append(shapely.Polygon(p.exterior, holes))
+    return shapely.MultiPolygon(keep) if keep else u
+
+L1 = blob(flags['pnu'].values)
+L2 = blob(flags.loc[flags['live'], 'pnu'].values)
+L3 = blob(flags.loc[flags['anchor'].fillna(False).astype(bool), 'pnu'].values)
+m4 = pd.read_parquet(os.path.join(LR, 'scenario_runs', 'ANCHOR', 'members.parquet'))
+m5 = pd.read_parquet(os.path.join(LR, 'scenario_runs', 'SOFT_A2', 'members.parquet'))
+L4 = blob(m4.loc[m4['pnu'].str[:5] == SGG, 'pnu'].values, 80.0)
+L5 = blob(m5.loc[m5['pnu'].str[:5] == SGG, 'pnu'].values, 80.0)
+
+# 뷰박스 정규화 (여백 4%)
+x0, y0, x1, y1 = shapely.bounds(L1)
+pad = 0.04 * max(x1 - x0, y1 - y0)
+x0 -= pad; y0 -= pad; x1 += pad; y1 += pad
+sc = min(W / (x1 - x0), H / (y1 - y0))
+ox = (W - (x1 - x0) * sc) / 2
+oy = (H - (y1 - y0) * sc) / 2
+
+def paths(u):
+    out = []
+    geos = u.geoms if u.geom_type == 'MultiPolygon' else [u]
+    for p in geos:
+        for ring in [p.exterior] + list(p.interiors):
+            xs, ys = np.asarray(ring.coords).T
+            px = (xs - x0) * sc + ox
+            py = H - ((ys - y0) * sc + oy)
+            out.append('M' + ' '.join(f'{a:.1f},{b:.1f}' for a, b in zip(px, py)) + 'Z')
+    return ' '.join(out)
+
+# 깔때기 수치 — 정본 조회값 (구획 값은 시군 구간 필지 수·색인 면적)
+idx = json.load(open(os.path.join(SITE, 'data_v4', 'clusters_index.json'), encoding='utf-8'))
+ANC = idx['sgg'][SGG]['ANCHOR']; A2 = idx['sgg'][SGG]['SOFT_A2']
+out = {
+    'generated': datetime.datetime.now().strftime('%Y-%m-%d %H:%M'),
+    'sgg': SGG, 'name': '충남 당진시', 'w': W, 'h': H,
+    'layers': [
+        {'k': 'L1', 't': '지목 전·답·과수원', 'd': f"{len(flags):,}필지 — 분석 우주",
+         'path': paths(L1)},
+        {'k': 'L2', 't': '실경작 30% 이상', 'd': f"{int(flags['live'].sum()):,}필지 — 위성 실측",
+         'path': paths(L2)},
+        {'k': 'L3', 't': '현행법 적격', 'd': f"{int(flags['anchor'].fillna(False).sum()):,}필지 — 구조·경사·용도 3종 통과, 농업진흥지역 밖",
+         'path': paths(L3)},
+        {'k': 'L4', 't': '등재 구획 (현행)', 'd': f"{ANC['k']:,}구획 · {ANC['km2']:,}km² — 연접 병합 후 6.67ha 이상",
+         'path': paths(L4)},
+        {'k': 'L5', 't': '진흥지역 전체 개방 시', 'd': f"{A2['k']:,}구획 · {A2['km2']:,}km² — 수단 B 상한",
+         'path': paths(L5)},
+    ],
+}
+fp = os.path.join(SITE, 'data_v4', 'stage_44270.json')
+json.dump(out, open(fp, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+print(f"stage_44270.json: {os.path.getsize(fp)/1e3:.0f} KB")
