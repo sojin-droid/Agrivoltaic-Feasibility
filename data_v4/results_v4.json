@@ -1,5 +1,5 @@
 {
-"generated": "2026-08-25 13:35",
+"generated": "2026-08-26 01:28",
 "note": "1판 (ADR-0034 승인 자산) — 값은 실경작 적용·장부면적 기준, MW는 참고(0.045kW/㎡)",
 "runs": {
 "S_current": {
@@ -15,20 +15,6 @@
 "extra": "[]",
 "ran_at": "2026-08-25T13:16:21",
 "M_mw": 378708.9
-},
-"ANCHOR": {
-"name": "ANCHOR",
-"rho": 0.3,
-"tau_m": 21.0,
-"theta_ha": 6.6667,
-"n_eligible": 3272555,
-"eligible_area_km2": 4099.64,
-"n_component": 426830,
-"n_listed": 10157,
-"listed_area_km2": 1662.2,
-"extra": "[]",
-"ran_at": "2026-08-25T13:16:54",
-"M_mw": 74797.2
 },
 "ANCHOR_SB": {
 "name": "ANCHOR_SB",
@@ -763,6 +749,76 @@
 "listed_area_km2": 4432.5,
 "extra": "[\"setback200\"]",
 "ran_at": "2026-08-25T13:26:49"
+},
+"ANCHOR": {
+"name": "ANCHOR",
+"rho": 0.3,
+"tau_m": 21.0,
+"theta_ha": 6.6667,
+"n_eligible": 3272555,
+"eligible_area_km2": 4099.64,
+"n_component": 426830,
+"n_listed": 10157,
+"listed_area_km2": 1662.2,
+"extra": "[]",
+"ran_at": "2026-08-26T01:13:08",
+"M_mw": 74797.2
+},
+"ANCHOR_CP": {
+"name": "ANCHOR_CP",
+"rho": 0.3,
+"tau_m": 21.0,
+"theta_ha": 6.6667,
+"n_eligible": 275168,
+"eligible_area_km2": 196.96,
+"n_component": 135166,
+"n_listed": 127,
+"listed_area_km2": 20.3,
+"extra": "[\"owner_private\"]",
+"ran_at": "2026-08-26T01:13:17",
+"M_mw": 914.1
+},
+"ANCHOR_CP_SB": {
+"name": "ANCHOR_CP_SB",
+"rho": 0.3,
+"tau_m": 21.0,
+"theta_ha": 6.6667,
+"n_eligible": 98962,
+"eligible_area_km2": 96.85,
+"n_component": 49202,
+"n_listed": 77,
+"listed_area_km2": 13.7,
+"extra": "[\"owner_private\", \"setback200\"]",
+"ran_at": "2026-08-26T01:13:26",
+"M_mw": 615.4
+},
+"SOFT_R2_CP": {
+"name": "SOFT_R2_CP",
+"rho": 0.3,
+"tau_m": 21.0,
+"theta_ha": 6.6667,
+"n_eligible": 521835,
+"eligible_area_km2": 628.55,
+"n_component": 230208,
+"n_listed": 535,
+"listed_area_km2": 175.0,
+"extra": "[\"owner_private\"]",
+"ran_at": "2026-08-26T01:13:35",
+"M_mw": 7877.2
+},
+"SOFT_R2_CP_SB": {
+"name": "SOFT_R2_CP_SB",
+"rho": 0.3,
+"tau_m": 21.0,
+"theta_ha": 6.6667,
+"n_eligible": 254133,
+"eligible_area_km2": 427.22,
+"n_component": 109240,
+"n_listed": 452,
+"listed_area_km2": 159.3,
+"extra": "[\"owner_private\", \"setback200\"]",
+"ran_at": "2026-08-26T01:13:45",
+"M_mw": 7166.6
 }
 }
 }

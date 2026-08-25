@@ -76,7 +76,8 @@
     <p class="lede" style="margin-top:6px">등재 구획 = 서로 21m 이내로 이어진 필지를 하나로
     병합한 6.67ha 이상의 사업 단위. 현행법 기준(노랑)은 항상 표시되고, 보호구역·진흥구역
     개방분을 하나씩 켜서 <b>노랑 밖으로 번지는 증분</b>을 확인함 — 주황 = 보호구역 개방분,
-    빨강 = 진흥구역 개방분.</p>
+    빨강 = 진흥구역 개방분.<br>소유 필터를 켜면 <b>법인·국공유 필지만으로 병합</b>한
+    구획을 표시 — 개인 소유주 동의 조직화 없이 성립하는 물량의 검토용.</p>
   </div>
 
   <div class="map-wrap">
@@ -90,6 +91,7 @@
           현행법 기준 — 항상 표시<small>농업진흥지역 밖 · 노랑</small></button>
         <button id="chkProt">＋ 농업보호구역 개방분<small>수단 A (부령) · 주황으로 추가</small></button>
         <button id="chkProm">＋ 농업진흥구역 개방분<small>수단 B (재생에너지지구) · 빨강으로 추가</small></button>
+        <button id="chkCP">소유 필터 — 법인·국공유만 병합<small>개인 등 소유 배제 후 재병합 · 특구급 검토용</small></button>
       </div>
       <div class="sb-toggle" id="sbTgl">
         <button data-sb="0" class="on">이격 미적용</button>
@@ -120,11 +122,12 @@
   // 증분 레이어 방식: 현행(노랑) 상시 + 보호 개방분(주황) + 진흥 개방분(빨강)을 겹쳐 그림.
   // 영역이 포함관계(R0 ⊆ R1 ⊆ R3)라, 아래에 큰 조합을 깔고 위에 작은 조합을 얹으면
   // 노랑 밖으로 번진 색이 곧 그 개방의 증분이 된다.
-  let onProt = false, onProm = false, curSB = 0;
+  let onProt = false, onProm = false, curSB = 0, cpOn = false;
   const sb = () => (curSB ? '_SB' : '');
-  const baseCell = () => 'ANCHOR' + sb();
+  // 소유 필터(cpOn) = 법인·국공유 필지만 병합한 CP 계열(ADR 결재분) — 보호구역 개방은 CP 산출 없음
+  const baseCell = () => (cpOn ? 'ANCHOR_CP' : 'ANCHOR') + sb();
   const protCell = () => 'SOFT_A1' + sb();
-  const promCell = () => (onProt ? 'SOFT_A2' : 'SOFT_R2') + sb();   // 보호와 같이 켜면 R3, 아니면 R2
+  const promCell = () => (cpOn ? 'SOFT_R2_CP' : (onProt ? 'SOFT_A2' : 'SOFT_R2')) + sb();
 
   const [idx, names, res] = await Promise.all([
     V4.data('clusters_index').catch(() => null),   // export 진행 중이면 색인이 아직 없다
@@ -183,18 +186,31 @@
     if (v && !picked.includes(v)) { picked.push(v); renderChips(); render(true); }
     sel.value = '';
   };
-  // URL 파라미터 (근거 탭 연동): map.html?sgg=44270 또는 ?sgg=44270,46820
-  const q = new URLSearchParams(location.search).get('sgg');
+  // URL 파라미터 (탭 연동): map.html?sgg=44270,46820 · &cp=1 = 소유 필터 켬 · &prom=1 = 진흥 개방 켬
+  const qp = new URLSearchParams(location.search);
+  const q = qp.get('sgg');
   if (q) {
     picked = q.split(',').filter(c => names.codes[c]);
     renderChips();
   }
-  setTimeout(() => render(true), 50);   // 초기 렌더 — 선택 없어도 전국 통계·안내는 표시
 
   const bProt = document.getElementById('chkProt');
   const bProm = document.getElementById('chkProm');
+  const bCP = document.getElementById('chkCP');
   bProt.onclick = () => { onProt = !onProt; bProt.classList.toggle('on', onProt); render(); };
   bProm.onclick = () => { onProm = !onProm; bProm.classList.toggle('on', onProm); render(); };
+  bCP.onclick = () => {
+    cpOn = !cpOn;
+    bCP.classList.toggle('on', cpOn);
+    if (cpOn && onProt) { onProt = false; bProt.classList.remove('on'); }
+    bProt.disabled = cpOn;
+    bProt.style.opacity = cpOn ? .45 : 1;
+    bProt.title = cpOn ? '소유 필터 판은 보호구역 개방 산출이 없음 (수단 A 증분이 미미해 제외)' : '';
+    render();
+  };
+  if (qp.get('cp') === '1') bCP.onclick();
+  if (qp.get('prom') === '1') bProm.onclick();
+  setTimeout(() => render(true), 50);   // 초기 렌더 — 선택 없어도 전국 통계·안내는 표시
   document.querySelectorAll('#sbTgl button').forEach(b => b.onclick = () => {
     curSB = +b.dataset.sb;
     document.querySelectorAll('#sbTgl button').forEach(x =>
@@ -210,10 +226,11 @@
   function stats() {
     const natB = res.runs[baseCell()], natP = res.runs[protCell()], natM = res.runs[promCell()];
     const line = (t, v) => `<div class="stat-line"><span>${t}</span><span class="v">${v}</span></div>`;
+    const cpTag = cpOn ? ' · 법인·국공유만' : '';
     let html = '';
     if (picked.length && idx) {
       const b = sumIdx(baseCell());
-      html += line(`선택 시군 · 현행법${picked.length > 1 ? ' (합계)' : ''}`,
+      html += line(`선택 시군 · 현행법${cpTag}${picked.length > 1 ? ' (합계)' : ''}`,
                    `${V4.n(b.k)}개 · ${V4.km2(b.km2)} km²`);
       if (onProt) {
         const p = sumIdx(protCell());
@@ -225,7 +242,7 @@
         html += line('　＋진흥구역 개방 증분', `+${V4.km2(m.km2 - from)} → ${V4.km2(m.km2)} km²`);
       }
     }
-    if (natB) html += line('전국 · 현행법', `${V4.n(natB.n_listed)}구획 · ${V4.km2(natB.listed_area_km2)} km²`);
+    if (natB) html += line(`전국 · 현행법${cpTag}`, `${V4.n(natB.n_listed)}구획 · ${V4.km2(natB.listed_area_km2)} km²`);
     if (onProt && natP) html += line('전국 ＋보호구역',
       `+${V4.km2(natP.listed_area_km2 - natB.listed_area_km2)} → ${V4.km2(natP.listed_area_km2)} km²`);
     if (onProm && natM) {

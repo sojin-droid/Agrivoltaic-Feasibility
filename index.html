@@ -109,6 +109,30 @@
   </div>
 </div>
 
+<!-- ═══════════ 다섯 단계로 읽는 결론 (전량 narrative_v4·summary_v4 렌더) ═══════════ -->
+<section class="alt" id="story" style="padding:48px 0 40px">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Conclusion · 다섯 단계</p>
+    <h2>다섯 단계로 읽는 결론</h2></div>
+    <span style="font-size:12.5px;color:var(--muted)">모든 수치는 정본 산출<sup class="fnref">[12]</sup> —
+    각 단계에서 해당 상세 탭으로 이동 가능</span></div>
+
+    <div class="verdict reveal" style="margin-bottom:20px">
+      <span class="vh">한 줄 결론</span>
+      <span id="one-liner" style="font-size:15px;line-height:1.8">—</span>
+    </div>
+
+    <div id="story-steps" style="display:flex;flex-direction:column;gap:12px"></div>
+
+    <div class="fn" style="margin-top:14px">특구급 = 재생에너지지구급 사업 규모 50–100MW
+    = 연접 농지 <span id="th50">—</span>–<span id="th100">—</span>ha
+    (환산 0.045 kW/㎡ = 설치밀도 0.225 × 모듈효율 0.20<sup class="fnref">[13]</sup>) ·
+    소유 필터 = 법인·국공유 필지만 병합(개인·종중 등 배제, 결재 확정 정의)<sup class="fnref">[12]</sup> ·
+    이격 = 주거 200m 상한의 보수 하한<sup class="fnref">[11]</sup> ·
+    법인의 농업법인 여부·간척지 임차 가능성은 미확인(자료·한계 탭).</div>
+  </div>
+</section>
+
 <!-- ═══════════ 입문 안내 (처음 읽는 독자용) ═══════════ -->
 <section style="padding:44px 0 36px">
   <div class="wrap">
@@ -272,6 +296,69 @@
      현행 ${V4.km2(K.R0['후'].km2)} km² → 농업진흥구역 개방 시 ${V4.km2(K.R2['후'].km2)} km²
      (${V4.n(K.R2['후'].n)}필지)<sup class="fnref">[3]</sup>.<br>간척 농지 대부분이 농업진흥구역 안에 있기 때문.
      <a href="atlas.html"><b>아틀라스에서 지구별로 보기 →</b></a>`;
+
+  // ── 다섯 단계로 읽는 결론 — narrative_v4(구획 크기 분포·소유 필터·소유×이격) 렌더 ──
+  const N = await V4.data('narrative_v4');
+  const R = N.runs;
+  const mwK = k => V4.n(Math.round(k * 45));                         // km² → MW (0.045 kW/㎡)
+  const og = k => N.owner_setback.find(g => g.group === k);
+  const outC = og('간척지 외 법인'), inC = og('간척지 내 법인'), inO = og('간척지 내 비법인');
+  const kk = m2 => V4.km2(m2 / 1e6);
+  const cpBigRec = N.cp_big.filter(b => b.reclaim_pct >= 50).length;
+  const cpAnchorTop = N.cp_big_anchor[0] || {mw: 0};
+  document.getElementById('th50').textContent = N.threshold.mw50_ha;
+  document.getElementById('th100').textContent = N.threshold.mw100_ha;
+
+  document.getElementById('one-liner').innerHTML =
+    `농업진흥구역이 재생에너지지구로 개방되면, 개인 필지 없이 — <b>법인·국공유 필지만으로</b> —
+     특구급(50MW 이상) 구획이 전국 <b>${V4.n(R.ANCHOR_CP.ge50)}곳에서 ${V4.n(R.SOFT_R2_CP.ge50)}곳
+     (${V4.n(R.SOFT_R2_CP.mw)}MW)</b>으로 늘어나며, 그중 ${V4.n(cpBigRec)}곳이 <b>간척 지구</b>다.`;
+
+  const STEPS = [
+    ['①', '현재 수준', `현행법(농업진흥지역 밖 한정)으로 가능한 농지는
+      <b>${V4.km2(M.R0['후'].km2)} km²</b>(${V4.n(M.R0['후'].n)}필지)지만, 사업이 성립하는
+      규모로 이어 붙이면 — 연접 21m 병합, 6.67ha 이상 —
+      <b>${V4.km2(R.ANCHOR.listed_km2)} km²</b>(참고 ${V4.n(R.ANCHOR.mw)}MW)로 줄어듦.`,
+     'evidence.html#t32', '근거 표 5'],
+    ['②', '왜 늘려야 하는가', `특구급(50MW = ${N.threshold.mw50_ha}ha)은 현행법으로 전국
+      <b>${V4.n(R.ANCHOR.ge50)}곳</b>(100MW급 ${V4.n(R.ANCHOR.ge100)}곳)뿐이고, 그 면적의
+      ${V4.n(N.big_composition.ANCHOR.indiv_share_pct)}%가 개인 소유 필지.
+      개인 동의 조직화 없이 — 법인·국공유 필지만 병합하면 — 성립하는 특구급은
+      <b>전국 ${V4.n(R.ANCHOR_CP.ge50)}곳</b>(제주 서귀포 ${V4.n(cpAnchorTop.mw)}MW),
+      100MW급은 ${V4.n(R.ANCHOR_CP.ge100)}곳.`,
+     'map.html?cp=1&sgg=50130', '지도에서 소유 필터로 확인'],
+    ['③', '두 수단의 증분', `농업보호구역 부령 포함 시 구획
+      +${V4.km2(R.SOFT_A1.listed_km2 - R.ANCHOR.listed_km2)} km²(약 +${mwK(R.SOFT_A1.listed_km2 - R.ANCHOR.listed_km2)}MW),
+      농업진흥구역 개방 시 <b>+${V4.km2(R.SOFT_R2.listed_km2 - R.ANCHOR.listed_km2)} km²</b>
+      (약 +${mwK(R.SOFT_R2.listed_km2 - R.ANCHOR.listed_km2)}MW, 특구급 ${V4.n(R.SOFT_R2.ge50)}곳).
+      법인·국공유만으로 좁혀도 진흥구역 개방은 특구급을 ${V4.n(R.ANCHOR_CP.ge50)}곳 →
+      <b>${V4.n(R.SOFT_R2_CP.ge50)}곳(${V4.n(R.SOFT_R2_CP.mw)}MW)</b>으로 늘리며,
+      그중 ${V4.n(cpBigRec)}곳이 석문·대호·고흥·영산강 수계의 간척 지구.`,
+     'map.html?cp=1&prom=1&sgg=44270,46820,46770', '지도 — 법인·국공유 병합 + 진흥 개방'],
+    ['④', '이격 단서', `주거 이격 200m 보수 적용 시(하한) 현행 구획은
+      ${V4.km2(R.ANCHOR.listed_km2)} → ${V4.km2(R.ANCHOR_SB.listed_km2)} km²(−74%),
+      특구급 ${V4.n(R.ANCHOR.ge50)} → ${V4.n(R.ANCHOR_SB.ge50)}곳으로 깎이지만,
+      진흥구역 개방 계열은 −53%(특구급 ${V4.n(R.SOFT_R2_SB.ge50)}곳 잔존),
+      법인·국공유 병합분은 <b>${V4.km2(R.SOFT_R2_CP.listed_km2)} →
+      ${V4.km2(R.SOFT_R2_CP_SB.listed_km2)} km²(−9%)</b>로 거의 무손 —
+      큰 집단 농지, 특히 간척 평야는 주거에서 멀기 때문.`,
+     'evidence.html#t32', '근거 표 5 · 지도의 이격 토글'],
+    ['⑤', '간척·법인 갭', `농업법인을 간척지 등으로 한정하는 조문 아래에서 간척지 밖 법인이
+      잃는 현행 가능 면적은 이격 미적용 <b>${kk(outC.anchor_m2)} km²</b>(약 ${mwK(outC.anchor_m2/1e6)}MW)
+      · 이격 적용 ${kk(outC.anchor_sb_m2)} km², 대신 간척 안 법인의 현행 가능분은 각각
+      ${kk(inC.anchor_m2)}·${kk(inC.anchor_sb_m2)} km²뿐 — 어느 판에서도 접근 면적 94–96% 축소.
+      진흥구역 개방이 동반될 때에만 간척 내 법인 ${kk(inC.all_m2)} km²(이격 후 ${kk(inC.all_sb_m2)})와
+      임차 풀 ${kk(inO.all_m2)} km²(이격 후 ${kk(inO.all_sb_m2)}, 전량 사용승낙 필요)가 열림.`,
+     'atlas.html', '간척 아틀라스 — 지구별 소유 구조'],
+  ];
+  document.getElementById('story-steps').innerHTML = STEPS.map(([no, t, body, href, lk]) => `
+    <div class="figbox reveal" style="display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start">
+      <div style="font-family:var(--serif);font-size:26px;font-weight:700;color:var(--gold);line-height:1.2">${no}</div>
+      <div style="font-size:13.5px;line-height:1.85;word-break:keep-all">
+        <b style="font-family:var(--serif);font-size:15px;color:var(--navy)">${t}</b><br>${body}
+        <div style="margin-top:6px"><a href="${href}" style="color:var(--leaf-deep);font-weight:700;font-size:12.5px">${lk} →</a></div>
+      </div>
+    </div>`).join('');
 
   V4.footer();
 
