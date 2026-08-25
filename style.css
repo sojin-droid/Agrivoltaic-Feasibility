@@ -605,3 +605,12 @@ sup.fnref a:hover{text-decoration:underline}
 .fn-group{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--leaf-deep);
  margin:16px 0 6px;text-transform:uppercase}
 ol.fnlist .fn-note{display:block;color:#8a8a86;font-size:11.5px;margin-top:1px}
+
+/* 아티클 형식 (아틀라스) — 프로즈 흐름 중간에 그림 */
+.art{padding:44px 0 20px}
+.art p{font-size:15.5px;line-height:1.85;color:var(--ink);margin:14px 0;word-break:keep-all}
+.art-h{font-family:var(--serif);font-size:clamp(19px,2.2vw,25px);color:var(--navy);
+ font-weight:700;margin:44px 0 6px;word-break:keep-all}
+.art-fig{margin:26px 0 30px}
+.art-fig figcaption{font-size:12.5px;color:var(--muted);margin-top:9px;line-height:1.6;
+ word-break:keep-all;border-left:3px solid var(--gold);padding-left:10px}

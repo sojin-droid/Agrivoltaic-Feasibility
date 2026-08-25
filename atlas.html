@@ -43,44 +43,135 @@
 </header>
 
 <div class="page-hero">
-  <div class="wrap">
-    <p class="eyebrow">Atlas · 상세 참조</p>
-    <h1>간척 아틀라스: <em>당진 · 영암 · 해남 · 고흥</em></h1>
-    <p class="lede">위성 배경 위에 간척 확정 농지<sup class="fnref">[3]</sup>를 필지 단위<sup class="fnref">[1]</sup>로 표시,
-    실경작은 위성 실측<sup class="fnref">[2]</sup>.
-    <b style="color:#c96a00">주황 = 법인</b> · <b style="color:#0e8a72">청록 = 개인</b> · 연회색 = 국공유·기타 ·
-    흐린 색 = 실경작 30% 미만/미확인. 지도 위 번호 ○는 각 패널 아래 표의 지구.</p>
+  <div class="wrap" style="max-width:860px">
+    <p class="eyebrow">Atlas · 간척 농지 분석</p>
+    <h1>간척 아틀라스 — 간척 농지의 소유 구조</h1>
+    <p class="lede">농업법인의 영농형 태양광을 간척지 등으로 한정하는 조문이 추진되고 있다.
+    그 조문이 실제로 작동할 수 있는지는 간척 농지가 <b>어디에, 얼마나, 누구 소유로</b>
+    있는지에 달려 있다 — 이 글은 그 세 가지를 순서대로 확인한다.</p>
+    <p style="font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:14px"
+      id="art-meta">PLANiT Institute · 데이터 2판</p>
   </div>
 </div>
 
-<!-- ═══════════ 전국 현황 ═══════════ -->
-<section style="padding:52px 0 30px">
-  <div class="wrap">
-    <div class="sec-head"><div><p class="eyebrow">National Overview</p><h2>전국 현황 — 법인 소유지와 간척지</h2></div></div>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:14px;word-break:keep-all">
-    상세 사례에 앞서 전국 분포. 세 무리(간척 내 법인 · 간척 내 비법인 · 간척 밖 법인)의
-    위치와 기초 수치 — 지도 옆 표의 값은 전부 정본 DB 조회값(km² 통일).</p>
-    <iframe class="atlas" src="assets/korea_owner_v4.html" title="전국 법인 소유지·간척지 지도" style="height:980px"></iframe>
-  </div>
-</section>
+<article>
+<div class="wrap art" style="max-width:860px">
 
-<section class="alt" style="padding:56px 0">
-  <div class="wrap">
-    <div class="sec-head"><div><p class="eyebrow">Satellite Atlas</p><h2>위성 아틀라스 — 필지 단위</h2></div>
-    <span style="font-size:12.5px;color:var(--muted)">지역별 해설은 각 그림 아래에</span></div>
+  <h2 class="art-h">1. 간척 농지는 어디에, 얼마나 있나</h2>
+  <p>간척 농지의 식별 근거는 농어촌공사 지구·공구 원장<sup class="fnref">[3]</sup>이다 —
+  지번 원장 45,193필지가 등재되어 있고, 민간 공유수면 매립지는 원장에 없어 이 분석의
+  범위 밖이다. 이 중 위성 실측<sup class="fnref">[2]</sup>으로 실제 경작이 확인된 농지를
+  소유 유형<sup class="fnref">[1]</sup>으로 나누면 세 무리가 된다:
+  간척 내 법인 소유 <b id="a-own">—</b>, 간척 내 비법인(개인·국공유 등) 소유
+  <b id="a-pool">—</b>, 그리고 비교 대상인 간척 밖 법인 소유 농지 <b id="a-out">—</b>.</p>
+  <p>아래 지도에서 주황 원이 간척 내 법인, 청록 점선 원이 간척 내 비법인, 파란 채색이
+  간척 밖 법인의 시군별 면적이다. 간척 농지가 서남해안 — 당진·서산, 영산강 유역(영암·해남),
+  고흥 — 에 몰려 있음이 한눈에 보인다.</p>
+
+  <figure class="art-fig">
+    <iframe class="atlas" src="assets/korea_owner_v4.html" title="전국 법인 소유지·간척지 지도" style="height:980px"></iframe>
+    <figcaption>그림 1. 법인 소유 농지와 간척지의 전국 분포 — 세 무리의 위치와 기초 수치.
+    표의 값은 전부 정본 DB 조회값<sup class="fnref">[12]</sup>, 단위 km² 통일.</figcaption>
+  </figure>
+
+  <h2 class="art-h">2. 소유 구조는 지구 단위로 갈린다</h2>
+  <p>시군 합계만 보면 놓치는 것이 있다 — 같은 시군 안에서도 <b>지구에 따라 소유 구조가
+  완전히 다르다</b>는 사실이다. 해남 영산강3-1·3-2지구는 지구 하나가 사실상 법인 한 무리의
+  소유인 반면, 바로 옆 해남지구는 개인 소유가 대부분이다. 당진 석문지구는 법인 소유로
+  통일되어 있지만, 대호지구는 법인 필지와 개인 필지가 잘게 섞여 있다.</p>
+  <p>아래 위성 아틀라스는 네 지역의 간척 농지를 필지 단위로 보여준다. 주황이 법인,
+  청록이 개인, 흐린 색은 실경작 30% 미만이거나 확인되지 않은 필지, 지도 위 번호 ○는
+  각 그림 아래 표의 지구다. 지구별 해설도 각 그림 아래에 있다.</p>
+
+  <figure class="art-fig">
     <iframe class="atlas reveal" src="assets/atlas_sat_v4.html" title="간척 아틀라스 위성판"></iframe>
-    <div class="callout-v4 reveal">네 지역 공통의 전제 — 이 농지 대부분이 농업진흥구역<sup class="fnref">[5]</sup> 안에 있어,
-    진흥구역 내 허용이 함께 입법되지 않으면 어느 소유든 실행 수단이 없다<sup class="fnref">[12]</sup>
-    (<a href="evidence.html" style="color:var(--leaf-deep)"><b>근거 표 2·표 4</b></a>).</div>
-    <div class="fn">배경 위성: Esri World Imagery © Esri, Maxar, Earthstar Geographics (타일 내장 — 외부 로드 없음) ·
-    간척 = 농어촌공사 지구·공구 원장 · 소유 = 지적 원장 유형 구분(개인 식별 아님) ·
-    실경작 = 팜맵 위성 실측 · 지구가 여러 시군에 걸친 경우 표의 값은 해당 시군 구간만.</div>
-  </div>
-</section>
+    <figcaption>그림 2. 당진·영암·해남·고흥의 간척 농지 — 필지 단위 소유 구분.
+    위성 배경: Esri World Imagery, 타일 내장<sup class="fnref">[19]</sup> ·
+    지구가 여러 시군에 걸친 경우 표의 값은 해당 시군 구간만.</figcaption>
+  </figure>
+
+  <h2 class="art-h">3. 조문이 시행되면 누가 움직일 수 있나</h2>
+  <p>간척 한정 조문 아래에서 세 무리의 처지는 갈린다. 간척에 이미 땅이 있는 법인
+  (<span id="b-own">—</span>)은 자기 지구에서 바로 실행할 수 있는 후보다. 간척 내 비법인
+  소유(<span id="b-pool">—</span>)는 간척 밖 법인이 사용승낙·임차<sup class="fnref">[18]</sup>로
+  접근해야 할 공급 풀이다. 그리고 간척 밖 법인의 농지(<span id="b-out">—</span>)는 조문
+  시행 시 쓸 수 없게 되는 땅이다.</p>
+  <p>그런데 각 무리에서 <b>현행법으로 지금 가능한 면적</b>을 겹쳐 보면 그림이 달라진다:</p>
+
+  <figure class="art-fig">
+    <div class="figbox"><div id="fig3"></div></div>
+    <figcaption>그림 3. 세 무리의 실경작 확인 면적(연한 막대)과 그중 현행법 가능 면적(진한 막대).
+    정본 DB 조회값<sup class="fnref">[12]</sup>, 현행법 기준<sup class="fnref">[14]</sup>.</figcaption>
+  </figure>
+
+  <p id="fig3-read">—</p>
+
+  <h2 class="art-h">4. 성립 조건 — 진흥구역 내 허용</h2>
+  <p id="art-cond">—</p>
+  <div class="callout-v4">간척 농지 대부분이 농업진흥구역<sup class="fnref">[5]</sup> 안에 있어,
+  진흥구역 내 허용 — 재생에너지지구 지정 경로<sup class="fnref">[10]</sup><sup class="fnref">[16]</sup> —
+  이 함께 입법되지 않으면 어느 소유든 실행 수단이 없다
+  (<a href="evidence.html" style="color:var(--leaf-deep)"><b>근거 표 2·표 4</b></a> ·
+  <a href="map.html" style="color:var(--leaf-deep)"><b>지도에서 개방분 직접 보기</b></a>).</div>
+
+  <div class="fn">간척 = 농어촌공사 지구·공구 원장<sup class="fnref">[3]</sup> ·
+  소유 = 지적 원장 유형 구분(개인 식별 아님)<sup class="fnref">[1]</sup> ·
+  실경작 = 팜맵 위성 실측 30% 이상<sup class="fnref">[2]</sup>.</div>
+</div>
+</article>
 
 <footer class="v4"><div class="wrap"></div></footer>
 
-<script>V4.footer();</script>
+<script>
+(async () => {
+  const s = await V4.data('summary_v4');
+  const m = await V4.data('meta_v4');
+  document.getElementById('art-meta').textContent =
+    `PLANiT Institute · 데이터 ${m.data_generation} · 생성 ${m.generated}`;
+  const og = s.owner_groups;
+  const g = n => og.find(x => x.group === n);
+  const own = g('간척 내 법인'), pool = g('간척 내 비법인'), out = g('간척 밖 법인');
+  const K = x => `${V4.km2(x)} km²`;
+  document.getElementById('a-own').textContent = K(own.km2);
+  document.getElementById('a-pool').textContent = K(pool.km2);
+  document.getElementById('a-out').textContent = K(out.km2);
+  document.getElementById('b-own').textContent = K(own.km2);
+  document.getElementById('b-pool').textContent = K(pool.km2);
+  document.getElementById('b-out').textContent = K(out.km2);
+
+  // 그림 3 — 무리별 전체(연한) vs 현행 가능(진한)
+  const rows = [[own, '간척 내 법인'], [pool, '간척 내 비법인'], [out, '간척 밖 법인']];
+  const max = Math.max(...rows.map(([r]) => r.km2));
+  document.getElementById('fig3').innerHTML = rows.map(([r, t]) => `
+    <div class="bar-row"><div><b>${t}</b><div class="bar-sub">${V4.n(r.n)}필지</div></div>
+      <div class="bar-track">
+        <div class="bar-pre" style="width:${100 * r.km2 / max}%"></div>
+        <div class="bar-post" style="width:${100 * r.anchor_km2 / max}%"></div>
+      </div>
+      <div class="bar-num">${V4.km2(r.anchor_km2)} / ${V4.km2(r.km2)} km²
+        <div class="bar-sub">현행 가능 / 전체</div></div>
+    </div>`).join('');
+
+  document.getElementById('fig3-read').innerHTML =
+    `간척 내 법인의 ${K(own.km2)} 중 현행법으로 가능한 것은 <b>${K(own.anchor_km2)}</b>뿐이고,
+     간척 내 비법인도 ${K(pool.anchor_km2)}에 그친다. 반면 조문이 막게 될 간척 밖 법인의
+     현행 가능 면적은 <b>${K(out.anchor_km2)}</b>다 — 조문 시행은 법인들의 접근 가능 면적을
+     ${K(out.anchor_km2)}에서 ${K(own.anchor_km2)} 수준으로 줄이는 셈이 된다.
+     간척 안의 큰 면적이 현행법으로 열리지 않는 이유는 다음 절에 있다.`;
+
+  const zsum = own.zones['진흥구역'].km2 + pool.zones['진흥구역'].km2
+             + (own.zones['보호구역'] ? own.zones['보호구역'].km2 : 0)
+             + (pool.zones['보호구역'] ? pool.zones['보호구역'].km2 : 0);
+  document.getElementById('art-cond').innerHTML =
+    `간척 두 무리의 실경작 농지 ${V4.km2(own.km2 + pool.km2)} km² 중
+     <b>${V4.km2(zsum)} km²가 농업진흥지역 안</b>에 있다. 현행법은 농업진흥지역 밖의
+     농지만 허용하므로, 간척에서 현행법으로 가능한 면적은 두 무리 합쳐
+     ${V4.km2(own.anchor_km2 + pool.anchor_km2)} km²에 그친다. 즉 "간척지를 쓰라"는 조문은
+     그 자체로는 실행 수단이 없고, 어디서 얼마가 열리는지는 진흥구역 개방의 폭이 정한다.`;
+
+  V4.footer();
+})();
+</script>
 <script src="site.js"></script>
 </body>
 </html>
