@@ -66,7 +66,7 @@
     <p class="eyebrow">Method · 방법론</p>
     <h1>방법·재현 — 판정 조건과 검증 체계</h1>
     <p class="lede">필지 전수 → 판정 조건 → 구역 조합 계산의 순서로 진행하며, 모든 단계가
-    코드로 재현된다. 산출이 고정된 기준값과 어긋나면 인용이 자동으로 중단된다.</p>
+    코드로 재현됨.<br>산출이 고정된 기준값과 어긋나면 인용이 자동으로 중단됨.</p>
   </div>
 </div>
 
@@ -76,7 +76,7 @@
     <div class="figbox reveal">
       <div id="funnel"></div>
       <div class="figcap">그림 1. 필지 선별 단계(전국) — 지적 원장 전수에서 현행법 적격까지 네 단계의
-      필지 수. 정본 DB 조회값<sup class="fnref">[12]</sup>, 단위 필지 수(면적 기준은 근거 탭).</div>
+      필지 수.<br>정본 DB 조회값<sup class="fnref">[12]</sup>, 단위 필지 수(면적 기준은 근거 탭).</div>
       <div class="fn" id="funnel-fn"></div>
     </div>
   </div>
@@ -92,16 +92,16 @@
         <tr><td class="l"><b>구조·입지 제외</b></td><td class="l">건축물·수역·산업단지·기제외 필지 아님</td><td class="l">토지 특성 원장<sup class="fnref">[1]</sup></td></tr>
         <tr><td class="l"><b>경사</b></td><td class="l">15% 초과 제외</td><td class="l">토양 경사 판정 레이어<sup class="fnref">[21]</sup></td></tr>
         <tr><td class="l"><b>용도지역 3종</b></td><td class="l">개발제한구역 · 보전관리지역 · 보전녹지지역 제외
-          — 원문 재검증으로 확정한 배제 3종. 용도지역 정보가 결측인 필지는 해당 여부를
-          확인할 수 없어 보수적으로 제외하고 별도 병기한다
+          — 원문 재검증으로 확정한 배제 3종.<br>용도지역 정보가 결측인 필지는 해당 여부를
+          확인할 수 없어 보수적으로 제외하고 별도 병기함
           (<a href="about.html" style="color:var(--leaf-deep)">자료·한계의 판정 보류</a>)</td><td class="l">용도지역 원장<sup class="fnref">[1]</sup> · 배제 근거 법문<sup class="fnref">[6]</sup></td></tr>
         <tr><td class="l"><b>농업진흥지역</b></td><td class="l">현행법 기준은 농업진흥지역 밖의 농지만 —
-          보호구역·진흥구역 개방은 제도 변수로 따로 계산해 조합한다
+          보호구역·진흥구역 개방은 제도 변수로 따로 계산해 조합함
           (<a href="evidence.html" style="color:var(--leaf-deep)">근거 탭의 조합 R0–R3</a>)</td><td class="l">진흥지역 경계<sup class="fnref">[5]</sup>(필지 대표점 교차)</td></tr>
         <tr><td class="l"><b>실경작</b></td><td class="l">위성 실측 경작 비율 30% 이상 — 적용 전·후 모두 제시</td><td class="l">팜맵<sup class="fnref">[2]</sup></td></tr>
       </table></div>
-      <div class="figcap">표 1. 필지별 판정 조건 — 여섯 검사와 각 검사의 근거 자료. 시나리오 판정은
-      필지 단위 규칙이라 임의 필지의 지번으로 같은 판정을 재현할 수 있다<sup class="fnref">[12]</sup>.</div>
+      <div class="figcap">표 1. 필지별 판정 조건 — 여섯 검사와 각 검사의 근거 자료.<br>시나리오 판정은
+      필지 단위 규칙이라 임의 필지의 지번으로 같은 판정을 재현할 수 있음<sup class="fnref">[12]</sup>.</div>
     </div>
   </div>
 </section>
@@ -113,30 +113,30 @@
       <div class="card reveal vcard" data-k="single">
         <div class="meta"><span class="tag">SINGLE SOURCE</span></div>
         <h3>정본 질의 — 단일 출처</h3>
-        <p>모든 수치는 정본 DB의 표준 질의 모듈에서만 나온다. 이 사이트의 데이터 파일도
-        그 모듈을 직접 불러 생성 — 판정 SQL이 두 곳에 존재하지 않는다.</p>
+        <p>모든 수치는 정본 DB의 표준 질의 모듈에서만 나옴.<br>이 사이트의 데이터 파일도
+        그 모듈을 직접 불러 생성 — 판정 SQL이 두 곳에 존재하지 않음.</p>
         <div class="foot"><span>자세히 보기</span><span>＋</span></div>
       </div>
       <div class="card reveal vcard" data-k="touch">
         <div class="meta"><span class="tag">TOUCHSTONE</span></div>
         <h3>시금석 — 기준값 상수</h3>
         <p>현행법 기준값(필지 수·㎡)이 상수로 박혀 있고, export 시 재조회값과 정확 일치하지
-        않으면 파일 생성이 중단된다.</p>
+        않으면 파일 생성이 중단됨.</p>
         <div class="foot"><span>자세히 보기</span><span>＋</span></div>
       </div>
       <div class="card reveal vcard" data-k="add">
         <div class="meta"><span class="tag">ADDITIVITY</span></div>
         <h3>가산성 검사</h3>
         <p>세 부분(농업진흥지역 밖 · 보호구역 · 진흥구역)이 서로 겹치지 않으므로,
-        현행법 값에 두 증분을 더한 합이 "둘 다 개방" 값과 정확히 일치해야 한다 —
-        어긋나면 게이트가 막는다.</p>
+        현행법 값에 두 증분을 더한 합이 "둘 다 개방" 값과 정확히 일치해야 함 —
+        어긋나면 게이트가 차단함.</p>
         <div class="foot"><span>자세히 보기 — 실제 수치로 검산</span><span>＋</span></div>
       </div>
       <div class="card reveal vcard" data-k="gate">
         <div class="meta"><span class="tag">SITE GATE</span></div>
         <h3>공개 전 자동 게이트</h3>
         <p>무효·구세대 수치, 금지 표현, 외부 자원 로드, 본문 하드코딩 수치를 공개 전에
-        자동 검사한다. 새 함정이 발견되면 문서보다 먼저 검사 코드에 추가한다.</p>
+        자동 검사함.<br>새 함정이 발견되면 문서보다 먼저 검사 코드에 추가.</p>
         <div class="foot"><span>자세히 보기 — 검사 목록과 실전 적발</span><span>＋</span></div>
       </div>
     </div>
@@ -150,17 +150,17 @@
 
     <div class="callout-v4 reveal" style="margin-top:26px">
       <b>이격거리(주거 이격) 반영값의 성격 — 보수 하한.</b> 현행 제도는 영농형 태양광의
-      이격거리를 <b>상한제</b>(조례 상한 200m)로 정비하는 방향이다<sup class="fnref">[11]</sup>.
+      이격거리를 <b>상한제</b>(조례 상한 200m)로 정비하는 방향<sup class="fnref">[11]</sup>.<br>
       본 분석의 "이격 보수" 값은 이 상한 200m를 전국에 일률 적용한 것으로, 주택 판정을
       대지 필지<sup class="fnref">[1]</sup>로 대신하는
-      보수적 하한이다 — 측정 방법 고시가 제정되면 정밀화한다. 값은
+      보수적 하한 — 측정 방법 고시가 제정되면 정밀화 예정.<br>값은
       <a href="evidence.html#t32" style="color:var(--leaf-deep)"><b>근거 표 5(32칸 완성표)</b></a>와
-      <a href="map.html" style="color:var(--leaf-deep)"><b>지도의 이격 토글</b></a>에 있다.
+      <a href="map.html" style="color:var(--leaf-deep)"><b>지도의 이격 토글</b></a>에 있음.<br>
       과거 시군 조례를 개별 실측해 반영했던 구판 값은 산출 검증에 실패해 전량 폐기했고,
-      본 판에 포함되지 않는다.
+      본 판에 포함되지 않음.
     </div>
-    <div class="fn">공간 미분해 배제 항목 17종(하천·문화유산 등)은 현재 판에 반영되지 않았다 —
-    따라서 강한 배제(HARD) 계열 값은 <b>하한</b>이다. 분해 레이어 조달 시 판을 올려 반영한다<sup class="fnref">[12]</sup>.</div>
+    <div class="fn">공간 미분해 배제 항목 17종(하천·문화유산 등)은 현재 판에 반영되지 않았음 —
+    따라서 강한 배제(HARD) 계열 값은 <b>하한</b>.<br>분해 레이어 조달 시 판을 올려 반영함<sup class="fnref">[12]</sup>.</div>
   </div>
 </section>
 
@@ -182,11 +182,11 @@
       <div class="bar-num">${V4.n(v)}<div class="bar-sub">필지</div></div>
     </div>`).join('');
   document.getElementById('funnel-fn').innerHTML =
-    `지목 전·답·과수원 중 팜맵 공간교차 실측 ${V4.n(f['  그중 팜맵 공간교차 실측'])}필지 — 나머지는 대장 배분 잔존분. ` +
-    `지목을 확인할 수 없는 ${V4.n(f['_지목결측'])}필지는 집계에서 제외하고 별도 관리한다 — ` +
-    `원본 지적자료 1단계 복구는 적용 완료, 잔여분은 2단계 재조회 대상. ` +
+    `지목 전·답·과수원 중 팜맵 공간교차 실측 ${V4.n(f['  그중 팜맵 공간교차 실측'])}필지 — 나머지는 대장 배분 잔존분.<br>` +
+    `지목을 확인할 수 없는 ${V4.n(f['_지목결측'])}필지는 집계에서 제외하고 별도 관리함 — ` +
+    `원본 지적자료 1단계 복구는 적용 완료, 잔여분은 2단계 재조회 대상.<br>` +
     `이 깔때기는 필지 수 기준이며, 면적(km²) 기준 전체 값은 ` +
-    `<a href="evidence.html" style="color:var(--leaf-deep)">근거 탭의 조합 매트릭스</a>에 있다.`;
+    `<a href="evidence.html" style="color:var(--leaf-deep)">근거 탭의 조합 매트릭스</a>에 있음.`;
 
   // ── 재현·검증 4카드 팝업 — 상세 수치는 전부 data_v4에서 ──
   const s = await V4.data('summary_v4');
@@ -195,36 +195,36 @@
   const pn = P['보호구역']['후'].n, mn = P['진흥구역']['후'].n;
   const DETAIL = {
     single: `<span class="mtag">SINGLE SOURCE</span><h3>정본 질의 — 단일 출처</h3>
-      <p>수치가 흐르는 길은 하나뿐이다:</p>
+      <p>수치가 흐르는 길은 하나뿐:</p>
       <div class="mbox mono">정본 DB (원장·판정 테이블) → 표준 질의 모듈 (판정 SQL의 유일한 소재지)
       → 사이트 데이터 파일(JSON) → 페이지 렌더</div>
-      <p>페이지에는 수치를 직접 쓰지 않는다. 판정 조건이 바뀌면 질의 모듈 한 곳만 고치고,
-      보고서와 사이트가 같은 값으로 함께 갱신된다. 그래서 이 사이트의 어떤 표와
-      보고서의 같은 항목이 서로 다른 값을 보일 수 없는 구조다.</p>
+      <p>페이지에는 수치를 직접 쓰지 않음.<br>판정 조건이 바뀌면 질의 모듈 한 곳만 고치고,
+      보고서와 사이트가 같은 값으로 함께 갱신됨.<br>그래서 이 사이트의 어떤 표와
+      보고서의 같은 항목이 서로 다른 값을 보일 수 없는 구조.</p>
       <div class="case">실전 사례 — 질의 모듈 안의 용어 규정 위반이 사이트 데이터까지 흘러온 것을
-      자동 게이트가 적발해, 사이트가 아니라 원천(질의 모듈)에서 고쳤다 (2026-08-25).</div>`,
+      자동 게이트가 적발해, 사이트가 아니라 원천(질의 모듈)에서 수정 (2026-08-25).</div>`,
     touch: `<span class="mtag">TOUCHSTONE</span><h3>시금석 — 기준값 상수</h3>
-      <p>현행법 기준값이 코드에 상수로 박혀 있다:</p>
+      <p>현행법 기준값이 코드에 상수로 박혀 있음:</p>
       <div class="mbox"><b>${V4.n(s.anchor.n)}필지 · ${V4.n(Math.round(s.anchor.m2))} ㎡</b>
       (${V4.km2(s.anchor.km2, 2)} km²)</div>
-      <p>사이트 데이터를 만들 때마다 DB를 재조회해 이 상수와 대조한다 — 1필지라도 다르면
-      데이터 파일이 생성되지 않는다. 기준값을 바꾸는 유일한 길은 판 개정 절차
-      (근거 기록 → 검증 → 상수 갱신 → 전체 재계산)다.</p>
+      <p>사이트 데이터를 만들 때마다 DB를 재조회해 이 상수와 대조함 — 1필지라도 다르면
+      데이터 파일이 생성되지 않음.<br>기준값을 바꾸는 유일한 길은 판 개정 절차
+      (근거 기록 → 검증 → 상수 갱신 → 전체 재계산)뿐.</p>
       <ul><li>초판 → 배제 규정 원문 재검증으로 1차 개정</li>
       <li>2차 개정(현행): 지목 복구 적용 — 증분 전액이 복구 필지에서 나옴을 분해 검증</li>
       <li>용도지역 미상 ${s.anchor.pending_zone_null ? V4.n(s.anchor.pending_zone_null.n) : ''}필지는
       판정 보류로 별도 병기 — 기준값에 불포함</li></ul>`,
     add: `<span class="mtag">ADDITIVITY</span><h3>가산성 검사 — 실제 수치로 검산</h3>
-      <p>세 풀이 서로 겹치지 않으므로 다음 항등식이 필지 수로 정확히 성립해야 한다:</p>
+      <p>세 풀이 서로 겹치지 않으므로 다음 항등식이 필지 수로 정확히 성립해야 함:</p>
       <div class="mbox mono">현행법 ${V4.n(r0n)}<br>
       + 보호구역 풀 ${V4.n(pn)}<br>
       + 진흥구역 풀 ${V4.n(mn)}<br>
       = ${V4.n(r0n + pn + mn)} ${r0n + pn + mn === r3n ? '✓' : '✗'} 둘 다 개방 ${V4.n(r3n)}</div>
       <p>${r0n + pn + mn === r3n
-        ? '지금 이 페이지의 데이터에서도 항등식이 정확히 성립한다 — 위 검산은 하드코딩이 아니라 열람 시점의 데이터로 계산된 것이다.'
-        : '경고: 항등식이 성립하지 않는다 — 데이터 파일 오염 가능성.'}</p>
+        ? '지금 이 페이지의 데이터에서도 항등식이 정확히 성립함 — 위 검산은 하드코딩이 아니라 열람 시점의 데이터로 계산된 값임.'
+        : '경고: 항등식이 성립하지 않음 — 데이터 파일 오염 가능성.'}</p>
       <p>면적 표기(km²)는 반올림 때문에 소수 첫째 자리에서 어긋나 보일 수 있어,
-      검사는 반올림 없는 필지 수와 ㎡ 원값으로 한다.</p>`,
+      검사는 반올림 없는 필지 수와 ㎡ 원값으로 수행함.</p>`,
     gate: `<span class="mtag">SITE GATE</span><h3>공개 전 자동 게이트 — 검사 목록</h3>
       <ul>
       <li><b>무효·구세대 수치 스캔</b> — 폐기된 판의 값이 한 글자라도 남으면 차단</li>
@@ -233,10 +233,10 @@
       라이브러리는 저장소에 내장</li>
       <li><b>본문 하드코딩 수치 탐지</b> — 페이지에 직접 쓴 큰 숫자를 의심 표시</li>
       <li><b>데이터 내부 정합</b> — 기준값 일치·가산성 항등식</li></ul>
-      <p>하나라도 불통과면 공개(push)하지 않는다.</p>
+      <p>하나라도 불통과면 공개(push) 중단.</p>
       <div class="case">실전 적발 — ① 질의 모듈의 용어 위반이 데이터로 흘러온 것 ②경계대 재검
       1차본이 기존 검증쌍을 누락한 것(자체 거부 후 보완판으로 교체). 두 건 모두 게이트·검증기가
-      사람보다 먼저 잡았다.</div>`,
+      사람보다 먼저 적발.</div>`,
   };
   const bg = document.getElementById('vmodal');
   document.querySelectorAll('.vcard').forEach(c => c.onclick = () => {
