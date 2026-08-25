@@ -1,8 +1,10 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8">
 <title>간척 아틀라스 — 위성 배경</title>
-<style>body{font-family:system-ui,'Malgun Gothic',sans-serif;background:#f9f9f7;color:#0b0b0b;margin:0;padding:20px 26px;max-width:1160px}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>body{font-family:system-ui,'Malgun Gothic',sans-serif;background:#fff;color:#0b0b0b;margin:0;padding:10px 6px}
 h1{font-size:19px;margin:0 0 2px}.sub{color:#52514e;font-size:12.5px;margin-bottom:14px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:16px}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
 .panel{background:#fff;border:1px solid #ddd;border-radius:12px;padding:12px 14px}
 .panel h2{font-size:15px;margin:0 0 2px}.stats{font-size:11.5px;color:#555;margin-bottom:8px}
 svg{border-radius:8px}

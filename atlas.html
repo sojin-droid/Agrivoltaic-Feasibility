@@ -69,7 +69,7 @@
   고흥 — 에 몰려 있음이 한눈에 보인다.</p>
 
   <figure class="art-fig">
-    <iframe class="atlas" src="assets/korea_owner_v4.html" title="전국 법인 소유지·간척지 지도" style="height:980px"></iframe>
+    <iframe class="atlas autofit" src="assets/korea_owner_v4.html" title="전국 법인 소유지·간척지 지도" style="height:900px"></iframe>
     <figcaption>그림 1. 법인 소유 농지와 간척지의 전국 분포 — 세 무리의 위치와 기초 수치.
     표의 값은 전부 정본 DB 조회값<sup class="fnref">[12]</sup>, 단위 km² 통일.</figcaption>
   </figure>
@@ -84,7 +84,7 @@
   각 그림 아래 표의 지구다. 지구별 해설도 각 그림 아래에 있다.</p>
 
   <figure class="art-fig">
-    <iframe class="atlas reveal" src="assets/atlas_sat_v4.html" title="간척 아틀라스 위성판"></iframe>
+    <iframe class="atlas autofit reveal" src="assets/atlas_sat_v4.html" title="간척 아틀라스 위성판"></iframe>
     <figcaption>그림 2. 당진·영암·해남·고흥의 간척 농지 — 필지 단위 소유 구분.
     위성 배경: Esri World Imagery, 타일 내장<sup class="fnref">[19]</sup> ·
     지구가 여러 시군에 걸친 경우 표의 값은 해당 시군 구간만.</figcaption>
@@ -123,6 +123,19 @@
 <footer class="v4"><div class="wrap"></div></footer>
 
 <script>
+// iframe 높이 자동 맞춤 — 내부 문서 높이에 맞춰 이중 스크롤 제거 (동일 출처)
+function fitFrames() {
+  document.querySelectorAll('iframe.autofit').forEach(f => {
+    try {
+      const h = f.contentDocument.documentElement.scrollHeight;
+      if (h > 100) f.style.height = (h + 24) + 'px';
+    } catch (e) {}
+  });
+}
+document.querySelectorAll('iframe.autofit').forEach(f => f.addEventListener('load', fitFrames));
+window.addEventListener('resize', () => setTimeout(fitFrames, 200));
+setTimeout(fitFrames, 1500); setTimeout(fitFrames, 4000);
+
 (async () => {
   const s = await V4.data('summary_v4');
   const m = await V4.data('meta_v4');
