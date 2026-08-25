@@ -8,7 +8,9 @@
 import os, re, json, sys
 
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGES = ['index.html', 'evidence.html', 'atlas.html', 'method.html', 'about.html']
+# 전 탭 스캔 — 새 탭 추가 시 반드시 여기에도 추가 (2026-08-26: map·insight·candidates 누락 적발)
+PAGES = ['index.html', 'evidence.html', 'map.html', 'candidates.html',
+         'atlas.html', 'insight.html', 'method.html', 'about.html']
 DATA = os.path.join(SITE, 'data_v4')
 
 # ① 무효·구세대 수치 (원칙 3) — 발견 즉시 FAIL. 새 무효값 확정 시 여기에 추가.
@@ -60,6 +62,8 @@ def scan(fp, rel):
         body = re.sub(r'<style.*?</style>', '', body, flags=re.S)   # rgba(12,53,106) 오탐 제거
         body = re.sub(r'<link[^>]*>', '', body)              # 폰트 URL 웨이트 숫자 오탐 제거
         body = re.sub(r'(?:href|src)\s*=\s*"[^"]*"', '', body)
+        body = re.sub(r'style\s*=\s*"[^"]*"', '', body)      # inline rgba(255,216,…) 색상 오탐 제거
+        body = re.sub(r'rgba?\([\d\s,.]+\)', '', body)       # JS 문자열 안 색상값
         for m in set(re.findall(r'\d{1,3}(?:,\d{3}){1,}', body)):
             warns.append(f"{rel}: 본문 하드코딩 수치 의심 '{m}' — data_v4 렌더로 옮길 것")
 

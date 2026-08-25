@@ -105,7 +105,7 @@
         <span class="sw" style="background:rgba(255,80,70,.8);border:1px solid #B3261E"></span>진흥구역 개방으로 늘어나는 부분 (빨강)<br>
         노랑 밖으로 번진 색 = 그 개방의 증분 · 구획 클릭 = 면적·필지 수 · 점선 = 시군 경계 걸침
       </div>
-      <div class="hint" id="hint">시군을 추가하면 위성 지도로 이동합니다 (여러 개 가능).</div>
+      <div class="hint" id="hint">시군을 추가하면 위성 지도로 이동 (여러 개 선택 가능).</div>
     </div>
   </div>
 
@@ -265,7 +265,7 @@
     layers.forEach(l => map.removeLayer(l));
     layers = [];
     if (!picked.length) {
-      document.getElementById('hint').textContent = '시군을 추가하면 위성 지도로 이동합니다 (여러 개 가능).';
+      document.getElementById('hint').textContent = '시군을 추가하면 위성 지도로 이동 (여러 개 선택 가능).';
       return;
     }
     const live = picked.filter(c => !idx || idx.sgg[c]);
@@ -300,9 +300,9 @@
     }
     let hint = layers.length
       ? '개방분 버튼을 켜고 끄며 비교 — 노랑 밖으로 번진 색이 그 개방의 증분.'
-      : '선택 시군에는 등재 구획이 없습니다.';
+      : '선택 시군에는 등재 구획 없음.';
     if (none.length) hint += ` (${none.map(nameOf).join('·')}: 어떤 시나리오에도 등재 구획 없음)`;
-    if (picked.length > 12) hint += ' — 선택이 많으면 로딩이 느려질 수 있습니다.';
+    if (picked.length > 12) hint += ' — 선택이 많으면 로딩이 느려질 수 있음.';
     document.getElementById('hint').textContent = hint;
   }
 

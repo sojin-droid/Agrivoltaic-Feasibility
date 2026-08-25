@@ -94,7 +94,7 @@
   const K = (x, d = 1) => V4.km2(x, d);
   const cards = [];
 
-  const card = (f, badge, grade, title, quote, viz, repro) => cards.push(
+  const card = (f, badge, title, quote, viz, repro) => cards.push(
     `<div class="figbox ins-card" data-f="${f}">
       <span class="rbadge series">${badge}</span>
       <h3 style="font-family:var(--serif);color:var(--navy);margin:8px 0 2px">${title}</h3>
@@ -113,7 +113,7 @@
       </div>
       <div style="font-variant-numeric:tabular-nums"><b>${K(w.protInc)}</b> → ${K(w.protIncS)} km²</div>
     </div>`).join('');
-  card('setback', '이격 × 보호구역', '◎ 바로 인용 가능',
+  card('setback', '이격 × 보호구역',
     '보호구역 개방 효과가 이격 규제에 전량 상쇄되는 시군이 있다',
     `농업보호구역 개방으로 발생하는 구획 증분이 주거 이격 200m 보수 적용 시 사실상 소멸하는
      시군이 <b>${D.wipe.length}곳</b> 확인되었다(증분 0.3km² 이상 보유 ${D.n_base}개 시군 대비).
@@ -134,7 +134,7 @@
       </div>
       <div class="bar-num">−${n.drop}%<div class="bar-sub">${K(n.pre,0)} → ${K(n.post,0)} km²</div></div>
     </div>`).join('');
-  card('setback', '이격 × 구역', '◎ 바로 인용 가능',
+  card('setback', '이격 × 구역',
     '이격 보수의 타격은 구역에 따라 다르다 — 현행 −74% 대 진흥 개방 −53%',
     `주거 이격 200m 보수 적용 시 전국 등재 구획 면적은 현행법 기준에서 ${D.nat[0].drop}%
      감소하는 반면, 진흥구역 개방 조합에서는 ${D.nat[2].drop}% 감소에 그친다 — 농업진흥구역
@@ -147,12 +147,12 @@
   const dots = D.surv.map(s =>
     `<div class="dot" style="left:calc(${s.pct}% - 4px)" title="${s.nm} ${s.pct}%"></div>`).join('');
   const lo = D.surv[0], hi = D.surv[D.surv.length-1], hi2 = D.surv[D.surv.length-2];
-  card('setback', '이격 × 시군 편차', '◎ 바로 인용 가능',
+  card('setback', '이격 × 시군 편차',
     '이격 생존율의 시군 편차가 1%에서 99%에 달한다',
     `현행법 기준 등재 구획(5km² 이상 보유 ${D.surv.length}개 시군)의 이격 보수 생존율은
      <b>${lo.nm} ${lo.pct}%</b>(${K(lo.r0)}→${K(lo.r0s)} km²)에서
      <b>${hi.nm} ${hi.pct}%</b>(${K(hi.r0)}→${K(hi.r0s)} km²)까지 벌어진다.
-     전국 평균 감소율(−${D.nat[0].drop}%)은 시군 단위 판단에 쓸 수 없다 —
+     전국 감소율(−${D.nat[0].drop}%)은 시군 단위 판단에 쓸 수 없다 —
      시군별 실측값이 1차 산출이어야 하는 이유의 실증이다.`,
     `<div class="dotstrip">${dots}
       <div class="lab" style="left:calc(${lo.pct}% - 4px);top:6px">${lo.nm} ${lo.pct}%</div>
@@ -169,7 +169,7 @@
       <div class="bar-track"><div class="bar-post" style="width:${100*s.syn/smax}%;background:var(--gold)"></div></div>
       <div class="bar-num">+${K(s.syn)} km²</div>
     </div>`).join('');
-  card('cluster', '구획 병합', '◎ 바로 인용 가능',
+  card('cluster', '구획 병합',
     '보호·진흥 동시 개방의 결합 효과 — 전국 +' + K(D.syn_nat, 0) + ' km²',
     `구획 층에서 보호구역 증분은 진흥구역과 동시에 개방될 때 단독 개방보다 크다 —
      전국 기준 초가산 결합이 <b>+${K(D.syn_nat)} km²</b>다(격자 산출: (R3−R2)−(R1−R0)).
@@ -187,7 +187,7 @@
       <div class="bar-track"><div class="bar-post" style="width:${x.pct}%"></div></div>
       <div class="bar-num">${x.pct}%<div class="bar-sub">필지 ${K(x.pk,0)} → 구획 ${K(x.ck,0)} km²</div></div>
     </div>`;
-  card('cluster', '필지→구획', '◎ 바로 인용 가능',
+  card('cluster', '필지→구획',
     '필지→구획 전환율이 지형을 그대로 읽는다 — 평야 66–90% 대 산간 12–16%',
     `현행법 적격 필지 면적 대비 등재 구획 면적의 비율(필지 10km² 이상 ${D.conv.length}개 시군)은
      ${ch[0].nm} ${ch[0].pct}%·제주 83–84%·전북 평야 66–73%에 달하는 반면, 산간·해안
@@ -202,7 +202,7 @@
 
   // ── I6. 간척: 실경작 탈락률 ──
   const R = D.reclaim;
-  card('reclaim', '간척 × 실경작', '◎ 바로 인용 가능',
+  card('reclaim', '간척 × 실경작',
     '간척 농지는 거의 전부가 실제 경작 중이다 — 탈락률 ' + R.drop_reclaim + '% 대 전국 ' + R.drop_nat + '%',
     `실경작 필터(위성 실측 30%) 적용 시 전국 농지는 ${R.drop_nat}%가 탈락하는 반면,
      간척 확정 농지는 <b>${R.drop_reclaim}%</b>만 탈락한다. 간척지가 실제로 경작되고 있는
@@ -216,7 +216,7 @@
     `재현: <a href="evidence.html#tables">근거 표 1·표 2</a>의 실경작 전/후 열 비교`);
 
   // ── I7. 간척: 보호구역 개방 무효 · 진흥 의존 ──
-  card('reclaim', '간척 × 구역', '◎ 바로 인용 가능',
+  card('reclaim', '간척 × 구역',
     '간척에서 보호구역 개방은 사실상 무효 — 증분의 ' + R.r2_share + '%가 진흥구역 개방에서 나온다',
     `간척 확정 농지의 보호구역 개방 증분은 <b>${K(R.prot_inc)} km²</b>에 불과하고, 전체 개방
      증분의 ${R.r2_share}%가 진흥구역 개방에서 나온다(현행 ${K(R.r0)} → 진흥 개방
@@ -226,7 +226,7 @@
     `재현: <a href="evidence.html#tables">근거 표 2</a> · <a href="atlas.html">간척 아틀라스 §4</a>`);
 
   // ── I8. 간척: 조문의 접근 면적 축소 + 임차 수급 ──
-  card('reclaim', '간척 × 소유', '◎ 바로 인용 가능',
+  card('reclaim', '간척 × 소유',
     '간척 한정 조문은 법인의 현행 접근 면적을 ' + K(R.out_anchor) + ' → ' + K(R.in_anchor) + ' km²로 줄인다',
     `간척지 외 법인이 현행법으로 접근 가능한 ${K(R.out_anchor)} km²는 조문 시행 시 쓸 수
      없게 되고, 간척지 내 법인 기소유 중 현행 가능분은 ${K(R.in_anchor)} km²뿐이다 —
@@ -252,7 +252,7 @@
     ['진흥구역 개방 · 법인·국공유만', NR.SOFT_R2_CP.ge50],
   ];
   const spMax = Math.max(...spBars.map(x => x[1]));
-  card('reclaim', '소유 × 특구급', '◎ 바로 인용 가능',
+  card('reclaim', '소유 × 특구급',
     '특구급 구획은 소유 필터를 걸면 현행 1곳 — 진흥구역 개방 시 24곳, 15곳이 간척 지구',
     `사업규모 구획을 법인·국공유 필지만으로 재병합하면(개인 등 소유 배제) 현행법 기준
      특구급(50MW 이상 = ${NV.threshold.mw50_ha}ha)은 전국 <b>${V4.n(NR.ANCHOR_CP.ge50)}곳</b>
@@ -269,12 +269,12 @@
     `재현: <a href="candidates.html">특구 후보 탭 — 지도·목록·이격 토글</a> · <a href="map.html?cp=1">지도의 소유 필터</a>`);
 
   // ── I10·11. 부정 결과 ──
-  card('null', '부정 결과', '◎ 기록 가치',
+  card('null', '부정 결과',
     '"현행 전무·개방 의존" 시군은 존재하지 않는다',
     `현행 구획 0.5km² 미만이면서 진흥구역 개방 시 20km² 이상이 되는 시군은 전국에 없다 —
      진흥 개방의 수혜 시군은 이미 현행법 물량도 일정 수준 보유한다.`, ``,
     `재현: <a href="evidence.html#diag">시군별 조회</a>로 임의 시군 확인`);
-  card('null', '부정 결과', '◎ 기록 가치',
+  card('null', '부정 결과',
     '이격 배제가 구획 수를 늘리는 역전 사례는 없다',
     `이격 적용으로 구획이 쪼개져 수가 늘어나는 시군은 0곳 — 이격 배제는 전 시군에서
      구획 수와 면적을 함께 줄인다.`, ``,
