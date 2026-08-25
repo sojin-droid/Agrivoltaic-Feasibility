@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PLANiT · 근거 — 조합 매트릭스와 소유 구조</title>
-<meta name="description" content="조합 매트릭스 전체 표(전국·간척), 풀 분해, 소유 세 무리 비교, 시군 진단 도구.">
+<meta name="description" content="조합 매트릭스 전체 표(전국·간척), 풀 분해, 소유 세 유형 비교, 시군 진단 도구.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Serif+KR:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
     R2 +농업진흥구역 개방 · R3 둘 다 개방<sup class="fnref">[5]</sup>.</p>
     <div style="margin-top:14px">
       <a class="pill" href="#diag">시군별 조회</a>
-      <a class="pill" href="#tables">표 1–4 매트릭스·풀·소유</a>
+      <a class="pill" href="#tables">표 1–4 조합·증분·소유</a>
       <a class="pill" href="#t32">표 5 · 32칸 완성표</a>
       <a class="pill" href="#ord">간척 한정 조문 검토</a>
     </div>
@@ -95,35 +95,35 @@
     <div class="sec-head"><div><p class="eyebrow">Tables</p><h2>전체 표</h2></div></div>
 
     <div class="figbox reveal" style="margin-bottom:22px">
-      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 1. 조합 매트릭스 — 전국</h3>
+      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 1. 구역 조합(R0–R3)별 설치 가능 필지 수와 면적 — 전국</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-matrix-nat"></table></div>
-      <div class="figcap">각 행은 독립 조합(단계 사다리 아님). R1−R0 = 보호구역 풀, R2−R0 = 진흥구역 풀,
-      R0+두 풀 = R3 — 세 풀이 서로 겹치지 않아 정확히 가산된다<sup class="fnref">[12]</sup><sup class="fnref">[14]</sup>.<span id="fn-pending"></span></div>
+      <div class="figcap">각 행은 독립 조합(단계 사다리 아님). R1−R0 = 보호구역 증분, R2−R0 = 진흥구역 증분,
+      R0+두 증분 = R3 — 세 부분이 서로 겹치지 않아 정확히 가산된다<sup class="fnref">[12]</sup><sup class="fnref">[14]</sup>.<span id="fn-pending"></span></div>
     </div>
 
     <div class="figbox reveal" style="margin-bottom:22px">
-      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 2. 조합 매트릭스 — 간척 확정 농지</h3>
+      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 2. 구역 조합(R0–R3)별 설치 가능 필지 수와 면적 — 간척 확정 농지</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-matrix-rec"></table></div>
       <div class="figcap">간척 = 농어촌공사 지구·공구 원장 등재분(민간 매립 미등재)<sup class="fnref">[3]</sup><sup class="fnref">[4]</sup>.
       간척 농지는 대부분 농업진흥구역 안에 있어, 규모가 진흥구역 개방(R2)에서 움직인다.</div>
     </div>
 
     <div class="figbox reveal" style="margin-bottom:22px">
-      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 3. 풀 분해 — 어느 구역에 얼마가 있나</h3>
+      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 3. 구역별 증분 분해 — 농업진흥지역 밖 · 농업보호구역 · 농업진흥구역</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-pools"></table></div>
-      <div class="figcap">풀 = 해당 구역 안에서 다른 모든 판정 조건(지목·구조물·경사·용도지역 3종·실경작)을
-      통과한 필지. 매트릭스에서 산술로만 유도(R1−R0, R2−R0).</div>
+      <div class="figcap">각 증분 = 해당 구역 안에서 나머지 판정 조건(지목·구조물·경사·용도지역 3종·실경작)을
+      모두 통과한 필지의 합. 표 1에서 산술로만 유도(R1−R0, R2−R0). 정본 DB 조회값<sup class="fnref">[12]</sup>, 단위 필지 수·km².</div>
     </div>
 
     <div class="figbox reveal" style="margin-bottom:22px">
-      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 4. 소유 세 무리 — 간척 내 법인 · 간척 내 비법인 · 간척 밖 법인</h3>
+      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 4. 소유 유형별 실경작 확인 농지 — 간척지 내 법인 · 간척지 내 비법인 · 간척지 외 법인</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-owner"></table></div>
       <div class="figcap">실경작 확인 농지 기준<sup class="fnref">[2]</sup>. 소유는 지적 원장의 유형 구분(개인 식별 아님)<sup class="fnref">[1]</sup> —
       법인이 농업법인인지는 원장에 없어 구분 못 함(명부 조달 시 정밀화).</div>
     </div>
 
     <div class="figbox reveal" id="t32">
-      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 5. 32칸 완성표 — 구역 4 × 이격 2 × 실경작 2 × 집계 2 (면적 km²)</h3>
+      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 5. 구역 조합(4) × 이격(2) × 실경작(2) × 집계 단위(2)별 설치 가능 면적 — 32칸 전체</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-grid"></table></div>
       <div class="figcap">구획 = 필지를 연접 거리 21m로 병합한 성분 중 6.67ha 이상<sup class="fnref">[10]</sup><sup class="fnref">[12]</sup> · 실경작 전 =
       위성 실측 필터(30%) 미적용<sup class="fnref">[2]</sup> · 이격 보수 = 주거 200m 상한을 대지 필지 대리로 일률 적용한 하한<sup class="fnref">[11]</sup>.
@@ -167,28 +167,28 @@
     <tr><td class="l">농업진흥지역 밖 (현행 = R0)</td>
       <td>${V4.n(M0['전국'].R0['후'].n)}</td><td>${V4.km2(M0['전국'].R0['후'].km2)}</td>
       <td>${V4.n(M0['간척'].R0['후'].n)}</td><td>${V4.km2(M0['간척'].R0['후'].km2)}</td></tr>
-    <tr><td class="l">농업보호구역 풀 (R1−R0)</td>
+    <tr><td class="l">농업보호구역 증분 (R1−R0)</td>
       <td>${V4.n(P['전국']['보호구역']['후'].n)}</td><td>${V4.km2(P['전국']['보호구역']['후'].km2)}</td>
       <td>${V4.n(P['간척']['보호구역']['후'].n)}</td><td>${V4.km2(P['간척']['보호구역']['후'].km2)}</td></tr>
-    <tr><td class="l">농업진흥구역 풀 (R2−R0)</td>
+    <tr><td class="l">농업진흥구역 증분 (R2−R0)</td>
       <td>${V4.n(P['전국']['진흥구역']['후'].n)}</td><td>${V4.km2(P['전국']['진흥구역']['후'].km2)}</td>
       <td>${V4.n(P['간척']['진흥구역']['후'].n)}</td><td>${V4.km2(P['간척']['진흥구역']['후'].km2)}</td></tr>`;
 
   const og = s.owner_groups;
   const z = (g, k) => g.zones[k] ? V4.km2(g.zones[k].km2) : '0.0';
   document.getElementById('t-owner').innerHTML = `
-    <tr><th>무리</th><th>필지</th><th>전체 km²</th><th>진흥 밖<br>km²</th><th>보호구역<br>km²</th>
+    <tr><th>소유 유형</th><th>필지</th><th>전체 km²</th><th>진흥 밖<br>km²</th><th>보호구역<br>km²</th>
         <th>진흥구역<br>km²</th><th>현행법 적격<br>km²</th></tr>` +
     og.map(g => `<tr><td class="l">${g.group}</td>
       <td>${V4.n(g.n)}</td><td><b>${V4.km2(g.km2)}</b></td>
       <td>${z(g, '진흥 밖')}</td><td>${z(g, '보호구역')}</td><td>${z(g, '진흥구역')}</td>
       <td>${V4.km2(g.anchor_km2)}</td></tr>`).join('');
 
-  const inC = og.find(g => g.group === '간척 내 법인');
-  const outC = og.find(g => g.group === '간척 밖 법인');
-  const inO = og.find(g => g.group === '간척 내 비법인');
+  const inC = og.find(g => g.group === '간척지 내 법인');
+  const outC = og.find(g => g.group === '간척지 외 법인');
+  const inO = og.find(g => g.group === '간척지 내 비법인');
   document.getElementById('ordinance-story').innerHTML = `
-    <p>농업법인의 영농형 태양광을 간척지 등으로 한정하는 조문이 추진될 경우, 표 4의 세 무리는
+    <p>농업법인의 영농형 태양광을 간척지 등으로 한정하는 조문이 추진될 경우, 표 4의 세 유형는
     서로 다른 처지에 놓인다<sup class="fnref">[3]</sup><sup class="fnref">[12]</sup>.
     관련 법 구조: 영농형 대상 농지의 부령 위임<sup class="fnref">[7]</sup> ·
     보호구역 내 소규모 허용 선례<sup class="fnref">[8]</sup> ·
@@ -198,12 +198,12 @@
     다만 이 땅의 대부분(${V4.km2(inC.zones['진흥구역'].km2)} km²)이 농업진흥구역 안에 있어,
     현행법으로 가능한 면적은 ${V4.km2(inC.anchor_km2)} km²뿐이다 —
     진흥구역 내 허용이 함께 입법되지 않으면 조문은 실행 수단이 없다.</p>
-    <p style="margin-top:10px"><b>② 간척 밖에 땅이 있는 법인(${V4.km2(outC.km2)} km²)은 자기 땅을 쓸 수 없게 된다.</b>
+    <p style="margin-top:10px"><b>② 간척지 외에 땅이 있는 법인(${V4.km2(outC.km2)} km²)은 자기 땅을 쓸 수 없게 된다.</b>
     이들의 현행법 적격 면적은 ${V4.km2(outC.anchor_km2)} km² — 조문 시행 시 이 면적 대신
     간척지를 임차해야 하므로, 접근할 수 있는 규모가 ${V4.km2(inC.anchor_km2)} km²
-    (간척 내 법인 소유 중 현행 적격) 수준으로 줄어든다.</p>
-    <p style="margin-top:10px"><b>③ 간척 내 비법인 소유(${V4.km2(inO.km2)} km²)가 임차 공급원이다.</b>
-    간척 밖 법인이 사업하려면 이 땅의 사용승낙·임차<sup class="fnref">[18]</sup>가 필요하다 —
+    (간척지 내 법인 소유 중 현행 적격) 수준으로 줄어든다.</p>
+    <p style="margin-top:10px"><b>③ 간척지 내 비법인 소유(${V4.km2(inO.km2)} km²)가 임차 공급원이다.</b>
+    간척지 외 법인이 사업하려면 이 땅의 사용승낙·임차<sup class="fnref">[18]</sup>가 필요하다 —
     임차 절차가 정비되지 않으면 조문이 있어도 움직이지 않는 물량이다.
     지역별 분포는 <a href="atlas.html" style="color:var(--leaf-deep)"><b>아틀라스</b></a>에서 필지 단위로 볼 수 있다.</p>`;
 
@@ -297,7 +297,7 @@
       `<b>${label}</b> — 현행법 기준 ${V4.km2(r0.km2, 2)} km² (${V4.n(r0.n)}필지).
        두 제도 변수 중 <b>${bigger}</b> 개방의 효과가 커서 +${V4.km2(Math.max(dProm, dProt), 2)} km²가 더해지고,
        둘 다 개방하면 ${V4.km2(r3.km2, 2)} km²가 된다.
-       (보호구역 풀 +${V4.km2(dProt, 2)} · 진흥구역 풀 +${V4.km2(dProm, 2)}, 실경작 ${ph === '후' ? '적용 후' : '적용 전'}, 필지층)${mapLink}`;
+       (보호구역 증분 +${V4.km2(dProt, 2)} · 진흥구역 증분 +${V4.km2(dProm, 2)}, 실경작 ${ph === '후' ? '적용 후' : '적용 전'}, 필지층)${mapLink}`;
   };
   document.getElementById('dg-ph').addEventListener('change', render);
 
