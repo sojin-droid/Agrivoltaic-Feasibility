@@ -90,10 +90,11 @@
       <div id="stats"></div>
       <div class="leg">
         <span class="sw" style="background:rgba(255,216,77,.75);border:1px solid #B8860B"></span>선택 시나리오 등재 구획 (노랑)<br>
-        <span class="sw" style="border:2px solid #FF3B30;background:transparent"></span>현행법(이격 미적용) 기준 외곽선 (빨강)<br>
+        <span class="sw" style="border:2px solid #FF3B30;background:transparent"></span>현행법(이격 미적용) 기준 외곽선 (빨강)
+        — 현행법 기준 화면에서는 노랑 자체가 기준이라 표시되지 않음<br>
         구획 클릭 = 면적·필지 수 · 점선 = 시군 경계 걸침 구획
       </div>
-      <div class="hint" id="hint">시군을 선택하면 위성 지도로 이동합니다.</div>
+      <div class="hint" id="hint">시군을 추가하면 위성 지도로 이동합니다 (여러 개 가능).</div>
     </div>
   </div>
 
@@ -167,8 +168,8 @@
   if (q) {
     picked = q.split(',').filter(c => names.codes[c]);
     renderChips();
-    setTimeout(() => render(true), 50);
   }
+  setTimeout(() => render(true), 50);   // 초기 렌더 — 선택 없어도 전국 통계·안내는 표시
 
   const btns = document.getElementById('scnBtns');
   btns.innerHTML = SCN.map(([c, t, s]) =>
@@ -212,6 +213,7 @@
     const cell = cellOf();
     const live = picked.filter(c => !idx || idx.sgg[c]);      // 구획 있는 시군만 로드
     const none = picked.filter(c => idx && !idx.sgg[c]);
+    document.getElementById('hint').textContent = '구획 불러오는 중…';
     const pairs = await Promise.all(live.map(c => Promise.all([
       fc(c, cell), cell === 'ANCHOR' ? null : fc(c, 'ANCHOR')])));
     const featSel = [], featRef = [];
@@ -229,8 +231,10 @@
                       dashArray: f.properties.sp ? '5 4' : null,
                       fillColor: '#FFD84D', fillOpacity: .55}),
         onEachFeature: (f, ly) => ly.bindPopup(
-          `구획 #${f.properties.id} — 전체 ${V4.km2(f.properties.a, 2)} km² · 시군 구간 ${V4.n(f.properties.n)}필지` +
-          (f.properties.sp ? ' · 시군 경계 걸침' : ''))
+          `<b>등재 구획 ${V4.km2(f.properties.a, 2)} km²</b> (${V4.n(Math.round(f.properties.a * 100))} ha)` +
+          `<br>이 시군 구간 ${V4.n(f.properties.n)}필지 · 참고 ${V4.n(Math.round(f.properties.a * 45))} MW` +
+          (f.properties.sp ? '<br><b>시군 경계 걸침</b> — 면적은 구획 전체 기준' : '') +
+          `<br><span style="color:#888;font-size:11px">구획 번호 #${f.properties.id} · 환산 0.045 kW/㎡ 가정</span>`)
       }).addTo(map);
       if (fit) map.fitBounds(layerSel.getBounds().pad(0.08));
     } else if (fit && layerRef) {
