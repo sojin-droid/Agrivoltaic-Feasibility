@@ -139,12 +139,15 @@
 
   // ── 패널 ──
   const sel = document.getElementById('sggSel');
-  const codes = idx ? Object.keys(idx.sgg) : Object.keys(names.codes);
-  const entries = codes
+  // 전 시군을 목록에 둔다 — 구획 없는 시군도 선택하면 '없음'을 명시 (숨은 배제 금지)
+  const entries = Object.keys(names.codes)
     .map(c => [c, (names.codes[c] && names.codes[c].name) || c])
     .sort((a, b) => a[1].localeCompare(b[1], 'ko'));
   sel.innerHTML = '<option value="">— 선택 —</option>' +
     entries.map(([c, n]) => `<option value="${c}">${n}</option>`).join('');
+  // URL 파라미터로 초기 시군 지정 (근거 탭 '지도에서 보기' 연동): map.html?sgg=44270
+  const q = new URLSearchParams(location.search).get('sgg');
+  if (q && names.codes[q]) { sel.value = q; curSgg = q; setTimeout(() => render(true), 50); }
 
   const btns = document.getElementById('scnBtns');
   btns.innerHTML = SCN.map(([c, t, s]) =>
@@ -176,6 +179,13 @@
   async function render(fit) {
     stats(null);
     if (!curSgg) return;
+    if (idx && !idx.sgg[curSgg]) {          // 색인에 없는 시군 = 어느 시나리오에도 등재 구획 없음
+      if (layerSel) { map.removeLayer(layerSel); layerSel = null; }
+      if (layerRef) { map.removeLayer(layerRef); layerRef = null; }
+      document.getElementById('hint').textContent =
+        '이 시군에는 어떤 시나리오에서도 등재 구획(6.67ha 이상 연접 병합)이 없습니다.';
+      return;
+    }
     const cell = cellOf();
     const [dSel, dRef] = await Promise.all([fc(curSgg, cell),
       cell === 'ANCHOR' ? null : fc(curSgg, 'ANCHOR')]);

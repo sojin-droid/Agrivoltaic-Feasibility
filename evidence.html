@@ -235,7 +235,8 @@
       `<b>${d.name}</b> — 현행법 기준 ${V4.km2(r0.km2, 2)} km² (${V4.n(r0.n)}필지).
        두 제도 변수 중 <b>${bigger}</b> 개방의 효과가 커서 +${V4.km2(dMax, 2)} km²가 더해지고,
        둘 다 개방하면 ${V4.km2(r3.km2, 2)} km²가 된다.
-       (보호구역 풀 +${V4.km2(dProt, 2)} · 진흥구역 풀 +${V4.km2(dProm, 2)}, 실경작 ${ph === '후' ? '적용 후' : '적용 전'})`;
+       (보호구역 풀 +${V4.km2(dProt, 2)} · 진흥구역 풀 +${V4.km2(dProm, 2)}, 실경작 ${ph === '후' ? '적용 후' : '적용 전'})
+       — <a href="map.html?sgg=${c}" style="color:var(--leaf-deep)"><b>지도에서 이 시군의 구획 보기 →</b></a>`;
   };
   sel.addEventListener('change', render);
   document.getElementById('dg-ph').addEventListener('change', render);

@@ -39,9 +39,12 @@ g = g.drop_duplicates('pnu').set_index('pnu')
 MIN_PART = 80_000.0     # 표시 최소 조각 8ha — 그 미만 섬·구멍은 장식 지도에서 생략
 
 def blob(pnus, tol=120.0):
+    """층 표시용 뭉침: 도로·하천으로 잘게 쪼개진 필지 union을 closing buffer(±100m)로
+    '지대'로 뭉친 뒤 간소화 — 8ha 필터가 실제 분포를 지우지 않게 한다 (표시 전용)."""
     sub = g.reindex(pnus)
     geo = sub.geometry[sub.geometry.notna()].values
     u = shapely.union_all(geo)
+    u = shapely.buffer(shapely.buffer(u, 100.0), -100.0)
     u = shapely.simplify(u, tol)
     geos = u.geoms if u.geom_type == 'MultiPolygon' else [u]
     keep = []
