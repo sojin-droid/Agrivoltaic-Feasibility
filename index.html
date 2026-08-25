@@ -85,8 +85,9 @@
     <p class="eyebrow" data-i18n="hero-eyebrow">영농형 태양광 · 전국 설치 가능 농지 분석</p>
     <h1 data-i18n="hero-h1">영농형 태양광 설치 가능 농지 — 요약</h1>
     <p class="lede" data-i18n="hero-lede">
-      전국 필지 전수 원장 기반. 현행법 기준값과, 농업보호구역·농업진흥구역 두 제도 변수의
-      조합별 설치 가능 면적을 제시한다. 1차 단위는 면적(km²), 실경작 확인(위성 실측) 기준.
+      전국 필지 전수 원장<sup class="fnref">[1]</sup> 기반. 현행법 기준값<sup class="fnref">[14]</sup>과,
+      농업보호구역·농업진흥구역<sup class="fnref">[5]</sup> 두 제도 변수의
+      조합별 설치 가능 면적을 제시한다. 1차 단위는 면적(km²), 실경작 확인(위성 실측<sup class="fnref">[2]</sup>) 기준.
     </p>
     <div style="display:flex;gap:14px;margin-top:30px;flex-wrap:wrap">
       <a class="btn btn-primary" href="evidence.html" data-i18n="hero-btn1">전체 수치 보기</a>
@@ -114,8 +115,8 @@
     <div class="figbox reveal">
       <div id="bars"></div>
       <div class="fn">막대 진한 부분 = 실경작 확인 후 · 연한 부분 = 적용 전 추가분.
-      세 풀(농업진흥지역 밖 · 농업보호구역 · 농업진흥구역)은 서로 겹치지 않아 정확히 더해진다.
-      참고 발전용량 환산은 <span id="mw-note"></span> — 면적이 1차 산출이고 환산은 가정이 얹힌 파생값.</div>
+      세 풀(농업진흥지역 밖 · 농업보호구역 · 농업진흥구역)은 서로 겹치지 않아 정확히 더해진다<sup class="fnref">[12]</sup>.
+      참고 발전용량 환산은 <span id="mw-note"></span> — 면적이 1차 산출이고 환산은 가정이 얹힌 파생값<sup class="fnref">[13]</sup>.</div>
     </div>
     <div class="callout-v4 reveal" id="co-reclaim"></div>
   </div>
@@ -206,7 +207,7 @@
   document.getElementById('co-reclaim').innerHTML =
     `<b>간척 농지는 진흥구역 개방과 함께 움직인다.</b> 간척 확정 농지의 설치 가능 면적은
      현행 ${V4.km2(K.R0['후'].km2)} km² → 농업진흥구역 개방 시 ${V4.km2(K.R2['후'].km2)} km²
-     (${V4.n(K.R2['후'].n)}필지). 간척 농지 대부분이 농업진흥구역 안에 있기 때문이다.
+     (${V4.n(K.R2['후'].n)}필지)<sup class="fnref">[3]</sup>. 간척 농지 대부분이 농업진흥구역 안에 있기 때문이다.
      <a href="atlas.html"><b>아틀라스에서 지구별로 보기 →</b></a>`;
 
   V4.footer();

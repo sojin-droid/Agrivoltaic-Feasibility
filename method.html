@@ -85,17 +85,17 @@
     <div class="figbox reveal">
       <div style="overflow-x:auto"><table class="v4">
         <tr><th style="text-align:left">조건</th><th style="text-align:left">내용</th><th style="text-align:left">근거 자료</th></tr>
-        <tr><td class="l"><b>지목</b></td><td class="l">전·답·과수원</td><td class="l">지적 원장</td></tr>
-        <tr><td class="l"><b>구조·입지 제외</b></td><td class="l">건축물·수역·산업단지·기제외 필지 아님</td><td class="l">토지 특성 원장</td></tr>
-        <tr><td class="l"><b>경사</b></td><td class="l">15% 초과 제외</td><td class="l">경사 판정 레이어</td></tr>
+        <tr><td class="l"><b>지목</b></td><td class="l">전·답·과수원</td><td class="l">지적 원장<sup class="fnref">[1]</sup></td></tr>
+        <tr><td class="l"><b>구조·입지 제외</b></td><td class="l">건축물·수역·산업단지·기제외 필지 아님</td><td class="l">토지 특성 원장<sup class="fnref">[1]</sup></td></tr>
+        <tr><td class="l"><b>경사</b></td><td class="l">15% 초과 제외</td><td class="l">경사 판정 레이어(정본 DB 파생)<sup class="fnref">[12]</sup></td></tr>
         <tr><td class="l"><b>용도지역 3종</b></td><td class="l">개발제한구역 · 보전관리지역 · 보전녹지지역 제외
           — 원문 재검증으로 확정한 배제 3종. 용도지역 정보가 결측인 필지는 해당 여부를
           확인할 수 없어 보수적으로 제외하고 별도 병기한다
-          (<a href="about.html" style="color:var(--leaf-deep)">자료·한계의 판정 보류</a>)</td><td class="l">용도지역 원장</td></tr>
+          (<a href="about.html" style="color:var(--leaf-deep)">자료·한계의 판정 보류</a>)</td><td class="l">용도지역 원장<sup class="fnref">[1]</sup> · 배제 근거 법문<sup class="fnref">[6]</sup></td></tr>
         <tr><td class="l"><b>농업진흥지역</b></td><td class="l">현행법 기준은 농업진흥지역 밖의 농지만 —
           보호구역·진흥구역 개방은 제도 변수로 따로 계산해 조합한다
-          (<a href="evidence.html" style="color:var(--leaf-deep)">근거 탭의 조합 R0–R3</a>)</td><td class="l">진흥지역 경계(재조달본, 필지 대표점 교차)</td></tr>
-        <tr><td class="l"><b>실경작</b></td><td class="l">위성 실측 경작 비율 30% 이상 — 적용 전·후 모두 제시</td><td class="l">팜맵</td></tr>
+          (<a href="evidence.html" style="color:var(--leaf-deep)">근거 탭의 조합 R0–R3</a>)</td><td class="l">진흥지역 경계<sup class="fnref">[5]</sup>(필지 대표점 교차)</td></tr>
+        <tr><td class="l"><b>실경작</b></td><td class="l">위성 실측 경작 비율 30% 이상 — 적용 전·후 모두 제시</td><td class="l">팜맵<sup class="fnref">[2]</sup></td></tr>
       </table></div>
       <div class="fn">시나리오 판정은 필지 단위 규칙으로, 임의 필지의 지번으로 같은 판정을 재현할 수 있다.</div>
     </div>
@@ -146,8 +146,9 @@
 
     <div class="callout-v4 reveal" style="margin-top:26px">
       <b>이격거리(주거 이격) 반영값의 성격 — 보수 하한.</b> 현행 제도는 영농형 태양광의
-      이격거리를 <b>상한제</b>(조례 상한 200m)로 정비하는 방향이다. 본 분석의 "이격 보수"
-      값은 이 상한 200m를 전국에 일률 적용한 것으로, 주택 판정을 대지 필지로 대신하는
+      이격거리를 <b>상한제</b>(조례 상한 200m)로 정비하는 방향이다<sup class="fnref">[11]</sup>.
+      본 분석의 "이격 보수" 값은 이 상한 200m를 전국에 일률 적용한 것으로, 주택 판정을
+      대지 필지<sup class="fnref">[1]</sup>로 대신하는
       보수적 하한이다 — 측정 방법 고시가 제정되면 정밀화한다. 값은
       <a href="evidence.html#t32" style="color:var(--leaf-deep)"><b>근거 표 5(32칸 완성표)</b></a>와
       <a href="map.html" style="color:var(--leaf-deep)"><b>지도의 이격 토글</b></a>에 있다.
@@ -155,7 +156,7 @@
       본 판에 포함되지 않는다.
     </div>
     <div class="fn">공간 미분해 배제 항목 17종(하천·문화유산 등)은 현재 판에 반영되지 않았다 —
-    따라서 강한 배제(HARD) 계열 값은 <b>하한</b>이다. 분해 레이어 조달 시 판을 올려 반영한다.</div>
+    따라서 강한 배제(HARD) 계열 값은 <b>하한</b>이다. 분해 레이어 조달 시 판을 올려 반영한다<sup class="fnref">[12]</sup>.</div>
   </div>
 </section>
 
@@ -165,10 +166,10 @@
 (async () => {
   const f = (await V4.data('funnel_v4')).national;
   const steps = [
-    ['전체 필지', f['전체 필지'], '지적 원장 전수'],
-    ['지목 전·답·과수원', f['지목 전·답·과수원'], '농지 지목만'],
-    ['실경작 30% 이상', f['실경작 30% 이상'], '위성 실측 경작 확인'],
-    ['현행법 적격', f['현행법 적격(앵커)'], '구조·경사·용도지역 3종 통과 + 농업진흥지역 밖'],
+    ['전체 필지', f['전체 필지'], '지적 원장 전수<sup class="fnref">[1]</sup>'],
+    ['지목 전·답·과수원', f['지목 전·답·과수원'], '농지 지목만<sup class="fnref">[1]</sup>'],
+    ['실경작 30% 이상', f['실경작 30% 이상'], '위성 실측 경작 확인<sup class="fnref">[2]</sup>'],
+    ['현행법 적격', f['현행법 적격(앵커)'], '구조·경사·용도지역 3종<sup class="fnref">[6]</sup> 통과 + 농업진흥지역 밖<sup class="fnref">[5]</sup>'],
   ];
   const max = steps[0][1];
   document.getElementById('funnel').innerHTML = steps.map(([k, v, sub]) => `

@@ -57,19 +57,20 @@
     <div class="figbox reveal">
       <div style="overflow-x:auto"><table class="v4">
         <tr><th style="text-align:left">항목</th><th style="text-align:left">내용</th></tr>
-        <tr><td class="l"><b>간척의 범위</b></td><td class="l">농어촌공사 지구·공구 원장 등재분만 —
+        <tr><td class="l"><b>간척의 범위</b></td><td class="l">농어촌공사 지구·공구 원장 등재분만<sup class="fnref">[3]</sup> —
           민간 공유수면 매립지는 원장에 없어 미포함(매립 준공 대장 조달 시 확장).</td></tr>
-        <tr><td class="l"><b>소유 구분</b></td><td class="l">지적 원장의 소유 유형 구분(법인/개인/국공유 등)까지만 —
+        <tr><td class="l"><b>소유 구분</b></td><td class="l">지적 원장<sup class="fnref">[1]</sup>의 소유 유형 구분(법인/개인/국공유 등)까지만 —
           개인 식별 아님. 법인이 농업법인인지는 원장에 없다(명부 조달 시 정밀화).</td></tr>
         <tr><td class="l"><b>공간 미분해 17종</b></td><td class="l">하천·문화유산·군사기지 등 17종 배제 항목은
           공간 분해 레이어 미확보로 이 판에 반영되지 않음 — 강한 배제(HARD) 계열 값은 하한.</td></tr>
-        <tr><td class="l"><b>실경작 판정</b></td><td class="l">팜맵 위성 실측의 경작 확인이며 경작 의사·권리가 아니다.
+        <tr><td class="l"><b>실경작 판정</b></td><td class="l">팜맵 위성 실측<sup class="fnref">[2]</sup>의 경작 확인이며 경작 의사·권리가 아니다.
           실측이 없는 필지는 대장 배분 잔존분으로 보수 처리.</td></tr>
         <tr><td class="l"><b>용도지역 미상 — 판정 보류</b></td><td class="l" id="cav-pending">지목은
           복구됐으나 용도지역 정보가 결측인 필지는 배제 3종 해당 여부를 확인할 수 없어
           기준값에서 보수적으로 제외하고 별도 병기한다 — 기준값의 잠재적 상향 여지.</td></tr>
-        <tr><td class="l"><b>이격거리</b></td><td class="l">이 판에 미반영 — 구 실측분은 검증 실패로 전량 무효 처리했고,
-          상한제(200m) 기준 재도출 후 별도 판으로 병기 예정.</td></tr>
+        <tr><td class="l"><b>이격거리</b></td><td class="l">상한제(200m)<sup class="fnref">[11]</sup>를 전국 일률
+          적용한 보수 하한으로 병기(근거 표 5·지도 토글) — 주택 판정은 대지 필지 대리, 측정 방법
+          고시 제정 시 정밀화. 구판의 시군 조례 개별 실측분은 검증 실패로 전량 폐기.</td></tr>
         <tr><td class="l"><b>계통 여유</b></td><td class="l">읍면동 단위 전량 수집 완료했으나 일부 지역은
           원천 비공개(NULL)로 남는다 — 해당 물량은 상한으로 별도 병기.</td></tr>
       </table></div>
@@ -114,9 +115,9 @@
   if (pz && pz.n) document.getElementById('cav-pending').innerHTML +=
     ` 현재 보류: <b>${V4.n(pz.n)}필지 · ${V4.km2(pz.km2, 2)} km²</b>.`;
   document.getElementById('unit-note').innerHTML =
-    `1차 단위는 <b>면적(km²)</b>이다 — 근거 법령이 사업 규모를 부지면적부터 쓰고,
-     발전용량(MW) 환산은 계수 가정이 얹힌 파생값이기 때문. ${s.unit_note}.<br>
-     현행법 기준값(상수): <b>${V4.n(s.anchor.n)}필지 · ${V4.km2(s.anchor.km2, 2)} km²</b> —
+    `1차 단위는 <b>면적(km²)</b>이다 — 근거 법령<sup class="fnref">[10]</sup>이 사업 규모를 부지면적부터 쓰고,
+     발전용량(MW) 환산은 계수 가정이 얹힌 파생값이기 때문<sup class="fnref">[13]</sup>. ${s.unit_note}.<br>
+     현행법 기준값(상수)<sup class="fnref">[14]</sup>: <b>${V4.n(s.anchor.n)}필지 · ${V4.km2(s.anchor.km2, 2)} km²</b> —
      ${s.anchor.def}. ${s.anchor.touchstone}.`;
   document.getElementById('t-lineage').innerHTML =
     `<tr><th style="text-align:left">자산</th><th style="text-align:left">구축</th><th style="text-align:left">출처·방법</th></tr>` +

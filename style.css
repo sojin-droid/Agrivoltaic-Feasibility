@@ -592,3 +592,12 @@ footer.v4 .wrap{display:flex;flex-direction:column;gap:6px}
 
 /* EN 사전 미구축 동안 언어 토글 숨김 (BACKLOG #6 — 사전 준비 시 이 규칙 제거) */
 .lang-toggle{display:none}
+
+/* 각주 (모든 페이지 하단 공통 — 브리프 공통 번호) */
+#fnsec{padding:48px 0 8px}
+ol.fnlist{margin:0 0 0 22px;font-size:12.5px;color:var(--muted);line-height:1.8;word-break:keep-all}
+ol.fnlist li{margin-bottom:6px}
+ol.fnlist li:target{background:var(--sky);border-radius:6px;padding:3px 6px;color:var(--ink)}
+sup.fnref{font-size:10px;line-height:0}
+sup.fnref a{color:var(--leaf-deep);font-weight:700;text-decoration:none}
+sup.fnref a:hover{text-decoration:underline}

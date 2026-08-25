@@ -46,10 +46,10 @@
   <div class="wrap">
     <p class="eyebrow">Evidence · 전체 값 참조</p>
     <h1>근거 — 조합 매트릭스 · 풀 분해 · 소유 구성</h1>
-    <p class="lede">모든 표는 정본 DB 조회값. 필지 수와 면적(km²)이 1차 산출,
-    MW는 참고 환산(0.045 kW/㎡ 가정).
+    <p class="lede">모든 표는 정본 DB 조회값<sup class="fnref">[12]</sup>. 필지 수와 면적(km²)이 1차 산출,
+    MW는 참고 환산(0.045 kW/㎡ 가정<sup class="fnref">[13]</sup>).
     <b>R0–R3은 구역 조합 번호</b>다 — R0 현행법(농업진흥지역 밖) · R1 +농업보호구역 개방 ·
-    R2 +농업진흥구역 개방 · R3 둘 다 개방.</p>
+    R2 +농업진흥구역 개방 · R3 둘 다 개방<sup class="fnref">[5]</sup>.</p>
     <div style="margin-top:14px">
       <a class="pill" href="#diag">시군별 조회</a>
       <a class="pill" href="#tables">표 1–4 매트릭스·풀·소유</a>
@@ -98,13 +98,13 @@
       <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 1. 조합 매트릭스 — 전국</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-matrix-nat"></table></div>
       <div class="fn">각 행은 독립 조합(단계 사다리 아님). R1−R0 = 보호구역 풀, R2−R0 = 진흥구역 풀,
-      R0+두 풀 = R3 — 세 풀이 서로 겹치지 않아 정확히 가산된다.<span id="fn-pending"></span></div>
+      R0+두 풀 = R3 — 세 풀이 서로 겹치지 않아 정확히 가산된다<sup class="fnref">[12]</sup><sup class="fnref">[14]</sup>.<span id="fn-pending"></span></div>
     </div>
 
     <div class="figbox reveal" style="margin-bottom:22px">
       <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 2. 조합 매트릭스 — 간척 확정 농지</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-matrix-rec"></table></div>
-      <div class="fn">간척 = 농어촌공사 지구·공구 원장 등재분(민간 매립 미등재).
+      <div class="fn">간척 = 농어촌공사 지구·공구 원장 등재분(민간 매립 미등재)<sup class="fnref">[3]</sup><sup class="fnref">[4]</sup>.
       간척 농지는 대부분 농업진흥구역 안에 있어, 규모가 진흥구역 개방(R2)에서 움직인다.</div>
     </div>
 
@@ -118,15 +118,15 @@
     <div class="figbox reveal" style="margin-bottom:22px">
       <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 4. 소유 세 무리 — 간척 내 법인 · 간척 내 비법인 · 간척 밖 법인</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-owner"></table></div>
-      <div class="fn">실경작 확인 농지 기준. 소유는 지적 원장의 유형 구분(개인 식별 아님) —
+      <div class="fn">실경작 확인 농지 기준<sup class="fnref">[2]</sup>. 소유는 지적 원장의 유형 구분(개인 식별 아님)<sup class="fnref">[1]</sup> —
       법인이 농업법인인지는 원장에 없어 구분 못 함(명부 조달 시 정밀화).</div>
     </div>
 
     <div class="figbox reveal" id="t32">
       <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 5. 32칸 완성표 — 구역 4 × 이격 2 × 실경작 2 × 집계 2 (면적 km²)</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-grid"></table></div>
-      <div class="fn">구획 = 필지를 연접 거리 21m로 병합한 성분 중 6.67ha 이상 · 실경작 전 =
-      위성 실측 필터(30%) 미적용 · 이격 보수 = 주거 200m 상한을 대지 필지 대리로 일률 적용한 하한.
+      <div class="fn">구획 = 필지를 연접 거리 21m로 병합한 성분 중 6.67ha 이상<sup class="fnref">[10]</sup><sup class="fnref">[12]</sup> · 실경작 전 =
+      위성 실측 필터(30%) 미적용<sup class="fnref">[2]</sup> · 이격 보수 = 주거 200m 상한을 대지 필지 대리로 일률 적용한 하한<sup class="fnref">[11]</sup>.
       필지→구획 전환에서 현행법 기준은 크게 줄고 진흥지역 개방 계열은 덜 줄어 —
       진흥구역 농지가 크게 뭉쳐 있어 병합 문턱을 잘 넘기기 때문 —
       <b>사업규모 관점에서는 격차가 더 벌어진다</b>.
@@ -189,7 +189,11 @@
   const inO = og.find(g => g.group === '간척 내 비법인');
   document.getElementById('ordinance-story').innerHTML = `
     <p>농업법인의 영농형 태양광을 간척지 등으로 한정하는 조문이 추진될 경우, 표 4의 세 무리는
-    서로 다른 처지에 놓인다.</p>
+    서로 다른 처지에 놓인다<sup class="fnref">[3]</sup><sup class="fnref">[12]</sup>.
+    관련 법 구조: 영농형 대상 농지의 부령 위임<sup class="fnref">[7]</sup> ·
+    보호구역 내 소규모 허용 선례<sup class="fnref">[8]</sup> ·
+    우량농지 제한의 일시사용 적용<sup class="fnref">[15]</sup> ·
+    재생에너지지구 경로<sup class="fnref">[10]</sup><sup class="fnref">[16]</sup>.</p>
     <p style="margin-top:10px"><b>① 간척에 땅이 있는 법인(${V4.km2(inC.km2)} km²)은 자기 지구에서 바로 실행할 수 있다.</b>
     다만 이 땅의 대부분(${V4.km2(inC.zones['진흥구역'].km2)} km²)이 농업진흥구역 안에 있어,
     현행법으로 가능한 면적은 ${V4.km2(inC.anchor_km2)} km²뿐이다 —
