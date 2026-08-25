@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLANiT · 특구 후보 — 법인·국공유 구획</title>
+<meta name="description" content="개인 소유 필지 없이 — 법인·국공유 필지만 병합해 — 성립하는 특구급(50MW 이상) 구획의 소재와 규모.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+<script src="assets/vendor/leaflet/leaflet.js"></script>
+<script src="assets/v4.js"></script>
+<style>
+#candmap{height:64vh;min-height:460px;border:1px solid var(--line);border-radius:12px;background:#dfe8df}
+.cand-leg{font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.7}
+.cand-leg .sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
+#t-cand tr.rowbtn{cursor:pointer}
+#t-cand tr.rowbtn:hover td{background:var(--sky)}
+.sb-toggle{display:inline-flex;gap:0;border:1.5px solid var(--navy);border-radius:999px;overflow:hidden;margin:8px 0}
+.sb-toggle button{font:inherit;font-size:12px;font-weight:700;padding:6px 14px;border:none;
+ background:#fff;color:var(--navy);cursor:pointer}
+.sb-toggle button.on{background:var(--navy);color:#fff}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span data-i18n="tb-tag">Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
+    <span><a href="https://planit.institute/" data-i18n="tb-link">← planit.institute 메인으로</a></span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="mark-img" src="assets/planit_logo.png" alt="PLANiT"><span class="sector" data-i18n="brand-sector">영농형 태양광</span></a>
+    <nav class="menu" id="menu">
+      <a href="index.html" data-i18n="nav-index">결론</a>
+      <a href="evidence.html" data-i18n="nav-evidence">근거</a>
+      <a href="map.html" data-i18n="nav-map">지도</a>
+      <a class="active" href="candidates.html" data-i18n="nav-cand">특구 후보</a>
+      <a href="atlas.html" data-i18n="nav-atlas">간척 아틀라스</a>
+      <a href="insight.html" data-i18n="nav-insight">인사이트</a>
+      <a href="method.html" data-i18n="nav-method">방법·재현</a>
+      <a href="about.html" data-i18n="nav-about">자료·한계</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="ko">KO</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a class="nav-cta" href="about.html#contact">Contact</a>
+      <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="wrap" style="max-width:860px">
+    <p class="eyebrow">Candidates · 소유 필터 구획</p>
+    <h1>특구 후보 — 법인·국공유 필지만으로 성립하는 구획</h1>
+    <p class="lede">특구급 = 재생에너지지구<sup class="fnref">[10]</sup><sup class="fnref">[16]</sup>급
+    사업 규모 50MW 이상(연접 농지 <span id="h-th">—</span>ha부터<sup class="fnref">[13]</sup>).<br>
+    이 페이지는 개인 소유 필지를 병합에서 배제하고 — <b>법인·국공유 필지만으로</b> —
+    재클러스터링한 결과<sup class="fnref">[12]</sup>: 개인 동의의 대규모 조직화 없이
+    성립하는 물량의 소재와 규모.</p>
+    <p style="font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:14px"
+      id="art-meta">PLANiT Institute · 데이터 2판</p>
+  </div>
+</div>
+
+<article>
+<div class="wrap art" style="max-width:860px">
+
+  <h2 class="art-h">1. 왜 소유를 걸러 보아야 하는가</h2>
+  <p>사업규모 구획(연접 21m 병합, 6.67ha 이상)은 필지 소유를 구분하지 않고 병합한
+  결과라, 구획 하나가 수백 명의 개인 소유주로 이루어져 있을 수 있다. 실제로 현행법
+  기준 특구급 구획 <b id="c-a50">—</b>곳의 면적 <b id="c-indiv">—</b>%가 개인 소유
+  필지<sup class="fnref">[1]</sup>다. 특구급 사업이 실제로 조직되려면 이 소유주 전원의
+  동의·임차가 필요하므로, 개인 필지를 아예 병합에서 배제하고 — 법인('06')과
+  국공유('02' 국유지·'04' 시/도유지·'05' 군유지)만 남기고 — 다시 병합해 보면
+  "동의 조직화 없이 성립하는 물량"의 하한이 나온다.</p>
+  <p>결과는 극명하다: 현행법에서 특구급은 <b id="c-cp-a50">—</b>곳(제주 서귀포,
+  <span id="c-cp-a-mw">—</span>MW)으로 줄고 100MW급은 <span id="c-cp-a100">—</span>곳,
+  농업진흥구역을 열면 <b id="c-cp-r50">—</b>곳(<span id="c-cp-r-mw">—</span>MW)으로
+  늘어난다.</p>
+
+  <figure class="art-fig">
+    <div class="figbox"><div id="fig1"></div></div>
+    <figcaption>그림 1. 특구급(50MW 이상) 구획 수 — 전체 필지 병합 대 법인·국공유 필지만
+    병합. 정본 산출<sup class="fnref">[12]</sup>, 단위 구획 수.</figcaption>
+  </figure>
+
+  <h2 class="art-h">2. 소유 필터 재클러스터링 — 네 칸 전체</h2>
+
+  <figure class="art-fig">
+    <div class="figbox">
+      <div style="overflow-x:auto"><table class="v4" id="t-cp"></table></div>
+      <div class="figcap">표 1. 소유 필터(법인·국공유만 병합) 재클러스터링 결과 —
+      구역 조건 × 이격 전·후. 정본 산출<sup class="fnref">[12]</sup>, 면적 km²·참고 MW<sup class="fnref">[13]</sup>.</div>
+    </div>
+  </figure>
+
+  <p>이격 200m 보수<sup class="fnref">[11]</sup>를 얹어도 진흥구역 개방분은
+  <span id="c-sb-from">—</span> → <span id="c-sb-to">—</span> km²(−9%)로 거의 깎이지
+  않는다 — 법인·국공유 집단 농지가 주거에서 먼 평야, 특히 간척 평야에 있기 때문이다.</p>
+
+  <h2 class="art-h">3. 특구급 후보 <span id="c-n-map">—</span>곳의 소재</h2>
+  <p>아래 지도의 구획이 농업진흥구역 개방 시 법인·국공유 필지만으로 성립하는 특구급
+  전부다. <b>주황 = 간척 지구</b><sup class="fnref">[3]</sup>(석문·대호·부사·고흥·영산강
+  수계), <b>빨강 = 비간척</b>(서산·보령·강화·제주의 집단지). 표의 행을 클릭하면 해당
+  구획으로 이동한다.</p>
+
+  <figure class="art-fig">
+    <div id="candmap"></div>
+    <div class="cand-leg">
+      <span class="sw" style="background:rgba(255,155,61,.85);border:1px solid #C96A00"></span>간척 지구의 특구급 구획 (주황) ·
+      <span class="sw" style="background:rgba(255,80,70,.85);border:1px solid #B3261E"></span>비간척 특구급 구획 (빨강) ·
+      구획 클릭 = 규모·지구명 · 점선 = 시군 경계 걸침
+      <span class="sb-toggle" id="sbTgl" style="margin-left:10px">
+        <button data-sb="0" class="on">이격 미적용</button>
+        <button data-sb="1">주거 200m 보수</button>
+      </span>
+    </div>
+    <figcaption style="font-size:12px;color:var(--muted);margin-top:6px">그림 2. 특구급 후보 구획의 위치 —
+    농업진흥구역 개방 + 소유 필터(법인·국공유) 기준. 위성 배경 © Esri<sup class="fnref">[19]</sup> ·
+    지오메트리 15m 간소화(표시용)<sup class="fnref">[12]</sup>.</figcaption>
+  </figure>
+
+  <figure class="art-fig">
+    <div class="figbox">
+      <div style="overflow-x:auto"><table class="v4" id="t-cand"></table></div>
+      <div class="figcap">표 2. 특구급 후보 구획 목록 — 규모 순. 간척 = 농어촌공사 지구·공구
+      원장 등재분<sup class="fnref">[3]</sup>, 시군은 구획의 주 소재지(걸침 구획은 전체 면적 기준).
+      행 클릭 = 지도 이동.</div>
+    </div>
+  </figure>
+
+  <h2 class="art-h">4. 단서 — 이 값이 말하는 것과 말하지 않는 것</h2>
+  <p>이 값은 소유 유형 기준의 실측이다: "법인·국공유 필지만으로 이 정도 연접 규모가
+  물리적으로 성립한다"까지를 말한다. 반면 <b>법인이 농업법인인지</b>는 지적 원장에 없어
+  확인되지 않았고(명부 조달 시 정밀화), <b>국공유지의 실제 사용 가능 여부</b>(관리청
+  협의·용도 제한)와 <b>임차·사용승낙의 실행 가능성</b>도 별도 확인 대상이다. 개인
+  필지를 임차로 조직하면 물량은 이보다 커진다 — 즉 이 페이지의 값은 상한이 아니라
+  "가장 어려운 조건에서의 하한"이다.</p>
+
+  <div class="callout-v4">읽는 위치: 이 페이지는 <a href="index.html#story" style="color:var(--leaf-deep)"><b>결론의
+  다섯 단계</b></a> 중 ②(왜 늘려야 하는가)와 ③(두 수단의 증분)의 상세다. 간척 지구의
+  소유 구조는 <a href="atlas.html" style="color:var(--leaf-deep)"><b>간척 아틀라스</b></a>,
+  구역·이격 조합 전체는 <a href="map.html?cp=1" style="color:var(--leaf-deep)"><b>지도 탭의 소유 필터</b></a>.</div>
+
+  <div class="fn">소유 필터 정의(결재 확정): 법인('06')·국유지('02')·시/도유지('04')·군유지('05')만
+  병합 대상 — 개인('01')·외국인('03')·종중('07')·종교('08')·기타('09')·결측은 배제(보수)<sup class="fnref">[12]</sup> ·
+  소유는 지적 원장의 유형 구분이며 개인 식별 아님<sup class="fnref">[1]</sup> ·
+  이격 = 주거 200m 상한의 보수 하한(대지 필지 대리)<sup class="fnref">[11]</sup>.</div>
+</div>
+</article>
+
+<footer class="v4"><div class="wrap"></div></footer>
+
+<script>
+(async () => {
+  const [N, names] = await Promise.all([V4.data('narrative_v4'), V4.data('sgg_matrix')]);
+  const m = await V4.data('meta_v4');
+  document.getElementById('art-meta').textContent =
+    `PLANiT Institute · 데이터 ${m.data_generation} · 생성 ${m.generated}`;
+  const R = N.runs;
+  const nameOf = c => (names.codes[c] && names.codes[c].name) || c;
+  const put = (id, v) => document.getElementById(id).textContent = v;
+  put('h-th', N.threshold.mw50_ha);
+  put('c-a50', V4.n(R.ANCHOR.ge50));
+  put('c-indiv', V4.n(N.big_composition.ANCHOR.indiv_share_pct));
+  put('c-cp-a50', V4.n(R.ANCHOR_CP.ge50));
+  put('c-cp-a-mw', V4.n((N.cp_big_anchor[0] || {mw: 0}).mw));
+  put('c-cp-a100', V4.n(R.ANCHOR_CP.ge100));
+  put('c-cp-r50', V4.n(R.SOFT_R2_CP.ge50));
+  put('c-cp-r-mw', V4.n(R.SOFT_R2_CP.mw));
+  put('c-sb-from', V4.km2(R.SOFT_R2_CP.listed_km2));
+  put('c-sb-to', V4.km2(R.SOFT_R2_CP_SB.listed_km2));
+  put('c-n-map', V4.n(R.SOFT_R2_CP.ge50));
+
+  // 그림 1 — 특구급 수: 전체 병합 vs 소유 필터
+  const F1 = [
+    ['현행법 · 전체 필지 병합', R.ANCHOR.ge50],
+    ['현행법 · 법인·국공유만', R.ANCHOR_CP.ge50],
+    ['진흥구역 개방 · 전체 필지 병합', R.SOFT_R2.ge50],
+    ['진흥구역 개방 · 법인·국공유만', R.SOFT_R2_CP.ge50],
+  ];
+  const mx1 = Math.max(...F1.map(x => x[1]));
+  document.getElementById('fig1').innerHTML = F1.map(([k, v]) => `
+    <div class="bar-row"><div><b>${k}</b></div>
+      <div class="bar-track"><div class="bar-post" style="width:${Math.max(100 * v / mx1, .6)}%"></div></div>
+      <div class="bar-num">${V4.n(v)}<div class="bar-sub">구획</div></div>
+    </div>`).join('');
+
+  // 표 1 — CP 4칸
+  const T1 = [
+    ['현행법 + 소유 필터', 'ANCHOR_CP'],
+    ['현행법 + 소유 필터 + 이격', 'ANCHOR_CP_SB'],
+    ['진흥구역 개방 + 소유 필터', 'SOFT_R2_CP'],
+    ['진흥구역 개방 + 소유 필터 + 이격', 'SOFT_R2_CP_SB'],
+  ];
+  document.getElementById('t-cp').innerHTML =
+    `<tr><th style="text-align:left">조건</th><th>적격 필지</th><th>등재 구획</th>
+     <th>면적 km²</th><th>참고 MW</th><th>≥50MW</th><th>≥100MW</th></tr>` +
+    T1.map(([k, r]) => `<tr><td class="l">${k}</td><td>${V4.n(R[r].n_eligible)}</td>
+      <td>${V4.n(R[r].n_listed)}</td><td>${V4.km2(R[r].listed_km2)}</td>
+      <td>${V4.n(R[r].mw)}</td><td><b>${V4.n(R[r].ge50)}</b></td><td>${V4.n(R[r].ge100)}</td></tr>`).join('');
+
+  // 표 2 + 지도 — 특구급 후보 (SOFT_R2_CP ≥50MW · 이격 토글 시 _SB)
+  const map = L.map('candmap', {center: [35.6, 127.0], zoom: 7, scrollWheelZoom: false});
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    {maxZoom: 18, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics'}).addTo(map);
+  L.control.scale({imperial: false, maxWidth: 140}).addTo(map);
+  const north = L.control({position: 'topright'});
+  north.onAdd = () => {
+    const d = L.DomUtil.create('div');
+    d.innerHTML = '<svg width="30" height="38" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))">' +
+      '<text x="15" y="12" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">N</text>' +
+      '<path d="M15 15 l5 16 l-5 -5 l-5 5 Z" fill="#fff" stroke="#333" stroke-width="1"/></svg>';
+    return d;
+  };
+  north.addTo(map);
+
+  const idx = await V4.data('clusters_index');
+  const TH = 50 / 45;                       // ≥50MW = a ≥ 1.111 km²
+  const bigList = N.cp_big;                  // mw 내림차순 (id = 구획 번호)
+  // 셀별 구획 번호 → 간척 여부 (SB 런은 자체 번호 체계라 별도 목록으로 매칭)
+  const recMap = {
+    SOFT_R2_CP: Object.fromEntries(N.cp_big.map(b => [b.id, b.reclaim_pct >= 50])),
+    SOFT_R2_CP_SB: Object.fromEntries((N.cp_big_sb || []).map(b => [b.id, b.reclaim_pct >= 50])),
+  };
+  const cache = {};
+  async function fc(sgg, cell) {
+    const k = sgg + '_' + cell;
+    if (!(k in cache)) {
+      try {
+        const r = await fetch('data_v4/clusters/' + k + '.json.gz');
+        if (!r.ok) throw 0;
+        const ds = r.body.pipeThrough(new DecompressionStream('gzip'));
+        cache[k] = JSON.parse(await new Response(ds).text());
+      } catch (e) { cache[k] = null; }
+    }
+    return cache[k];
+  }
+  let curSB = 0, layerGroup = null;
+  const boundsById = {};
+  async function renderMap() {
+    if (layerGroup) map.removeLayer(layerGroup);
+    layerGroup = L.layerGroup().addTo(map);
+    const cell = curSB ? 'SOFT_R2_CP_SB' : 'SOFT_R2_CP';
+    const sggs = Object.keys(idx.sgg).filter(c => idx.sgg[c][cell] && idx.sgg[c][cell].k > 0);
+    const datas = await Promise.all(sggs.map(c => fc(c, cell)));
+    datas.forEach((d, i) => {
+      if (!d) return;
+      d.features.filter(f => f.properties.a >= TH).forEach(f => {
+        const mw = Math.round(f.properties.a * 45);
+        const isRec = !!recMap[cell][f.properties.id];
+        const fill = isRec ? '#FF9B3D' : '#FF5046';
+        const line = isRec ? '#C96A00' : '#B3261E';
+        const ly = L.geoJSON(f, {
+          style: {color: line, weight: f.properties.sp ? 1.8 : 1, fillColor: fill,
+                  fillOpacity: .85, dashArray: f.properties.sp ? '5 4' : null},
+        }).bindPopup(
+          `<b>특구급 후보 · ${V4.km2(f.properties.a, 2)} km² ≈ ${V4.n(mw)} MW</b>` +
+          `<br>${nameOf(d.sgg)} 구간 ${V4.n(f.properties.n)}필지 · ${isRec ? '간척 지구' : '비간척'}` +
+          (f.properties.sp ? '<br>시군 경계 걸침 — 면적은 구획 전체 기준' : '') +
+          `<br><span style="color:#888;font-size:11px">법인·국공유만 병합 · 진흥구역 개방 기준 · 0.045 kW/㎡ 가정</span>`);
+        ly.addTo(layerGroup);
+        const id = f.properties.id;
+        boundsById[id] = boundsById[id] ? boundsById[id].extend(ly.getBounds()) : ly.getBounds();
+      });
+    });
+  }
+  await renderMap();
+  document.querySelectorAll('#sbTgl button').forEach(b => b.onclick = async () => {
+    curSB = +b.dataset.sb;
+    document.querySelectorAll('#sbTgl button').forEach(x =>
+      x.classList.toggle('on', +x.dataset.sb === curSB));
+    await renderMap();
+  });
+
+  // 표 2 — 목록 (행 클릭 = 지도 이동: 시군 중심으로)
+  document.getElementById('t-cand').innerHTML =
+    `<tr><th>순위</th><th>참고 MW</th><th style="text-align:left">소재</th>
+     <th style="text-align:left">간척 지구</th><th>필지 수</th></tr>` +
+    bigList.map((b, i) => `<tr class="rowbtn" data-id="${b.id}">
+      <td>${i + 1}</td><td><b>${V4.n(b.mw)}</b></td><td class="l">${nameOf(b.sgg)}</td>
+      <td class="l">${b.reclaim_pct >= 50 ? (b.district || '간척') + ` (간척 필지 ${V4.n(b.reclaim_pct)}%)` : '—'}</td>
+      <td>${V4.n(b.n)}</td></tr>`).join('');
+  document.querySelectorAll('#t-cand tr.rowbtn').forEach(tr => tr.onclick = () => {
+    const bd = boundsById[+tr.dataset.id];
+    if (bd) {
+      map.fitBounds(bd.pad(0.3));
+      document.getElementById('candmap').scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
+  });
+
+  V4.footer();
+})();
+</script>
+<script src="site.js"></script>
+</body>
+</html>

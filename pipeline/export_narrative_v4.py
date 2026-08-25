@@ -67,11 +67,12 @@ def cp_big_of(run):
           ANY_VALUE(rt.ekr_district), MODE(SUBSTR(m.pnu,1,5))
         FROM m LEFT JOIN reclaim_tag rt USING(pnu)
         GROUP BY m.lab ORDER BY 2 DESC""").fetchall():
-        out.append({'mw': round(mw), 'n': n, 'reclaim_pct': round(rec),
+        out.append({'id': int(lab), 'mw': round(mw), 'n': n, 'reclaim_pct': round(rec),
                     'district': dist, 'sgg': sgg})
     return out
 
 cp_top = cp_big_of('SOFT_R2_CP')
+cp_top_sb = cp_big_of('SOFT_R2_CP_SB')
 cp_top_anchor = cp_big_of('ANCHOR_CP')
 con.close()
 
@@ -84,6 +85,7 @@ out = {
     'owner_setback': owner_sb,
     'big_composition': comp,
     'cp_big': cp_top,
+    'cp_big_sb': cp_top_sb,
     'cp_big_anchor': cp_top_anchor,
 }
 fo = os.path.join(SITE, 'data_v4', 'narrative_v4.json')
