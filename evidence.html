@@ -48,14 +48,22 @@
     <h1>근거 — 조합 매트릭스 · 풀 분해 · 소유 구성</h1>
     <p class="lede">모든 표는 정본 DB 조회값. 필지 수와 면적(km²)이 1차 산출,
     MW는 참고 환산(0.045 kW/㎡ 가정).</p>
+    <div style="margin-top:14px">
+      <a class="pill" href="#diag">시군별 조회</a>
+      <a class="pill" href="#tables">표 1–4 매트릭스·풀·소유</a>
+      <a class="pill" href="#t32">표 5 · 32칸 완성표</a>
+      <a class="pill" href="#ord">간척 한정 조문 검토</a>
+    </div>
   </div>
 </div>
 
 <!-- ═══════════ 시군 진단 도구 ═══════════ -->
-<section style="padding:52px 0 40px">
+<section style="padding:52px 0 40px" id="diag">
   <div class="wrap">
     <div class="sec-head"><div><p class="eyebrow">Diagnosis · 시군별 조회</p>
-    <h2>시군별 조회</h2></div></div>
+    <h2>시군별 조회</h2></div>
+    <span style="font-size:12.5px;color:var(--muted)">값은 필지층 면적 —
+    사업규모(구획) 단위는 표 5와 지도 탭</span></div>
     <div class="figbox reveal">
       <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px">
         <div class="field" style="margin:0;min-width:240px">
@@ -79,7 +87,7 @@
 </section>
 
 <!-- ═══════════ 표 ═══════════ -->
-<section class="alt" style="padding:56px 0">
+<section class="alt" style="padding:56px 0" id="tables">
   <div class="wrap">
     <div class="sec-head"><div><p class="eyebrow">Tables</p><h2>전체 표</h2></div></div>
 
@@ -87,7 +95,7 @@
       <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 1. 조합 매트릭스 — 전국</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-matrix-nat"></table></div>
       <div class="fn">각 행은 독립 조합(단계 사다리 아님). R1−R0 = 보호구역 풀, R2−R0 = 진흥구역 풀,
-      R0+두 풀 = R3 — 세 풀이 서로 겹치지 않아 정확히 가산된다.</div>
+      R0+두 풀 = R3 — 세 풀이 서로 겹치지 않아 정확히 가산된다.<span id="fn-pending"></span></div>
     </div>
 
     <div class="figbox reveal" style="margin-bottom:22px">
@@ -111,14 +119,14 @@
       법인이 농업법인인지는 원장에 없어 구분 못 함(명부 조달 시 정밀화).</div>
     </div>
 
-    <div class="figbox reveal">
-      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 5. 사업규모(구획) 층 — 연접 병합 후 6.67ha 이상 등재 구획</h3>
+    <div class="figbox reveal" id="t32">
+      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 5. 32칸 완성표 — 구역 4 × 이격 2 × 실경작 2 × 집계 2 (면적 km²)</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-grid"></table></div>
-      <div class="fn">구획 = 필지를 연접 거리 21m로 병합한 성분 중 6.67ha 이상.
-      이격 보수 적용 = 주거 200m 상한을 대지 필지 대리로 일률 적용한 하한.
-      필지→구획 전환에서 현행법 기준은 크게 줄고 진흥지역 전체 개방은 덜 줄어 —
+      <div class="fn">구획 = 필지를 연접 거리 21m로 병합한 성분 중 6.67ha 이상 · 실경작 전 =
+      위성 실측 필터(30%) 미적용 · 이격 보수 = 주거 200m 상한을 대지 필지 대리로 일률 적용한 하한.
+      필지→구획 전환에서 현행법 기준은 크게 줄고 진흥지역 개방 계열은 덜 줄어 —
       진흥구역 농지가 크게 뭉쳐 있어 병합 문턱을 잘 넘기기 때문 —
-      <b>사업규모 관점에서는 두 시나리오의 격차가 더 벌어진다</b>.
+      <b>사업규모 관점에서는 격차가 더 벌어진다</b>.
       <a href="map.html" style="color:var(--leaf-deep)"><b>지도에서 구획 직접 보기 →</b></a></div>
     </div>
   </div>
@@ -192,24 +200,33 @@
     임차 절차가 정비되지 않으면 조문이 있어도 움직이지 않는 물량이다.
     지역별 분포는 <a href="atlas.html" style="color:var(--leaf-deep)"><b>아틀라스</b></a>에서 필지 단위로 볼 수 있다.</p>`;
 
-  // ── 표 5: 구획 층 (1판 격자) ──
+  // ── 표 5: 32칸 완성표 (실경작 전 = @rho0.0 런) ──
   const res = await V4.data('results_v4');
   const GRID5 = [
-    ['ANCHOR', '현행법 기준'], ['ANCHOR_SB', '현행법 + 이격 보수'],
-    ['SOFT_A1', '+농업보호구역 개방'], ['SOFT_A1_SB', '+보호구역 + 이격 보수'],
-    ['SOFT_R2', '+농업진흥구역 개방'], ['SOFT_R2_SB', '+진흥구역 + 이격 보수'],
-    ['SOFT_A2', '진흥지역 전체 개방'], ['SOFT_A2_SB', '진흥 전체 + 이격 보수'],
+    ['ANCHOR', 'R0 현행법 기준'], ['ANCHOR_SB', 'R0 + 이격 보수'],
+    ['SOFT_A1', 'R1 +보호구역만'], ['SOFT_A1_SB', 'R1 + 이격 보수'],
+    ['SOFT_R2', 'R2 +진흥구역만'], ['SOFT_R2_SB', 'R2 + 이격 보수'],
+    ['SOFT_A2', 'R3 둘 다 개방'], ['SOFT_A2_SB', 'R3 + 이격 보수'],
   ];
   document.getElementById('t-grid').innerHTML = `
-    <tr><th>칸</th><th>필지 면적 km²</th><th>등재 구획 수</th><th>구획 면적 km²</th><th>참고 MW</th></tr>` +
+    <tr><th>구역 · 이격</th><th>필지<br>실경작 전</th><th>필지<br>실경작 후</th>
+        <th>구획<br>실경작 전</th><th>구획<br>실경작 후</th><th>구획 수<br>(후)</th><th>참고 MW<br>(구획·후)</th></tr>` +
     GRID5.map(([c, t]) => {
-      const r = res.runs[c];
+      const r = res.runs[c], p = res.runs[c + '@rho0.0'];
       if (!r) return '';
       return `<tr class="${c === 'ANCHOR' ? 'hl' : ''}"><td class="l">${t}</td>
-        <td>${V4.km2(r.eligible_area_km2, 2)}</td><td>${V4.n(r.n_listed)}</td>
+        <td class="ref">${p ? V4.km2(p.eligible_area_km2) : '—'}</td>
+        <td>${V4.km2(r.eligible_area_km2)}</td>
+        <td class="ref">${p ? V4.km2(p.listed_area_km2) : '—'}</td>
         <td><b>${V4.km2(r.listed_area_km2)}</b></td>
+        <td>${V4.n(r.n_listed)}</td>
         <td class="ref">${r.M_mw != null ? V4.n(Math.round(r.M_mw)) : '—'}</td></tr>`;
     }).join('');
+  // 표 1 각주: 판정 보류 병기 (T14 v7)
+  const pz2 = s.anchor.pending_zone_null;
+  if (pz2 && pz2.n) document.getElementById('fn-pending').innerHTML =
+    ` 용도지역 미상 판정 보류 ${V4.n(pz2.n)}필지 · ${V4.km2(pz2.km2, 2)} km²는 어느 조합에도
+    불포함(보수 배제 — <a href="about.html" style="color:var(--leaf-deep)">자료·한계</a>).`;
 
   // ── 시군 진단 도구 ──
   const sg = await V4.data('sgg_matrix');
