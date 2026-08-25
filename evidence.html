@@ -47,7 +47,9 @@
     <p class="eyebrow">Evidence · 전체 값 참조</p>
     <h1>근거 — 조합 매트릭스 · 풀 분해 · 소유 구성</h1>
     <p class="lede">모든 표는 정본 DB 조회값. 필지 수와 면적(km²)이 1차 산출,
-    MW는 참고 환산(0.045 kW/㎡ 가정).</p>
+    MW는 참고 환산(0.045 kW/㎡ 가정).
+    <b>R0–R3은 구역 조합 번호</b>다 — R0 현행법(농업진흥지역 밖) · R1 +농업보호구역 개방 ·
+    R2 +농업진흥구역 개방 · R3 둘 다 개방.</p>
     <div style="margin-top:14px">
       <a class="pill" href="#diag">시군별 조회</a>
       <a class="pill" href="#tables">표 1–4 매트릭스·풀·소유</a>
@@ -67,7 +69,7 @@
     <div class="figbox reveal">
       <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px">
         <div class="field" style="margin:0;min-width:240px">
-          <label>시군 선택 (전국)</label><select id="dg-sel"></select>
+          <label>시군 추가 — 여러 개 선택 가능</label><select id="dg-sel"></select>
         </div>
         <div class="field" style="margin:0;min-width:200px">
           <label>실경작 필터</label><select id="dg-ph">
@@ -75,6 +77,7 @@
             <option value="전">적용 전</option></select>
         </div>
       </div>
+      <div id="dg-chips" style="margin:2px 0 8px"></div>
       <div class="dz-cards">
         <div class="dz-card"><span class="k">R0 현행법 기준</span><div class="v" id="dg0">—</div><div class="d">농업진흥지역 밖</div></div>
         <div class="dz-card"><span class="k">R1 +보호구역</span><div class="v" id="dg1">—</div><div class="d" id="dg1d">보호구역 개방 시</div></div>
@@ -228,34 +231,70 @@
     ` 용도지역 미상 판정 보류 ${V4.n(pz2.n)}필지 · ${V4.km2(pz2.km2, 2)} km²는 어느 조합에도
     불포함(보수 배제 — <a href="about.html" style="color:var(--leaf-deep)">자료·한계</a>).`;
 
-  // ── 시군 진단 도구 ──
+  // ── 시군별 조회 — 다중 선택(칩) + 전국 전체 ──
   const sg = await V4.data('sgg_matrix');
   const sel = document.getElementById('dg-sel');
+  const chipsEl = document.getElementById('dg-chips');
   const entries = Object.entries(sg.codes).sort((a, b) => (a[1].name || '').localeCompare(b[1].name || '', 'ko'));
-  sel.innerHTML = '<option value="">— 선택 —</option>' +
+  sel.innerHTML = '<option value="">— 추가 —</option><option value="ALL">전국 전체</option>' +
     entries.map(([c, v]) => `<option value="${c}">${v.name || c}</option>`).join('');
+  let picked = [];                       // 시군 코드 목록, 또는 ['ALL']
+  const nameOf = c => c === 'ALL' ? '전국 전체' : (sg.codes[c] ? sg.codes[c].name : c);
+  function renderChips() {
+    chipsEl.innerHTML = picked.map(c =>
+      `<span class="pill" style="cursor:pointer" data-c="${c}" title="클릭하여 제거">
+        ${nameOf(c)} ✕</span>`).join(' ');
+    chipsEl.querySelectorAll('[data-c]').forEach(el => el.onclick = () => {
+      picked = picked.filter(x => x !== el.dataset.c); renderChips(); render();
+    });
+  }
+  sel.addEventListener('change', () => {
+    const v = sel.value;
+    if (!v) return;
+    if (v === 'ALL') picked = ['ALL'];
+    else {
+      if (picked[0] === 'ALL') picked = [];
+      if (!picked.includes(v)) picked.push(v);
+    }
+    sel.value = '';
+    renderChips(); render();
+  });
   const render = () => {
-    const c = sel.value, ph = document.getElementById('dg-ph').value;
-    if (!c) return;
-    const d = sg.codes[c];
-    const val = (cell) => (d[cell] && d[cell][ph]) ? d[cell][ph] : {n: 0, km2: 0};
+    const ph = document.getElementById('dg-ph').value;
+    if (!picked.length) {
+      document.getElementById('dg-vt').textContent = '시군을 추가하세요 (여러 개 가능, 전국 전체 선택 가능).';
+      ['dg0','dg1','dg2','dg3'].forEach(id => document.getElementById(id).textContent = '—');
+      return;
+    }
+    // 합계: 전국이면 정본 전국 매트릭스 값, 아니면 선택 시군 합(시군은 서로소라 정확 가산)
+    const val = (cell) => {
+      if (picked[0] === 'ALL') { const m = s.matrix['전국'][cell][ph]; return {n: m.n, km2: m.km2}; }
+      let n = 0, km2 = 0;
+      picked.forEach(c => { const d = sg.codes[c];
+        if (d && d[cell] && d[cell][ph]) { n += d[cell][ph].n; km2 += d[cell][ph].km2; } });
+      return {n, km2};
+    };
     ['R0', 'R1', 'R2', 'R3'].forEach((cell, i) => {
       const v = val(cell);
       document.getElementById('dg' + i).innerHTML =
-        `${V4.km2(v.km2, 2)}<small style="font-size:13px;color:var(--muted)"> km²</small>`;
+        `${V4.km2(v.km2, picked[0] === 'ALL' ? 1 : 2)}<small style="font-size:13px;color:var(--muted)"> km²</small>`;
     });
     const r0 = val('R0'), r1 = val('R1'), r2 = val('R2'), r3 = val('R3');
-    const dProt = r1.km2 - r0.km2, dProm = r2.km2 - r0.km2;
+    // 전국은 정본 풀 값(㎡ 차분) 직접 사용 — 반올림 km²끼리 빼면 0.1 오차
+    const dProt = picked[0] === 'ALL' ? s.pools['전국']['보호구역'][ph].km2 : r1.km2 - r0.km2;
+    const dProm = picked[0] === 'ALL' ? s.pools['전국']['진흥구역'][ph].km2 : r2.km2 - r0.km2;
     const bigger = dProm >= dProt ? '농업진흥구역' : '농업보호구역';
-    const dMax = Math.max(dProm, dProt);
+    const label = picked[0] === 'ALL' ? '전국 전체'
+      : picked.map(nameOf).slice(0, 6).join(' · ') + (picked.length > 6 ? ` 외 ${picked.length - 6}곳` : '')
+        + (picked.length > 1 ? ' (합계)' : '');
+    const mapLink = picked[0] === 'ALL' ? ''
+      : ` — <a href="map.html?sgg=${picked.join(',')}" style="color:var(--leaf-deep)"><b>지도에서 이 선택의 구획 보기 →</b></a>`;
     document.getElementById('dg-vt').innerHTML =
-      `<b>${d.name}</b> — 현행법 기준 ${V4.km2(r0.km2, 2)} km² (${V4.n(r0.n)}필지).
-       두 제도 변수 중 <b>${bigger}</b> 개방의 효과가 커서 +${V4.km2(dMax, 2)} km²가 더해지고,
+      `<b>${label}</b> — 현행법 기준 ${V4.km2(r0.km2, 2)} km² (${V4.n(r0.n)}필지).
+       두 제도 변수 중 <b>${bigger}</b> 개방의 효과가 커서 +${V4.km2(Math.max(dProm, dProt), 2)} km²가 더해지고,
        둘 다 개방하면 ${V4.km2(r3.km2, 2)} km²가 된다.
-       (보호구역 풀 +${V4.km2(dProt, 2)} · 진흥구역 풀 +${V4.km2(dProm, 2)}, 실경작 ${ph === '후' ? '적용 후' : '적용 전'})
-       — <a href="map.html?sgg=${c}" style="color:var(--leaf-deep)"><b>지도에서 이 시군의 구획 보기 →</b></a>`;
+       (보호구역 풀 +${V4.km2(dProt, 2)} · 진흥구역 풀 +${V4.km2(dProm, 2)}, 실경작 ${ph === '후' ? '적용 후' : '적용 전'}, 필지층)${mapLink}`;
   };
-  sel.addEventListener('change', render);
   document.getElementById('dg-ph').addEventListener('change', render);
 
   V4.footer();

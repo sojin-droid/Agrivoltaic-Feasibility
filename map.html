@@ -80,7 +80,8 @@
     <div id="map"></div>
     <div class="panel">
       <h3>시군 · 시나리오</h3>
-      <div class="field" style="margin-bottom:10px"><label>시군 선택 (전국)</label><select id="sggSel"></select></div>
+      <div class="field" style="margin-bottom:6px"><label>시군 추가 — 여러 개 선택 가능</label><select id="sggSel"></select></div>
+      <div id="mapChips" style="margin-bottom:8px"></div>
       <div class="scn-btns" id="scnBtns"></div>
       <div class="sb-toggle" id="sbTgl">
         <button data-sb="0" class="on">이격 미적용</button>
@@ -143,11 +144,31 @@
   const entries = Object.keys(names.codes)
     .map(c => [c, (names.codes[c] && names.codes[c].name) || c])
     .sort((a, b) => a[1].localeCompare(b[1], 'ko'));
-  sel.innerHTML = '<option value="">— 선택 —</option>' +
+  sel.innerHTML = '<option value="">— 추가 —</option>' +
     entries.map(([c, n]) => `<option value="${c}">${n}</option>`).join('');
-  // URL 파라미터로 초기 시군 지정 (근거 탭 '지도에서 보기' 연동): map.html?sgg=44270
+  // 다중 선택 (칩) — 전국 일괄 로드는 데이터량 제약으로 미지원(시군 단위 열람)
+  let picked = [];
+  const chipsEl = document.getElementById('mapChips');
+  const nameOf = c => (names.codes[c] && names.codes[c].name) || c;
+  function renderChips() {
+    chipsEl.innerHTML = picked.map(c =>
+      `<span class="pill" style="cursor:pointer" data-c="${c}" title="클릭하여 제거">${nameOf(c)} ✕</span>`).join(' ');
+    chipsEl.querySelectorAll('[data-c]').forEach(el => el.onclick = () => {
+      picked = picked.filter(x => x !== el.dataset.c); renderChips(); render(true);
+    });
+  }
+  sel.onchange = () => {
+    const v = sel.value;
+    if (v && !picked.includes(v)) { picked.push(v); renderChips(); render(true); }
+    sel.value = '';
+  };
+  // URL 파라미터 (근거 탭 연동): map.html?sgg=44270 또는 ?sgg=44270,46820
   const q = new URLSearchParams(location.search).get('sgg');
-  if (q && names.codes[q]) { sel.value = q; curSgg = q; setTimeout(() => render(true), 50); }
+  if (q) {
+    picked = q.split(',').filter(c => names.codes[c]);
+    renderChips();
+    setTimeout(() => render(true), 50);
+  }
 
   const btns = document.getElementById('scnBtns');
   btns.innerHTML = SCN.map(([c, t, s]) =>
@@ -163,55 +184,64 @@
       x.classList.toggle('on', +x.dataset.sb === curSB));
     render();
   });
-  sel.onchange = () => { curSgg = sel.value; render(true); };
-
-  function stats(locN) {
+  function stats() {
     const cell = cellOf();
-    const loc = curSgg && idx && idx.sgg[curSgg] && idx.sgg[curSgg][cell];
     const nat = res.runs[cell];
-    document.getElementById('stats').innerHTML =
-      (loc ? `<div class="stat-line"><span>이 시군 등재 구획</span><span class="v">${V4.n(loc.k)}개 · ${V4.km2(loc.km2)} km²</span></div>`
-           : (locN != null ? `<div class="stat-line"><span>이 시군 등재 구획 (걸침 중복 포함)</span><span class="v">${V4.n(locN)}개</span></div>` : '')) +
+    let locLine = '';
+    if (picked.length && idx) {
+      let k = 0, km2 = 0, any = false;
+      picked.forEach(c => { const e = idx.sgg[c] && idx.sgg[c][cell];
+        if (e) { k += e.k; km2 += e.km2; any = true; } });
+      if (any || picked.length) locLine =
+        `<div class="stat-line"><span>선택 시군 등재 구획${picked.length > 1 ? ' (합계)' : ''}</span>
+         <span class="v">${V4.n(k)}개 · ${V4.km2(km2)} km²</span></div>`;
+    }
+    document.getElementById('stats').innerHTML = locLine +
       (nat ? `<div class="stat-line"><span>전국 (동일 칸)</span><span class="v">${V4.n(nat.n_listed)}구획 · ${V4.km2(nat.listed_area_km2)} km²</span></div>` +
              (nat.M_mw != null ? `<div class="stat-line"><span>참고 MW (전국·가정)</span><span class="v">${V4.n(Math.round(nat.M_mw))}</span></div>` : '') : '');
   }
 
   async function render(fit) {
-    stats(null);
-    if (!curSgg) return;
-    if (idx && !idx.sgg[curSgg]) {          // 색인에 없는 시군 = 어느 시나리오에도 등재 구획 없음
-      if (layerSel) { map.removeLayer(layerSel); layerSel = null; }
-      if (layerRef) { map.removeLayer(layerRef); layerRef = null; }
-      document.getElementById('hint').textContent =
-        '이 시군에는 어떤 시나리오에서도 등재 구획(6.67ha 이상 연접 병합)이 없습니다.';
+    stats();
+    if (layerSel) { map.removeLayer(layerSel); layerSel = null; }
+    if (layerRef) { map.removeLayer(layerRef); layerRef = null; }
+    if (!picked.length) {
+      document.getElementById('hint').textContent = '시군을 추가하면 위성 지도로 이동합니다 (여러 개 가능).';
       return;
     }
     const cell = cellOf();
-    const [dSel, dRef] = await Promise.all([fc(curSgg, cell),
-      cell === 'ANCHOR' ? null : fc(curSgg, 'ANCHOR')]);
-    stats(dSel ? dSel.features.length : null);
-    if (layerSel) { map.removeLayer(layerSel); layerSel = null; }
-    if (layerRef) { map.removeLayer(layerRef); layerRef = null; }
-    if (dRef && dRef.features.length) {
-      layerRef = L.geoJSON(dRef, {style: {color: '#FF3B30', weight: 2, fill: false, opacity: .95}}).addTo(map);
+    const live = picked.filter(c => !idx || idx.sgg[c]);      // 구획 있는 시군만 로드
+    const none = picked.filter(c => idx && !idx.sgg[c]);
+    const pairs = await Promise.all(live.map(c => Promise.all([
+      fc(c, cell), cell === 'ANCHOR' ? null : fc(c, 'ANCHOR')])));
+    const featSel = [], featRef = [];
+    pairs.forEach(([a, b]) => {
+      if (a) featSel.push(...a.features);
+      if (b) featRef.push(...b.features);
+    });
+    if (featRef.length) {
+      layerRef = L.geoJSON({type: 'FeatureCollection', features: featRef},
+        {style: {color: '#FF3B30', weight: 2, fill: false, opacity: .95}}).addTo(map);
     }
-    if (dSel && dSel.features.length) {
-      layerSel = L.geoJSON(dSel, {
+    if (featSel.length) {
+      layerSel = L.geoJSON({type: 'FeatureCollection', features: featSel}, {
         style: f => ({color: '#B8860B', weight: f.properties.sp ? 1.8 : .8,
                       dashArray: f.properties.sp ? '5 4' : null,
                       fillColor: '#FFD84D', fillOpacity: .55}),
         onEachFeature: (f, ly) => ly.bindPopup(
-          `구획 #${f.properties.id} — 전체 ${V4.km2(f.properties.a, 2)} km² · 이 시군 구간 ${V4.n(f.properties.n)}필지` +
+          `구획 #${f.properties.id} — 전체 ${V4.km2(f.properties.a, 2)} km² · 시군 구간 ${V4.n(f.properties.n)}필지` +
           (f.properties.sp ? ' · 시군 경계 걸침' : ''))
       }).addTo(map);
       if (fit) map.fitBounds(layerSel.getBounds().pad(0.08));
-      document.getElementById('hint').textContent =
-        '시나리오 버튼으로 전환하며 비교. 노랑 = 선택 시나리오 구획, 빨강 외곽선 = 현행법 기준.';
-    } else {
-      document.getElementById('hint').textContent =
-        dSel ? '이 칸에는 이 시군의 등재 구획이 없습니다.' : '이 시군 데이터가 아직 생성 중입니다 (export 진행 중).';
-      if (fit && layerRef) map.fitBounds(layerRef.getBounds().pad(0.08));
+    } else if (fit && layerRef) {
+      map.fitBounds(layerRef.getBounds().pad(0.08));
     }
+    let hint = featSel.length
+      ? '시나리오 버튼으로 전환하며 비교. 노랑 = 선택 시나리오 구획, 빨강 외곽선 = 현행법 기준.'
+      : '이 칸에는 선택 시군의 등재 구획이 없습니다.';
+    if (none.length) hint += ` (${none.map(nameOf).join('·')}: 어떤 시나리오에도 등재 구획 없음)`;
+    if (picked.length > 12) hint += ' — 선택이 많으면 로딩이 느려질 수 있습니다.';
+    document.getElementById('hint').textContent = hint;
   }
 
   V4.footer();
