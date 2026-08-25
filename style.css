@@ -19,7 +19,9 @@
   --white:#FFFFFF;
   --input:#1B6EC2;       /* 계산기 입력값(파란 글자) — Excel 관례 */
 
-  --serif:'Source Serif 4','Noto Serif KR', serif;   /* 영문=본사 서체, 한글=Noto 폴백 */
+  /* 영문 표제 = 본사 세리프(Source Serif 4), 한글 표제 = 고딕(Noto Sans KR) —
+     한글 세리프(명조계) 삐침이 본문 고딕과 어긋난다는 피드백(2026-08-25)으로 교체 */
+  --serif:'Source Serif 4','Noto Sans KR', sans-serif;
   --sans:'Inter','Noto Sans KR', sans-serif;
   --mono:'JetBrains Mono', monospace;                 /* 본사 --mono 정렬 */
   --maxw:1160px;
