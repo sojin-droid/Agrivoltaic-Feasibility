@@ -135,11 +135,12 @@
   </div>
 </section>
 
-<!-- ═══════════ 조문 검토 ═══════════ -->
-<section style="padding:56px 0 30px">
+<!-- ═══════════ 조문 검토 (요약 — 상세는 간척 아틀라스) ═══════════ -->
+<section style="padding:56px 0 30px" id="ord">
   <div class="wrap">
     <div class="sec-head"><div><p class="eyebrow">Ordinance Review</p>
-    <h2>간척 한정 조문 검토</h2></div></div>
+    <h2>간척 한정 조문 검토 — 요약</h2></div>
+    <a class="more" href="atlas.html">상세 분석(지도·지구별) → 간척 아틀라스</a></div>
     <div class="figbox reveal"><div id="ordinance-story" style="font-size:14.5px;word-break:keep-all;line-height:1.8"></div></div>
   </div>
 </section>
@@ -188,24 +189,19 @@
   const outC = og.find(g => g.group === '간척지 외 법인');
   const inO = og.find(g => g.group === '간척지 내 비법인');
   document.getElementById('ordinance-story').innerHTML = `
-    <p>농업법인의 영농형 태양광을 간척지 등으로 한정하는 조문이 추진될 경우, 표 4의 세 유형는
-    서로 다른 처지에 놓인다<sup class="fnref">[3]</sup><sup class="fnref">[12]</sup>.
-    관련 법 구조: 영농형 대상 농지의 부령 위임<sup class="fnref">[7]</sup> ·
+    <p>농업법인의 영농형 태양광을 간척지 등으로 한정하는 조문이 추진되고 있다. 표 4를 조문
+    관점에서 읽으면<sup class="fnref">[3]</sup><sup class="fnref">[12]</sup>: 간척지 내 법인
+    소유 ${V4.km2(inC.km2)} km²는 즉시 실행 후보, 간척지 내 비법인 소유 ${V4.km2(inO.km2)} km²는
+    임차 공급원<sup class="fnref">[18]</sup>, 간척지 외 법인 소유 ${V4.km2(outC.km2)} km²
+    (현행 적격 ${V4.km2(outC.anchor_km2)} km²)는 조문 시행 시 쓸 수 없게 되는 땅이다.
+    단, 간척지 내 법인 소유도 대부분 농업진흥구역 안이라 현행법 가능분은
+    ${V4.km2(inC.anchor_km2)} km²에 그친다 — 진흥구역 내 허용의 동시 입법이 성립 조건이다.</p>
+    <p style="margin-top:10px">유형별 처지·지구별 분포·활용 가능 목록의 <b>상세 분석은
+    <a href="atlas.html" style="color:var(--leaf-deep)">간척 아틀라스</a></b>에 있다(같은 수치의
+    서사·지도판). 관련 법 구조: 부령 위임<sup class="fnref">[7]</sup> ·
     보호구역 내 소규모 허용 선례<sup class="fnref">[8]</sup> ·
     우량농지 제한의 일시사용 적용<sup class="fnref">[15]</sup> ·
-    재생에너지지구 경로<sup class="fnref">[10]</sup><sup class="fnref">[16]</sup>.</p>
-    <p style="margin-top:10px"><b>① 간척에 땅이 있는 법인(${V4.km2(inC.km2)} km²)은 자기 지구에서 바로 실행할 수 있다.</b>
-    다만 이 땅의 대부분(${V4.km2(inC.zones['진흥구역'].km2)} km²)이 농업진흥구역 안에 있어,
-    현행법으로 가능한 면적은 ${V4.km2(inC.anchor_km2)} km²뿐이다 —
-    진흥구역 내 허용이 함께 입법되지 않으면 조문은 실행 수단이 없다.</p>
-    <p style="margin-top:10px"><b>② 간척지 외에 땅이 있는 법인(${V4.km2(outC.km2)} km²)은 자기 땅을 쓸 수 없게 된다.</b>
-    이들의 현행법 적격 면적은 ${V4.km2(outC.anchor_km2)} km² — 조문 시행 시 이 면적 대신
-    간척지를 임차해야 하므로, 접근할 수 있는 규모가 ${V4.km2(inC.anchor_km2)} km²
-    (간척지 내 법인 소유 중 현행 적격) 수준으로 줄어든다.</p>
-    <p style="margin-top:10px"><b>③ 간척지 내 비법인 소유(${V4.km2(inO.km2)} km²)가 임차 공급원이다.</b>
-    간척지 외 법인이 사업하려면 이 땅의 사용승낙·임차<sup class="fnref">[18]</sup>가 필요하다 —
-    임차 절차가 정비되지 않으면 조문이 있어도 움직이지 않는 물량이다.
-    지역별 분포는 <a href="atlas.html" style="color:var(--leaf-deep)"><b>아틀라스</b></a>에서 필지 단위로 볼 수 있다.</p>`;
+    재생에너지지구 경로<sup class="fnref">[10]</sup><sup class="fnref">[16]</sup>.</p>`;
 
   // ── 표 5: 32칸 완성표 (실경작 전 = @rho0.0 런) ──
   const res = await V4.data('results_v4');
