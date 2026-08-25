@@ -114,6 +114,7 @@
   구획으로 이동한다.</p>
 
   <figure class="art-fig">
+    <div id="candchips" style="margin-bottom:8px;font-size:12px"><span style="color:var(--muted);font-family:var(--mono);font-size:11px;margin-right:6px">빠른 이동</span></div>
     <div id="candmap"></div>
     <div class="cand-leg">
       <span class="sw" style="background:rgba(255,155,61,.85);border:1px solid #C96A00"></span>간척 지구의 특구급 구획 (주황) ·
@@ -245,11 +246,23 @@
     }
     return cache[k];
   }
+  // 지역 그룹: 간척 구획 = 지구명, 비간척 = 시군 이름 (셀별 구획 번호 → 그룹)
+  const groupLabel = b => b.reclaim_pct >= 50 ? `${(b.district || '간척').replace('지구', '')} (${nameOf(b.sgg).split(' ').pop()})`
+                                              : nameOf(b.sgg).split(' ').pop();
+  const groupOf = {
+    SOFT_R2_CP: Object.fromEntries(N.cp_big.map(b => [b.id, groupLabel(b)])),
+    SOFT_R2_CP_SB: Object.fromEntries((N.cp_big_sb || []).map(b => [b.id, groupLabel(b)])),
+  };
+  const chipOrder = [];            // 규모 순 그룹 목록 (미적용 기준)
+  N.cp_big.forEach(b => { const g = groupLabel(b); if (!chipOrder.includes(g)) chipOrder.push(g); });
+
   let curSB = 0, layerGroup = null;
   const boundsById = {};
+  let groupBounds = {};
   async function renderMap() {
     if (layerGroup) map.removeLayer(layerGroup);
     layerGroup = L.layerGroup().addTo(map);
+    groupBounds = {};
     const cell = curSB ? 'SOFT_R2_CP_SB' : 'SOFT_R2_CP';
     const sggs = Object.keys(idx.sgg).filter(c => idx.sgg[c][cell] && idx.sgg[c][cell].k > 0);
     const datas = await Promise.all(sggs.map(c => fc(c, cell)));
@@ -271,10 +284,25 @@
         ly.addTo(layerGroup);
         const id = f.properties.id;
         boundsById[id] = boundsById[id] ? boundsById[id].extend(ly.getBounds()) : ly.getBounds();
+        const grp = groupOf[cell][id];
+        if (grp) groupBounds[grp] = groupBounds[grp]
+          ? groupBounds[grp].extend(ly.getBounds()) : L.latLngBounds(ly.getBounds());
       });
     });
   }
   await renderMap();
+
+  // 빠른 이동 칩 — 지역 이름 클릭 = 해당 특구급 구획(들)로 이동
+  const chipsEl = document.getElementById('candchips');
+  chipsEl.insertAdjacentHTML('beforeend', chipOrder.map(g =>
+    `<span class="pill" style="cursor:pointer" data-g="${g}">${g}</span>`).join(' '));
+  chipsEl.querySelectorAll('[data-g]').forEach(el => el.onclick = () => {
+    const bd = groupBounds[el.dataset.g];
+    if (bd) {
+      map.fitBounds(bd.pad(0.25));
+      document.getElementById('candmap').scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
+  });
   document.querySelectorAll('#sbTgl button').forEach(b => b.onclick = async () => {
     curSB = +b.dataset.sb;
     document.querySelectorAll('#sbTgl button').forEach(x =>
