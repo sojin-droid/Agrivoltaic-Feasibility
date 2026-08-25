@@ -113,8 +113,9 @@ save('sgg_matrix.json', {'generated': GEN, 'codes': sgg,
 
 # ── 3. meta_v4: 계보 (각 페이지 푸터의 근거) ────────────────────────────────
 con = Q.db()
-lineage = [{'tbl': t, 'built': str(b), 'source': s}
-           for t, b, s in con.execute("SELECT tbl, built, source FROM meta_versions").fetchall()]
+lineage = [{'tbl': t, 'built': str(b), 'source': s, 'layer': (l or '')}
+           for t, b, s, l in con.execute(
+               "SELECT tbl, built, source, layer FROM meta_versions ORDER BY layer, tbl").fetchall()]
 con.close()
 save('meta_v4.json', {'generated': GEN,
                       'data_generation': 'v4 · 2판 (지목 복구 적용, ADR-0035 · 2026-08-25)',

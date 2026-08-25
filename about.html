@@ -62,17 +62,21 @@
         <tr><td class="l"><b>소유 구분</b></td><td class="l">지적 원장<sup class="fnref">[1]</sup>의 소유 유형 구분(법인/개인/국공유 등)까지만 —
           개인 식별 아님. 법인이 농업법인인지는 원장에 없다(명부 조달 시 정밀화).</td></tr>
         <tr><td class="l"><b>공간 미분해 17종</b></td><td class="l">하천·문화유산·군사기지 등 17종 배제 항목은
-          공간 분해 레이어 미확보로 이 판에 반영되지 않음 — 강한 배제(HARD) 계열 값은 하한.</td></tr>
+          공간 분해 레이어 미확보로 이 판에 반영되지 않음 — 강한 배제(HARD) 계열 값은 하한<sup class="fnref">[12]</sup>.</td></tr>
+        <tr><td class="l"><b>지목 잔여 결측</b></td><td class="l" id="cav-jimok">원본 지적자료 1단계 복구를
+          적용한 뒤에도 지목을 확인할 수 없는 필지가 남아 있으며, 이들은 집계에서 제외하고
+          별도 관리한다 — 2단계 재조회 대상.</td></tr>
         <tr><td class="l"><b>실경작 판정</b></td><td class="l">팜맵 위성 실측<sup class="fnref">[2]</sup>의 경작 확인이며 경작 의사·권리가 아니다.
           실측이 없는 필지는 대장 배분 잔존분으로 보수 처리.</td></tr>
         <tr><td class="l"><b>용도지역 미상 — 판정 보류</b></td><td class="l" id="cav-pending">지목은
           복구됐으나 용도지역 정보가 결측인 필지는 배제 3종 해당 여부를 확인할 수 없어
-          기준값에서 보수적으로 제외하고 별도 병기한다 — 기준값의 잠재적 상향 여지.</td></tr>
+          기준값에서 보수적으로 제외하고 별도 병기한다<sup class="fnref">[14]</sup> — 기준값의 잠재적 상향 여지.</td></tr>
         <tr><td class="l"><b>이격거리</b></td><td class="l">상한제(200m)<sup class="fnref">[11]</sup>를 전국 일률
           적용한 보수 하한으로 병기(근거 표 5·지도 토글) — 주택 판정은 대지 필지 대리, 측정 방법
           고시 제정 시 정밀화. 구판의 시군 조례 개별 실측분은 검증 실패로 전량 폐기.</td></tr>
-        <tr><td class="l"><b>계통 여유</b></td><td class="l">읍면동 단위 전량 수집 완료했으나 일부 지역은
-          원천 비공개(NULL)로 남는다 — 해당 물량은 상한으로 별도 병기.</td></tr>
+        <tr><td class="l"><b>계통(전력망) 여유</b></td><td class="l">이 사이트의 범위 밖 — 면적·구획까지만
+          다룬다. 계통 여유는 읍면동 단위로 정본 DB에 수집돼 있으나<sup class="fnref">[12]</sup>
+          일부 지역이 원천 비공개(알 수 없음)로 남아, 검증·병기 방식을 정리한 후속 판에서 공개한다.</td></tr>
       </table></div>
     </div>
   </div>
@@ -87,10 +91,13 @@
 
 <section style="padding:56px 0 30px">
   <div class="wrap">
-    <div class="sec-head"><div><p class="eyebrow">Lineage</p><h2>데이터 계보</h2></div></div>
+    <div class="sec-head"><div><p class="eyebrow">Lineage</p><h2>데이터 계보</h2></div>
+    <span style="font-size:12.5px;color:var(--muted)">층위: L0 원시 취득 → L1 정제·판정 → L2 시나리오·산출</span></div>
     <div class="figbox reveal">
       <div style="overflow-x:auto"><table class="v4" id="t-lineage"></table></div>
-      <div class="fn">이 표는 정본 DB의 자산 버전 기록을 그대로 출력한 것이다 (export 시점 기준).</div>
+      <div class="fn">이 표는 정본 DB의 자산 버전 기록을 <b>내부 기록 원문 그대로</b> 출력한 것이다
+      (export 시점 기준) — 재현·감사용이라 내부 단계 번호와 파일 경로가 그대로 남아 있다.
+      일반 열람용 출처 요약은 페이지 하단의 출처 절.</div>
     </div>
   </div>
 </section>
@@ -119,10 +126,26 @@
      발전용량(MW) 환산은 계수 가정이 얹힌 파생값이기 때문<sup class="fnref">[13]</sup>. ${s.unit_note}.<br>
      현행법 기준값(상수)<sup class="fnref">[14]</sup>: <b>${V4.n(s.anchor.n)}필지 · ${V4.km2(s.anchor.km2, 2)} km²</b> —
      ${s.anchor.def}. ${s.anchor.touchstone}.`;
+  const LAYER_NM = {'L0': 'L0 · 원시 자료 취득', 'L1': 'L1 · 정제·판정', 'L2': 'L2 · 시나리오·산출'};
+  let lastLayer = null;
   document.getElementById('t-lineage').innerHTML =
-    `<tr><th style="text-align:left">자산</th><th style="text-align:left">구축</th><th style="text-align:left">출처·방법</th></tr>` +
-    m.lineage.map(r => `<tr><td class="l" style="white-space:nowrap"><b>${r.tbl}</b></td>
-      <td class="l" style="white-space:nowrap">${r.built}</td><td class="l">${r.source}</td></tr>`).join('');
+    `<tr><th style="text-align:left">자산</th><th style="text-align:left">구축</th><th style="text-align:left">출처·방법 (내부 기록 원문)</th></tr>` +
+    m.lineage.map(r => {
+      let head = '';
+      if (r.layer !== lastLayer) {
+        lastLayer = r.layer;
+        head = `<tr><td class="l" colspan="3" style="background:var(--sky);font-family:var(--mono);
+          font-size:11px;color:var(--leaf-deep);letter-spacing:.06em">${LAYER_NM[r.layer] || r.layer || '기타'}</td></tr>`;
+      }
+      return head + `<tr><td class="l" style="white-space:nowrap"><b>${r.tbl}</b></td>
+      <td class="l" style="white-space:nowrap">${r.built}</td><td class="l">${r.source}</td></tr>`;
+    }).join('');
+  // 지목 잔여 결측 — 수치는 데이터에서
+  try {
+    const fu = (await V4.data('funnel_v4')).national;
+    document.getElementById('cav-jimok').innerHTML +=
+      ` 현재 잔여: <b>${V4.n(fu['_지목결측'])}필지</b>.`;
+  } catch (e) {}
   V4.footer();
 })();
 </script>
