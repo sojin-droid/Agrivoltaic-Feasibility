@@ -70,10 +70,10 @@
 
 <div class="wrap">
   <div style="padding-top:26px">
-    <p class="eyebrow">Map · 시나리오를 눈으로</p>
-    <h1 style="font-size:clamp(24px,3vw,34px)">시나리오를 바꾸면 <em>사업규모 구획</em>이 어떻게 달라지나</h1>
+    <p class="eyebrow">Map · 구획 지도</p>
+    <h1 style="font-size:clamp(24px,3vw,34px)">시나리오별 등재 구획 지도</h1>
     <p class="lede" style="margin-top:6px">등재 구획 = 연접 병합(τ=21m) 후 6.67ha 이상.
-    위성 배경에서 시군을 고르고 시나리오를 눌러가며 비교 — 금색 외곽선은 현행법 기준.</p>
+    시군 선택 후 시나리오 버튼으로 전환 — 노랑 = 선택 시나리오, 빨강 외곽선 = 현행법 기준.</p>
   </div>
 
   <div class="map-wrap">
@@ -88,8 +88,8 @@
       </div>
       <div id="stats"></div>
       <div class="leg">
-        <span class="sw" style="background:rgba(90,158,67,.55);border:1px solid #3E7A2E"></span>선택 시나리오 등재 구획<br>
-        <span class="sw" style="border:2px solid #FFC436;background:transparent"></span>현행법(이격 미적용) 기준 외곽선<br>
+        <span class="sw" style="background:rgba(255,216,77,.75);border:1px solid #B8860B"></span>선택 시나리오 등재 구획 (노랑)<br>
+        <span class="sw" style="border:2px solid #FF3B30;background:transparent"></span>현행법(이격 미적용) 기준 외곽선 (빨강)<br>
         구획 클릭 = 면적·필지 수 · 점선 = 시군 경계 걸침 구획
       </div>
       <div class="hint" id="hint">시군을 선택하면 위성 지도로 이동합니다.</div>
@@ -182,20 +182,20 @@
     if (layerSel) { map.removeLayer(layerSel); layerSel = null; }
     if (layerRef) { map.removeLayer(layerRef); layerRef = null; }
     if (dRef && dRef.features.length) {
-      layerRef = L.geoJSON(dRef, {style: {color: '#FFC436', weight: 1.6, fill: false, opacity: .95}}).addTo(map);
+      layerRef = L.geoJSON(dRef, {style: {color: '#FF3B30', weight: 2, fill: false, opacity: .95}}).addTo(map);
     }
     if (dSel && dSel.features.length) {
       layerSel = L.geoJSON(dSel, {
-        style: f => ({color: '#3E7A2E', weight: f.properties.sp ? 1.8 : .8,
+        style: f => ({color: '#B8860B', weight: f.properties.sp ? 1.8 : .8,
                       dashArray: f.properties.sp ? '5 4' : null,
-                      fillColor: '#5A9E43', fillOpacity: .5}),
+                      fillColor: '#FFD84D', fillOpacity: .55}),
         onEachFeature: (f, ly) => ly.bindPopup(
           `구획 #${f.properties.id} — 전체 ${V4.km2(f.properties.a, 2)} km² · 이 시군 구간 ${V4.n(f.properties.n)}필지` +
           (f.properties.sp ? ' · 시군 경계 걸침' : ''))
       }).addTo(map);
       if (fit) map.fitBounds(layerSel.getBounds().pad(0.08));
       document.getElementById('hint').textContent =
-        '시나리오 버튼을 눌러가며 구획 변화를 비교하세요. 금색 외곽선 = 현행법 기준.';
+        '시나리오 버튼으로 전환하며 비교. 노랑 = 선택 시나리오 구획, 빨강 외곽선 = 현행법 기준.';
     } else {
       document.getElementById('hint').textContent =
         dSel ? '이 칸에는 이 시군의 등재 구획이 없습니다.' : '이 시군 데이터가 아직 생성 중입니다 (export 진행 중).';
