@@ -76,7 +76,7 @@
     <p class="eyebrow">Candidates · 소유 필터 구획</p>
     <h1>특구 후보 — 법인·국공유 필지만으로 성립하는 구획</h1>
     <p class="lede">특구급 = 재생에너지지구<sup class="fnref">[10]</sup><sup class="fnref">[16]</sup>급
-    사업 규모 50MW 이상(연접 농지 <span id="h-th">—</span>ha부터<sup class="fnref">[13]</sup>).<br>
+    사업 규모 50MW 이상(연접 농지 <span id="h-th">—</span>㎡부터<sup class="fnref">[13]</sup>).<br>
     이 페이지는 개인 소유 필지를 병합에서 배제하고 — <b>법인·국공유 필지만으로</b> —
     재클러스터링한 결과<sup class="fnref">[12]</sup>: 개인 동의의 대규모 조직화 없이
     성립하는 물량의 소재와 규모.</p>
@@ -89,7 +89,7 @@
 <div class="wrap art" style="max-width:860px">
 
   <h2 class="art-h">1. 소유 구성 — 특구급 구획의 개인 소유 비중</h2>
-  <p>사업규모 구획(연접 21m 병합, 6.67ha 이상)은 필지 소유를 구분하지 않고 병합한
+  <p>사업규모 구획(연접 21m 병합, 66,667㎡ 이상)은 필지 소유를 구분하지 않고 병합한
   결과 — 구획 하나가 수백 명의 개인 소유주로 구성될 수 있음.<br>
   실제로 현행법 기준 특구급 구획 <b id="c-a50">—</b>곳은 면적의 <b id="c-indiv">—</b>%가
   개인 소유 필지<sup class="fnref">[1]</sup>.<br>
@@ -99,7 +99,7 @@
   <p>결과: 현행법에서 특구급은 <b id="c-cp-a50">—</b>곳(제주 서귀포,
   <span id="c-cp-a-mw">—</span>MW)·100MW급 <span id="c-cp-a100">—</span>곳으로 감소.<br>
   농업진흥구역 개방 시 <b id="c-cp-r50">—</b>곳(특구급 합 <span id="c-cp-r-mw50">—</span>MW)으로
-  증가.<br>6.67ha 이상 등재 전체는 <span id="c-cp-r-km2">—</span> km²
+  증가.<br>66,667㎡ 이상 등재 전체는 <span id="c-cp-r-km2">—</span> km²
   (<span id="c-cp-r-mw">—</span>MW).</p>
 
   <figure class="art-fig">
@@ -188,7 +188,7 @@
   const R = N.runs;
   const nameOf = c => (names.codes[c] && names.codes[c].name) || c;
   const put = (id, v) => document.getElementById(id).textContent = v;
-  put('h-th', N.threshold.mw50_ha);
+  put('h-th', V4.n(N.threshold.mw50_m2));
   put('c-a50', V4.n(R.ANCHOR.ge50));
   put('c-indiv', V4.n(N.big_composition.ANCHOR.indiv_share_pct));
   put('c-cp-a50', V4.n(R.ANCHOR_CP.ge50));

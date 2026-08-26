@@ -126,7 +126,7 @@
     <div id="story-steps" style="display:flex;flex-direction:column;gap:12px"></div>
 
     <div class="fn" style="margin-top:14px">특구급 = 재생에너지지구급 사업 규모 50–100MW
-    = 연접 농지 <span id="th50">—</span>–<span id="th100">—</span>ha
+    = 연접 농지 <span id="th50">—</span>–<span id="th100">—</span>㎡
     (환산 0.045 kW/㎡ = 설치밀도 0.225 × 모듈효율 0.20<sup class="fnref">[13]</sup>) ·
     소유 필터 = 법인·국공유 필지만 병합(개인·종중 등 배제, 결재 확정 정의)<sup class="fnref">[12]</sup> ·
     이격 = 주거 200m 상한의 보수 하한<sup class="fnref">[11]</sup> ·
@@ -153,7 +153,7 @@
           지목이 농지라도 실제로 농사를 짓는지는 별개.<br>위성 판독<sup class="fnref">[2]</sup>으로
           경작이 확인된 면적 비율 30% 이상인 필지만 "실경작 확인"으로 집계함.</p>
           <p style="font-size:13.5px;margin:0;word-break:keep-all"><b>사업규모 구획</b> —
-          서로 21m 이내로 이어진 필지들을 하나로 병합한 덩어리.<br>6.67ha(약 3MW 상당) 이상이면
+          서로 21m 이내로 이어진 필지들을 하나로 병합한 덩어리.<br>66,667㎡(약 3MW 상당) 이상이면
           사업이 성립하는 규모로 보아 "등재 구획"으로 집계함<sup class="fnref">[12]</sup>.</p>
         </div>
       </div>
@@ -307,8 +307,8 @@
   const kk = m2 => V4.km2(m2 / 1e6);
   const cpBigRec = N.cp_big.filter(b => b.reclaim_pct >= 50).length;
   const cpAnchorTop = N.cp_big_anchor[0] || {mw: 0};
-  document.getElementById('th50').textContent = N.threshold.mw50_ha;
-  document.getElementById('th100').textContent = N.threshold.mw100_ha;
+  document.getElementById('th50').textContent = V4.n(N.threshold.mw50_m2);
+  document.getElementById('th100').textContent = V4.n(N.threshold.mw100_m2);
 
   document.getElementById('one-liner').innerHTML =
     `농업진흥구역이 재생에너지지구로 개방되면, 개인 필지 없이 — <b>법인·국공유 필지만으로</b> —
@@ -318,10 +318,10 @@
   const STEPS = [
     ['①', '현재 수준', `현행법(농업진흥지역 밖 한정)으로 가능한 농지는
       <b>${V4.km2(M.R0['후'].km2)} km²</b>(${V4.n(M.R0['후'].n)}필지)지만, 사업이 성립하는
-      규모로 이어 붙이면 — 연접 21m 병합, 6.67ha 이상 —
+      규모로 이어 붙이면 — 연접 21m 병합, 66,667㎡ 이상 —
       <b>${V4.km2(R.ANCHOR.listed_km2)} km²</b>(참고 ${V4.n(R.ANCHOR.mw)}MW)로 줄어듦.`,
      'evidence.html#t32', '근거 표 5'],
-    ['②', '왜 늘려야 하는가', `특구급(50MW = ${N.threshold.mw50_ha}ha)은 현행법으로 전국
+    ['②', '왜 늘려야 하는가', `특구급(50MW = ${V4.n(N.threshold.mw50_m2)}㎡)은 현행법으로 전국
       <b>${V4.n(R.ANCHOR.ge50)}곳</b>(100MW급 ${V4.n(R.ANCHOR.ge100)}곳)뿐이고, 그 면적의
       ${V4.n(N.big_composition.ANCHOR.indiv_share_pct)}%가 개인 소유 필지.
       개인 동의 조직화 없이 — 법인·국공유 필지만 병합하면 — 성립하는 특구급은
@@ -334,7 +334,7 @@
       (약 +${mwK(R.SOFT_R2.listed_km2 - R.ANCHOR.listed_km2)}MW, 특구급 ${V4.n(R.SOFT_R2.ge50)}곳).
       법인·국공유만으로 좁혀도 진흥구역 개방은 특구급을 ${V4.n(R.ANCHOR_CP.ge50)}곳 →
       <b>${V4.n(R.SOFT_R2_CP.ge50)}곳(합 ${V4.n(R.SOFT_R2_CP.ge50_mw)}MW)</b>으로 늘리며
-      — 6.67ha 이상 등재 전체는 ${V4.km2(R.SOFT_R2_CP.listed_km2)} km²·${V4.n(R.SOFT_R2_CP.mw)}MW —
+      — 66,667㎡ 이상 등재 전체는 ${V4.km2(R.SOFT_R2_CP.listed_km2)} km²·${V4.n(R.SOFT_R2_CP.mw)}MW —
       그중 ${V4.n(cpBigRec)}곳이 석문·대호·고흥·영산강 수계의 간척 지구.`,
      'candidates.html', '특구 후보 탭 — 24곳의 소재와 지도'],
     ['④', '이격 단서', `주거 이격 200m 보수 적용 시(하한) 현행 구획은

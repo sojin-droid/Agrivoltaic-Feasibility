@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PLANiT · 지도 — 시나리오별 사업규모 구획</title>
-<meta name="description" content="위성 지도 위에서 시나리오를 바꿔가며 등재 구획(연접 병합 6.67ha 이상)이 어떻게 달라지는지 확인.">
+<meta name="description" content="위성 지도 위에서 시나리오를 바꿔가며 등재 구획(연접 병합 66,667㎡ 이상)이 어떻게 달라지는지 확인.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -75,7 +75,7 @@
     <p class="eyebrow">Map · 구획 지도</p>
     <h1 style="font-size:clamp(24px,3vw,34px)">지도 — 시나리오별 등재 구획</h1>
     <p class="lede" style="margin-top:6px">등재 구획 = 서로 21m 이내로 이어진 필지를 하나로
-    병합한 6.67ha 이상의 사업 단위. 현행법 기준(노랑)은 항상 표시되고, 보호구역·진흥구역
+    병합한 66,667㎡ 이상의 사업 단위. 현행법 기준(노랑)은 항상 표시되고, 보호구역·진흥구역
     개방분을 하나씩 켜서 <b>노랑 밖으로 번지는 증분</b>을 확인함 — 주황 = 보호구역 개방분,
     빨강 = 진흥구역 개방분.<br>소유 필터를 켜면 <b>법인·국공유 필지만으로 병합</b>한
     구획을 표시 — 개인 소유주 동의 조직화 없이 성립하는 물량의 검토용.</p>
@@ -287,7 +287,7 @@
                       dashArray: f.properties.sp ? '5 4' : null,
                       fillColor: st.fill, fillOpacity: kind === 'base' ? .8 : .75}),
         onEachFeature: (f, ly) => ly.bindPopup(
-          `<b>${st.label} · 등재 구획 ${V4.km2(f.properties.a, 2)} km²</b> (${V4.n(Math.round(f.properties.a * 100))} ha)` +
+          `<b>${st.label} · 등재 구획 ${V4.km2(f.properties.a, 2)} km²</b> (${V4.n(Math.round(f.properties.a * 1e6))} ㎡)` +
           `<br>이 시군 구간 ${V4.n(f.properties.n)}필지 · 참고 ${V4.n(Math.round(f.properties.a * 45))} MW` +
           (f.properties.sp ? '<br><b>시군 경계 걸침</b> — 면적은 구획 전체 기준' : '') +
           `<br><span style="color:#888;font-size:11px">구획 번호 #${f.properties.id} · 환산 0.045 kW/㎡ 가정</span>`)
