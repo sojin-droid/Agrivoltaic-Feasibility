@@ -72,8 +72,8 @@
     <p class="lede">특구급 후보 구획<sup class="fnref">[12]</sup>이 전력 수요처(산업단지)와
     계통 여유(동 단위 접속가능용량)에서 얼마나 가까운지를 한 지도에 세 레이어로 겹쳐 확인.<br>
     <b>폴리곤 = 특구급 후보 24곳</b>(법인·국공유만 병합, 농업진흥구역 개방 기준) ·
-    <b>포인트 = 산업단지 54곳</b><sup class="fnref">[23]</sup> ·
-    <b>채움 = 동 단위 계통 여유</b><sup class="fnref">[22]</sup>.</p>
+    <b>경계 = 산업단지 전국 <span id="p-ind">—</span>곳</b><sup class="fnref">[23]</sup> ·
+    <b>채움 = 읍면동 단위 계통 여유 전국 <span id="p-emd">—</span>곳</b><sup class="fnref">[22]</sup>.</p>
     <p style="font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:14px"
       id="art-meta">PLANiT Institute · 데이터 2판</p>
   </div>
@@ -96,46 +96,48 @@
 
   <h2 class="art-h">2. 지도 — 구획 · 산업단지 · 계통 여유</h2>
   <p>우상단 레이어 상자에서 세 레이어와 연결선을 각각 켜고 끌 수 있음.<br>
-  구획·산단·동 폴리곤 클릭 = 상세 수치.</p>
+  구획·산업단지·읍면동 폴리곤 클릭 = 상세 수치.</p>
 
   <figure class="art-fig">
     <div id="proxmap"></div>
     <div class="prox-leg">
       <span class="sw" style="background:rgba(255,155,61,.85);border:1px solid #C96A00"></span>간척 지구의 특구급 구획 ·
       <span class="sw" style="background:rgba(255,80,70,.85);border:1px solid #B3261E"></span>비간척 특구급 구획 ·
-      <span class="dot" style="background:#0C356A;border:2px solid #fff;box-shadow:0 0 0 1px #0C356A"></span>산업단지 (원 크기 = 참고 수요 MW) ·
+      <span class="dot" style="background:#0C356A;border:2px solid #fff;box-shadow:0 0 0 1px #0C356A"></span>산업단지 경계·중심점 (색 = 유형) ·
       계통 여유 채움 = 진할수록 여유 큼 (범례는 지도 레이어 상자) ·
       점선 연결선 = 후보 → 최근접 산단 직선거리
     </div>
     <figcaption style="font-size:12px;color:var(--muted);margin-top:6px">그림 1. 특구급 후보 24곳 ×
-    산업단지 54곳 × 동 단위 계통 여유 — 위성 배경 © Esri<sup class="fnref">[19]</sup> ·
+    산업단지 전국 <span id="p-ind3">—</span>곳 × 읍면동 단위 계통 여유 전국 — 위성 배경 © Esri<sup class="fnref">[19]</sup> ·
     구획 지오메트리 15m 간소화(표시용)<sup class="fnref">[12]</sup> ·
-    계통·산단은 v1 자산<sup class="fnref">[22]</sup><sup class="fnref">[23]</sup>(커버 범위는 §4).</figcaption>
+    계통<sup class="fnref">[22]</sup>·산업단지<sup class="fnref">[23]</sup>는 참고 레이어(성격·한계는 §4).</figcaption>
   </figure>
 
   <h2 class="art-h">3. 후보별 최근접 산업단지와 거리</h2>
-  <p>연결선의 거리 = 구획 표시 범위의 중심점과 산단 좌표 사이의 측지 직선거리(표시용 파생값).<br>
-  도로·선로 경로 거리가 아니며, 수록 산단 54곳 기준의 최근접임 — 수록 범위 밖(60km 초과)은 "—"로 표기.</p>
+  <p>연결선의 거리 = 구획 표시 범위의 중심점과 산업단지 경계 중심점 사이의 측지 직선거리(표시용 파생값).<br>
+  도로·선로 경로 거리가 아니며, 전국 산업단지 경계 등재분 기준의 최근접임.</p>
 
   <figure class="art-fig">
     <div class="figbox">
       <div style="overflow-x:auto"><table class="v4" id="t-prox"></table></div>
-      <div class="figcap">표 1. 특구급 후보 24곳의 최근접 산업단지·직선거리·소재 동 계통 여유 —
-      행 클릭 = 지도 이동. 거리·계통 여유는 표시용 참고값(§4의 커버 범위·한계 참조).</div>
+      <div class="figcap">표 1. 특구급 후보 24곳의 최근접 산업단지·직선거리·소재 읍면동 계통 여유 —
+      행 클릭 = 지도 이동. 거리·계통 여유는 표시용 참고값(§4의 성격·한계 참조).</div>
     </div>
   </figure>
 
   <div class="callout-v4" id="p-read">—</div>
 
-  <h2 class="art-h">4. 단서 — 레이어별 커버 범위와 한계</h2>
+  <h2 class="art-h">4. 단서 — 레이어별 성격과 한계</h2>
   <p><b>구획(폴리곤)</b> — 정본 2판 산출<sup class="fnref">[12]</sup>.
   진흥구역 개방 + 소유 필터 기준 특구급 전부(24곳). 둘 다 개방 + 소유 필터 조합은 미산출(§1).<br>
-  <b>산업단지(포인트)</b> — v1 자산의 주요 54곳<sup class="fnref">[23]</sup>으로 경기·인천·충남권 한정.
-  전남·제주권 산단은 미수록이라 고흥·해남·서귀포 후보의 "최근접"은 산정하지 않음(60km 문턱).
-  MW는 산업분류별 전력사용량 기반의 참고 수요 환산.<br>
-  <b>계통 여유(채움)</b> — 한전 배전선로 접속가능용량<sup class="fnref">[22]</sup>의 동 단위 합산,
-  v1 구축 구간(수도권·충남·일부 동남권 651개 동)만 채워짐. 변전소·주변압기 상한에 걸린 동은
-  빗금 표기 대신 팝업에 "상한 절삭"으로 병기. 후보 24곳 중 당진·서산·보령 구간만 계통 레이어와 겹침.<br>
+  <b>산업단지(경계)</b> — 산업입지정보시스템 등재 전국 <span id="p-ind2">—</span>곳
+  전수<sup class="fnref">[23]</sup>(국가·일반·도시첨단·농공). 규모·유형만 표기 — 전력 수요
+  환산은 미포함(후속 과제).<br>
+  <b>계통 여유(채움)</b> — 한전 분산전원 연계정보의 읍면동 단위 잔여 연계가능용량<sup class="fnref">[22]</sup>,
+  전국 <span id="p-emd2">—</span>개 읍면동(조회 성공 <span id="p-ok">—</span> · 원천 무응답
+  <span id="p-unk">—</span>곳은 "알 수 없음" 회색 병기).<br>
+  같은 설비의 값 상이는 최솟값으로 보수 확정 · 균등배분(하한)–공유 미조정(상한)의 두 값을
+  병기 · 2026-07 수집 스냅숏(실시간 아님).<br>
   거리는 측지 직선거리로 실제 인입 경로와 다름 — 세 레이어의 겹침은 우선순위 탐색용이며
   개별 사업성 판단은 별도 실사가 필요함.</p>
 
@@ -146,7 +148,7 @@
   <div class="fn">특구급 = 50MW 이상 = 연접 농지 <span id="p-th">—</span>㎡부터(0.045 kW/㎡ 환산<sup class="fnref">[13]</sup>) ·
   소유 필터 = 법인('06')·국유지('02')·시/도유지('04')·군유지('05')만 병합<sup class="fnref">[12]</sup> ·
   간척 구분 = 농어촌공사 원장 등재 필지 비중 50% 이상<sup class="fnref">[3]</sup> ·
-  계통 여유·산단 수요는 v1 자산의 참고 레이어로 정본 판정에 불사용<sup class="fnref">[22]</sup><sup class="fnref">[23]</sup>.</div>
+  계통 여유·산업단지 경계는 참고 레이어로 정본 판정에 불사용<sup class="fnref">[22]</sup><sup class="fnref">[23]</sup>.</div>
 </div>
 </article>
 
@@ -164,6 +166,17 @@
   document.getElementById('p-a50').textContent = V4.n(R.ANCHOR.ge50);
   document.getElementById('p-a1-50').textContent = V4.n(R.SOFT_A1.ge50);
   document.getElementById('p-th').textContent = V4.n(N.threshold.mw50_m2);
+  const GS = await V4.data('grid_summary');
+  for (const [id, v] of [['p-ind', GS.ind_total], ['p-ind2', GS.ind_total], ['p-ind3', GS.ind_total],
+                         ['p-emd', GS.emd_total], ['p-emd2', GS.emd_total],
+                         ['p-ok', GS.emd_ok], ['p-unk', GS.emd_unknown]])
+    document.getElementById(id).textContent = V4.n(v);
+  async function gzfc(path) {
+    const r = await fetch(path);
+    if (!r.ok) return null;
+    const ds = r.body.pipeThrough(new DecompressionStream('gzip'));
+    return JSON.parse(await new Response(ds).text());
+  }
 
   // ── 지도 골격 — 위성 배경 + 축척 + 나침반 ──
   const map = L.map('proxmap', {center: [36.3, 127.0], zoom: 8, scrollWheelZoom: false});
@@ -191,23 +204,25 @@
   const layerLinks = L.layerGroup().addTo(map);
   const layerComplexes = L.layerGroup().addTo(map);
 
-  // ── 레이어 1 (채움 폴리곤) — 동 단위 계통 여유 ──
+  // ── 레이어 1 (채움 폴리곤) — 읍면동 단위 계통 여유, 전국 (균등배분 하한 lo 기준) ──
   const GRID_BINS = [
-    [150, '#1C5F86'], [50, '#4A94BA'], [20, '#8FC0D8'], [5, '#CFE3EE'], [0, '#F0F4F6'],
+    [50, '#1C5F86'], [20, '#4A94BA'], [8, '#8FC0D8'], [2, '#CFE3EE'], [0.0001, '#F0F4F6'],
   ];
-  const gcol = mw => (GRID_BINS.find(([t]) => mw >= t) || GRID_BINS[GRID_BINS.length - 1])[1];
-  const grid = await (await fetch('data/grid_choropleth.json')).json();
-  grid.features.forEach(f => {
-    const p = f.properties;
-    L.geoJSON(f, {
-      pane: 'gridPane',
-      style: {color: '#5A7A8C', weight: .6, fillColor: gcol(p.pool_mw || 0), fillOpacity: .55},
-    }).bindPopup(
-      `<b>${p.name}</b> — 계통 여유 ${V4.km2(p.pool_mw || 0, 1)} MW` +
-      (p.capped ? '<br>변전소·주변압기 상한 절삭 반영' : '') +
-      `<br><span style="color:#888;font-size:11px">한전 배전선로 접속가능용량 동 단위 합산 · v1 자산 · 표시 참고용</span>`
-    ).addTo(layerGrid);
-  });
+  const C_SAT = '#EFDFDD', C_UNK = '#CFCFCF', C_ND = '#F5F5F2';
+  const gcol = p => p.s === 'unknown' ? C_UNK : (p.s === 'nodata' ? C_ND
+    : ((p.lo || 0) <= 0 ? C_SAT : (GRID_BINS.find(([t]) => p.lo >= t) || [0, C_SAT])[1]));
+  const grid = await gzfc('data_v4/grid_emd.json.gz');
+  L.geoJSON(grid, {
+    pane: 'gridPane',
+    style: f => ({color: '#5A7A8C', weight: .4, fillColor: gcol(f.properties), fillOpacity: .55}),
+    onEachFeature: (f, ly) => {
+      const p = f.properties;
+      const val = p.s === 'ok'
+        ? `잔여 연계가능용량 ${V4.n(p.lo)}–${V4.n(p.hi)} MW <span style="color:#888;font-size:11px">(균등배분 하한–공유 미조정 상한)</span>`
+        : (p.s === 'unknown' ? '알 수 없음 — 원천 무응답·조회 불가' : '계통 조회값 없음');
+      ly.bindPopup(`<b>${p.n}</b><br>${val}<br><span style="color:#888;font-size:11px">한전 분산전원 연계정보 · 2026-07 스냅숏 · 표시 참고용</span>`);
+    }
+  }).addTo(layerGrid);
 
   // ── 레이어 2 (폴리곤) — 특구급 후보 24곳 (SOFT_R2_CP ≥50MW) ──
   const idx = await V4.data('clusters_index');
@@ -245,17 +260,31 @@
     });
   });
 
-  // ── 레이어 3 (포인트) — 산업단지 54곳 ──
-  const complexes = await (await fetch('data/complexes.json')).json();
-  complexes.forEach(c => {
-    L.circleMarker([c.lat, c.lon], {
-      pane: 'complexPane',
-      radius: Math.max(4, Math.min(14, 3 + Math.sqrt(c.mw) / 2.6)),
-      color: '#fff', weight: 1.6, fillColor: '#0C356A', fillOpacity: .92,
-    }).bindPopup(
-      `<b>${c.name}</b><br>참고 수요 환산 ${V4.n(Math.round(c.mw))} MW` +
-      `<br><span style="color:#888;font-size:11px">산업분류별 전력사용량 기반 · v1 자산 · 표시 참고용</span>`
-    ).addTo(layerComplexes);
+  // ── 레이어 3 — 산업단지 경계 전국 (국가·일반·도시첨단·농공, 중심점 마커 병행) ──
+  const IND_C = {'국가산업단지': '#B3261E', '일반산업단지': '#0C356A',
+                 '도시첨단산업단지': '#7A4BC9', '농공단지': '#0E8A72'};
+  const indFC = await gzfc('data_v4/ind_bnd.json.gz');
+  const complexes = [];                 // 최근접 계산용 {name, t, lat, lon}
+  const bbCtr = geom => {
+    let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+    const scan = cc => { if (typeof cc[0] === 'number') {
+        x0 = Math.min(x0, cc[0]); x1 = Math.max(x1, cc[0]);
+        y0 = Math.min(y0, cc[1]); y1 = Math.max(y1, cc[1]); }
+      else cc.forEach(scan); };
+    scan(geom.coordinates);
+    return {lat: (y0 + y1) / 2, lon: (x0 + x1) / 2};
+  };
+  indFC.features.forEach(f => {
+    const p = f.properties, col = IND_C[p.t] || '#555';
+    const ctr = bbCtr(f.geometry);
+    complexes.push({name: p.n, t: p.t, lat: ctr.lat, lon: ctr.lon});
+    L.geoJSON(f, {pane: 'complexPane',
+      style: {color: col, weight: 1.2, fillColor: col, fillOpacity: .35}
+    }).bindPopup(`<b>${p.n}</b><br>${p.t}<span style="color:#888;font-size:11px"> · 경계 표기용</span>`)
+      .addTo(layerComplexes);
+    L.circleMarker([ctr.lat, ctr.lon], {pane: 'complexPane', radius: 3.2,
+      color: '#fff', weight: 1, fillColor: col, fillOpacity: .95})
+      .bindPopup(`<b>${p.n}</b><br>${p.t}`).addTo(layerComplexes);
   });
 
   // ── 연결선 — 후보 중심점 → 최근접 산단 (60km 문턱) ──
@@ -314,7 +343,7 @@
   document.getElementById('t-prox').innerHTML =
     `<tr><th>순위</th><th>참고 MW</th><th style="text-align:left">소재</th><th>간척</th>
      <th style="text-align:left">최근접 산업단지</th><th>직선거리 km</th>
-     <th>20km 내 산단</th><th>소재 동 계통 여유 MW</th></tr>` +
+     <th>20km 내 산단</th><th>소재 읍면동 계통 여유 MW</th></tr>` +
     bigList.map((b, i) => {
       const nb = nearestOf[b.id] || {};
       const has = nb.best && nb.best.km <= LINK_MAX;
@@ -324,13 +353,16 @@
         if (maxIn20 === null || nb.in20 > maxIn20.n) maxIn20 = {n: nb.in20, b};
       }
       const gp = nb.ctr ? gridAt(nb.ctr) : null;
+      const gtxt = !gp ? '—'
+        : (gp.s === 'ok' ? `${V4.n(gp.lo)}–${V4.n(gp.hi)}`
+        : (gp.s === 'unknown' ? '알 수 없음' : '—'));
       return `<tr class="rowbtn" data-id="${b.id}">
         <td>${i + 1}</td><td><b>${V4.n(b.mw)}</b></td><td class="l">${nameOf(b.sgg)}</td>
         <td>${b.reclaim_pct >= 50 ? (b.district || '간척') : '—'}</td>
-        <td class="l">${has ? nb.best.c.name : '— (수록 범위 밖)'}</td>
+        <td class="l">${has ? nb.best.c.name + ' <span style="color:#888;font-size:11px">' + nb.best.c.t + '</span>' : '—'}</td>
         <td>${has ? V4.km2(nb.best.km, 1) : '—'}</td>
         <td>${has ? V4.n(nb.in20) : '—'}</td>
-        <td>${gp ? V4.km2(gp.pool_mw || 0, 1) + (gp.capped ? ' (상한 절삭)' : '') : '— (미구축 구간)'}</td>
+        <td>${gtxt}</td>
       </tr>`;
     }).join('');
   document.querySelectorAll('#t-prox tr.rowbtn').forEach(tr => tr.onclick = () => {
@@ -347,7 +379,7 @@
       ${minKm.c.name} ${V4.km2(minKm.km, 1)} km</b>.` : '') +
     (maxIn20 && maxIn20.n > 0 ? ` 20km 안 산단이 가장 많은 후보는 ${nameOf(maxIn20.b.sgg)}
       (${V4.n(maxIn20.n)}곳).` : '') +
-    `<br>전남·제주권 후보는 산단·계통 레이어가 미수록 구간이라 근접성 판단을 보류함(§4).`;
+    `<br>산업단지·계통 레이어는 전국 커버 — "알 수 없음" 읍면동만 계통 판단을 보류함(§4).`;
 
   // ── 레이어 토글 상자 ──
   const ctl = L.control({position: 'topright'});
@@ -358,13 +390,13 @@
         <span class="sw" style="background:rgba(255,155,61,.9);border:1px solid #C96A00;width:11px;height:11px;display:inline-block;border-radius:3px"></span>
         특구급 후보 구획 (${V4.n(bigList.length)})</label>
       <label><input type="checkbox" id="lyX" checked>
-        <span style="display:inline-block;width:11px;height:11px;border-radius:50%;background:#0C356A;border:2px solid #fff;box-shadow:0 0 0 1px #0C356A"></span>
-        산업단지 (${V4.n(complexes.length)})</label>
+        <span style="display:inline-block;width:11px;height:11px;border-radius:3px;background:#B3261E"></span><span style="display:inline-block;width:11px;height:11px;border-radius:3px;background:#0C356A"></span><span style="display:inline-block;width:11px;height:11px;border-radius:3px;background:#7A4BC9"></span><span style="display:inline-block;width:11px;height:11px;border-radius:3px;background:#0E8A72"></span>
+        산업단지 (${V4.n(complexes.length)}) — 국가·일반·도시첨단·농공</label>
       <label><input type="checkbox" id="lyG" checked>
         <span class="sw" style="background:#4A94BA;width:11px;height:11px;display:inline-block;border-radius:3px"></span>
-        계통 여유 (동 단위)</label>
-      <div class="gleg"><span style="background:#F0F4F6"></span><span style="background:#CFE3EE"></span><span style="background:#8FC0D8"></span><span style="background:#4A94BA"></span><span style="background:#1C5F86"></span></div>
-      <div class="glegtxt">0 · 5 · 20 · 50 · 150+ MW</div>
+        계통 여유 (읍면동 단위)</label>
+      <div class="gleg"><span style="background:#EFDFDD"></span><span style="background:#F0F4F6"></span><span style="background:#CFE3EE"></span><span style="background:#8FC0D8"></span><span style="background:#4A94BA"></span><span style="background:#1C5F86"></span><span style="background:#CFCFCF"></span></div>
+      <div class="glegtxt">포화 · 0–2 · 2–8 · 8–20 · 20–50 · 50+ MW (하한) · 회색 = 알 수 없음</div>
       <label><input type="checkbox" id="lyL" checked>
         <span style="display:inline-block;width:14px;border-top:2px dashed #FFC436;vertical-align:3px"></span>
         최근접 산단 연결선</label>`;

@@ -92,8 +92,8 @@ for name in PAGES:
         warns.append(f"{name}: 아직 없음")
 for name in os.listdir(DATA) if os.path.isdir(DATA) else []:
     fp = os.path.join(DATA, name)
-    if not os.path.isfile(fp):
-        continue                     # clusters/ 등 지오메트리 폴더는 수치·어휘 스캔 대상 아님
+    if not os.path.isfile(fp) or name.endswith('.gz'):
+        continue                     # clusters/ 등 지오메트리 폴더·gzip 파일은 수치·어휘 스캔 대상 아님
     scan(fp, f"data_v4/{name}")
 
 print(f"── site_gate ── FAIL {len(fails)} · WARN {len(warns)}")
