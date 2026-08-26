@@ -9,6 +9,10 @@ const io = new IntersectionObserver(es => {
   es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: .12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+/* 데이터 로드 후 주입되는 .reveal(예: index의 다섯 단계 박스)도 감지해 등록 */
+new MutationObserver(() => {
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+}).observe(document.body, { childList: true, subtree: true });
 
 /* 진행 바 (.pbar .fill, .series-progress .fill) */
 document.querySelectorAll('.pbar .fill, .series-progress .fill').forEach(fill => {
