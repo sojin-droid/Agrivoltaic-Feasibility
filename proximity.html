@@ -39,6 +39,15 @@ input[type=range]{accent-color:var(--navy)}
 .gleg{display:flex;gap:2px;margin-top:4px}
 .gleg span{width:26px;height:9px;display:inline-block}
 .glegtxt{font-size:10px;color:var(--muted);font-family:var(--mono);margin-top:2px}
+.searchbox{width:100%;font:12.5px 'Noto Sans KR',sans-serif;padding:6px 9px;border:1.5px solid var(--line);
+ border-radius:8px;margin-bottom:4px}
+.searchbox:focus{outline:none;border-color:var(--navy)}
+.sresults{max-height:150px;overflow-y:auto;border:1px solid var(--line);border-radius:8px;display:none}
+.sresults.open{display:block}
+.sresults .sr{display:flex;gap:6px;align-items:center;padding:4px 8px;border-bottom:1px solid #f0f0ec;
+ cursor:pointer;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sresults .sr:hover{background:var(--sky)}
+.sresults .none{padding:5px 8px;color:var(--muted);font-size:11.5px}
 #bufList{max-height:170px;font-size:11.5px}
 #bufList .bh{font-weight:800;color:var(--navy);padding:4px 8px 1px;font-size:11.5px}
 #bufList .bi{padding:1px 8px 1px 16px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -127,6 +136,7 @@ input[type=range]{accent-color:var(--navy)}
   <p>지도 오른쪽 패널에서 특구급 후보는 하나씩 또는 전체로, 산업단지는 유형별 또는 전체로 선택.<br>
   계통 여유는 슬라이더로 문턱을 조정 — 왼쪽 = 여유 많은 읍면동만, 오른쪽 끝 = 포화까지 전부.<br>
   선택한 후보에는 반경 버퍼가 걸려 그 안의 산업단지 목록이 패널에 나옴.<br>
+  산업단지 검색창에 이름 일부(예: 평택, 고덕)를 치면 해당 산단으로 이동.<br>
   구획·산업단지·읍면동 폴리곤 클릭 = 상세 수치.</p>
 
   <figure class="art-fig prox-wide">
@@ -139,6 +149,9 @@ input[type=range]{accent-color:var(--navy)}
           <div class="scrolllist" id="candList"></div></div>
         <div class="grp"><div class="gt">산업단지 <span id="indCnt" style="font-weight:400;color:var(--muted)"></span>
           <button class="allbtn on" id="indAll">전체</button></div>
+          <input class="searchbox" id="indSearch" type="text" placeholder="산업단지 이름 검색 — 예: 평택, 석문, 고덕"
+            autocomplete="off">
+          <div class="sresults" id="indResults"></div>
           <div id="indTypes"></div></div>
         <div class="grp"><div class="gt">계통 여유 — 표시 문턱</div>
           <input type="range" id="gridSlider" min="0" max="50" step="1" value="0" style="width:100%">
@@ -337,13 +350,14 @@ input[type=range]{accent-color:var(--navy)}
   indFC.features.forEach(f => {
     const p = f.properties, col = IND_C[p.t] || '#555';
     const ctr = bbCtr(f.geometry);
-    complexes.push({name: p.n, t: p.t, lat: ctr.lat, lon: ctr.lon});
+    const entry = {name: p.n, t: p.t, lat: ctr.lat, lon: ctr.lon};
+    complexes.push(entry);
     const grp = indGroups[p.t] || indGroups['일반산업단지'];
     L.geoJSON(f, {pane: 'complexPane',
       style: {color: col, weight: 1.2, fillColor: col, fillOpacity: .35}
     }).bindPopup(`<b>${p.n}</b><br>${p.t}<span style="color:#888;font-size:11px"> · 경계 표기용</span>`)
       .addTo(grp);
-    L.circleMarker([ctr.lat, ctr.lon], {pane: 'complexPane', radius: 3.2,
+    entry.mk = L.circleMarker([ctr.lat, ctr.lon], {pane: 'complexPane', radius: 3.2,
       color: '#fff', weight: 1, fillColor: col, fillOpacity: .95})
       .bindPopup(`<b>${p.n}</b><br>${p.t}`).addTo(grp);
   });
@@ -372,6 +386,47 @@ input[type=range]{accent-color:var(--navy)}
     document.querySelectorAll('#indTypes input').forEach(cb => cb.checked = to);
     indSync();
   };
+
+  // ── 산업단지 검색 — 이름 일부로 찾아 이동 ──
+  const sIn = document.getElementById('indSearch');
+  const sRes = document.getElementById('indResults');
+  const norm = s => (s || '').replace(/\s+/g, '').toLowerCase();
+  let sMark = null;
+  function goComplex(c) {
+    if (!indOn[c.t]) {                      // 꺼진 유형이면 켜서 보이게
+      indOn[c.t] = true;
+      map.addLayer(indGroups[c.t]);
+      const cb = document.querySelector(`#indTypes input[data-t="${c.t}"]`);
+      if (cb) cb.checked = true;
+      indSync();
+    }
+    map.setView([c.lat, c.lon], 13);
+    if (sMark) map.removeLayer(sMark);
+    sMark = L.circleMarker([c.lat, c.lon], {pane: 'complexPane', radius: 12,
+      color: '#FFC436', weight: 3, fill: false}).addTo(map);
+    c.mk.openPopup();
+    document.getElementById('proxmap').scrollIntoView({behavior: 'smooth', block: 'center'});
+  }
+  sIn.addEventListener('input', () => {
+    const toks = sIn.value.trim().split(/\s+/).map(norm).filter(Boolean);
+    if (!toks.length) { sRes.classList.remove('open'); return; }
+    const hits = complexes.filter(c => { const n = norm(c.name); return toks.every(k => n.includes(k)); })
+      .slice(0, 10);
+    sRes.innerHTML = hits.length
+      ? hits.map((c, i) => `<div class="sr" data-i="${complexes.indexOf(c)}">
+          <span class="sw" style="width:10px;height:10px;border-radius:3px;background:${IND_C[c.t]};flex:none"></span>
+          ${c.name} <span style="color:#888">· ${c.t.replace('산업단지', '')}</span></div>`).join('')
+      : '<div class="none">일치하는 산업단지 없음 — 등재 명칭(예: 고덕, 석문)으로 검색. 기업명은 명칭에 없으면 검색 불가.</div>';
+    sRes.classList.add('open');
+    sRes.querySelectorAll('.sr').forEach(el => el.onclick = () => {
+      goComplex(complexes[+el.dataset.i]);
+      sRes.classList.remove('open');
+    });
+  });
+  sIn.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { const f = sRes.querySelector('.sr'); if (f) f.click(); }
+    if (e.key === 'Escape') sRes.classList.remove('open');
+  });
 
   // ── 특구급 후보 — 개별 토글 + 전체 ──
   const idx = await V4.data('clusters_index');
