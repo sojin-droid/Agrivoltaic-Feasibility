@@ -136,7 +136,7 @@ input[type=range]{accent-color:var(--navy)}
   <p>지도 오른쪽 패널에서 특구급 후보는 하나씩 또는 전체로, 산업단지는 유형별 또는 전체로 선택.<br>
   계통 여유는 슬라이더로 문턱을 조정 — 왼쪽 = 여유 많은 읍면동만, 오른쪽 끝 = 포화까지 전부.<br>
   선택한 후보에는 반경 버퍼가 걸려 그 안의 산업단지 목록이 패널에 나옴.<br>
-  산업단지 검색창에 이름 일부(예: 평택, 고덕)를 치면 해당 산단으로 이동.<br>
+  검색창에 산업단지 이름 또는 입주기업명(예: 현대제철)을 치면 해당 산단으로 이동.<br>
   구획·산업단지·읍면동 폴리곤 클릭 = 상세 수치.</p>
 
   <figure class="art-fig prox-wide">
@@ -149,7 +149,7 @@ input[type=range]{accent-color:var(--navy)}
           <div class="scrolllist" id="candList"></div></div>
         <div class="grp"><div class="gt">산업단지 <span id="indCnt" style="font-weight:400;color:var(--muted)"></span>
           <button class="allbtn on" id="indAll">전체</button></div>
-          <input class="searchbox" id="indSearch" type="text" placeholder="산업단지 이름 검색 — 예: 평택, 석문, 고덕"
+          <input class="searchbox" id="indSearch" type="text" placeholder="산업단지·입주기업 검색 — 예: 고덕, 현대제철"
             autocomplete="off">
           <div class="sresults" id="indResults"></div>
           <div id="indTypes"></div></div>
@@ -200,6 +200,10 @@ input[type=range]{accent-color:var(--navy)}
   <span id="p-unk">—</span>곳은 "알 수 없음" 회색 병기).<br>
   같은 설비의 값 상이는 최솟값으로 보수 확정 · 균등배분(하한)–공유 미조정(상한)의 두 값을
   병기 · 2026-07 수집 스냅숏(실시간 아님).<br>
+  <b>입주기업 검색</b> — 전국등록공장현황(2024-12-31 등록분)<sup class="fnref">[24]</sup>의
+  산단 입주 84,111사 중 58,387사를 경계 단지명과 대조해 색인. 잔여는 경계 미등재
+  단지(연구개발특구·테크노밸리 일부 등) 소재로 검색에서 제외 — 기업 존재의 참고
+  표기이며 입주 계약 현황이 아님.<br>
   거리는 측지 직선거리로 실제 인입 경로와 다름 — 세 레이어의 겹침은 우선순위 탐색용이며
   개별 사업성 판단은 별도 실사가 필요함.</p>
 
@@ -407,22 +411,66 @@ input[type=range]{accent-color:var(--navy)}
     c.mk.openPopup();
     document.getElementById('proxmap').scrollIntoView({behavior: 'smooth', block: 'center'});
   }
-  sIn.addEventListener('input', () => {
+  let firmsDB = null, firmsLoading = false;      // 입주기업 색인 — 첫 검색에서 지연 로드
+  async function loadFirms() {
+    if (firmsDB || firmsLoading) return;
+    firmsLoading = true;
+    firmsDB = await gzfc('data_v4/ind_firms.json.gz');
+    firmsLoading = false;
+    sIn.dispatchEvent(new Event('input'));       // 로드 후 현재 입력으로 재검색
+  }
+  const findComplex = (nm, cat) =>
+    complexes.find(c => c.name === nm && c.t === cat) || complexes.find(c => c.name === nm);
+  function renderResults() {
     const toks = sIn.value.trim().split(/\s+/).map(norm).filter(Boolean);
     if (!toks.length) { sRes.classList.remove('open'); return; }
-    const hits = complexes.filter(c => { const n = norm(c.name); return toks.every(k => n.includes(k)); })
-      .slice(0, 10);
-    sRes.innerHTML = hits.length
-      ? hits.map((c, i) => `<div class="sr" data-i="${complexes.indexOf(c)}">
-          <span class="sw" style="width:10px;height:10px;border-radius:3px;background:${IND_C[c.t]};flex:none"></span>
-          ${c.name} <span style="color:#888">· ${c.t.replace('산업단지', '')}</span></div>`).join('')
-      : '<div class="none">일치하는 산업단지 없음 — 등재 명칭(예: 고덕, 석문)으로 검색. 기업명은 명칭에 없으면 검색 불가.</div>';
+    const danHits = complexes.filter(c => { const n = norm(c.name); return toks.every(k => n.includes(k)); })
+      .slice(0, 5);
+    let firmHits = [];
+    if (firmsDB) {
+      for (const f of firmsDB.firms) {
+        const n = norm(f[0]);
+        if (toks.every(k => n.includes(k))) {
+          firmHits.push(f);
+          if (firmHits.length >= 7) break;
+        }
+      }
+    }
+    let html = '';
+    if (danHits.length)
+      html += danHits.map(c => `<div class="sr" data-k="d" data-i="${complexes.indexOf(c)}">
+        <span class="sw" style="width:10px;height:10px;border-radius:3px;background:${IND_C[c.t]};flex:none"></span>
+        ${c.name} <span style="color:#888">· ${c.t.replace('산업단지', '')}</span></div>`).join('');
+    if (firmHits.length)
+      html += `<div class="none" style="font-weight:700">입주기업 → 소재 산업단지</div>` +
+        firmHits.map(f => { const d = firmsDB.dans[f[1]];
+          return `<div class="sr" data-k="f" data-nm="${d[0]}" data-t="${d[1]}" data-firm="${f[0]}" data-p="${f[2] || ''}">
+            <span style="flex:none">🏭</span>${f[0]} <span style="color:#888">→ ${d[0]} · ${d[1].replace('산업단지', '')}</span></div>`; }).join('');
+    if (!html)
+      html = firmsDB
+        ? '<div class="none">일치 없음 — 단지 명칭 또는 입주기업명(등록공장 기준)으로 검색.</div>'
+        : (firmsLoading ? '<div class="none">입주기업 색인 불러오는 중…</div>'
+                        : '<div class="none">일치하는 산업단지 없음.</div>');
+    sRes.innerHTML = html;
     sRes.classList.add('open');
     sRes.querySelectorAll('.sr').forEach(el => el.onclick = () => {
-      goComplex(complexes[+el.dataset.i]);
+      if (el.dataset.k === 'd') {
+        goComplex(complexes[+el.dataset.i]);
+      } else {
+        const c = findComplex(el.dataset.nm, el.dataset.t);
+        if (c) {
+          goComplex(c);
+          L.popup({offset: [0, -6]}).setLatLng([c.lat, c.lon]).setContent(
+            `<b>${el.dataset.firm}</b> 입주 — ${c.name} (${c.t})` +
+            (el.dataset.p ? `<br><span style="color:#888;font-size:11px">생산품: ${el.dataset.p}</span>` : '') +
+            `<br><span style="color:#888;font-size:11px">전국등록공장현황 2024-12-31 기준 · 표시 참고용</span>`
+          ).openOn(map);
+        }
+      }
       sRes.classList.remove('open');
     });
-  });
+  }
+  sIn.addEventListener('input', () => { loadFirms(); renderResults(); });
   sIn.addEventListener('keydown', e => {
     if (e.key === 'Enter') { const f = sRes.querySelector('.sr'); if (f) f.click(); }
     if (e.key === 'Escape') sRes.classList.remove('open');
