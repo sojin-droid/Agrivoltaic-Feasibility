@@ -57,7 +57,7 @@ def resolve(dan):
         cands = alias[nd]
     else:
         for k in akeys:                       # 접두 시도명 제거 대응: '서울마곡' endswith '마곡'
-            if len(k) >= 3 and (nd.endswith(k) or k in nd):
+            if (len(k) >= 3 and (nd.endswith(k) or k in nd)) or                (len(k) == 2 and (nd.startswith(k) or nd.endswith(k))):  # '고덕국제화계획지구'→'고덕'
                 cands = alias[k]
                 break
         if cands is None:                      # 역포함: '반월'⊂'반월특수(시화)', '수원델타플렉스'⊂'…1'

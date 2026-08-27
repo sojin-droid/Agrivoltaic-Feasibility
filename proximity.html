@@ -201,8 +201,8 @@ input[type=range]{accent-color:var(--navy)}
   같은 설비의 값 상이는 최솟값으로 보수 확정 · 균등배분(하한)–공유 미조정(상한)의 두 값을
   병기 · 2026-07 수집 스냅숏(실시간 아님).<br>
   <b>입주기업 검색</b> — 전국등록공장현황(2024-12-31 등록분)<sup class="fnref">[24]</sup>의
-  산단 입주 84,111사 중 58,387사를 경계 단지명과 대조해 색인. 잔여는 경계 미등재
-  단지(연구개발특구·테크노밸리 일부 등) 소재로 검색에서 제외 — 기업 존재의 참고
+  산단 입주 84,111사 중 79,424사를 경계 단지명과 대조해 색인. 잔여 4,687사는 경계
+  미등재 단지(연구개발특구·테크노밸리 일부 등) 소재로 검색에서 제외 — 기업 존재의 참고
   표기이며 입주 계약 현황이 아님.<br>
   거리는 측지 직선거리로 실제 인입 경로와 다름 — 세 레이어의 겹침은 우선순위 탐색용이며
   개별 사업성 판단은 별도 실사가 필요함.</p>
@@ -428,13 +428,20 @@ input[type=range]{accent-color:var(--navy)}
       .slice(0, 5);
     let firmHits = [];
     if (firmsDB) {
+      const seen = new Set();
+      const starts = [], rest = [];
+      let total = 0;
       for (const f of firmsDB.firms) {
         const n = norm(f[0]);
-        if (toks.every(k => n.includes(k))) {
-          firmHits.push(f);
-          if (firmHits.length >= 7) break;
-        }
+        if (!toks.every(k => n.includes(k))) continue;
+        const key = n + '|' + f[1];
+        if (seen.has(key)) continue;               // 같은 기업·같은 단지 중복 제거
+        seen.add(key);
+        total++;
+        (n.startsWith(toks[0]) ? starts : rest).push(f);
       }
+      firmHits = starts.concat(rest).slice(0, 15);  // 검색어로 시작하는 기업 우선
+      firmHits.total = total;
     }
     let html = '';
     if (danHits.length)
@@ -442,7 +449,8 @@ input[type=range]{accent-color:var(--navy)}
         <span class="sw" style="width:10px;height:10px;border-radius:3px;background:${IND_C[c.t]};flex:none"></span>
         ${c.name} <span style="color:#888">· ${c.t.replace('산업단지', '')}</span></div>`).join('');
     if (firmHits.length)
-      html += `<div class="none" style="font-weight:700">입주기업 → 소재 산업단지</div>` +
+      html += `<div class="none" style="font-weight:700">입주기업 → 소재 산업단지${
+        firmHits.total > firmHits.length ? ` — 일치 ${V4.n(firmHits.total)}건 중 ${firmHits.length}건, 기업명을 더 구체적으로` : ''}</div>` +
         firmHits.map(f => { const d = firmsDB.dans[f[1]];
           return `<div class="sr" data-k="f" data-nm="${d[0]}" data-t="${d[1]}" data-firm="${f[0]}" data-p="${f[2] || ''}">
             <span style="flex:none">🏭</span>${f[0]} <span style="color:#888">→ ${d[0]} · ${d[1].replace('산업단지', '')}</span></div>`; }).join('');
