@@ -74,7 +74,9 @@
   <figure class="art-fig">
     <iframe class="atlas autofit" src="assets/korea_owner_v4.html" title="전국 법인 소유지·간척지 지도" style="height:900px"></iframe>
     <figcaption>그림 1. 법인 소유 농지와 간척지의 전국 분포 — 세 유형의 위치와 기초 수치.
-    표의 값은 전부 정본 DB 조회값<sup class="fnref">[12]</sup>, 단위 km² 통일.</figcaption>
+    표의 값은 전부 정본 DB 조회값<sup class="fnref">[12]</sup>, 단위 km² 통일.    <br><span class="ref">기준 단서: 이 그림에 내장된 면적 값은 구 정의(경작 비율 30% 이상)
+    기준으로 작도된 판이라 아래 그림 3·근거 탭 표와 기준이 다름 — 본값(실경작 무관) 기준
+    재작도 대기.</span></figcaption>
   </figure>
 
   <h2 class="art-h">2. 지구 단위의 소유 구조</h2>
@@ -82,14 +84,16 @@
   완전히 다르기</b> 때문. 해남 영산강3-1·3-2지구는 지구 하나가 사실상 법인 소유로 단일한 반면, 바로 옆 해남지구는 개인 소유가 대부분임. 당진 석문지구는 법인 소유로
   통일되어 있지만, 대호지구는 법인 필지와 개인 필지가 잘게 섞여 있음.</p>
   <p>아래 위성 아틀라스는 네 지역의 간척 농지를 필지 단위로 보여줌. 주황이 법인,
-  청록이 개인, 흐린 색은 실경작 30% 미만이거나 확인되지 않은 필지, 지도 위 번호 ○는
+  청록이 개인, 흐린 색은 경작 비율 30% 미만이거나 확인되지 않은 필지(적격 판정과 무관한 표시), 지도 위 번호 ○는
   각 그림 아래 표의 지구. 지구별 해설도 각 그림 아래에 있음.</p>
 
   <figure class="art-fig">
     <iframe class="atlas autofit reveal" src="assets/atlas_sat_v4.html" title="간척 아틀라스 위성판"></iframe>
     <figcaption>그림 2. 당진·영암·해남·고흥의 간척 농지 — 필지 단위 소유 구분.
     위성 배경: Esri World Imagery, 타일 내장<sup class="fnref">[19]</sup> ·
-    지구가 여러 시군에 걸친 경우 표의 값은 해당 시군 구간만.</figcaption>
+    지구가 여러 시군에 걸친 경우 표의 값은 해당 시군 구간만.    <br><span class="ref">기준 단서: 이 그림에 내장된 면적 값은 구 정의(경작 비율 30% 이상)
+    기준으로 작도된 판이라 아래 그림 3·근거 탭 표와 기준이 다름 — 본값(실경작 무관) 기준
+    재작도 대기.</span></figcaption>
   </figure>
 
   <h2 class="art-h">3. 조문 시행 시 소유 유형별 실행 가능성</h2>
@@ -102,7 +106,7 @@
 
   <figure class="art-fig">
     <div class="figbox"><div id="fig3"></div></div>
-    <figcaption>그림 3. 세 유형의 실경작 확인 면적(연한 막대)과 그중 현행법 가능 면적(진한 막대).
+    <figcaption>그림 3. 세 유형의 지목 농지 면적(연한 막대)과 그중 현행법 가능 면적(진한 막대).
     정본 DB 조회값<sup class="fnref">[12]</sup>, 현행법 기준<sup class="fnref">[14]</sup>.</figcaption>
   </figure>
 
@@ -123,7 +127,7 @@
 
   <div class="fn">간척 = 농어촌공사 지구·공구 원장<sup class="fnref">[3]</sup> ·
   소유 = 지적 원장 유형 구분(개인 식별 아님)<sup class="fnref">[1]</sup> ·
-  실경작 = 팜맵 위성 실측 30% 이상<sup class="fnref">[2]</sup>.</div>
+  면적은 지목 농지 기준 — 실경작 비율은 적격 조건이 아님<sup class="fnref">[2]</sup>.</div>
 </div>
 </article>
 
@@ -187,16 +191,17 @@ setTimeout(fitFrames, 1500); setTimeout(fitFrames, 4000);
     const I = await V4.data('insights_v4');
     const R = I.reclaim;
     document.getElementById('atlas-ins').innerHTML =
-      `① 간척 농지의 실경작 탈락률은 <b>${R.drop_reclaim}%</b>로 전국(${R.drop_nat}%)의
-       10분의 1 수준 — 실제로 경작 중인 우량 농지임.<br>
+      `① 간척 농지의 경작 30% 미만 비중은 <b>${R.lowratio_reclaim}%</b>로
+       전국(${R.lowratio_nat}%)의 10분의 1 수준 — 실제로 경작 중인 우량 농지임
+       (서술 지표이며 적격 조건이 아님).<br>
        ② 간척의 보호구역 개방 증분은 ${V4.km2(R.prot_inc)} km²에 불과 — 개방 증분의
        <b>${R.r2_share}%가 진흥구역</b>에서 나옴.<br>
        ③ 간척 한정 조문은 법인의 현행 접근 면적을 ${V4.km2(R.out_anchor)} →
-       ${V4.km2(R.in_anchor)} km²로 줄이며(96% 축소), 임차 공급원은 상실분의
+       ${V4.km2(R.in_anchor)} km²로 줄이며(${Math.round(100*(R.out_anchor-R.in_anchor)/R.out_anchor)}% 축소), 임차 공급원은 상실분의
        ${R.lease_ratio}배(${V4.km2(R.pool)} km²)가 있으나 전부 사용승낙 절차를 요함.`;
   } catch (e) {}
   document.getElementById('art-cond').innerHTML =
-    `간척 두 무리의 실경작 농지 ${V4.km2(own.km2 + pool.km2)} km² 중
+    `간척 두 무리의 지목 농지 ${V4.km2(own.km2 + pool.km2)} km² 중
      <b>${V4.km2(zsum)} km²가 농업진흥지역 안</b>에 있음. 현행법은 농업진흥지역 밖의
      농지만 허용하므로, 간척에서 현행법으로 가능한 면적은 두 무리 합쳐
      ${V4.km2(own.anchor_km2 + pool.anchor_km2)} km²에 그침. 즉 "간척지를 쓰라"는 조문은

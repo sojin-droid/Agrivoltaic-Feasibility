@@ -56,7 +56,7 @@
     <div style="margin-top:14px">
       <a class="pill" href="#diag">시군별 조회</a>
       <a class="pill" href="#tables">표 1–4 조합·증분·소유</a>
-      <a class="pill" href="#t32">표 5 · 32칸 완성표</a>
+      <a class="pill" href="#t32">표 5 · 16칸 완성표</a>
       <a class="pill" href="#ord">간척 한정 조문 검토</a>
     </div>
   </div>
@@ -75,9 +75,9 @@
           <label>시군 추가 — 여러 개 선택 가능</label><select id="dg-sel"></select>
         </div>
         <div class="field" style="margin:0;min-width:200px">
-          <label>실경작 필터</label><select id="dg-ph">
-            <option value="후" selected>적용 후 (위성 실측 30% 이상)</option>
-            <option value="전">적용 전</option></select>
+          <label>기준 층</label><select id="dg-ph">
+            <option value="본값" selected>본값 (실경작 무관 적격)</option>
+            <option value="구정의">구 정의 참고 (실경작 30% 이상)</option></select>
         </div>
       </div>
       <div id="dg-chips" style="margin:2px 0 8px"></div>
@@ -114,22 +114,23 @@
     <div class="figbox reveal" style="margin-bottom:22px">
       <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 3. 구역별 증분 분해 — 농업진흥지역 밖 · 농업보호구역 · 농업진흥구역</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-pools"></table></div>
-      <div class="figcap">각 증분 = 해당 구역 안에서 나머지 판정 조건(지목·구조물·경사·용도지역 3종·실경작)을
+      <div class="figcap">각 증분 = 해당 구역 안에서 나머지 판정 조건(지목·구조물·경사·용도지역 3종)을
       모두 통과한 필지의 합.<br>표 1에서 산술로만 유도(R1−R0, R2−R0).<br>정본 DB 조회값<sup class="fnref">[12]</sup>, 단위 필지 수·km².</div>
     </div>
 
     <div class="figbox reveal" style="margin-bottom:22px">
-      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 4. 소유 유형별 실경작 확인 농지 — 간척지 내 법인 · 간척지 내 비법인 · 간척지 외 법인</h3>
+      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 4. 소유 유형별 지목 농지 — 간척지 내 법인 · 간척지 내 비법인 · 간척지 외 법인</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-owner"></table></div>
-      <div class="figcap">실경작 확인 농지 기준<sup class="fnref">[2]</sup>.<br>소유는 지적 원장의 유형 구분(개인 식별 아님)<sup class="fnref">[1]</sup> —
+      <div class="figcap">지목 농지 기준(실경작 무관 — 적격 조건이 아님<sup class="fnref">[2]</sup>).<br>소유는 지적 원장의 유형 구분(개인 식별 아님)<sup class="fnref">[1]</sup> —
       법인이 농업법인인지는 원장에 없어 구분 못 함(명부 조달 시 정밀화).</div>
     </div>
 
     <div class="figbox reveal" id="t32">
-      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 5. 구역 조합(4) × 이격(2) × 실경작(2) × 집계 단위(2)별 설치 가능 면적 — 32칸 전체</h3>
+      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 5. 구역 조합(4) × 이격(2) × 집계 단위(2)별 설치 가능 면적 — 16칸 전체</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-grid"></table></div>
-      <div class="figcap">구획 = 필지를 연접 거리 21m로 병합한 성분 중 66,667㎡ 이상<sup class="fnref">[10]</sup><sup class="fnref">[12]</sup> · 실경작 전 =
-      위성 실측 필터(30%) 미적용<sup class="fnref">[2]</sup> · 이격 보수 = 주거 200m 상한을 대지 필지 대리로 일률 적용한 하한<sup class="fnref">[11]</sup>.<br>
+      <div class="figcap">구획 = 필지를 연접 거리 21m로 병합한 성분 중 66,667㎡ 이상<sup class="fnref">[10]</sup><sup class="fnref">[12]</sup> ·
+      이격 보수 = 주거 200m 상한을 대지 필지 대리로 일률 적용한 하한<sup class="fnref">[11]</sup> ·
+      실경작 비율은 적격 조건이 아님<sup class="fnref">[2]</sup>.<br>
       필지→구획 전환에서 현행법 기준은 크게 줄고 진흥지역 개방 계열은 덜 줄어 —
       진흥구역 농지가 크게 뭉쳐 있어 병합 문턱을 잘 넘기기 때문 —
       <b>사업규모 관점에서는 격차가 더 벌어짐</b>.<br>
@@ -155,28 +156,28 @@
   const s = await V4.data('summary_v4');
 
   const matRows = (M) => `
-    <tr><th>조합</th><th>실경작 전<br>필지</th><th>실경작 전<br>km²</th>
-        <th>실경작 후<br>필지</th><th>실경작 후<br>km²</th><th>참고 MW<br>(후)</th></tr>` +
+    <tr><th>조합</th><th>필지</th><th>km²</th><th>참고 MW</th>
+        <th class="ref">구 정의 참고<br>km²</th></tr>` +
     ['R0', 'R1', 'R2', 'R3'].map(c => `
     <tr class="${c === 'R0' ? 'hl' : ''}"><td class="l">${c} ${M[c].name}</td>
-      <td>${V4.n(M[c]['전'].n)}</td><td>${V4.km2(M[c]['전'].km2)}</td>
-      <td>${V4.n(M[c]['후'].n)}</td><td>${V4.km2(M[c]['후'].km2)}</td>
-      <td class="ref">${V4.mw(M[c]['후'].m2)}</td></tr>`).join('');
+      <td>${V4.n(M[c]['본값'].n)}</td><td>${V4.km2(M[c]['본값'].km2)}</td>
+      <td class="ref">${V4.mw(M[c]['본값'].m2)}</td>
+      <td class="ref">${V4.km2(M[c]['구정의'].km2)}</td></tr>`).join('');
   document.getElementById('t-matrix-nat').innerHTML = matRows(s.matrix['전국']);
   document.getElementById('t-matrix-rec').innerHTML = matRows(s.matrix['간척']);
 
   const P = s.pools, M0 = s.matrix;
   document.getElementById('t-pools').innerHTML = `
-    <tr><th>구역</th><th>전국 · 후 필지</th><th>전국 · 후 km²</th><th>간척 · 후 필지</th><th>간척 · 후 km²</th></tr>
+    <tr><th>구역</th><th>전국 필지</th><th>전국 km²</th><th>간척 필지</th><th>간척 km²</th></tr>
     <tr><td class="l">농업진흥지역 밖 (현행 = R0)</td>
-      <td>${V4.n(M0['전국'].R0['후'].n)}</td><td>${V4.km2(M0['전국'].R0['후'].km2)}</td>
-      <td>${V4.n(M0['간척'].R0['후'].n)}</td><td>${V4.km2(M0['간척'].R0['후'].km2)}</td></tr>
+      <td>${V4.n(M0['전국'].R0['본값'].n)}</td><td>${V4.km2(M0['전국'].R0['본값'].km2)}</td>
+      <td>${V4.n(M0['간척'].R0['본값'].n)}</td><td>${V4.km2(M0['간척'].R0['본값'].km2)}</td></tr>
     <tr><td class="l">농업보호구역 증분 (R1−R0)</td>
-      <td>${V4.n(P['전국']['보호구역']['후'].n)}</td><td>${V4.km2(P['전국']['보호구역']['후'].km2)}</td>
-      <td>${V4.n(P['간척']['보호구역']['후'].n)}</td><td>${V4.km2(P['간척']['보호구역']['후'].km2)}</td></tr>
+      <td>${V4.n(P['전국']['보호구역']['본값'].n)}</td><td>${V4.km2(P['전국']['보호구역']['본값'].km2)}</td>
+      <td>${V4.n(P['간척']['보호구역']['본값'].n)}</td><td>${V4.km2(P['간척']['보호구역']['본값'].km2)}</td></tr>
     <tr><td class="l">농업진흥구역 증분 (R2−R0)</td>
-      <td>${V4.n(P['전국']['진흥구역']['후'].n)}</td><td>${V4.km2(P['전국']['진흥구역']['후'].km2)}</td>
-      <td>${V4.n(P['간척']['진흥구역']['후'].n)}</td><td>${V4.km2(P['간척']['진흥구역']['후'].km2)}</td></tr>`;
+      <td>${V4.n(P['전국']['진흥구역']['본값'].n)}</td><td>${V4.km2(P['전국']['진흥구역']['본값'].km2)}</td>
+      <td>${V4.n(P['간척']['진흥구역']['본값'].n)}</td><td>${V4.km2(P['간척']['진흥구역']['본값'].km2)}</td></tr>`;
 
   const og = s.owner_groups;
   const z = (g, k) => g.zones[k] ? V4.km2(g.zones[k].km2) : '0.0';
@@ -206,7 +207,7 @@
     우량농지 제한의 일시사용 적용<sup class="fnref">[15]</sup> ·
     재생에너지지구 경로<sup class="fnref">[10]</sup><sup class="fnref">[16]</sup>.</p>`;
 
-  // ── 표 5: 32칸 완성표 (실경작 전 = @rho0.0 런) ──
+  // ── 표 5: 16칸 완성표 (본값 1층 — ADR-0039로 실경작 축 폐지) ──
   const res = await V4.data('results_v4');
   const GRID5 = [
     ['ANCHOR', 'R0 현행법 기준'], ['ANCHOR_SB', 'R0 + 이격 보수'],
@@ -215,15 +216,13 @@
     ['SOFT_A2', 'R3 둘 다 개방'], ['SOFT_A2_SB', 'R3 + 이격 보수'],
   ];
   document.getElementById('t-grid').innerHTML = `
-    <tr><th>구역 · 이격</th><th>필지<br>실경작 전</th><th>필지<br>실경작 후</th>
-        <th>구획<br>실경작 전</th><th>구획<br>실경작 후</th><th>구획 수<br>(후)</th><th>참고 MW<br>(구획·후)</th></tr>` +
+    <tr><th>구역 · 이격</th><th>필지 km²</th><th>구획 km²</th><th>구획 수</th>
+        <th>참고 MW<br>(구획)</th></tr>` +
     GRID5.map(([c, t]) => {
-      const r = res.runs[c], p = res.runs[c + '@rho0.0'];
+      const r = res.runs[c];
       if (!r) return '';
       return `<tr class="${c === 'ANCHOR' ? 'hl' : ''}"><td class="l">${t}</td>
-        <td class="ref">${p ? V4.km2(p.eligible_area_km2) : '—'}</td>
         <td>${V4.km2(r.eligible_area_km2)}</td>
-        <td class="ref">${p ? V4.km2(p.listed_area_km2) : '—'}</td>
         <td><b>${V4.km2(r.listed_area_km2)}</b></td>
         <td>${V4.n(r.n_listed)}</td>
         <td class="ref">${r.M_mw != null ? V4.n(Math.round(r.M_mw)) : '—'}</td></tr>`;
@@ -296,7 +295,8 @@
       `<b>${label}</b> — 현행법 기준 ${V4.km2(r0.km2, 2)} km² (${V4.n(r0.n)}필지).<br>
        두 제도 변수 중 <b>${bigger}</b> 개방의 효과가 커서 +${V4.km2(Math.max(dProm, dProt), 2)} km²가 더해지고,
        둘 다 개방하면 ${V4.km2(r3.km2, 2)} km²가 됨.<br>
-       (보호구역 증분 +${V4.km2(dProt, 2)} · 진흥구역 증분 +${V4.km2(dProm, 2)}, 실경작 ${ph === '후' ? '적용 후' : '적용 전'}, 필지층)${mapLink}`;
+       (보호구역 증분 +${V4.km2(dProt, 2)} · 진흥구역 증분 +${V4.km2(dProm, 2)},
+       ${ph === '본값' ? '본값' : '구 정의 참고'} 층, 필지층)${mapLink}`;
   };
   document.getElementById('dg-ph').addEventListener('change', render);
 

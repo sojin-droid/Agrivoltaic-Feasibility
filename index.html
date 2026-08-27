@@ -91,7 +91,8 @@
     <p class="lede" data-i18n="hero-lede">
       전국 필지 전수 원장<sup class="fnref">[1]</sup> 기반. 현행법 기준값<sup class="fnref">[14]</sup>과,
       농업보호구역·농업진흥구역<sup class="fnref">[5]</sup> 두 제도 변수의
-      조합별 설치 가능 면적을 제시.<br>1차 단위는 면적(km²), 실경작 확인(위성 실측<sup class="fnref">[2]</sup>) 기준.
+      조합별 설치 가능 면적을 제시.<br>1차 단위는 면적(km²).
+      실경작 여부는 적격 조건이 아니며<sup class="fnref">[2]</sup>, 구획별 경작 정도는 별도 지표로 병기함.
     </p>
     <div style="display:flex;gap:14px;margin-top:30px;flex-wrap:wrap">
       <a class="btn btn-primary" href="evidence.html" data-i18n="hero-btn1">전체 수치 보기</a>
@@ -150,9 +151,10 @@
           <p style="font-size:13.5px;margin:0 0 10px;word-break:keep-all"><b>필지</b> —
           토지의 등록 단위.<br>지번 하나가 필지 하나이며, 이 분석은 전국 39,726,310개 필지를
           하나씩 판정함<sup class="fnref">[1]</sup>.</p>
-          <p style="font-size:13.5px;margin:0 0 10px;word-break:keep-all"><b>실경작 확인</b> —
+          <p style="font-size:13.5px;margin:0 0 10px;word-break:keep-all"><b>실경작 정도</b> —
           지목이 농지라도 실제로 농사를 짓는지는 별개.<br>위성 판독<sup class="fnref">[2]</sup>으로
-          경작이 확인된 면적 비율 30% 이상인 필지만 "실경작 확인"으로 집계함.</p>
+          필지별 경작 면적 비율을 산출함.<br>적격 판정에는 쓰지 않고, 구획별 경작 정도를
+          병기하는 서술 지표로만 씀.</p>
           <p style="font-size:13.5px;margin:0;word-break:keep-all"><b>사업규모 구획</b> —
           서로 21m 이내로 이어진 필지들을 하나로 병합한 덩어리.<br>66,667㎡(약 3MW 상당) 이상이면
           사업이 성립하는 규모로 보아 "등재 구획"으로 집계함<sup class="fnref">[12]</sup>.</p>
@@ -198,9 +200,9 @@
     </div>
     <div class="figbox reveal">
       <div id="bars"></div>
-      <div class="figcap">그림 1. 제도 조합별 설치 가능 면적 — 네 독립 조합의 필지 면적, 진한 막대 =
-      실경작 확인 후·연한 막대 = 적용 전. 세 부분(농업진흥지역 밖·보호구역·진흥구역)은 서로 겹치지
-      않아 정확히 더해짐.<br>정본 DB 조회값<sup class="fnref">[12]</sup>, 단위 km².
+      <div class="figcap">그림 1. 제도 조합별 설치 가능 면적 — 네 독립 조합의 필지 면적.
+      세 부분(농업진흥지역 밖·보호구역·진흥구역)은 서로 겹치지 않아 정확히 더해짐.<br>
+      정본 DB 조회값<sup class="fnref">[12]</sup>, 단위 km².
       참고 발전용량 환산은 <span id="mw-note"></span> — 환산은 가정이 얹힌 파생값<sup class="fnref">[13]</sup>.</div>
     </div>
     <div class="callout-v4 reveal" id="co-reclaim"></div>
@@ -227,7 +229,7 @@
     </div>
     <p class="ls-cap" id="ls-cap"></p>
     <div class="figcap" style="max-width:860px;margin:10px auto 0">그림 2. 판정 단계별 적격 규모 변화 —
-    충남 당진시의 다섯 층: 지목 농지<sup class="fnref">[1]</sup> → 실경작 확인<sup class="fnref">[2]</sup>
+    충남 당진시의 다섯 층: 지목 농지<sup class="fnref">[1]</sup> → 물리·경사 통과
     → 현행법 적격 → 등재 구획 → 진흥지역 전체 개방 시 구획. 표시 지오메트리는 간소화본이며
     단계별 수치는 정본 DB 조회값<sup class="fnref">[12]</sup>, 단위 필지 수·km².</div>
   </div>
@@ -270,33 +272,32 @@
   const s = await V4.data('summary_v4');
   const M = s.matrix['전국'], K = s.matrix['간척'], P = s.pools['전국'];
 
-  V4.countup(document.getElementById('sb1'), M.R0['후'].km2, 1);
-  V4.countup(document.getElementById('sb2'), P['보호구역']['후'].km2, 1);
-  V4.countup(document.getElementById('sb3'), P['진흥구역']['후'].km2, 1);
-  V4.countup(document.getElementById('sb4'), M.R3['후'].km2, 1);
+  V4.countup(document.getElementById('sb1'), M.R0['본값'].km2, 1);
+  V4.countup(document.getElementById('sb2'), P['보호구역']['본값'].km2, 1);
+  V4.countup(document.getElementById('sb3'), P['진흥구역']['본값'].km2, 1);
+  V4.countup(document.getElementById('sb4'), M.R3['본값'].km2, 1);
 
   const cells = [
     ['R0', '현행법 기준'], ['R1', '농업보호구역 개방 시'],
     ['R2', '농업진흥구역 개방 시'], ['R3', '둘 다 개방 시'],
   ];
-  const max = M.R3['전'].km2;
+  const max = M.R3['본값'].km2;
   document.getElementById('bars').innerHTML = cells.map(([c, k]) => `
     <div class="bar-row"><div><b>${k}</b><div class="bar-sub">${M[c].name}</div></div>
       <div class="bar-track">
-        <div class="bar-pre" style="width:${100 * M[c]['전'].km2 / max}%"></div>
-        <div class="bar-post" style="width:${100 * M[c]['후'].km2 / max}%"></div>
+        <div class="bar-post" style="width:${100 * M[c]['본값'].km2 / max}%"></div>
       </div>
-      <div class="bar-num">${V4.km2(M[c]['후'].km2)} km²
-        <div class="bar-sub">${V4.n(M[c]['후'].n)}필지 · 적용 전 ${V4.km2(M[c]['전'].km2)}</div></div>
+      <div class="bar-num">${V4.km2(M[c]['본값'].km2)} km²
+        <div class="bar-sub">${V4.n(M[c]['본값'].n)}필지</div></div>
     </div>`).join('');
 
   document.getElementById('mw-note').textContent =
-    `현행 ${V4.km2(M.R0['후'].km2)} km² ≈ ${V4.mw(M.R0['후'].m2)} MW (0.045 kW/㎡ 가정)`;
+    `현행 ${V4.km2(M.R0['본값'].km2)} km² ≈ ${V4.mw(M.R0['본값'].m2)} MW (0.045 kW/㎡ 가정)`;
 
   document.getElementById('co-reclaim').innerHTML =
     `<b>간척 농지는 진흥구역 개방과 함께 움직임.</b><br>간척 확정 농지의 설치 가능 면적은
-     현행 ${V4.km2(K.R0['후'].km2)} km² → 농업진흥구역 개방 시 ${V4.km2(K.R2['후'].km2)} km²
-     (${V4.n(K.R2['후'].n)}필지)<sup class="fnref">[3]</sup>.<br>간척 농지 대부분이 농업진흥구역 안에 있기 때문.
+     현행 ${V4.km2(K.R0['본값'].km2)} km² → 농업진흥구역 개방 시 ${V4.km2(K.R2['본값'].km2)} km²
+     (${V4.n(K.R2['본값'].n)}필지)<sup class="fnref">[3]</sup>.<br>간척 농지 대부분이 농업진흥구역 안에 있기 때문.
      <a href="atlas.html"><b>아틀라스에서 지구별로 보기 →</b></a>`;
 
   // ── 다섯 단계로 읽는 결론 — narrative_v4(구획 크기 분포·소유 필터·소유×이격) 렌더 ──
@@ -308,6 +309,9 @@
   const kk = m2 => V4.km2(m2 / 1e6);
   const cpBigRec = N.cp_big.filter(b => b.reclaim_pct >= 50).length;
   const cpAnchorTop = N.cp_big_anchor[0] || {mw: 0};
+  // 이격 감소율 — 런 쌍에서 산출 (하드코딩 금지: 판이 바뀌면 값도 바뀐다)
+  const drop = k => Math.round(100 * (R[k].listed_km2 - R[k + '_SB'].listed_km2) / R[k].listed_km2);
+  const cut = (a, b) => Math.round(100 * (a - b) / a);        // 접근 면적 축소율
   document.getElementById('th50').textContent = V4.n(N.threshold.mw50_m2);
   document.getElementById('th100').textContent = V4.n(N.threshold.mw100_m2);
 
@@ -318,7 +322,7 @@
 
   const STEPS = [
     ['①', '현재 수준', `현행법(농업진흥지역 밖 한정)으로 가능한 농지는
-      <b>${V4.km2(M.R0['후'].km2)} km²</b>(${V4.n(M.R0['후'].n)}필지)지만, 사업이 성립하는
+      <b>${V4.km2(M.R0['본값'].km2)} km²</b>(${V4.n(M.R0['본값'].n)}필지)지만, 사업이 성립하는
       규모로 이어 붙이면 — 연접 21m 병합, 66,667㎡ 이상 —
       <b>${V4.km2(R.ANCHOR.listed_km2)} km²</b>(참고 ${V4.n(R.ANCHOR.mw)}MW)로 줄어듦.`,
      'evidence.html#t32', '근거 표 5'],
@@ -337,19 +341,20 @@
       <b>${V4.n(R.SOFT_R2_CP.ge50)}곳(합 ${V4.n(R.SOFT_R2_CP.ge50_mw)}MW)</b>으로 늘리며
       — 66,667㎡ 이상 등재 전체는 ${V4.km2(R.SOFT_R2_CP.listed_km2)} km²·${V4.n(R.SOFT_R2_CP.mw)}MW —
       그중 ${V4.n(cpBigRec)}곳이 석문·대호·부사·고흥·영산강 수계의 간척 지구.`,
-     'candidates.html', '특구 후보 탭 — 24곳의 소재와 지도'],
+     'candidates.html', `특구 후보 탭 — ${V4.n(R.SOFT_R2_CP.ge50)}곳의 소재와 지도`],
     ['④', '이격 단서', `주거 이격 200m 보수 적용 시(하한) 현행 구획은
-      ${V4.km2(R.ANCHOR.listed_km2)} → ${V4.km2(R.ANCHOR_SB.listed_km2)} km²(−74%),
+      ${V4.km2(R.ANCHOR.listed_km2)} → ${V4.km2(R.ANCHOR_SB.listed_km2)} km²(−${drop('ANCHOR')}%),
       특구급 ${V4.n(R.ANCHOR.ge50)} → ${V4.n(R.ANCHOR_SB.ge50)}곳으로 깎이지만,
-      진흥구역 개방 계열은 −53%(특구급 ${V4.n(R.SOFT_R2_SB.ge50)}곳 잔존),
+      진흥구역 개방 계열은 −${drop('SOFT_R2')}%(특구급 ${V4.n(R.SOFT_R2_SB.ge50)}곳 잔존),
       법인·국공유 병합분은 <b>${V4.km2(R.SOFT_R2_CP.listed_km2)} →
-      ${V4.km2(R.SOFT_R2_CP_SB.listed_km2)} km²(−9%)</b>로 거의 무손 —
+      ${V4.km2(R.SOFT_R2_CP_SB.listed_km2)} km²(−${drop('SOFT_R2_CP')}%)</b>로 감소 폭이 가장 작음 —
       큰 집단 농지, 특히 간척 평야는 주거에서 멀기 때문.`,
      'evidence.html#t32', '근거 표 5 · 지도의 이격 토글'],
     ['⑤', '간척·법인 갭', `농업법인을 간척지 등으로 한정하는 조문 아래에서 간척지 밖 법인이
       잃는 현행 가능 면적은 이격 미적용 <b>${kk(outC.anchor_m2)} km²</b>(약 ${mwK(outC.anchor_m2/1e6)}MW)
       · 이격 적용 ${kk(outC.anchor_sb_m2)} km², 대신 간척 안 법인의 현행 가능분은 각각
-      ${kk(inC.anchor_m2)}·${kk(inC.anchor_sb_m2)} km²뿐 — 어느 판에서도 접근 면적 94–96% 축소.
+      ${kk(inC.anchor_m2)}·${kk(inC.anchor_sb_m2)} km²뿐 — 어느 판에서도 접근 면적
+      ${cut(outC.anchor_sb_m2, inC.anchor_sb_m2)}–${cut(outC.anchor_m2, inC.anchor_m2)}% 축소.
       진흥구역 개방이 동반될 때에만 간척 내 법인 ${kk(inC.all_m2)} km²(이격 후 ${kk(inC.all_sb_m2)})와
       임차 풀 ${kk(inO.all_m2)} km²(이격 후 ${kk(inO.all_sb_m2)}, 전량 사용승낙 필요)가 열림.`,
      'atlas.html', '간척 아틀라스 — 지구별 소유 구조'],

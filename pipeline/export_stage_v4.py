@@ -20,17 +20,21 @@ SGG = '44270'
 W, H = 560, 400
 
 con = duckdb.connect(os.path.join(LR, 'agrivoltaic_ledger_v1.duckdb'), read_only=True)
+# ADR-0039: 실경작 비율은 적격 조건이 아니다. 중간 층(L2)은 '물리·경사 통과'로 바꾼다
+# (구판은 실경작 30% 층이었다 — 폐지된 조건을 판정 단계로 그리지 않는다).
 flags = con.execute("""
   SELECT e.pnu,
-         (COALESCE(e.ratio_v2_final,0)>=0.30) live,
-         (e.n_s0_ge30
+         (e.L1_jimok AND e.L4_phys AND NOT COALESCE(e.excl_slope15,FALSE)
+          AND NOT COALESCE(e.jimok_missing,FALSE)) live,
+         (e.L1_jimok AND e.L3_s0 AND e.L4_phys
+          AND NOT COALESCE(e.excl_slope15,FALSE) AND NOT COALESCE(e.jimok_missing,FALSE)
           AND NOT (l.class1_name LIKE '%개발제한구역%' OR l.class2_name LIKE '%개발제한구역%')
           AND l.class1_name NOT IN ('보전관리지역','보전녹지지역')
           AND COALESCE(l.class2_name,'') NOT IN ('보전관리지역','보전녹지지역')) anchor
   FROM elig_v2 e JOIN ledger l USING(pnu)
   WHERE e.sgg = ? AND l.category IN ('01','02','03')""", [SGG]).fetch_df()
 con.close()
-print(f"당진 전답과 우주 {len(flags):,} · 실경작 {int(flags['live'].sum()):,} · "
+print(f"당진 전답과 우주 {len(flags):,} · 물리·경사 통과 {int(flags['live'].sum()):,} · "
       f"앵커 {int(flags['anchor'].sum()):,}", flush=True)
 
 g = gpd.read_file(os.path.join(ROOT, 'Cadastre_All', f'{SGG}.gpkg')).to_crs(5186)
@@ -91,7 +95,7 @@ out = {
     'layers': [
         {'k': 'L1', 't': '지목 전·답·과수원', 'd': f"{len(flags):,}필지 — 분석 우주",
          'path': paths(L1)},
-        {'k': 'L2', 't': '실경작 30% 이상', 'd': f"{int(flags['live'].sum()):,}필지 — 위성 실측",
+        {'k': 'L2', 't': '물리·경사 통과', 'd': f"{int(flags['live'].sum()):,}필지 — 건물·수역·산단 없음, 경사 15° 이하",
          'path': paths(L2)},
         {'k': 'L3', 't': '현행법 적격', 'd': f"{int(flags['anchor'].fillna(False).sum()):,}필지 — 구조·경사·용도 3종 통과, 농업진흥지역 밖",
          'path': paths(L3)},

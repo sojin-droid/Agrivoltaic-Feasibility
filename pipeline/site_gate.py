@@ -72,12 +72,16 @@ sfp = os.path.join(DATA, 'summary_v4.json')
 if os.path.exists(sfp):
     s = json.load(open(sfp, encoding='utf-8'))
     a = s['anchor']
-    r0 = s['matrix']['전국']['R0']['후']
+    r0 = s['matrix']['전국']['R0']['본값']
     if r0['n'] != a['n'] or abs(r0['km2'] - round(a['m2']/1e6, 1)) > 0.05:
-        fails.append("summary_v4: 매트릭스 R0(후) ≠ 앵커 (T14 불일치)")
+        fails.append("summary_v4: 매트릭스 R0(본값) ≠ 앵커 상수 불일치 (ADR-0039 판)")
+    if 'legacy' in a:                       # 구 정의 참고값도 매트릭스와 맞아야 한다
+        lg = s['matrix']['전국']['R0']['구정의']
+        if lg['n'] != a['legacy']['n']:
+            fails.append("summary_v4: 매트릭스 R0(구정의) ≠ 구 앵커(T14) 참고값")
     for pop in ['전국', '간척']:
         m = s['matrix'][pop]
-        for ph in ['전', '후']:
+        for ph in ['본값', '구정의']:
             add = m['R0'][ph]['n'] + (m['R1'][ph]['n']-m['R0'][ph]['n']) + (m['R2'][ph]['n']-m['R0'][ph]['n'])
             if add != m['R3'][ph]['n']:
                 fails.append(f"summary_v4: {pop} {ph} 가산성 위반 (R0+풀 ≠ R3)")

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PLANiT · 산단 연계 — 특구 후보 × 산업단지 × 계통 여유</title>
-<meta name="description" content="법인·국공유 특구급 후보 24곳과 산업단지 위치, 동 단위 계통 여유용량을 한 지도에 레이어로 겹쳐 근접성을 확인.">
+<meta name="description" content="법인·국공유 특구급 후보 25곳과 산업단지 위치, 동 단위 계통 여유용량을 한 지도에 레이어로 겹쳐 근접성을 확인.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -109,7 +109,7 @@ input[type=range]{accent-color:var(--navy)}
     <h1>산단 연계 — 특구 후보 × 산업단지 × 계통 여유</h1>
     <p class="lede">특구급 후보 구획<sup class="fnref">[12]</sup>이 전력 수요처(산업단지)와
     계통 여유(동 단위 접속가능용량)에서 얼마나 가까운지를 한 지도에 세 레이어로 겹쳐 확인.<br>
-    <b>폴리곤 = 특구급 후보 24곳</b>(법인·국공유만 병합, 농업진흥구역 개방 기준) ·
+    <b>폴리곤 = 특구급 후보 25곳</b>(법인·국공유만 병합, 농업진흥구역 개방 기준) ·
     <b>경계 = 산업단지 전국 <span id="p-ind">—</span>곳</b><sup class="fnref">[23]</sup> ·
     <b>채움 = 읍면동 단위 계통 여유 전국 <span id="p-emd">—</span>곳</b><sup class="fnref">[22]</sup>.</p>
     <p style="font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:14px"
@@ -169,7 +169,7 @@ input[type=range]{accent-color:var(--navy)}
       <span class="dot" style="background:#0C356A;border:2px solid #fff;box-shadow:0 0 0 1px #0C356A"></span>산업단지 경계·중심점 (색 = 유형: 빨강 국가 · 남색 일반 · 보라 도시첨단 · 청록 농공) ·
       금색 점선 원 = 선택 후보의 반경 버퍼 · 금색 테두리 = 버퍼 안 산업단지
     </div>
-    <figcaption style="font-size:12px;color:var(--muted);margin-top:6px">그림 1. 특구급 후보 24곳 ×
+    <figcaption style="font-size:12px;color:var(--muted);margin-top:6px">그림 1. 특구급 후보 25곳 ×
     산업단지 전국 <span id="p-ind3">—</span>곳 × 읍면동 단위 계통 여유 전국 — 위성 배경 © Esri<sup class="fnref">[19]</sup> ·
     구획 지오메트리 15m 간소화(표시용)<sup class="fnref">[12]</sup> ·
     계통<sup class="fnref">[22]</sup>·산업단지<sup class="fnref">[23]</sup>는 참고 레이어(성격·한계는 §4).</figcaption>
@@ -182,7 +182,7 @@ input[type=range]{accent-color:var(--navy)}
   <figure class="art-fig">
     <div class="figbox">
       <div style="overflow-x:auto"><table class="v4" id="t-prox"></table></div>
-      <div class="figcap">표 1. 특구급 후보 24곳의 최근접 산업단지·직선거리·소재 읍면동 계통 여유 —
+      <div class="figcap">표 1. 특구급 후보 25곳의 최근접 산업단지·직선거리·소재 읍면동 계통 여유 —
       행 클릭 = 지도 이동. 거리·계통 여유는 표시용 참고값(§4의 성격·한계 참조).</div>
     </div>
   </figure>
@@ -191,7 +191,7 @@ input[type=range]{accent-color:var(--navy)}
 
   <h2 class="art-h">4. 단서 — 레이어별 성격과 한계</h2>
   <p><b>구획(폴리곤)</b> — 정본 2판 산출<sup class="fnref">[12]</sup>.
-  진흥구역 개방 + 소유 필터 기준 특구급 전부(24곳). 둘 다 개방 + 소유 필터 조합은 미산출(§1).<br>
+  진흥구역 개방 + 소유 필터 기준 특구급 전부(25곳). 둘 다 개방 + 소유 필터 조합은 미산출(§1).<br>
   <b>산업단지(경계)</b> — 산업입지정보시스템 등재 전국 <span id="p-ind2">—</span>곳
   전수<sup class="fnref">[23]</sup>(국가·일반·도시첨단·농공). 규모·유형만 표기 — 전력 수요
   환산은 미포함(후속 과제).<br>
@@ -577,7 +577,7 @@ input[type=range]{accent-color:var(--navy)}
     bufRefresh();
   });
 
-  // ── 표 1 — 후보 24곳 × 최근접 산단 · 거리 · 계통 여유 (전체 등재분 기준) ──
+  // ── 표 1 — 후보 25곳 × 최근접 산단 · 거리 · 계통 여유 (전체 등재분 기준) ──
   const nearestOf = {};
   bigList.forEach(b => {
     const bd = boundsById[b.id];

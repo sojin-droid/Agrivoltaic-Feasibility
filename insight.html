@@ -201,20 +201,21 @@
     + ch.map(convRow).join(''),
     `재현: <a href="map.html?sgg=${cl[0].c},${ch[0].c}">지도에서 양 극단 비교</a> · <a href="evidence.html#diag">시군별 조회(필지층)</a>와 대조`);
 
-  // ── I6. 간척: 실경작 탈락률 ──
+  // ── I6. 간척: 실경작 정도 (서술 지표 — 적격 조건 아님, ADR-0039) ──
   const R = D.reclaim;
-  card('reclaim', '간척 × 실경작',
-    '간척 농지는 거의 전부가 실제 경작 중이다 — 탈락률 ' + R.drop_reclaim + '% 대 전국 ' + R.drop_nat + '%',
-    `실경작 필터(위성 실측 30%) 적용 시 전국 농지는 ${R.drop_nat}%가 탈락하는 반면,
-     간척 확정 농지는 <b>${R.drop_reclaim}%</b>만 탈락한다. 간척지가 실제로 경작되고 있는
-     우량 농지라는 뜻이며, 영농형 태양광의 '영농 지속' 요건과 정합적인 입지임을 시사한다.`,
+  card('reclaim', '간척 × 실경작 정도',
+    '간척 농지는 거의 전부가 실제 경작 중 — 경작 30% 미만 비중 ' + R.lowratio_reclaim + '% 대 전국 ' + R.lowratio_nat + '%',
+    `위성 실측 경작 비율이 30% 미만인 농지의 면적 비중은 전국 ${R.lowratio_nat}%인데
+     간척 확정 농지는 <b>${R.lowratio_reclaim}%</b>다. 간척지가 실제로 경작되고 있는
+     우량 농지라는 뜻이며, 영농형 태양광의 '영농 지속' 요건과 정합적인 입지임을 시사한다.
+     실경작 비율은 적격 조건이 아니라 입지 서술 지표다.`,
     `<div class="bar-row"><div><b>전국 농지</b></div>
-      <div class="bar-track"><div class="bar-post" style="width:${R.drop_nat*4}%;background:#B3261E"></div></div>
-      <div class="bar-num">−${R.drop_nat}%</div></div>
+      <div class="bar-track"><div class="bar-post" style="width:${R.lowratio_nat*4}%;background:#B3261E"></div></div>
+      <div class="bar-num">${R.lowratio_nat}%</div></div>
      <div class="bar-row"><div><b>간척 농지</b></div>
-      <div class="bar-track"><div class="bar-post" style="width:${R.drop_reclaim*4}%;background:#B3261E"></div></div>
-      <div class="bar-num">−${R.drop_reclaim}%</div></div>`,
-    `재현: <a href="evidence.html#tables">근거 표 1·표 2</a>의 실경작 전/후 열 비교`);
+      <div class="bar-track"><div class="bar-post" style="width:${R.lowratio_reclaim*4}%;background:#B3261E"></div></div>
+      <div class="bar-num">${R.lowratio_reclaim}%</div></div>`,
+    `재현: <a href="evidence.html#tables">근거 표 1·표 2</a>의 본값 · 구 정의 참고 열 비교`);
 
   // ── I7. 간척: 보호구역 개방 무효 · 진흥 의존 ──
   card('reclaim', '간척 × 구역',
@@ -231,7 +232,8 @@
     '간척 한정 조문은 법인의 현행 접근 면적을 ' + K(R.out_anchor) + ' → ' + K(R.in_anchor) + ' km²로 줄인다',
     `간척지 외 법인이 현행법으로 접근 가능한 ${K(R.out_anchor)} km²는 조문 시행 시 쓸 수
      없게 되고, 간척지 내 법인 기소유 중 현행 가능분은 ${K(R.in_anchor)} km²뿐이다 —
-     96% 축소다. 대체 경로인 임차 공급원(간척지 내 비법인 소유)은 ${K(R.pool)} km²로,
+     ${Math.round(100*(R.out_anchor-R.in_anchor)/R.out_anchor)}% 축소다.
+     대체 경로인 임차 공급원(간척지 내 비법인 소유)은 ${K(R.pool)} km²로,
      상실분 대비 ${R.lease_ratio}배가 존재하나 전부 사용승낙 절차를 요한다.`,
     `<div class="dumb-row"><div><b>법인 접근 면적</b></div>
       <div class="dumb-track">
@@ -254,7 +256,8 @@
   ];
   const spMax = Math.max(...spBars.map(x => x[1]));
   card('reclaim', '소유 × 특구급',
-    '특구급 구획은 소유 필터를 걸면 현행 1곳 — 진흥구역 개방 시 24곳, 15곳이 간척 지구',
+    `특구급 구획은 소유 필터를 걸면 현행 ${V4.n(NR.ANCHOR_CP.ge50)}곳 — 진흥구역 개방 시
+     ${V4.n(NR.SOFT_R2_CP.ge50)}곳, ${NV.cp_big.filter(b => b.reclaim_pct >= 50).length}곳이 간척 지구`,
     `사업규모 구획을 법인·국공유 필지만으로 재병합하면(개인 등 소유 배제) 현행법 기준
      특구급(50MW 이상 = ${V4.n(NV.threshold.mw50_m2)}㎡)은 전국 <b>${V4.n(NR.ANCHOR_CP.ge50)}곳</b>
      (제주 서귀포)뿐이다 — 현행 특구급 ${V4.n(NR.ANCHOR.ge50)}곳은 면적의

@@ -33,7 +33,11 @@ def cell(pop, code, phase):
     # m2 원값 동봉 — MW 참고 환산은 반올림 km²가 아니라 원값에서 (브리프와 자릿수 일치)
     return {'n': r['n'], 'km2': round(r['m2']/1e6, 1), 'm2': round(r['m2'], 2)}
 
-matrix = {pop: {code: {'name': name, '전': cell(pop, code, '전'), '후': cell(pop, code, '후')}
+# 키 이름 = query.py 의 phase 그대로 ('본값' = 정본, '구정의' = 폐지된 ρ≥0.30 참고값).
+# 구판 키 '전'/'후' 는 쓰지 않는다 — 같은 자리에 뜻이 다른 값이 들어가는 사고를 막는다
+# (구 '전' = 새 '본값', 구 '후' = 새 '구정의').
+PH = ['본값', '구정의']
+matrix = {pop: {code: dict({'name': name}, **{ph: cell(pop, code, ph) for ph in PH})
                 for code, name, _ in Q.MATRIX_ZONES}
           for pop in ['전국', '간척']}
 
@@ -45,7 +49,7 @@ for pop in ['전국', '간척']:
         pools[pop][pool] = {ph: {'n': cell(pop, hi, ph)['n'] - cell(pop, 'R0', ph)['n'],
                                  'km2': round((cell(pop, hi, ph)['m2'] - cell(pop, 'R0', ph)['m2'])/1e6, 1),
                                  'm2': round(cell(pop, hi, ph)['m2'] - cell(pop, 'R0', ph)['m2'], 2)}
-                            for ph in ['전', '후']}
+                            for ph in PH}
 
 groups = Q.owner_groups_data()
 owner = [{'group': g['group'], 'n': g['n'], 'km2': round(g['m2']/1e6, 1),
@@ -62,28 +66,35 @@ if os.path.exists(_asp):
 save('summary_v4.json', {
     'generated': GEN,
     'unit_note': '1차 단위 km². 참고 MW = 면적(㎡)×0.045/1000 (GCR 0.225×효율 0.20 가정) — 표시 시 가정 병기',
-    'anchor': {'n': Q.T14_N, 'km2': round(Q.T14_M2/1e6, 2), 'm2': Q.T14_M2,
-               'def': 'n_s0_ge30 ∧ ¬개발제한 ∧ ¬보전관리 ∧ ¬보전녹지 (T14 v7 — ADR-0035 판 개정)',
-               'touchstone': 'T14 정확 일치 검증 통과',
+    'anchor': {'n': Q.ANCHOR_N, 'km2': round(Q.ANCHOR_M2/1e6, 2), 'm2': Q.ANCHOR_M2,
+               'def': '지목 농지 ∧ 물리 통과(건물·수역·산단 없음) ∧ ¬경사15 ∧ ¬지목결측 '
+                      '∧ ¬개발제한 ∧ ¬보전관리 ∧ ¬보전녹지 (ADR-0039 — 실경작 비율은 적격 조건 아님)',
+               'touchstone': 'T16-① 정확 일치 검증 통과 (구 정의 T14는 회귀 검증으로만 유지)',
+               'legacy': {'n': Q.ANCHOR_LEGACY_N, 'km2': round(Q.ANCHOR_LEGACY_M2/1e6, 2),
+                          'def': '구 정의 ρ≥0.30 — 폐지(참고값, 정책 인용 금지)'},
                'pending_zone_null': pend},
-    'matrix': matrix,          # 독립 조합 R0–R3 · 각 실경작 전/후 — 누적 사다리 아님
+    'matrix': matrix,          # 독립 조합 R0–R3 · 각 본값/구정의(참고) — 누적 사다리 아님
     'pools': pools,            # R1−R0(보호)·R2−R0(진흥), 서로소라 정확
     'owner_groups': owner,     # 유형 구분(개인 식별 아님)
 })
 
-# ── 1b. funnel: 전국 깔때기 (전체 → 전답과 → 팜맵 실측 → 실체 30% → 앵커) ────
+# ── 1b. funnel: 전국 깔때기 (전체 → 전답과 → 앵커) ─────────────────────────
+# ADR-0039: 실경작 비율은 적격 조건이 아니므로 깔때기 단계에서 제외한다. 팜맵 실측률과
+# 구 정의(ρ≥0.30) 통과 수는 참고 항목(_ 접두)으로만 남긴다 — 단계로 그리면 폐지된 조건이
+# 다시 판정처럼 읽힌다.
 comp = Q.composition_data()
-tot = comp[['전체필지', '전답과', '지목결측', '팜맵실측', '실체30통과', '앵커적격']].sum()
+tot = comp[['전체필지', '전답과', '지목결측', '팜맵실측', '구정의30통과', '앵커적격']].sum()
 funnel = {
     '전체 필지': int(tot['전체필지']),
     '지목 전·답·과수원': int(tot['전답과']),
-    '  그중 팜맵 공간교차 실측': int(tot['팜맵실측']),
-    '실경작 30% 이상': int(tot['실체30통과']),
     '현행법 적격(앵커)': int(tot['앵커적격']),
     '_지목결측': int(tot['지목결측']),
+    '_팜맵 공간교차 실측': int(tot['팜맵실측']),
+    '_구 정의(실경작 30% 이상)': int(tot['구정의30통과']),
 }
 save('funnel_v4.json', {'generated': GEN, 'national': funnel,
-                        'note': '앵커 적격 필지 수는 T14와 동일 조건 — 지목결측은 구제 필지(앵커 부적격, 복구 진행 중)'})
+                        'note': '앵커 = 본값 적격(ADR-0039, 실경작 무관) — 지목결측은 구제 필지'
+                                '(앵커 부적격, 복구 진행 중). _ 접두 항목은 참고값(단계 아님)'})
 
 # ── 2. sgg_matrix: 시군별 R0–R3 (지도 채색·시군 표) ─────────────────────────
 srows = Q.matrix_data(group_by='sgg')
@@ -118,7 +129,7 @@ lineage = [{'tbl': t, 'built': str(b), 'source': s, 'layer': (l or '')}
                "SELECT tbl, built, source, layer FROM meta_versions ORDER BY layer, tbl").fetchall()]
 con.close()
 save('meta_v4.json', {'generated': GEN,
-                      'data_generation': '2판 (지목 복구 적용 · 2026-08-25)',
-                      'verification': 'export 시 T14 정확 일치 검증 통과', 'lineage': lineage})
+                      'data_generation': '3판 (실경작 조건 제거 · 2026-08-27)',
+                      'verification': 'export 시 앵커 상수 정확 일치 검증 통과 (T16-①)', 'lineage': lineage})
 
 print(f"완료 — data_v4/ (생성 {GEN})")

@@ -17,7 +17,8 @@ con = Q.db()
 # ── 게이트: ANCHOR = T14 ──
 a = con.execute("""SELECT n_eligible, eligible_area_km2, n_listed, listed_area_km2, m_mw
                    FROM scenario_runs WHERE name='ANCHOR'""").fetchone()
-assert a[0] == Q.T14_N and abs(a[1] - Q.T14_M2/1e6) < 0.01, f"[FAIL] ANCHOR ≠ T14: {a}"
+assert a[0] == Q.ANCHOR_N and abs(a[1] - Q.ANCHOR_M2/1e6) < 0.01, \
+    f"[FAIL] ANCHOR ≠ 본값 앵커(ADR-0039): {a}"
 
 # ── 런 요약 + 크기 분포 ──
 RUNS = ['ANCHOR', 'ANCHOR_SB', 'SOFT_A1', 'SOFT_A1_SB', 'SOFT_R2', 'SOFT_R2_SB',

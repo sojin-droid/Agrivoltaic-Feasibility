@@ -49,7 +49,7 @@ syn_nat = round((res['SOFT_A2']['listed_area_km2'] - res['SOFT_R2']['listed_area
 conv = []
 for c, d in codes.items():
     try:
-        pk = d['R0']['후']['km2']
+        pk = d['R0']['본값']['km2']
     except Exception:
         continue
     if pk >= 10:
@@ -69,16 +69,20 @@ K = summ['matrix']['간척']
 NA = summ['matrix']['전국']
 og = {g['group']: g for g in summ['owner_groups']}
 reclaim = dict(
-    drop_reclaim=round(100*(K['R3']['전']['km2']-K['R3']['후']['km2'])/K['R3']['전']['km2'], 1),
-    drop_nat=round(100*(NA['R3']['전']['km2']-NA['R3']['후']['km2'])/NA['R3']['전']['km2'], 1),
-    prot_inc=round(K['R1']['후']['km2']-K['R0']['후']['km2'], 1),
-    r2_share=round(100*(K['R2']['후']['km2']-K['R0']['후']['km2'])
-                   / (K['R3']['후']['km2']-K['R0']['후']['km2']), 1),
+    # 실경작 30% 미만 필지의 면적 비중 (서술 지표 — 적격 조건이 아니다, ADR-0039).
+    # 본값(실경작 무관) 대비 구 정의(ρ≥0.30) 통과분의 차 ÷ 본값.
+    lowratio_reclaim=round(100*(K['R3']['본값']['km2']-K['R3']['구정의']['km2'])
+                           / K['R3']['본값']['km2'], 1),
+    lowratio_nat=round(100*(NA['R3']['본값']['km2']-NA['R3']['구정의']['km2'])
+                       / NA['R3']['본값']['km2'], 1),
+    prot_inc=round(K['R1']['본값']['km2']-K['R0']['본값']['km2'], 1),
+    r2_share=round(100*(K['R2']['본값']['km2']-K['R0']['본값']['km2'])
+                   / (K['R3']['본값']['km2']-K['R0']['본값']['km2']), 1),
     out_anchor=og['간척지 외 법인']['anchor_km2'],
     in_anchor=og['간척지 내 법인']['anchor_km2'],
     pool=og['간척지 내 비법인']['km2'],
     lease_ratio=round(og['간척지 내 비법인']['km2']/og['간척지 외 법인']['anchor_km2'], 2),
-    r0=K['R0']['후']['km2'], r2=K['R2']['후']['km2'],
+    r0=K['R0']['본값']['km2'], r2=K['R2']['본값']['km2'],
 )
 
 out = dict(generated=datetime.datetime.now().strftime('%Y-%m-%d %H:%M'),

@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-25 18:23",
- "data_generation": "2판 (지목 복구 적용 · 2026-08-25)",
- "verification": "export 시 T14 정확 일치 검증 통과",
+ "generated": "2026-08-28 00:15",
+ "data_generation": "3판 (실경작 조건 제거 · 2026-08-27)",
+ "verification": "export 시 앵커 상수 정확 일치 검증 통과 (T16-①)",
  "lineage": [
   {
    "tbl": "agpromo_bnd",
@@ -13,6 +13,12 @@
    "tbl": "bjd_code",
    "built": "2026-08-19",
    "source": "행정표준코드 법정동코드 전체자료 (code.go.kr, 2026-08-19 다운로드, 폐지 포함). 리 명칭 정본. v4_02",
+   "layer": "L0"
+  },
+  {
+   "tbl": "emd_bnd",
+   "built": "2026-08-27",
+   "source": "V-World LT_C_ADEMD_INFO 읍면동 경계 5,067개 — 계통 채색 지도 표기용(수치 산출 아님), 원시 sources/emd_bnd/raw",
    "layer": "L0"
   },
   {
@@ -31,6 +37,12 @@
    "tbl": "ind_complex_bnd",
    "built": "2026-08-20",
    "source": "전국 산업단지 경계 속성 — V-World 데이터 API LT_C_DAMDAN(ILIS), cat_nam=국가/일반/도시첨단/농공. 폴리곤은 sources/ind_complex/damdan.gpkg, 원시 JSON은 damdan_raw/(fetched_at 내장). v5_03",
+   "layer": "L0"
+  },
+  {
+   "tbl": "ind_firms",
+   "built": "2026-08-27",
+   "source": "한국산업단지공단 전국등록공장현황(2024-12-31, data.go.kr 15105482) — 산단 입주 84,111사 중 79,424사를 경계 단지명과 대조(별칭·유형 힌트), 기업명 검색 표기용(판정 불사용). 원시 sources/ind_complex/firms",
    "layer": "L0"
   },
   {
