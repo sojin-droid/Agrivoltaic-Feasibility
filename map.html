@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PLANiT · 지도 — 시나리오별 사업규모 구획</title>
+<title>PLANiT · 지도 — 시나리오별 연접 구획</title>
 <meta name="description" content="위성 지도 위에서 시나리오를 바꿔가며 연접 구획(21m 병합, 크기 문턱 없음)이 어떻게 달라지는지 확인.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,8 +79,10 @@
     병합한 덩어리 — <b>크기 문턱 없이 전량</b>을 그림. 법에 규모 숫자가 없기 때문.
     표시되는 땅은 <b>법인·국공유 소유</b>(정본)이고, 현행법 기준(노랑)은 항상 표시되며
     보호구역·진흥구역 개방분을 하나씩 켜서 <b>노랑 밖으로 번지는 증분</b>을 확인함 —
-    주황 = 보호구역 개방분, 빨강 = 진흥구역 개방분.<br>대조군을 켜면 개인을 포함한
-    전 소유로 바뀜 — 정본이 전체의 얼마인지 가늠하기 위한 것이고 정책 값이 아님.</p>
+    주황 = 보호구역 개방분, 빨강 = 진흥구역 개방분.<br><b>대조군 겹쳐 보기</b>를 켜면 소유를
+    가리지 않은 구획이 회색으로 함께 깔림 — <b>회색만 있고 색이 없는 자리</b>가 개인 소유라
+    정본에서 빠진 곳임(대조군은 비교용이며 정책 값이 아님<sup>※</sup>). 같은 수치는
+    <a href="evidence.html" style="color:var(--leaf-deep)">근거 탭</a>의 표에도 병기돼 있음.</p>
   </div>
 
   <div class="map-wrap">
@@ -94,9 +96,10 @@
           현행법 기준 — 항상 표시<small>농업진흥지역 밖 · 노랑</small></button>
         <button id="chkProt">＋ 농업보호구역 개방분<small>수단 A (부령) · 주황으로 추가</small></button>
         <button id="chkProm">＋ 농업진흥구역 개방분<small>수단 B (재생에너지지구) · 빨강으로 추가</small></button>
-        <div style="font-size:11.5px;color:var(--muted);padding:6px 2px 0">지도에 그리는 땅은
-        <b>법인·국공유 소유</b>(정본)임 — 개인을 포함한 대조군 수치는
-        <a href="evidence.html" style="color:var(--leaf-deep)">근거 탭</a>의 표에 병기돼 있음.</div>
+        <button id="chkAll">대조군 겹쳐 보기 — 개인 포함 전 소유<small>회색 윤곽 · 정본이 비어 있는 자리의 이유를 확인</small></button>
+        <div style="font-size:11.5px;color:var(--muted);padding:6px 2px 0">기본 표시는
+        <b>법인·국공유 소유</b>(정본)임. 대조군을 겹치면 <b>회색만 있고 색이 없는 곳</b>이
+        보이는데, 그 땅은 개인 소유라 정본에서 빠진 것임 — 대조군은 비교용이고 정책 값이 아님.</div>
       </div>
       <div class="sb-toggle" id="sbTgl">
         <button data-sb="0" class="on">이격 미적용</button>
@@ -104,6 +107,7 @@
       </div>
       <div id="stats"></div>
       <div class="leg">
+        <span class="sw" style="background:rgba(154,163,174,.55);border:1px solid #6B7480"></span>대조군 — 개인 포함 전 소유 (회색, 겹쳐 보기 시)<br>
         <span class="sw" style="background:rgba(255,216,77,.8);border:1px solid #B8860B"></span>현행법 기준 연접 구획 (노랑)<br>
         <span class="sw" style="background:rgba(255,155,61,.8);border:1px solid #C96A00"></span>보호구역 개방으로 늘어나는 부분 (주황)<br>
         <span class="sw" style="background:rgba(255,80,70,.8);border:1px solid #B3261E"></span>진흥구역 개방으로 늘어나는 부분 (빨강)<br>
@@ -127,14 +131,16 @@
   // 증분 레이어 방식: 현행(노랑) 상시 + 보호 개방분(주황) + 진흥 개방분(빨강)을 겹쳐 그림.
   // 영역이 포함관계(R0 ⊆ R1 ⊆ R3)라, 아래에 큰 조합을 깔고 위에 작은 조합을 얹으면
   // 노랑 밖으로 번진 색이 곧 그 개방의 증분이 된다.
-  let onProt = false, onProm = false, curSB = 0;
+  let onProt = false, onProm = false, curSB = 0, onAll = false;
   const sb = () => (curSB ? '_SB' : '');
-  // ADR-0040: 정본 우주가 법인·국공유이고, 지도는 정본만 그린다. 구 '소유 필터' 토글은
-  // 임무가 없어져 뺐다 — 대조군 구획 지오메트리는 산출하지 않는다(용량 두 배, 지도는
-  // 정본을 보이는 화면이고 대조군 병기는 수치 표가 맡는다).
+  // ADR-0040: 정본 우주가 법인·국공유다. 대조군(@all)은 **겹쳐 그리는 배경층**이다 —
+  // 정본이 비어 있는 자리가 '땅이 없어서'인지 '개인 소유라서'인지 눈으로 가르기 위해서다.
+  // 대조군 지오메트리는 정본보다 굵게 간소화했다(위치를 보이는 것이 임무이므로).
   const baseCell = () => 'R0_current' + sb();
   const protCell = () => 'R1_protect' + sb();
   const promCell = () => (onProt ? 'R3_zone_all' : 'R2_promo') + sb();
+  const ctrlCell = () => (onProm ? (onProt ? 'R3_zone_all' : 'R2_promo')
+                                 : (onProt ? 'R1_protect' : 'R0_current')) + sb() + '@all';
 
   const [idx, names, res] = await Promise.all([
     V4.data('clusters_index').catch(() => null),   // export 진행 중이면 색인이 아직 없다
@@ -142,6 +148,19 @@
 
   // ── 지도 ──
   const map = L.map('map', {center: [36.3, 127.6], zoom: 7});
+  // Leaflet 은 만들어질 때의 컨테이너 크기를 캐시한다. 레이아웃이 나중에 잡히면 그 값이
+  // 어긋난 채 남아 fitBounds 가 엉뚱한 축척을 고른다 — 실측: 폭을 32px 로 알고 있어
+  // 당진 한 곳을 넣는데 전국 축척(z6)을 골랐다. 크기가 바뀔 때마다 다시 알려준다.
+  // 칸이 좁게 접힌 상태에서 맞추면(창이 작거나 패널이 아직 안 펴졌을 때) 축척이 어긋난 채
+  // 굳는다 — 실측: 폭 32px 로 알고 당진 한 곳에 전국 축척(z6)을 골랐다. 칸이 눈에 띄게
+  // 넓어지면 마지막으로 맞춘 범위로 다시 맞춘다.
+  let lastFit = null, lastW = 0;
+  new ResizeObserver(() => {
+    map.invalidateSize();
+    const w = map.getSize().x;
+    if (lastFit && w > lastW * 1.5) map.fitBounds(lastFit);
+    lastW = w;
+  }).observe(map.getContainer());
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     {maxZoom: 18, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics'}).addTo(map);
   L.control.scale({imperial: false, maxWidth: 140}).addTo(map);   // 축척
@@ -193,7 +212,7 @@
     if (v && !picked.includes(v)) { picked.push(v); renderChips(); render(true); }
     sel.value = '';
   };
-  // URL 파라미터 (탭 연동): map.html?sgg=44270,46820 · &cp=1 = 소유 필터 켬 · &prom=1 = 진흥 개방 켬
+  // URL 파라미터 (탭 연동): map.html?sgg=44270,46820 · &all=1 = 대조군 겹쳐 보기 · &prom=1 = 진흥 개방 켬
   const qp = new URLSearchParams(location.search);
   const q = qp.get('sgg');
   if (q) {
@@ -205,7 +224,12 @@
   const bProm = document.getElementById('chkProm');
   bProt.onclick = () => { onProt = !onProt; bProt.classList.toggle('on', onProt); render(); };
   bProm.onclick = () => { onProm = !onProm; bProm.classList.toggle('on', onProm); render(); };
-  if (qp.get('prom') === '1') bProm.onclick();
+  const bAll = document.getElementById('chkAll');
+  bAll.onclick = () => { onAll = !onAll; bAll.classList.toggle('on', onAll); render(); };
+  // URL 파라미터는 **상태만** 세운다 — onclick 을 부르면 초기 렌더가 여러 번 겹쳐 돌아
+  // 서로의 레이어를 지우고 화면 맞춤(fitBounds)이 빈 집합 위에서 일어난다
+  if (qp.get('all') === '1') { onAll = true; bAll.classList.add('on'); }
+  if (qp.get('prom') === '1') { onProm = true; bProm.classList.add('on'); }
   setTimeout(() => render(true), 50);   // 초기 렌더 — 선택 없어도 전국 통계·안내는 표시
   document.querySelectorAll('#sbTgl button').forEach(b => b.onclick = () => {
     curSB = +b.dataset.sb;
@@ -237,6 +261,13 @@
         const from = onProt ? sumIdx(protCell()).km2 : b.km2;
         html += line('　＋진흥구역 개방 증분', `+${V4.km2(m.km2 - from)} → ${V4.km2(m.km2)} km²`);
       }
+      if (onAll) {           // 제2조 — 같은 칸의 대조군을 같은 화면에 병기한다
+        const a = sumIdx(ctrlCell());
+        const cur = onProm ? sumIdx(promCell()) : (onProt ? sumIdx(protCell()) : b);
+        html += line('　대조군 (개인 포함·정책 값 아님)',
+                     `${V4.n(a.k)}개 · ${V4.km2(a.km2)} km²` +
+                     (cur.km2 > 0 ? ` (×${(a.km2 / cur.km2).toFixed(1)})` : ''));
+      }
     }
     if (natB) html += line(`전국 · 현행법${cpTag}`,
       `${V4.n(natB.n_component)}구획 · ${V4.km2(natB.component_area_km2)} km²`);
@@ -254,15 +285,18 @@
   }
 
   const LAYER_STYLE = {
+    ctrl: {fill: '#9AA3AE', line: '#6B7480', label: '대조군(개인 포함) — 정책 값 아님'},
     base: {fill: '#FFD84D', line: '#B8860B', label: '현행법 기준'},
     prot: {fill: '#FF9B3D', line: '#C96A00', label: '＋보호구역 개방 시'},
     prom: {fill: '#FF5046', line: '#B3261E', label: '＋진흥구역 개방 시'},
   };
+  let renderSeq = 0;
   async function render(fit) {
+    const my = ++renderSeq;
     stats();
-    layers.forEach(l => map.removeLayer(l));
-    layers = [];
     if (!picked.length) {
+      layers.forEach(l => map.removeLayer(l));
+      layers = [];
       document.getElementById('hint').textContent = '시군을 추가하면 위성 지도로 이동 (여러 개 선택 가능).';
       return;
     }
@@ -271,33 +305,51 @@
     document.getElementById('hint').textContent = '구획 불러오는 중…';
     // 아래(큰 조합) → 위(현행) 순서로 쌓는다: 진흥 → 보호 → 현행
     const plan = [];
+    if (onAll) plan.push(['ctrl', ctrlCell()]);      // 맨 아래 — 배경
     if (onProm) plan.push(['prom', promCell()]);
     if (onProt) plan.push(['prot', protCell()]);
     plan.push(['base', baseCell()]);
+    // 먼저 전부 받아 둔다 — 받는 중에 지워 버리면 겹친 렌더끼리 서로를 없앤다
+    const packs = [];
     for (const [kind, cell] of plan) {
       const datas = await Promise.all(live.map(c => fc(c, cell)));
       const feats = [];
       datas.forEach(d => { if (d) feats.push(...d.features); });
-      if (!feats.length) continue;
+      if (feats.length) packs.push([kind, feats]);
+    }
+    if (my !== renderSeq) return;   // 그 사이 더 최근 렌더가 시작됨 — 이 결과는 버린다
+    layers.forEach(l => map.removeLayer(l));
+    layers = [];
+    for (const [kind, feats] of packs) {
       const st = LAYER_STYLE[kind];
       layers.push(L.geoJSON({type: 'FeatureCollection', features: feats}, {
-        style: f => ({color: st.line, weight: f.properties.sp ? 1.8 : .8,
+        style: f => ({color: st.line, weight: kind === 'ctrl' ? .5 : (f.properties.sp ? 1.8 : .8),
                       dashArray: f.properties.sp ? '5 4' : null,
-                      fillColor: st.fill, fillOpacity: kind === 'base' ? .8 : .75}),
+                      fillColor: st.fill,
+                      fillOpacity: kind === 'ctrl' ? .3 : (kind === 'base' ? .8 : .75)}),
         onEachFeature: (f, ly) => ly.bindPopup(
           `<b>${st.label} · 연접 구획 ${V4.km2(f.properties.a, 2)} km²</b> (${V4.n(Math.round(f.properties.a * 1e6))} ㎡)` +
+          (kind === 'ctrl'
+            ? '<br><b>소유 무관 대조군</b> — 개인 필지가 섞여 있어 정본에 없는 자리임'
+              + ' (윤곽은 정본보다 굵게 간소화)'
+            : '') +
           `<br>이 시군 구간 ${V4.n(f.properties.n)}필지 · 참고 ${V4.n(Math.round(f.properties.a * 45))} MW` +
           (f.properties.sp ? '<br><b>시군 경계 걸침</b> — 면적은 구획 전체 기준' : '') +
           `<br><span style="color:#888;font-size:11px">구획 번호 #${f.properties.id} · 환산 0.045 kW/㎡ 가정</span>`)
       }).addTo(map));
     }
     if (fit && layers.length) {
+      map.invalidateSize();          // 맞추기 직전에 실제 크기로 갱신
       let b = layers[0].getBounds();
       layers.forEach(l => b = b.extend(l.getBounds()));
-      map.fitBounds(b.pad(0.08));
+      lastFit = b.pad(0.08);
+      lastW = map.getSize().x;
+      map.fitBounds(lastFit);
     }
     let hint = layers.length
-      ? '개방분 버튼을 켜고 끄며 비교 — 노랑 밖으로 번진 색이 그 개방의 증분.'
+      ? (onAll
+          ? '회색만 있고 색이 없는 자리 = 땅은 있으나 개인 소유라 정본에서 빠진 곳.'
+          : '개방분 버튼을 켜고 끄며 비교 — 노랑 밖으로 번진 색이 그 개방의 증분.')
       : '선택 시군에는 연접 구획 없음.';
     if (none.length) hint += ` (${none.map(nameOf).join('·')}: 어떤 시나리오에도 연접 구획 없음)`;
     if (picked.length > 12) hint += ' — 선택이 많으면 로딩이 느려질 수 있음.';
