@@ -56,7 +56,7 @@
     <div style="margin-top:14px">
       <a class="pill" href="#diag">시군별 조회</a>
       <a class="pill" href="#tables">표 1–4 조합·증분·소유</a>
-      <a class="pill" href="#t32">표 5 · 16칸 완성표</a>
+      <a class="pill" href="#t32">표 5 · 정본 8칸</a>
       <a class="pill" href="#ord">간척 한정 조문 검토</a>
     </div>
   </div>
@@ -75,9 +75,9 @@
           <label>시군 추가 — 여러 개 선택 가능</label><select id="dg-sel"></select>
         </div>
         <div class="field" style="margin:0;min-width:200px">
-          <label>기준 층</label><select id="dg-ph">
-            <option value="본값" selected>본값 (실경작 무관 적격)</option>
-            <option value="구정의">구 정의 참고 (실경작 30% 이상)</option></select>
+          <label>우주</label><select id="dg-ph">
+            <option value="정본" selected>정본 (법인·국공유)</option>
+            <option value="대조군">대조군 (무필터 — 정책 값 아님)</option></select>
         </div>
       </div>
       <div id="dg-chips" style="margin:2px 0 8px"></div>
@@ -126,7 +126,7 @@
     </div>
 
     <div class="figbox reveal" id="t32">
-      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 5. 구역 조합(4) × 이격(2) × 집계 단위(2)별 설치 가능 면적 — 16칸 전체</h3>
+      <h3 style="font-family:var(--serif);color:var(--navy);margin-bottom:12px">표 5. 구역 조합(4) × 이격(2)별 설치 가능 면적 — 정본 우주 8칸</h3>
       <div style="overflow-x:auto"><table class="v4" id="t-grid"></table></div>
       <div class="figcap">구획 = 필지를 연접 거리 21m로 병합한 성분 중 66,667㎡ 이상<sup class="fnref">[10]</sup><sup class="fnref">[12]</sup> ·
       이격 보수 = 주거 200m 상한을 대지 필지 대리로 일률 적용한 하한<sup class="fnref">[11]</sup> ·
@@ -156,13 +156,14 @@
   const s = await V4.data('summary_v4');
 
   const matRows = (M) => `
-    <tr><th>조합</th><th>필지</th><th>km²</th><th>참고 MW</th>
-        <th class="ref">구 정의 참고<br>km²</th></tr>` +
+    <tr><th>조합</th><th>정본 필지</th><th>정본 km²</th><th>참고 MW</th>
+        <th class="ref">대조군 km²</th><th class="ref">정본/대조</th></tr>` +
     ['R0', 'R1', 'R2', 'R3'].map(c => `
     <tr class="${c === 'R0' ? 'hl' : ''}"><td class="l">${c} ${M[c].name}</td>
-      <td>${V4.n(M[c]['본값'].n)}</td><td>${V4.km2(M[c]['본값'].km2)}</td>
-      <td class="ref">${V4.mw(M[c]['본값'].m2)}</td>
-      <td class="ref">${V4.km2(M[c]['구정의'].km2)}</td></tr>`).join('');
+      <td>${V4.n(M[c]['정본'].n)}</td><td>${V4.km2(M[c]['정본'].km2)}</td>
+      <td class="ref">${V4.mw(M[c]['정본'].m2)}</td>
+      <td class="ref">${V4.km2(M[c]['대조군'].km2)}</td>
+      <td class="ref">${(100*M[c]['정본'].km2/M[c]['대조군'].km2).toFixed(1)}%</td></tr>`).join('');
   document.getElementById('t-matrix-nat').innerHTML = matRows(s.matrix['전국']);
   document.getElementById('t-matrix-rec').innerHTML = matRows(s.matrix['간척']);
 
@@ -170,14 +171,14 @@
   document.getElementById('t-pools').innerHTML = `
     <tr><th>구역</th><th>전국 필지</th><th>전국 km²</th><th>간척 필지</th><th>간척 km²</th></tr>
     <tr><td class="l">농업진흥지역 밖 (현행 = R0)</td>
-      <td>${V4.n(M0['전국'].R0['본값'].n)}</td><td>${V4.km2(M0['전국'].R0['본값'].km2)}</td>
-      <td>${V4.n(M0['간척'].R0['본값'].n)}</td><td>${V4.km2(M0['간척'].R0['본값'].km2)}</td></tr>
+      <td>${V4.n(M0['전국'].R0['정본'].n)}</td><td>${V4.km2(M0['전국'].R0['정본'].km2)}</td>
+      <td>${V4.n(M0['간척'].R0['정본'].n)}</td><td>${V4.km2(M0['간척'].R0['정본'].km2)}</td></tr>
     <tr><td class="l">농업보호구역 증분 (R1−R0)</td>
-      <td>${V4.n(P['전국']['보호구역']['본값'].n)}</td><td>${V4.km2(P['전국']['보호구역']['본값'].km2)}</td>
-      <td>${V4.n(P['간척']['보호구역']['본값'].n)}</td><td>${V4.km2(P['간척']['보호구역']['본값'].km2)}</td></tr>
+      <td>${V4.n(P['전국']['보호구역']['정본'].n)}</td><td>${V4.km2(P['전국']['보호구역']['정본'].km2)}</td>
+      <td>${V4.n(P['간척']['보호구역']['정본'].n)}</td><td>${V4.km2(P['간척']['보호구역']['정본'].km2)}</td></tr>
     <tr><td class="l">농업진흥구역 증분 (R2−R0)</td>
-      <td>${V4.n(P['전국']['진흥구역']['본값'].n)}</td><td>${V4.km2(P['전국']['진흥구역']['본값'].km2)}</td>
-      <td>${V4.n(P['간척']['진흥구역']['본값'].n)}</td><td>${V4.km2(P['간척']['진흥구역']['본값'].km2)}</td></tr>`;
+      <td>${V4.n(P['전국']['진흥구역']['정본'].n)}</td><td>${V4.km2(P['전국']['진흥구역']['정본'].km2)}</td>
+      <td>${V4.n(P['간척']['진흥구역']['정본'].n)}</td><td>${V4.km2(P['간척']['진흥구역']['정본'].km2)}</td></tr>`;
 
   const og = s.owner_groups;
   const z = (g, k) => g.zones[k] ? V4.km2(g.zones[k].km2) : '0.0';
@@ -207,25 +208,27 @@
     우량농지 제한의 일시사용 적용<sup class="fnref">[15]</sup> ·
     재생에너지지구 경로<sup class="fnref">[10]</sup><sup class="fnref">[16]</sup>.</p>`;
 
-  // ── 표 5: 16칸 완성표 (본값 1층 — ADR-0039로 실경작 축 폐지) ──
+  // ── 표 5: 정본 8칸 (연접 구획 전량 — ADR-0041로 등재 문턱 폐지) ──
   const res = await V4.data('results_v4');
   const GRID5 = [
-    ['ANCHOR', 'R0 현행법 기준'], ['ANCHOR_SB', 'R0 + 이격 보수'],
-    ['SOFT_A1', 'R1 +보호구역만'], ['SOFT_A1_SB', 'R1 + 이격 보수'],
-    ['SOFT_R2', 'R2 +진흥구역만'], ['SOFT_R2_SB', 'R2 + 이격 보수'],
-    ['SOFT_A2', 'R3 둘 다 개방'], ['SOFT_A2_SB', 'R3 + 이격 보수'],
+    ['R0_current', 'R0 현행법 기준'], ['R0_current_SB', 'R0 + 이격 보수'],
+    ['R1_protect', 'R1 +보호구역만'], ['R1_protect_SB', 'R1 + 이격 보수'],
+    ['R2_promo', 'R2 +진흥구역만'], ['R2_promo_SB', 'R2 + 이격 보수'],
+    ['R3_zone_all', 'R3 둘 다 개방'], ['R3_zone_all_SB', 'R3 + 이격 보수'],
   ];
   document.getElementById('t-grid').innerHTML = `
-    <tr><th>구역 · 이격</th><th>필지 km²</th><th>구획 km²</th><th>구획 수</th>
-        <th>참고 MW<br>(구획)</th></tr>` +
+    <tr><th>구역 · 이격</th><th>필지 km²</th><th>연접 구획 km²</th><th>연접 구획 수</th>
+        <th class="ref">≥50MW 등가<br>(1.111km²)</th><th>참고 MW<br>(전량)</th></tr>` +
     GRID5.map(([c, t]) => {
       const r = res.runs[c];
       if (!r) return '';
-      return `<tr class="${c === 'ANCHOR' ? 'hl' : ''}"><td class="l">${t}</td>
+      return `<tr class="${c === 'R0_current' ? 'hl' : ''}"><td class="l">${t}</td>
         <td>${V4.km2(r.eligible_area_km2)}</td>
-        <td><b>${V4.km2(r.listed_area_km2)}</b></td>
-        <td>${V4.n(r.n_listed)}</td>
-        <td class="ref">${r.M_mw != null ? V4.n(Math.round(r.M_mw)) : '—'}</td></tr>`;
+        <td><b>${V4.km2(r.component_area_km2)}</b></td>
+        <td>${V4.n(r.n_component)}</td>
+        <td class="ref">${(() => { const b = (r.size_bands||[]).find(x => Math.abs(x.min_ha-111.1)<1);
+                                    return b ? V4.n(b.n) : '—'; })()}</td>
+        <td class="ref">${r.m_total_mw != null ? V4.n(Math.round(r.m_total_mw)) : '—'}</td></tr>`;
     }).join('');
   // 표 1 각주: 판정 보류 병기 (T14 v7)
   const pz2 = s.anchor.pending_zone_null;
@@ -296,7 +299,7 @@
        두 제도 변수 중 <b>${bigger}</b> 개방의 효과가 커서 +${V4.km2(Math.max(dProm, dProt), 2)} km²가 더해지고,
        둘 다 개방하면 ${V4.km2(r3.km2, 2)} km²가 됨.<br>
        (보호구역 증분 +${V4.km2(dProt, 2)} · 진흥구역 증분 +${V4.km2(dProm, 2)},
-       ${ph === '본값' ? '본값' : '구 정의 참고'} 층, 필지층)${mapLink}`;
+       ${ph === '정본' ? '정본(법인·국공유)' : '대조군(무필터·정책 값 아님)'}, 필지층)${mapLink}`;
   };
   document.getElementById('dg-ph').addEventListener('change', render);
 

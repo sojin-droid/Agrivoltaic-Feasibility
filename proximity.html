@@ -109,7 +109,7 @@ input[type=range]{accent-color:var(--navy)}
     <h1>산단 연계 — 특구 후보 × 산업단지 × 계통 여유</h1>
     <p class="lede">특구급 후보 구획<sup class="fnref">[12]</sup>이 전력 수요처(산업단지)와
     계통 여유(동 단위 접속가능용량)에서 얼마나 가까운지를 한 지도에 세 레이어로 겹쳐 확인.<br>
-    <b>폴리곤 = 특구급 후보 25곳</b>(법인·국공유만 병합, 농업진흥구역 개방 기준) ·
+    <b>폴리곤 = 50MW 이상 후보 25곳</b>(정본 우주 = 법인·국공유, 농업진흥구역 개방 기준) ·
     <b>경계 = 산업단지 전국 <span id="p-ind">—</span>곳</b><sup class="fnref">[23]</sup> ·
     <b>채움 = 읍면동 단위 계통 여유 전국 <span id="p-emd">—</span>곳</b><sup class="fnref">[22]</sup>.</p>
     <p style="font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:14px"
@@ -191,7 +191,8 @@ input[type=range]{accent-color:var(--navy)}
 
   <h2 class="art-h">4. 단서 — 레이어별 성격과 한계</h2>
   <p><b>구획(폴리곤)</b> — 정본 2판 산출<sup class="fnref">[12]</sup>.
-  진흥구역 개방 + 소유 필터 기준 특구급 전부(25곳). 둘 다 개방 + 소유 필터 조합은 미산출(§1).<br>
+  진흥구역 개방(정본 우주) 기준 50MW 이상 전부(25곳) — 50MW 등가는 적용된 문턱이 아니라
+  읽기 눈금임(연접 구획 전량은 <span id="p-comp">—</span>곳).<br>
   <b>산업단지(경계)</b> — 산업입지정보시스템 등재 전국 <span id="p-ind2">—</span>곳
   전수<sup class="fnref">[23]</sup>(국가·일반·도시첨단·농공). 규모·유형만 표기 — 전력 수요
   환산은 미포함(후속 과제).<br>
@@ -228,9 +229,10 @@ input[type=range]{accent-color:var(--navy)}
     `PLANiT Institute · 데이터 ${m.data_generation} · 생성 ${m.generated}`;
   const R = N.runs;
   const nameOf = c => (names.codes[c] && names.codes[c].name) || c;
-  document.getElementById('p-n').textContent = V4.n(R.SOFT_R2_CP.ge50);
-  document.getElementById('p-a50').textContent = V4.n(R.ANCHOR.ge50);
-  document.getElementById('p-a1-50').textContent = V4.n(R.SOFT_A1.ge50);
+  document.getElementById('p-n').textContent = V4.n(R.R2_promo.ge50);
+  document.getElementById('p-comp').textContent = V4.n(R.R2_promo.n_component);
+  document.getElementById('p-a50').textContent = V4.n(R['R0_current@all'].ge50);
+  document.getElementById('p-a1-50').textContent = V4.n(R['R2_promo@all'].ge50);
   document.getElementById('p-th').textContent = V4.n(N.threshold.mw50_m2);
   const GS = await V4.data('grid_summary');
   for (const [id, v] of [['p-ind', GS.ind_total], ['p-ind2', GS.ind_total], ['p-ind3', GS.ind_total],
@@ -493,7 +495,7 @@ input[type=range]{accent-color:var(--navy)}
   const candLayers = {};                 // id → [leaflet layers]
   const boundsById = {};
   const selCand = new Set(bigList.map(b => b.id));
-  const cell = 'SOFT_R2_CP';
+  const cell = 'R2_promo';
   const sggs = Object.keys(idx.sgg).filter(c => idx.sgg[c][cell] && idx.sgg[c][cell].k > 0);
   const datas = await Promise.all(sggs.map(c => gzfc('data_v4/clusters/' + c + '_' + cell + '.json.gz')));
   datas.forEach(d => {

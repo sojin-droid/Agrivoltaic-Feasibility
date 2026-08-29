@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PLANiT · 지도 — 시나리오별 사업규모 구획</title>
-<meta name="description" content="위성 지도 위에서 시나리오를 바꿔가며 등재 구획(연접 병합 66,667㎡ 이상)이 어떻게 달라지는지 확인.">
+<meta name="description" content="위성 지도 위에서 시나리오를 바꿔가며 연접 구획(21m 병합, 크기 문턱 없음)이 어떻게 달라지는지 확인.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -74,12 +74,13 @@
 <div class="wrap">
   <div style="padding-top:26px">
     <p class="eyebrow">Map · 구획 지도</p>
-    <h1 style="font-size:clamp(24px,3vw,34px)">지도 — 시나리오별 등재 구획</h1>
-    <p class="lede" style="margin-top:6px">등재 구획 = 서로 21m 이내로 이어진 필지를 하나로
-    병합한 66,667㎡ 이상의 사업 단위. 현행법 기준(노랑)은 항상 표시되고, 보호구역·진흥구역
-    개방분을 하나씩 켜서 <b>노랑 밖으로 번지는 증분</b>을 확인함 — 주황 = 보호구역 개방분,
-    빨강 = 진흥구역 개방분.<br>소유 필터를 켜면 <b>법인·국공유 필지만으로 병합</b>한
-    구획을 표시 — 개인 소유주 동의 조직화 없이 성립하는 물량의 검토용.</p>
+    <h1 style="font-size:clamp(24px,3vw,34px)">지도 — 시나리오별 연접 구획</h1>
+    <p class="lede" style="margin-top:6px">연접 구획 = 서로 21m 이내로 이어진 필지를 하나로
+    병합한 덩어리 — <b>크기 문턱 없이 전량</b>을 그림. 법에 규모 숫자가 없기 때문.
+    표시되는 땅은 <b>법인·국공유 소유</b>(정본)이고, 현행법 기준(노랑)은 항상 표시되며
+    보호구역·진흥구역 개방분을 하나씩 켜서 <b>노랑 밖으로 번지는 증분</b>을 확인함 —
+    주황 = 보호구역 개방분, 빨강 = 진흥구역 개방분.<br>대조군을 켜면 개인을 포함한
+    전 소유로 바뀜 — 정본이 전체의 얼마인지 가늠하기 위한 것이고 정책 값이 아님.</p>
   </div>
 
   <div class="map-wrap">
@@ -93,7 +94,9 @@
           현행법 기준 — 항상 표시<small>농업진흥지역 밖 · 노랑</small></button>
         <button id="chkProt">＋ 농업보호구역 개방분<small>수단 A (부령) · 주황으로 추가</small></button>
         <button id="chkProm">＋ 농업진흥구역 개방분<small>수단 B (재생에너지지구) · 빨강으로 추가</small></button>
-        <button id="chkCP">소유 필터 — 법인·국공유만 병합<small>개인 등 소유 배제 후 재병합 · 특구급 검토용</small></button>
+        <div style="font-size:11.5px;color:var(--muted);padding:6px 2px 0">지도에 그리는 땅은
+        <b>법인·국공유 소유</b>(정본)임 — 개인을 포함한 대조군 수치는
+        <a href="evidence.html" style="color:var(--leaf-deep)">근거 탭</a>의 표에 병기돼 있음.</div>
       </div>
       <div class="sb-toggle" id="sbTgl">
         <button data-sb="0" class="on">이격 미적용</button>
@@ -101,7 +104,7 @@
       </div>
       <div id="stats"></div>
       <div class="leg">
-        <span class="sw" style="background:rgba(255,216,77,.8);border:1px solid #B8860B"></span>현행법 기준 등재 구획 (노랑)<br>
+        <span class="sw" style="background:rgba(255,216,77,.8);border:1px solid #B8860B"></span>현행법 기준 연접 구획 (노랑)<br>
         <span class="sw" style="background:rgba(255,155,61,.8);border:1px solid #C96A00"></span>보호구역 개방으로 늘어나는 부분 (주황)<br>
         <span class="sw" style="background:rgba(255,80,70,.8);border:1px solid #B3261E"></span>진흥구역 개방으로 늘어나는 부분 (빨강)<br>
         노랑 밖으로 번진 색 = 그 개방의 증분 · 구획 클릭 = 면적·필지 수 · 점선 = 시군 경계 걸침
@@ -124,12 +127,14 @@
   // 증분 레이어 방식: 현행(노랑) 상시 + 보호 개방분(주황) + 진흥 개방분(빨강)을 겹쳐 그림.
   // 영역이 포함관계(R0 ⊆ R1 ⊆ R3)라, 아래에 큰 조합을 깔고 위에 작은 조합을 얹으면
   // 노랑 밖으로 번진 색이 곧 그 개방의 증분이 된다.
-  let onProt = false, onProm = false, curSB = 0, cpOn = false;
+  let onProt = false, onProm = false, curSB = 0;
   const sb = () => (curSB ? '_SB' : '');
-  // 소유 필터(cpOn) = 법인·국공유 필지만 병합한 CP 계열(ADR 결재분) — 보호구역 개방은 CP 산출 없음
-  const baseCell = () => (cpOn ? 'ANCHOR_CP' : 'ANCHOR') + sb();
-  const protCell = () => 'SOFT_A1' + sb();
-  const promCell = () => (cpOn ? 'SOFT_R2_CP' : (onProt ? 'SOFT_A2' : 'SOFT_R2')) + sb();
+  // ADR-0040: 정본 우주가 법인·국공유이고, 지도는 정본만 그린다. 구 '소유 필터' 토글은
+  // 임무가 없어져 뺐다 — 대조군 구획 지오메트리는 산출하지 않는다(용량 두 배, 지도는
+  // 정본을 보이는 화면이고 대조군 병기는 수치 표가 맡는다).
+  const baseCell = () => 'R0_current' + sb();
+  const protCell = () => 'R1_protect' + sb();
+  const promCell = () => (onProt ? 'R3_zone_all' : 'R2_promo') + sb();
 
   const [idx, names, res] = await Promise.all([
     V4.data('clusters_index').catch(() => null),   // export 진행 중이면 색인이 아직 없다
@@ -198,19 +203,8 @@
 
   const bProt = document.getElementById('chkProt');
   const bProm = document.getElementById('chkProm');
-  const bCP = document.getElementById('chkCP');
   bProt.onclick = () => { onProt = !onProt; bProt.classList.toggle('on', onProt); render(); };
   bProm.onclick = () => { onProm = !onProm; bProm.classList.toggle('on', onProm); render(); };
-  bCP.onclick = () => {
-    cpOn = !cpOn;
-    bCP.classList.toggle('on', cpOn);
-    if (cpOn && onProt) { onProt = false; bProt.classList.remove('on'); }
-    bProt.disabled = cpOn;
-    bProt.style.opacity = cpOn ? .45 : 1;
-    bProt.title = cpOn ? '소유 필터 판은 보호구역 개방 산출이 없음 (수단 A 증분이 미미해 제외)' : '';
-    render();
-  };
-  if (qp.get('cp') === '1') bCP.onclick();
   if (qp.get('prom') === '1') bProm.onclick();
   setTimeout(() => render(true), 50);   // 초기 렌더 — 선택 없어도 전국 통계·안내는 표시
   document.querySelectorAll('#sbTgl button').forEach(b => b.onclick = () => {
@@ -228,7 +222,7 @@
   function stats() {
     const natB = res.runs[baseCell()], natP = res.runs[protCell()], natM = res.runs[promCell()];
     const line = (t, v) => `<div class="stat-line"><span>${t}</span><span class="v">${v}</span></div>`;
-    const cpTag = cpOn ? ' · 법인·국공유만' : '';
+    const cpTag = ' · 법인·국공유';
     let html = '';
     if (picked.length && idx) {
       const b = sumIdx(baseCell());
@@ -244,15 +238,18 @@
         html += line('　＋진흥구역 개방 증분', `+${V4.km2(m.km2 - from)} → ${V4.km2(m.km2)} km²`);
       }
     }
-    if (natB) html += line(`전국 · 현행법${cpTag}`, `${V4.n(natB.n_listed)}구획 · ${V4.km2(natB.listed_area_km2)} km²`);
+    if (natB) html += line(`전국 · 현행법${cpTag}`,
+      `${V4.n(natB.n_component)}구획 · ${V4.km2(natB.component_area_km2)} km²`);
     if (onProt && natP) html += line('전국 ＋보호구역',
-      `+${V4.km2(natP.listed_area_km2 - natB.listed_area_km2)} → ${V4.km2(natP.listed_area_km2)} km²`);
+      `+${V4.km2(natP.component_area_km2 - natB.component_area_km2)} → ${V4.km2(natP.component_area_km2)} km²`);
     if (onProm && natM) {
-      const fromN = onProt && natP ? natP.listed_area_km2 : natB.listed_area_km2;
-      html += line('전국 ＋진흥구역', `+${V4.km2(natM.listed_area_km2 - fromN)} → ${V4.km2(natM.listed_area_km2)} km²`);
+      const fromN = onProt && natP ? natP.component_area_km2 : natB.component_area_km2;
+      html += line('전국 ＋진흥구역',
+        `+${V4.km2(natM.component_area_km2 - fromN)} → ${V4.km2(natM.component_area_km2)} km²`);
     }
     const top = onProm ? natM : (onProt ? natP : natB);
-    if (top && top.M_mw != null) html += line('참고 MW (전국 합계·가정)', V4.n(Math.round(top.M_mw)));
+    if (top && top.m_total_mw != null)
+      html += line('참고 MW (전국 합계·가정)', V4.n(Math.round(top.m_total_mw)));
     document.getElementById('stats').innerHTML = html;
   }
 
@@ -288,7 +285,7 @@
                       dashArray: f.properties.sp ? '5 4' : null,
                       fillColor: st.fill, fillOpacity: kind === 'base' ? .8 : .75}),
         onEachFeature: (f, ly) => ly.bindPopup(
-          `<b>${st.label} · 등재 구획 ${V4.km2(f.properties.a, 2)} km²</b> (${V4.n(Math.round(f.properties.a * 1e6))} ㎡)` +
+          `<b>${st.label} · 연접 구획 ${V4.km2(f.properties.a, 2)} km²</b> (${V4.n(Math.round(f.properties.a * 1e6))} ㎡)` +
           `<br>이 시군 구간 ${V4.n(f.properties.n)}필지 · 참고 ${V4.n(Math.round(f.properties.a * 45))} MW` +
           (f.properties.sp ? '<br><b>시군 경계 걸침</b> — 면적은 구획 전체 기준' : '') +
           `<br><span style="color:#888;font-size:11px">구획 번호 #${f.properties.id} · 환산 0.045 kW/㎡ 가정</span>`)
@@ -301,8 +298,8 @@
     }
     let hint = layers.length
       ? '개방분 버튼을 켜고 끄며 비교 — 노랑 밖으로 번진 색이 그 개방의 증분.'
-      : '선택 시군에는 등재 구획 없음.';
-    if (none.length) hint += ` (${none.map(nameOf).join('·')}: 어떤 시나리오에도 등재 구획 없음)`;
+      : '선택 시군에는 연접 구획 없음.';
+    if (none.length) hint += ` (${none.map(nameOf).join('·')}: 어떤 시나리오에도 연접 구획 없음)`;
     if (picked.length > 12) hint += ' — 선택이 많으면 로딩이 느려질 수 있음.';
     document.getElementById('hint').textContent = hint;
   }

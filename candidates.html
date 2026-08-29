@@ -100,7 +100,7 @@
   <p>결과: 현행법에서 특구급은 <b id="c-cp-a50">—</b>곳(제주 서귀포,
   <span id="c-cp-a-mw">—</span>MW)·100MW급 <span id="c-cp-a100">—</span>곳으로 감소.<br>
   농업진흥구역 개방 시 <b id="c-cp-r50">—</b>곳(특구급 합 <span id="c-cp-r-mw50">—</span>MW)으로
-  증가.<br>66,667㎡ 이상 등재 전체는 <span id="c-cp-r-km2">—</span> km²
+  증가.<br>연접 구획 전량은 <span id="c-cp-r-km2">—</span> km²
   (<span id="c-cp-r-mw">—</span>MW).</p>
 
   <figure class="art-fig">
@@ -190,29 +190,29 @@
   const nameOf = c => (names.codes[c] && names.codes[c].name) || c;
   const put = (id, v) => document.getElementById(id).textContent = v;
   put('h-th', V4.n(N.threshold.mw50_m2));
-  put('c-a50', V4.n(R.ANCHOR.ge50));
-  put('c-indiv', V4.n(N.big_composition.ANCHOR.indiv_share_pct));
-  put('c-cp-a50', V4.n(R.ANCHOR_CP.ge50));
+  put('c-a50', V4.n(R['R0_current@all'].ge50));
+  put('c-indiv', V4.n(N.big_composition['R0_current@all'].indiv_share_pct));
+  put('c-cp-a50', V4.n(R.R0_current.ge50));
   put('c-cp-a-mw', V4.n((N.cp_big_anchor[0] || {mw: 0}).mw));
-  put('c-cp-a100', V4.n(R.ANCHOR_CP.ge100));
-  put('c-cp-r50', V4.n(R.SOFT_R2_CP.ge50));
-  put('c-cp-r-mw50', V4.n(R.SOFT_R2_CP.ge50_mw));
-  put('c-cp-r-km2', V4.km2(R.SOFT_R2_CP.listed_km2));
-  put('c-cp-r-mw', V4.n(R.SOFT_R2_CP.mw));
-  put('c-sb-from', V4.km2(R.SOFT_R2_CP.listed_km2));
-  put('c-sb-to', V4.km2(R.SOFT_R2_CP_SB.listed_km2));
-  put('c-n-map', V4.n(R.SOFT_R2_CP.ge50));
+  put('c-cp-a100', V4.n(R.R0_current.ge100));
+  put('c-cp-r50', V4.n(R.R2_promo.ge50));
+  put('c-cp-r-mw50', V4.n(R.R2_promo.ge50_mw));
+  put('c-cp-r-km2', V4.km2(R.R2_promo.component_km2));
+  put('c-cp-r-mw', V4.n(R.R2_promo.mw));
+  put('c-sb-from', V4.km2(R.R2_promo.component_km2));
+  put('c-sb-to', V4.km2(R.R2_promo_SB.component_km2));
+  put('c-n-map', V4.n(R.R2_promo.ge50));
 
   // 그림 1 — 특구급 수: 구역 조합 전체 × 소유 필터 × 이격 전/후
   const F1 = [
-    ['전체 필지 병합', null, null],
-    ['현행법', R.ANCHOR, R.ANCHOR_SB],
-    ['+농업보호구역 개방', R.SOFT_A1, R.SOFT_A1_SB],
-    ['+농업진흥구역 개방', R.SOFT_R2, R.SOFT_R2_SB],
-    ['둘 다 개방', R.SOFT_A2, R.SOFT_A2_SB],
-    ['법인·국공유 필지만 병합 (소유 필터)', null, null],
-    ['현행법', R.ANCHOR_CP, R.ANCHOR_CP_SB],
-    ['+농업진흥구역 개방', R.SOFT_R2_CP, R.SOFT_R2_CP_SB],
+    ['정본 — 법인·국공유 농지', null, null],
+    ['현행법', R.R0_current, R.R0_current_SB],
+    ['+농업보호구역 개방', R.R1_protect, R.R1_protect_SB],
+    ['+농업진흥구역 개방', R.R2_promo, R.R2_promo_SB],
+    ['둘 다 개방', R.R3_zone_all, R.R3_zone_all_SB],
+    ['대조군 — 개인 포함 전 소유 (정책 값 아님)', null, null],
+    ['현행법', R['R0_current@all'], R['R0_current_SB@all']],
+    ['+농업진흥구역 개방', R['R2_promo@all'], R['R2_promo_SB@all']],
   ];
   const mx1 = Math.max(...F1.filter(x => x[1]).map(x => x[1].ge50));
   document.getElementById('fig1').innerHTML = F1.map(([k, pre, post]) => pre === null
@@ -226,24 +226,25 @@
       <div class="bar-num">${V4.n(pre.ge50)} → ${V4.n(post.ge50)}곳
         <div class="bar-sub">이격 미적용 → 적용</div></div>
     </div>`).join('') +
-    `<div style="font-size:11.5px;color:var(--muted);margin-top:8px">보호구역 개방의 소유 필터
-     산출은 생략 — 필터 전에도 특구급 증분이 ${V4.n(R.ANCHOR.ge50)}→${V4.n(R.SOFT_A1.ge50)}곳으로 미미.</div>`;
+    `<div style="font-size:11.5px;color:var(--muted);margin-top:8px">50MW 이상 = 연접 농지
+     ${V4.n(N.threshold.mw50_m2)}㎡ 이상(0.045kW/㎡ 역산) — 적용된 문턱이 아니라 읽기 눈금.
+     대조군은 정책 값이 아니라 정본이 전체의 얼마인지 가늠하기 위한 것.</div>`;
 
   // 표 1 — CP 4칸
   const T1 = [
-    ['현행법 + 소유 필터', 'ANCHOR_CP'],
-    ['현행법 + 소유 필터 + 이격', 'ANCHOR_CP_SB'],
-    ['진흥구역 개방 + 소유 필터', 'SOFT_R2_CP'],
-    ['진흥구역 개방 + 소유 필터 + 이격', 'SOFT_R2_CP_SB'],
+    ['현행법', 'R0_current'],
+    ['현행법 + 이격', 'R0_current_SB'],
+    ['진흥구역 개방', 'R2_promo'],
+    ['진흥구역 개방 + 이격', 'R2_promo_SB'],
   ];
   document.getElementById('t-cp').innerHTML =
-    `<tr><th style="text-align:left">조건</th><th>적격 필지</th><th>등재 구획</th>
+    `<tr><th style="text-align:left">조건 (정본 우주)</th><th>적격 필지</th><th>연접 구획</th>
      <th>면적 km²</th><th>참고 MW</th><th>≥50MW</th><th>≥100MW</th></tr>` +
     T1.map(([k, r]) => `<tr><td class="l">${k}</td><td>${V4.n(R[r].n_eligible)}</td>
-      <td>${V4.n(R[r].n_listed)}</td><td>${V4.km2(R[r].listed_km2)}</td>
+      <td>${V4.n(R[r].n_component)}</td><td>${V4.km2(R[r].component_km2)}</td>
       <td>${V4.n(R[r].mw)}</td><td><b>${V4.n(R[r].ge50)}</b></td><td>${V4.n(R[r].ge100)}</td></tr>`).join('');
 
-  // 표 2 + 지도 — 특구급 후보 (SOFT_R2_CP ≥50MW · 이격 토글 시 _SB)
+  // 표 2 + 지도 — 특구급 후보 (R2_promo ≥50MW · 이격 토글 시 _SB)
   const map = L.map('candmap', {center: [35.6, 127.0], zoom: 7, scrollWheelZoom: false});
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     {maxZoom: 18, attribution: 'Imagery © Esri, Maxar, Earthstar Geographics'}).addTo(map);
@@ -263,8 +264,8 @@
   const bigList = N.cp_big;                  // mw 내림차순 (id = 구획 번호)
   // 셀별 구획 번호 → 간척 여부 (SB 런은 자체 번호 체계라 별도 목록으로 매칭)
   const recMap = {
-    SOFT_R2_CP: Object.fromEntries(N.cp_big.map(b => [b.id, b.reclaim_pct >= 50])),
-    SOFT_R2_CP_SB: Object.fromEntries((N.cp_big_sb || []).map(b => [b.id, b.reclaim_pct >= 50])),
+    R2_promo: Object.fromEntries(N.cp_big.map(b => [b.id, b.reclaim_pct >= 50])),
+    R2_promo_SB: Object.fromEntries((N.cp_big_sb || []).map(b => [b.id, b.reclaim_pct >= 50])),
   };
   const cache = {};
   async function fc(sgg, cell) {
@@ -283,8 +284,8 @@
   const groupLabel = b => b.reclaim_pct >= 50 ? `${(b.district || '간척').replace('지구', '')} (${nameOf(b.sgg).split(' ').pop()})`
                                               : nameOf(b.sgg).split(' ').pop();
   const groupOf = {
-    SOFT_R2_CP: Object.fromEntries(N.cp_big.map(b => [b.id, groupLabel(b)])),
-    SOFT_R2_CP_SB: Object.fromEntries((N.cp_big_sb || []).map(b => [b.id, groupLabel(b)])),
+    R2_promo: Object.fromEntries(N.cp_big.map(b => [b.id, groupLabel(b)])),
+    R2_promo_SB: Object.fromEntries((N.cp_big_sb || []).map(b => [b.id, groupLabel(b)])),
   };
   const chipOrder = [];            // 규모 순 그룹 목록 (미적용 기준)
   N.cp_big.forEach(b => { const g = groupLabel(b); if (!chipOrder.includes(g)) chipOrder.push(g); });
@@ -296,7 +297,7 @@
     if (layerGroup) map.removeLayer(layerGroup);
     layerGroup = L.layerGroup().addTo(map);
     groupBounds = {};
-    const cell = curSB ? 'SOFT_R2_CP_SB' : 'SOFT_R2_CP';
+    const cell = curSB ? 'R2_promo_SB' : 'R2_promo';
     const sggs = Object.keys(idx.sgg).filter(c => idx.sgg[c][cell] && idx.sgg[c][cell].k > 0);
     const datas = await Promise.all(sggs.map(c => fc(c, cell)));
     datas.forEach((d, i) => {
