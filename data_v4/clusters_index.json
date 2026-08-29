@@ -1,6270 +1,8480 @@
 {
-"generated": "2026-08-27 23:52",
+"generated": "2026-08-29 15:23",
 "cells": [
-"ANCHOR",
-"ANCHOR_SB",
-"SOFT_A1",
-"SOFT_A1_SB",
-"SOFT_R2",
-"SOFT_R2_SB",
-"SOFT_A2",
-"SOFT_A2_SB"
+"R0_current",
+"R0_current_SB",
+"R1_protect",
+"R1_protect_SB",
+"R2_promo",
+"R2_promo_SB",
+"R3_zone_all",
+"R3_zone_all_SB"
 ],
 "sgg": {
+"11110": {
+"R0_current": {
+"k": 34,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 34,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 34,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 34,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"11170": {
+"R0_current": {
+"k": 34,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 34,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 34,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 34,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"11200": {
+"R0_current": {
+"k": 54,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 13,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 54,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 13,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 54,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 13,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 54,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 13,
+"km2": 0.0
+}
+},
+"11215": {
+"R0_current": {
+"k": 13,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 13,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 13,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 13,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"11230": {
+"R0_current": {
+"k": 60,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 60,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 60,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 60,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"11260": {
+"R0_current": {
+"k": 48,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 48,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 48,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 48,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 3,
+"km2": 0.0
+}
+},
+"11290": {
+"R0_current": {
+"k": 28,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 28,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 28,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 28,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 2,
+"km2": 0.0
+}
+},
+"11305": {
+"R0_current": {
+"k": 19,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 19,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 19,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 19,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"11320": {
+"R0_current": {
+"k": 61,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 4,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 61,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 4,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 61,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 4,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 61,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 4,
+"km2": 0.0
+}
+},
+"11350": {
+"R0_current": {
+"k": 106,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 12,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 106,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 12,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 106,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 12,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 106,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 12,
+"km2": 0.0
+}
+},
+"11380": {
+"R0_current": {
+"k": 35,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 35,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 35,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 35,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"11410": {
+"R0_current": {
+"k": 18,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 18,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 18,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 18,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"11440": {
+"R0_current": {
+"k": 87,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 19,
+"km2": 0.1
+},
+"R1_protect": {
+"k": 87,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 19,
+"km2": 0.1
+},
+"R2_promo": {
+"k": 87,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 19,
+"km2": 0.1
+},
+"R3_zone_all": {
+"k": 87,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 19,
+"km2": 0.1
+}
+},
+"11470": {
+"R0_current": {
+"k": 7,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 7,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 7,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 7,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
 "11500": {
-"ANCHOR": {
-"k": 2,
+"R0_current": {
+"k": 81,
 "km2": 0.2
 },
-"ANCHOR_SB": {
-"k": 1,
+"R0_current_SB": {
+"k": 18,
 "km2": 0.1
 },
-"SOFT_A1": {
-"k": 2,
+"R1_protect": {
+"k": 81,
 "km2": 0.2
 },
-"SOFT_A1_SB": {
-"k": 1,
+"R1_protect_SB": {
+"k": 18,
 "km2": 0.1
 },
-"SOFT_R2": {
-"k": 2,
+"R2_promo": {
+"k": 81,
 "km2": 0.2
 },
-"SOFT_R2_SB": {
-"k": 1,
+"R2_promo_SB": {
+"k": 18,
 "km2": 0.1
 },
-"SOFT_A2": {
-"k": 2,
+"R3_zone_all": {
+"k": 81,
 "km2": 0.2
 },
-"SOFT_A2_SB": {
-"k": 1,
+"R3_zone_all_SB": {
+"k": 18,
 "km2": 0.1
+}
+},
+"11530": {
+"R0_current": {
+"k": 108,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 108,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 108,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 108,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 2,
+"km2": 0.0
+}
+},
+"11545": {
+"R0_current": {
+"k": 13,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 1,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 13,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 1,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 13,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 1,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 13,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 1,
+"km2": 0.0
+}
+},
+"11560": {
+"R0_current": {
+"k": 47,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 47,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 47,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 47,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 3,
+"km2": 0.0
+}
+},
+"11590": {
+"R0_current": {
+"k": 27,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 27,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 27,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 27,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"11620": {
+"R0_current": {
+"k": 32,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 32,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 32,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 32,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"11650": {
+"R0_current": {
+"k": 47,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 8,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 47,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 8,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 47,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 8,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 47,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 8,
+"km2": 0.0
+}
+},
+"11680": {
+"R0_current": {
+"k": 102,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 64,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 102,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 64,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 102,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 64,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 102,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 64,
+"km2": 0.0
+}
+},
+"11710": {
+"R0_current": {
+"k": 27,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 14,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 27,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 14,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 27,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 14,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 27,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 14,
+"km2": 0.0
+}
+},
+"11740": {
+"R0_current": {
+"k": 24,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 24,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 24,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 24,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 3,
+"km2": 0.0
+}
+},
+"26140": {
+"R0_current": {
+"k": 51,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 51,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 51,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 51,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 2,
+"km2": 0.0
+}
+},
+"26170": {
+"R0_current": {
+"k": 11,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 11,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 11,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 11,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"26200": {
+"R0_current": {
+"k": 152,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 152,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 152,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 152,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 3,
+"km2": 0.0
+}
+},
+"26230": {
+"R0_current": {
+"k": 160,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 10,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 160,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 10,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 160,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 10,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 160,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 10,
+"km2": 0.0
+}
+},
+"26260": {
+"R0_current": {
+"k": 70,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 70,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 70,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 70,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"26290": {
+"R0_current": {
+"k": 218,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 218,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 218,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 218,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 2,
+"km2": 0.0
+}
+},
+"26320": {
+"R0_current": {
+"k": 63,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 4,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 63,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 4,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 63,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 4,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 63,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 4,
+"km2": 0.0
+}
+},
+"26350": {
+"R0_current": {
+"k": 211,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 8,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 211,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 8,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 211,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 8,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 211,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 8,
+"km2": 0.0
+}
+},
+"26380": {
+"R0_current": {
+"k": 125,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 4,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 125,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 4,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 125,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 4,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 125,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 4,
+"km2": 0.0
+}
+},
+"26410": {
+"R0_current": {
+"k": 109,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 8,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 109,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 8,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 109,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 8,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 109,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 8,
+"km2": 0.0
 }
 },
 "26440": {
-"ANCHOR": {
-"k": 11,
-"km2": 2.7
+"R0_current": {
+"k": 770,
+"km2": 0.5
 },
-"ANCHOR_SB": {
+"R0_current_SB": {
+"k": 90,
+"km2": 0.1
+},
+"R1_protect": {
+"k": 770,
+"km2": 0.5
+},
+"R1_protect_SB": {
+"k": 90,
+"km2": 0.1
+},
+"R2_promo": {
+"k": 770,
+"km2": 0.5
+},
+"R2_promo_SB": {
+"k": 90,
+"km2": 0.1
+},
+"R3_zone_all": {
+"k": 770,
+"km2": 0.5
+},
+"R3_zone_all_SB": {
+"k": 90,
+"km2": 0.1
+}
+},
+"26470": {
+"R0_current": {
+"k": 36,
+"km2": 0.0
+},
+"R0_current_SB": {
 "k": 6,
-"km2": 1.1
+"km2": 0.0
 },
-"SOFT_A1": {
-"k": 11,
-"km2": 2.7
+"R1_protect": {
+"k": 36,
+"km2": 0.0
 },
-"SOFT_A1_SB": {
+"R1_protect_SB": {
 "k": 6,
-"km2": 1.1
+"km2": 0.0
 },
-"SOFT_R2": {
-"k": 11,
-"km2": 2.7
+"R2_promo": {
+"k": 36,
+"km2": 0.0
 },
-"SOFT_R2_SB": {
+"R2_promo_SB": {
 "k": 6,
-"km2": 1.1
+"km2": 0.0
 },
-"SOFT_A2": {
-"k": 11,
-"km2": 2.7
+"R3_zone_all": {
+"k": 36,
+"km2": 0.0
 },
-"SOFT_A2_SB": {
+"R3_zone_all_SB": {
 "k": 6,
-"km2": 1.1
+"km2": 0.0
+}
+},
+"26500": {
+"R0_current": {
+"k": 27,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 27,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 27,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 27,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 2,
+"km2": 0.0
+}
+},
+"26530": {
+"R0_current": {
+"k": 137,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 28,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 137,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 28,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 137,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 28,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 137,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 28,
+"km2": 0.0
 }
 },
 "26710": {
-"ANCHOR": {
-"k": 30,
-"km2": 5.4
+"R0_current": {
+"k": 1064,
+"km2": 1.5
 },
-"ANCHOR_SB": {
-"k": 5,
+"R0_current_SB": {
+"k": 271,
 "km2": 0.5
 },
-"SOFT_A1": {
-"k": 30,
-"km2": 5.4
+"R1_protect": {
+"k": 1068,
+"km2": 1.5
 },
-"SOFT_A1_SB": {
-"k": 5,
+"R1_protect_SB": {
+"k": 272,
 "km2": 0.5
 },
-"SOFT_R2": {
-"k": 31,
-"km2": 5.7
+"R2_promo": {
+"k": 1062,
+"km2": 1.5
 },
-"SOFT_R2_SB": {
-"k": 6,
-"km2": 0.6
+"R2_promo_SB": {
+"k": 269,
+"km2": 0.5
 },
-"SOFT_A2": {
-"k": 31,
-"km2": 5.7
+"R3_zone_all": {
+"k": 1066,
+"km2": 1.5
 },
-"SOFT_A2_SB": {
-"k": 6,
-"km2": 0.6
+"R3_zone_all_SB": {
+"k": 270,
+"km2": 0.5
 }
 },
 "27140": {
-"ANCHOR": {
-"k": 15,
-"km2": 2.3
+"R0_current": {
+"k": 269,
+"km2": 0.2
 },
-"ANCHOR_SB": {
-"k": 1,
-"km2": 0.1
+"R0_current_SB": {
+"k": 22,
+"km2": 0.0
 },
-"SOFT_A1": {
-"k": 15,
-"km2": 2.3
+"R1_protect": {
+"k": 269,
+"km2": 0.2
 },
-"SOFT_A1_SB": {
-"k": 1,
-"km2": 0.1
+"R1_protect_SB": {
+"k": 22,
+"km2": 0.0
 },
-"SOFT_R2": {
-"k": 15,
-"km2": 2.3
+"R2_promo": {
+"k": 269,
+"km2": 0.2
 },
-"SOFT_R2_SB": {
-"k": 1,
-"km2": 0.1
+"R2_promo_SB": {
+"k": 22,
+"km2": 0.0
 },
-"SOFT_A2": {
-"k": 15,
-"km2": 2.3
+"R3_zone_all": {
+"k": 269,
+"km2": 0.2
 },
-"SOFT_A2_SB": {
-"k": 1,
-"km2": 0.1
+"R3_zone_all_SB": {
+"k": 22,
+"km2": 0.0
 }
 },
 "27170": {
-"ANCHOR": {
-"k": 1,
+"R0_current": {
+"k": 105,
 "km2": 0.1
 },
-"ANCHOR_SB": {
+"R0_current_SB": {
+"k": 19,
+"km2": 0.1
+},
+"R1_protect": {
+"k": 105,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 19,
+"km2": 0.1
+},
+"R2_promo": {
+"k": 105,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 19,
+"km2": 0.1
+},
+"R3_zone_all": {
+"k": 105,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 19,
+"km2": 0.1
+}
+},
+"27200": {
+"R0_current": {
+"k": 13,
+"km2": 0.0
+},
+"R0_current_SB": {
 "k": 0,
 "km2": 0.0
 },
-"SOFT_A1": {
-"k": 1,
-"km2": 0.1
+"R1_protect": {
+"k": 13,
+"km2": 0.0
 },
-"SOFT_A1_SB": {
+"R1_protect_SB": {
 "k": 0,
 "km2": 0.0
 },
-"SOFT_R2": {
-"k": 1,
-"km2": 0.1
+"R2_promo": {
+"k": 13,
+"km2": 0.0
 },
-"SOFT_R2_SB": {
+"R2_promo_SB": {
 "k": 0,
 "km2": 0.0
 },
-"SOFT_A2": {
-"k": 1,
-"km2": 0.1
+"R3_zone_all": {
+"k": 13,
+"km2": 0.0
 },
-"SOFT_A2_SB": {
+"R3_zone_all_SB": {
 "k": 0,
 "km2": 0.0
 }
 },
 "27230": {
-"ANCHOR": {
-"k": 2,
-"km2": 0.3
+"R0_current": {
+"k": 256,
+"km2": 0.4
 },
-"ANCHOR_SB": {
-"k": 1,
-"km2": 0.2
+"R0_current_SB": {
+"k": 50,
+"km2": 0.1
 },
-"SOFT_A1": {
-"k": 2,
-"km2": 0.3
+"R1_protect": {
+"k": 256,
+"km2": 0.4
 },
-"SOFT_A1_SB": {
-"k": 1,
-"km2": 0.2
+"R1_protect_SB": {
+"k": 50,
+"km2": 0.1
 },
-"SOFT_R2": {
-"k": 2,
-"km2": 0.3
+"R2_promo": {
+"k": 256,
+"km2": 0.4
 },
-"SOFT_R2_SB": {
-"k": 1,
-"km2": 0.2
+"R2_promo_SB": {
+"k": 50,
+"km2": 0.1
 },
-"SOFT_A2": {
-"k": 2,
-"km2": 0.3
+"R3_zone_all": {
+"k": 256,
+"km2": 0.4
 },
-"SOFT_A2_SB": {
-"k": 1,
-"km2": 0.2
+"R3_zone_all_SB": {
+"k": 50,
+"km2": 0.1
+}
+},
+"27260": {
+"R0_current": {
+"k": 110,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 5,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 110,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 5,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 110,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 5,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 110,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 5,
+"km2": 0.0
 }
 },
 "27290": {
-"ANCHOR": {
-"k": 1,
+"R0_current": {
+"k": 110,
 "km2": 0.1
 },
-"ANCHOR_SB": {
-"k": 0,
+"R0_current_SB": {
+"k": 20,
 "km2": 0.0
 },
-"SOFT_A1": {
-"k": 1,
+"R1_protect": {
+"k": 110,
 "km2": 0.1
 },
-"SOFT_A1_SB": {
-"k": 0,
+"R1_protect_SB": {
+"k": 20,
 "km2": 0.0
 },
-"SOFT_R2": {
-"k": 1,
+"R2_promo": {
+"k": 110,
 "km2": 0.1
 },
-"SOFT_R2_SB": {
-"k": 0,
+"R2_promo_SB": {
+"k": 20,
 "km2": 0.0
 },
-"SOFT_A2": {
-"k": 1,
+"R3_zone_all": {
+"k": 110,
 "km2": 0.1
 },
-"SOFT_A2_SB": {
-"k": 0,
+"R3_zone_all_SB": {
+"k": 20,
 "km2": 0.0
 }
 },
 "27710": {
-"ANCHOR": {
-"k": 51,
-"km2": 12.0
+"R0_current": {
+"k": 1422,
+"km2": 2.7
 },
-"ANCHOR_SB": {
-"k": 27,
-"km2": 4.5
+"R0_current_SB": {
+"k": 475,
+"km2": 1.7
 },
-"SOFT_A1": {
-"k": 54,
-"km2": 12.5
+"R1_protect": {
+"k": 1446,
+"km2": 2.7
 },
-"SOFT_A1_SB": {
-"k": 28,
-"km2": 4.6
+"R1_protect_SB": {
+"k": 496,
+"km2": 1.8
 },
-"SOFT_R2": {
-"k": 62,
-"km2": 28.9
+"R2_promo": {
+"k": 1517,
+"km2": 2.8
 },
-"SOFT_R2_SB": {
-"k": 42,
-"km2": 11.7
+"R2_promo_SB": {
+"k": 561,
+"km2": 1.9
 },
-"SOFT_A2": {
-"k": 63,
-"km2": 30.0
+"R3_zone_all": {
+"k": 1534,
+"km2": 2.9
 },
-"SOFT_A2_SB": {
-"k": 44,
-"km2": 11.9
+"R3_zone_all_SB": {
+"k": 575,
+"km2": 1.9
 }
 },
 "27720": {
-"ANCHOR": {
-"k": 77,
-"km2": 10.8
+"R0_current": {
+"k": 1386,
+"km2": 1.3
 },
-"ANCHOR_SB": {
-"k": 31,
-"km2": 3.9
+"R0_current_SB": {
+"k": 681,
+"km2": 0.8
 },
-"SOFT_A1": {
-"k": 83,
-"km2": 11.7
+"R1_protect": {
+"k": 1522,
+"km2": 1.4
 },
-"SOFT_A1_SB": {
-"k": 34,
-"km2": 4.3
+"R1_protect_SB": {
+"k": 770,
+"km2": 0.9
 },
-"SOFT_R2": {
-"k": 150,
-"km2": 42.1
+"R2_promo": {
+"k": 2236,
+"km2": 2.8
 },
-"SOFT_R2_SB": {
-"k": 103,
-"km2": 17.5
+"R2_promo_SB": {
+"k": 1240,
+"km2": 1.7
 },
-"SOFT_A2": {
-"k": 150,
-"km2": 44.3
+"R3_zone_all": {
+"k": 2350,
+"km2": 2.9
 },
-"SOFT_A2_SB": {
-"k": 106,
-"km2": 18.4
+"R3_zone_all_SB": {
+"k": 1319,
+"km2": 1.7
 }
 },
 "28110": {
-"ANCHOR": {
-"k": 21,
-"km2": 4.1
+"R0_current": {
+"k": 360,
+"km2": 0.6
 },
-"ANCHOR_SB": {
-"k": 3,
+"R0_current_SB": {
+"k": 73,
 "km2": 0.2
 },
-"SOFT_A1": {
-"k": 21,
-"km2": 4.1
+"R1_protect": {
+"k": 360,
+"km2": 0.6
 },
-"SOFT_A1_SB": {
-"k": 3,
+"R1_protect_SB": {
+"k": 73,
 "km2": 0.2
 },
-"SOFT_R2": {
-"k": 21,
-"km2": 4.1
+"R2_promo": {
+"k": 360,
+"km2": 0.6
 },
-"SOFT_R2_SB": {
-"k": 3,
+"R2_promo_SB": {
+"k": 73,
 "km2": 0.2
 },
-"SOFT_A2": {
-"k": 21,
-"km2": 4.1
+"R3_zone_all": {
+"k": 360,
+"km2": 0.6
 },
-"SOFT_A2_SB": {
-"k": 3,
+"R3_zone_all_SB": {
+"k": 73,
 "km2": 0.2
+}
+},
+"28140": {
+"R0_current": {
+"k": 1,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 1,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 1,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 1,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"28177": {
+"R0_current": {
+"k": 51,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 51,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 51,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 0,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 51,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 0,
+"km2": 0.0
+}
+},
+"28185": {
+"R0_current": {
+"k": 58,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 58,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 58,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 58,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 3,
+"km2": 0.0
+}
+},
+"28200": {
+"R0_current": {
+"k": 128,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 14,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 128,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 14,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 128,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 14,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 128,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 14,
+"km2": 0.0
 }
 },
 "28237": {
-"ANCHOR": {
-"k": 1,
-"km2": 0.4
+"R0_current": {
+"k": 231,
+"km2": 0.1
 },
-"ANCHOR_SB": {
-"k": 1,
-"km2": 0.4
+"R0_current_SB": {
+"k": 22,
+"km2": 0.0
 },
-"SOFT_A1": {
-"k": 1,
-"km2": 0.4
+"R1_protect": {
+"k": 231,
+"km2": 0.1
 },
-"SOFT_A1_SB": {
-"k": 1,
-"km2": 0.4
+"R1_protect_SB": {
+"k": 22,
+"km2": 0.0
 },
-"SOFT_R2": {
-"k": 1,
-"km2": 0.4
+"R2_promo": {
+"k": 231,
+"km2": 0.1
 },
-"SOFT_R2_SB": {
-"k": 1,
-"km2": 0.4
+"R2_promo_SB": {
+"k": 22,
+"km2": 0.0
 },
-"SOFT_A2": {
-"k": 1,
-"km2": 0.4
+"R3_zone_all": {
+"k": 231,
+"km2": 0.1
 },
-"SOFT_A2_SB": {
-"k": 1,
-"km2": 0.4
+"R3_zone_all_SB": {
+"k": 22,
+"km2": 0.0
+}
+},
+"28245": {
+"R0_current": {
+"k": 144,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 4,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 144,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 4,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 144,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 4,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 144,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 4,
+"km2": 0.0
 }
 },
 "28260": {
-"ANCHOR": {
-"k": 3,
-"km2": 0.3
+"R0_current": {
+"k": 253,
+"km2": 0.4
 },
-"ANCHOR_SB": {
-"k": 1,
-"km2": 0.1
+"R0_current_SB": {
+"k": 38,
+"km2": 0.2
 },
-"SOFT_A1": {
-"k": 3,
-"km2": 0.3
+"R1_protect": {
+"k": 256,
+"km2": 0.4
 },
-"SOFT_A1_SB": {
-"k": 1,
-"km2": 0.1
+"R1_protect_SB": {
+"k": 38,
+"km2": 0.2
 },
-"SOFT_R2": {
-"k": 9,
-"km2": 2.4
+"R2_promo": {
+"k": 263,
+"km2": 0.8
 },
-"SOFT_R2_SB": {
-"k": 6,
-"km2": 0.9
+"R2_promo_SB": {
+"k": 49,
+"km2": 0.5
 },
-"SOFT_A2": {
-"k": 9,
-"km2": 2.4
+"R3_zone_all": {
+"k": 263,
+"km2": 0.8
 },
-"SOFT_A2_SB": {
-"k": 6,
-"km2": 0.9
+"R3_zone_all_SB": {
+"k": 49,
+"km2": 0.5
 }
 },
 "28710": {
-"ANCHOR": {
-"k": 38,
-"km2": 8.0
+"R0_current": {
+"k": 771,
+"km2": 0.7
 },
-"ANCHOR_SB": {
-"k": 1,
+"R0_current_SB": {
+"k": 31,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 823,
+"km2": 0.7
+},
+"R1_protect_SB": {
+"k": 38,
 "km2": 0.1
 },
-"SOFT_A1": {
-"k": 43,
-"km2": 9.1
+"R2_promo": {
+"k": 1052,
+"km2": 4.5
 },
-"SOFT_A1_SB": {
-"k": 1,
-"km2": 0.1
+"R2_promo_SB": {
+"k": 225,
+"km2": 3.4
 },
-"SOFT_R2": {
-"k": 60,
-"km2": 45.6
+"R3_zone_all": {
+"k": 1094,
+"km2": 4.5
 },
-"SOFT_R2_SB": {
-"k": 38,
-"km2": 22.3
-},
-"SOFT_A2": {
-"k": 64,
-"km2": 47.3
-},
-"SOFT_A2_SB": {
-"k": 38,
-"km2": 22.3
+"R3_zone_all_SB": {
+"k": 230,
+"km2": 3.4
 }
 },
 "28720": {
-"ANCHOR": {
-"k": 28,
-"km2": 4.6
-},
-"ANCHOR_SB": {
-"k": 4,
+"R0_current": {
+"k": 426,
 "km2": 0.5
 },
-"SOFT_A1": {
-"k": 29,
-"km2": 5.1
+"R0_current_SB": {
+"k": 110,
+"km2": 0.2
 },
-"SOFT_A1_SB": {
-"k": 3,
-"km2": 0.6
+"R1_protect": {
+"k": 434,
+"km2": 0.5
 },
-"SOFT_R2": {
-"k": 34,
-"km2": 7.8
+"R1_protect_SB": {
+"k": 112,
+"km2": 0.2
 },
-"SOFT_R2_SB": {
-"k": 6,
-"km2": 2.0
+"R2_promo": {
+"k": 437,
+"km2": 0.5
 },
-"SOFT_A2": {
-"k": 33,
-"km2": 8.4
+"R2_promo_SB": {
+"k": 115,
+"km2": 0.3
 },
-"SOFT_A2_SB": {
-"k": 6,
-"km2": 2.1
+"R3_zone_all": {
+"k": 444,
+"km2": 0.5
+},
+"R3_zone_all_SB": {
+"k": 116,
+"km2": 0.3
+}
+},
+"29110": {
+"R0_current": {
+"k": 114,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 14,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 114,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 14,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 114,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 14,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 114,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 14,
+"km2": 0.0
 }
 },
 "29140": {
-"ANCHOR": {
-"k": 8,
-"km2": 2.1
+"R0_current": {
+"k": 383,
+"km2": 0.6
 },
-"ANCHOR_SB": {
-"k": 4,
-"km2": 0.8
+"R0_current_SB": {
+"k": 61,
+"km2": 0.3
 },
-"SOFT_A1": {
-"k": 8,
-"km2": 2.1
+"R1_protect": {
+"k": 383,
+"km2": 0.6
 },
-"SOFT_A1_SB": {
-"k": 4,
-"km2": 0.8
+"R1_protect_SB": {
+"k": 61,
+"km2": 0.3
 },
-"SOFT_R2": {
-"k": 8,
-"km2": 2.1
+"R2_promo": {
+"k": 383,
+"km2": 0.6
 },
-"SOFT_R2_SB": {
-"k": 4,
-"km2": 0.8
+"R2_promo_SB": {
+"k": 61,
+"km2": 0.3
 },
-"SOFT_A2": {
-"k": 8,
-"km2": 2.1
+"R3_zone_all": {
+"k": 383,
+"km2": 0.6
 },
-"SOFT_A2_SB": {
-"k": 4,
-"km2": 0.8
+"R3_zone_all_SB": {
+"k": 61,
+"km2": 0.3
 }
 },
 "29155": {
-"ANCHOR": {
-"k": 2,
-"km2": 0.2
+"R0_current": {
+"k": 261,
+"km2": 0.3
 },
-"ANCHOR_SB": {
-"k": 0,
+"R0_current_SB": {
+"k": 16,
 "km2": 0.0
 },
-"SOFT_A1": {
-"k": 2,
-"km2": 0.2
+"R1_protect": {
+"k": 261,
+"km2": 0.3
 },
-"SOFT_A1_SB": {
-"k": 0,
+"R1_protect_SB": {
+"k": 16,
 "km2": 0.0
 },
-"SOFT_R2": {
-"k": 2,
-"km2": 0.2
+"R2_promo": {
+"k": 261,
+"km2": 0.3
 },
-"SOFT_R2_SB": {
-"k": 0,
+"R2_promo_SB": {
+"k": 16,
 "km2": 0.0
 },
-"SOFT_A2": {
-"k": 2,
-"km2": 0.2
+"R3_zone_all": {
+"k": 261,
+"km2": 0.3
 },
-"SOFT_A2_SB": {
-"k": 0,
+"R3_zone_all_SB": {
+"k": 16,
 "km2": 0.0
 }
 },
 "29170": {
-"ANCHOR": {
-"k": 7,
-"km2": 2.9
+"R0_current": {
+"k": 597,
+"km2": 0.7
 },
-"ANCHOR_SB": {
-"k": 3,
-"km2": 1.3
+"R0_current_SB": {
+"k": 114,
+"km2": 0.3
 },
-"SOFT_A1": {
-"k": 7,
-"km2": 2.9
+"R1_protect": {
+"k": 597,
+"km2": 0.7
 },
-"SOFT_A1_SB": {
-"k": 3,
-"km2": 1.3
+"R1_protect_SB": {
+"k": 114,
+"km2": 0.3
 },
-"SOFT_R2": {
-"k": 7,
-"km2": 2.9
+"R2_promo": {
+"k": 597,
+"km2": 0.7
 },
-"SOFT_R2_SB": {
-"k": 3,
-"km2": 1.3
+"R2_promo_SB": {
+"k": 114,
+"km2": 0.3
 },
-"SOFT_A2": {
-"k": 7,
-"km2": 2.9
+"R3_zone_all": {
+"k": 597,
+"km2": 0.7
 },
-"SOFT_A2_SB": {
-"k": 3,
-"km2": 1.3
+"R3_zone_all_SB": {
+"k": 114,
+"km2": 0.3
 }
 },
 "29200": {
-"ANCHOR": {
-"k": 31,
-"km2": 8.9
+"R0_current": {
+"k": 865,
+"km2": 2.1
 },
-"ANCHOR_SB": {
-"k": 10,
-"km2": 2.7
+"R0_current_SB": {
+"k": 157,
+"km2": 0.8
 },
-"SOFT_A1": {
-"k": 31,
-"km2": 9.1
+"R1_protect": {
+"k": 865,
+"km2": 2.1
 },
-"SOFT_A1_SB": {
-"k": 10,
-"km2": 2.7
+"R1_protect_SB": {
+"k": 157,
+"km2": 0.8
 },
-"SOFT_R2": {
-"k": 32,
-"km2": 12.8
+"R2_promo": {
+"k": 865,
+"km2": 2.1
 },
-"SOFT_R2_SB": {
-"k": 12,
-"km2": 4.1
+"R2_promo_SB": {
+"k": 157,
+"km2": 0.8
 },
-"SOFT_A2": {
-"k": 32,
-"km2": 21.6
+"R3_zone_all": {
+"k": 865,
+"km2": 2.1
 },
-"SOFT_A2_SB": {
-"k": 12,
-"km2": 4.1
+"R3_zone_all_SB": {
+"k": 157,
+"km2": 0.8
+}
+},
+"30110": {
+"R0_current": {
+"k": 172,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 7,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 172,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 7,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 172,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 7,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 172,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 7,
+"km2": 0.0
 }
 },
 "30140": {
-"ANCHOR": {
-"k": 1,
+"R0_current": {
+"k": 142,
+"km2": 0.2
+},
+"R0_current_SB": {
+"k": 11,
 "km2": 0.1
 },
-"ANCHOR_SB": {
-"k": 0,
-"km2": 0.0
+"R1_protect": {
+"k": 142,
+"km2": 0.2
 },
-"SOFT_A1": {
-"k": 1,
+"R1_protect_SB": {
+"k": 11,
 "km2": 0.1
 },
-"SOFT_A1_SB": {
-"k": 0,
-"km2": 0.0
+"R2_promo": {
+"k": 142,
+"km2": 0.2
 },
-"SOFT_R2": {
-"k": 1,
+"R2_promo_SB": {
+"k": 11,
 "km2": 0.1
 },
-"SOFT_R2_SB": {
-"k": 0,
-"km2": 0.0
+"R3_zone_all": {
+"k": 142,
+"km2": 0.2
 },
-"SOFT_A2": {
-"k": 1,
+"R3_zone_all_SB": {
+"k": 11,
 "km2": 0.1
-},
-"SOFT_A2_SB": {
-"k": 0,
-"km2": 0.0
 }
 },
 "30170": {
-"ANCHOR": {
-"k": 9,
-"km2": 1.3
+"R0_current": {
+"k": 109,
+"km2": 0.1
 },
-"ANCHOR_SB": {
-"k": 1,
-"km2": 0.2
+"R0_current_SB": {
+"k": 26,
+"km2": 0.0
 },
-"SOFT_A1": {
-"k": 9,
-"km2": 1.3
+"R1_protect": {
+"k": 109,
+"km2": 0.1
 },
-"SOFT_A1_SB": {
-"k": 1,
-"km2": 0.2
+"R1_protect_SB": {
+"k": 26,
+"km2": 0.0
 },
-"SOFT_R2": {
-"k": 10,
-"km2": 1.5
+"R2_promo": {
+"k": 109,
+"km2": 0.1
 },
-"SOFT_R2_SB": {
-"k": 1,
-"km2": 0.2
+"R2_promo_SB": {
+"k": 26,
+"km2": 0.0
 },
-"SOFT_A2": {
-"k": 10,
-"km2": 1.5
+"R3_zone_all": {
+"k": 109,
+"km2": 0.1
 },
-"SOFT_A2_SB": {
-"k": 1,
-"km2": 0.2
+"R3_zone_all_SB": {
+"k": 26,
+"km2": 0.0
 }
 },
 "30200": {
-"ANCHOR": {
-"k": 5,
-"km2": 0.6
+"R0_current": {
+"k": 168,
+"km2": 0.7
 },
-"ANCHOR_SB": {
-"k": 0,
+"R0_current_SB": {
+"k": 22,
+"km2": 0.1
+},
+"R1_protect": {
+"k": 168,
+"km2": 0.7
+},
+"R1_protect_SB": {
+"k": 22,
+"km2": 0.1
+},
+"R2_promo": {
+"k": 168,
+"km2": 0.7
+},
+"R2_promo_SB": {
+"k": 22,
+"km2": 0.1
+},
+"R3_zone_all": {
+"k": 168,
+"km2": 0.7
+},
+"R3_zone_all_SB": {
+"k": 22,
+"km2": 0.1
+}
+},
+"30230": {
+"R0_current": {
+"k": 247,
+"km2": 0.3
+},
+"R0_current_SB": {
+"k": 41,
 "km2": 0.0
 },
-"SOFT_A1": {
-"k": 5,
-"km2": 0.6
+"R1_protect": {
+"k": 247,
+"km2": 0.3
 },
-"SOFT_A1_SB": {
-"k": 0,
+"R1_protect_SB": {
+"k": 41,
 "km2": 0.0
 },
-"SOFT_R2": {
-"k": 5,
-"km2": 0.6
+"R2_promo": {
+"k": 247,
+"km2": 0.3
 },
-"SOFT_R2_SB": {
-"k": 0,
+"R2_promo_SB": {
+"k": 41,
 "km2": 0.0
 },
-"SOFT_A2": {
-"k": 5,
-"km2": 0.6
+"R3_zone_all": {
+"k": 247,
+"km2": 0.3
 },
-"SOFT_A2_SB": {
-"k": 0,
+"R3_zone_all_SB": {
+"k": 41,
+"km2": 0.0
+}
+},
+"31110": {
+"R0_current": {
+"k": 118,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 8,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 118,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 8,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 118,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 8,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 118,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 8,
 "km2": 0.0
 }
 },
 "31140": {
-"ANCHOR": {
-"k": 2,
-"km2": 0.6
+"R0_current": {
+"k": 277,
+"km2": 0.3
 },
-"ANCHOR_SB": {
-"k": 0,
+"R0_current_SB": {
+"k": 39,
+"km2": 0.1
+},
+"R1_protect": {
+"k": 277,
+"km2": 0.3
+},
+"R1_protect_SB": {
+"k": 39,
+"km2": 0.1
+},
+"R2_promo": {
+"k": 277,
+"km2": 0.3
+},
+"R2_promo_SB": {
+"k": 39,
+"km2": 0.1
+},
+"R3_zone_all": {
+"k": 277,
+"km2": 0.3
+},
+"R3_zone_all_SB": {
+"k": 39,
+"km2": 0.1
+}
+},
+"31170": {
+"R0_current": {
+"k": 60,
 "km2": 0.0
 },
-"SOFT_A1": {
-"k": 2,
-"km2": 0.6
-},
-"SOFT_A1_SB": {
-"k": 0,
+"R0_current_SB": {
+"k": 7,
 "km2": 0.0
 },
-"SOFT_R2": {
-"k": 2,
-"km2": 0.6
-},
-"SOFT_R2_SB": {
-"k": 0,
+"R1_protect": {
+"k": 60,
 "km2": 0.0
 },
-"SOFT_A2": {
-"k": 2,
-"km2": 0.6
+"R1_protect_SB": {
+"k": 7,
+"km2": 0.0
 },
-"SOFT_A2_SB": {
-"k": 0,
+"R2_promo": {
+"k": 60,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 7,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 60,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 7,
 "km2": 0.0
 }
 },
 "31200": {
-"ANCHOR": {
-"k": 8,
-"km2": 0.8
+"R0_current": {
+"k": 431,
+"km2": 0.4
 },
-"ANCHOR_SB": {
-"k": 1,
+"R0_current_SB": {
+"k": 78,
 "km2": 0.1
 },
-"SOFT_A1": {
-"k": 8,
-"km2": 0.8
+"R1_protect": {
+"k": 432,
+"km2": 0.4
 },
-"SOFT_A1_SB": {
-"k": 1,
+"R1_protect_SB": {
+"k": 79,
 "km2": 0.1
 },
-"SOFT_R2": {
-"k": 13,
-"km2": 2.0
+"R2_promo": {
+"k": 448,
+"km2": 0.5
 },
-"SOFT_R2_SB": {
-"k": 4,
-"km2": 0.8
+"R2_promo_SB": {
+"k": 91,
+"km2": 0.1
 },
-"SOFT_A2": {
-"k": 13,
-"km2": 2.0
+"R3_zone_all": {
+"k": 449,
+"km2": 0.5
 },
-"SOFT_A2_SB": {
-"k": 4,
-"km2": 0.8
+"R3_zone_all_SB": {
+"k": 92,
+"km2": 0.1
 }
 },
 "31710": {
-"ANCHOR": {
-"k": 101,
-"km2": 20.0
+"R0_current": {
+"k": 2389,
+"km2": 2.9
 },
-"ANCHOR_SB": {
-"k": 19,
-"km2": 2.5
+"R0_current_SB": {
+"k": 738,
+"km2": 1.2
 },
-"SOFT_A1": {
-"k": 107,
-"km2": 22.8
+"R1_protect": {
+"k": 2439,
+"km2": 3.0
 },
-"SOFT_A1_SB": {
-"k": 22,
-"km2": 3.2
+"R1_protect_SB": {
+"k": 767,
+"km2": 1.2
 },
-"SOFT_R2": {
-"k": 127,
-"km2": 31.9
+"R2_promo": {
+"k": 2553,
+"km2": 3.5
 },
-"SOFT_R2_SB": {
-"k": 45,
-"km2": 6.3
+"R2_promo_SB": {
+"k": 840,
+"km2": 1.3
 },
-"SOFT_A2": {
-"k": 131,
-"km2": 34.8
+"R3_zone_all": {
+"k": 2601,
+"km2": 3.6
 },
-"SOFT_A2_SB": {
-"k": 49,
-"km2": 7.2
+"R3_zone_all_SB": {
+"k": 868,
+"km2": 1.4
 }
 },
 "36110": {
-"ANCHOR": {
-"k": 93,
-"km2": 15.3
+"R0_current": {
+"k": 1810,
+"km2": 2.6
 },
-"ANCHOR_SB": {
-"k": 19,
+"R0_current_SB": {
+"k": 660,
+"km2": 1.1
+},
+"R1_protect": {
+"k": 1860,
+"km2": 2.7
+},
+"R1_protect_SB": {
+"k": 679,
+"km2": 1.2
+},
+"R2_promo": {
+"k": 2118,
+"km2": 3.9
+},
+"R2_promo_SB": {
+"k": 864,
 "km2": 2.0
 },
-"SOFT_A1": {
-"k": 105,
-"km2": 16.7
+"R3_zone_all": {
+"k": 2155,
+"km2": 4.0
 },
-"SOFT_A1_SB": {
-"k": 21,
-"km2": 2.2
+"R3_zone_all_SB": {
+"k": 877,
+"km2": 2.0
+}
 },
-"SOFT_R2": {
-"k": 161,
-"km2": 43.9
+"41111": {
+"R0_current": {
+"k": 196,
+"km2": 0.1
 },
-"SOFT_R2_SB": {
-"k": 67,
-"km2": 13.5
+"R0_current_SB": {
+"k": 12,
+"km2": 0.0
 },
-"SOFT_A2": {
-"k": 164,
-"km2": 46.2
+"R1_protect": {
+"k": 196,
+"km2": 0.1
 },
-"SOFT_A2_SB": {
-"k": 70,
-"km2": 13.9
+"R1_protect_SB": {
+"k": 12,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 196,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 12,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 196,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 12,
+"km2": 0.0
 }
 },
 "41113": {
-"ANCHOR": {
-"k": 12,
-"km2": 2.4
+"R0_current": {
+"k": 388,
+"km2": 0.5
 },
-"ANCHOR_SB": {
-"k": 4,
-"km2": 0.8
+"R0_current_SB": {
+"k": 66,
+"km2": 0.2
 },
-"SOFT_A1": {
-"k": 12,
-"km2": 2.4
+"R1_protect": {
+"k": 388,
+"km2": 0.5
 },
-"SOFT_A1_SB": {
-"k": 4,
-"km2": 0.8
+"R1_protect_SB": {
+"k": 66,
+"km2": 0.2
 },
-"SOFT_R2": {
-"k": 11,
-"km2": 2.7
+"R2_promo": {
+"k": 387,
+"km2": 0.5
 },
-"SOFT_R2_SB": {
-"k": 4,
-"km2": 1.4
+"R2_promo_SB": {
+"k": 65,
+"km2": 0.2
 },
-"SOFT_A2": {
-"k": 11,
-"km2": 2.7
+"R3_zone_all": {
+"k": 387,
+"km2": 0.5
 },
-"SOFT_A2_SB": {
-"k": 4,
-"km2": 1.4
+"R3_zone_all_SB": {
+"k": 65,
+"km2": 0.2
+}
+},
+"41115": {
+"R0_current": {
+"k": 88,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 16,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 88,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 16,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 88,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 16,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 88,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 16,
+"km2": 0.0
 }
 },
 "41117": {
-"ANCHOR": {
-"k": 0,
+"R0_current": {
+"k": 161,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 20,
 "km2": 0.0
 },
-"ANCHOR_SB": {
-"k": 0,
+"R1_protect": {
+"k": 161,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 20,
 "km2": 0.0
 },
-"SOFT_A1": {
-"k": 0,
+"R2_promo": {
+"k": 161,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 20,
 "km2": 0.0
 },
-"SOFT_A1_SB": {
-"k": 0,
+"R3_zone_all": {
+"k": 161,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 20,
+"km2": 0.0
+}
+},
+"41131": {
+"R0_current": {
+"k": 169,
+"km2": 0.2
+},
+"R0_current_SB": {
+"k": 6,
 "km2": 0.0
 },
-"SOFT_R2": {
-"k": 1,
-"km2": 1.8
+"R1_protect": {
+"k": 169,
+"km2": 0.2
 },
-"SOFT_R2_SB": {
-"k": 1,
-"km2": 1.8
+"R1_protect_SB": {
+"k": 6,
+"km2": 0.0
 },
-"SOFT_A2": {
-"k": 1,
-"km2": 1.9
+"R2_promo": {
+"k": 169,
+"km2": 0.2
 },
-"SOFT_A2_SB": {
+"R2_promo_SB": {
+"k": 6,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 169,
+"km2": 0.2
+},
+"R3_zone_all_SB": {
+"k": 6,
+"km2": 0.0
+}
+},
+"41133": {
+"R0_current": {
+"k": 36,
+"km2": 0.0
+},
+"R0_current_SB": {
 "k": 1,
-"km2": 1.9
+"km2": 0.0
+},
+"R1_protect": {
+"k": 36,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 1,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 36,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 1,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 36,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 1,
+"km2": 0.0
+}
+},
+"41135": {
+"R0_current": {
+"k": 45,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 9,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 45,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 9,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 45,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 9,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 45,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 9,
+"km2": 0.0
+}
+},
+"41150": {
+"R0_current": {
+"k": 302,
+"km2": 0.3
+},
+"R0_current_SB": {
+"k": 9,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 302,
+"km2": 0.3
+},
+"R1_protect_SB": {
+"k": 9,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 302,
+"km2": 0.3
+},
+"R2_promo_SB": {
+"k": 9,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 302,
+"km2": 0.3
+},
+"R3_zone_all_SB": {
+"k": 9,
+"km2": 0.0
+}
+},
+"41171": {
+"R0_current": {
+"k": 117,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 117,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 117,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 3,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 117,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 3,
+"km2": 0.0
+}
+},
+"41173": {
+"R0_current": {
+"k": 87,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 7,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 87,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 7,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 87,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 7,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 87,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 7,
+"km2": 0.0
+}
+},
+"41192": {
+"R0_current": {
+"k": 54,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 6,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 54,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 6,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 54,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 6,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 54,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 6,
+"km2": 0.0
+}
+},
+"41194": {
+"R0_current": {
+"k": 40,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 1,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 40,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 1,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 40,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 1,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 40,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 1,
+"km2": 0.0
 }
 },
 "41196": {
-"ANCHOR": {
-"k": 4,
-"km2": 0.9
+"R0_current": {
+"k": 91,
+"km2": 1.1
 },
-"ANCHOR_SB": {
-"k": 4,
-"km2": 0.9
+"R0_current_SB": {
+"k": 29,
+"km2": 1.0
 },
-"SOFT_A1": {
-"k": 4,
-"km2": 0.9
+"R1_protect": {
+"k": 91,
+"km2": 1.1
 },
-"SOFT_A1_SB": {
-"k": 4,
-"km2": 0.9
+"R1_protect_SB": {
+"k": 29,
+"km2": 1.0
 },
-"SOFT_R2": {
-"k": 4,
-"km2": 0.9
+"R2_promo": {
+"k": 91,
+"km2": 1.1
 },
-"SOFT_R2_SB": {
-"k": 4,
-"km2": 0.9
+"R2_promo_SB": {
+"k": 29,
+"km2": 1.0
 },
-"SOFT_A2": {
-"k": 4,
-"km2": 0.9
+"R3_zone_all": {
+"k": 91,
+"km2": 1.1
 },
-"SOFT_A2_SB": {
-"k": 4,
-"km2": 0.9
+"R3_zone_all_SB": {
+"k": 29,
+"km2": 1.0
 }
 },
 "41210": {
-"ANCHOR": {
-"k": 6,
-"km2": 0.7
+"R0_current": {
+"k": 143,
+"km2": 0.3
 },
-"ANCHOR_SB": {
-"k": 4,
-"km2": 0.4
+"R0_current_SB": {
+"k": 52,
+"km2": 0.1
 },
-"SOFT_A1": {
-"k": 6,
-"km2": 0.7
+"R1_protect": {
+"k": 143,
+"km2": 0.3
 },
-"SOFT_A1_SB": {
-"k": 4,
-"km2": 0.4
+"R1_protect_SB": {
+"k": 52,
+"km2": 0.1
 },
-"SOFT_R2": {
-"k": 6,
-"km2": 0.7
+"R2_promo": {
+"k": 143,
+"km2": 0.3
 },
-"SOFT_R2_SB": {
-"k": 4,
-"km2": 0.4
+"R2_promo_SB": {
+"k": 52,
+"km2": 0.1
 },
-"SOFT_A2": {
-"k": 6,
-"km2": 0.7
+"R3_zone_all": {
+"k": 143,
+"km2": 0.3
 },
-"SOFT_A2_SB": {
-"k": 4,
-"km2": 0.4
+"R3_zone_all_SB": {
+"k": 52,
+"km2": 0.1
 }
 },
 "41220": {
-"ANCHOR": {
-"k": 98,
-"km2": 18.6
+"R0_current": {
+"k": 2870,
+"km2": 5.0
 },
-"ANCHOR_SB": {
-"k": 18,
-"km2": 2.4
+"R0_current_SB": {
+"k": 629,
+"km2": 1.0
 },
-"SOFT_A1": {
-"k": 108,
-"km2": 20.3
+"R1_protect": {
+"k": 2925,
+"km2": 5.2
 },
-"SOFT_A1_SB": {
-"k": 21,
-"km2": 2.7
+"R1_protect_SB": {
+"k": 660,
+"km2": 1.1
 },
-"SOFT_R2": {
-"k": 147,
-"km2": 163.0
+"R2_promo": {
+"k": 4097,
+"km2": 18.0
 },
-"SOFT_R2_SB": {
-"k": 146,
-"km2": 74.2
+"R2_promo_SB": {
+"k": 1613,
+"km2": 11.0
 },
-"SOFT_A2": {
-"k": 140,
-"km2": 169.5
+"R3_zone_all": {
+"k": 4118,
+"km2": 18.2
 },
-"SOFT_A2_SB": {
-"k": 148,
-"km2": 75.5
+"R3_zone_all_SB": {
+"k": 1622,
+"km2": 11.1
 }
 },
 "41250": {
-"ANCHOR": {
-"k": 8,
-"km2": 0.9
+"R0_current": {
+"k": 523,
+"km2": 0.5
 },
-"ANCHOR_SB": {
-"k": 1,
+"R0_current_SB": {
+"k": 52,
 "km2": 0.1
 },
-"SOFT_A1": {
-"k": 8,
-"km2": 0.9
+"R1_protect": {
+"k": 523,
+"km2": 0.5
 },
-"SOFT_A1_SB": {
-"k": 1,
+"R1_protect_SB": {
+"k": 52,
 "km2": 0.1
 },
-"SOFT_R2": {
-"k": 10,
-"km2": 1.3
+"R2_promo": {
+"k": 525,
+"km2": 0.5
 },
-"SOFT_R2_SB": {
-"k": 2,
+"R2_promo_SB": {
+"k": 53,
 "km2": 0.1
 },
-"SOFT_A2": {
-"k": 10,
-"km2": 1.3
+"R3_zone_all": {
+"k": 525,
+"km2": 0.5
 },
-"SOFT_A2_SB": {
-"k": 2,
+"R3_zone_all_SB": {
+"k": 53,
 "km2": 0.1
 }
 },
+"41271": {
+"R0_current": {
+"k": 190,
+"km2": 0.4
+},
+"R0_current_SB": {
+"k": 42,
+"km2": 0.2
+},
+"R1_protect": {
+"k": 190,
+"km2": 0.4
+},
+"R1_protect_SB": {
+"k": 42,
+"km2": 0.2
+},
+"R2_promo": {
+"k": 190,
+"km2": 0.4
+},
+"R2_promo_SB": {
+"k": 42,
+"km2": 0.2
+},
+"R3_zone_all": {
+"k": 190,
+"km2": 0.4
+},
+"R3_zone_all_SB": {
+"k": 42,
+"km2": 0.2
+}
+},
 "41273": {
-"ANCHOR": {
-"k": 18,
-"km2": 5.5
+"R0_current": {
+"k": 332,
+"km2": 0.5
 },
-"ANCHOR_SB": {
-"k": 1,
+"R0_current_SB": {
+"k": 49,
 "km2": 0.1
 },
-"SOFT_A1": {
-"k": 18,
-"km2": 5.5
+"R1_protect": {
+"k": 332,
+"km2": 0.5
 },
-"SOFT_A1_SB": {
-"k": 1,
+"R1_protect_SB": {
+"k": 49,
 "km2": 0.1
 },
-"SOFT_R2": {
-"k": 18,
-"km2": 5.5
+"R2_promo": {
+"k": 332,
+"km2": 0.5
 },
-"SOFT_R2_SB": {
-"k": 1,
+"R2_promo_SB": {
+"k": 49,
 "km2": 0.1
 },
-"SOFT_A2": {
-"k": 18,
-"km2": 5.5
+"R3_zone_all": {
+"k": 332,
+"km2": 0.5
 },
-"SOFT_A2_SB": {
-"k": 1,
+"R3_zone_all_SB": {
+"k": 49,
 "km2": 0.1
 }
 },
 "41281": {
-"ANCHOR": {
-"k": 3,
+"R0_current": {
+"k": 572,
+"km2": 0.8
+},
+"R0_current_SB": {
+"k": 85,
+"km2": 0.2
+},
+"R1_protect": {
+"k": 572,
+"km2": 0.8
+},
+"R1_protect_SB": {
+"k": 85,
+"km2": 0.2
+},
+"R2_promo": {
+"k": 587,
+"km2": 0.8
+},
+"R2_promo_SB": {
+"k": 89,
 "km2": 0.3
 },
-"ANCHOR_SB": {
-"k": 0,
-"km2": 0.0
+"R3_zone_all": {
+"k": 587,
+"km2": 0.8
 },
-"SOFT_A1": {
-"k": 3,
+"R3_zone_all_SB": {
+"k": 89,
 "km2": 0.3
-},
-"SOFT_A1_SB": {
-"k": 0,
-"km2": 0.0
-},
-"SOFT_R2": {
-"k": 6,
-"km2": 1.1
-},
-"SOFT_R2_SB": {
-"k": 1,
-"km2": 0.1
-},
-"SOFT_A2": {
-"k": 6,
-"km2": 1.1
-},
-"SOFT_A2_SB": {
-"k": 1,
-"km2": 0.1
 }
 },
 "41285": {
-"ANCHOR": {
-"k": 0,
+"R0_current": {
+"k": 227,
+"km2": 0.2
+},
+"R0_current_SB": {
+"k": 13,
 "km2": 0.0
 },
-"ANCHOR_SB": {
-"k": 0,
+"R1_protect": {
+"k": 227,
+"km2": 0.2
+},
+"R1_protect_SB": {
+"k": 13,
 "km2": 0.0
 },
-"SOFT_A1": {
-"k": 0,
-"km2": 0.0
+"R2_promo": {
+"k": 293,
+"km2": 0.6
 },
-"SOFT_A1_SB": {
-"k": 0,
-"km2": 0.0
+"R2_promo_SB": {
+"k": 33,
+"km2": 0.2
 },
-"SOFT_R2": {
-"k": 14,
-"km2": 5.1
+"R3_zone_all": {
+"k": 293,
+"km2": 0.6
 },
-"SOFT_R2_SB": {
-"k": 1,
-"km2": 1.2
-},
-"SOFT_A2": {
-"k": 14,
-"km2": 5.1
-},
-"SOFT_A2_SB": {
-"k": 1,
-"km2": 1.2
+"R3_zone_all_SB": {
+"k": 33,
+"km2": 0.2
 }
 },
 "41287": {
-"ANCHOR": {
-"k": 0,
+"R0_current": {
+"k": 169,
+"km2": 0.3
+},
+"R0_current_SB": {
+"k": 21,
+"km2": 0.1
+},
+"R1_protect": {
+"k": 169,
+"km2": 0.3
+},
+"R1_protect_SB": {
+"k": 21,
+"km2": 0.1
+},
+"R2_promo": {
+"k": 278,
+"km2": 0.7
+},
+"R2_promo_SB": {
+"k": 93,
+"km2": 0.3
+},
+"R3_zone_all": {
+"k": 278,
+"km2": 0.7
+},
+"R3_zone_all_SB": {
+"k": 93,
+"km2": 0.3
+}
+},
+"41290": {
+"R0_current": {
+"k": 102,
+"km2": 0.2
+},
+"R0_current_SB": {
+"k": 15,
+"km2": 0.1
+},
+"R1_protect": {
+"k": 102,
+"km2": 0.2
+},
+"R1_protect_SB": {
+"k": 15,
+"km2": 0.1
+},
+"R2_promo": {
+"k": 102,
+"km2": 0.2
+},
+"R2_promo_SB": {
+"k": 15,
+"km2": 0.1
+},
+"R3_zone_all": {
+"k": 102,
+"km2": 0.2
+},
+"R3_zone_all_SB": {
+"k": 15,
+"km2": 0.1
+}
+},
+"41310": {
+"R0_current": {
+"k": 142,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 8,
 "km2": 0.0
 },
-"ANCHOR_SB": {
-"k": 0,
+"R1_protect": {
+"k": 142,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 8,
 "km2": 0.0
 },
-"SOFT_A1": {
-"k": 0,
+"R2_promo": {
+"k": 142,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 8,
 "km2": 0.0
 },
-"SOFT_A1_SB": {
-"k": 0,
+"R3_zone_all": {
+"k": 142,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 8,
 "km2": 0.0
-},
-"SOFT_R2": {
-"k": 17,
-"km2": 8.9
-},
-"SOFT_R2_SB": {
-"k": 11,
-"km2": 3.8
-},
-"SOFT_A2": {
-"k": 17,
-"km2": 8.9
-},
-"SOFT_A2_SB": {
-"k": 11,
-"km2": 3.8
 }
 },
 "41360": {
-"ANCHOR": {
-"k": 16,
-"km2": 1.6
+"R0_current": {
+"k": 1948,
+"km2": 4.1
 },
-"ANCHOR_SB": {
-"k": 3,
-"km2": 0.3
+"R0_current_SB": {
+"k": 278,
+"km2": 1.2
 },
-"SOFT_A1": {
-"k": 16,
-"km2": 1.6
+"R1_protect": {
+"k": 1954,
+"km2": 4.1
 },
-"SOFT_A1_SB": {
-"k": 3,
-"km2": 0.3
+"R1_protect_SB": {
+"k": 278,
+"km2": 1.2
 },
-"SOFT_R2": {
-"k": 21,
-"km2": 2.4
+"R2_promo": {
+"k": 1952,
+"km2": 4.2
 },
-"SOFT_R2_SB": {
-"k": 3,
-"km2": 0.3
+"R2_promo_SB": {
+"k": 279,
+"km2": 1.2
 },
-"SOFT_A2": {
-"k": 21,
-"km2": 2.4
+"R3_zone_all": {
+"k": 1958,
+"km2": 4.2
 },
-"SOFT_A2_SB": {
-"k": 3,
-"km2": 0.3
+"R3_zone_all_SB": {
+"k": 279,
+"km2": 1.2
 }
 },
 "41370": {
-"ANCHOR": {
-"k": 15,
-"km2": 2.5
+"R0_current": {
+"k": 551,
+"km2": 1.1
 },
-"ANCHOR_SB": {
-"k": 2,
-"km2": 0.2
+"R0_current_SB": {
+"k": 134,
+"km2": 0.3
 },
-"SOFT_A1": {
-"k": 17,
-"km2": 2.7
+"R1_protect": {
+"k": 566,
+"km2": 1.1
 },
-"SOFT_A1_SB": {
-"k": 2,
-"km2": 0.2
+"R1_protect_SB": {
+"k": 136,
+"km2": 0.3
 },
-"SOFT_R2": {
-"k": 22,
-"km2": 6.6
+"R2_promo": {
+"k": 559,
+"km2": 1.1
 },
-"SOFT_R2_SB": {
-"k": 5,
-"km2": 2.2
+"R2_promo_SB": {
+"k": 141,
+"km2": 0.4
 },
-"SOFT_A2": {
-"k": 22,
-"km2": 6.9
+"R3_zone_all": {
+"k": 574,
+"km2": 1.1
 },
-"SOFT_A2_SB": {
-"k": 5,
-"km2": 2.4
+"R3_zone_all_SB": {
+"k": 143,
+"km2": 0.4
 }
 },
 "41390": {
-"ANCHOR": {
-"k": 1,
-"km2": 0.2
+"R0_current": {
+"k": 355,
+"km2": 0.3
 },
-"ANCHOR_SB": {
-"k": 0,
+"R0_current_SB": {
+"k": 48,
+"km2": 0.1
+},
+"R1_protect": {
+"k": 355,
+"km2": 0.3
+},
+"R1_protect_SB": {
+"k": 48,
+"km2": 0.1
+},
+"R2_promo": {
+"k": 355,
+"km2": 0.3
+},
+"R2_promo_SB": {
+"k": 48,
+"km2": 0.1
+},
+"R3_zone_all": {
+"k": 355,
+"km2": 0.3
+},
+"R3_zone_all_SB": {
+"k": 48,
+"km2": 0.1
+}
+},
+"41410": {
+"R0_current": {
+"k": 80,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 3,
 "km2": 0.0
 },
-"SOFT_A1": {
-"k": 1,
-"km2": 0.2
+"R1_protect": {
+"k": 80,
+"km2": 0.1
 },
-"SOFT_A1_SB": {
-"k": 0,
+"R1_protect_SB": {
+"k": 3,
 "km2": 0.0
 },
-"SOFT_R2": {
-"k": 1,
-"km2": 0.2
+"R2_promo": {
+"k": 80,
+"km2": 0.1
 },
-"SOFT_R2_SB": {
-"k": 0,
+"R2_promo_SB": {
+"k": 3,
 "km2": 0.0
 },
-"SOFT_A2": {
-"k": 1,
-"km2": 0.2
+"R3_zone_all": {
+"k": 80,
+"km2": 0.1
 },
-"SOFT_A2_SB": {
-"k": 0,
+"R3_zone_all_SB": {
+"k": 3,
+"km2": 0.0
+}
+},
+"41430": {
+"R0_current": {
+"k": 154,
+"km2": 0.1
+},
+"R0_current_SB": {
+"k": 15,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 154,
+"km2": 0.1
+},
+"R1_protect_SB": {
+"k": 15,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 154,
+"km2": 0.1
+},
+"R2_promo_SB": {
+"k": 15,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 154,
+"km2": 0.1
+},
+"R3_zone_all_SB": {
+"k": 15,
+"km2": 0.0
+}
+},
+"41450": {
+"R0_current": {
+"k": 222,
+"km2": 0.0
+},
+"R0_current_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R1_protect": {
+"k": 222,
+"km2": 0.0
+},
+"R1_protect_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R2_promo": {
+"k": 222,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 2,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 222,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 2,
 "km2": 0.0
 }
 },
 "41461": {
-"ANCHOR": {
-"k": 96,
-"km2": 13.5
+"R0_current": {
+"k": 2487,
+"km2": 4.8
 },
-"ANCHOR_SB": {
-"k": 15,
-"km2": 1.5
+"R0_current_SB": {
+"k": 635,
+"km2": 1.3
 },
-"SOFT_A1": {
-"k": 107,
-"km2": 15.0
+"R1_protect": {
+"k": 2556,
+"km2": 5.0
 },
-"SOFT_A1_SB": {
-"k": 17,
-"km2": 1.7
+"R1_protect_SB": {
+"k": 649,
+"km2": 1.3
 },
-"SOFT_R2": {
-"k": 134,
-"km2": 40.6
+"R2_promo": {
+"k": 2893,
+"km2": 6.8
 },
-"SOFT_R2_SB": {
-"k": 64,
-"km2": 13.9
+"R2_promo_SB": {
+"k": 919,
+"km2": 2.6
 },
-"SOFT_A2": {
-"k": 140,
-"km2": 42.5
+"R3_zone_all": {
+"k": 2958,
+"km2": 7.0
 },
-"SOFT_A2_SB": {
-"k": 67,
-"km2": 14.3
+"R3_zone_all_SB": {
+"k": 931,
+"km2": 2.7
 }
 },
 "41463": {
-"ANCHOR": {
-"k": 0,
+"R0_current": {
+"k": 735,
+"km2": 1.0
+},
+"R0_current_SB": {
+"k": 721,
+"km2": 0.9
+},
+"R1_protect": {
+"k": 735,
+"km2": 1.0
+},
+"R1_protect_SB": {
+"k": 721,
+"km2": 0.9
+},
+"R2_promo": {
+"k": 730,
+"km2": 1.2
+},
+"R2_promo_SB": {
+"k": 716,
+"km2": 1.1
+},
+"R3_zone_all": {
+"k": 730,
+"km2": 1.2
+},
+"R3_zone_all_SB": {
+"k": 716,
+"km2": 1.1
+}
+},
+"41465": {
+"R0_current": {
+"k": 227,
+"km2": 0.3
+},
+"R0_current_SB": {
+"k": 12,
 "km2": 0.0
 },
-"ANCHOR_SB": {
-"k": 0,
+"R1_protect": {
+"k": 227,
+"km2": 0.3
+},
+"R1_protect_SB": {
+"k": 12,
 "km2": 0.0
 },
-"SOFT_A1": {
-"k": 0,
+"R2_promo": {
+"k": 227,
+"km2": 0.3
+},
+"R2_promo_SB": {
+"k": 12,
 "km2": 0.0
 },
-"SOFT_A1_SB": {
-"k": 0,
+"R3_zone_all": {
+"k": 227,
+"km2": 0.3
+},
+"R3_zone_all_SB": {
+"k": 12,
 "km2": 0.0
-},
-"SOFT_R2": {
-"k": 2,
-"km2": 0.2
-},
-"SOFT_R2_SB": {
-"k": 2,
-"km2": 0.2
-},
-"SOFT_A2": {
-"k": 2,
-"km2": 0.2
-},
-"SOFT_A2_SB": {
-"k": 2,
-"km2": 0.2
 }
 },
 "41480": {
-"ANCHOR": {
-"k": 68,
-"km2": 10.1
+"R0_current": {
+"k": 2020,
+"km2": 3.9
 },
-"ANCHOR_SB": {
-"k": 11,
-"km2": 1.0
+"R0_current_SB": {
+"k": 524,
+"km2": 1.2
 },
-"SOFT_A1": {
-"k": 71,
-"km2": 10.4
+"R1_protect": {
+"k": 2068,
+"km2": 4.0
 },
-"SOFT_A1_SB": {
-"k": 11,
-"km2": 1.0
+"R1_protect_SB": {
+"k": 550,
+"km2": 1.3
 },
-"SOFT_R2": {
-"k": 94,
-"km2": 30.5
+"R2_promo": {
+"k": 2245,
+"km2": 5.5
 },
-"SOFT_R2_SB": {
-"k": 38,
-"km2": 11.2
+"R2_promo_SB": {
+"k": 703,
+"km2": 2.3
 },
-"SOFT_A2": {
-"k": 97,
-"km2": 31.3
+"R3_zone_all": {
+"k": 2287,
+"km2": 5.6
 },
-"SOFT_A2_SB": {
-"k": 38,
-"km2": 11.3
+"R3_zone_all_SB": {
+"k": 727,
+"km2": 2.3
 }
 },
 "41500": {
-"ANCHOR": {
-"k": 177,
-"km2": 35.7
+"R0_current": {
+"k": 2925,
+"km2": 5.5
 },
-"ANCHOR_SB": {
-"k": 62,
-"km2": 9.7
+"R0_current_SB": {
+"k": 1147,
+"km2": 2.7
 },
-"SOFT_A1": {
-"k": 201,
-"km2": 41.6
+"R1_protect": {
+"k": 3082,
+"km2": 6.0
 },
-"SOFT_A1_SB": {
-"k": 71,
-"km2": 12.0
+"R1_protect_SB": {
+"k": 1228,
+"km2": 2.9
 },
-"SOFT_R2": {
-"k": 198,
-"km2": 128.9
+"R2_promo": {
+"k": 4277,
+"km2": 12.5
 },
-"SOFT_R2_SB": {
-"k": 172,
-"km2": 55.4
+"R2_promo_SB": {
+"k": 2094,
+"km2": 7.2
 },
-"SOFT_A2": {
-"k": 197,
-"km2": 137.8
+"R3_zone_all": {
+"k": 4381,
+"km2": 13.0
 },
-"SOFT_A2_SB": {
-"k": 177,
-"km2": 58.8
+"R3_zone_all_SB": {
+"k": 2154,
+"km2": 7.5
 }
 },
 "41550": {
-"ANCHOR": {
-"k": 152,
-"km2": 28.1
+"R0_current": {
+"k": 2879,
+"km2": 5.4
 },
-"ANCHOR_SB": {
-"k": 42,
-"km2": 5.3
+"R0_current_SB": {
+"k": 1070,
+"km2": 1.9
 },
-"SOFT_A1": {
-"k": 176,
-"km2": 33.0
+"R1_protect": {
+"k": 3128,
+"km2": 6.2
 },
-"SOFT_A1_SB": {
-"k": 48,
-"km2": 5.9
+"R1_protect_SB": {
+"k": 1174,
+"km2": 2.3
 },
-"SOFT_R2": {
-"k": 213,
-"km2": 104.7
+"R2_promo": {
+"k": 3744,
+"km2": 10.1
 },
-"SOFT_R2_SB": {
-"k": 137,
-"km2": 43.2
+"R2_promo_SB": {
+"k": 1711,
+"km2": 5.1
 },
-"SOFT_A2": {
-"k": 226,
-"km2": 114.5
+"R3_zone_all": {
+"k": 3963,
+"km2": 10.9
 },
-"SOFT_A2_SB": {
-"k": 144,
-"km2": 44.9
+"R3_zone_all_SB": {
+"k": 1801,
+"km2": 5.4
 }
 },
 "41570": {
-"ANCHOR": {
-"k": 17,
-"km2": 1.7
+"R0_current": {
+"k": 698,
+"km2": 0.9
 },
-"ANCHOR_SB": {
-"k": 1,
+"R0_current_SB": {
+"k": 61,
 "km2": 0.1
 },
-"SOFT_A1": {
-"k": 18,
-"km2": 1.8
+"R1_protect": {
+"k": 704,
+"km2": 0.9
 },
-"SOFT_A1_SB": {
-"k": 1,
+"R1_protect_SB": {
+"k": 61,
 "km2": 0.1
 },
-"SOFT_R2": {
-"k": 54,
-"km2": 21.7
+"R2_promo": {
+"k": 943,
+"km2": 2.1
 },
-"SOFT_R2_SB": {
-"k": 33,
-"km2": 8.3
+"R2_promo_SB": {
+"k": 200,
+"km2": 0.6
 },
-"SOFT_A2": {
-"k": 53,
-"km2": 21.8
+"R3_zone_all": {
+"k": 948,
+"km2": 2.1
 },
-"SOFT_A2_SB": {
-"k": 33,
-"km2": 8.3
+"R3_zone_all_SB": {
+"k": 200,
+"km2": 0.6
 }
 },
 "41590": {
-"ANCHOR": {
-"k": 186,
-"km2": 35.2
+"R0_current": {
+"k": 4133,
+"km2": 7.5
 },
-"ANCHOR_SB": {
-"k": 180,
-"km2": 33.5
+"R0_current_SB": {
+"k": 4105,
+"km2": 7.4
 },
-"SOFT_A1": {
-"k": 192,
-"km2": 37.8
+"R1_protect": {
+"k": 4261,
+"km2": 7.8
 },
-"SOFT_A1_SB": {
-"k": 185,
-"km2": 35.9
+"R1_protect_SB": {
+"k": 4233,
+"km2": 7.6
 },
-"SOFT_R2": {
-"k": 231,
-"km2": 127.2
+"R2_promo": {
+"k": 4930,
+"km2": 14.6
 },
-"SOFT_R2_SB": {
-"k": 229,
-"km2": 121.9
+"R2_promo_SB": {
+"k": 4901,
+"km2": 14.4
 },
-"SOFT_A2": {
-"k": 232,
-"km2": 131.3
+"R3_zone_all": {
+"k": 5029,
+"km2": 14.9
 },
-"SOFT_A2_SB": {
-"k": 230,
-"km2": 125.6
+"R3_zone_all_SB": {
+"k": 5000,
+"km2": 14.7
 }
 },
 "41610": {
-"ANCHOR": {
-"k": 37,
-"km2": 6.3
+"R0_current": {
+"k": 2247,
+"km2": 2.2
 },
-"ANCHOR_SB": {
-"k": 7,
-"km2": 0.6
+"R0_current_SB": {
+"k": 269,
+"km2": 0.4
 },
-"SOFT_A1": {
-"k": 39,
-"km2": 6.5
+"R1_protect": {
+"k": 2247,
+"km2": 2.2
 },
-"SOFT_A1_SB": {
-"k": 7,
-"km2": 0.6
+"R1_protect_SB": {
+"k": 270,
+"km2": 0.4
 },
-"SOFT_R2": {
-"k": 54,
-"km2": 10.9
+"R2_promo": {
+"k": 2322,
+"km2": 2.6
 },
-"SOFT_R2_SB": {
-"k": 9,
-"km2": 0.9
+"R2_promo_SB": {
+"k": 300,
+"km2": 0.5
 },
-"SOFT_A2": {
-"k": 54,
-"km2": 11.2
+"R3_zone_all": {
+"k": 2318,
+"km2": 2.6
 },
-"SOFT_A2_SB": {
-"k": 9,
-"km2": 0.9
+"R3_zone_all_SB": {
+"k": 299,
+"km2": 0.5
 }
 },
 "41630": {
-"ANCHOR": {
-"k": 34,
-"km2": 6.8
+"R0_current": {
+"k": 1735,
+"km2": 2.9
 },
-"ANCHOR_SB": {
-"k": 2,
-"km2": 0.3
+"R0_current_SB": {
+"k": 278,
+"km2": 0.6
 },
-"SOFT_A1": {
-"k": 40,
-"km2": 7.5
-},
-"SOFT_A1_SB": {
-"k": 2,
-"km2": 0.3
-},
-"SOFT_R2": {
-"k": 62,
-"km2": 15.8
-},
-"SOFT_R2_SB": {
-"k": 18,
+"R1_protect": {
+"k": 1785,
 "km2": 3.0
 },
-"SOFT_A2": {
-"k": 64,
-"km2": 16.8
+"R1_protect_SB": {
+"k": 292,
+"km2": 0.6
 },
-"SOFT_A2_SB": {
-"k": 18,
-"km2": 3.0
+"R2_promo": {
+"k": 1891,
+"km2": 3.7
+},
+"R2_promo_SB": {
+"k": 364,
+"km2": 0.8
+},
+"R3_zone_all": {
+"k": 1935,
+"km2": 3.7
+},
+"R3_zone_all_SB": {
+"k": 378,
+"km2": 0.8
 }
 },
 "41650": {
-"ANCHOR": {
-"k": 116,
-"km2": 16.4
+"R0_current": {
+"k": 3405,
+"km2": 5.7
 },
-"ANCHOR_SB": {
-"k": 12,
-"km2": 1.3
+"R0_current_SB": {
+"k": 919,
+"km2": 2.1
 },
-"SOFT_A1": {
-"k": 123,
-"km2": 17.5
+"R1_protect": {
+"k": 3471,
+"km2": 5.9
 },
-"SOFT_A1_SB": {
-"k": 13,
-"km2": 1.3
+"R1_protect_SB": {
+"k": 946,
+"km2": 2.2
 },
-"SOFT_R2": {
-"k": 174,
-"km2": 53.4
+"R2_promo": {
+"k": 3985,
+"km2": 8.5
 },
-"SOFT_R2_SB": {
-"k": 64,
-"km2": 15.5
+"R2_promo_SB": {
+"k": 1308,
+"km2": 3.6
 },
-"SOFT_A2": {
-"k": 175,
-"km2": 55.3
+"R3_zone_all": {
+"k": 4032,
+"km2": 8.7
 },
-"SOFT_A2_SB": {
-"k": 66,
-"km2": 15.7
+"R3_zone_all_SB": {
+"k": 1329,
+"km2": 3.6
 }
 },
 "41670": {
-"ANCHOR": {
-"k": 189,
-"km2": 29.0
+"R0_current": {
+"k": 2667,
+"km2": 5.2
 },
-"ANCHOR_SB": {
-"k": 66,
-"km2": 9.0
+"R0_current_SB": {
+"k": 1215,
+"km2": 2.8
 },
-"SOFT_A1": {
-"k": 219,
-"km2": 37.8
+"R1_protect": {
+"k": 2841,
+"km2": 5.8
 },
-"SOFT_A1_SB": {
-"k": 74,
-"km2": 12.3
+"R1_protect_SB": {
+"k": 1302,
+"km2": 3.0
 },
-"SOFT_R2": {
-"k": 285,
-"km2": 111.2
+"R2_promo": {
+"k": 3906,
+"km2": 10.8
 },
-"SOFT_R2_SB": {
-"k": 178,
-"km2": 43.3
+"R2_promo_SB": {
+"k": 2037,
+"km2": 6.6
 },
-"SOFT_A2": {
-"k": 281,
-"km2": 122.1
+"R3_zone_all": {
+"k": 4051,
+"km2": 11.3
 },
-"SOFT_A2_SB": {
-"k": 177,
-"km2": 49.0
+"R3_zone_all_SB": {
+"k": 2110,
+"km2": 6.9
 }
 },
 "41800": {
-"ANCHOR": {
-"k": 59,
-"km2": 8.2
+"R0_current": {
+"k": 1104,
+"km2": 2.8
 },
-"ANCHOR_SB": {
-"k": 19,
+"R0_current_SB": {
+"k": 532,
+"km2": 1.5
+},
+"R1_protect": {
+"k": 1120,
+"km2": 2.8
+},
+"R1_protect_SB": {
+"k": 541,
+"km2": 1.5
+},
+"R2_promo": {
+"k": 1217,
+"km2": 4.1
+},
+"R2_promo_SB": {
+"k": 631,
 "km2": 2.3
 },
-"SOFT_A1": {
-"k": 61,
-"km2": 8.6
+"R3_zone_all": {
+"k": 1226,
+"km2": 4.1
 },
-"SOFT_A1_SB": {
-"k": 21,
-"km2": 2.5
-},
-"SOFT_R2": {
-"k": 60,
-"km2": 18.7
-},
-"SOFT_R2_SB": {
-"k": 32,
-"km2": 7.4
-},
-"SOFT_A2": {
-"k": 59,
-"km2": 19.4
-},
-"SOFT_A2_SB": {
-"k": 33,
-"km2": 7.6
+"R3_zone_all_SB": {
+"k": 638,
+"km2": 2.3
 }
 },
 "41820": {
-"ANCHOR": {
-"k": 76,
-"km2": 10.2
+"R0_current": {
+"k": 1988,
+"km2": 3.5
 },
-"ANCHOR_SB": {
-"k": 1,
-"km2": 0.2
+"R0_current_SB": {
+"k": 348,
+"km2": 0.9
 },
-"SOFT_A1": {
-"k": 77,
-"km2": 10.4
+"R1_protect": {
+"k": 2004,
+"km2": 3.5
 },
-"SOFT_A1_SB": {
-"k": 1,
-"km2": 0.2
+"R1_protect_SB": {
+"k": 351,
+"km2": 0.9
 },
-"SOFT_R2": {
-"k": 95,
-"km2": 14.7
+"R2_promo": {
+"k": 2067,
+"km2": 3.7
 },
-"SOFT_R2_SB": {
-"k": 2,
-"km2": 0.2
+"R2_promo_SB": {
+"k": 371,
+"km2": 0.9
 },
-"SOFT_A2": {
-"k": 97,
-"km2": 15.1
+"R3_zone_all": {
+"k": 2081,
+"km2": 3.7
 },
-"SOFT_A2_SB": {
-"k": 2,
-"km2": 0.2
+"R3_zone_all_SB": {
+"k": 374,
+"km2": 0.9
 }
 },
 "41830": {
-"ANCHOR": {
-"k": 81,
-"km2": 9.8
+"R0_current": {
+"k": 2210,
+"km2": 2.5
 },
-"ANCHOR_SB": {
-"k": 5,
+"R0_current_SB": {
+"k": 373,
 "km2": 0.5
 },
-"SOFT_A1": {
-"k": 100,
-"km2": 12.8
+"R1_protect": {
+"k": 2344,
+"km2": 2.8
 },
-"SOFT_A1_SB": {
-"k": 6,
+"R1_protect_SB": {
+"k": 403,
 "km2": 0.5
 },
-"SOFT_R2": {
-"k": 196,
-"km2": 43.6
+"R2_promo": {
+"k": 2941,
+"km2": 5.0
 },
-"SOFT_R2_SB": {
-"k": 27,
-"km2": 4.6
+"R2_promo_SB": {
+"k": 611,
+"km2": 1.3
 },
-"SOFT_A2": {
-"k": 207,
-"km2": 48.6
+"R3_zone_all": {
+"k": 3053,
+"km2": 5.3
 },
-"SOFT_A2_SB": {
-"k": 29,
-"km2": 5.1
+"R3_zone_all_SB": {
+"k": 637,
+"km2": 1.3
 }
 },
 "43111": {
-"ANCHOR": {
-"k": 71,
-"km2": 10.3
+"R0_current": {
+"k": 993,
+"km2": 1.4
 },
-"ANCHOR_SB": {
-"k": 12,
-"km2": 1.6
+"R0_current_SB": {
+"k": 313,
+"km2": 0.6
 },
-"SOFT_A1": {
-"k": 82,
-"km2": 11.7
+"R1_protect": {
+"k": 1053,
+"km2": 1.5
 },
-"SOFT_A1_SB": {
-"k": 14,
-"km2": 1.7
+"R1_protect_SB": {
+"k": 334,
+"km2": 0.6
 },
-"SOFT_R2": {
-"k": 103,
-"km2": 31.2
+"R2_promo": {
+"k": 1379,
+"km2": 2.9
 },
-"SOFT_R2_SB": {
-"k": 51,
-"km2": 10.1
+"R2_promo_SB": {
+"k": 569,
+"km2": 1.4
 },
-"SOFT_A2": {
-"k": 106,
-"km2": 33.1
+"R3_zone_all": {
+"k": 1431,
+"km2": 3.0
 },
-"SOFT_A2_SB": {
-"k": 52,
-"km2": 10.4
+"R3_zone_all_SB": {
+"k": 588,
+"km2": 1.4
 }
 },
 "43112": {
-"ANCHOR": {
-"k": 32,
-"km2": 7.1
-},
-"ANCHOR_SB": {
-"k": 5,
+"R0_current": {
+"k": 703,
 "km2": 1.0
 },
-"SOFT_A1": {
-"k": 32,
-"km2": 7.1
+"R0_current_SB": {
+"k": 177,
+"km2": 0.4
 },
-"SOFT_A1_SB": {
-"k": 5,
+"R1_protect": {
+"k": 707,
 "km2": 1.0
 },
-"SOFT_R2": {
-"k": 41,
-"km2": 10.1
+"R1_protect_SB": {
+"k": 178,
+"km2": 0.4
 },
-"SOFT_R2_SB": {
-"k": 12,
-"km2": 2.1
+"R2_promo": {
+"k": 757,
+"km2": 1.1
 },
-"SOFT_A2": {
-"k": 41,
-"km2": 10.3
+"R2_promo_SB": {
+"k": 205,
+"km2": 0.5
 },
-"SOFT_A2_SB": {
-"k": 12,
-"km2": 2.1
+"R3_zone_all": {
+"k": 761,
+"km2": 1.1
+},
+"R3_zone_all_SB": {
+"k": 206,
+"km2": 0.5
 }
 },
 "43113": {
-"ANCHOR": {
-"k": 54,
-"km2": 16.7
+"R0_current": {
+"k": 1121,
+"km2": 2.1
 },
-"ANCHOR_SB": {
-"k": 20,
-"km2": 7.3
+"R0_current_SB": {
+"k": 376,
+"km2": 1.1
 },
-"SOFT_A1": {
-"k": 66,
-"km2": 17.9
+"R1_protect": {
+"k": 1163,
+"km2": 2.2
 },
-"SOFT_A1_SB": {
-"k": 26,
-"km2": 7.8
+"R1_protect_SB": {
+"k": 407,
+"km2": 1.1
 },
-"SOFT_R2": {
-"k": 104,
-"km2": 38.0
+"R2_promo": {
+"k": 1382,
+"km2": 3.0
 },
-"SOFT_R2_SB": {
-"k": 64,
-"km2": 17.8
+"R2_promo_SB": {
+"k": 561,
+"km2": 1.7
 },
-"SOFT_A2": {
-"k": 109,
-"km2": 39.3
+"R3_zone_all": {
+"k": 1417,
+"km2": 3.0
 },
-"SOFT_A2_SB": {
-"k": 70,
-"km2": 18.4
+"R3_zone_all_SB": {
+"k": 588,
+"km2": 1.7
 }
 },
 "43114": {
-"ANCHOR": {
-"k": 74,
-"km2": 16.8
+"R0_current": {
+"k": 1443,
+"km2": 2.0
 },
-"ANCHOR_SB": {
-"k": 29,
-"km2": 4.4
+"R0_current_SB": {
+"k": 566,
+"km2": 1.0
 },
-"SOFT_A1": {
-"k": 76,
-"km2": 18.5
+"R1_protect": {
+"k": 1506,
+"km2": 2.1
 },
-"SOFT_A1_SB": {
-"k": 33,
-"km2": 5.3
+"R1_protect_SB": {
+"k": 610,
+"km2": 1.0
 },
-"SOFT_R2": {
-"k": 95,
-"km2": 39.2
+"R2_promo": {
+"k": 1784,
+"km2": 3.4
 },
-"SOFT_R2_SB": {
-"k": 61,
-"km2": 18.7
+"R2_promo_SB": {
+"k": 814,
+"km2": 2.1
 },
-"SOFT_A2": {
-"k": 98,
-"km2": 41.2
+"R3_zone_all": {
+"k": 1836,
+"km2": 3.5
 },
-"SOFT_A2_SB": {
-"k": 64,
-"km2": 19.7
+"R3_zone_all_SB": {
+"k": 854,
+"km2": 2.1
 }
 },
 "43130": {
-"ANCHOR": {
-"k": 229,
-"km2": 43.2
+"R0_current": {
+"k": 3139,
+"km2": 6.3
 },
-"ANCHOR_SB": {
-"k": 50,
-"km2": 7.8
+"R0_current_SB": {
+"k": 1190,
+"km2": 2.8
 },
-"SOFT_A1": {
-"k": 243,
-"km2": 46.5
+"R1_protect": {
+"k": 3276,
+"km2": 6.5
 },
-"SOFT_A1_SB": {
-"k": 55,
-"km2": 8.3
+"R1_protect_SB": {
+"k": 1253,
+"km2": 2.9
 },
-"SOFT_R2": {
-"k": 288,
-"km2": 83.9
+"R2_promo": {
+"k": 3993,
+"km2": 10.4
 },
-"SOFT_R2_SB": {
-"k": 126,
-"km2": 21.9
+"R2_promo_SB": {
+"k": 1758,
+"km2": 4.9
 },
-"SOFT_A2": {
-"k": 285,
-"km2": 88.1
+"R3_zone_all": {
+"k": 4097,
+"km2": 10.7
 },
-"SOFT_A2_SB": {
-"k": 131,
-"km2": 22.9
+"R3_zone_all_SB": {
+"k": 1814,
+"km2": 5.0
 }
 },
 "43150": {
-"ANCHOR": {
-"k": 160,
-"km2": 33.0
+"R0_current": {
+"k": 2469,
+"km2": 4.4
 },
-"ANCHOR_SB": {
-"k": 53,
-"km2": 7.5
+"R0_current_SB": {
+"k": 1019,
+"km2": 2.2
 },
-"SOFT_A1": {
-"k": 173,
-"km2": 34.5
+"R1_protect": {
+"k": 2524,
+"km2": 4.6
 },
-"SOFT_A1_SB": {
-"k": 55,
-"km2": 7.8
+"R1_protect_SB": {
+"k": 1040,
+"km2": 2.3
 },
-"SOFT_R2": {
-"k": 172,
-"km2": 49.5
+"R2_promo": {
+"k": 2740,
+"km2": 5.5
 },
-"SOFT_R2_SB": {
-"k": 74,
-"km2": 11.5
+"R2_promo_SB": {
+"k": 1166,
+"km2": 2.8
 },
-"SOFT_A2": {
-"k": 173,
-"km2": 51.7
+"R3_zone_all": {
+"k": 2785,
+"km2": 5.6
 },
-"SOFT_A2_SB": {
-"k": 75,
-"km2": 11.8
+"R3_zone_all_SB": {
+"k": 1182,
+"km2": 2.8
 }
 },
 "43720": {
-"ANCHOR": {
-"k": 91,
-"km2": 14.0
+"R0_current": {
+"k": 1199,
+"km2": 1.8
 },
-"ANCHOR_SB": {
-"k": 38,
-"km2": 4.4
+"R0_current_SB": {
+"k": 575,
+"km2": 1.0
 },
-"SOFT_A1": {
-"k": 105,
-"km2": 16.5
+"R1_protect": {
+"k": 1314,
+"km2": 2.1
 },
-"SOFT_A1_SB": {
-"k": 48,
-"km2": 5.4
+"R1_protect_SB": {
+"k": 661,
+"km2": 1.1
 },
-"SOFT_R2": {
-"k": 140,
-"km2": 59.3
+"R2_promo": {
+"k": 2106,
+"km2": 4.8
 },
-"SOFT_R2_SB": {
-"k": 104,
-"km2": 28.2
+"R2_promo_SB": {
+"k": 1219,
+"km2": 2.9
 },
-"SOFT_A2": {
-"k": 148,
-"km2": 63.8
+"R3_zone_all": {
+"k": 2194,
+"km2": 5.1
 },
-"SOFT_A2_SB": {
-"k": 114,
-"km2": 29.9
+"R3_zone_all_SB": {
+"k": 1296,
+"km2": 3.1
 }
 },
 "43730": {
-"ANCHOR": {
-"k": 65,
-"km2": 10.2
+"R0_current": {
+"k": 957,
+"km2": 1.2
 },
-"ANCHOR_SB": {
-"k": 20,
-"km2": 2.2
+"R0_current_SB": {
+"k": 319,
+"km2": 0.5
 },
-"SOFT_A1": {
-"k": 80,
-"km2": 13.4
+"R1_protect": {
+"k": 1112,
+"km2": 1.5
 },
-"SOFT_A1_SB": {
-"k": 30,
+"R1_protect_SB": {
+"k": 407,
+"km2": 0.7
+},
+"R2_promo": {
+"k": 1432,
+"km2": 3.0
+},
+"R2_promo_SB": {
+"k": 684,
+"km2": 1.8
+},
+"R3_zone_all": {
+"k": 1551,
 "km2": 3.3
 },
-"SOFT_R2": {
-"k": 105,
-"km2": 32.7
-},
-"SOFT_R2_SB": {
-"k": 62,
-"km2": 12.5
-},
-"SOFT_A2": {
-"k": 103,
-"km2": 36.9
-},
-"SOFT_A2_SB": {
-"k": 70,
-"km2": 14.6
+"R3_zone_all_SB": {
+"k": 746,
+"km2": 1.9
 }
 },
 "43740": {
-"ANCHOR": {
-"k": 116,
-"km2": 17.4
+"R0_current": {
+"k": 1936,
+"km2": 2.5
 },
-"ANCHOR_SB": {
-"k": 49,
-"km2": 5.9
+"R0_current_SB": {
+"k": 1041,
+"km2": 1.4
 },
-"SOFT_A1": {
-"k": 134,
-"km2": 20.2
+"R1_protect": {
+"k": 2101,
+"km2": 2.8
 },
-"SOFT_A1_SB": {
-"k": 57,
-"km2": 6.8
+"R1_protect_SB": {
+"k": 1138,
+"km2": 1.6
 },
-"SOFT_R2": {
-"k": 177,
-"km2": 43.2
+"R2_promo": {
+"k": 2540,
+"km2": 5.1
 },
-"SOFT_R2_SB": {
-"k": 114,
-"km2": 18.7
+"R2_promo_SB": {
+"k": 1467,
+"km2": 3.3
 },
-"SOFT_A2": {
-"k": 189,
-"km2": 47.0
+"R3_zone_all": {
+"k": 2677,
+"km2": 5.4
 },
-"SOFT_A2_SB": {
-"k": 122,
-"km2": 20.2
+"R3_zone_all_SB": {
+"k": 1548,
+"km2": 3.4
 }
 },
 "43745": {
-"ANCHOR": {
-"k": 27,
-"km2": 6.5
+"R0_current": {
+"k": 438,
+"km2": 0.9
 },
-"ANCHOR_SB": {
-"k": 11,
-"km2": 1.3
+"R0_current_SB": {
+"k": 188,
+"km2": 0.4
 },
-"SOFT_A1": {
-"k": 28,
-"km2": 6.6
+"R1_protect": {
+"k": 460,
+"km2": 0.9
 },
-"SOFT_A1_SB": {
-"k": 11,
-"km2": 1.3
+"R1_protect_SB": {
+"k": 202,
+"km2": 0.5
 },
-"SOFT_R2": {
-"k": 34,
-"km2": 21.0
+"R2_promo": {
+"k": 593,
+"km2": 1.6
 },
-"SOFT_R2_SB": {
-"k": 32,
-"km2": 6.9
+"R2_promo_SB": {
+"k": 297,
+"km2": 0.9
 },
-"SOFT_A2": {
-"k": 31,
-"km2": 21.7
+"R3_zone_all": {
+"k": 604,
+"km2": 1.7
 },
-"SOFT_A2_SB": {
-"k": 34,
-"km2": 7.2
+"R3_zone_all_SB": {
+"k": 304,
+"km2": 0.9
 }
 },
 "43750": {
-"ANCHOR": {
-"k": 74,
-"km2": 11.3
-},
-"ANCHOR_SB": {
-"k": 17,
-"km2": 1.8
-},
-"SOFT_A1": {
-"k": 86,
-"km2": 13.7
-},
-"SOFT_A1_SB": {
-"k": 21,
+"R0_current": {
+"k": 1679,
 "km2": 2.4
 },
-"SOFT_R2": {
-"k": 140,
-"km2": 54.4
+"R0_current_SB": {
+"k": 674,
+"km2": 1.0
 },
-"SOFT_R2_SB": {
-"k": 79,
-"km2": 25.1
+"R1_protect": {
+"k": 1833,
+"km2": 2.7
 },
-"SOFT_A2": {
-"k": 140,
-"km2": 57.6
+"R1_protect_SB": {
+"k": 753,
+"km2": 1.2
 },
-"SOFT_A2_SB": {
-"k": 85,
-"km2": 26.2
+"R2_promo": {
+"k": 2409,
+"km2": 5.4
+},
+"R2_promo_SB": {
+"k": 1222,
+"km2": 3.1
+},
+"R3_zone_all": {
+"k": 2540,
+"km2": 5.7
+},
+"R3_zone_all_SB": {
+"k": 1289,
+"km2": 3.2
 }
 },
 "43760": {
-"ANCHOR": {
-"k": 151,
-"km2": 19.7
+"R0_current": {
+"k": 1724,
+"km2": 3.2
 },
-"ANCHOR_SB": {
-"k": 32,
-"km2": 3.4
+"R0_current_SB": {
+"k": 773,
+"km2": 1.4
 },
-"SOFT_A1": {
-"k": 168,
-"km2": 23.8
+"R1_protect": {
+"k": 1922,
+"km2": 3.6
 },
-"SOFT_A1_SB": {
-"k": 40,
-"km2": 4.3
+"R1_protect_SB": {
+"k": 902,
+"km2": 1.7
 },
-"SOFT_R2": {
-"k": 246,
-"km2": 62.7
+"R2_promo": {
+"k": 2667,
+"km2": 7.1
 },
-"SOFT_R2_SB": {
-"k": 119,
-"km2": 19.9
+"R2_promo_SB": {
+"k": 1327,
+"km2": 3.7
 },
-"SOFT_A2": {
-"k": 247,
-"km2": 70.4
+"R3_zone_all": {
+"k": 2818,
+"km2": 7.5
 },
-"SOFT_A2_SB": {
-"k": 131,
-"km2": 21.5
+"R3_zone_all_SB": {
+"k": 1440,
+"km2": 3.9
 }
 },
 "43770": {
-"ANCHOR": {
-"k": 177,
-"km2": 31.6
+"R0_current": {
+"k": 2425,
+"km2": 5.5
 },
-"ANCHOR_SB": {
-"k": 53,
-"km2": 7.4
+"R0_current_SB": {
+"k": 1126,
+"km2": 3.0
 },
-"SOFT_A1": {
-"k": 197,
-"km2": 37.3
+"R1_protect": {
+"k": 2645,
+"km2": 6.0
 },
-"SOFT_A1_SB": {
-"k": 69,
-"km2": 9.3
+"R1_protect_SB": {
+"k": 1256,
+"km2": 3.2
 },
-"SOFT_R2": {
-"k": 197,
-"km2": 84.5
+"R2_promo": {
+"k": 3138,
+"km2": 9.0
 },
-"SOFT_R2_SB": {
-"k": 130,
-"km2": 27.8
+"R2_promo_SB": {
+"k": 1622,
+"km2": 5.0
 },
-"SOFT_A2": {
-"k": 195,
-"km2": 96.5
+"R3_zone_all": {
+"k": 3322,
+"km2": 9.5
 },
-"SOFT_A2_SB": {
-"k": 135,
-"km2": 30.0
+"R3_zone_all_SB": {
+"k": 1732,
+"km2": 5.2
 }
 },
 "43800": {
-"ANCHOR": {
-"k": 84,
-"km2": 15.5
+"R0_current": {
+"k": 1863,
+"km2": 3.1
 },
-"ANCHOR_SB": {
-"k": 31,
-"km2": 3.7
+"R0_current_SB": {
+"k": 897,
+"km2": 1.6
 },
-"SOFT_A1": {
-"k": 88,
-"km2": 16.6
+"R1_protect": {
+"k": 1866,
+"km2": 3.2
 },
-"SOFT_A1_SB": {
-"k": 33,
-"km2": 4.0
+"R1_protect_SB": {
+"k": 912,
+"km2": 1.7
 },
-"SOFT_R2": {
-"k": 91,
-"km2": 17.8
+"R2_promo": {
+"k": 1874,
+"km2": 3.3
 },
-"SOFT_R2_SB": {
-"k": 37,
-"km2": 4.4
+"R2_promo_SB": {
+"k": 902,
+"km2": 1.6
 },
-"SOFT_A2": {
-"k": 94,
-"km2": 18.9
+"R3_zone_all": {
+"k": 1874,
+"km2": 3.4
 },
-"SOFT_A2_SB": {
-"k": 39,
-"km2": 4.7
+"R3_zone_all_SB": {
+"k": 916,
+"km2": 1.7
 }
 },
 "44131": {
-"ANCHOR": {
-"k": 106,
-"km2": 16.1
+"R0_current": {
+"k": 1915,
+"km2": 3.9
 },
-"ANCHOR_SB": {
-"k": 26,
-"km2": 2.8
+"R0_current_SB": {
+"k": 647,
+"km2": 1.4
 },
-"SOFT_A1": {
-"k": 120,
-"km2": 18.7
+"R1_protect": {
+"k": 2006,
+"km2": 4.1
 },
-"SOFT_A1_SB": {
-"k": 31,
-"km2": 3.4
+"R1_protect_SB": {
+"k": 707,
+"km2": 1.6
 },
-"SOFT_R2": {
-"k": 157,
-"km2": 48.8
+"R2_promo": {
+"k": 2291,
+"km2": 5.5
 },
-"SOFT_R2_SB": {
-"k": 83,
-"km2": 18.1
+"R2_promo_SB": {
+"k": 932,
+"km2": 2.5
 },
-"SOFT_A2": {
-"k": 163,
-"km2": 52.6
+"R3_zone_all": {
+"k": 2359,
+"km2": 5.8
 },
-"SOFT_A2_SB": {
-"k": 90,
-"km2": 19.6
+"R3_zone_all_SB": {
+"k": 983,
+"km2": 2.6
 }
 },
 "44133": {
-"ANCHOR": {
-"k": 74,
-"km2": 13.5
+"R0_current": {
+"k": 1441,
+"km2": 3.3
 },
-"ANCHOR_SB": {
-"k": 71,
-"km2": 12.9
+"R0_current_SB": {
+"k": 1391,
+"km2": 3.1
 },
-"SOFT_A1": {
-"k": 81,
-"km2": 18.2
+"R1_protect": {
+"k": 1517,
+"km2": 3.6
 },
-"SOFT_A1_SB": {
-"k": 80,
-"km2": 16.8
+"R1_protect_SB": {
+"k": 1467,
+"km2": 3.5
 },
-"SOFT_R2": {
-"k": 90,
-"km2": 53.9
+"R2_promo": {
+"k": 1810,
+"km2": 4.9
 },
-"SOFT_R2_SB": {
-"k": 91,
-"km2": 42.9
+"R2_promo_SB": {
+"k": 1759,
+"km2": 4.7
 },
-"SOFT_A2": {
-"k": 91,
-"km2": 60.7
+"R3_zone_all": {
+"k": 1879,
+"km2": 5.3
 },
-"SOFT_A2_SB": {
-"k": 95,
-"km2": 47.7
+"R3_zone_all_SB": {
+"k": 1828,
+"km2": 5.1
 }
 },
 "44150": {
-"ANCHOR": {
-"k": 165,
-"km2": 28.1
+"R0_current": {
+"k": 2633,
+"km2": 6.3
 },
-"ANCHOR_SB": {
-"k": 39,
-"km2": 4.7
+"R0_current_SB": {
+"k": 1183,
+"km2": 3.1
 },
-"SOFT_A1": {
-"k": 185,
-"km2": 31.6
+"R1_protect": {
+"k": 2812,
+"km2": 6.7
 },
-"SOFT_A1_SB": {
-"k": 41,
-"km2": 4.9
+"R1_protect_SB": {
+"k": 1286,
+"km2": 3.2
 },
-"SOFT_R2": {
-"k": 263,
-"km2": 111.3
+"R2_promo": {
+"k": 3408,
+"km2": 11.5
 },
-"SOFT_R2_SB": {
-"k": 130,
-"km2": 28.2
+"R2_promo_SB": {
+"k": 1761,
+"km2": 6.0
 },
-"SOFT_A2": {
-"k": 259,
-"km2": 128.2
+"R3_zone_all": {
+"k": 3512,
+"km2": 12.0
 },
-"SOFT_A2_SB": {
-"k": 137,
-"km2": 29.5
+"R3_zone_all_SB": {
+"k": 1830,
+"km2": 6.2
 }
 },
 "44180": {
-"ANCHOR": {
-"k": 85,
-"km2": 14.4
+"R0_current": {
+"k": 1939,
+"km2": 3.6
 },
-"ANCHOR_SB": {
-"k": 9,
-"km2": 2.0
+"R0_current_SB": {
+"k": 438,
+"km2": 1.1
 },
-"SOFT_A1": {
-"k": 115,
-"km2": 18.7
+"R1_protect": {
+"k": 2170,
+"km2": 3.9
 },
-"SOFT_A1_SB": {
-"k": 10,
-"km2": 2.1
+"R1_protect_SB": {
+"k": 505,
+"km2": 1.2
 },
-"SOFT_R2": {
-"k": 197,
-"km2": 96.4
+"R2_promo": {
+"k": 3032,
+"km2": 12.4
 },
-"SOFT_R2_SB": {
-"k": 112,
-"km2": 36.9
+"R2_promo_SB": {
+"k": 1059,
+"km2": 7.3
 },
-"SOFT_A2": {
-"k": 193,
-"km2": 103.4
+"R3_zone_all": {
+"k": 3216,
+"km2": 12.7
 },
-"SOFT_A2_SB": {
-"k": 114,
-"km2": 37.5
+"R3_zone_all_SB": {
+"k": 1112,
+"km2": 7.4
 }
 },
 "44200": {
-"ANCHOR": {
-"k": 152,
-"km2": 32.9
+"R0_current": {
+"k": 2964,
+"km2": 8.6
 },
-"ANCHOR_SB": {
-"k": 40,
-"km2": 5.3
+"R0_current_SB": {
+"k": 1037,
+"km2": 3.4
 },
-"SOFT_A1": {
-"k": 184,
-"km2": 39.6
+"R1_protect": {
+"k": 3223,
+"km2": 9.2
 },
-"SOFT_A1_SB": {
-"k": 54,
-"km2": 6.7
+"R1_protect_SB": {
+"k": 1142,
+"km2": 3.5
 },
-"SOFT_R2": {
-"k": 170,
-"km2": 136.3
+"R2_promo": {
+"k": 3693,
+"km2": 16.9
 },
-"SOFT_R2_SB": {
-"k": 141,
-"km2": 55.2
+"R2_promo_SB": {
+"k": 1614,
+"km2": 9.0
 },
-"SOFT_A2": {
-"k": 169,
-"km2": 145.4
+"R3_zone_all": {
+"k": 3922,
+"km2": 17.5
 },
-"SOFT_A2_SB": {
-"k": 151,
-"km2": 63.5
+"R3_zone_all_SB": {
+"k": 1700,
+"km2": 9.1
 }
 },
 "44210": {
-"ANCHOR": {
-"k": 182,
-"km2": 37.6
+"R0_current": {
+"k": 2500,
+"km2": 6.8
 },
-"ANCHOR_SB": {
-"k": 29,
-"km2": 5.3
+"R0_current_SB": {
+"k": 572,
+"km2": 3.2
 },
-"SOFT_A1": {
-"k": 214,
-"km2": 45.5
+"R1_protect": {
+"k": 2711,
+"km2": 7.3
 },
-"SOFT_A1_SB": {
-"k": 32,
-"km2": 5.6
+"R1_protect_SB": {
+"k": 625,
+"km2": 3.3
 },
-"SOFT_R2": {
-"k": 237,
-"km2": 200.2
+"R2_promo": {
+"k": 3787,
+"km2": 32.8
 },
-"SOFT_R2_SB": {
-"k": 161,
-"km2": 103.5
+"R2_promo_SB": {
+"k": 1384,
+"km2": 26.6
 },
-"SOFT_A2": {
-"k": 222,
-"km2": 214.4
+"R3_zone_all": {
+"k": 3932,
+"km2": 33.2
 },
-"SOFT_A2_SB": {
-"k": 165,
-"km2": 104.5
+"R3_zone_all_SB": {
+"k": 1425,
+"km2": 26.7
 }
 },
 "44230": {
-"ANCHOR": {
-"k": 154,
-"km2": 39.7
+"R0_current": {
+"k": 2982,
+"km2": 4.1
 },
-"ANCHOR_SB": {
-"k": 31,
-"km2": 5.3
+"R0_current_SB": {
+"k": 784,
+"km2": 1.2
 },
-"SOFT_A1": {
-"k": 175,
-"km2": 48.1
+"R1_protect": {
+"k": 3267,
+"km2": 4.8
 },
-"SOFT_A1_SB": {
-"k": 52,
-"km2": 7.5
+"R1_protect_SB": {
+"k": 923,
+"km2": 1.5
 },
-"SOFT_R2": {
-"k": 171,
-"km2": 188.7
+"R2_promo": {
+"k": 4583,
+"km2": 13.3
 },
-"SOFT_R2_SB": {
-"k": 169,
-"km2": 71.7
+"R2_promo_SB": {
+"k": 1927,
+"km2": 6.8
 },
-"SOFT_A2": {
-"k": 164,
-"km2": 200.1
+"R3_zone_all": {
+"k": 4811,
+"km2": 14.0
 },
-"SOFT_A2_SB": {
-"k": 187,
-"km2": 77.4
+"R3_zone_all_SB": {
+"k": 2041,
+"km2": 7.1
 }
 },
 "44250": {
-"ANCHOR": {
-"k": 10,
-"km2": 2.1
+"R0_current": {
+"k": 291,
+"km2": 1.0
 },
-"ANCHOR_SB": {
-"k": 2,
-"km2": 0.2
+"R0_current_SB": {
+"k": 140,
+"km2": 0.5
 },
-"SOFT_A1": {
-"k": 10,
-"km2": 2.1
+"R1_protect": {
+"k": 291,
+"km2": 1.0
 },
-"SOFT_A1_SB": {
-"k": 2,
-"km2": 0.2
+"R1_protect_SB": {
+"k": 140,
+"km2": 0.5
 },
-"SOFT_R2": {
-"k": 10,
-"km2": 2.2
+"R2_promo": {
+"k": 291,
+"km2": 1.0
 },
-"SOFT_R2_SB": {
-"k": 2,
-"km2": 0.3
+"R2_promo_SB": {
+"k": 140,
+"km2": 0.5
 },
-"SOFT_A2": {
-"k": 10,
-"km2": 2.2
+"R3_zone_all": {
+"k": 291,
+"km2": 1.0
 },
-"SOFT_A2_SB": {
-"k": 2,
-"km2": 0.3
+"R3_zone_all_SB": {
+"k": 140,
+"km2": 0.5
 }
 },
 "44270": {
-"ANCHOR": {
-"k": 220,
-"km2": 38.2
+"R0_current": {
+"k": 2703,
+"km2": 3.8
 },
-"ANCHOR_SB": {
-"k": 10,
+"R0_current_SB": {
+"k": 548,
 "km2": 1.0
 },
-"SOFT_A1": {
-"k": 248,
-"km2": 42.9
+"R1_protect": {
+"k": 2793,
+"km2": 4.1
 },
-"SOFT_A1_SB": {
-"k": 10,
-"km2": 1.0
+"R1_protect_SB": {
+"k": 592,
+"km2": 1.1
 },
-"SOFT_R2": {
-"k": 284,
-"km2": 225.5
+"R2_promo": {
+"k": 4106,
+"km2": 35.1
 },
-"SOFT_R2_SB": {
-"k": 194,
-"km2": 107.6
+"R2_promo_SB": {
+"k": 1497,
+"km2": 29.3
 },
-"SOFT_A2": {
-"k": 262,
-"km2": 249.8
+"R3_zone_all": {
+"k": 4173,
+"km2": 35.3
 },
-"SOFT_A2_SB": {
-"k": 192,
-"km2": 108.2
+"R3_zone_all_SB": {
+"k": 1533,
+"km2": 29.3
 }
 },
 "44710": {
-"ANCHOR": {
-"k": 121,
-"km2": 26.0
+"R0_current": {
+"k": 1693,
+"km2": 2.4
 },
-"ANCHOR_SB": {
-"k": 54,
-"km2": 6.7
+"R0_current_SB": {
+"k": 789,
+"km2": 1.3
 },
-"SOFT_A1": {
-"k": 136,
-"km2": 29.1
+"R1_protect": {
+"k": 1811,
+"km2": 2.6
 },
-"SOFT_A1_SB": {
-"k": 61,
-"km2": 7.7
+"R1_protect_SB": {
+"k": 862,
+"km2": 1.4
 },
-"SOFT_R2": {
-"k": 147,
-"km2": 54.9
+"R2_promo": {
+"k": 2213,
+"km2": 3.8
 },
-"SOFT_R2_SB": {
-"k": 110,
-"km2": 19.5
+"R2_promo_SB": {
+"k": 1103,
+"km2": 2.0
 },
-"SOFT_A2": {
-"k": 144,
-"km2": 58.4
+"R3_zone_all": {
+"k": 2313,
+"km2": 4.0
 },
-"SOFT_A2_SB": {
-"k": 118,
-"km2": 21.1
+"R3_zone_all_SB": {
+"k": 1170,
+"km2": 2.1
 }
 },
 "44760": {
-"ANCHOR": {
-"k": 111,
-"km2": 13.5
+"R0_current": {
+"k": 1814,
+"km2": 3.4
 },
-"ANCHOR_SB": {
-"k": 14,
-"km2": 1.3
+"R0_current_SB": {
+"k": 647,
+"km2": 1.5
 },
-"SOFT_A1": {
-"k": 158,
-"km2": 19.9
+"R1_protect": {
+"k": 2051,
+"km2": 3.9
 },
-"SOFT_A1_SB": {
-"k": 23,
-"km2": 2.3
+"R1_protect_SB": {
+"k": 792,
+"km2": 1.7
 },
-"SOFT_R2": {
-"k": 230,
-"km2": 129.3
+"R2_promo": {
+"k": 3068,
+"km2": 11.1
 },
-"SOFT_R2_SB": {
-"k": 157,
-"km2": 59.5
+"R2_promo_SB": {
+"k": 1579,
+"km2": 6.4
 },
-"SOFT_A2": {
-"k": 233,
-"km2": 139.0
+"R3_zone_all": {
+"k": 3233,
+"km2": 11.7
 },
-"SOFT_A2_SB": {
-"k": 167,
-"km2": 61.3
+"R3_zone_all_SB": {
+"k": 1697,
+"km2": 6.7
 }
 },
 "44770": {
-"ANCHOR": {
-"k": 69,
-"km2": 9.9
+"R0_current": {
+"k": 1236,
+"km2": 1.9
 },
-"ANCHOR_SB": {
-"k": 2,
-"km2": 0.2
+"R0_current_SB": {
+"k": 281,
+"km2": 0.3
 },
-"SOFT_A1": {
-"k": 112,
-"km2": 16.2
+"R1_protect": {
+"k": 1448,
+"km2": 2.4
 },
-"SOFT_A1_SB": {
-"k": 8,
-"km2": 0.8
+"R1_protect_SB": {
+"k": 377,
+"km2": 0.5
 },
-"SOFT_R2": {
-"k": 138,
-"km2": 99.4
+"R2_promo": {
+"k": 2054,
+"km2": 9.7
 },
-"SOFT_R2_SB": {
-"k": 106,
-"km2": 42.3
+"R2_promo_SB": {
+"k": 787,
+"km2": 6.6
 },
-"SOFT_A2": {
-"k": 139,
-"km2": 108.8
+"R3_zone_all": {
+"k": 2208,
+"km2": 10.2
 },
-"SOFT_A2_SB": {
-"k": 115,
-"km2": 43.5
+"R3_zone_all_SB": {
+"k": 864,
+"km2": 6.7
 }
 },
 "44790": {
-"ANCHOR": {
-"k": 100,
-"km2": 14.0
+"R0_current": {
+"k": 1492,
+"km2": 2.5
 },
-"ANCHOR_SB": {
-"k": 14,
-"km2": 1.4
+"R0_current_SB": {
+"k": 581,
+"km2": 1.0
 },
-"SOFT_A1": {
-"k": 129,
-"km2": 19.1
+"R1_protect": {
+"k": 1661,
+"km2": 2.9
 },
-"SOFT_A1_SB": {
-"k": 18,
-"km2": 1.7
+"R1_protect_SB": {
+"k": 671,
+"km2": 1.2
 },
-"SOFT_R2": {
-"k": 172,
-"km2": 64.6
+"R2_promo": {
+"k": 2046,
+"km2": 5.8
 },
-"SOFT_R2_SB": {
-"k": 92,
-"km2": 18.9
+"R2_promo_SB": {
+"k": 962,
+"km2": 2.7
 },
-"SOFT_A2": {
-"k": 181,
-"km2": 74.0
+"R3_zone_all": {
+"k": 2170,
+"km2": 6.1
 },
-"SOFT_A2_SB": {
-"k": 101,
-"km2": 20.1
+"R3_zone_all_SB": {
+"k": 1039,
+"km2": 2.9
 }
 },
 "44800": {
-"ANCHOR": {
-"k": 148,
-"km2": 27.5
+"R0_current": {
+"k": 1916,
+"km2": 3.1
 },
-"ANCHOR_SB": {
-"k": 14,
-"km2": 1.9
+"R0_current_SB": {
+"k": 526,
+"km2": 0.8
 },
-"SOFT_A1": {
-"k": 178,
-"km2": 37.0
+"R1_protect": {
+"k": 2113,
+"km2": 3.6
 },
-"SOFT_A1_SB": {
-"k": 16,
-"km2": 2.1
+"R1_protect_SB": {
+"k": 606,
+"km2": 1.0
 },
-"SOFT_R2": {
-"k": 190,
-"km2": 112.1
+"R2_promo": {
+"k": 2839,
+"km2": 10.5
 },
-"SOFT_R2_SB": {
-"k": 106,
-"km2": 31.1
+"R2_promo_SB": {
+"k": 1053,
+"km2": 5.9
 },
-"SOFT_A2": {
-"k": 178,
-"km2": 131.9
+"R3_zone_all": {
+"k": 3011,
+"km2": 11.0
 },
-"SOFT_A2_SB": {
-"k": 114,
-"km2": 32.4
+"R3_zone_all_SB": {
+"k": 1125,
+"km2": 6.1
 }
 },
 "44810": {
-"ANCHOR": {
-"k": 124,
-"km2": 22.0
+"R0_current": {
+"k": 2060,
+"km2": 3.1
 },
-"ANCHOR_SB": {
-"k": 16,
-"km2": 1.8
+"R0_current_SB": {
+"k": 429,
+"km2": 0.9
 },
-"SOFT_A1": {
-"k": 164,
-"km2": 31.6
+"R1_protect": {
+"k": 2298,
+"km2": 3.8
 },
-"SOFT_A1_SB": {
-"k": 22,
-"km2": 2.3
+"R1_protect_SB": {
+"k": 523,
+"km2": 1.1
 },
-"SOFT_R2": {
-"k": 203,
-"km2": 151.1
+"R2_promo": {
+"k": 3476,
+"km2": 11.2
 },
-"SOFT_R2_SB": {
-"k": 128,
-"km2": 50.9
+"R2_promo_SB": {
+"k": 1314,
+"km2": 5.4
 },
-"SOFT_A2": {
-"k": 200,
-"km2": 165.5
+"R3_zone_all": {
+"k": 3680,
+"km2": 11.9
 },
-"SOFT_A2_SB": {
-"k": 134,
-"km2": 52.4
+"R3_zone_all_SB": {
+"k": 1395,
+"km2": 5.7
 }
 },
 "44825": {
-"ANCHOR": {
-"k": 152,
-"km2": 27.5
+"R0_current": {
+"k": 2443,
+"km2": 4.9
 },
-"ANCHOR_SB": {
-"k": 13,
+"R0_current_SB": {
+"k": 538,
 "km2": 1.5
 },
-"SOFT_A1": {
-"k": 168,
-"km2": 32.5
+"R1_protect": {
+"k": 2591,
+"km2": 5.3
 },
-"SOFT_A1_SB": {
-"k": 16,
-"km2": 1.7
+"R1_protect_SB": {
+"k": 582,
+"km2": 1.6
 },
-"SOFT_R2": {
-"k": 189,
-"km2": 97.8
+"R2_promo": {
+"k": 3055,
+"km2": 15.2
 },
-"SOFT_R2_SB": {
-"k": 113,
-"km2": 36.0
+"R2_promo_SB": {
+"k": 924,
+"km2": 10.3
 },
-"SOFT_A2": {
-"k": 176,
-"km2": 116.2
+"R3_zone_all": {
+"k": 3180,
+"km2": 15.6
 },
-"SOFT_A2_SB": {
-"k": 114,
-"km2": 37.0
+"R3_zone_all_SB": {
+"k": 954,
+"km2": 10.5
 }
 },
 "46110": {
-"ANCHOR": {
-"k": 7,
-"km2": 2.9
+"R0_current": {
+"k": 529,
+"km2": 0.6
 },
-"ANCHOR_SB": {
-"k": 5,
-"km2": 1.0
+"R0_current_SB": {
+"k": 102,
+"km2": 0.2
 },
-"SOFT_A1": {
-"k": 7,
-"km2": 2.9
+"R1_protect": {
+"k": 529,
+"km2": 0.6
 },
-"SOFT_A1_SB": {
-"k": 5,
-"km2": 1.0
+"R1_protect_SB": {
+"k": 102,
+"km2": 0.2
 },
-"SOFT_R2": {
-"k": 11,
-"km2": 4.2
+"R2_promo": {
+"k": 530,
+"km2": 0.6
 },
-"SOFT_R2_SB": {
-"k": 6,
-"km2": 1.1
+"R2_promo_SB": {
+"k": 102,
+"km2": 0.2
 },
-"SOFT_A2": {
-"k": 11,
-"km2": 4.3
+"R3_zone_all": {
+"k": 530,
+"km2": 0.6
 },
-"SOFT_A2_SB": {
-"k": 6,
-"km2": 1.1
+"R3_zone_all_SB": {
+"k": 102,
+"km2": 0.2
 }
 },
 "46130": {
-"ANCHOR": {
-"k": 117,
-"km2": 30.4
+"R0_current": {
+"k": 1808,
+"km2": 3.4
 },
-"ANCHOR_SB": {
-"k": 46,
-"km2": 6.7
+"R0_current_SB": {
+"k": 636,
+"km2": 1.5
 },
-"SOFT_A1": {
-"k": 118,
-"km2": 32.1
+"R1_protect": {
+"k": 1834,
+"km2": 3.4
 },
-"SOFT_A1_SB": {
-"k": 50,
-"km2": 7.5
+"R1_protect_SB": {
+"k": 654,
+"km2": 1.5
 },
-"SOFT_R2": {
-"k": 118,
-"km2": 40.3
+"R2_promo": {
+"k": 1933,
+"km2": 4.1
 },
-"SOFT_R2_SB": {
-"k": 58,
-"km2": 11.3
+"R2_promo_SB": {
+"k": 720,
+"km2": 2.0
 },
-"SOFT_A2": {
-"k": 117,
-"km2": 42.2
+"R3_zone_all": {
+"k": 1957,
+"km2": 4.1
 },
-"SOFT_A2_SB": {
-"k": 62,
-"km2": 12.2
+"R3_zone_all_SB": {
+"k": 738,
+"km2": 2.0
 }
 },
 "46150": {
-"ANCHOR": {
-"k": 198,
-"km2": 38.6
+"R0_current": {
+"k": 3297,
+"km2": 4.6
 },
-"ANCHOR_SB": {
-"k": 65,
-"km2": 9.3
+"R0_current_SB": {
+"k": 1260,
+"km2": 2.2
 },
-"SOFT_A1": {
-"k": 209,
-"km2": 40.7
+"R1_protect": {
+"k": 3409,
+"km2": 4.8
 },
-"SOFT_A1_SB": {
-"k": 72,
-"km2": 9.8
+"R1_protect_SB": {
+"k": 1324,
+"km2": 2.3
 },
-"SOFT_R2": {
-"k": 230,
-"km2": 74.3
+"R2_promo": {
+"k": 3764,
+"km2": 6.1
 },
-"SOFT_R2_SB": {
-"k": 132,
-"km2": 27.8
+"R2_promo_SB": {
+"k": 1589,
+"km2": 3.1
 },
-"SOFT_A2": {
-"k": 231,
-"km2": 77.8
+"R3_zone_all": {
+"k": 3864,
+"km2": 6.2
 },
-"SOFT_A2_SB": {
-"k": 135,
-"km2": 28.5
+"R3_zone_all_SB": {
+"k": 1645,
+"km2": 3.1
 }
 },
 "46170": {
-"ANCHOR": {
-"k": 147,
-"km2": 29.6
+"R0_current": {
+"k": 1870,
+"km2": 3.0
 },
-"ANCHOR_SB": {
-"k": 45,
-"km2": 7.3
+"R0_current_SB": {
+"k": 654,
+"km2": 1.4
 },
-"SOFT_A1": {
-"k": 180,
-"km2": 41.5
+"R1_protect": {
+"k": 2226,
+"km2": 4.0
 },
-"SOFT_A1_SB": {
-"k": 67,
-"km2": 11.8
+"R1_protect_SB": {
+"k": 879,
+"km2": 2.1
 },
-"SOFT_R2": {
-"k": 165,
-"km2": 146.7
+"R2_promo": {
+"k": 2982,
+"km2": 7.1
 },
-"SOFT_R2_SB": {
-"k": 155,
-"km2": 70.6
+"R2_promo_SB": {
+"k": 1453,
+"km2": 4.3
 },
-"SOFT_A2": {
-"k": 180,
-"km2": 169.1
+"R3_zone_all": {
+"k": 3305,
+"km2": 8.1
 },
-"SOFT_A2_SB": {
-"k": 170,
-"km2": 77.1
+"R3_zone_all_SB": {
+"k": 1653,
+"km2": 5.0
 }
 },
 "46230": {
-"ANCHOR": {
-"k": 69,
-"km2": 11.3
+"R0_current": {
+"k": 1244,
+"km2": 1.7
 },
-"ANCHOR_SB": {
-"k": 19,
+"R0_current_SB": {
+"k": 460,
+"km2": 0.7
+},
+"R1_protect": {
+"k": 1289,
+"km2": 1.7
+},
+"R1_protect_SB": {
+"k": 482,
+"km2": 0.7
+},
+"R2_promo": {
+"k": 1429,
 "km2": 2.5
 },
-"SOFT_A1": {
-"k": 75,
-"km2": 12.2
+"R2_promo_SB": {
+"k": 592,
+"km2": 1.1
 },
-"SOFT_A1_SB": {
-"k": 21,
-"km2": 2.7
+"R3_zone_all": {
+"k": 1455,
+"km2": 2.6
 },
-"SOFT_R2": {
-"k": 86,
-"km2": 24.9
-},
-"SOFT_R2_SB": {
-"k": 41,
-"km2": 8.8
-},
-"SOFT_A2": {
-"k": 89,
-"km2": 26.1
-},
-"SOFT_A2_SB": {
-"k": 43,
-"km2": 9.0
+"R3_zone_all_SB": {
+"k": 609,
+"km2": 1.1
 }
 },
 "46710": {
-"ANCHOR": {
-"k": 53,
-"km2": 6.9
+"R0_current": {
+"k": 1016,
+"km2": 1.2
 },
-"ANCHOR_SB": {
-"k": 17,
-"km2": 1.7
+"R0_current_SB": {
+"k": 306,
+"km2": 0.6
 },
-"SOFT_A1": {
-"k": 81,
-"km2": 11.5
+"R1_protect": {
+"k": 1172,
+"km2": 1.6
 },
-"SOFT_A1_SB": {
-"k": 28,
-"km2": 3.1
+"R1_protect_SB": {
+"k": 384,
+"km2": 0.8
 },
-"SOFT_R2": {
-"k": 109,
-"km2": 39.9
+"R2_promo": {
+"k": 1397,
+"km2": 2.1
 },
-"SOFT_R2_SB": {
-"k": 65,
-"km2": 15.2
+"R2_promo_SB": {
+"k": 523,
+"km2": 1.0
 },
-"SOFT_A2": {
-"k": 119,
-"km2": 45.5
+"R3_zone_all": {
+"k": 1534,
+"km2": 2.4
 },
-"SOFT_A2_SB": {
-"k": 75,
-"km2": 17.0
+"R3_zone_all_SB": {
+"k": 593,
+"km2": 1.2
 }
 },
 "46720": {
-"ANCHOR": {
-"k": 87,
-"km2": 13.9
+"R0_current": {
+"k": 1021,
+"km2": 1.6
 },
-"ANCHOR_SB": {
-"k": 31,
-"km2": 4.2
+"R0_current_SB": {
+"k": 543,
+"km2": 0.8
 },
-"SOFT_A1": {
-"k": 111,
-"km2": 19.6
+"R1_protect": {
+"k": 1202,
+"km2": 1.9
 },
-"SOFT_A1_SB": {
-"k": 49,
-"km2": 7.0
+"R1_protect_SB": {
+"k": 661,
+"km2": 1.1
 },
-"SOFT_R2": {
-"k": 128,
-"km2": 54.8
+"R2_promo": {
+"k": 1542,
+"km2": 3.3
 },
-"SOFT_R2_SB": {
-"k": 103,
-"km2": 26.0
+"R2_promo_SB": {
+"k": 935,
+"km2": 2.0
 },
-"SOFT_A2": {
-"k": 135,
-"km2": 62.7
+"R3_zone_all": {
+"k": 1701,
+"km2": 3.6
 },
-"SOFT_A2_SB": {
-"k": 116,
-"km2": 29.9
+"R3_zone_all_SB": {
+"k": 1040,
+"km2": 2.2
 }
 },
 "46730": {
-"ANCHOR": {
-"k": 40,
-"km2": 9.6
+"R0_current": {
+"k": 800,
+"km2": 1.0
 },
-"ANCHOR_SB": {
-"k": 16,
-"km2": 2.1
+"R0_current_SB": {
+"k": 288,
+"km2": 0.4
 },
-"SOFT_A1": {
-"k": 46,
-"km2": 11.1
+"R1_protect": {
+"k": 872,
+"km2": 1.1
 },
-"SOFT_A1_SB": {
-"k": 19,
-"km2": 2.5
+"R1_protect_SB": {
+"k": 322,
+"km2": 0.4
 },
-"SOFT_R2": {
-"k": 46,
-"km2": 31.4
+"R2_promo": {
+"k": 1124,
+"km2": 2.3
 },
-"SOFT_R2_SB": {
-"k": 42,
-"km2": 13.3
+"R2_promo_SB": {
+"k": 503,
+"km2": 1.1
 },
-"SOFT_A2": {
-"k": 47,
-"km2": 33.3
+"R3_zone_all": {
+"k": 1178,
+"km2": 2.4
 },
-"SOFT_A2_SB": {
-"k": 43,
-"km2": 13.9
+"R3_zone_all_SB": {
+"k": 528,
+"km2": 1.2
 }
 },
 "46770": {
-"ANCHOR": {
-"k": 209,
-"km2": 38.9
+"R0_current": {
+"k": 2419,
+"km2": 4.9
 },
-"ANCHOR_SB": {
-"k": 66,
-"km2": 8.4
+"R0_current_SB": {
+"k": 1010,
+"km2": 2.6
 },
-"SOFT_A1": {
-"k": 236,
-"km2": 47.1
+"R1_protect": {
+"k": 2689,
+"km2": 5.5
 },
-"SOFT_A1_SB": {
-"k": 92,
-"km2": 11.6
+"R1_protect_SB": {
+"k": 1187,
+"km2": 2.9
 },
-"SOFT_R2": {
-"k": 223,
-"km2": 151.5
+"R2_promo": {
+"k": 3454,
+"km2": 28.5
 },
-"SOFT_R2_SB": {
-"k": 207,
-"km2": 86.5
+"R2_promo_SB": {
+"k": 1785,
+"km2": 25.0
 },
-"SOFT_A2": {
-"k": 221,
-"km2": 161.1
+"R3_zone_all": {
+"k": 3670,
+"km2": 29.1
 },
-"SOFT_A2_SB": {
-"k": 218,
-"km2": 90.1
+"R3_zone_all_SB": {
+"k": 1936,
+"km2": 25.3
 }
 },
 "46780": {
-"ANCHOR": {
-"k": 128,
-"km2": 19.2
+"R0_current": {
+"k": 2324,
+"km2": 3.8
 },
-"ANCHOR_SB": {
-"k": 44,
-"km2": 5.0
+"R0_current_SB": {
+"k": 1009,
+"km2": 1.9
 },
-"SOFT_A1": {
-"k": 171,
-"km2": 25.7
+"R1_protect": {
+"k": 2691,
+"km2": 4.5
 },
-"SOFT_A1_SB": {
-"k": 61,
-"km2": 6.8
+"R1_protect_SB": {
+"k": 1193,
+"km2": 2.4
 },
-"SOFT_R2": {
-"k": 208,
-"km2": 102.7
+"R2_promo": {
+"k": 3389,
+"km2": 8.2
 },
-"SOFT_R2_SB": {
-"k": 173,
-"km2": 47.7
+"R2_promo_SB": {
+"k": 1724,
+"km2": 4.6
 },
-"SOFT_A2": {
-"k": 216,
-"km2": 111.4
+"R3_zone_all": {
+"k": 3696,
+"km2": 8.9
 },
-"SOFT_A2_SB": {
-"k": 187,
-"km2": 50.8
+"R3_zone_all_SB": {
+"k": 1874,
+"km2": 5.1
 }
 },
 "46790": {
-"ANCHOR": {
-"k": 106,
-"km2": 16.4
-},
-"ANCHOR_SB": {
-"k": 31,
+"R0_current": {
+"k": 1865,
 "km2": 3.8
 },
-"SOFT_A1": {
-"k": 130,
-"km2": 20.9
+"R0_current_SB": {
+"k": 858,
+"km2": 2.1
 },
-"SOFT_A1_SB": {
-"k": 41,
-"km2": 5.0
+"R1_protect": {
+"k": 2154,
+"km2": 4.3
 },
-"SOFT_R2": {
-"k": 171,
-"km2": 51.1
+"R1_protect_SB": {
+"k": 1060,
+"km2": 2.4
 },
-"SOFT_R2_SB": {
-"k": 103,
-"km2": 23.0
+"R2_promo": {
+"k": 2505,
+"km2": 5.8
 },
-"SOFT_A2": {
-"k": 190,
-"km2": 56.8
+"R2_promo_SB": {
+"k": 1302,
+"km2": 3.4
 },
-"SOFT_A2_SB": {
-"k": 116,
-"km2": 25.0
+"R3_zone_all": {
+"k": 2775,
+"km2": 6.4
+},
+"R3_zone_all_SB": {
+"k": 1497,
+"km2": 3.7
 }
 },
 "46800": {
-"ANCHOR": {
-"k": 73,
-"km2": 9.5
+"R0_current": {
+"k": 1019,
+"km2": 1.5
 },
-"ANCHOR_SB": {
-"k": 21,
-"km2": 2.2
+"R0_current_SB": {
+"k": 420,
+"km2": 0.7
 },
-"SOFT_A1": {
-"k": 95,
-"km2": 13.2
+"R1_protect": {
+"k": 1209,
+"km2": 1.9
 },
-"SOFT_A1_SB": {
-"k": 26,
-"km2": 3.2
+"R1_protect_SB": {
+"k": 547,
+"km2": 0.9
 },
-"SOFT_R2": {
-"k": 176,
-"km2": 79.0
+"R2_promo": {
+"k": 1968,
+"km2": 7.0
 },
-"SOFT_R2_SB": {
-"k": 155,
-"km2": 45.1
+"R2_promo_SB": {
+"k": 1100,
+"km2": 5.0
 },
-"SOFT_A2": {
-"k": 178,
-"km2": 85.3
+"R3_zone_all": {
+"k": 2132,
+"km2": 7.3
 },
-"SOFT_A2_SB": {
-"k": 159,
-"km2": 47.2
+"R3_zone_all_SB": {
+"k": 1212,
+"km2": 5.2
 }
 },
 "46810": {
-"ANCHOR": {
-"k": 56,
-"km2": 8.6
+"R0_current": {
+"k": 1010,
+"km2": 1.9
 },
-"ANCHOR_SB": {
-"k": 16,
-"km2": 1.6
+"R0_current_SB": {
+"k": 381,
+"km2": 0.9
 },
-"SOFT_A1": {
-"k": 70,
-"km2": 11.0
+"R1_protect": {
+"k": 1205,
+"km2": 2.2
 },
-"SOFT_A1_SB": {
-"k": 25,
-"km2": 2.5
+"R1_protect_SB": {
+"k": 495,
+"km2": 1.1
 },
-"SOFT_R2": {
-"k": 129,
-"km2": 87.1
+"R2_promo": {
+"k": 2034,
+"km2": 6.1
 },
-"SOFT_R2_SB": {
-"k": 143,
-"km2": 45.2
+"R2_promo_SB": {
+"k": 1061,
+"km2": 3.6
 },
-"SOFT_A2": {
-"k": 126,
-"km2": 92.3
+"R3_zone_all": {
+"k": 2196,
+"km2": 6.4
 },
-"SOFT_A2_SB": {
-"k": 148,
-"km2": 47.4
+"R3_zone_all_SB": {
+"k": 1165,
+"km2": 3.8
 }
 },
 "46820": {
-"ANCHOR": {
-"k": 178,
-"km2": 26.0
+"R0_current": {
+"k": 1910,
+"km2": 4.0
 },
-"ANCHOR_SB": {
-"k": 72,
-"km2": 8.7
+"R0_current_SB": {
+"k": 979,
+"km2": 2.7
 },
-"SOFT_A1": {
-"k": 234,
-"km2": 41.7
+"R1_protect": {
+"k": 2484,
+"km2": 5.0
 },
-"SOFT_A1_SB": {
-"k": 118,
-"km2": 15.5
+"R1_protect_SB": {
+"k": 1359,
+"km2": 3.3
 },
-"SOFT_R2": {
-"k": 354,
-"km2": 236.5
+"R2_promo": {
+"k": 4145,
+"km2": 63.4
 },
-"SOFT_R2_SB": {
-"k": 374,
-"km2": 157.1
+"R2_promo_SB": {
+"k": 2628,
+"km2": 58.8
 },
-"SOFT_A2": {
-"k": 354,
-"km2": 255.6
+"R3_zone_all": {
+"k": 4655,
+"km2": 64.4
 },
-"SOFT_A2_SB": {
-"k": 410,
-"km2": 166.3
+"R3_zone_all_SB": {
+"k": 2976,
+"km2": 59.4
 }
 },
 "46830": {
-"ANCHOR": {
-"k": 155,
-"km2": 35.6
+"R0_current": {
+"k": 2020,
+"km2": 6.3
 },
-"ANCHOR_SB": {
-"k": 88,
-"km2": 14.9
+"R0_current_SB": {
+"k": 915,
+"km2": 4.2
 },
-"SOFT_A1": {
-"k": 178,
-"km2": 43.8
+"R1_protect": {
+"k": 2216,
+"km2": 6.9
 },
-"SOFT_A1_SB": {
-"k": 102,
-"km2": 18.7
+"R1_protect_SB": {
+"k": 1044,
+"km2": 4.6
 },
-"SOFT_R2": {
-"k": 188,
-"km2": 174.6
+"R2_promo": {
+"k": 3368,
+"km2": 17.5
 },
-"SOFT_R2_SB": {
-"k": 216,
-"km2": 114.9
+"R2_promo_SB": {
+"k": 1939,
+"km2": 13.7
 },
-"SOFT_A2": {
-"k": 177,
-"km2": 185.1
+"R3_zone_all": {
+"k": 3525,
+"km2": 18.0
 },
-"SOFT_A2_SB": {
-"k": 216,
-"km2": 120.8
+"R3_zone_all_SB": {
+"k": 2050,
+"km2": 14.1
 }
 },
 "46840": {
-"ANCHOR": {
-"k": 118,
-"km2": 21.4
+"R0_current": {
+"k": 2369,
+"km2": 3.0
 },
-"ANCHOR_SB": {
-"k": 31,
-"km2": 5.3
+"R0_current_SB": {
+"k": 912,
+"km2": 1.4
 },
-"SOFT_A1": {
-"k": 149,
-"km2": 28.5
+"R1_protect": {
+"k": 2704,
+"km2": 3.5
 },
-"SOFT_A1_SB": {
-"k": 43,
-"km2": 7.1
+"R1_protect_SB": {
+"k": 1104,
+"km2": 1.6
 },
-"SOFT_R2": {
-"k": 175,
-"km2": 106.6
+"R2_promo": {
+"k": 4130,
+"km2": 11.3
 },
-"SOFT_R2_SB": {
-"k": 170,
-"km2": 53.5
+"R2_promo_SB": {
+"k": 2153,
+"km2": 7.3
 },
-"SOFT_A2": {
-"k": 171,
-"km2": 114.9
+"R3_zone_all": {
+"k": 4390,
+"km2": 11.8
 },
-"SOFT_A2_SB": {
-"k": 179,
-"km2": 56.7
+"R3_zone_all_SB": {
+"k": 2307,
+"km2": 7.6
 }
 },
 "46860": {
-"ANCHOR": {
-"k": 118,
-"km2": 21.5
+"R0_current": {
+"k": 1832,
+"km2": 3.6
 },
-"ANCHOR_SB": {
-"k": 27,
-"km2": 4.0
+"R0_current_SB": {
+"k": 712,
+"km2": 1.7
 },
-"SOFT_A1": {
-"k": 144,
-"km2": 31.5
+"R1_protect": {
+"k": 2132,
+"km2": 4.4
 },
-"SOFT_A1_SB": {
-"k": 45,
-"km2": 6.9
+"R1_protect_SB": {
+"k": 906,
+"km2": 2.1
 },
-"SOFT_R2": {
-"k": 135,
-"km2": 90.6
+"R2_promo": {
+"k": 2745,
+"km2": 7.5
 },
-"SOFT_R2_SB": {
-"k": 124,
-"km2": 42.2
+"R2_promo_SB": {
+"k": 1368,
+"km2": 4.2
 },
-"SOFT_A2": {
-"k": 146,
-"km2": 104.8
+"R3_zone_all": {
+"k": 2992,
+"km2": 8.3
 },
-"SOFT_A2_SB": {
-"k": 139,
-"km2": 46.6
+"R3_zone_all_SB": {
+"k": 1543,
+"km2": 4.6
 }
 },
 "46870": {
-"ANCHOR": {
-"k": 145,
-"km2": 29.1
+"R0_current": {
+"k": 2021,
+"km2": 2.9
 },
-"ANCHOR_SB": {
-"k": 37,
-"km2": 4.0
+"R0_current_SB": {
+"k": 582,
+"km2": 0.8
 },
-"SOFT_A1": {
-"k": 163,
-"km2": 40.9
+"R1_protect": {
+"k": 2439,
+"km2": 3.6
 },
-"SOFT_A1_SB": {
-"k": 52,
-"km2": 6.5
+"R1_protect_SB": {
+"k": 782,
+"km2": 1.2
 },
-"SOFT_R2": {
-"k": 114,
-"km2": 125.2
+"R2_promo": {
+"k": 2973,
+"km2": 7.3
 },
-"SOFT_R2_SB": {
-"k": 136,
-"km2": 54.8
+"R2_promo_SB": {
+"k": 1160,
+"km2": 3.7
 },
-"SOFT_A2": {
-"k": 113,
-"km2": 151.6
+"R3_zone_all": {
+"k": 3348,
+"km2": 8.0
 },
-"SOFT_A2_SB": {
-"k": 145,
-"km2": 58.1
+"R3_zone_all_SB": {
+"k": 1350,
+"km2": 4.1
 }
 },
 "46880": {
-"ANCHOR": {
-"k": 80,
-"km2": 19.8
+"R0_current": {
+"k": 1786,
+"km2": 3.2
 },
-"ANCHOR_SB": {
-"k": 29,
-"km2": 5.7
+"R0_current_SB": {
+"k": 675,
+"km2": 1.2
 },
-"SOFT_A1": {
-"k": 105,
-"km2": 26.2
+"R1_protect": {
+"k": 2021,
+"km2": 3.7
 },
-"SOFT_A1_SB": {
-"k": 38,
-"km2": 7.9
+"R1_protect_SB": {
+"k": 832,
+"km2": 1.5
 },
-"SOFT_R2": {
-"k": 145,
-"km2": 57.4
+"R2_promo": {
+"k": 2222,
+"km2": 5.0
 },
-"SOFT_R2_SB": {
-"k": 89,
-"km2": 20.2
+"R2_promo_SB": {
+"k": 998,
+"km2": 2.2
 },
-"SOFT_A2": {
-"k": 151,
-"km2": 68.4
+"R3_zone_all": {
+"k": 2423,
+"km2": 5.6
 },
-"SOFT_A2_SB": {
-"k": 98,
-"km2": 22.9
+"R3_zone_all_SB": {
+"k": 1140,
+"km2": 2.6
 }
 },
 "46890": {
-"ANCHOR": {
-"k": 96,
-"km2": 22.4
+"R0_current": {
+"k": 973,
+"km2": 1.4
 },
-"ANCHOR_SB": {
-"k": 33,
-"km2": 3.9
+"R0_current_SB": {
+"k": 328,
+"km2": 0.5
 },
-"SOFT_A1": {
-"k": 97,
-"km2": 23.2
+"R1_protect": {
+"k": 1014,
+"km2": 1.4
 },
-"SOFT_A1_SB": {
-"k": 34,
-"km2": 4.0
+"R1_protect_SB": {
+"k": 348,
+"km2": 0.6
 },
-"SOFT_R2": {
-"k": 85,
-"km2": 38.3
+"R2_promo": {
+"k": 1166,
+"km2": 2.5
 },
-"SOFT_R2_SB": {
-"k": 54,
-"km2": 13.5
+"R2_promo_SB": {
+"k": 451,
+"km2": 1.3
 },
-"SOFT_A2": {
-"k": 85,
-"km2": 39.3
+"R3_zone_all": {
+"k": 1206,
+"km2": 2.5
 },
-"SOFT_A2_SB": {
-"k": 55,
-"km2": 13.8
+"R3_zone_all_SB": {
+"k": 470,
+"km2": 1.3
 }
 },
 "46900": {
-"ANCHOR": {
-"k": 126,
-"km2": 18.5
-},
-"ANCHOR_SB": {
-"k": 54,
-"km2": 5.4
-},
-"SOFT_A1": {
-"k": 145,
-"km2": 24.6
-},
-"SOFT_A1_SB": {
-"k": 79,
-"km2": 8.9
-},
-"SOFT_R2": {
-"k": 117,
-"km2": 72.4
-},
-"SOFT_R2_SB": {
-"k": 114,
-"km2": 45.0
-},
-"SOFT_A2": {
-"k": 123,
-"km2": 78.5
-},
-"SOFT_A2_SB": {
-"k": 128,
-"km2": 48.7
-}
-},
-"46910": {
-"ANCHOR": {
-"k": 221,
-"km2": 37.6
-},
-"ANCHOR_SB": {
-"k": 94,
-"km2": 11.1
-},
-"SOFT_A1": {
-"k": 235,
-"km2": 43.7
-},
-"SOFT_A1_SB": {
-"k": 109,
-"km2": 13.7
-},
-"SOFT_R2": {
-"k": 276,
-"km2": 123.8
-},
-"SOFT_R2_SB": {
-"k": 282,
-"km2": 65.9
-},
-"SOFT_A2": {
-"k": 258,
-"km2": 131.6
-},
-"SOFT_A2_SB": {
-"k": 286,
-"km2": 70.3
-}
-},
-"47111": {
-"ANCHOR": {
-"k": 95,
-"km2": 14.8
-},
-"ANCHOR_SB": {
-"k": 24,
-"km2": 3.0
-},
-"SOFT_A1": {
-"k": 99,
-"km2": 15.3
-},
-"SOFT_A1_SB": {
-"k": 25,
-"km2": 3.1
-},
-"SOFT_R2": {
-"k": 94,
-"km2": 25.6
-},
-"SOFT_R2_SB": {
-"k": 39,
-"km2": 8.7
-},
-"SOFT_A2": {
-"k": 95,
-"km2": 26.2
-},
-"SOFT_A2_SB": {
-"k": 41,
-"km2": 8.9
-}
-},
-"47113": {
-"ANCHOR": {
-"k": 120,
-"km2": 23.1
-},
-"ANCHOR_SB": {
-"k": 42,
-"km2": 5.8
-},
-"SOFT_A1": {
-"k": 132,
-"km2": 25.6
-},
-"SOFT_A1_SB": {
-"k": 47,
-"km2": 6.4
-},
-"SOFT_R2": {
-"k": 121,
-"km2": 64.8
-},
-"SOFT_R2_SB": {
-"k": 101,
-"km2": 28.3
-},
-"SOFT_A2": {
-"k": 125,
-"km2": 68.0
-},
-"SOFT_A2_SB": {
-"k": 100,
-"km2": 29.2
-}
-},
-"47130": {
-"ANCHOR": {
-"k": 222,
-"km2": 45.1
-},
-"ANCHOR_SB": {
-"k": 60,
-"km2": 10.1
-},
-"SOFT_A1": {
-"k": 244,
-"km2": 49.5
-},
-"SOFT_A1_SB": {
-"k": 68,
-"km2": 10.9
-},
-"SOFT_R2": {
-"k": 290,
-"km2": 111.5
-},
-"SOFT_R2_SB": {
-"k": 167,
-"km2": 46.6
-},
-"SOFT_A2": {
-"k": 304,
-"km2": 116.9
-},
-"SOFT_A2_SB": {
-"k": 172,
-"km2": 47.7
-}
-},
-"47150": {
-"ANCHOR": {
-"k": 291,
-"km2": 51.0
-},
-"ANCHOR_SB": {
-"k": 134,
-"km2": 17.7
-},
-"SOFT_A1": {
-"k": 296,
-"km2": 55.7
-},
-"SOFT_A1_SB": {
-"k": 145,
-"km2": 19.7
-},
-"SOFT_R2": {
-"k": 318,
-"km2": 117.9
-},
-"SOFT_R2_SB": {
-"k": 197,
-"km2": 52.7
-},
-"SOFT_A2": {
-"k": 306,
-"km2": 129.5
-},
-"SOFT_A2_SB": {
-"k": 211,
-"km2": 55.6
-}
-},
-"47170": {
-"ANCHOR": {
-"k": 247,
-"km2": 36.6
-},
-"ANCHOR_SB": {
-"k": 135,
-"km2": 16.2
-},
-"SOFT_A1": {
-"k": 267,
-"km2": 40.6
-},
-"SOFT_A1_SB": {
-"k": 152,
-"km2": 18.2
-},
-"SOFT_R2": {
-"k": 342,
-"km2": 98.2
-},
-"SOFT_R2_SB": {
-"k": 222,
-"km2": 43.2
-},
-"SOFT_A2": {
-"k": 345,
-"km2": 106.9
-},
-"SOFT_A2_SB": {
-"k": 237,
-"km2": 45.8
-}
-},
-"47190": {
-"ANCHOR": {
-"k": 95,
-"km2": 15.2
-},
-"ANCHOR_SB": {
-"k": 29,
-"km2": 4.4
-},
-"SOFT_A1": {
-"k": 108,
-"km2": 17.0
-},
-"SOFT_A1_SB": {
-"k": 32,
-"km2": 4.8
-},
-"SOFT_R2": {
-"k": 177,
-"km2": 73.6
-},
-"SOFT_R2_SB": {
-"k": 115,
-"km2": 43.8
-},
-"SOFT_A2": {
-"k": 172,
-"km2": 77.0
-},
-"SOFT_A2_SB": {
-"k": 118,
-"km2": 45.3
-}
-},
-"47210": {
-"ANCHOR": {
-"k": 143,
-"km2": 19.9
-},
-"ANCHOR_SB": {
-"k": 62,
-"km2": 7.2
-},
-"SOFT_A1": {
-"k": 161,
-"km2": 22.6
-},
-"SOFT_A1_SB": {
-"k": 74,
-"km2": 8.4
-},
-"SOFT_R2": {
-"k": 255,
-"km2": 59.4
-},
-"SOFT_R2_SB": {
-"k": 165,
-"km2": 25.4
-},
-"SOFT_A2": {
-"k": 255,
-"km2": 64.0
-},
-"SOFT_A2_SB": {
-"k": 179,
-"km2": 28.1
-}
-},
-"47230": {
-"ANCHOR": {
-"k": 128,
-"km2": 20.6
-},
-"ANCHOR_SB": {
-"k": 44,
-"km2": 4.6
-},
-"SOFT_A1": {
-"k": 161,
-"km2": 25.7
-},
-"SOFT_A1_SB": {
-"k": 56,
-"km2": 5.9
-},
-"SOFT_R2": {
-"k": 234,
-"km2": 69.2
-},
-"SOFT_R2_SB": {
-"k": 125,
-"km2": 23.6
-},
-"SOFT_A2": {
-"k": 237,
-"km2": 75.9
-},
-"SOFT_A2_SB": {
-"k": 135,
-"km2": 25.6
-}
-},
-"47250": {
-"ANCHOR": {
-"k": 236,
-"km2": 39.7
-},
-"ANCHOR_SB": {
-"k": 75,
-"km2": 13.3
-},
-"SOFT_A1": {
-"k": 284,
-"km2": 47.6
-},
-"SOFT_A1_SB": {
-"k": 96,
-"km2": 15.8
-},
-"SOFT_R2": {
-"k": 350,
-"km2": 169.8
-},
-"SOFT_R2_SB": {
-"k": 268,
-"km2": 82.2
-},
-"SOFT_A2": {
-"k": 355,
-"km2": 182.2
-},
-"SOFT_A2_SB": {
-"k": 286,
-"km2": 88.2
-}
-},
-"47280": {
-"ANCHOR": {
-"k": 133,
-"km2": 19.0
-},
-"ANCHOR_SB": {
-"k": 36,
-"km2": 4.0
-},
-"SOFT_A1": {
-"k": 154,
-"km2": 23.1
-},
-"SOFT_A1_SB": {
-"k": 46,
-"km2": 5.1
-},
-"SOFT_R2": {
-"k": 202,
-"km2": 70.5
-},
-"SOFT_R2_SB": {
-"k": 109,
-"km2": 27.8
-},
-"SOFT_A2": {
-"k": 212,
-"km2": 80.1
-},
-"SOFT_A2_SB": {
-"k": 120,
-"km2": 30.2
-}
-},
-"47290": {
-"ANCHOR": {
-"k": 63,
-"km2": 9.7
-},
-"ANCHOR_SB": {
-"k": 13,
-"km2": 1.3
-},
-"SOFT_A1": {
-"k": 92,
-"km2": 14.8
-},
-"SOFT_A1_SB": {
-"k": 18,
+"R0_current": {
+"k": 1596,
+"km2": 2.7
+},
+"R0_current_SB": {
+"k": 899,
 "km2": 1.8
 },
-"SOFT_R2": {
-"k": 104,
-"km2": 41.1
+"R1_protect": {
+"k": 1829,
+"km2": 3.5
 },
-"SOFT_R2_SB": {
-"k": 56,
-"km2": 14.8
+"R1_protect_SB": {
+"k": 1067,
+"km2": 2.3
 },
-"SOFT_A2": {
-"k": 110,
-"km2": 47.7
+"R2_promo": {
+"k": 2289,
+"km2": 9.4
 },
-"SOFT_A2_SB": {
-"k": 61,
-"km2": 15.9
-}
-},
-"47730": {
-"ANCHOR": {
-"k": 144,
-"km2": 19.4
-},
-"ANCHOR_SB": {
-"k": 65,
+"R2_promo_SB": {
+"k": 1428,
 "km2": 7.5
 },
-"SOFT_A1": {
-"k": 202,
-"km2": 27.4
+"R3_zone_all": {
+"k": 2513,
+"km2": 10.2
 },
-"SOFT_A1_SB": {
-"k": 98,
-"km2": 11.1
-},
-"SOFT_R2": {
-"k": 320,
-"km2": 124.7
-},
-"SOFT_R2_SB": {
-"k": 243,
-"km2": 68.3
-},
-"SOFT_A2": {
-"k": 339,
-"km2": 137.3
-},
-"SOFT_A2_SB": {
-"k": 265,
-"km2": 74.0
-}
-},
-"47750": {
-"ANCHOR": {
-"k": 87,
-"km2": 11.4
-},
-"ANCHOR_SB": {
-"k": 30,
-"km2": 3.1
-},
-"SOFT_A1": {
-"k": 96,
-"km2": 14.6
-},
-"SOFT_A1_SB": {
-"k": 33,
-"km2": 3.7
-},
-"SOFT_R2": {
-"k": 164,
-"km2": 32.5
-},
-"SOFT_R2_SB": {
-"k": 83,
-"km2": 10.3
-},
-"SOFT_A2": {
-"k": 165,
-"km2": 36.2
-},
-"SOFT_A2_SB": {
-"k": 87,
-"km2": 11.2
-}
-},
-"47760": {
-"ANCHOR": {
-"k": 44,
-"km2": 5.8
-},
-"ANCHOR_SB": {
-"k": 11,
-"km2": 1.2
-},
-"SOFT_A1": {
-"k": 47,
-"km2": 6.3
-},
-"SOFT_A1_SB": {
-"k": 12,
-"km2": 1.4
-},
-"SOFT_R2": {
-"k": 97,
-"km2": 16.6
-},
-"SOFT_R2_SB": {
-"k": 38,
-"km2": 4.8
-},
-"SOFT_A2": {
-"k": 101,
-"km2": 18.0
-},
-"SOFT_A2_SB": {
-"k": 40,
-"km2": 5.3
-}
-},
-"47770": {
-"ANCHOR": {
-"k": 62,
-"km2": 8.9
-},
-"ANCHOR_SB": {
-"k": 16,
-"km2": 2.1
-},
-"SOFT_A1": {
-"k": 64,
-"km2": 9.3
-},
-"SOFT_A1_SB": {
-"k": 17,
-"km2": 2.1
-},
-"SOFT_R2": {
-"k": 125,
-"km2": 29.5
-},
-"SOFT_R2_SB": {
-"k": 65,
-"km2": 11.8
-},
-"SOFT_A2": {
-"k": 127,
-"km2": 30.5
-},
-"SOFT_A2_SB": {
-"k": 67,
-"km2": 12.3
-}
-},
-"47820": {
-"ANCHOR": {
-"k": 88,
-"km2": 15.1
-},
-"ANCHOR_SB": {
-"k": 9,
-"km2": 1.0
-},
-"SOFT_A1": {
-"k": 103,
-"km2": 19.6
-},
-"SOFT_A1_SB": {
-"k": 15,
-"km2": 1.9
-},
-"SOFT_R2": {
-"k": 126,
-"km2": 47.8
-},
-"SOFT_R2_SB": {
-"k": 83,
-"km2": 15.1
-},
-"SOFT_A2": {
-"k": 131,
-"km2": 53.4
-},
-"SOFT_A2_SB": {
-"k": 88,
-"km2": 16.6
-}
-},
-"47830": {
-"ANCHOR": {
-"k": 26,
-"km2": 3.0
-},
-"ANCHOR_SB": {
-"k": 4,
-"km2": 0.4
-},
-"SOFT_A1": {
-"k": 28,
-"km2": 3.4
-},
-"SOFT_A1_SB": {
-"k": 4,
-"km2": 0.4
-},
-"SOFT_R2": {
-"k": 100,
-"km2": 28.1
-},
-"SOFT_R2_SB": {
-"k": 71,
-"km2": 15.0
-},
-"SOFT_A2": {
-"k": 101,
-"km2": 29.2
-},
-"SOFT_A2_SB": {
-"k": 72,
-"km2": 15.2
-}
-},
-"47840": {
-"ANCHOR": {
-"k": 132,
-"km2": 21.7
-},
-"ANCHOR_SB": {
-"k": 35,
-"km2": 3.7
-},
-"SOFT_A1": {
-"k": 150,
-"km2": 28.0
-},
-"SOFT_A1_SB": {
-"k": 49,
-"km2": 5.3
-},
-"SOFT_R2": {
-"k": 159,
-"km2": 70.7
-},
-"SOFT_R2_SB": {
-"k": 109,
-"km2": 27.2
-},
-"SOFT_A2": {
-"k": 148,
-"km2": 78.0
-},
-"SOFT_A2_SB": {
-"k": 122,
-"km2": 29.6
-}
-},
-"47850": {
-"ANCHOR": {
-"k": 86,
-"km2": 16.5
-},
-"ANCHOR_SB": {
-"k": 12,
-"km2": 2.2
-},
-"SOFT_A1": {
-"k": 88,
-"km2": 17.7
-},
-"SOFT_A1_SB": {
-"k": 14,
-"km2": 2.4
-},
-"SOFT_R2": {
-"k": 102,
-"km2": 30.9
-},
-"SOFT_R2_SB": {
-"k": 31,
-"km2": 7.6
-},
-"SOFT_A2": {
-"k": 100,
-"km2": 32.4
-},
-"SOFT_A2_SB": {
-"k": 34,
+"R3_zone_all_SB": {
+"k": 1591,
 "km2": 8.1
 }
 },
+"46910": {
+"R0_current": {
+"k": 3293,
+"km2": 5.9
+},
+"R0_current_SB": {
+"k": 1689,
+"km2": 3.3
+},
+"R1_protect": {
+"k": 3573,
+"km2": 6.7
+},
+"R1_protect_SB": {
+"k": 1881,
+"km2": 3.9
+},
+"R2_promo": {
+"k": 4321,
+"km2": 12.7
+},
+"R2_promo_SB": {
+"k": 2483,
+"km2": 8.5
+},
+"R3_zone_all": {
+"k": 4533,
+"km2": 13.6
+},
+"R3_zone_all_SB": {
+"k": 2634,
+"km2": 9.2
+}
+},
+"47111": {
+"R0_current": {
+"k": 1736,
+"km2": 4.2
+},
+"R0_current_SB": {
+"k": 635,
+"km2": 2.0
+},
+"R1_protect": {
+"k": 1748,
+"km2": 4.3
+},
+"R1_protect_SB": {
+"k": 640,
+"km2": 2.0
+},
+"R2_promo": {
+"k": 1839,
+"km2": 4.7
+},
+"R2_promo_SB": {
+"k": 737,
+"km2": 2.2
+},
+"R3_zone_all": {
+"k": 1848,
+"km2": 4.7
+},
+"R3_zone_all_SB": {
+"k": 741,
+"km2": 2.2
+}
+},
+"47113": {
+"R0_current": {
+"k": 2154,
+"km2": 3.8
+},
+"R0_current_SB": {
+"k": 914,
+"km2": 1.7
+},
+"R1_protect": {
+"k": 2280,
+"km2": 4.2
+},
+"R1_protect_SB": {
+"k": 980,
+"km2": 1.9
+},
+"R2_promo": {
+"k": 3019,
+"km2": 8.6
+},
+"R2_promo_SB": {
+"k": 1543,
+"km2": 4.8
+},
+"R3_zone_all": {
+"k": 3110,
+"km2": 8.9
+},
+"R3_zone_all_SB": {
+"k": 1591,
+"km2": 5.0
+}
+},
+"47130": {
+"R0_current": {
+"k": 3726,
+"km2": 4.6
+},
+"R0_current_SB": {
+"k": 1157,
+"km2": 1.9
+},
+"R1_protect": {
+"k": 3929,
+"km2": 5.1
+},
+"R1_protect_SB": {
+"k": 1276,
+"km2": 2.1
+},
+"R2_promo": {
+"k": 5182,
+"km2": 9.7
+},
+"R2_promo_SB": {
+"k": 2200,
+"km2": 5.4
+},
+"R3_zone_all": {
+"k": 5353,
+"km2": 10.1
+},
+"R3_zone_all_SB": {
+"k": 2305,
+"km2": 5.5
+}
+},
+"47150": {
+"R0_current": {
+"k": 2908,
+"km2": 4.0
+},
+"R0_current_SB": {
+"k": 1432,
+"km2": 2.1
+},
+"R1_protect": {
+"k": 3071,
+"km2": 4.2
+},
+"R1_protect_SB": {
+"k": 1528,
+"km2": 2.2
+},
+"R2_promo": {
+"k": 3915,
+"km2": 6.5
+},
+"R2_promo_SB": {
+"k": 2182,
+"km2": 4.0
+},
+"R3_zone_all": {
+"k": 4059,
+"km2": 6.7
+},
+"R3_zone_all_SB": {
+"k": 2267,
+"km2": 4.2
+}
+},
+"47170": {
+"R0_current": {
+"k": 1656,
+"km2": 2.5
+},
+"R0_current_SB": {
+"k": 932,
+"km2": 1.6
+},
+"R1_protect": {
+"k": 1733,
+"km2": 2.7
+},
+"R1_protect_SB": {
+"k": 989,
+"km2": 1.7
+},
+"R2_promo": {
+"k": 2387,
+"km2": 4.9
+},
+"R2_promo_SB": {
+"k": 1437,
+"km2": 3.2
+},
+"R3_zone_all": {
+"k": 2456,
+"km2": 5.2
+},
+"R3_zone_all_SB": {
+"k": 1488,
+"km2": 3.3
+}
+},
+"47190": {
+"R0_current": {
+"k": 1796,
+"km2": 1.7
+},
+"R0_current_SB": {
+"k": 653,
+"km2": 0.9
+},
+"R1_protect": {
+"k": 1936,
+"km2": 1.9
+},
+"R1_protect_SB": {
+"k": 741,
+"km2": 1.0
+},
+"R2_promo": {
+"k": 2910,
+"km2": 5.0
+},
+"R2_promo_SB": {
+"k": 1511,
+"km2": 3.4
+},
+"R3_zone_all": {
+"k": 3026,
+"km2": 5.3
+},
+"R3_zone_all_SB": {
+"k": 1587,
+"km2": 3.6
+}
+},
+"47210": {
+"R0_current": {
+"k": 1649,
+"km2": 3.4
+},
+"R0_current_SB": {
+"k": 803,
+"km2": 2.0
+},
+"R1_protect": {
+"k": 1773,
+"km2": 3.7
+},
+"R1_protect_SB": {
+"k": 869,
+"km2": 2.2
+},
+"R2_promo": {
+"k": 2335,
+"km2": 7.0
+},
+"R2_promo_SB": {
+"k": 1251,
+"km2": 4.4
+},
+"R3_zone_all": {
+"k": 2431,
+"km2": 7.4
+},
+"R3_zone_all_SB": {
+"k": 1306,
+"km2": 4.5
+}
+},
+"47230": {
+"R0_current": {
+"k": 1989,
+"km2": 2.6
+},
+"R0_current_SB": {
+"k": 859,
+"km2": 1.4
+},
+"R1_protect": {
+"k": 2343,
+"km2": 3.1
+},
+"R1_protect_SB": {
+"k": 1038,
+"km2": 1.7
+},
+"R2_promo": {
+"k": 2963,
+"km2": 4.8
+},
+"R2_promo_SB": {
+"k": 1409,
+"km2": 2.6
+},
+"R3_zone_all": {
+"k": 3279,
+"km2": 5.3
+},
+"R3_zone_all_SB": {
+"k": 1576,
+"km2": 2.9
+}
+},
+"47250": {
+"R0_current": {
+"k": 2848,
+"km2": 4.9
+},
+"R0_current_SB": {
+"k": 1397,
+"km2": 2.8
+},
+"R1_protect": {
+"k": 3126,
+"km2": 5.6
+},
+"R1_protect_SB": {
+"k": 1575,
+"km2": 3.3
+},
+"R2_promo": {
+"k": 4608,
+"km2": 12.1
+},
+"R2_promo_SB": {
+"k": 2658,
+"km2": 7.9
+},
+"R3_zone_all": {
+"k": 4825,
+"km2": 12.8
+},
+"R3_zone_all_SB": {
+"k": 2802,
+"km2": 8.4
+}
+},
+"47280": {
+"R0_current": {
+"k": 1081,
+"km2": 1.6
+},
+"R0_current_SB": {
+"k": 433,
+"km2": 0.9
+},
+"R1_protect": {
+"k": 1196,
+"km2": 1.8
+},
+"R1_protect_SB": {
+"k": 500,
+"km2": 1.0
+},
+"R2_promo": {
+"k": 1642,
+"km2": 3.2
+},
+"R2_promo_SB": {
+"k": 775,
+"km2": 1.8
+},
+"R3_zone_all": {
+"k": 1745,
+"km2": 3.4
+},
+"R3_zone_all_SB": {
+"k": 836,
+"km2": 1.9
+}
+},
+"47290": {
+"R0_current": {
+"k": 1457,
+"km2": 1.3
+},
+"R0_current_SB": {
+"k": 360,
+"km2": 0.4
+},
+"R1_protect": {
+"k": 1682,
+"km2": 1.5
+},
+"R1_protect_SB": {
+"k": 464,
+"km2": 0.5
+},
+"R2_promo": {
+"k": 1840,
+"km2": 1.9
+},
+"R2_promo_SB": {
+"k": 570,
+"km2": 0.7
+},
+"R3_zone_all": {
+"k": 2053,
+"km2": 2.2
+},
+"R3_zone_all_SB": {
+"k": 666,
+"km2": 0.8
+}
+},
+"47730": {
+"R0_current": {
+"k": 1790,
+"km2": 2.6
+},
+"R0_current_SB": {
+"k": 1016,
+"km2": 1.7
+},
+"R1_protect": {
+"k": 2116,
+"km2": 3.2
+},
+"R1_protect_SB": {
+"k": 1241,
+"km2": 2.0
+},
+"R2_promo": {
+"k": 3442,
+"km2": 7.9
+},
+"R2_promo_SB": {
+"k": 2183,
+"km2": 5.3
+},
+"R3_zone_all": {
+"k": 3715,
+"km2": 8.5
+},
+"R3_zone_all_SB": {
+"k": 2377,
+"km2": 5.7
+}
+},
+"47750": {
+"R0_current": {
+"k": 1205,
+"km2": 2.7
+},
+"R0_current_SB": {
+"k": 584,
+"km2": 1.5
+},
+"R1_protect": {
+"k": 1327,
+"km2": 3.2
+},
+"R1_protect_SB": {
+"k": 655,
+"km2": 1.7
+},
+"R2_promo": {
+"k": 1676,
+"km2": 4.8
+},
+"R2_promo_SB": {
+"k": 867,
+"km2": 2.5
+},
+"R3_zone_all": {
+"k": 1787,
+"km2": 5.3
+},
+"R3_zone_all_SB": {
+"k": 932,
+"km2": 2.8
+}
+},
+"47760": {
+"R0_current": {
+"k": 1013,
+"km2": 1.5
+},
+"R0_current_SB": {
+"k": 585,
+"km2": 1.0
+},
+"R1_protect": {
+"k": 1077,
+"km2": 1.7
+},
+"R1_protect_SB": {
+"k": 628,
+"km2": 1.1
+},
+"R2_promo": {
+"k": 1364,
+"km2": 2.9
+},
+"R2_promo_SB": {
+"k": 798,
+"km2": 1.8
+},
+"R3_zone_all": {
+"k": 1416,
+"km2": 3.1
+},
+"R3_zone_all_SB": {
+"k": 835,
+"km2": 1.9
+}
+},
+"47770": {
+"R0_current": {
+"k": 1679,
+"km2": 2.4
+},
+"R0_current_SB": {
+"k": 786,
+"km2": 1.2
+},
+"R1_protect": {
+"k": 1751,
+"km2": 2.6
+},
+"R1_protect_SB": {
+"k": 828,
+"km2": 1.3
+},
+"R2_promo": {
+"k": 2254,
+"km2": 4.9
+},
+"R2_promo_SB": {
+"k": 1172,
+"km2": 2.8
+},
+"R3_zone_all": {
+"k": 2309,
+"km2": 5.0
+},
+"R3_zone_all_SB": {
+"k": 1204,
+"km2": 2.9
+}
+},
+"47820": {
+"R0_current": {
+"k": 1562,
+"km2": 1.5
+},
+"R0_current_SB": {
+"k": 455,
+"km2": 0.5
+},
+"R1_protect": {
+"k": 1785,
+"km2": 1.7
+},
+"R1_protect_SB": {
+"k": 568,
+"km2": 0.6
+},
+"R2_promo": {
+"k": 2392,
+"km2": 3.0
+},
+"R2_promo_SB": {
+"k": 928,
+"km2": 1.3
+},
+"R3_zone_all": {
+"k": 2590,
+"km2": 3.2
+},
+"R3_zone_all_SB": {
+"k": 1032,
+"km2": 1.4
+}
+},
+"47830": {
+"R0_current": {
+"k": 694,
+"km2": 0.6
+},
+"R0_current_SB": {
+"k": 273,
+"km2": 0.3
+},
+"R1_protect": {
+"k": 778,
+"km2": 0.7
+},
+"R1_protect_SB": {
+"k": 311,
+"km2": 0.3
+},
+"R2_promo": {
+"k": 1348,
+"km2": 2.3
+},
+"R2_promo_SB": {
+"k": 720,
+"km2": 1.5
+},
+"R3_zone_all": {
+"k": 1419,
+"km2": 2.3
+},
+"R3_zone_all_SB": {
+"k": 753,
+"km2": 1.5
+}
+},
+"47840": {
+"R0_current": {
+"k": 1945,
+"km2": 2.5
+},
+"R0_current_SB": {
+"k": 810,
+"km2": 1.1
+},
+"R1_protect": {
+"k": 2110,
+"km2": 2.9
+},
+"R1_protect_SB": {
+"k": 916,
+"km2": 1.3
+},
+"R2_promo": {
+"k": 2784,
+"km2": 5.2
+},
+"R2_promo_SB": {
+"k": 1410,
+"km2": 2.7
+},
+"R3_zone_all": {
+"k": 2910,
+"km2": 5.6
+},
+"R3_zone_all_SB": {
+"k": 1502,
+"km2": 2.9
+}
+},
+"47850": {
+"R0_current": {
+"k": 1956,
+"km2": 2.0
+},
+"R0_current_SB": {
+"k": 423,
+"km2": 0.5
+},
+"R1_protect": {
+"k": 2030,
+"km2": 2.0
+},
+"R1_protect_SB": {
+"k": 454,
+"km2": 0.5
+},
+"R2_promo": {
+"k": 2178,
+"km2": 2.5
+},
+"R2_promo_SB": {
+"k": 569,
+"km2": 0.6
+},
+"R3_zone_all": {
+"k": 2250,
+"km2": 2.6
+},
+"R3_zone_all_SB": {
+"k": 599,
+"km2": 0.6
+}
+},
 "47900": {
-"ANCHOR": {
-"k": 224,
-"km2": 36.2
+"R0_current": {
+"k": 1059,
+"km2": 1.9
 },
-"ANCHOR_SB": {
-"k": 105,
-"km2": 14.6
+"R0_current_SB": {
+"k": 515,
+"km2": 1.2
 },
-"SOFT_A1": {
-"k": 257,
-"km2": 43.3
+"R1_protect": {
+"k": 1136,
+"km2": 2.1
 },
-"SOFT_A1_SB": {
-"k": 119,
-"km2": 17.0
+"R1_protect_SB": {
+"k": 557,
+"km2": 1.3
 },
-"SOFT_R2": {
-"k": 251,
-"km2": 121.2
+"R2_promo": {
+"k": 1701,
+"km2": 4.0
 },
-"SOFT_R2_SB": {
-"k": 217,
-"km2": 61.7
+"R2_promo_SB": {
+"k": 984,
+"km2": 2.8
 },
-"SOFT_A2": {
-"k": 242,
-"km2": 129.8
+"R3_zone_all": {
+"k": 1771,
+"km2": 4.2
 },
-"SOFT_A2_SB": {
-"k": 224,
-"km2": 65.9
+"R3_zone_all_SB": {
+"k": 1021,
+"km2": 2.9
 }
 },
 "47920": {
-"ANCHOR": {
-"k": 124,
-"km2": 18.0
+"R0_current": {
+"k": 1492,
+"km2": 2.3
 },
-"ANCHOR_SB": {
-"k": 56,
-"km2": 6.7
+"R0_current_SB": {
+"k": 844,
+"km2": 1.4
 },
-"SOFT_A1": {
-"k": 142,
-"km2": 20.6
+"R1_protect": {
+"k": 1539,
+"km2": 2.5
 },
-"SOFT_A1_SB": {
-"k": 66,
-"km2": 7.9
+"R1_protect_SB": {
+"k": 872,
+"km2": 1.5
 },
-"SOFT_R2": {
-"k": 200,
-"km2": 39.5
+"R2_promo": {
+"k": 1824,
+"km2": 3.6
 },
-"SOFT_R2_SB": {
-"k": 114,
-"km2": 15.1
+"R2_promo_SB": {
+"k": 1045,
+"km2": 2.0
 },
-"SOFT_A2": {
-"k": 204,
-"km2": 42.9
+"R3_zone_all": {
+"k": 1864,
+"km2": 3.7
 },
-"SOFT_A2_SB": {
-"k": 123,
-"km2": 16.8
+"R3_zone_all_SB": {
+"k": 1073,
+"km2": 2.1
 }
 },
 "47930": {
-"ANCHOR": {
-"k": 88,
-"km2": 13.6
+"R0_current": {
+"k": 1965,
+"km2": 4.2
 },
-"ANCHOR_SB": {
-"k": 39,
-"km2": 4.6
+"R0_current_SB": {
+"k": 868,
+"km2": 2.3
 },
-"SOFT_A1": {
-"k": 92,
-"km2": 14.4
+"R1_protect": {
+"k": 2030,
+"km2": 4.4
 },
-"SOFT_A1_SB": {
-"k": 41,
+"R1_protect_SB": {
+"k": 909,
+"km2": 2.4
+},
+"R2_promo": {
+"k": 2213,
 "km2": 4.9
 },
-"SOFT_R2": {
-"k": 124,
-"km2": 24.7
+"R2_promo_SB": {
+"k": 1033,
+"km2": 2.7
 },
-"SOFT_R2_SB": {
-"k": 65,
-"km2": 9.4
+"R3_zone_all": {
+"k": 2267,
+"km2": 5.1
 },
-"SOFT_A2": {
-"k": 132,
-"km2": 26.3
-},
-"SOFT_A2_SB": {
-"k": 68,
-"km2": 9.9
+"R3_zone_all_SB": {
+"k": 1068,
+"km2": 2.9
 }
 },
 "47940": {
-"ANCHOR": {
-"k": 2,
-"km2": 0.4
+"R0_current": {
+"k": 106,
+"km2": 0.1
 },
-"ANCHOR_SB": {
-"k": 0,
+"R0_current_SB": {
+"k": 9,
 "km2": 0.0
 },
-"SOFT_A1": {
-"k": 2,
-"km2": 0.4
+"R1_protect": {
+"k": 106,
+"km2": 0.1
 },
-"SOFT_A1_SB": {
-"k": 0,
+"R1_protect_SB": {
+"k": 9,
 "km2": 0.0
 },
-"SOFT_R2": {
-"k": 2,
-"km2": 0.4
+"R2_promo": {
+"k": 106,
+"km2": 0.1
 },
-"SOFT_R2_SB": {
-"k": 0,
+"R2_promo_SB": {
+"k": 9,
 "km2": 0.0
 },
-"SOFT_A2": {
-"k": 2,
-"km2": 0.4
+"R3_zone_all": {
+"k": 106,
+"km2": 0.1
 },
-"SOFT_A2_SB": {
-"k": 0,
+"R3_zone_all_SB": {
+"k": 9,
 "km2": 0.0
 }
 },
 "48121": {
-"ANCHOR": {
-"k": 22,
-"km2": 2.9
+"R0_current": {
+"k": 580,
+"km2": 1.1
 },
-"ANCHOR_SB": {
-"k": 5,
-"km2": 0.5
+"R0_current_SB": {
+"k": 138,
+"km2": 0.6
 },
-"SOFT_A1": {
-"k": 23,
-"km2": 3.0
+"R1_protect": {
+"k": 621,
+"km2": 1.1
 },
-"SOFT_A1_SB": {
-"k": 5,
-"km2": 0.5
+"R1_protect_SB": {
+"k": 164,
+"km2": 0.6
 },
-"SOFT_R2": {
-"k": 45,
-"km2": 34.6
+"R2_promo": {
+"k": 956,
+"km2": 3.1
 },
-"SOFT_R2_SB": {
-"k": 25,
-"km2": 19.8
+"R2_promo_SB": {
+"k": 431,
+"km2": 2.1
 },
-"SOFT_A2": {
-"k": 47,
-"km2": 35.2
+"R3_zone_all": {
+"k": 992,
+"km2": 3.2
 },
-"SOFT_A2_SB": {
-"k": 25,
-"km2": 19.9
+"R3_zone_all_SB": {
+"k": 452,
+"km2": 2.2
 }
 },
 "48123": {
-"ANCHOR": {
-"k": 1,
-"km2": 0.1
-},
-"ANCHOR_SB": {
-"k": 0,
+"R0_current": {
+"k": 74,
 "km2": 0.0
 },
-"SOFT_A1": {
-"k": 1,
-"km2": 0.1
-},
-"SOFT_A1_SB": {
-"k": 0,
+"R0_current_SB": {
+"k": 22,
 "km2": 0.0
 },
-"SOFT_R2": {
-"k": 1,
-"km2": 0.1
-},
-"SOFT_R2_SB": {
-"k": 0,
+"R1_protect": {
+"k": 74,
 "km2": 0.0
 },
-"SOFT_A2": {
-"k": 1,
-"km2": 0.1
+"R1_protect_SB": {
+"k": 22,
+"km2": 0.0
 },
-"SOFT_A2_SB": {
-"k": 0,
+"R2_promo": {
+"k": 74,
+"km2": 0.0
+},
+"R2_promo_SB": {
+"k": 22,
+"km2": 0.0
+},
+"R3_zone_all": {
+"k": 74,
+"km2": 0.0
+},
+"R3_zone_all_SB": {
+"k": 22,
 "km2": 0.0
 }
 },
 "48125": {
-"ANCHOR": {
-"k": 43,
-"km2": 6.8
+"R0_current": {
+"k": 818,
+"km2": 1.5
 },
-"ANCHOR_SB": {
-"k": 9,
+"R0_current_SB": {
+"k": 299,
+"km2": 0.6
+},
+"R1_protect": {
+"k": 831,
+"km2": 1.6
+},
+"R1_protect_SB": {
+"k": 310,
+"km2": 0.7
+},
+"R2_promo": {
+"k": 907,
+"km2": 1.7
+},
+"R2_promo_SB": {
+"k": 362,
+"km2": 0.7
+},
+"R3_zone_all": {
+"k": 917,
+"km2": 1.8
+},
+"R3_zone_all_SB": {
+"k": 370,
 "km2": 0.8
-},
-"SOFT_A1": {
-"k": 46,
-"km2": 7.4
-},
-"SOFT_A1_SB": {
-"k": 11,
-"km2": 0.9
-},
-"SOFT_R2": {
-"k": 43,
-"km2": 14.2
-},
-"SOFT_R2_SB": {
-"k": 25,
-"km2": 3.6
-},
-"SOFT_A2": {
-"k": 45,
-"km2": 15.0
-},
-"SOFT_A2_SB": {
-"k": 27,
-"km2": 3.8
 }
 },
 "48127": {
-"ANCHOR": {
-"k": 2,
-"km2": 0.2
+"R0_current": {
+"k": 363,
+"km2": 0.4
 },
-"ANCHOR_SB": {
-"k": 0,
-"km2": 0.0
+"R0_current_SB": {
+"k": 41,
+"km2": 0.1
 },
-"SOFT_A1": {
-"k": 2,
-"km2": 0.2
+"R1_protect": {
+"k": 363,
+"km2": 0.4
 },
-"SOFT_A1_SB": {
-"k": 0,
-"km2": 0.0
+"R1_protect_SB": {
+"k": 41,
+"km2": 0.1
 },
-"SOFT_R2": {
-"k": 2,
-"km2": 0.2
+"R2_promo": {
+"k": 364,
+"km2": 0.4
 },
-"SOFT_R2_SB": {
-"k": 0,
-"km2": 0.0
+"R2_promo_SB": {
+"k": 42,
+"km2": 0.1
 },
-"SOFT_A2": {
-"k": 2,
-"km2": 0.2
+"R3_zone_all": {
+"k": 364,
+"km2": 0.4
 },
-"SOFT_A2_SB": {
-"k": 0,
-"km2": 0.0
+"R3_zone_all_SB": {
+"k": 42,
+"km2": 0.1
 }
 },
 "48129": {
-"ANCHOR": {
-"k": 9,
-"km2": 1.7
+"R0_current": {
+"k": 595,
+"km2": 0.6
 },
-"ANCHOR_SB": {
-"k": 2,
+"R0_current_SB": {
+"k": 114,
 "km2": 0.2
 },
-"SOFT_A1": {
-"k": 9,
-"km2": 1.7
+"R1_protect": {
+"k": 595,
+"km2": 0.6
 },
-"SOFT_A1_SB": {
-"k": 2,
+"R1_protect_SB": {
+"k": 114,
 "km2": 0.2
 },
-"SOFT_R2": {
-"k": 9,
-"km2": 1.7
+"R2_promo": {
+"k": 595,
+"km2": 0.6
 },
-"SOFT_R2_SB": {
-"k": 2,
+"R2_promo_SB": {
+"k": 114,
 "km2": 0.2
 },
-"SOFT_A2": {
-"k": 9,
-"km2": 1.7
+"R3_zone_all": {
+"k": 595,
+"km2": 0.6
 },
-"SOFT_A2_SB": {
-"k": 2,
+"R3_zone_all_SB": {
+"k": 114,
 "km2": 0.2
 }
 },
 "48170": {
-"ANCHOR": {
-"k": 105,
-"km2": 15.4
+"R0_current": {
+"k": 1749,
+"km2": 3.1
 },
-"ANCHOR_SB": {
-"k": 35,
-"km2": 4.8
+"R0_current_SB": {
+"k": 678,
+"km2": 1.4
 },
-"SOFT_A1": {
-"k": 118,
-"km2": 16.7
+"R1_protect": {
+"k": 1833,
+"km2": 3.2
 },
-"SOFT_A1_SB": {
-"k": 39,
-"km2": 5.1
+"R1_protect_SB": {
+"k": 740,
+"km2": 1.5
 },
-"SOFT_R2": {
-"k": 204,
-"km2": 65.1
+"R2_promo": {
+"k": 2584,
+"km2": 6.4
 },
-"SOFT_R2_SB": {
-"k": 115,
-"km2": 28.6
+"R2_promo_SB": {
+"k": 1246,
+"km2": 3.7
 },
-"SOFT_A2": {
-"k": 213,
-"km2": 67.6
+"R3_zone_all": {
+"k": 2654,
+"km2": 6.5
 },
-"SOFT_A2_SB": {
-"k": 121,
-"km2": 29.5
+"R3_zone_all_SB": {
+"k": 1298,
+"km2": 3.8
 }
 },
 "48220": {
-"ANCHOR": {
-"k": 34,
-"km2": 6.4
+"R0_current": {
+"k": 791,
+"km2": 0.9
 },
-"ANCHOR_SB": {
-"k": 5,
-"km2": 0.5
+"R0_current_SB": {
+"k": 143,
+"km2": 0.2
 },
-"SOFT_A1": {
-"k": 35,
-"km2": 6.6
+"R1_protect": {
+"k": 805,
+"km2": 0.9
 },
-"SOFT_A1_SB": {
-"k": 6,
-"km2": 0.6
+"R1_protect_SB": {
+"k": 150,
+"km2": 0.2
 },
-"SOFT_R2": {
-"k": 41,
-"km2": 8.1
+"R2_promo": {
+"k": 819,
+"km2": 1.0
 },
-"SOFT_R2_SB": {
-"k": 6,
-"km2": 0.5
+"R2_promo_SB": {
+"k": 158,
+"km2": 0.3
 },
-"SOFT_A2": {
-"k": 42,
-"km2": 8.4
+"R3_zone_all": {
+"k": 832,
+"km2": 1.0
 },
-"SOFT_A2_SB": {
-"k": 7,
-"km2": 0.6
+"R3_zone_all_SB": {
+"k": 165,
+"km2": 0.3
 }
 },
 "48240": {
-"ANCHOR": {
-"k": 71,
-"km2": 17.0
+"R0_current": {
+"k": 2122,
+"km2": 2.6
 },
-"ANCHOR_SB": {
-"k": 20,
-"km2": 3.3
+"R0_current_SB": {
+"k": 660,
+"km2": 1.0
 },
-"SOFT_A1": {
-"k": 85,
-"km2": 18.6
+"R1_protect": {
+"k": 2267,
+"km2": 2.8
 },
-"SOFT_A1_SB": {
-"k": 24,
-"km2": 3.7
+"R1_protect_SB": {
+"k": 742,
+"km2": 1.1
 },
-"SOFT_R2": {
-"k": 139,
-"km2": 44.7
+"R2_promo": {
+"k": 2678,
+"km2": 4.3
 },
-"SOFT_R2_SB": {
-"k": 81,
-"km2": 14.3
+"R2_promo_SB": {
+"k": 1015,
+"km2": 2.0
 },
-"SOFT_A2": {
-"k": 145,
-"km2": 47.9
+"R3_zone_all": {
+"k": 2804,
+"km2": 4.5
 },
-"SOFT_A2_SB": {
-"k": 87,
-"km2": 15.3
+"R3_zone_all_SB": {
+"k": 1091,
+"km2": 2.1
 }
 },
 "48250": {
-"ANCHOR": {
-"k": 44,
-"km2": 6.1
+"R0_current": {
+"k": 2380,
+"km2": 3.4
 },
-"ANCHOR_SB": {
-"k": 7,
-"km2": 0.8
+"R0_current_SB": {
+"k": 635,
+"km2": 1.3
 },
-"SOFT_A1": {
-"k": 47,
-"km2": 6.5
+"R1_protect": {
+"k": 2419,
+"km2": 3.5
 },
-"SOFT_A1_SB": {
-"k": 7,
-"km2": 0.8
+"R1_protect_SB": {
+"k": 651,
+"km2": 1.4
 },
-"SOFT_R2": {
-"k": 94,
-"km2": 28.6
+"R2_promo": {
+"k": 2692,
+"km2": 5.5
 },
-"SOFT_R2_SB": {
-"k": 47,
-"km2": 13.6
+"R2_promo_SB": {
+"k": 882,
+"km2": 2.8
 },
-"SOFT_A2": {
-"k": 96,
-"km2": 29.3
+"R3_zone_all": {
+"k": 2722,
+"km2": 5.6
 },
-"SOFT_A2_SB": {
-"k": 47,
-"km2": 13.7
+"R3_zone_all_SB": {
+"k": 894,
+"km2": 2.8
 }
 },
 "48270": {
-"ANCHOR": {
-"k": 126,
-"km2": 23.8
+"R0_current": {
+"k": 2318,
+"km2": 3.8
 },
-"ANCHOR_SB": {
-"k": 19,
-"km2": 2.5
+"R0_current_SB": {
+"k": 641,
+"km2": 1.3
 },
-"SOFT_A1": {
-"k": 142,
-"km2": 26.2
+"R1_protect": {
+"k": 2463,
+"km2": 4.0
 },
-"SOFT_A1_SB": {
-"k": 20,
-"km2": 2.5
+"R1_protect_SB": {
+"k": 697,
+"km2": 1.3
 },
-"SOFT_R2": {
-"k": 192,
-"km2": 100.6
+"R2_promo": {
+"k": 3352,
+"km2": 8.5
 },
-"SOFT_R2_SB": {
-"k": 108,
-"km2": 45.7
+"R2_promo_SB": {
+"k": 1386,
+"km2": 4.4
 },
-"SOFT_A2": {
-"k": 198,
-"km2": 103.6
+"R3_zone_all": {
+"k": 3467,
+"km2": 8.7
 },
-"SOFT_A2_SB": {
-"k": 111,
-"km2": 46.1
+"R3_zone_all_SB": {
+"k": 1428,
+"km2": 4.5
 }
 },
 "48310": {
-"ANCHOR": {
-"k": 56,
-"km2": 7.3
+"R0_current": {
+"k": 1477,
+"km2": 1.5
 },
-"ANCHOR_SB": {
-"k": 8,
-"km2": 0.8
+"R0_current_SB": {
+"k": 330,
+"km2": 0.5
 },
-"SOFT_A1": {
-"k": 72,
-"km2": 9.3
+"R1_protect": {
+"k": 1565,
+"km2": 1.6
 },
-"SOFT_A1_SB": {
-"k": 12,
-"km2": 1.2
+"R1_protect_SB": {
+"k": 377,
+"km2": 0.6
 },
-"SOFT_R2": {
-"k": 81,
-"km2": 15.8
-},
-"SOFT_R2_SB": {
-"k": 15,
+"R2_promo": {
+"k": 1593,
 "km2": 1.9
 },
-"SOFT_A2": {
-"k": 86,
-"km2": 18.0
+"R2_promo_SB": {
+"k": 390,
+"km2": 0.6
 },
-"SOFT_A2_SB": {
-"k": 20,
-"km2": 2.4
+"R3_zone_all": {
+"k": 1670,
+"km2": 2.0
+},
+"R3_zone_all_SB": {
+"k": 433,
+"km2": 0.7
 }
 },
 "48330": {
-"ANCHOR": {
-"k": 48,
-"km2": 8.2
+"R0_current": {
+"k": 1645,
+"km2": 1.6
 },
-"ANCHOR_SB": {
-"k": 6,
-"km2": 0.7
+"R0_current_SB": {
+"k": 326,
+"km2": 0.4
 },
-"SOFT_A1": {
-"k": 48,
-"km2": 8.2
+"R1_protect": {
+"k": 1647,
+"km2": 1.6
 },
-"SOFT_A1_SB": {
-"k": 6,
-"km2": 0.7
+"R1_protect_SB": {
+"k": 326,
+"km2": 0.4
 },
-"SOFT_R2": {
-"k": 57,
-"km2": 11.8
-},
-"SOFT_R2_SB": {
-"k": 10,
+"R2_promo": {
+"k": 1679,
 "km2": 1.8
 },
-"SOFT_A2": {
-"k": 57,
-"km2": 11.8
+"R2_promo_SB": {
+"k": 345,
+"km2": 0.4
 },
-"SOFT_A2_SB": {
-"k": 10,
+"R3_zone_all": {
+"k": 1679,
 "km2": 1.8
+},
+"R3_zone_all_SB": {
+"k": 345,
+"km2": 0.4
 }
 },
 "48720": {
-"ANCHOR": {
-"k": 71,
-"km2": 10.7
-},
-"ANCHOR_SB": {
-"k": 18,
+"R0_current": {
+"k": 1570,
 "km2": 1.8
 },
-"SOFT_A1": {
-"k": 86,
-"km2": 12.8
+"R0_current_SB": {
+"k": 675,
+"km2": 0.9
 },
-"SOFT_A1_SB": {
-"k": 21,
-"km2": 2.1
+"R1_protect": {
+"k": 1703,
+"km2": 1.9
 },
-"SOFT_R2": {
-"k": 149,
-"km2": 41.3
+"R1_protect_SB": {
+"k": 750,
+"km2": 1.0
 },
-"SOFT_R2_SB": {
-"k": 80,
-"km2": 16.7
+"R2_promo": {
+"k": 2133,
+"km2": 4.1
 },
-"SOFT_A2": {
-"k": 156,
-"km2": 43.9
+"R2_promo_SB": {
+"k": 1038,
+"km2": 2.5
 },
-"SOFT_A2_SB": {
-"k": 84,
-"km2": 17.1
+"R3_zone_all": {
+"k": 2244,
+"km2": 4.2
+},
+"R3_zone_all_SB": {
+"k": 1104,
+"km2": 2.6
 }
 },
 "48730": {
-"ANCHOR": {
-"k": 99,
-"km2": 19.6
+"R0_current": {
+"k": 1674,
+"km2": 2.0
 },
-"ANCHOR_SB": {
-"k": 26,
-"km2": 3.6
+"R0_current_SB": {
+"k": 568,
+"km2": 0.7
 },
-"SOFT_A1": {
-"k": 107,
-"km2": 21.2
+"R1_protect": {
+"k": 1803,
+"km2": 2.1
 },
-"SOFT_A1_SB": {
-"k": 28,
-"km2": 3.8
+"R1_protect_SB": {
+"k": 638,
+"km2": 0.8
 },
-"SOFT_R2": {
-"k": 134,
-"km2": 68.5
+"R2_promo": {
+"k": 2540,
+"km2": 5.5
 },
-"SOFT_R2_SB": {
-"k": 88,
-"km2": 34.4
+"R2_promo_SB": {
+"k": 1218,
+"km2": 3.3
 },
-"SOFT_A2": {
-"k": 134,
-"km2": 70.5
+"R3_zone_all": {
+"k": 2646,
+"km2": 5.7
 },
-"SOFT_A2_SB": {
-"k": 88,
-"km2": 34.7
+"R3_zone_all_SB": {
+"k": 1279,
+"km2": 3.4
 }
 },
 "48740": {
-"ANCHOR": {
-"k": 116,
-"km2": 21.6
+"R0_current": {
+"k": 2127,
+"km2": 3.8
 },
-"ANCHOR_SB": {
-"k": 31,
-"km2": 5.0
+"R0_current_SB": {
+"k": 929,
+"km2": 2.0
 },
-"SOFT_A1": {
-"k": 129,
-"km2": 25.8
+"R1_protect": {
+"k": 2386,
+"km2": 4.1
 },
-"SOFT_A1_SB": {
-"k": 39,
-"km2": 5.8
+"R1_protect_SB": {
+"k": 1070,
+"km2": 2.3
 },
-"SOFT_R2": {
-"k": 127,
-"km2": 77.3
+"R2_promo": {
+"k": 3037,
+"km2": 7.9
 },
-"SOFT_R2_SB": {
-"k": 118,
-"km2": 39.5
+"R2_promo_SB": {
+"k": 1621,
+"km2": 4.9
 },
-"SOFT_A2": {
-"k": 129,
-"km2": 82.6
+"R3_zone_all": {
+"k": 3255,
+"km2": 8.3
 },
-"SOFT_A2_SB": {
-"k": 126,
-"km2": 41.1
+"R3_zone_all_SB": {
+"k": 1741,
+"km2": 5.2
 }
 },
 "48820": {
-"ANCHOR": {
-"k": 78,
-"km2": 13.6
+"R0_current": {
+"k": 1513,
+"km2": 1.6
 },
-"ANCHOR_SB": {
-"k": 10,
-"km2": 1.7
+"R0_current_SB": {
+"k": 464,
+"km2": 0.5
 },
-"SOFT_A1": {
-"k": 89,
-"km2": 15.2
+"R1_protect": {
+"k": 1624,
+"km2": 1.8
 },
-"SOFT_A1_SB": {
-"k": 13,
-"km2": 2.0
+"R1_protect_SB": {
+"k": 528,
+"km2": 0.6
 },
-"SOFT_R2": {
-"k": 147,
-"km2": 67.6
+"R2_promo": {
+"k": 2429,
+"km2": 5.2
 },
-"SOFT_R2_SB": {
-"k": 93,
-"km2": 20.5
+"R2_promo_SB": {
+"k": 1057,
+"km2": 2.4
 },
-"SOFT_A2": {
-"k": 140,
-"km2": 70.7
+"R3_zone_all": {
+"k": 2514,
+"km2": 5.4
 },
-"SOFT_A2_SB": {
-"k": 100,
-"km2": 21.4
+"R3_zone_all_SB": {
+"k": 1109,
+"km2": 2.5
 }
 },
 "48840": {
-"ANCHOR": {
-"k": 101,
-"km2": 20.3
+"R0_current": {
+"k": 1246,
+"km2": 1.5
 },
-"ANCHOR_SB": {
-"k": 27,
-"km2": 3.4
+"R0_current_SB": {
+"k": 367,
+"km2": 0.6
 },
-"SOFT_A1": {
-"k": 113,
-"km2": 22.3
+"R1_protect": {
+"k": 1320,
+"km2": 1.6
 },
-"SOFT_A1_SB": {
-"k": 28,
-"km2": 3.6
+"R1_protect_SB": {
+"k": 405,
+"km2": 0.6
 },
-"SOFT_R2": {
-"k": 81,
-"km2": 36.2
+"R2_promo": {
+"k": 1471,
+"km2": 2.1
 },
-"SOFT_R2_SB": {
-"k": 55,
-"km2": 7.6
+"R2_promo_SB": {
+"k": 487,
+"km2": 0.8
 },
-"SOFT_A2": {
-"k": 81,
-"km2": 38.2
+"R3_zone_all": {
+"k": 1535,
+"km2": 2.2
 },
-"SOFT_A2_SB": {
-"k": 56,
-"km2": 7.9
+"R3_zone_all_SB": {
+"k": 522,
+"km2": 0.9
 }
 },
 "48850": {
-"ANCHOR": {
-"k": 78,
-"km2": 12.3
+"R0_current": {
+"k": 1874,
+"km2": 2.2
 },
-"ANCHOR_SB": {
-"k": 16,
-"km2": 1.7
+"R0_current_SB": {
+"k": 669,
+"km2": 0.8
 },
-"SOFT_A1": {
-"k": 91,
-"km2": 14.5
+"R1_protect": {
+"k": 2025,
+"km2": 2.5
 },
-"SOFT_A1_SB": {
-"k": 20,
-"km2": 2.1
+"R1_protect_SB": {
+"k": 748,
+"km2": 0.9
 },
-"SOFT_R2": {
-"k": 142,
-"km2": 55.7
+"R2_promo": {
+"k": 2549,
+"km2": 5.7
 },
-"SOFT_R2_SB": {
-"k": 94,
-"km2": 16.3
+"R2_promo_SB": {
+"k": 1139,
+"km2": 2.6
 },
-"SOFT_A2": {
-"k": 130,
-"km2": 59.0
+"R3_zone_all": {
+"k": 2660,
+"km2": 5.9
 },
-"SOFT_A2_SB": {
-"k": 99,
-"km2": 17.4
+"R3_zone_all_SB": {
+"k": 1197,
+"km2": 2.7
 }
 },
 "48860": {
-"ANCHOR": {
-"k": 103,
-"km2": 16.8
+"R0_current": {
+"k": 1680,
+"km2": 2.0
 },
-"ANCHOR_SB": {
-"k": 33,
-"km2": 3.2
+"R0_current_SB": {
+"k": 689,
+"km2": 1.0
 },
-"SOFT_A1": {
-"k": 110,
-"km2": 18.2
+"R1_protect": {
+"k": 1786,
+"km2": 2.2
 },
-"SOFT_A1_SB": {
-"k": 39,
+"R1_protect_SB": {
+"k": 752,
+"km2": 1.1
+},
+"R2_promo": {
+"k": 2303,
 "km2": 3.8
 },
-"SOFT_R2": {
-"k": 172,
-"km2": 48.7
+"R2_promo_SB": {
+"k": 1078,
+"km2": 1.9
 },
-"SOFT_R2_SB": {
-"k": 100,
-"km2": 14.5
+"R3_zone_all": {
+"k": 2380,
+"km2": 3.9
 },
-"SOFT_A2": {
-"k": 169,
-"km2": 51.2
-},
-"SOFT_A2_SB": {
-"k": 107,
-"km2": 15.6
+"R3_zone_all_SB": {
+"k": 1132,
+"km2": 2.0
 }
 },
 "48870": {
-"ANCHOR": {
-"k": 143,
-"km2": 21.8
+"R0_current": {
+"k": 2074,
+"km2": 3.2
 },
-"ANCHOR_SB": {
-"k": 56,
-"km2": 5.6
+"R0_current_SB": {
+"k": 1092,
+"km2": 1.8
 },
-"SOFT_A1": {
-"k": 152,
-"km2": 24.9
+"R1_protect": {
+"k": 2164,
+"km2": 3.4
 },
-"SOFT_A1_SB": {
-"k": 60,
-"km2": 6.3
+"R1_protect_SB": {
+"k": 1145,
+"km2": 1.9
 },
-"SOFT_R2": {
-"k": 169,
-"km2": 50.3
+"R2_promo": {
+"k": 2431,
+"km2": 4.6
 },
-"SOFT_R2_SB": {
-"k": 122,
-"km2": 18.6
+"R2_promo_SB": {
+"k": 1379,
+"km2": 2.7
 },
-"SOFT_A2": {
-"k": 170,
-"km2": 57.4
+"R3_zone_all": {
+"k": 2476,
+"km2": 4.9
 },
-"SOFT_A2_SB": {
-"k": 126,
-"km2": 19.9
+"R3_zone_all_SB": {
+"k": 1403,
+"km2": 2.8
 }
 },
 "48880": {
-"ANCHOR": {
-"k": 111,
-"km2": 17.4
+"R0_current": {
+"k": 1358,
+"km2": 1.6
 },
-"ANCHOR_SB": {
-"k": 51,
-"km2": 5.4
+"R0_current_SB": {
+"k": 538,
+"km2": 0.7
 },
-"SOFT_A1": {
-"k": 118,
-"km2": 19.8
+"R1_protect": {
+"k": 1458,
+"km2": 1.8
 },
-"SOFT_A1_SB": {
-"k": 54,
-"km2": 6.0
+"R1_protect_SB": {
+"k": 613,
+"km2": 0.9
 },
-"SOFT_R2": {
-"k": 157,
-"km2": 51.2
+"R2_promo": {
+"k": 1870,
+"km2": 3.0
 },
-"SOFT_R2_SB": {
-"k": 125,
-"km2": 22.5
+"R2_promo_SB": {
+"k": 914,
+"km2": 1.6
 },
-"SOFT_A2": {
-"k": 158,
-"km2": 54.8
+"R3_zone_all": {
+"k": 1942,
+"km2": 3.3
 },
-"SOFT_A2_SB": {
-"k": 128,
-"km2": 23.5
+"R3_zone_all_SB": {
+"k": 971,
+"km2": 1.7
 }
 },
 "48890": {
-"ANCHOR": {
-"k": 156,
-"km2": 23.8
+"R0_current": {
+"k": 2285,
+"km2": 2.8
 },
-"ANCHOR_SB": {
-"k": 48,
-"km2": 5.4
+"R0_current_SB": {
+"k": 1071,
+"km2": 1.5
 },
-"SOFT_A1": {
-"k": 161,
-"km2": 25.5
+"R1_protect": {
+"k": 2398,
+"km2": 2.9
 },
-"SOFT_A1_SB": {
-"k": 51,
+"R1_protect_SB": {
+"k": 1140,
+"km2": 1.6
+},
+"R2_promo": {
+"k": 3305,
 "km2": 5.8
 },
-"SOFT_R2": {
-"k": 265,
-"km2": 81.0
+"R2_promo_SB": {
+"k": 1783,
+"km2": 3.4
 },
-"SOFT_R2_SB": {
-"k": 156,
-"km2": 33.2
+"R3_zone_all": {
+"k": 3396,
+"km2": 6.0
 },
-"SOFT_A2": {
-"k": 255,
-"km2": 83.4
-},
-"SOFT_A2_SB": {
-"k": 160,
-"km2": 34.1
+"R3_zone_all_SB": {
+"k": 1842,
+"km2": 3.5
 }
 },
 "50110": {
-"ANCHOR": {
-"k": 196,
-"km2": 154.2
+"R0_current": {
+"k": 2923,
+"km2": 6.9
 },
-"ANCHOR_SB": {
-"k": 164,
-"km2": 77.3
+"R0_current_SB": {
+"k": 1263,
+"km2": 4.1
 },
-"SOFT_A1": {
-"k": 196,
-"km2": 154.2
+"R1_protect": {
+"k": 2923,
+"km2": 6.9
 },
-"SOFT_A1_SB": {
-"k": 164,
-"km2": 77.3
+"R1_protect_SB": {
+"k": 1263,
+"km2": 4.1
 },
-"SOFT_R2": {
-"k": 196,
-"km2": 154.2
+"R2_promo": {
+"k": 2923,
+"km2": 6.9
 },
-"SOFT_R2_SB": {
-"k": 164,
-"km2": 77.3
+"R2_promo_SB": {
+"k": 1263,
+"km2": 4.1
 },
-"SOFT_A2": {
-"k": 196,
-"km2": 154.2
+"R3_zone_all": {
+"k": 2923,
+"km2": 6.9
 },
-"SOFT_A2_SB": {
-"k": 164,
-"km2": 77.3
+"R3_zone_all_SB": {
+"k": 1263,
+"km2": 4.1
 }
 },
 "50130": {
-"ANCHOR": {
-"k": 219,
-"km2": 129.3
+"R0_current": {
+"k": 2548,
+"km2": 9.7
 },
-"ANCHOR_SB": {
-"k": 182,
-"km2": 67.4
+"R0_current_SB": {
+"k": 1210,
+"km2": 7.6
 },
-"SOFT_A1": {
-"k": 219,
-"km2": 129.3
+"R1_protect": {
+"k": 2548,
+"km2": 9.7
 },
-"SOFT_A1_SB": {
-"k": 182,
-"km2": 67.4
+"R1_protect_SB": {
+"k": 1210,
+"km2": 7.6
 },
-"SOFT_R2": {
-"k": 219,
-"km2": 129.3
+"R2_promo": {
+"k": 2548,
+"km2": 9.7
 },
-"SOFT_R2_SB": {
-"k": 182,
-"km2": 67.4
+"R2_promo_SB": {
+"k": 1210,
+"km2": 7.6
 },
-"SOFT_A2": {
-"k": 219,
-"km2": 129.3
+"R3_zone_all": {
+"k": 2548,
+"km2": 9.7
 },
-"SOFT_A2_SB": {
-"k": 182,
-"km2": 67.4
+"R3_zone_all_SB": {
+"k": 1210,
+"km2": 7.6
 }
 },
 "51110": {
-"ANCHOR": {
-"k": 111,
-"km2": 26.5
+"R0_current": {
+"k": 2769,
+"km2": 5.0
 },
-"ANCHOR_SB": {
-"k": 15,
-"km2": 3.6
+"R0_current_SB": {
+"k": 763,
+"km2": 1.7
 },
-"SOFT_A1": {
-"k": 113,
-"km2": 26.7
+"R1_protect": {
+"k": 2766,
+"km2": 5.0
 },
-"SOFT_A1_SB": {
-"k": 15,
-"km2": 3.6
+"R1_protect_SB": {
+"k": 764,
+"km2": 1.7
 },
-"SOFT_R2": {
-"k": 120,
-"km2": 30.2
+"R2_promo": {
+"k": 2821,
+"km2": 5.2
 },
-"SOFT_R2_SB": {
-"k": 19,
-"km2": 4.0
+"R2_promo_SB": {
+"k": 785,
+"km2": 1.7
 },
-"SOFT_A2": {
-"k": 120,
-"km2": 30.5
+"R3_zone_all": {
+"k": 2816,
+"km2": 5.3
 },
-"SOFT_A2_SB": {
-"k": 19,
-"km2": 4.0
+"R3_zone_all_SB": {
+"k": 786,
+"km2": 1.8
 }
 },
 "51130": {
-"ANCHOR": {
-"k": 171,
-"km2": 24.7
+"R0_current": {
+"k": 3147,
+"km2": 5.7
 },
-"ANCHOR_SB": {
-"k": 19,
-"km2": 2.1
+"R0_current_SB": {
+"k": 998,
+"km2": 2.6
 },
-"SOFT_A1": {
-"k": 185,
-"km2": 27.9
+"R1_protect": {
+"k": 3260,
+"km2": 5.9
 },
-"SOFT_A1_SB": {
-"k": 25,
-"km2": 2.8
+"R1_protect_SB": {
+"k": 1047,
+"km2": 2.7
 },
-"SOFT_R2": {
-"k": 229,
-"km2": 54.6
+"R2_promo": {
+"k": 3498,
+"km2": 7.9
 },
-"SOFT_R2_SB": {
-"k": 68,
-"km2": 11.1
+"R2_promo_SB": {
+"k": 1203,
+"km2": 3.8
 },
-"SOFT_A2": {
-"k": 228,
-"km2": 58.7
+"R3_zone_all": {
+"k": 3591,
+"km2": 8.1
 },
-"SOFT_A2_SB": {
-"k": 78,
-"km2": 12.4
+"R3_zone_all_SB": {
+"k": 1243,
+"km2": 3.9
 }
 },
 "51150": {
-"ANCHOR": {
-"k": 147,
-"km2": 21.9
+"R0_current": {
+"k": 2639,
+"km2": 5.5
 },
-"ANCHOR_SB": {
-"k": 32,
+"R0_current_SB": {
+"k": 814,
+"km2": 2.2
+},
+"R1_protect": {
+"k": 2679,
+"km2": 5.6
+},
+"R1_protect_SB": {
+"k": 831,
+"km2": 2.3
+},
+"R2_promo": {
+"k": 2951,
+"km2": 8.2
+},
+"R2_promo_SB": {
+"k": 1000,
 "km2": 4.2
 },
-"SOFT_A1": {
-"k": 153,
-"km2": 22.9
+"R3_zone_all": {
+"k": 2975,
+"km2": 8.3
 },
-"SOFT_A1_SB": {
-"k": 33,
-"km2": 4.4
-},
-"SOFT_R2": {
-"k": 178,
-"km2": 46.6
-},
-"SOFT_R2_SB": {
-"k": 71,
-"km2": 12.5
-},
-"SOFT_A2": {
-"k": 180,
-"km2": 47.9
-},
-"SOFT_A2_SB": {
-"k": 72,
-"km2": 12.8
+"R3_zone_all_SB": {
+"k": 1013,
+"km2": 4.2
 }
 },
 "51170": {
-"ANCHOR": {
-"k": 23,
-"km2": 3.3
+"R0_current": {
+"k": 881,
+"km2": 0.8
 },
-"ANCHOR_SB": {
-"k": 3,
-"km2": 0.3
+"R0_current_SB": {
+"k": 183,
+"km2": 0.2
 },
-"SOFT_A1": {
-"k": 23,
-"km2": 3.3
+"R1_protect": {
+"k": 882,
+"km2": 0.8
 },
-"SOFT_A1_SB": {
-"k": 3,
-"km2": 0.3
+"R1_protect_SB": {
+"k": 183,
+"km2": 0.2
 },
-"SOFT_R2": {
-"k": 23,
-"km2": 3.3
+"R2_promo": {
+"k": 881,
+"km2": 0.8
 },
-"SOFT_R2_SB": {
-"k": 3,
-"km2": 0.3
+"R2_promo_SB": {
+"k": 183,
+"km2": 0.2
 },
-"SOFT_A2": {
-"k": 23,
-"km2": 3.3
+"R3_zone_all": {
+"k": 881,
+"km2": 0.8
 },
-"SOFT_A2_SB": {
-"k": 3,
-"km2": 0.3
+"R3_zone_all_SB": {
+"k": 183,
+"km2": 0.2
 }
 },
 "51190": {
-"ANCHOR": {
-"k": 4,
-"km2": 0.4
-},
-"ANCHOR_SB": {
-"k": 1,
-"km2": 0.1
-},
-"SOFT_A1": {
-"k": 4,
-"km2": 0.4
-},
-"SOFT_A1_SB": {
-"k": 1,
-"km2": 0.1
-},
-"SOFT_R2": {
-"k": 6,
+"R0_current": {
+"k": 404,
 "km2": 0.7
 },
-"SOFT_R2_SB": {
-"k": 1,
-"km2": 0.1
+"R0_current_SB": {
+"k": 171,
+"km2": 0.3
 },
-"SOFT_A2": {
-"k": 6,
+"R1_protect": {
+"k": 408,
 "km2": 0.8
 },
-"SOFT_A2_SB": {
-"k": 1,
-"km2": 0.1
+"R1_protect_SB": {
+"k": 174,
+"km2": 0.3
+},
+"R2_promo": {
+"k": 410,
+"km2": 0.8
+},
+"R2_promo_SB": {
+"k": 176,
+"km2": 0.4
+},
+"R3_zone_all": {
+"k": 414,
+"km2": 0.8
+},
+"R3_zone_all_SB": {
+"k": 179,
+"km2": 0.4
 }
 },
 "51210": {
-"ANCHOR": {
-"k": 11,
-"km2": 2.6
+"R0_current": {
+"k": 448,
+"km2": 0.4
 },
-"ANCHOR_SB": {
-"k": 6,
-"km2": 0.7
+"R0_current_SB": {
+"k": 130,
+"km2": 0.1
 },
-"SOFT_A1": {
-"k": 11,
-"km2": 2.6
+"R1_protect": {
+"k": 448,
+"km2": 0.4
 },
-"SOFT_A1_SB": {
-"k": 6,
-"km2": 0.7
+"R1_protect_SB": {
+"k": 130,
+"km2": 0.1
 },
-"SOFT_R2": {
-"k": 11,
-"km2": 2.6
+"R2_promo": {
+"k": 448,
+"km2": 0.4
 },
-"SOFT_R2_SB": {
-"k": 6,
-"km2": 0.7
+"R2_promo_SB": {
+"k": 130,
+"km2": 0.1
 },
-"SOFT_A2": {
-"k": 11,
-"km2": 2.6
+"R3_zone_all": {
+"k": 448,
+"km2": 0.4
 },
-"SOFT_A2_SB": {
-"k": 6,
-"km2": 0.7
+"R3_zone_all_SB": {
+"k": 130,
+"km2": 0.1
 }
 },
 "51230": {
-"ANCHOR": {
-"k": 52,
-"km2": 6.4
+"R0_current": {
+"k": 1620,
+"km2": 2.5
 },
-"ANCHOR_SB": {
-"k": 11,
+"R0_current_SB": {
+"k": 685,
+"km2": 1.0
+},
+"R1_protect": {
+"k": 1628,
+"km2": 2.5
+},
+"R1_protect_SB": {
+"k": 687,
+"km2": 1.0
+},
+"R2_promo": {
+"k": 1694,
+"km2": 2.8
+},
+"R2_promo_SB": {
+"k": 729,
 "km2": 1.1
 },
-"SOFT_A1": {
-"k": 53,
-"km2": 6.7
+"R3_zone_all": {
+"k": 1702,
+"km2": 2.8
 },
-"SOFT_A1_SB": {
-"k": 11,
+"R3_zone_all_SB": {
+"k": 731,
 "km2": 1.1
-},
-"SOFT_R2": {
-"k": 73,
-"km2": 10.2
-},
-"SOFT_R2_SB": {
-"k": 19,
-"km2": 2.2
-},
-"SOFT_A2": {
-"k": 75,
-"km2": 10.7
-},
-"SOFT_A2_SB": {
-"k": 20,
-"km2": 2.3
 }
 },
 "51720": {
-"ANCHOR": {
-"k": 172,
-"km2": 24.2
+"R0_current": {
+"k": 3192,
+"km2": 6.2
 },
-"ANCHOR_SB": {
-"k": 16,
-"km2": 1.7
+"R0_current_SB": {
+"k": 1149,
+"km2": 2.7
 },
-"SOFT_A1": {
-"k": 191,
-"km2": 26.5
+"R1_protect": {
+"k": 3314,
+"km2": 6.5
 },
-"SOFT_A1_SB": {
-"k": 17,
-"km2": 1.8
+"R1_protect_SB": {
+"k": 1181,
+"km2": 2.8
 },
-"SOFT_R2": {
-"k": 297,
-"km2": 57.2
+"R2_promo": {
+"k": 3868,
+"km2": 8.8
 },
-"SOFT_R2_SB": {
-"k": 44,
-"km2": 5.9
+"R2_promo_SB": {
+"k": 1429,
+"km2": 3.5
 },
-"SOFT_A2": {
-"k": 305,
-"km2": 60.9
+"R3_zone_all": {
+"k": 3926,
+"km2": 9.2
 },
-"SOFT_A2_SB": {
-"k": 45,
-"km2": 6.1
+"R3_zone_all_SB": {
+"k": 1455,
+"km2": 3.6
 }
 },
 "51730": {
-"ANCHOR": {
-"k": 174,
-"km2": 26.0
+"R0_current": {
+"k": 2279,
+"km2": 4.1
 },
-"ANCHOR_SB": {
-"k": 10,
-"km2": 0.9
+"R0_current_SB": {
+"k": 868,
+"km2": 1.8
 },
-"SOFT_A1": {
-"k": 202,
-"km2": 29.6
+"R1_protect": {
+"k": 2353,
+"km2": 4.3
 },
-"SOFT_A1_SB": {
-"k": 11,
-"km2": 1.1
+"R1_protect_SB": {
+"k": 902,
+"km2": 1.9
 },
-"SOFT_R2": {
-"k": 260,
-"km2": 54.4
+"R2_promo": {
+"k": 2883,
+"km2": 6.6
 },
-"SOFT_R2_SB": {
-"k": 40,
-"km2": 4.9
+"R2_promo_SB": {
+"k": 1139,
+"km2": 2.8
 },
-"SOFT_A2": {
-"k": 261,
-"km2": 58.4
+"R3_zone_all": {
+"k": 2942,
+"km2": 6.8
 },
-"SOFT_A2_SB": {
-"k": 42,
-"km2": 5.3
+"R3_zone_all_SB": {
+"k": 1168,
+"km2": 2.8
 }
 },
 "51750": {
-"ANCHOR": {
-"k": 67,
-"km2": 9.7
+"R0_current": {
+"k": 2631,
+"km2": 4.3
 },
-"ANCHOR_SB": {
-"k": 8,
-"km2": 0.9
+"R0_current_SB": {
+"k": 1273,
+"km2": 2.2
 },
-"SOFT_A1": {
-"k": 73,
-"km2": 10.6
+"R1_protect": {
+"k": 2650,
+"km2": 4.5
 },
-"SOFT_A1_SB": {
-"k": 10,
-"km2": 1.2
+"R1_protect_SB": {
+"k": 1280,
+"km2": 2.3
 },
-"SOFT_R2": {
-"k": 112,
-"km2": 22.6
+"R2_promo": {
+"k": 2841,
+"km2": 5.5
 },
-"SOFT_R2_SB": {
-"k": 22,
-"km2": 3.1
+"R2_promo_SB": {
+"k": 1361,
+"km2": 2.6
 },
-"SOFT_A2": {
-"k": 112,
-"km2": 23.7
+"R3_zone_all": {
+"k": 2850,
+"km2": 5.6
 },
-"SOFT_A2_SB": {
-"k": 23,
-"km2": 3.3
+"R3_zone_all_SB": {
+"k": 1366,
+"km2": 2.7
 }
 },
 "51760": {
-"ANCHOR": {
-"k": 173,
-"km2": 29.9
+"R0_current": {
+"k": 3132,
+"km2": 8.7
 },
-"ANCHOR_SB": {
-"k": 26,
-"km2": 2.8
+"R0_current_SB": {
+"k": 1291,
+"km2": 3.8
 },
-"SOFT_A1": {
-"k": 178,
-"km2": 31.4
+"R1_protect": {
+"k": 3196,
+"km2": 9.1
 },
-"SOFT_A1_SB": {
-"k": 29,
-"km2": 3.3
+"R1_protect_SB": {
+"k": 1315,
+"km2": 4.0
 },
-"SOFT_R2": {
-"k": 209,
-"km2": 43.0
+"R2_promo": {
+"k": 3348,
+"km2": 10.3
 },
-"SOFT_R2_SB": {
-"k": 38,
+"R2_promo_SB": {
+"k": 1404,
+"km2": 4.4
+},
+"R3_zone_all": {
+"k": 3400,
+"km2": 10.8
+},
+"R3_zone_all_SB": {
+"k": 1425,
 "km2": 4.6
-},
-"SOFT_A2": {
-"k": 210,
-"km2": 44.8
-},
-"SOFT_A2_SB": {
-"k": 42,
-"km2": 5.2
 }
 },
 "51770": {
-"ANCHOR": {
-"k": 65,
-"km2": 8.2
-},
-"ANCHOR_SB": {
-"k": 14,
-"km2": 1.4
-},
-"SOFT_A1": {
-"k": 66,
-"km2": 8.4
-},
-"SOFT_A1_SB": {
-"k": 14,
-"km2": 1.4
-},
-"SOFT_R2": {
-"k": 100,
-"km2": 17.1
-},
-"SOFT_R2_SB": {
-"k": 28,
+"R0_current": {
+"k": 1828,
 "km2": 2.9
 },
-"SOFT_A2": {
-"k": 102,
-"km2": 17.6
+"R0_current_SB": {
+"k": 879,
+"km2": 1.5
 },
-"SOFT_A2_SB": {
-"k": 28,
+"R1_protect": {
+"k": 1841,
 "km2": 2.9
+},
+"R1_protect_SB": {
+"k": 881,
+"km2": 1.5
+},
+"R2_promo": {
+"k": 2000,
+"km2": 3.8
+},
+"R2_promo_SB": {
+"k": 948,
+"km2": 2.0
+},
+"R3_zone_all": {
+"k": 2010,
+"km2": 3.8
+},
+"R3_zone_all_SB": {
+"k": 950,
+"km2": 2.0
 }
 },
 "51780": {
-"ANCHOR": {
-"k": 50,
-"km2": 10.2
+"R0_current": {
+"k": 1270,
+"km2": 5.0
 },
-"ANCHOR_SB": {
-"k": 24,
-"km2": 3.4
+"R0_current_SB": {
+"k": 620,
+"km2": 3.0
 },
-"SOFT_A1": {
-"k": 51,
-"km2": 10.7
+"R1_protect": {
+"k": 1293,
+"km2": 5.1
 },
-"SOFT_A1_SB": {
-"k": 24,
-"km2": 3.4
+"R1_protect_SB": {
+"k": 632,
+"km2": 3.0
 },
-"SOFT_R2": {
-"k": 49,
-"km2": 36.7
+"R2_promo": {
+"k": 1484,
+"km2": 6.7
 },
-"SOFT_R2_SB": {
-"k": 38,
-"km2": 19.0
+"R2_promo_SB": {
+"k": 788,
+"km2": 4.0
 },
-"SOFT_A2": {
-"k": 46,
-"km2": 37.4
+"R3_zone_all": {
+"k": 1505,
+"km2": 6.8
 },
-"SOFT_A2_SB": {
-"k": 38,
-"km2": 19.1
+"R3_zone_all_SB": {
+"k": 800,
+"km2": 4.1
 }
 },
 "51790": {
-"ANCHOR": {
-"k": 57,
-"km2": 8.5
+"R0_current": {
+"k": 1277,
+"km2": 2.0
 },
-"ANCHOR_SB": {
-"k": 13,
+"R0_current_SB": {
+"k": 623,
 "km2": 1.3
 },
-"SOFT_A1": {
-"k": 61,
-"km2": 9.0
+"R1_protect": {
+"k": 1295,
+"km2": 2.1
 },
-"SOFT_A1_SB": {
-"k": 13,
+"R1_protect_SB": {
+"k": 631,
 "km2": 1.3
 },
-"SOFT_R2": {
-"k": 84,
-"km2": 14.6
+"R2_promo": {
+"k": 1387,
+"km2": 2.5
 },
-"SOFT_R2_SB": {
-"k": 29,
-"km2": 3.1
+"R2_promo_SB": {
+"k": 669,
+"km2": 1.5
 },
-"SOFT_A2": {
-"k": 87,
-"km2": 15.5
+"R3_zone_all": {
+"k": 1400,
+"km2": 2.5
 },
-"SOFT_A2_SB": {
-"k": 29,
-"km2": 3.1
+"R3_zone_all_SB": {
+"k": 677,
+"km2": 1.5
 }
 },
 "51800": {
-"ANCHOR": {
-"k": 54,
-"km2": 9.5
+"R0_current": {
+"k": 1083,
+"km2": 2.3
 },
-"ANCHOR_SB": {
-"k": 16,
-"km2": 2.4
+"R0_current_SB": {
+"k": 467,
+"km2": 1.4
 },
-"SOFT_A1": {
-"k": 56,
-"km2": 9.9
+"R1_protect": {
+"k": 1090,
+"km2": 2.3
 },
-"SOFT_A1_SB": {
-"k": 16,
-"km2": 2.4
+"R1_protect_SB": {
+"k": 470,
+"km2": 1.4
 },
-"SOFT_R2": {
-"k": 77,
-"km2": 20.1
+"R2_promo": {
+"k": 1262,
+"km2": 3.0
 },
-"SOFT_R2_SB": {
-"k": 34,
-"km2": 5.3
+"R2_promo_SB": {
+"k": 581,
+"km2": 1.7
 },
-"SOFT_A2": {
-"k": 75,
-"km2": 20.6
+"R3_zone_all": {
+"k": 1266,
+"km2": 3.0
 },
-"SOFT_A2_SB": {
-"k": 34,
-"km2": 5.4
+"R3_zone_all_SB": {
+"k": 583,
+"km2": 1.7
 }
 },
 "51810": {
-"ANCHOR": {
-"k": 50,
-"km2": 6.4
+"R0_current": {
+"k": 2077,
+"km2": 3.5
 },
-"ANCHOR_SB": {
-"k": 7,
-"km2": 0.7
+"R0_current_SB": {
+"k": 850,
+"km2": 1.7
 },
-"SOFT_A1": {
-"k": 50,
-"km2": 6.4
+"R1_protect": {
+"k": 2087,
+"km2": 3.5
 },
-"SOFT_A1_SB": {
-"k": 7,
-"km2": 0.7
+"R1_protect_SB": {
+"k": 851,
+"km2": 1.7
 },
-"SOFT_R2": {
-"k": 73,
-"km2": 11.5
+"R2_promo": {
+"k": 2182,
+"km2": 3.8
 },
-"SOFT_R2_SB": {
-"k": 13,
-"km2": 1.4
+"R2_promo_SB": {
+"k": 903,
+"km2": 1.9
 },
-"SOFT_A2": {
-"k": 74,
-"km2": 11.8
+"R3_zone_all": {
+"k": 2192,
+"km2": 3.8
 },
-"SOFT_A2_SB": {
-"k": 13,
-"km2": 1.4
+"R3_zone_all_SB": {
+"k": 904,
+"km2": 1.9
 }
 },
 "51820": {
-"ANCHOR": {
-"k": 27,
-"km2": 3.1
+"R0_current": {
+"k": 1285,
+"km2": 2.5
 },
-"ANCHOR_SB": {
-"k": 11,
-"km2": 1.2
+"R0_current_SB": {
+"k": 545,
+"km2": 1.5
 },
-"SOFT_A1": {
-"k": 30,
+"R1_protect": {
+"k": 1311,
+"km2": 2.5
+},
+"R1_protect_SB": {
+"k": 561,
+"km2": 1.6
+},
+"R2_promo": {
+"k": 1581,
+"km2": 3.4
+},
+"R2_promo_SB": {
+"k": 738,
+"km2": 2.3
+},
+"R3_zone_all": {
+"k": 1602,
 "km2": 3.5
 },
-"SOFT_A1_SB": {
-"k": 11,
-"km2": 1.2
-},
-"SOFT_R2": {
-"k": 75,
-"km2": 22.8
-},
-"SOFT_R2_SB": {
-"k": 51,
-"km2": 12.5
-},
-"SOFT_A2": {
-"k": 75,
-"km2": 23.4
-},
-"SOFT_A2_SB": {
-"k": 51,
-"km2": 12.7
+"R3_zone_all_SB": {
+"k": 753,
+"km2": 2.3
 }
 },
 "51830": {
-"ANCHOR": {
-"k": 44,
-"km2": 6.7
+"R0_current": {
+"k": 2218,
+"km2": 2.5
 },
-"ANCHOR_SB": {
-"k": 9,
-"km2": 1.2
-},
-"SOFT_A1": {
-"k": 48,
-"km2": 7.2
-},
-"SOFT_A1_SB": {
-"k": 10,
+"R0_current_SB": {
+"k": 1009,
 "km2": 1.3
 },
-"SOFT_R2": {
-"k": 82,
-"km2": 17.7
+"R1_protect": {
+"k": 2255,
+"km2": 2.5
 },
-"SOFT_R2_SB": {
-"k": 32,
-"km2": 6.1
+"R1_protect_SB": {
+"k": 1023,
+"km2": 1.4
 },
-"SOFT_A2": {
-"k": 84,
-"km2": 18.4
+"R2_promo": {
+"k": 2475,
+"km2": 2.9
 },
-"SOFT_A2_SB": {
-"k": 32,
-"km2": 6.2
+"R2_promo_SB": {
+"k": 1139,
+"km2": 1.6
+},
+"R3_zone_all": {
+"k": 2510,
+"km2": 3.0
+},
+"R3_zone_all_SB": {
+"k": 1152,
+"km2": 1.6
 }
 },
 "52111": {
-"ANCHOR": {
-"k": 21,
-"km2": 7.9
+"R0_current": {
+"k": 649,
+"km2": 0.9
 },
-"ANCHOR_SB": {
-"k": 5,
-"km2": 1.7
+"R0_current_SB": {
+"k": 111,
+"km2": 0.2
 },
-"SOFT_A1": {
-"k": 21,
-"km2": 7.9
+"R1_protect": {
+"k": 649,
+"km2": 0.9
 },
-"SOFT_A1_SB": {
-"k": 5,
-"km2": 1.7
+"R1_protect_SB": {
+"k": 111,
+"km2": 0.2
 },
-"SOFT_R2": {
-"k": 21,
-"km2": 7.9
+"R2_promo": {
+"k": 649,
+"km2": 0.9
 },
-"SOFT_R2_SB": {
-"k": 5,
-"km2": 1.7
+"R2_promo_SB": {
+"k": 111,
+"km2": 0.2
 },
-"SOFT_A2": {
-"k": 21,
-"km2": 7.9
+"R3_zone_all": {
+"k": 649,
+"km2": 0.9
 },
-"SOFT_A2_SB": {
-"k": 5,
-"km2": 1.7
+"R3_zone_all_SB": {
+"k": 111,
+"km2": 0.2
 }
 },
 "52113": {
-"ANCHOR": {
-"k": 45,
-"km2": 22.3
+"R0_current": {
+"k": 1210,
+"km2": 1.6
 },
-"ANCHOR_SB": {
-"k": 30,
-"km2": 6.9
+"R0_current_SB": {
+"k": 239,
+"km2": 0.5
 },
-"SOFT_A1": {
-"k": 45,
-"km2": 22.3
+"R1_protect": {
+"k": 1211,
+"km2": 1.6
 },
-"SOFT_A1_SB": {
-"k": 30,
-"km2": 6.9
+"R1_protect_SB": {
+"k": 239,
+"km2": 0.5
 },
-"SOFT_R2": {
-"k": 48,
-"km2": 27.8
+"R2_promo": {
+"k": 1278,
+"km2": 2.3
 },
-"SOFT_R2_SB": {
-"k": 35,
-"km2": 10.5
+"R2_promo_SB": {
+"k": 293,
+"km2": 1.0
 },
-"SOFT_A2": {
-"k": 48,
-"km2": 27.8
+"R3_zone_all": {
+"k": 1278,
+"km2": 2.3
 },
-"SOFT_A2_SB": {
-"k": 35,
-"km2": 10.5
+"R3_zone_all_SB": {
+"k": 293,
+"km2": 1.0
 }
 },
 "52130": {
-"ANCHOR": {
-"k": 85,
-"km2": 29.3
+"R0_current": {
+"k": 1899,
+"km2": 3.2
 },
-"ANCHOR_SB": {
-"k": 22,
-"km2": 9.6
+"R0_current_SB": {
+"k": 288,
+"km2": 1.1
 },
-"SOFT_A1": {
-"k": 100,
-"km2": 34.6
+"R1_protect": {
+"k": 1992,
+"km2": 3.6
 },
-"SOFT_A1_SB": {
-"k": 25,
-"km2": 10.4
+"R1_protect_SB": {
+"k": 336,
+"km2": 1.2
 },
-"SOFT_R2": {
-"k": 112,
-"km2": 153.2
+"R2_promo": {
+"k": 2831,
+"km2": 10.5
 },
-"SOFT_R2_SB": {
-"k": 108,
-"km2": 63.2
+"R2_promo_SB": {
+"k": 962,
+"km2": 4.8
 },
-"SOFT_A2": {
-"k": 112,
-"km2": 160.0
+"R3_zone_all": {
+"k": 2911,
+"km2": 10.8
 },
-"SOFT_A2_SB": {
-"k": 109,
-"km2": 64.1
+"R3_zone_all_SB": {
+"k": 1007,
+"km2": 5.0
 }
 },
 "52140": {
-"ANCHOR": {
-"k": 206,
-"km2": 60.7
+"R0_current": {
+"k": 3632,
+"km2": 8.5
 },
-"ANCHOR_SB": {
-"k": 85,
-"km2": 16.8
+"R0_current_SB": {
+"k": 1069,
+"km2": 3.9
 },
-"SOFT_A1": {
-"k": 209,
-"km2": 67.4
+"R1_protect": {
+"k": 3778,
+"km2": 9.0
 },
-"SOFT_A1_SB": {
-"k": 97,
-"km2": 18.5
+"R1_protect_SB": {
+"k": 1136,
+"km2": 4.1
 },
-"SOFT_R2": {
-"k": 185,
-"km2": 219.8
+"R2_promo": {
+"k": 5014,
+"km2": 17.7
 },
-"SOFT_R2_SB": {
-"k": 192,
-"km2": 106.6
+"R2_promo_SB": {
+"k": 2128,
+"km2": 10.1
 },
-"SOFT_A2": {
-"k": 182,
-"km2": 228.1
+"R3_zone_all": {
+"k": 5115,
+"km2": 18.2
 },
-"SOFT_A2_SB": {
-"k": 199,
-"km2": 108.8
+"R3_zone_all_SB": {
+"k": 2176,
+"km2": 10.3
 }
 },
 "52180": {
-"ANCHOR": {
-"k": 202,
-"km2": 59.5
+"R0_current": {
+"k": 3189,
+"km2": 5.3
 },
-"ANCHOR_SB": {
-"k": 107,
-"km2": 16.2
+"R0_current_SB": {
+"k": 1204,
+"km2": 2.3
 },
-"SOFT_A1": {
-"k": 208,
-"km2": 67.8
+"R1_protect": {
+"k": 3364,
+"km2": 5.9
 },
-"SOFT_A1_SB": {
-"k": 122,
-"km2": 19.1
+"R1_protect_SB": {
+"k": 1323,
+"km2": 2.5
 },
-"SOFT_R2": {
-"k": 189,
-"km2": 207.6
+"R2_promo": {
+"k": 4558,
+"km2": 13.0
 },
-"SOFT_R2_SB": {
-"k": 239,
-"km2": 108.3
+"R2_promo_SB": {
+"k": 2289,
+"km2": 7.5
 },
-"SOFT_A2": {
-"k": 178,
-"km2": 220.2
+"R3_zone_all": {
+"k": 4684,
+"km2": 13.5
 },
-"SOFT_A2_SB": {
-"k": 236,
-"km2": 112.0
+"R3_zone_all_SB": {
+"k": 2378,
+"km2": 7.8
 }
 },
 "52190": {
-"ANCHOR": {
-"k": 150,
-"km2": 20.0
+"R0_current": {
+"k": 1973,
+"km2": 2.6
 },
-"ANCHOR_SB": {
-"k": 49,
+"R0_current_SB": {
+"k": 999,
+"km2": 1.7
+},
+"R1_protect": {
+"k": 2237,
+"km2": 2.9
+},
+"R1_protect_SB": {
+"k": 1175,
+"km2": 1.9
+},
+"R2_promo": {
+"k": 3220,
 "km2": 5.8
 },
-"SOFT_A1": {
-"k": 178,
-"km2": 26.8
+"R2_promo_SB": {
+"k": 1891,
+"km2": 3.9
 },
-"SOFT_A1_SB": {
-"k": 70,
-"km2": 8.4
+"R3_zone_all": {
+"k": 3452,
+"km2": 6.2
 },
-"SOFT_R2": {
-"k": 270,
-"km2": 105.9
-},
-"SOFT_R2_SB": {
-"k": 200,
-"km2": 56.8
-},
-"SOFT_A2": {
-"k": 270,
-"km2": 115.5
-},
-"SOFT_A2_SB": {
-"k": 214,
-"km2": 61.1
+"R3_zone_all_SB": {
+"k": 2051,
+"km2": 4.2
 }
 },
 "52210": {
-"ANCHOR": {
-"k": 207,
-"km2": 46.0
+"R0_current": {
+"k": 2660,
+"km2": 5.5
 },
-"ANCHOR_SB": {
-"k": 59,
-"km2": 8.3
+"R0_current_SB": {
+"k": 954,
+"km2": 2.2
 },
-"SOFT_A1": {
-"k": 202,
-"km2": 56.9
+"R1_protect": {
+"k": 2864,
+"km2": 6.3
 },
-"SOFT_A1_SB": {
-"k": 78,
-"km2": 12.0
+"R1_protect_SB": {
+"k": 1054,
+"km2": 2.6
 },
-"SOFT_R2": {
-"k": 166,
-"km2": 232.8
+"R2_promo": {
+"k": 4436,
+"km2": 15.9
 },
-"SOFT_R2_SB": {
-"k": 196,
-"km2": 115.0
+"R2_promo_SB": {
+"k": 2161,
+"km2": 8.8
 },
-"SOFT_A2": {
-"k": 142,
-"km2": 257.9
+"R3_zone_all": {
+"k": 4606,
+"km2": 16.7
 },
-"SOFT_A2_SB": {
-"k": 201,
-"km2": 119.4
+"R3_zone_all_SB": {
+"k": 2247,
+"km2": 9.2
 }
 },
 "52710": {
-"ANCHOR": {
-"k": 132,
-"km2": 45.3
+"R0_current": {
+"k": 2274,
+"km2": 4.4
 },
-"ANCHOR_SB": {
-"k": 54,
-"km2": 11.4
+"R0_current_SB": {
+"k": 797,
+"km2": 1.8
 },
-"SOFT_A1": {
-"k": 147,
-"km2": 48.7
+"R1_protect": {
+"k": 2471,
+"km2": 4.8
 },
-"SOFT_A1_SB": {
-"k": 57,
-"km2": 11.8
+"R1_protect_SB": {
+"k": 884,
+"km2": 2.0
 },
-"SOFT_R2": {
-"k": 198,
-"km2": 97.1
+"R2_promo": {
+"k": 2793,
+"km2": 6.3
 },
-"SOFT_R2_SB": {
-"k": 109,
-"km2": 27.1
+"R2_promo_SB": {
+"k": 1113,
+"km2": 2.8
 },
-"SOFT_A2": {
-"k": 203,
-"km2": 114.1
+"R3_zone_all": {
+"k": 2980,
+"km2": 6.7
 },
-"SOFT_A2_SB": {
-"k": 110,
-"km2": 27.7
+"R3_zone_all_SB": {
+"k": 1196,
+"km2": 3.0
 }
 },
 "52720": {
-"ANCHOR": {
-"k": 104,
-"km2": 17.7
+"R0_current": {
+"k": 1614,
+"km2": 2.2
 },
-"ANCHOR_SB": {
-"k": 46,
-"km2": 5.0
+"R0_current_SB": {
+"k": 722,
+"km2": 1.2
 },
-"SOFT_A1": {
-"k": 114,
-"km2": 20.5
+"R1_protect": {
+"k": 1778,
+"km2": 2.5
 },
-"SOFT_A1_SB": {
-"k": 52,
-"km2": 5.7
+"R1_protect_SB": {
+"k": 815,
+"km2": 1.4
 },
-"SOFT_R2": {
-"k": 172,
-"km2": 40.1
+"R2_promo": {
+"k": 2081,
+"km2": 3.3
 },
-"SOFT_R2_SB": {
-"k": 98,
-"km2": 13.9
+"R2_promo_SB": {
+"k": 983,
+"km2": 1.8
 },
-"SOFT_A2": {
-"k": 167,
-"km2": 45.9
+"R3_zone_all": {
+"k": 2221,
+"km2": 3.6
 },
-"SOFT_A2_SB": {
-"k": 106,
-"km2": 15.3
+"R3_zone_all_SB": {
+"k": 1057,
+"km2": 2.0
 }
 },
 "52730": {
-"ANCHOR": {
-"k": 93,
-"km2": 16.6
+"R0_current": {
+"k": 1287,
+"km2": 1.5
 },
-"ANCHOR_SB": {
-"k": 41,
-"km2": 4.5
+"R0_current_SB": {
+"k": 583,
+"km2": 0.7
 },
-"SOFT_A1": {
-"k": 101,
-"km2": 18.7
+"R1_protect": {
+"k": 1404,
+"km2": 1.7
 },
-"SOFT_A1_SB": {
-"k": 47,
-"km2": 5.2
+"R1_protect_SB": {
+"k": 642,
+"km2": 0.8
 },
-"SOFT_R2": {
-"k": 112,
-"km2": 28.3
+"R2_promo": {
+"k": 1593,
+"km2": 2.3
 },
-"SOFT_R2_SB": {
-"k": 68,
-"km2": 10.3
+"R2_promo_SB": {
+"k": 799,
+"km2": 1.2
 },
-"SOFT_A2": {
-"k": 116,
-"km2": 32.7
+"R3_zone_all": {
+"k": 1700,
+"km2": 2.4
 },
-"SOFT_A2_SB": {
-"k": 71,
-"km2": 11.1
+"R3_zone_all_SB": {
+"k": 854,
+"km2": 1.2
 }
 },
 "52740": {
-"ANCHOR": {
-"k": 105,
-"km2": 18.2
+"R0_current": {
+"k": 1541,
+"km2": 2.4
 },
-"ANCHOR_SB": {
-"k": 45,
-"km2": 5.3
+"R0_current_SB": {
+"k": 856,
+"km2": 1.4
 },
-"SOFT_A1": {
-"k": 118,
-"km2": 20.9
+"R1_protect": {
+"k": 1691,
+"km2": 2.7
 },
-"SOFT_A1_SB": {
-"k": 52,
-"km2": 6.4
+"R1_protect_SB": {
+"k": 936,
+"km2": 1.5
 },
-"SOFT_R2": {
-"k": 108,
-"km2": 47.9
+"R2_promo": {
+"k": 1967,
+"km2": 4.0
 },
-"SOFT_R2_SB": {
-"k": 94,
-"km2": 18.8
+"R2_promo_SB": {
+"k": 1146,
+"km2": 2.3
 },
-"SOFT_A2": {
-"k": 103,
-"km2": 53.8
+"R3_zone_all": {
+"k": 2085,
+"km2": 4.2
 },
-"SOFT_A2_SB": {
-"k": 96,
-"km2": 20.5
+"R3_zone_all_SB": {
+"k": 1214,
+"km2": 2.4
 }
 },
 "52750": {
-"ANCHOR": {
-"k": 64,
-"km2": 8.2
+"R0_current": {
+"k": 1508,
+"km2": 1.5
 },
-"ANCHOR_SB": {
-"k": 16,
-"km2": 2.1
+"R0_current_SB": {
+"k": 636,
+"km2": 0.8
 },
-"SOFT_A1": {
-"k": 83,
-"km2": 11.1
+"R1_protect": {
+"k": 1734,
+"km2": 1.8
 },
-"SOFT_A1_SB": {
-"k": 23,
-"km2": 3.0
+"R1_protect_SB": {
+"k": 773,
+"km2": 0.9
 },
-"SOFT_R2": {
-"k": 156,
-"km2": 51.4
+"R2_promo": {
+"k": 2056,
+"km2": 2.6
 },
-"SOFT_R2_SB": {
-"k": 107,
-"km2": 21.1
+"R2_promo_SB": {
+"k": 1049,
+"km2": 1.5
 },
-"SOFT_A2": {
-"k": 159,
-"km2": 58.2
+"R3_zone_all": {
+"k": 2248,
+"km2": 2.9
 },
-"SOFT_A2_SB": {
-"k": 115,
-"km2": 24.0
+"R3_zone_all_SB": {
+"k": 1163,
+"km2": 1.6
 }
 },
 "52770": {
-"ANCHOR": {
-"k": 73,
-"km2": 8.2
+"R0_current": {
+"k": 700,
+"km2": 0.9
 },
-"ANCHOR_SB": {
-"k": 29,
-"km2": 2.7
+"R0_current_SB": {
+"k": 379,
+"km2": 0.6
 },
-"SOFT_A1": {
-"k": 119,
-"km2": 14.2
+"R1_protect": {
+"k": 871,
+"km2": 1.2
 },
-"SOFT_A1_SB": {
-"k": 49,
-"km2": 4.6
+"R1_protect_SB": {
+"k": 499,
+"km2": 0.8
 },
-"SOFT_R2": {
-"k": 190,
-"km2": 61.6
+"R2_promo": {
+"k": 1322,
+"km2": 2.8
 },
-"SOFT_R2_SB": {
-"k": 166,
-"km2": 34.4
+"R2_promo_SB": {
+"k": 826,
+"km2": 1.9
 },
-"SOFT_A2": {
-"k": 200,
-"km2": 70.3
+"R3_zone_all": {
+"k": 1475,
+"km2": 3.1
 },
-"SOFT_A2_SB": {
-"k": 185,
-"km2": 38.7
+"R3_zone_all_SB": {
+"k": 933,
+"km2": 2.1
 }
 },
 "52790": {
-"ANCHOR": {
-"k": 233,
-"km2": 55.8
+"R0_current": {
+"k": 1647,
+"km2": 3.0
 },
-"ANCHOR_SB": {
-"k": 120,
-"km2": 20.3
+"R0_current_SB": {
+"k": 745,
+"km2": 1.7
 },
-"SOFT_A1": {
-"k": 247,
-"km2": 83.7
+"R1_protect": {
+"k": 1974,
+"km2": 3.9
 },
-"SOFT_A1_SB": {
-"k": 156,
-"km2": 29.9
+"R1_protect_SB": {
+"k": 924,
+"km2": 2.3
 },
-"SOFT_R2": {
-"k": 193,
-"km2": 190.3
+"R2_promo": {
+"k": 2568,
+"km2": 7.4
 },
-"SOFT_R2_SB": {
-"k": 225,
-"km2": 82.7
+"R2_promo_SB": {
+"k": 1400,
+"km2": 4.8
 },
-"SOFT_A2": {
-"k": 171,
-"km2": 221.3
+"R3_zone_all": {
+"k": 2861,
+"km2": 8.4
 },
-"SOFT_A2_SB": {
-"k": 242,
-"km2": 94.4
+"R3_zone_all_SB": {
+"k": 1565,
+"km2": 5.3
 }
 },
 "52800": {
-"ANCHOR": {
-"k": 131,
-"km2": 34.3
+"R0_current": {
+"k": 1935,
+"km2": 2.8
 },
-"ANCHOR_SB": {
-"k": 29,
-"km2": 4.6
+"R0_current_SB": {
+"k": 535,
+"km2": 1.0
 },
-"SOFT_A1": {
-"k": 127,
-"km2": 43.7
+"R1_protect": {
+"k": 2041,
+"km2": 3.2
 },
-"SOFT_A1_SB": {
-"k": 44,
-"km2": 7.7
+"R1_protect_SB": {
+"k": 590,
+"km2": 1.3
 },
-"SOFT_R2": {
-"k": 142,
-"km2": 168.4
+"R2_promo": {
+"k": 3065,
+"km2": 9.5
 },
-"SOFT_R2_SB": {
-"k": 150,
-"km2": 89.9
+"R2_promo_SB": {
+"k": 1375,
+"km2": 6.1
 },
-"SOFT_A2": {
-"k": 130,
-"km2": 192.8
+"R3_zone_all": {
+"k": 3157,
+"km2": 9.9
 },
-"SOFT_A2_SB": {
-"k": 157,
-"km2": 93.4
+"R3_zone_all_SB": {
+"k": 1421,
+"km2": 6.3
 }
 }
 }

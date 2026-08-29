@@ -25,9 +25,15 @@ SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(SITE, 'data_v4', 'clusters')
 os.makedirs(OUT, exist_ok=True)
 
-CELLS = ['ANCHOR', 'ANCHOR_SB', 'SOFT_A1', 'SOFT_A1_SB',
-         'SOFT_R2', 'SOFT_R2_SB', 'SOFT_A2', 'SOFT_A2_SB']   # 2판: R2(진흥구역만) 추가
-SIMPLIFY_M = 15.0
+# 정본 8칸 (ADR-0040 개명판). 대조군(@all)은 지도에 그리지 않는다 — 지도는 정본을 보이는
+# 화면이고, 대조군 병기는 수치 표가 맡는다(전량 적재 시 용량이 두 배가 되기도 한다).
+CELLS = ['R0_current', 'R0_current_SB', 'R1_protect', 'R1_protect_SB',
+         'R2_promo', 'R2_promo_SB', 'R3_zone_all', 'R3_zone_all_SB']
+# 적응 단순화 — 구획 크기에 비례한 허용오차(등가반경의 1/20), [1,10]m 클립.
+# 평탄 허용오차를 쓰면 작은 구획이 뭉개진다(정본 우주 구획 중앙 면적 700㎡ = 반경 약 15m).
+SIMP_RATIO, SIMP_MIN, SIMP_MAX = 1/20.0, 1.0, 10.0
+# 좌표 정밀도 — 위상 인식(set_precision). 단순 반올림은 얇은 구획을 자기교차로 만든다.
+GRID_M = 0.5
 GEN = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
 
 # ── 멤버·면적 적재 (한 번) ──
@@ -64,25 +70,55 @@ for i, sgg in enumerate(sggs, 1):
         if len(ms):
             sub = g.reindex(ms['pnu'].values)
             ok = sub.geometry.notna().values
-            sub = sub[ok]
+            geoms = sub.geometry.values[ok]
             labs = ms['lab'].values[ok]
-            n_by = pd.Series(1, index=labs).groupby(level=0).sum()
-            for lab, geo in gpd.GeoSeries(sub.geometry.values).groupby(labs):
-                u = shapely.union_all(geo.values)
-                u = shapely.simplify(u, SIMPLIFY_M)
-                if u.is_empty:
-                    continue
-                u4326 = gpd.GeoSeries([u], crs=5186).to_crs(4326).iloc[0]
-                gj = shapely.geometry.mapping(u4326)
-                def rnd(cc):
-                    if isinstance(cc[0], (list, tuple)):
-                        return [rnd(x) for x in cc]
-                    return [round(cc[0], 5), round(cc[1], 5)]
-                gj = {'type': gj['type'], 'coordinates': rnd(list(gj['coordinates']))}
-                feats.append({'type': 'Feature', 'geometry': gj,
-                              'properties': {'id': int(lab),
-                                             'a': round(float(comp_area[c].get(lab, 0.0)), 2),
-                                             'n': int(n_by.get(lab, 0))}})
+            if len(geoms):
+                # ── 구획별 합집합을 한 번에 (구획 수가 30만이라 파이썬 루프는 못 버틴다) ──
+                grouped = (gpd.GeoSeries(geoms)
+                           .groupby(labs).agg(lambda gs: shapely.union_all(gs.values)))
+                uniq = grouped.index.values
+                merged = np.asarray(grouped.values, dtype=object)
+                # 적응 허용오차 — 등가반경의 1/20, [1,10]m. 평탄 허용오차는 작은 구획을 죽인다
+                area = shapely.area(merged)
+                tol = np.clip(np.sqrt(area / np.pi) * SIMP_RATIO, SIMP_MIN, SIMP_MAX)
+                merged = shapely.simplify(merged, tol)
+                # 양자화 전에 유효화한다 — set_precision 은 무효 입력에서 TopologyException 을
+                # 던진다(실측: side location conflict). 던지면 그 시군 전체가 멈춘다.
+                bad = ~shapely.is_valid(merged)
+                if bad.any():
+                    merged[bad] = shapely.make_valid(merged[bad])
+                try:
+                    merged = shapely.set_precision(merged, GRID_M)   # 위상 인식 양자화
+                except Exception:
+                    # 배열 단위로 실패하면 개별로 시도하고, 끝내 안 되는 것은 양자화를
+                    # 건너뛴다 — 좌표가 조금 길어질 뿐, 형태를 잃거나 버리지는 않는다
+                    out_g, n_skip = [], 0
+                    for _g in merged:
+                        try:
+                            out_g.append(shapely.set_precision(_g, GRID_M))
+                        except Exception:
+                            out_g.append(_g)
+                            n_skip += 1
+                    merged = np.asarray(out_g, dtype=object)
+                    if n_skip:
+                        print(f"    ※ {sgg}/{c}: 양자화 건너뜀 {n_skip}구획(위상 충돌)",
+                              flush=True)
+                bad = ~shapely.is_valid(merged)
+                if bad.any():
+                    merged[bad] = shapely.make_valid(merged[bad])
+                keep = ~shapely.is_empty(merged)
+                gs = gpd.GeoSeries(merged[keep], crs=5186).to_crs(4326)
+                n_by = pd.Series(1, index=labs).groupby(level=0).sum()
+                for lab, geo in zip(uniq[keep], gs.values):
+                    gj = shapely.geometry.mapping(geo)
+                    # 좌표는 여기서 반올림하지 않는다 — 양자화는 위상 인식으로 이미 끝났고,
+                    # 여기서 또 자르면 그때 자기교차가 생긴다(인수인계 §7 실측).
+                    feats.append({'type': 'Feature',
+                                  'geometry': {'type': gj['type'],
+                                               'coordinates': list(gj['coordinates'])},
+                                  'properties': {'id': int(lab),
+                                                 'a': round(float(comp_area[c].get(lab, 0.0)), 2),
+                                                 'n': int(n_by.get(lab, 0))}})
         tmp = fo + '.tmp'
         json.dump({'type': 'FeatureCollection', 'cell': c, 'sgg': sgg,
                    'features': feats},

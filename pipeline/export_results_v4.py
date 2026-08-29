@@ -10,28 +10,30 @@ SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 con = duckdb.connect(os.path.join(LR, 'agrivoltaic_ledger_v1.duckdb'), read_only=True)
 # 구판(ADR-0039 이전, rho 값이 있는 런)은 사이트로 내보내지 않는다 — 아카이브 전용
 # (Ledger_Rebuild/scenario_runs_edition2 · DB scenario_runs_edition2)
-df = con.execute("SELECT * FROM scenario_runs WHERE rho IS NULL").fetch_df()
+# 판 구분자는 rho 만으로 부족하다 — ADR-0039 판(θ 있던 59런)이 섞인다.
+# theta_ha IS NULL 이 ADR-0041 판이고, 스모크는 정본이 아니다(인수인계 §3).
+df = con.execute("""SELECT * FROM scenario_runs
+                   WHERE theta_ha IS NULL AND COALESCE(track,'') <> 'smoke'""").fetch_df()
 con.close()
-keep = [c for c in ['name', 'rho', 'tau_m', 'theta_ha', 'n_eligible', 'eligible_area_km2',
-                    'n_component', 'n_listed', 'listed_area_km2', 'M_mw', 'extra', 'ran_at']
+keep = [c for c in ['name', 'universe', 'track', 'tau_m', 'n_eligible', 'eligible_area_km2',
+                    'n_component', 'component_area_km2', 'm_total_mw', 'size_bands_json',
+                    'grid_name', 'grid_sha', 'extra', 'ran_at']
         if c in df.columns]
 rows = json.loads(df[keep].to_json(orient='records', force_ascii=False))
-# 참고 MW: DB 테이블에 없음 — 각 런 디렉터리 summary.json(엔진 산출, ㎡ 원값 기준)에서
-# 파라미터가 본값과 일치할 때만 가져온다 (태그 런이 덮어쓴 stale summary 오인 방지).
-# rho 는 ADR-0039 로 폐지돼 params 에 없으므로 대조 대상이 아니다.
+# 참고 MW·크기 대역은 DB 테이블에 있다(m_total_mw · size_bands_json) — summary 재조회 불필요.
+# 대역은 JSON 문자열이라 여기서 풀어 둔다(발행 쪽에서 다시 파싱하지 않게).
 for r in rows:
-    sp = os.path.join(LR, 'scenario_runs', r['name'], 'summary.json')
-    if os.path.exists(sp):
-        s = json.load(open(sp, encoding='utf-8'))
-        if (s.get('name') == r['name']
-                and 'rho' not in s['params']
-                and abs(s['params'].get('tau_m', -1) - (r.get('tau_m') or 21.0)) < 1e-9
-                and abs(s['params'].get('theta_ha', -1) - (r.get('theta_ha') or 6.6667)) < 1e-3
-                and abs(s.get('listed_area_km2', -1) - r['listed_area_km2']) < 0.11):
-            r['M_mw'] = s.get('M_mw')
+    sb = r.pop('size_bands_json', None)
+    if sb:
+        try:
+            r['size_bands'] = json.loads(sb)
+        except Exception:
+            r['size_bands'] = []
 out = {'generated': datetime.datetime.now().strftime('%Y-%m-%d %H:%M'),
-       'note': '본값 판 (ADR-0039) — 실경작 비율은 적격 조건이 아님. 면적은 장부면적 기준, '
-               'MW는 참고 환산(0.045kW/㎡). 구 정의 런은 scenario_runs_edition2 아카이브',
+       'note': '3판 — 우주 = 법인·국공유(ADR-0040) · 등재 문턱 폐지(ADR-0041): 값은 연접 구획 '
+               '전량이다. 크기 기준이 필요하면 size_bands 를 쓰고 기준을 함께 적는다. '
+               'track=policy 만 정본이고 what_if 는 가정 딱지가 필수다(ADR-0028). '
+               '구판 런은 scenario_runs_edition2 아카이브',
        'runs': {r['name']: r for r in rows}}
 fp = os.path.join(SITE, 'data_v4', 'results_v4.json')
 json.dump(out, open(fp, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)

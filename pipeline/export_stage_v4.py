@@ -26,6 +26,7 @@ flags = con.execute("""
   SELECT e.pnu,
          (e.L1_jimok AND e.L4_phys AND NOT COALESCE(e.excl_slope15,FALSE)
           AND NOT COALESCE(e.jimok_missing,FALSE)) live,
+         (COALESCE(l.ownership,'') IN ('02','04','05','06')) pubcorp,
          (e.L1_jimok AND e.L3_s0 AND e.L4_phys
           AND NOT COALESCE(e.excl_slope15,FALSE) AND NOT COALESCE(e.jimok_missing,FALSE)
           AND NOT (l.class1_name LIKE '%개발제한구역%' OR l.class2_name LIKE '%개발제한구역%')
@@ -61,10 +62,13 @@ def blob(pnus, tol=120.0):
 
 L1 = blob(flags['pnu'].values)
 L2 = blob(flags.loc[flags['live'], 'pnu'].values)
-L3 = blob(flags.loc[flags['anchor'].fillna(False).astype(bool), 'pnu'].values)
-m4 = pd.read_parquet(os.path.join(LR, 'scenario_runs', 'ANCHOR', 'members.parquet'))
-m5 = pd.read_parquet(os.path.join(LR, 'scenario_runs', 'SOFT_A2', 'members.parquet'))
-L4 = blob(m4.loc[m4['pnu'].str[:5] == SGG, 'pnu'].values, 80.0)
+_anc = flags['anchor'].fillna(False).astype(bool)
+L3 = blob(flags.loc[_anc, 'pnu'].values)
+# ADR-0040: 소유 우주(법인·국공유)가 이제 가장 큰 좁힘이다 — 등재 문턱(θ)은 폐지됐으므로
+# 그 자리에 이 층을 둔다. 마지막 층은 진흥지역 전체 개방 시의 정본 연접 구획.
+_pub = _anc & flags['pubcorp'].fillna(False).astype(bool)
+L4 = blob(flags.loc[_pub, 'pnu'].values)
+m5 = pd.read_parquet(os.path.join(LR, 'scenario_runs', 'R3_zone_all', 'members.parquet'))
 L5 = blob(m5.loc[m5['pnu'].str[:5] == SGG, 'pnu'].values, 80.0)
 
 # 뷰박스 정규화 (여백 4%)
@@ -88,7 +92,7 @@ def paths(u):
 
 # 깔때기 수치 — 정본 조회값 (구획 값은 시군 구간 필지 수·색인 면적)
 idx = json.load(open(os.path.join(SITE, 'data_v4', 'clusters_index.json'), encoding='utf-8'))
-ANC = idx['sgg'][SGG]['ANCHOR']; A2 = idx['sgg'][SGG]['SOFT_A2']
+ANC = idx['sgg'][SGG]['R0_current']; A2 = idx['sgg'][SGG]['R3_zone_all']
 out = {
     'generated': datetime.datetime.now().strftime('%Y-%m-%d %H:%M'),
     'sgg': SGG, 'name': '충남 당진시', 'w': W, 'h': H,

@@ -1,106 +1,23 @@
 # -*- coding: utf-8 -*-
-"""소유 필터(CP — 법인·국공유만 병합, ADR-0038) 구획 지도 데이터 export.
+"""[폐지 2026-08-29] 소유 필터(CP) 구획 지도 export — 더 이상 쓰지 않는다.
 
-export_clusters_v4.py와 동일한 기하 처리(dissolve·15m 간소화·좌표 4자리·gzip)를
-CP 4칸에만 적용하고, 기존 clusters_index.json에 **병합**한다(기존 8칸 색인 보존).
-사용: python pipeline/export_clusters_cp.py
+ADR-0040 으로 **소유 필터가 정본 우주로 승격**됐다. 즉 R0_current·R2_promo 등 정본 런이
+곧 구 CP 이고, export_clusters_v4.py 가 그 지도를 이미 낸다. 구 파일명
+({sgg}_SOFT_R2_CP.json.gz)은 없어졌으므로 이 스크립트를 돌리면 두 세대가 섞인다(제3조).
+
+  구 SOFT_R2_CP    -> R2_promo
+  구 SOFT_R2_CP_SB -> R2_promo_SB
+  구 ANCHOR_CP     -> R0_current
+  구 ANCHOR_CP_SB  -> R0_current_SB
+
+대체: python pipeline/export_clusters_v4.py   (정본 8칸 · 연접 구획 전량)
+
+파일을 지우지 않고 실행만 막는다 — 구 본문은 git 이력(c26caff)에 있다.
 """
-import os, sys, json, gzip, datetime
+import sys
+
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-import pandas as pd
-import geopandas as gpd
-import shapely
-
-ROOT = r"C:\Users\user\새 폴더"
-LR = os.path.join(ROOT, 'Ledger_Rebuild')
-CAD = os.path.join(ROOT, 'Cadastre_All')
-RUNS = os.path.join(LR, 'scenario_runs')
-SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(SITE, 'data_v4', 'clusters')
-
-CELLS = ['ANCHOR_CP', 'ANCHOR_CP_SB', 'SOFT_R2_CP', 'SOFT_R2_CP_SB']
-SIMPLIFY_M = 15.0
-GEN = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
-
-nodes = pd.read_parquet(os.path.join(LR, 'engine_cache', 'nodes.parquet'),
-                        columns=['pnu', 'area'])
-area = pd.Series(nodes['area'].values, index=nodes['pnu'].values)
-del nodes
-
-mem, comp_area = {}, {}
-for c in CELLS:
-    m = pd.read_parquet(os.path.join(RUNS, c, 'members.parquet'))
-    m['sgg'] = m['pnu'].str[:5]
-    m['a'] = area.reindex(m['pnu'].values).values
-    comp_area[c] = m.groupby('lab')['a'].sum() / 1e6
-    mem[c] = m
-    print(f"{c}: 멤버 {len(m):,} · 등재 구획 {m['lab'].nunique():,}", flush=True)
-
-sggs = sorted(set().union(*[set(m['sgg'].unique()) for m in mem.values()]))
-print(f"대상 시군 {len(sggs)}", flush=True)
-
-
-def rnd4(cc):
-    if isinstance(cc[0], (list, tuple)):
-        return [rnd4(x) for x in cc]
-    return [round(cc[0], 4), round(cc[1], 4)]
-
-
-span = {c: set(mem[c].groupby('lab')['sgg'].nunique().pipe(lambda s: s[s > 1]).index)
-        for c in CELLS}
-
-for i, sgg in enumerate(sggs, 1):
-    g = None
-    for c in CELLS:
-        fo = os.path.join(OUT, f'{sgg}_{c}.json.gz')
-        if os.path.exists(fo):
-            continue
-        if g is None:
-            g = gpd.read_file(os.path.join(CAD, f'{sgg}.gpkg')).to_crs(5186)
-            g = g.drop_duplicates('pnu').set_index('pnu')
-        ms = mem[c][mem[c]['sgg'] == sgg]
-        feats = []
-        if len(ms):
-            sub = g.reindex(ms['pnu'].values)
-            ok = sub.geometry.notna().values
-            sub = sub[ok]
-            labs = ms['lab'].values[ok]
-            n_by = pd.Series(1, index=labs).groupby(level=0).sum()
-            for lab, geo in gpd.GeoSeries(sub.geometry.values).groupby(labs):
-                u = shapely.union_all(geo.values)
-                u = shapely.simplify(u, SIMPLIFY_M)
-                if u.is_empty:
-                    continue
-                u4326 = gpd.GeoSeries([u], crs=5186).to_crs(4326).iloc[0]
-                gj = shapely.geometry.mapping(u4326)
-                gj = {'type': gj['type'], 'coordinates': rnd4(list(gj['coordinates']))}
-                feats.append({'type': 'Feature', 'geometry': gj,
-                              'properties': {'id': int(lab),
-                                             'a': round(float(comp_area[c].get(lab, 0.0)), 2),
-                                             'n': int(n_by.get(lab, 0)),
-                                             'sp': 1 if lab in span[c] else 0}})
-        raw = json.dumps({'type': 'FeatureCollection', 'cell': c, 'sgg': sgg,
-                          'features': feats}, ensure_ascii=False,
-                         separators=(',', ':')).encode('utf-8')
-        with gzip.open(fo + '.tmp', 'wb', compresslevel=9) as z:
-            z.write(raw)
-        os.replace(fo + '.tmp', fo)
-    if i % 10 == 0 or i == len(sggs):
-        print(f"  [{i}/{len(sggs)}] {sgg} 완료", flush=True)
-
-# ── 색인 병합 (기존 8칸 보존) ──
-ixp = os.path.join(SITE, 'data_v4', 'clusters_index.json')
-index = json.load(open(ixp, encoding='utf-8'))
-for c in CELLS:
-    if c not in index['cells']:
-        index['cells'].append(c)
-for sgg in sggs:
-    ent = index['sgg'].setdefault(sgg, {})
-    for c in CELLS:
-        ms = mem[c][mem[c]['sgg'] == sgg]
-        ids = set(ms['lab'].unique())
-        ent[c] = {'k': len(ids),
-                  'km2': round(float(comp_area[c].reindex(list(ids)).sum()), 1) if ids else 0.0}
-index['generated_cp'] = GEN
-json.dump(index, open(ixp, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
-print(f"완료 — CP {len(sggs)}시군 × 4칸 + 색인 병합 ({GEN})", flush=True)
+print("거부: 폐지된 스크립트다 (ADR-0040 — 소유 필터가 정본 우주로 승격).")
+print("      대체: python pipeline/export_clusters_v4.py")
+print("      구 CP 칸 대응: SOFT_R2_CP->R2_promo · ANCHOR_CP->R0_current · *_CP_SB->*_SB")
+raise SystemExit(1)

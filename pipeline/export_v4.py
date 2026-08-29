@@ -27,17 +27,24 @@ def save(name, obj):
 GEN = datetime.now().strftime('%Y-%m-%d %H:%M')
 
 # ── 1. summary_v4: 매트릭스(전국·간척) + 풀 분해 + 소유 세 무리 ─────────────
-rows = Q.matrix_data()                # T14 검증 내장 — 실패 시 여기서 중단
-def cell(pop, code, phase):
-    r = [x for x in rows if x['pop'] == pop and x['cell'] == code and x['phase'] == phase][0]
+# 정본(법인·국공유)과 대조군(무필터)을 **둘 다** 낸다 — 정본 단독 제시 금지(제2조).
+# 각 우주는 자기 검증을 내장한다(정본은 런 산출과, 대조군은 상수와 일치) — 실패 시 중단.
+rows = Q.matrix_data(universe='pubcorp')
+rows_ctl = Q.matrix_data(universe='all')
+def cell(pop, code, phase, src=None):
+    src = rows if src is None else src
+    r = [x for x in src if x['pop'] == pop and x['cell'] == code and x['phase'] == phase][0]
     # m2 원값 동봉 — MW 참고 환산은 반올림 km²가 아니라 원값에서 (브리프와 자릿수 일치)
     return {'n': r['n'], 'km2': round(r['m2']/1e6, 1), 'm2': round(r['m2'], 2)}
 
 # 키 이름 = query.py 의 phase 그대로 ('본값' = 정본, '구정의' = 폐지된 ρ≥0.30 참고값).
 # 구판 키 '전'/'후' 는 쓰지 않는다 — 같은 자리에 뜻이 다른 값이 들어가는 사고를 막는다
 # (구 '전' = 새 '본값', 구 '후' = 새 '구정의').
-PH = ['본값', '구정의']
-matrix = {pop: {code: dict({'name': name}, **{ph: cell(pop, code, ph) for ph in PH})
+# 키: '정본' = 법인·국공유 우주(ADR-0040), '대조군' = 무필터. 구판 키('본값'/'구정의',
+# 그 전의 '전'/'후')는 뜻이 달라 쓰지 않는다 — 같은 자리에 다른 값이 들어가는 사고를 막는다.
+matrix = {pop: {code: {'name': name,
+                       '정본': cell(pop, code, '본값'),
+                       '대조군': cell(pop, code, '본값', rows_ctl)}
                 for code, name, _ in Q.MATRIX_ZONES}
           for pop in ['전국', '간척']}
 
@@ -46,10 +53,14 @@ pools = {}
 for pop in ['전국', '간척']:
     pools[pop] = {}
     for pool, hi in [('보호구역', 'R1'), ('진흥구역', 'R2')]:
-        pools[pop][pool] = {ph: {'n': cell(pop, hi, ph)['n'] - cell(pop, 'R0', ph)['n'],
-                                 'km2': round((cell(pop, hi, ph)['m2'] - cell(pop, 'R0', ph)['m2'])/1e6, 1),
-                                 'm2': round(cell(pop, hi, ph)['m2'] - cell(pop, 'R0', ph)['m2'], 2)}
-                            for ph in PH}
+        _src = {'정본': rows, '대조군': rows_ctl}
+        pools[pop][pool] = {ph: {'n': cell(pop, hi, '본값', _src[ph])['n']
+                                      - cell(pop, 'R0', '본값', _src[ph])['n'],
+                                 'km2': round((cell(pop, hi, '본값', _src[ph])['m2']
+                                               - cell(pop, 'R0', '본값', _src[ph])['m2'])/1e6, 1),
+                                 'm2': round(cell(pop, hi, '본값', _src[ph])['m2']
+                                             - cell(pop, 'R0', '본값', _src[ph])['m2'], 2)}
+                            for ph in ['정본', '대조군']}
 
 groups = Q.owner_groups_data()
 owner = [{'group': g['group'], 'n': g['n'], 'km2': round(g['m2']/1e6, 1),
@@ -59,26 +70,34 @@ owner = [{'group': g['group'], 'n': g['n'], 'km2': round(g['m2']/1e6, 1),
 
 # 판정 보류(용도지역 미상) 병기값 — 엔진 ANCHOR summary에서 (ADR-0035)
 pend = {}
-_asp = os.path.join(r"C:\Users\user\새 폴더\Ledger_Rebuild", 'scenario_runs', 'ANCHOR', 'summary.json')
+_asp = os.path.join(r"C:\Users\user\새 폴더\Ledger_Rebuild", 'scenario_runs',
+                    'R0_current', 'summary.json')
 if os.path.exists(_asp):
     pend = json.load(open(_asp, encoding='utf-8')).get('pending_zone_null', {})
 
+_r0 = cell('전국', 'R0', '본값')
+_r0c = cell('전국', 'R0', '본값', rows_ctl)
 save('summary_v4.json', {
     'generated': GEN,
     'unit_note': '1차 단위 km². 참고 MW = 면적(㎡)×0.045/1000 (GCR 0.225×효율 0.20 가정) — 표시 시 가정 병기',
-    'anchor': {'n': Q.ANCHOR_N, 'km2': round(Q.ANCHOR_M2/1e6, 2), 'm2': Q.ANCHOR_M2,
-               'def': '지목 농지 ∧ 물리 통과(건물·수역·산단 없음) ∧ ¬경사15 ∧ ¬지목결측 '
-                      '∧ ¬개발제한 ∧ ¬보전관리 ∧ ¬보전녹지 (ADR-0039 — 실경작 비율은 적격 조건 아님)',
-               'touchstone': 'T16-① 정확 일치 검증 통과 (구 정의 T14는 회귀 검증으로만 유지)',
-               'legacy': {'n': Q.ANCHOR_LEGACY_N, 'km2': round(Q.ANCHOR_LEGACY_M2/1e6, 2),
+    # 앵커는 폐지됐다(ADR-0040 §2) — R0 칸은 남되 '기준값'이 아니라 한 칸일 뿐이다.
+    # 정본은 런 산출에서, 대조군은 상수에서 온다.
+    'anchor': {'n': _r0['n'], 'km2': round(_r0['m2']/1e6, 2), 'm2': _r0['m2'],
+               'def': '우주 = 법인(06)+국공유(02·04·05) (ADR-0040) ∧ 지목 농지 ∧ 물리 통과'
+                      '(건물·수역·산단 없음) ∧ ¬경사15 ∧ ¬지목결측 ∧ ¬개발제한 ∧ ¬보전관리 '
+                      '∧ ¬보전녹지 (실경작 비율은 적격 조건 아님 — ADR-0039)',
+               'touchstone': '정본 R0 = R0_current 런 산출과 일치 검증 · 대조군 R0 = 상수 정확 일치',
+               'control': {'n': _r0c['n'], 'km2': round(_r0c['m2']/1e6, 2),
+                           'def': '무필터(전 소유) 대조군 — 정본 아님, 병기 전용'},
+               'legacy': {'n': Q.R0_ALL_LEGACY_N, 'km2': round(Q.R0_ALL_LEGACY_M2/1e6, 2),
                           'def': '구 정의 ρ≥0.30 — 폐지(참고값, 정책 인용 금지)'},
                'pending_zone_null': pend},
-    'matrix': matrix,          # 독립 조합 R0–R3 · 각 본값/구정의(참고) — 누적 사다리 아님
+    'matrix': matrix,          # 독립 조합 R0–R3 · 각 정본/대조군 — 누적 사다리 아님
     'pools': pools,            # R1−R0(보호)·R2−R0(진흥), 서로소라 정확
     'owner_groups': owner,     # 유형 구분(개인 식별 아님)
 })
 
-# ── 1b. funnel: 전국 깔때기 (전체 → 전답과 → 앵커) ─────────────────────────
+# ── 1b. funnel: 전국 깔때기 (전체 → 전답과 → R0 대조군) ───────────────────
 # ADR-0039: 실경작 비율은 적격 조건이 아니므로 깔때기 단계에서 제외한다. 팜맵 실측률과
 # 구 정의(ρ≥0.30) 통과 수는 참고 항목(_ 접두)으로만 남긴다 — 단계로 그리면 폐지된 조건이
 # 다시 판정처럼 읽힌다.
@@ -87,17 +106,19 @@ tot = comp[['전체필지', '전답과', '지목결측', '팜맵실측', '구정
 funnel = {
     '전체 필지': int(tot['전체필지']),
     '지목 전·답·과수원': int(tot['전답과']),
-    '현행법 적격(앵커)': int(tot['앵커적격']),
+    '현행법 적격(무필터 대조군)': int(tot['앵커적격']),
     '_지목결측': int(tot['지목결측']),
     '_팜맵 공간교차 실측': int(tot['팜맵실측']),
     '_구 정의(실경작 30% 이상)': int(tot['구정의30통과']),
 }
 save('funnel_v4.json', {'generated': GEN, 'national': funnel,
-                        'note': '앵커 = 본값 적격(ADR-0039, 실경작 무관) — 지목결측은 구제 필지'
-                                '(앵커 부적격, 복구 진행 중). _ 접두 항목은 참고값(단계 아님)'})
+                        'note': '깔때기는 **무필터 대조군** 기준이다 — 소유 우주를 걸기 전의 '
+                                '전국 선별 과정을 보이기 위한 것(정본은 여기서 다시 8.8%로 좁혀진다). '
+                                '지목결측은 구제 필지(복구 진행 중). _ 접두 항목은 참고값(단계 아님)'})
 
 # ── 2. sgg_matrix: 시군별 R0–R3 (지도 채색·시군 표) ─────────────────────────
-srows = Q.matrix_data(group_by='sgg')
+srows = Q.matrix_data(group_by='sgg', universe='pubcorp')
+srows_ctl = Q.matrix_data(group_by='sgg', universe='all')
 # 시군 이름: 표준 경계 자산(sgg_boundary)에서 — 전 시군 커버 (config.toml 경로 단일 출처)
 import toolconf
 import geopandas as gpd
@@ -116,11 +137,16 @@ names.update({'27720': '대구 군위군', '28177': '인천 미추홀구',
               '41196': '경기 부천시오정구', '41670': '경기 여주시',
               '43112': '충북 청주시서원구', '43114': '충북 청주시청원구'})
 sgg = {}
-for r in srows:
-    d = sgg.setdefault(r['sgg'], {'name': names.get(r['sgg'], r['sgg'])})
-    d.setdefault(r['cell'], {})[r['phase']] = {'n': r['n'], 'km2': round(r['m2']/1e6, 2)}
+for uname, src in [('정본', srows), ('대조군', srows_ctl)]:
+    for r in src:
+        if r['phase'] != '본값':
+            continue
+        d = sgg.setdefault(r['sgg'], {'name': names.get(r['sgg'], r['sgg'])})
+        d.setdefault(r['cell'], {})[uname] = {'n': r['n'], 'km2': round(r['m2']/1e6, 2)}
 save('sgg_matrix.json', {'generated': GEN, 'codes': sgg,
-                         'note': '시군별 실측값이 1차 산출 — 반경·구간 묶음 없음'})
+                         'note': '시군별 실측값이 1차 산출 — 반경·구간 묶음 없음. '
+                                 '칸마다 정본(법인·국공유)과 대조군(무필터)을 함께 둔다 — '
+                                 '정본 단독 제시 금지(제2조)'})
 
 # ── 3. meta_v4: 계보 (각 페이지 푸터의 근거) ────────────────────────────────
 con = Q.db()

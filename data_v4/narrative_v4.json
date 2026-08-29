@@ -1,6 +1,10 @@
 {
- "generated": "2026-08-27 23:44",
- "edition": "2판 (ADR-0035) · 소유 필터 ADR-0038",
+ "generated": "2026-08-29 15:08",
+ "edition": "3판 — 우주 = 법인·국공유(ADR-0040) · 등재 문턱 폐지(ADR-0041) · 실경작 비율은 적격 조건 아님(ADR-0039)",
+ "universe": {
+  "정본": "pubcorp — 국공유(02·04·05)+법인(06)",
+  "대조군": "all — 무필터, 정책 값 아님(병기 전용)"
+ },
  "kw_per_m2": 0.045,
  "threshold": {
   "mw50_m2": 1111111,
@@ -9,181 +13,229 @@
   "mw100_ha": 222.2
  },
  "runs": {
-  "ANCHOR": {
-   "n_eligible": 5719511,
-   "eligible_km2": 5582.55,
-   "n_listed": 15850,
-   "listed_km2": 2989.8,
-   "mw": 134540,
-   "ge50": 161,
-   "ge100": 38,
-   "ge50_km2": 386.3,
-   "ge50_mw": 17385,
-   "max_ha": 3399
-  },
-  "ANCHOR_SB": {
-   "n_eligible": 2019431,
-   "eligible_km2": 2298.17,
-   "n_listed": 5003,
-   "listed_km2": 772.5,
-   "mw": 34763,
-   "ge50": 36,
-   "ge100": 13,
-   "ge50_km2": 86.3,
-   "ge50_mw": 3882,
-   "max_ha": 769
-  },
-  "SOFT_A1": {
-   "n_eligible": 6200066,
-   "eligible_km2": 6158.37,
-   "n_listed": 17821,
-   "listed_km2": 3465.6,
-   "mw": 155953,
-   "ge50": 211,
-   "ge100": 49,
-   "ge50_km2": 480.1,
-   "ge50_mw": 21606,
-   "max_ha": 3399
-  },
-  "SOFT_A1_SB": {
-   "n_eligible": 2235380,
-   "eligible_km2": 2561.14,
-   "n_listed": 5925,
-   "listed_km2": 908.0,
-   "mw": 40860,
-   "ge50": 39,
-   "ge100": 13,
-   "ge50_km2": 91.2,
-   "ge50_mw": 4104,
-   "max_ha": 769
-  },
-  "SOFT_R2": {
-   "n_eligible": 8790833,
-   "eligible_km2": 11395.85,
-   "n_listed": 21989,
-   "listed_km2": 9358.8,
-   "mw": 421146,
-   "ge50": 1649,
-   "ge100": 640,
-   "ge50_km2": 4494.5,
-   "ge50_mw": 202252,
-   "max_ha": 3399
-  },
-  "SOFT_R2_SB": {
-   "n_eligible": 3754291,
-   "eligible_km2": 5850.57,
-   "n_listed": 14171,
-   "listed_km2": 4223.1,
-   "mw": 190039,
-   "ge50": 627,
-   "ge100": 170,
-   "ge50_km2": 1306.6,
-   "ge50_mw": 58798,
-   "max_ha": 1096
-  },
-  "SOFT_A2": {
-   "n_eligible": 9271388,
-   "eligible_km2": 11971.67,
-   "n_listed": 22042,
-   "listed_km2": 9960.2,
-   "mw": 448210,
-   "ge50": 1733,
-   "ge100": 708,
-   "ge50_km2": 5059.3,
-   "ge50_mw": 227670,
-   "max_ha": 3517
-  },
-  "SOFT_A2_SB": {
-   "n_eligible": 3970240,
-   "eligible_km2": 6113.54,
-   "n_listed": 14886,
-   "listed_km2": 4432.5,
-   "mw": 199465,
-   "ge50": 665,
-   "ge100": 183,
-   "ge50_km2": 1394.1,
-   "ge50_mw": 62736,
-   "max_ha": 1244
-  },
-  "ANCHOR_CP": {
+  "R0_current": {
    "n_eligible": 1011491,
    "eligible_km2": 490.71,
-   "n_listed": 409,
-   "listed_km2": 56.1,
-   "mw": 2525,
+   "n_component": 300020,
+   "component_km2": 490.71,
+   "mw": 22082,
    "ge50": 1,
    "ge100": 1,
    "ge50_km2": 2.4,
    "ge50_mw": 107,
    "max_ha": 237
   },
-  "ANCHOR_CP_SB": {
+  "R0_current_SB": {
    "n_eligible": 337453,
    "eligible_km2": 229.71,
-   "n_listed": 205,
-   "listed_km2": 29.6,
-   "mw": 1334,
+   "n_component": 114923,
+   "component_km2": 229.71,
+   "mw": 10337,
    "ge50": 1,
    "ge100": 1,
    "ge50_km2": 2.4,
    "ge50_mw": 107,
    "max_ha": 237
   },
-  "SOFT_R2_CP": {
+  "R1_protect": {
+   "n_eligible": 1080808,
+   "eligible_km2": 530.23,
+   "n_component": 318403,
+   "component_km2": 530.23,
+   "mw": 23860,
+   "ge50": 1,
+   "ge100": 1,
+   "ge50_km2": 2.4,
+   "ge50_mw": 107,
+   "max_ha": 237
+  },
+  "R1_protect_SB": {
+   "n_eligible": 369231,
+   "eligible_km2": 250.2,
+   "n_component": 125105,
+   "component_km2": 250.2,
+   "mw": 11259,
+   "ge50": 1,
+   "ge100": 1,
+   "ge50_km2": 2.4,
+   "ge50_mw": 107,
+   "max_ha": 237
+  },
+  "R2_promo": {
    "n_eligible": 1494366,
    "eligible_km2": 1038.85,
-   "n_listed": 1118,
-   "listed_km2": 254.3,
-   "mw": 11445,
+   "n_component": 391150,
+   "component_km2": 1038.85,
+   "mw": 46748,
    "ge50": 25,
    "ge100": 8,
    "ge50_km2": 54.4,
    "ge50_mw": 2450,
    "max_ha": 579
   },
-  "SOFT_R2_CP_SB": {
+  "R2_promo_SB": {
    "n_eligible": 625754,
    "eligible_km2": 631.72,
-   "n_listed": 703,
-   "listed_km2": 196.5,
-   "mw": 8841,
+   "n_component": 178062,
+   "component_km2": 631.72,
+   "mw": 28428,
    "ge50": 24,
    "ge100": 8,
    "ge50_km2": 52.2,
    "ge50_mw": 2350,
    "max_ha": 576
+  },
+  "R3_zone_all": {
+   "n_eligible": 1563683,
+   "eligible_km2": 1078.38,
+   "n_component": 406283,
+   "component_km2": 1078.38,
+   "mw": 48527,
+   "ge50": 25,
+   "ge100": 8,
+   "ge50_km2": 54.5,
+   "ge50_mw": 2451,
+   "max_ha": 579
+  },
+  "R3_zone_all_SB": {
+   "n_eligible": 657532,
+   "eligible_km2": 652.21,
+   "n_component": 186778,
+   "component_km2": 652.21,
+   "mw": 29349,
+   "ge50": 24,
+   "ge100": 8,
+   "ge50_km2": 52.2,
+   "ge50_mw": 2350,
+   "max_ha": 576
+  },
+  "R0_current@all": {
+   "n_eligible": 5719511,
+   "eligible_km2": 5582.55,
+   "n_component": 572303,
+   "component_km2": 5582.55,
+   "mw": 251215,
+   "ge50": 161,
+   "ge100": 38,
+   "ge50_km2": 386.3,
+   "ge50_mw": 17385,
+   "max_ha": 3399
+  },
+  "R1_protect@all": {
+   "n_eligible": 6200066,
+   "eligible_km2": 6158.37,
+   "n_component": 573879,
+   "component_km2": 6158.37,
+   "mw": 277126,
+   "ge50": 211,
+   "ge100": 49,
+   "ge50_km2": 480.1,
+   "ge50_mw": 21606,
+   "max_ha": 3399
+  },
+  "R2_promo@all": {
+   "n_eligible": 8790833,
+   "eligible_km2": 11395.85,
+   "n_component": 512376,
+   "component_km2": 11395.85,
+   "mw": 512814,
+   "ge50": 1649,
+   "ge100": 640,
+   "ge50_km2": 4494.5,
+   "ge50_mw": 202252,
+   "max_ha": 3399
+  },
+  "R3_zone_all@all": {
+   "n_eligible": 9271388,
+   "eligible_km2": 11971.67,
+   "n_component": 503689,
+   "component_km2": 11971.67,
+   "mw": 538725,
+   "ge50": 1733,
+   "ge100": 708,
+   "ge50_km2": 5059.3,
+   "ge50_mw": 227670,
+   "max_ha": 3517
+  },
+  "R0_current_SB@all": {
+   "n_eligible": 2019431,
+   "eligible_km2": 2298.17,
+   "n_component": 316030,
+   "component_km2": 2298.17,
+   "mw": 103418,
+   "ge50": 36,
+   "ge100": 13,
+   "ge50_km2": 86.3,
+   "ge50_mw": 3882,
+   "max_ha": 769
+  },
+  "R1_protect_SB@all": {
+   "n_eligible": 2235380,
+   "eligible_km2": 2561.14,
+   "n_component": 327755,
+   "component_km2": 2561.14,
+   "mw": 115251,
+   "ge50": 39,
+   "ge100": 13,
+   "ge50_km2": 91.2,
+   "ge50_mw": 4104,
+   "max_ha": 769
+  },
+  "R2_promo_SB@all": {
+   "n_eligible": 3754291,
+   "eligible_km2": 5850.57,
+   "n_component": 330328,
+   "component_km2": 5850.57,
+   "mw": 263276,
+   "ge50": 627,
+   "ge100": 170,
+   "ge50_km2": 1306.6,
+   "ge50_mw": 58798,
+   "max_ha": 1096
+  },
+  "R3_zone_all_SB@all": {
+   "n_eligible": 3970240,
+   "eligible_km2": 6113.54,
+   "n_component": 335040,
+   "component_km2": 6113.54,
+   "mw": 275109,
+   "ge50": 665,
+   "ge100": 183,
+   "ge50_km2": 1394.1,
+   "ge50_mw": 62736,
+   "max_ha": 1244
   }
  },
  "owner_setback": [
   {
    "group": "간척지 내 법인",
-   "all_m2": 120979367.71999982,
-   "all_sb_m2": 117656644.32999986,
+   "all_m2": 120979367.71999985,
+   "all_sb_m2": 117656644.3299999,
    "anchor_m2": 3558888.6599999988,
-   "anchor_sb_m2": 3041016.1599999997
+   "anchor_sb_m2": 3041016.16
   },
   {
    "group": "간척지 내 비법인",
-   "all_m2": 131279787.9,
-   "all_sb_m2": 124636740.83000004,
-   "anchor_m2": 6325988.930000004,
+   "all_m2": 131279787.90000007,
+   "all_sb_m2": 124636740.8300001,
+   "anchor_m2": 6325988.9300000025,
    "anchor_sb_m2": 5479437.580000001
   },
   {
    "group": "간척지 외 법인",
-   "all_m2": 784106738.0800002,
-   "all_sb_m2": 501265588.19999945,
-   "anchor_m2": 159870860.6500001,
-   "anchor_sb_m2": 83746910.90999989
+   "all_m2": 784106738.0799994,
+   "all_sb_m2": 501265588.19999987,
+   "anchor_m2": 159870860.65000015,
+   "anchor_sb_m2": 83746910.90999997
   }
  ],
  "big_composition": {
-  "ANCHOR": {
+  "R0_current@all": {
    "ge50": 161,
    "majority_op": 3,
    "indiv_share_pct": 92.0
   },
-  "SOFT_R2": {
+  "R2_promo@all": {
    "ge50": 1649,
    "majority_op": 27,
    "indiv_share_pct": 90.0
