@@ -47,6 +47,7 @@
       <a href="map.html" data-i18n="nav-map">지도</a>
       <a href="candidates.html" data-i18n="nav-cand">특구 후보</a>
       <a href="proximity.html" data-i18n="nav-prox">입지 추천</a>
+      <a href="estimate.html" data-i18n="nav-estimate">잠재량 산정</a>
       <a href="decree.html" data-i18n="nav-decree">시행령 제정안</a>
       <a href="insight.html" data-i18n="nav-insight">인사이트</a>
       <a class="active" href="method.html" data-i18n="nav-method">방법·재현</a>
@@ -100,13 +101,8 @@
         <tr><td class="l"><b>농업진흥지역</b></td><td class="l">현행법 기준은 농업진흥지역 밖의 농지만 —
           보호구역·진흥구역 개방은 제도 변수로 따로 계산해 조합함
           (<a href="evidence.html" style="color:var(--leaf-deep)">근거 탭의 조합 R0–R3</a>)</td><td class="l">진흥지역 경계<sup class="fnref">[5]</sup>(필지 대표점 교차)</td></tr>
-        <tr><td class="l"><b>실경작</b><br><span class="ref">판정 조건 아님</span></td>
-          <td class="l">위성 실측 경작 비율은 <b>적격 판정에 쓰지 않음</b> — 저경작층의 실체가
-          대부분 팜맵 미수록이고, 휴경의 법적 확정은 농지 전수조사 공표 대기이기 때문.<br>
-          구획별 경작 정도는 서술·우선순위 지표로 별도 산출함</td><td class="l">팜맵<sup class="fnref">[2]</sup></td></tr>
       </table></div>
-      <div class="figcap">표 1. 필지별 판정 조건 — 다섯 검사와 각 검사의 근거 자료
-      (실경작은 판정에 쓰지 않음).<br>시나리오 판정은
+      <div class="figcap">표 1. 필지별 판정 조건 — 다섯 검사와 각 검사의 근거 자료.<br>시나리오 판정은
       필지 단위 규칙이라 임의 필지의 지번으로 같은 판정을 재현할 수 있음<sup class="fnref">[12]</sup>.</div>
     </div>
   </div>
@@ -172,8 +168,7 @@
     법정 규모 기준은 대통령령 미제정이라 자체 기준임을 명시<sup class="fnref">[10]</sup>.<br>연접 21m는
     필지 간격의 실측(간격의 구성이 구거·도로)에 근거.<br>민감도 검증: 문턱 50,000/66,667/100,000㎡ ×
     연접 15/21/25m의 전 조합에서 정책 순위(진흥구역 개방 ≥ 현행법)가 역전되지
-    않음을 확인<sup class="fnref">[12]</sup>.<br>실경작 비율은 적격 조건이 아니므로 민감도 축이
-    아님 — 관련 이력은 각주 참조<sup class="fnref">[2]</sup>.</div>
+    않음을 확인<sup class="fnref">[12]</sup>.</div>
   </div>
 </section>
 
@@ -195,8 +190,6 @@
     </div>`).join('');
   document.getElementById('funnel-fn').innerHTML =
     `지목 전·답·과수원 중 팜맵 공간교차 실측 ${V4.n(f['_팜맵 공간교차 실측'])}필지 — 나머지는 대장 배분 잔존분.<br>` +
-    `실경작 비율은 적격 조건이 아니어서 단계로 넣지 않음 — 참고로 경작 비율 30% 이상은 ` +
-    `${V4.n(f['_구 정의(실경작 30% 이상)'])}필지<sup class="fnref">[2]</sup>.<br>` +
     `지목을 확인할 수 없는 ${V4.n(f['_지목결측'])}필지는 집계에서 제외하고 별도 관리함 — ` +
     `원본 지적자료 1단계 복구는 적용 완료, 잔여분은 2단계 재조회 대상.<br>` +
     `이 깔때기는 필지 수 기준이며, 면적(km²) 기준 전체 값은 ` +
@@ -229,9 +222,8 @@
       (근거 기록 → 검증 → 상수 갱신 → 전체 재계산)뿐.</p>
       <ul><li>초판 → 배제 규정 원문 재검증으로 1차 개정</li>
       <li>2차 개정: 지목 복구 적용 — 증분 전액이 복구 필지에서 나옴을 분해 검증</li>
-      <li>3차 개정(현행): 실경작 비율을 적격 조건에서 제거 — 저경작층의 실체가 확인된 휴경이
-      아니라 대부분 팜맵 미수록이고, 휴경의 법적 확정은 농지 전수조사 공표 대기이기 때문.
-      구 기준값(경작 30% 이상, 3,272,555필지·4,099.64km²)은 회귀 검증용으로만 유지</li>
+      <li>3차 개정(현행): 실경작 비율을 적격 조건에서 제거.
+      구 기준값(3,272,555필지·4,099.64km²)은 회귀 검증용으로만 유지</li>
       <li>용도지역 미상 ${s.anchor.pending_zone_null ? V4.n(s.anchor.pending_zone_null.n) : ''}필지는
       판정 보류로 별도 병기 — 기준값에 불포함</li></ul>`,
     add: `<span class="mtag">ADDITIVITY</span><h3>가산성 검사 — 실제 수치로 검산</h3>
