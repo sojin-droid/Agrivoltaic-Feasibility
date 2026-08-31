@@ -13,6 +13,7 @@ from datetime import datetime
 MODEL = r"C:\Users\user\새 폴더\model"
 sys.path.insert(0, MODEL)
 import query as Q                     # 정본 질의 모듈
+from engine.grid_spec import load as load_grid, DEFAULT_GRID
 
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(SITE, 'data_v4')
@@ -93,6 +94,7 @@ save('summary_v4.json', {
                           'def': '구 정의 ρ≥0.30 — 폐지(참고값, 정책 인용 금지)'},
                'pending_zone_null': pend},
     'matrix': matrix,          # 독립 조합 R0–R3 · 각 정본/대조군 — 누적 사다리 아님
+    'reclaim_ledger': Q.reclaim_ledger_data(),   # 화면 산문이 쓰던 45,193 — 이제 렌더
     'pools': pools,            # R1−R0(보호)·R2−R0(진흥), 서로소라 정확
     'owner_groups': owner,     # 유형 구분(개인 식별 아님)
 })
@@ -154,8 +156,13 @@ lineage = [{'tbl': t, 'built': str(b), 'source': s, 'layer': (l or '')}
            for t, b, s, l in con.execute(
                "SELECT tbl, built, source, layer FROM meta_versions ORDER BY layer, tbl").fetchall()]
 con.close()
+# 판 표식은 격자 선언에서 읽는다 — 여기에 적으면 판이 바뀔 때마다 사람이 고쳐야 하고,
+# 실제로 3판 문자열이 4판 산출물 위에 남아 있었다.
+_g = load_grid(DEFAULT_GRID)
 save('meta_v4.json', {'generated': GEN,
-                      'data_generation': '3판 (실경작 조건 제거 · 2026-08-27)',
+                      'data_generation': f'{_g.edition} · {_g.name} · {_g.note}',
+                      'grid': {'name': _g.name, 'edition': _g.edition,
+                               'sha12': _g.sha12, 'n_runs': len(_g.plan())},
                       'verification': 'export 시 앵커 상수 정확 일치 검증 통과 (T16-①)', 'lineage': lineage})
 
 print(f"완료 — data_v4/ (생성 {GEN})")

@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-29 14:58",
+ "generated": "2026-08-31 12:32",
  "unit_note": "1차 단위 km². 참고 MW = 면적(㎡)×0.045/1000 (GCR 0.225×효율 0.20 가정) — 표시 시 가정 병기",
  "anchor": {
   "n": 1011491,
@@ -131,6 +131,10 @@
     }
    }
   }
+ },
+ "reclaim_ledger": {
+  "ledger_n": 45193,
+  "nat_managed_districts": 13
  },
  "pools": {
   "전국": {

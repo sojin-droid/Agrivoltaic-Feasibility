@@ -149,7 +149,7 @@
           농지에서 농사를 계속 지으면서 그 위 공간에 태양광 설비를 함께 운영하는 방식.<br>
           발전만 하는 일반 태양광과 달리 농지가 농지로 유지됨<sup class="fnref">[10]</sup>.</p>
           <p style="font-size:13.5px;margin:0 0 10px;word-break:keep-all"><b>필지</b> —
-          토지의 등록 단위.<br>지번 하나가 필지 하나이며, 이 분석은 전국 39,726,310개 필지를
+          토지의 등록 단위.<br>지번 하나가 필지 하나이며, 이 분석은 전국 <b id="i-nparcel">—</b>개 필지를
           하나씩 판정함<sup class="fnref">[1]</sup>.</p>
           <p style="font-size:13.5px;margin:0 0 10px;word-break:keep-all"><b>실경작 정도</b> —
           지목이 농지라도 실제로 농사를 짓는지는 별개.<br>위성 판독<sup class="fnref">[2]</sup>으로
@@ -308,6 +308,8 @@
      <a href="atlas.html"><b>아틀라스에서 지구별로 보기 →</b></a>`;
 
   // ── 다섯 단계로 읽는 결론 — narrative_v4(구획 크기 분포·소유 필터·소유×이격) 렌더 ──
+  const F = await V4.data('funnel_v4');
+  document.getElementById('i-nparcel').textContent = V4.n(F.national['전체 필지']);
   const N = await V4.data('narrative_v4');
   const R = N.runs;
   const mwK = k => V4.n(Math.round(k * 45));                         // km² → MW (0.045 kW/㎡)

@@ -1,6 +1,12 @@
 {
- "generated": "2026-08-29 14:58",
- "data_generation": "3판 (실경작 조건 제거 · 2026-08-27)",
+ "generated": "2026-08-31 12:32",
+ "data_generation": "ADR-0040+0041 · adr0041_25 · 정본 우주 = 법인·국공유(02·04·05·06) · θ 없음(연접 구획 전량) · 계통 결합 분리",
+ "grid": {
+  "name": "adr0041_25",
+  "edition": "ADR-0040+0041",
+  "sha12": "b3b25860ef5b",
+  "n_runs": 25
+ },
  "verification": "export 시 앵커 상수 정확 일치 검증 통과 (T16-①)",
  "lineage": [
   {

@@ -62,7 +62,7 @@
 
   <h2 class="art-h">1. 간척 농지의 분포와 규모</h2>
   <p>간척 농지의 식별 근거는 농어촌공사 지구·공구 원장<sup class="fnref">[3]</sup> —
-  지번 원장 45,193필지가 등재되어 있고, 민간 공유수면 매립지는 원장에 없어 이 분석의
+  지번 원장 <b id="a-ledger">—</b>필지가 등재되어 있고, 민간 공유수면 매립지는 원장에 없어 이 분석의
   범위 밖임. 이 중 위성 실측<sup class="fnref">[2]</sup>으로 실제 경작이 확인된 농지를
   소유 유형<sup class="fnref">[1]</sup>으로 나누면 세 유형이 됨:
   간척지 내 법인 소유 <b id="a-own">—</b>, 간척지 내 비법인(개인·국공유 등) 소유
@@ -156,6 +156,7 @@ setTimeout(fitFrames, 1500); setTimeout(fitFrames, 4000);
   const g = n => og.find(x => x.group === n);
   const own = g('간척지 내 법인'), pool = g('간척지 내 비법인'), out = g('간척지 외 법인');
   const K = x => `${V4.km2(x)} km²`;
+  document.getElementById('a-ledger').textContent = V4.n(s.reclaim_ledger.ledger_n);
   document.getElementById('a-own').textContent = K(own.km2);
   document.getElementById('a-pool').textContent = K(pool.km2);
   document.getElementById('a-out').textContent = K(out.km2);

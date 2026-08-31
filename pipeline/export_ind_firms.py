@@ -9,7 +9,7 @@
   + 포함 매칭. CSV 단지명에 유형 키워드(농공 등)가 있으면 동명 단지의 유형 구분에 사용.
 사용: python pipeline/export_ind_firms.py
 """
-import os, sys, csv, re, json, gzip, datetime
+import os, sys, io, csv, re, json, gzip, datetime
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.path.insert(0, r'C:\Users\user\새 폴더\model')
 import query as Q
@@ -101,6 +101,14 @@ raw = json.dumps(out, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
 with gzip.open(fo + '.tmp', 'wb', compresslevel=9) as z:
     z.write(raw)
 os.replace(fo + '.tmp', fo)
+# 색인 본체는 첫 검색에서 지연 로드된다(1 MB 넘음). 그런데 화면 산문은 처음부터
+# 이 세 수를 말해야 하므로, 수만 담은 겉짐을 따로 낸다 — 산문에 숫자를 박지 않기 위해서다.
+meta = {'generated': GEN, 'basis': out['basis'], 'n_source': out['n_source'],
+        'n_matched': out['n_matched'], 'n_unmatched': out['n_unmatched'],
+        'n_dans': len(dan_list)}
+fm = os.path.join(SITE, 'data_v4', 'ind_firms_meta.json')
+json.dump(meta, io.open(fm, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+print(f"ind_firms_meta.json: {os.path.getsize(fm)} B")
 print(f"ind_firms.json.gz: {os.path.getsize(fo)/1e6:,.1f} MB — 기업 {len(firms):,}"
       f" / 원천(산단 입주) {len(data):,} · 미매칭 {n_miss:,}행")
 print('미매칭 상위:', sorted(miss_names.items(), key=lambda x: -x[1])[:8])

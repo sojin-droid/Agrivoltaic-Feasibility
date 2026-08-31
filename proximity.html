@@ -202,7 +202,8 @@ input[type=range]{accent-color:var(--navy)}
   같은 설비의 값 상이는 최솟값으로 보수 확정 · 균등배분(하한)–공유 미조정(상한)의 두 값을
   병기 · 2026-07 수집 스냅숏(실시간 아님).<br>
   <b>입주기업 검색</b> — 전국등록공장현황(2024-12-31 등록분)<sup class="fnref">[24]</sup>의
-  산단 입주 84,111사 중 79,424사를 경계 단지명과 대조해 색인. 잔여 4,687사는 경계
+  산단 입주 <span id="p-fsrc">—</span>사 중 <span id="p-fmat">—</span>사를 경계 단지명과
+  대조해 색인. 잔여 <span id="p-fun">—</span>사는 경계
   미등재 단지(연구개발특구·테크노밸리 일부 등) 소재로 검색에서 제외 — 기업 존재의 참고
   표기이며 입주 계약 현황이 아님.<br>
   거리는 측지 직선거리로 실제 인입 경로와 다름 — 세 레이어의 겹침은 우선순위 탐색용이며
@@ -235,6 +236,11 @@ input[type=range]{accent-color:var(--navy)}
   document.getElementById('p-a1-50').textContent = V4.n(R['R2_promo@all'].ge50);
   document.getElementById('p-th').textContent = V4.n(N.threshold.mw50_m2);
   const GS = await V4.data('grid_summary');
+  // 색인 본체(1.3 MB)는 첫 검색에서 지연 로드되므로 수만 담은 겉짐을 따로 읽는다
+  const FM = await V4.data('ind_firms_meta');
+  for (const [id, v] of [['p-fsrc', FM.n_source], ['p-fmat', FM.n_matched],
+                         ['p-fun', FM.n_unmatched]])
+    document.getElementById(id).textContent = V4.n(v);
   for (const [id, v] of [['p-ind', GS.ind_total], ['p-ind2', GS.ind_total], ['p-ind3', GS.ind_total],
                          ['p-emd', GS.emd_total], ['p-emd2', GS.emd_total],
                          ['p-ok', GS.emd_ok], ['p-unk', GS.emd_unknown]])
