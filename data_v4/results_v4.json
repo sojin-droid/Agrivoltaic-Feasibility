@@ -1,6 +1,135 @@
 {
-"generated": "2026-08-29 15:07",
-"note": "3판 — 우주 = 법인·국공유(ADR-0040) · 등재 문턱 폐지(ADR-0041): 값은 연접 구획 전량이다. 크기 기준이 필요하면 size_bands 를 쓰고 기준을 함께 적는다. track=policy 만 정본이고 what_if 는 가정 딱지가 필수다(ADR-0028). 구판 런은 scenario_runs_edition2 아카이브",
+"generated": "2026-08-31 13:29",
+"edition": "ADR-0040+0041",
+"grid": "adr0041_25",
+"grid_sha12": "b3b25860ef5b",
+"cells": {
+"policy": [
+{
+"name": "R0_current",
+"decl": "R0_current",
+"role": "policy",
+"group": "정본 정책",
+"label": "R0 현행법 기준",
+"label_short": "현행법 기준",
+"universe": null,
+"tau": null
+},
+{
+"name": "R0_current_SB",
+"decl": "R0_current_SB",
+"role": "policy",
+"group": "정본 정책",
+"label": "R0 + 이격 보수",
+"label_short": "현행법 + 이격 보수",
+"universe": null,
+"tau": null
+},
+{
+"name": "R1_protect",
+"decl": "R1_protect",
+"role": "policy",
+"group": "정본 정책",
+"label": "R1 +보호구역만",
+"label_short": "＋보호구역 개방",
+"universe": null,
+"tau": null
+},
+{
+"name": "R1_protect_SB",
+"decl": "R1_protect_SB",
+"role": "policy",
+"group": "정본 정책",
+"label": "R1 + 이격 보수",
+"label_short": "＋보호구역 · 이격 보수",
+"universe": null,
+"tau": null
+},
+{
+"name": "R2_promo",
+"decl": "R2_promo",
+"role": "policy",
+"group": "정본 정책",
+"label": "R2 +진흥구역만",
+"label_short": "＋진흥구역 개방",
+"universe": null,
+"tau": null
+},
+{
+"name": "R2_promo_SB",
+"decl": "R2_promo_SB",
+"role": "policy",
+"group": "정본 정책",
+"label": "R2 + 이격 보수",
+"label_short": "＋진흥구역 · 이격 보수",
+"universe": null,
+"tau": null
+},
+{
+"name": "R3_zone_all",
+"decl": "R3_zone_all",
+"role": "policy",
+"group": "정본 정책",
+"label": "R3 둘 다 개방",
+"label_short": "＋두 구역 개방",
+"universe": null,
+"tau": null
+},
+{
+"name": "R3_zone_all_SB",
+"decl": "R3_zone_all_SB",
+"role": "policy",
+"group": "정본 정책",
+"label": "R3 + 이격 보수",
+"label_short": "＋두 구역 · 이격 보수",
+"universe": null,
+"tau": null
+}
+],
+"control": [
+{
+"name": "R0_current@all",
+"decl": "R0_current",
+"role": "control",
+"group": "무필터 대조군",
+"label": "R0 현행법 기준",
+"label_short": "현행법 기준",
+"universe": "all",
+"tau": null
+},
+{
+"name": "R1_protect@all",
+"decl": "R1_protect",
+"role": "control",
+"group": "무필터 대조군",
+"label": "R1 +보호구역만",
+"label_short": "＋보호구역 개방",
+"universe": "all",
+"tau": null
+},
+{
+"name": "R2_promo@all",
+"decl": "R2_promo",
+"role": "control",
+"group": "무필터 대조군",
+"label": "R2 +진흥구역만",
+"label_short": "＋진흥구역 개방",
+"universe": "all",
+"tau": null
+},
+{
+"name": "R3_zone_all@all",
+"decl": "R3_zone_all",
+"role": "control",
+"group": "무필터 대조군",
+"label": "R3 둘 다 개방",
+"label_short": "＋두 구역 개방",
+"universe": "all",
+"tau": null
+}
+]
+},
+"note": "ADR-0040+0041 — 등재 문턱 없음: 값은 연접 구획 전량이다. 크기 기준이 필요하면 size_bands 를 쓰고 기준을 함께 적는다. track=policy 만 정본이고 what_if 는 가정 딱지가 필수다(ADR-0028). 구판 런은 아카이브.",
 "runs": {
 "S_current_legacy@all": {
 "name": "S_current_legacy@all",
