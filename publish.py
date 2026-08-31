@@ -31,7 +31,7 @@ PY = sys.executable
 # 수치 — 서로 독립이라 순서는 읽기 좋은 순
 NUM = ['export_v4.py', 'export_results_v4.py', 'export_narrative_v4.py',
        'export_insights_v4.py', 'export_grid_v4.py', 'export_ind_firms.py',
-       'export_stage_v4.py']
+       'export_stage_v4.py', 'export_decree_v4.py']
 
 # 지오메트리 — **순서가 뜻을 갖는다**
 #   export_clusters_v4 가 끝에 rebuild_cluster_index 를 부른다(걸침 표시 + 색인).

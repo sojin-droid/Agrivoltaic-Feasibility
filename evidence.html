@@ -29,7 +29,7 @@
       <a href="map.html" data-i18n="nav-map">지도</a>
       <a href="candidates.html" data-i18n="nav-cand">특구 후보</a>
       <a href="proximity.html" data-i18n="nav-prox">산단 연계</a>
-      <a href="atlas.html" data-i18n="nav-atlas">간척 아틀라스</a>
+      <a href="decree.html" data-i18n="nav-decree">시행령 제정안</a>
       <a href="insight.html" data-i18n="nav-insight">인사이트</a>
       <a href="method.html" data-i18n="nav-method">방법·재현</a>
       <a href="about.html" data-i18n="nav-about">자료·한계</a>
@@ -139,12 +139,12 @@
   </div>
 </section>
 
-<!-- ═══════════ 조문 검토 (요약 — 상세는 간척 아틀라스) ═══════════ -->
+<!-- ═══════════ 조문 검토 (요약 — 상세는 시행령 제정안 탭) ═══════════ -->
 <section style="padding:56px 0 30px" id="ord">
   <div class="wrap">
     <div class="sec-head"><div><p class="eyebrow">Ordinance Review</p>
-    <h2>간척 한정 조문 검토 — 요약</h2></div>
-    <a class="more" href="atlas.html">상세 분석(지도·지구별) → 간척 아틀라스</a></div>
+    <h2>부지 한정 조문 검토 — 요약</h2></div>
+    <a class="more" href="decree.html">상세 분석(조문·수치) → 시행령 제정안 탭</a></div>
     <div class="figbox reveal"><div id="ordinance-story" style="font-size:14.5px;word-break:keep-all;line-height:1.8"></div></div>
   </div>
 </section>
@@ -194,16 +194,18 @@
   const outC = og.find(g => g.group === '간척지 외 법인');
   const inO = og.find(g => g.group === '간척지 내 비법인');
   document.getElementById('ordinance-story').innerHTML = `
-    <p>농업법인의 영농형 태양광을 간척지 등으로 한정하는 조문이 추진 중.<br>표 4를 조문
-    관점에서 읽으면<sup class="fnref">[3]</sup><sup class="fnref">[12]</sup>: 간척지 내 법인
+    <p>시행령 제정안(의견조회판)<sup class="fnref">[25]</sup> §7 6호는 <b>농업회사법인</b>의
+    발전사업부지를 「농어촌정비법」 §14①의 매립지등(매각분 제외)으로 한정함 — 영농조합법인은
+    해당 없음.<br>표 4를 이 조문 관점에서 — 간척 원장 전체 기준으로 —
+    읽으면<sup class="fnref">[3]</sup><sup class="fnref">[12]</sup>: 간척지 내 법인
     소유 ${V4.km2(inC.km2)} km²는 즉시 실행 후보, 간척지 내 비법인 소유 ${V4.km2(inO.km2)} km²는
     임차 공급원<sup class="fnref">[18]</sup>, 간척지 외 법인 소유 ${V4.km2(outC.km2)} km²
-    (현행 적격 ${V4.km2(outC.anchor_km2)} km²)는 조문 시행 시 쓸 수 없게 되는 땅.<br>
+    (현행 적격 ${V4.km2(outC.anchor_km2)} km²)는 조문 시행 시 농업회사법인 경로로는 쓸 수 없게 되는 땅.<br>
     단, 간척지 내 법인 소유도 대부분 농업진흥구역 안이라 현행법 가능분은
-    ${V4.km2(inC.anchor_km2)} km²에 그침 — 진흥구역 내 허용의 동시 입법이 성립 조건.</p>
-    <p style="margin-top:10px">유형별 처지·지구별 분포·활용 가능 목록의 <b>상세 분석은
-    <a href="atlas.html" style="color:var(--leaf-deep)">간척 아틀라스</a></b>에 있음(같은 수치의
-    서사·지도판).<br>관련 법 구조: 부령 위임<sup class="fnref">[7]</sup> ·
+    ${V4.km2(inC.anchor_km2)} km²에 그침 — 진흥구역 내 허용(재생에너지지구 지정)의 동시 작동이 성립 조건.</p>
+    <p style="margin-top:10px">제정안의 한정 범위(매립지등 미매각분 = 국가관리간척지)의 조문
+    구조와 정량 <b>상세 분석은
+    <a href="decree.html" style="color:var(--leaf-deep)">시행령 제정안 탭</a></b>에 있음.<br>관련 법 구조: 부령 위임<sup class="fnref">[7]</sup> ·
     보호구역 내 소규모 허용 선례<sup class="fnref">[8]</sup> ·
     우량농지 제한의 일시사용 적용<sup class="fnref">[15]</sup> ·
     재생에너지지구 경로<sup class="fnref">[10]</sup><sup class="fnref">[16]</sup>.</p>`;

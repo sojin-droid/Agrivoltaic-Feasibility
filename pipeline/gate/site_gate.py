@@ -6,12 +6,13 @@
 사용: python pipeline/gate/site_gate.py    → PASS면 종료코드 0, 위반 있으면 1
 """
 import os, re, json, sys
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')   # cp949 콘솔에서 '—' 출력 크래시 방지 (2026-08-31 실측: 크래시가 '검사 통과'를 exit 1로 둔갑시킴)
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from paths import SITE, OUT, CLUSTERS, ROOT, MODEL, LR, CAD   # 경로는 한 곳에서만
 
 # 전 탭 스캔 — 새 탭 추가 시 반드시 여기에도 추가 (2026-08-26: map·insight·candidates 누락 적발)
 PAGES = ['index.html', 'evidence.html', 'map.html', 'candidates.html',
-         'proximity.html', 'atlas.html', 'insight.html', 'method.html', 'about.html']
+         'proximity.html', 'decree.html', 'insight.html', 'method.html', 'about.html']
 DATA = os.path.join(SITE, 'data_v4')
 
 # ① 무효·구세대 수치 (원칙 3) — 발견 즉시 FAIL. 새 무효값 확정 시 여기에 추가.
