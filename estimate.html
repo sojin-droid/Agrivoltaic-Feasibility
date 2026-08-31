@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>PLANiT · 잠재량 산정 — 조건 조합별 적격 면적</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="소유·구역 개방·이격·간척 범위를 직접 조합해 영농형 태양광 적격 면적을 정본과 같은 방식으로 산정하는 도구. 큐브 가산성 게이트 통과분만 발행.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="assets/v4.js"></script>
+<style>
+.est-grid{display:grid;grid-template-columns:340px 1fr;gap:18px}
+@media(max-width:900px){.est-grid{grid-template-columns:1fr}}
+.est-panel{background:var(--panel,#f4f6f5);border-radius:12px;padding:14px;font-size:13.5px}
+.est-panel h3{margin:12px 0 6px;font-size:13px;color:var(--navy)}
+.est-panel h3:first-child{margin-top:0}
+.ownrow{display:flex;flex-wrap:wrap;gap:4px 10px}
+.ownrow label{white-space:nowrap;cursor:pointer}
+.presets button{font:inherit;font-size:12px;padding:3px 8px;margin:2px 4px 2px 0;border:1px solid var(--navy);background:#fff;border-radius:6px;cursor:pointer}
+.presets button.on{background:var(--navy);color:#fff}
+.tgl{display:block;margin:3px 0;cursor:pointer}
+.est-out{border:1px solid #d7ded9;border-radius:12px;padding:16px}
+.est-big{font-family:var(--serif);font-size:34px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.est-sub{font-size:13.5px;color:var(--muted);margin-top:2px}
+.badge-canon{display:inline-block;background:#1c5f3a;color:#fff;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700}
+.badge-user{display:inline-block;background:#8a1f1f;color:#fff;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700}
+.est-ctl{font-size:12.5px;color:var(--muted);margin-top:8px;border-top:1px dashed #ccd;padding-top:8px}
+input[type=number].coef{width:80px;font:inherit;padding:2px 6px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span data-i18n="tb-tag">Agrivoltaic · PLANiT Institute의 영농형 태양광 섹터</span>
+    <span><a href="https://planit.institute/" data-i18n="tb-link">← planit.institute 메인으로</a></span>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="mark-img" src="assets/planit_logo.png" alt="PLANiT"><span class="sector" data-i18n="brand-sector">영농형 태양광</span></a>
+    <nav class="menu" id="menu">
+      <a href="index.html" data-i18n="nav-index">결론</a>
+      <a href="evidence.html" data-i18n="nav-evidence">근거</a>
+      <a href="map.html" data-i18n="nav-map">지도</a>
+      <a href="candidates.html" data-i18n="nav-cand">특구 후보</a>
+      <a href="proximity.html" data-i18n="nav-prox">입지 추천</a>
+      <a class="active" href="estimate.html" data-i18n="nav-estimate">잠재량 산정</a>
+      <a href="decree.html" data-i18n="nav-decree">시행령 제정안</a>
+      <a href="insight.html" data-i18n="nav-insight">인사이트</a>
+      <a href="method.html" data-i18n="nav-method">방법·재현</a>
+      <a href="about.html" data-i18n="nav-about">자료·한계</a>
+    </nav>
+    <div style="display:flex;gap:12px;align-items:center">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="ko">KO</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a class="cta" href="mailto:sojin@planit.institute">Contact</a>
+    </div>
+  </div>
+</header>
+
+<article>
+  <h1>잠재량 산정 — 조건을 직접 조합한다</h1>
+  <p class="art-meta" id="art-meta">PLANiT Institute · 데이터 <span id="e-built">—</span>판</p>
+
+  <p>이 화면의 모든 수치는 정본 판정(경성 제약 통과 적격, 이하 "본값")을
+  필지 단위로 미리 집계한 <b>큐브</b>에서 나온다. 어떤 조합을 골라도 계산 방식은
+  정본과 같다 — 발행 전에 큐브 합산이 정본 매트릭스 36칸을 정확 재현하는지
+  검사(가산성 항등식)를 통과한 자료만 실린다. <b>1차 산출은 면적</b>이고, MW는
+  계수 환산 참고 표기다.</p>
+
+  <div class="est-grid">
+    <div class="est-panel">
+      <h3>소유 (지적 소유구분 코드)</h3>
+      <div class="presets" id="ePresets">
+        <button data-p="pubcorp">정본 우주 — 국유·시도·군·법인</button>
+        <button data-p="pubcorp_clan">+ 종중·종교</button>
+        <button data-p="all">전체(개인 포함)</button>
+      </div>
+      <div class="ownrow" id="eOwn"></div>
+      <h3>구역 개방</h3>
+      <label class="tgl"><input type="checkbox" id="eProt"> 농업보호구역 개방</label>
+      <label class="tgl"><input type="checkbox" id="ePromo" checked> 농업진흥구역 개방</label>
+      <div style="font-size:11.5px;color:var(--muted)">둘 다 끄면 현행(농업진흥지역 밖의 농지)</div>
+      <h3>이격 보수</h3>
+      <label class="tgl"><input type="checkbox" id="eSb"> 주거 이격 200m 보수 하한 적용(대상 필지 제외)</label>
+      <h3>범위</h3>
+      <label class="tgl"><input type="radio" name="eScope" value="0" checked> 전국</label>
+      <label class="tgl"><input type="radio" name="eScope" value="1"> 간척지만</label>
+      <label class="tgl"><input type="radio" name="eScope" value="2"> 국가관리간척지만 (시행령 제정안 §7 6호 범위)</label>
+      <h3>참고 MW 계수</h3>
+      <label>kW/㎡ <input type="number" class="coef" id="eCoef" value="0.045" step="0.005" min="0.005" max="0.2"></label>
+      <div style="font-size:11.5px;color:var(--muted)">환산 계수는 표기 전용 — 판정·선별에 쓰지 않음(ADR-0044)</div>
+    </div>
+
+    <div>
+      <div class="est-out">
+        <div id="eBadge"></div>
+        <div class="est-big"><span id="eArea">—</span></div>
+        <div class="est-sub">적격 필지 <b id="eN">—</b> · 참고 <b id="eMw">—</b>
+          <span style="color:var(--muted)">(계수 <span id="eCoefLbl">0.045</span> kW/㎡)</span></div>
+        <div id="eRun" style="margin-top:8px;font-size:13px"></div>
+        <div class="est-ctl" id="eCtl"></div>
+      </div>
+      <h2 class="art-h" style="font-size:17px;margin-top:18px">이 조합의 시군 상위</h2>
+      <div style="overflow-x:auto"><table class="v4" id="eTbl"></table></div>
+      <div style="font-size:12px;color:var(--muted)">표시 정렬: 면적(순위 아님) ·
+        시군 귀속은 필지 단위 — 상위 12곳만 표시, 전체는 조합을 시군 범위로 좁혀 확인.</div>
+    </div>
+  </div>
+
+  <h2 class="art-h">연접 구획(2층)은 이 화면에서 못 만든다</h2>
+  <p>필지 면적 합(1층)은 큐브로 즉시 계산되지만, "그 조합에서 몇 개의 연접 구획이
+  생기는가"(2층)는 필지 간 연접(τ = 21 m) 계산이 필요해 즉석으로는 산출할 수 없다.
+  조합이 <b>등재 런과 일치하면</b> 위 결과 카드에 그 런의 구획 값이 함께 표시되고,
+  등재 밖 조합의 구획 산출이 필요하면 등재 요청(Contact)으로 받는다.
+  τ = 21 m는 적격 필지 710만 개의 4-최근접 거리 곡선(k-distance)의 무릎에서 유도된
+  값으로, 민감도 대역(15–25 m)에서 적격 면적은 변하지 않는다 — 유도 그림과 근거는
+  방법·재현 문서의 그림 자산에 있다.</p>
+
+  <div class="callout-v4" id="e-read">—</div>
+
+</article>
+
+<script>
+(async () => {
+  const D = await (async p => {
+    const r = await fetch(p);
+    const ds = r.body.pipeThrough(new DecompressionStream('gzip'));
+    return JSON.parse(await new Response(ds).text());
+  })('data_v4/estimate_v4.json.gz');
+  document.getElementById('e-built').textContent = D.built;
+
+  const CODES = [...new Set(D.rows.map(r => r[1]))].sort();
+  const ownBox = document.getElementById('eOwn');
+  CODES.forEach(c => {
+    const lb = D.own_labels[c];
+    const el = document.createElement('label');
+    el.innerHTML = `<input type="checkbox" data-own="${c}"> ${lb ? lb + ' ' : ''}<span style="color:var(--muted)">${c || '공란'}</span>`;
+    ownBox.appendChild(el);
+  });
+  const ownEls = [...ownBox.querySelectorAll('input')];
+  const setOwn = set => ownEls.forEach(e => e.checked = set.has(e.dataset.own));
+
+  // 등재 런 이름 조립 — 조합이 등재와 일치할 때만 배지
+  const runName = (uni, prot, promo, sb) => {
+    const cell = promo && prot ? 'R3_zone_all' : promo ? 'R2_promo'
+               : prot ? 'R1_protect' : 'R0_current';
+    return cell + (sb ? '_SB' : '') + (uni === 'pubcorp' ? '' :
+           uni === 'all' ? '@all' : '@pubcorp_clan');
+  };
+  const uniOf = sel => {
+    const eq = a => a.length === sel.size && a.every(c => sel.has(c));
+    if (eq(D.universes.pubcorp)) return 'pubcorp';
+    if (eq(D.universes.pubcorp_clan)) return 'pubcorp_clan';
+    if (eq(CODES)) return 'all';
+    return null;
+  };
+
+  function calc() {
+    const sel = new Set(ownEls.filter(e => e.checked).map(e => e.dataset.own));
+    const prot = document.getElementById('eProt').checked;
+    const promo = document.getElementById('ePromo').checked;
+    const sb = document.getElementById('eSb').checked;
+    const scope = +document.querySelector('input[name=eScope]:checked').value;
+    const coef = +document.getElementById('eCoef').value || 0.045;
+    const zoneOk = z => z === 0 || (z === 1 && prot) || (z === 2 && promo);
+    const reclOk = rc => scope === 0 ? true : scope === 1 ? rc >= 1 : rc === 2;
+    let n = 0, m2 = 0, cN = 0, cM2 = 0;
+    const bySgg = {};
+    for (const [sgg, own, z, s, rc, rn, rm] of D.rows) {
+      if (!zoneOk(z) || (sb && s === 1) || !reclOk(rc)) continue;
+      cN += rn; cM2 += rm;                       // 대조군 = 같은 조건 · 소유 무필터
+      if (!sel.has(own)) continue;
+      n += rn; m2 += rm;
+      bySgg[sgg] = (bySgg[sgg] || 0) + rm;
+    }
+    document.getElementById('eArea').textContent = (m2 / 1e6).toLocaleString(undefined,
+      {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' km²';
+    document.getElementById('eN').textContent = V4.n(n);
+    document.getElementById('eMw').textContent =
+      (m2 * coef / 1000).toLocaleString(undefined, {maximumFractionDigits: 0}) + ' MW';
+    document.getElementById('eCoefLbl').textContent = coef;
+
+    const uni = uniOf(sel);
+    const rn = uni && scope === 0 ? runName(uni, prot, promo, sb) : null;
+    const run = rn ? D.runs[rn] : null;
+    document.getElementById('eBadge').innerHTML = run
+      ? `<span class="badge-canon">정본 등재 조합 — ${rn}</span>`
+      : `<span class="badge-user">사용자 조합 — 정본 아님</span>
+         <span style="font-size:12px;color:var(--muted)"> 등재 런 밖의 조합입니다. 인용하려면 등재 요청.</span>`;
+    document.getElementById('eRun').innerHTML = run
+      ? `이 조합은 엔진 산출물이 있습니다 — 연접 구획(τ=21m) <b>${V4.n(run.n_comp)}</b>개 ·
+         구획 면적 <b>${run.comp_km2.toLocaleString()}</b> km²
+         <span style="color:var(--muted)">(런 ${rn} · 1층 면적 ${run.km2.toLocaleString()} km²와 큐브 값 대조 가능)</span>`
+      : `연접 구획(2층) 값 없음 — 등재 런 밖 조합은 필지층(1층)까지만 즉석 산정됩니다.`;
+    document.getElementById('eCtl').innerHTML =
+      `대조군(소유 무필터 · 같은 구역/이격/범위): ${(cM2 / 1e6).toLocaleString(undefined,
+        {maximumFractionDigits: 2})} km² — 선택 조합은 그 ${(m2 / cM2 * 100).toFixed(1)}%
+       <span style="color:var(--muted)">(제2조 — 단독 수치 금지, 항상 병기)</span>`;
+
+    const top = Object.entries(bySgg).sort((a, b) => b[1] - a[1]).slice(0, 12);
+    let h = '<tr><th>시군</th><th>면적 km²</th><th>참고 MW</th></tr>';
+    for (const [g, v] of top)
+      h += `<tr><td>${D.sgg_labels[g] || g}</td>
+            <td>${(v / 1e6).toLocaleString(undefined, {maximumFractionDigits: 2})}</td>
+            <td>${(v * coef / 1000).toLocaleString(undefined, {maximumFractionDigits: 0})}</td></tr>`;
+    document.getElementById('eTbl').innerHTML = h;
+  }
+
+  document.querySelectorAll('.presets button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('.presets button').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    setOwn(new Set(b.dataset.p === 'all' ? CODES : D.universes[b.dataset.p]));
+    calc();
+  });
+  ownEls.forEach(e => e.onchange = () => {
+    document.querySelectorAll('.presets button').forEach(x => x.classList.remove('on'));
+    calc();
+  });
+  ['eProt', 'ePromo', 'eSb', 'eCoef'].forEach(id =>
+    document.getElementById(id).addEventListener('input', calc));
+  document.querySelectorAll('input[name=eScope]').forEach(e => e.onchange = calc);
+
+  document.getElementById('e-read').innerHTML =
+    `읽는 법 — 이 화면의 값은 전부 <b>본값</b>이며 방법은 정본과 같다:
+     ${D.method}. 발행 게이트: ${D.gate}. 사용자 조합에는 "정본 아님" 딱지가 붙고
+     대조군이 항상 병기된다 — 인용 가능한 수치는 정본 등재 조합뿐이다.`;
+
+  // 초기값 = 정본 3판 조합 (정본 우주 · 진흥구역 개방 · 이격 미적용)
+  document.querySelector('.presets button[data-p=pubcorp]').click();
+  V4.footer();
+})();
+</script>
+<script src="site.js"></script>
+</body>
+</html>
