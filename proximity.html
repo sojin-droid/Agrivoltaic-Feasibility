@@ -126,11 +126,8 @@ input[type=range]{accent-color:var(--navy)}
   <b>전력을 쓸 수요처가 가까이 있는가</b>, 그리고 <b>계통에 접속할 여유가 있는가</b>.<br>
   이 지도는 그 두 질문을 위치로 확인하는 도구: 구획 폴리곤 위에 산업단지 경계와
   읍면동 단위 계통 여유 채움을 겹치고, 선택한 후보에 반경 버퍼를 걸어 그 안의 산업단지를 짚어냄.</p>
-  <p>기준 구획은 특구 후보 탭과 동일 — 법인·국공유 필지만 병합<sup class="fnref">[12]</sup>,
-  농업진흥구역 개방 기준의 특구급(50MW 이상) <b id="p-n">—</b>곳.<br>
-  보호구역 개방까지 더한 소유 필터 산출은 정본에 없음 — 전체 필지 기준으로도 보호구역 개방의
-  특구급 증분이 <span id="p-a50">—</span>→<span id="p-a1-50">—</span>곳으로 작아,
-  소유 필터 재클러스터링은 현행법·진흥구역 개방 두 조건에서만 수행됨.</p>
+  <p>기준 구획은 특구 후보 탭과 같다. 법인·국공유 소유 필지만 병합한 구획<sup class="fnref">[12]</sup>
+  가운데 농업진흥구역 개방(R2) 기준으로 50MW 이상에 해당하는 특구급 <b id="p-n">—</b>곳이다.</p>
 
   <h2 class="art-h">2. 지도 — 구획 · 산업단지 · 계통 여유</h2>
   <p>지도 오른쪽 패널에서 특구급 후보는 하나씩 또는 전체로, 산업단지는 유형별 또는 전체로 선택.<br>
@@ -222,7 +219,7 @@ input[type=range]{accent-color:var(--navy)}
     <figcaption class="figcap-v4">세 축 비지배 집합 — 여기 있는 구획은 세 축 모두에서
       자기를 이기는 구획이 없다. 후보 전수의 쌍별 지배 비교로 정확히 열거한 것(반복
       근사 아님). 기본 반경은 시군 적응형 — 그 시군 구획의 4분의 3이 첫 산업단지를
-      만나는 거리(75분위 반올림, 2~12km). 참고 MW(0.045 kW/㎡)는 표기 전용.</figcaption>
+      만나는 거리(75분위 반올림, 2–12km). 참고 MW(0.045 kW/㎡)는 표기 전용.</figcaption>
   </figure>
 
   <h2 class="art-h">5. 단서 — 레이어별 성격과 한계</h2>
@@ -269,8 +266,6 @@ input[type=range]{accent-color:var(--navy)}
   const nameOf = c => (names.codes[c] && names.codes[c].name) || c;
   document.getElementById('p-n').textContent = V4.n(R.R2_promo.ge50);
   document.getElementById('p-comp').textContent = V4.n(R.R2_promo.n_component);
-  document.getElementById('p-a50').textContent = V4.n(R['R0_current@all'].ge50);
-  document.getElementById('p-a1-50').textContent = V4.n(R['R2_promo@all'].ge50);
   document.getElementById('p-th').textContent = V4.n(N.threshold.mw50_m2);
   const GS = await V4.data('grid_summary');
   // 색인 본체(1.3 MB)는 첫 검색에서 지연 로드되므로 수만 담은 겉짐을 따로 읽는다
