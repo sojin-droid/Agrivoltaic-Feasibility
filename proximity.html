@@ -87,7 +87,7 @@ input[type=range]{accent-color:var(--navy)}
       <a href="map.html" data-i18n="nav-map">지도</a>
       <a href="candidates.html" data-i18n="nav-cand">특구 후보</a>
       <a class="active" href="proximity.html" data-i18n="nav-prox">산단 연계</a>
-      <a href="atlas.html" data-i18n="nav-atlas">간척 아틀라스</a>
+      <a href="decree.html" data-i18n="nav-decree">시행령 제정안</a>
       <a href="insight.html" data-i18n="nav-insight">인사이트</a>
       <a href="method.html" data-i18n="nav-method">방법·재현</a>
       <a href="about.html" data-i18n="nav-about">자료·한계</a>
@@ -172,7 +172,7 @@ input[type=range]{accent-color:var(--navy)}
     <figcaption style="font-size:12px;color:var(--muted);margin-top:6px">그림 1. 특구급 후보 25곳 ×
     산업단지 전국 <span id="p-ind3">—</span>곳 × 읍면동 단위 계통 여유 전국 — 위성 배경 © Esri<sup class="fnref">[19]</sup> ·
     구획 지오메트리 15m 간소화(표시용)<sup class="fnref">[12]</sup> ·
-    계통<sup class="fnref">[22]</sup>·산업단지<sup class="fnref">[23]</sup>는 참고 레이어(성격·한계는 §4).</figcaption>
+    계통<sup class="fnref">[22]</sup>·산업단지<sup class="fnref">[23]</sup>는 참고 레이어(성격·한계는 §5).</figcaption>
   </figure>
 
   <h2 class="art-h">3. 후보별 최근접 산업단지와 거리</h2>
@@ -183,13 +183,49 @@ input[type=range]{accent-color:var(--navy)}
     <div class="figbox">
       <div style="overflow-x:auto"><table class="v4" id="t-prox"></table></div>
       <div class="figcap">표 1. 특구급 후보 25곳의 최근접 산업단지·직선거리·소재 읍면동 계통 여유 —
-      행 클릭 = 지도 이동. 거리·계통 여유는 표시용 참고값(§4의 성격·한계 참조).</div>
+      행 클릭 = 지도 이동. 거리·계통 여유는 표시용 참고값(§5의 성격·한계 참조).</div>
     </div>
   </figure>
 
   <div class="callout-v4" id="p-read">—</div>
 
-  <h2 class="art-h">4. 단서 — 레이어별 성격과 한계</h2>
+
+  <h2 class="art-h">4. 시군별 공동 1등 — 세 축 비지배 전선</h2>
+  <p>시군을 고르면 그 시군의 연접 구획 전수에서 <b>면적 · 계통 여유 · 산업단지
+  거리</b> 세 축 모두 다른 구획에 지지 않는 <b>공동 1등 전원</b>을 보인다.
+  가중치도, 우선순위도, 관문도 없다 — 단독 1등을 정하지 않으며, 집합 안에서
+  무엇을 고를지는 보는 쪽의 우선순위다. 축별 순위 세 열이 그 선택을 돕는다.</p>
+
+  <figure class="figure-v4">
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px">
+      <select id="recSgg" style="font:inherit;padding:4px 8px"></select>
+      <span id="recStamp" style="font-size:12.5px;color:var(--muted)">—</span>
+    </div>
+    <div style="overflow-x:auto"><table class="v4" id="recTbl"></table></div>
+    <div id="recCtl" style="font-size:12px;color:var(--muted);margin:6px 0 10px">—</div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <div style="flex:1 1 340px;min-width:300px">
+        <div style="font-size:12.5px;margin-bottom:2px"><b>산점도</b> — x 면적(로그) · y 계통 여유 ·
+          색 = 산단 거리(가까울수록 진함) · 회색 = 지배당한 구획 · 테두리 = 공동 1등.
+          축이 3개라 2D에서 전선 점이 안쪽에 보일 수 있음 — 해독은 표의 순위 열.</div>
+        <svg id="recScatter" style="width:100%;height:300px"></svg>
+      </div>
+      <div style="flex:1 1 300px;min-width:280px">
+        <div style="font-size:12.5px;margin-bottom:2px"><b>반경 판독기</b> — 표에서 구획을
+          고르면 반경 안의 산단 점수 합(국가4·일반3·도시첨단2·농공1)과 여유용량 합
+          (배전선로 단위 중복 제거)을 보인다. 고른 뒤 확인하는 도구다 — 전선 선별에는
+          쓰지 않는다.</div>
+        <div id="recReader" style="background:var(--panel,#f4f6f5);border-radius:8px;padding:10px;font-size:13px">
+          구획을 선택하세요 (표 행 또는 지도·산점도 점 클릭)</div>
+      </div>
+    </div>
+    <figcaption class="figcap-v4">세 축 비지배 집합 — 여기 있는 구획은 세 축 모두에서
+      자기를 이기는 구획이 없다. 후보 전수의 쌍별 지배 비교로 정확히 열거한 것(반복
+      근사 아님). 기본 반경은 시군 적응형 — 그 시군 구획의 4분의 3이 첫 산업단지를
+      만나는 거리(75분위 반올림, 2~12km). 참고 MW(0.045 kW/㎡)는 표기 전용.</figcaption>
+  </figure>
+
+  <h2 class="art-h">5. 단서 — 레이어별 성격과 한계</h2>
   <p><b>구획(폴리곤)</b> — 정본 2판 산출<sup class="fnref">[12]</sup>.
   진흥구역 개방(정본 우주) 기준 50MW 이상 전부(25곳) — 50MW 등가는 적용된 문턱이 아니라
   읽기 눈금임(연접 구획 전량은 <span id="p-comp">—</span>곳).<br>
@@ -210,7 +246,8 @@ input[type=range]{accent-color:var(--navy)}
   개별 사업성 판단은 별도 실사가 필요함.</p>
 
   <div class="callout-v4">읽는 위치: 이 페이지는 <a href="candidates.html" style="color:var(--leaf-deep)"><b>특구 후보 탭</b></a>의
-  후속 질문(수요·계통 근접성). 후보의 소유 구조는 <a href="atlas.html" style="color:var(--leaf-deep)"><b>간척 아틀라스</b></a>,
+  후속 질문(수요·계통 근접성). 후보의 소유 유형별 수치는 <a href="evidence.html#tables" style="color:var(--leaf-deep)"><b>근거 표 4</b></a>,
+  시행령 제정안의 부지 한정은 <a href="decree.html" style="color:var(--leaf-deep)"><b>시행령 제정안 탭</b></a>,
   구역·이격 조합 전체는 <a href="map.html" style="color:var(--leaf-deep)"><b>지도 탭</b></a>.</div>
 
   <div class="fn">특구급 = 50MW 이상 = 연접 농지 <span id="p-th">—</span>㎡부터(0.045 kW/㎡ 환산<sup class="fnref">[13]</sup>) ·
@@ -636,7 +673,103 @@ input[type=range]{accent-color:var(--navy)}
       ${minKm.c.name} ${V4.km2(minKm.km, 1)} km</b>` : '—'}.` +
     (maxIn20 && maxIn20.n > 0 ? ` 20km 안 산업단지가 가장 많은 후보는 ${nameOf(maxIn20.b.sgg)}
       (${V4.n(maxIn20.n)}곳).` : '') +
-    `<br>산업단지·계통 레이어는 전국 커버 — "알 수 없음" 읍면동만 계통 판단을 보류함(§4).`;
+    `<br>산업단지·계통 레이어는 전국 커버 — "알 수 없음" 읍면동만 계통 판단을 보류함(§5).`;
+
+
+  // ── §4 시군별 공동 1등 (recommend_v4 — 발행은 export_recommend_v4.py 게이트 통과분만) ──
+  const REC = await gzfc('data_v4/recommend_v4.json.gz');
+  const layerRec = L.layerGroup().addTo(map);
+  const recSel = document.getElementById('recSgg');
+  const fmtA2 = a => a >= 1e6 ? (a / 1e6).toFixed(3) + ' km²' : V4.n(a) + ' ㎡';
+  Object.entries(REC.sgg).sort((x, y) => x[1].label.localeCompare(y[1].label, 'ko'))
+    .forEach(([code, s]) => {
+      const o = document.createElement('option');
+      o.value = code; o.textContent = s.label;
+      recSel.appendChild(o);
+    });
+  recSel.value = '44270';
+  let recCur = null, recSelLab = null;
+
+  function recReader(f, r) {
+    const ri = REC.reader_radii_km.indexOf(r);
+    document.getElementById('recReader').innerHTML =
+      `<b>구획 #${f.lab}</b> — ${fmtA2(f.a)} · 참고 ${f.mw} MW<br>
+       반경 <b><span id="recRv">${r}</span> km</b>
+       <input type="range" id="recRs" min="${REC.reader_radii_km[0]}"
+              max="${REC.reader_radii_km.at(-1)}" step="1" value="${r}" style="width:100%">
+       <div style="margin-top:4px">산단 점수 합 <b>${f.reader.score[ri]}</b> ·
+       여유용량 합 <b>${V4.n(f.reader.grid[ri])} MW</b></div>
+       <div style="color:var(--muted);font-size:11.5px;margin-top:4px">
+       기본 ${recCur.r_default} km = 이 시군 구획의 4분의 3이 첫 산단을 만나는 거리.
+       점수·합은 확인용 — 전선 선별에 쓰지 않음.</div>`;
+    document.getElementById('recRs').addEventListener('input',
+      e => recReader(f, +e.target.value));
+  }
+
+  function recPick(f) {
+    recSelLab = f.lab;
+    document.querySelectorAll('#recTbl tr[data-lab]').forEach(tr =>
+      tr.style.outline = +tr.dataset.lab === f.lab ? '2px solid #B3261E' : '');
+    map.flyTo([f.lat, f.lon], 13);
+    recReader(f, recCur.r_default);
+  }
+
+  function recRender() {
+    recCur = REC.sgg[recSel.value];
+    const S = recCur;
+    document.getElementById('recStamp').textContent =
+      `구획 ${V4.n(S.n_block)}개 전수 · 지배 비교 ${V4.n(S.n_pairs)}회(근사 아님) · 공동 1등 ${S.frontier.length}개`;
+    // 표
+    let h = `<tr><th>구획</th><th>면적</th><th>참고 MW</th><th>여유 MW</th><th>산단 km</th>
+      <th>면적 순위</th><th>계통 순위</th><th>산단 순위</th><th>강한 축</th><th>경작</th><th>간척%</th></tr>`;
+    for (const f of S.frontier) {
+      h += `<tr data-lab="${f.lab}" style="cursor:pointer"><td>#${f.lab}</td>
+        <td>${fmtA2(f.a)}</td><td>${f.mw}</td>
+        <td>${f.lo == null ? '알 수 없음' : f.lo + (f.hi != null ? '–' + f.hi : '')}</td>
+        <td>${f.d == null ? '알 수 없음' : f.d.toFixed(1)}</td>
+        <td>${f.ra}</td><td>${f.rl}</td><td>${f.ri}</td><td>${f.strong}</td>
+        <td>${f.farm ?? '—'}</td><td>${f.recl ?? '—'}</td></tr>`;
+    }
+    document.getElementById('recTbl').innerHTML = h;
+    document.querySelectorAll('#recTbl tr[data-lab]').forEach(tr => tr.onclick = () =>
+      recPick(S.frontier.find(f => f.lab === +tr.dataset.lab)));
+    document.getElementById('recCtl').textContent = S.control_max_m2
+      ? `대조군(@all · 개인 포함) 최대 구획 ${fmtA2(S.control_max_m2)} — 정본 최대의 ×${(S.control_max_m2 / S.frontier[0].a).toFixed(1)} (정책 값 아님 · 병기)`
+      : '';
+    // 지도 마커 — 공동 1등만 금색
+    layerRec.clearLayers();
+    S.frontier.forEach(f => L.circleMarker([f.lat, f.lon], {
+      radius: Math.max(6, Math.sqrt(f.a) / 200), color: '#B8860B', weight: 2.5,
+      fillColor: '#FFD84D', fillOpacity: .85, pane: 'markerPane'
+    }).bindTooltip(`#${f.lab} · ${fmtA2(f.a)} · ${f.strong}`)
+      .on('click', () => recPick(f)).addTo(layerRec));
+    // 산점도
+    const svg = document.getElementById('recScatter');
+    const W = svg.clientWidth || 360, H = 300, Pd = 40;
+    const AS = S.pts.map(p => p[0]);
+    const amin = Math.log10(Math.min(...AS)), amax = Math.log10(Math.max(...AS));
+    const lmax = Math.max(...S.pts.map(p => p[1] ?? 0), 1);
+    const dmax = Math.max(...S.pts.map(p => p[2] ?? 0), 1);
+    const lx = a => Pd + (Math.log10(a) - amin) / (amax - amin + 1e-9) * (W - Pd - 10);
+    const ly = l => H - Pd - (l ?? 0) / lmax * (H - Pd - 12);
+    let e = `<line x1="${Pd}" y1="${H - Pd}" x2="${W - 6}" y2="${H - Pd}" stroke="#999"/>
+             <line x1="${Pd}" y1="${H - Pd}" x2="${Pd}" y2="8" stroke="#999"/>
+             <text x="${W - 88}" y="${H - Pd + 26}" font-size="10.5">면적(로그) →</text>
+             <text x="6" y="16" font-size="10.5">여유 MW ↑</text>`;
+    const fset = new Set(S.frontier.map(f => f.lab));
+    S.pts.forEach(p => {
+      const front = p[3];
+      const c = p[2] == null ? '#bbb' : `hsl(${210 - 170 * Math.max(0, 1 - p[2] / dmax)},70%,45%)`;
+      e += `<circle cx="${lx(p[0])}" cy="${ly(p[1])}" r="${front ? 5.5 : 2.6}"
+            fill="${front ? c : '#9AA3AE'}" fill-opacity="${front ? .95 : .3}"
+            stroke="${front ? '#B3261E' : 'none'}" stroke-width="1.8"/>`;
+    });
+    svg.innerHTML = e;
+    document.getElementById('recReader').textContent =
+      '구획을 선택하세요 (표 행 또는 지도 점 클릭)';
+  }
+  recSel.addEventListener('change', recRender);
+  recRender();
 
   gridRefresh();
   bufRefresh();
