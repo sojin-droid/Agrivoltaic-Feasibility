@@ -23,7 +23,8 @@
 .presets button.on{background:var(--navy);color:#fff}
 .tgl{display:block;margin:3px 0;cursor:pointer}
 .est-out{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--white,#fff)}
-.est-big{font-family:var(--serif);font-size:clamp(26px,3.4vw,34px);font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.est-big{font-family:var(--serif);font-size:clamp(26px,3.4vw,34px);font-weight:700;color:var(--navy);line-height:1.15}
+.est-big small{font-family:var(--mono);font-size:14px;color:var(--muted);font-weight:400}
 .est-sub{font-size:13.5px;color:var(--muted);margin-top:2px}
 .est-ctl{font-size:12.5px;color:var(--muted);margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
 input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid var(--line);border-radius:6px}
@@ -194,7 +195,7 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
     <div>
       <div class="est-out">
         <div id="eBadge"></div>
-        <div class="est-big"><span id="eArea">—</span></div>
+        <div class="est-big"><span id="eArea">—</span><small> km²</small></div>
         <div class="est-sub">적격 필지 <b id="eN">—</b> · 참고 <b id="eMw">—</b>
           <span style="color:var(--muted)">(계수 <span id="eCoefLbl">0.045</span> kW/㎡)</span></div>
         <div id="eRun" style="margin-top:8px;font-size:13px"></div>
@@ -383,6 +384,9 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
     const ds = r.body.pipeThrough(new DecompressionStream('gzip'));
     return JSON.parse(await new Response(ds).text());
   })('data_v4/estimate_v4.json.gz');
+  // 시군 실명은 발행 층에서 해석(모델 층 라벨은 코드+시도) — 입지 추천과 같은 출처
+  const NAMES = await V4.data('sgg_matrix').catch(() => null);
+  const nmOf = g => (NAMES && NAMES.codes[g] && NAMES.codes[g].name) || D.sgg_labels[g] || g;
   document.getElementById('e-built').textContent = D.built;
 
   const CODES = [...new Set(D.rows.map(r => r[1]))].sort();
@@ -430,7 +434,7 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
       bySgg[sgg] = (bySgg[sgg] || 0) + rm;
     }
     document.getElementById('eArea').textContent = (m2 / 1e6).toLocaleString(undefined,
-      {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' km²';
+      {minimumFractionDigits: 2, maximumFractionDigits: 2});
     document.getElementById('eN').textContent = V4.n(n);
     document.getElementById('eMw').textContent =
       (m2 * coef / 1000).toLocaleString(undefined, {maximumFractionDigits: 0}) + ' MW';
@@ -456,7 +460,7 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
     const top = Object.entries(bySgg).sort((a, b) => b[1] - a[1]).slice(0, 12);
     let h = '<tr><th>시군</th><th>면적 km²</th><th>참고 MW</th></tr>';
     for (const [g, v] of top)
-      h += `<tr><td>${D.sgg_labels[g] || g}</td>
+      h += `<tr><td>${nmOf(g)}</td>
             <td>${(v / 1e6).toLocaleString(undefined, {maximumFractionDigits: 2})}</td>
             <td>${(v * coef / 1000).toLocaleString(undefined, {maximumFractionDigits: 0})}</td></tr>`;
     document.getElementById('eTbl').innerHTML = h;

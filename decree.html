@@ -26,8 +26,9 @@ table.mx .ref{color:var(--muted)}
 .dk{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 18px}
 @media(max-width:760px){.dk{grid-template-columns:1fr}}
 .dk>div{background:var(--sky);border:1px solid var(--leaf);border-radius:12px;padding:13px;text-align:center}
-.dk b{display:block;font-family:var(--serif);font-size:clamp(19px,2.2vw,26px);color:var(--navy);margin-bottom:3px}
-.dk span{font-size:11.5px;color:var(--muted);line-height:1.5}
+.dk b{display:block;font-family:var(--serif);font-size:clamp(24px,2.8vw,32px);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:3px}
+.dk b small{font-family:var(--mono);font-size:13px;color:var(--muted);font-weight:400}
+.dk>div>span{font-size:11.5px;color:var(--muted);line-height:1.5}
 </style>
 </head>
 <body>
@@ -127,9 +128,9 @@ table.mx .ref{color:var(--muted)}
 
   <h2 class="art-h">2. 대상 부지의 정량 — 국가관리간척지 모집단</h2>
   <div class="dk">
-    <div><b><span id="dk-a">—</span> km²</b><span>진흥구역 개방 시 열리는<br>정본(법인·국공유) 면적</span></div>
-    <div><b><span id="dk-s">—</span>%</b><span>적격 면적 중<br>진흥구역 개방분 비중</span></div>
-    <div><b><span id="dk-m">—</span> MW</b><span>참고 환산<br>(0.045 kW/㎡ · 표기 전용)</span></div>
+    <div><b><span id="dk-a">—</span><small> km²</small></b><span>진흥구역 개방 시 열리는<br>정본(법인·국공유) 면적</span></div>
+    <div><b><span id="dk-s">—</span><small>%</small></b><span>적격 면적 중<br>진흥구역 개방분 비중</span></div>
+    <div><b><span id="dk-m">—</span><small> MW</small></b><span>참고 환산<br>(0.045 kW/㎡ · 표기 전용)</span></div>
   </div>
   <p>아래 표는 매립지등 미매각분(국가관리간척지 태그<sup class="fnref">[3]</sup><sup class="fnref">[4]</sup>)
   안에서, 구역 개방 조합 R0–R3별 설치 가능 농지의 실측임<sup class="fnref">[12]</sup>.
