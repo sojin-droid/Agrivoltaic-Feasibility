@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PLANiT · 방법·재현 — 판정 조건과 검증 체계</title>
+<title>PLANiT · 방법·자료 — 판정·검증과 데이터 계보</title>
 <meta name="description" content="전국 필지 깔때기, 필지별 판정 조건, 기준값 정확 일치 검증과 공개 전 자동 게이트.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,15 +48,14 @@
       <a href="proximity.html" data-i18n="nav-prox">입지 추천</a>
       <a href="decree.html" data-i18n="nav-decree">시행령 제정안</a>
       <a href="insight.html" data-i18n="nav-insight">인사이트</a>
-      <a class="active" href="method.html" data-i18n="nav-method">방법·재현</a>
-      <a href="about.html" data-i18n="nav-about">자료·한계</a>
+      <a class="active" href="method.html" data-i18n="nav-method">방법·자료</a>
     </nav>
     <div style="display:flex;gap:12px;align-items:center">
       <div class="lang-toggle" role="group" aria-label="Language">
         <button type="button" data-lang="ko">KO</button>
         <button type="button" data-lang="en">EN</button>
       </div>
-      <a class="nav-cta" href="about.html#contact">Contact</a>
+      <a class="nav-cta" href="method.html#contact">Contact</a>
       <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
     </div>
   </div>
@@ -65,9 +64,9 @@
 <div class="page-hero">
   <div class="wrap">
     <p class="eyebrow">Method · 방법론</p>
-    <h1>방법·재현 — 판정 조건과 검증 체계</h1>
+    <h1>방법·자료 — 판정·검증과 데이터 계보</h1>
     <p class="lede">필지 전수 → 판정 조건 → 구역 조합 계산의 순서로 진행하며, 모든 단계가
-    코드로 재현됨.<br>산출이 고정된 기준값과 어긋나면 인용이 자동으로 중단됨.</p>
+    코드로 재현됨 — 원천 자료의 계보와 한계도 이 페이지에 통합함(구 방법·자료 탭).<br>산출이 고정된 기준값과 어긋나면 인용이 자동으로 중단됨.</p>
   </div>
 </div>
 
@@ -95,7 +94,7 @@
         <tr><td class="l"><b>용도지역 3종</b></td><td class="l">개발제한구역 · 보전관리지역 · 보전녹지지역 제외
           — 원문 재검증으로 확정한 배제 3종.<br>용도지역 정보가 결측인 필지는 해당 여부를
           확인할 수 없어 보수적으로 제외하고 별도 병기함
-          (<a href="about.html" style="color:var(--leaf-deep)">자료·한계의 판정 보류</a>)</td><td class="l">용도지역 원장<sup class="fnref">[1]</sup> · 배제 근거 법문<sup class="fnref">[6]</sup></td></tr>
+          (<a href="method.html#caveats" style="color:var(--leaf-deep)">아래 한계 표의 판정 보류</a>)</td><td class="l">용도지역 원장<sup class="fnref">[1]</sup> · 배제 근거 법문<sup class="fnref">[6]</sup></td></tr>
         <tr><td class="l"><b>농업진흥지역</b></td><td class="l">현행법 기준은 농업진흥지역 밖의 농지만 —
           보호구역·진흥구역 개방은 제도 변수로 따로 계산해 조합함
           (<a href="evidence.html" style="color:var(--leaf-deep)">근거 탭의 조합 R0–R3</a>)</td><td class="l">진흥지역 경계<sup class="fnref">[5]</sup>(필지 대표점 교차)</td></tr>
@@ -167,6 +166,66 @@
     필지 간격의 실측(간격의 구성이 구거·도로)에 근거.<br>민감도 검증: 문턱 50,000/66,667/100,000㎡ ×
     연접 15/21/25m의 전 조합에서 정책 순위(진흥구역 개방 ≥ 현행법)가 역전되지
     않음을 확인<sup class="fnref">[12]</sup>.</div>
+  </div>
+</section>
+
+<section style="padding:52px 0 40px" id="caveats">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Caveats</p><h2>한계</h2></div></div>
+    <div class="figbox reveal">
+      <div style="overflow-x:auto"><table class="v4">
+        <tr><th style="text-align:left">항목</th><th style="text-align:left">내용</th></tr>
+        <tr><td class="l"><b>간척의 범위</b></td><td class="l">농어촌공사 지구·공구 원장 등재분만<sup class="fnref">[3]</sup> —
+          민간 공유수면 매립지는 원장에 없어 미포함(매립 준공 대장 조달 시 확장).</td></tr>
+        <tr><td class="l"><b>소유 구분</b></td><td class="l">지적 원장<sup class="fnref">[1]</sup>의 소유 유형 구분(법인/개인/국공유 등)까지만 —
+          개인 식별 아님.<br>법인이 농업법인인지는 원장에 없음(명부 조달 시 정밀화).</td></tr>
+        <tr><td class="l"><b>공간 미분해 17종</b></td><td class="l">하천·문화유산·군사기지 등 17종 배제 항목은
+          공간 분해 레이어 미확보로 이 판에 반영되지 않음 — 강한 배제(HARD) 계열 값은 하한<sup class="fnref">[12]</sup>.</td></tr>
+        <tr><td class="l"><b>지목 잔여 결측</b></td><td class="l" id="cav-jimok">원본 지적자료 1단계 복구를
+          적용한 뒤에도 지목을 확인할 수 없는 필지가 남아 있으며, 이들은 집계에서 제외하고
+          별도 관리함 — 2단계 재조회 대상.</td></tr>
+        <tr><td class="l"><b>용도지역 미상 — 판정 보류</b></td><td class="l" id="cav-pending">지목은
+          복구됐으나 용도지역 정보가 결측인 필지는 배제 3종 해당 여부를 확인할 수 없어
+          기준값에서 보수적으로 제외하고 별도 병기함<sup class="fnref">[14]</sup> — 기준값의 잠재적 상향 여지.</td></tr>
+        <tr><td class="l"><b>이격거리</b></td><td class="l">상한제(200m)<sup class="fnref">[11]</sup>를 전국 일률
+          적용한 보수 하한으로 병기(근거 표 5·지도 토글) — 주택 판정은 대지 필지 대리, 측정 방법
+          고시 제정 시 정밀화.<br>구판의 시군 조례 개별 실측분은 검증 실패로 전량 폐기.</td></tr>
+        <tr><td class="l"><b>계통(전력망) 여유</b></td><td class="l">설치 가능 면적 판정에는 미사용 —
+          면적·구획까지가 판정 범위.<br>전국 읍면동 잔여 연계가능용량은
+          <a href="proximity.html" style="color:var(--leaf-deep)">입지 추천 탭</a>에 참고 공개<sup class="fnref">[22]</sup>
+          — 원천 무응답·조회 불가 읍면동은 "알 수 없음"으로 병기, 2026-07 스냅숏(실시간 아님).</td></tr>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" style="padding:56px 0">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Units</p><h2>단위·환산 가정</h2></div></div>
+    <div class="figbox reveal"><div style="font-size:14.5px;word-break:keep-all;line-height:1.8" id="unit-note"></div></div>
+  </div>
+</section>
+
+<section style="padding:56px 0 30px" id="lineage">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Lineage</p><h2>데이터 계보</h2></div>
+    <span style="font-size:12.5px;color:var(--muted)">층위: L0 원시 취득 → L1 정제·판정 → L2 시나리오·산출</span></div>
+    <div class="figbox reveal">
+      <div style="overflow-x:auto"><table class="v4" id="t-lineage"></table></div>
+      <div class="fn">이 표는 정본 DB의 자산 버전 기록을 <b>내부 기록 원문 그대로</b> 출력한 것
+      (export 시점 기준) — 재현·감사용이라 내부 단계 번호와 파일 경로가 그대로 남아 있음.<br>
+      일반 열람용 출처 요약은 페이지 하단의 출처 절.</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="contact" style="padding:56px 0">
+  <div class="wrap">
+    <div class="sec-head"><div><p class="eyebrow">Contact</p><h2>문의</h2></div></div>
+    <div class="figbox reveal" style="font-size:14.5px">
+      PLANiT Institute · 영농형 태양광 섹터 —
+      <a href="https://planit.institute/" style="color:var(--leaf-deep)"><b>planit.institute</b></a>
+    </div>
   </div>
 </section>
 
@@ -264,6 +323,41 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') bg.classList.remove('open'); });
 
   V4.footer();
+})();
+</script>
+<script>
+// ── 계보·한계 렌더 (구 방법·자료 탭 — 병합 2026-09-01) ──
+(async () => {
+  const s = await V4.data('summary_v4');
+  const m = await V4.data('meta_v4');
+  const pz = s.anchor.pending_zone_null;
+  if (pz && pz.n) document.getElementById('cav-pending').innerHTML +=
+    ` 현재 보류: <b>${V4.n(pz.n)}필지 · ${V4.km2(pz.km2, 2)} km²</b>.`;
+  document.getElementById('unit-note').innerHTML =
+    `1차 단위는 <b>면적(km²)</b> — 근거 법령<sup class="fnref">[10]</sup>이 사업 규모를 부지면적부터 쓰고,
+     발전용량(MW) 환산은 계수 가정이 얹힌 파생값이기 때문<sup class="fnref">[13]</sup>.<br>${s.unit_note}.<br>
+     현행법 기준값(상수)<sup class="fnref">[14]</sup>: <b>${V4.n(s.anchor.n)}필지 · ${V4.km2(s.anchor.km2, 2)} km²</b> —
+     ${s.anchor.def}. ${s.anchor.touchstone}.`;
+  const LAYER_NM = {'L0': 'L0 · 원시 자료 취득', 'L1': 'L1 · 정제·판정', 'L2': 'L2 · 시나리오·산출'};
+  let lastLayer = null;
+  document.getElementById('t-lineage').innerHTML =
+    `<tr><th style="text-align:left">자산</th><th style="text-align:left">구축</th><th style="text-align:left">출처·방법 (내부 기록 원문)</th></tr>` +
+    m.lineage.map(r => {
+      let head = '';
+      if (r.layer !== lastLayer) {
+        lastLayer = r.layer;
+        head = `<tr><td class="l" colspan="3" style="background:var(--sky);font-family:var(--mono);
+          font-size:11px;color:var(--leaf-deep);letter-spacing:.06em">${LAYER_NM[r.layer] || r.layer || '기타'}</td></tr>`;
+      }
+      return head + `<tr><td class="l" style="white-space:nowrap"><b>${r.tbl}</b></td>
+      <td class="l" style="white-space:nowrap">${r.built}</td><td class="l">${r.source}</td></tr>`;
+    }).join('');
+  // 지목 잔여 결측 — 수치는 데이터에서
+  try {
+    const fu = (await V4.data('funnel_v4')).national;
+    document.getElementById('cav-jimok').innerHTML +=
+      ` 현재 잔여: <b>${V4.n(fu['_지목결측'])}필지</b>.`;
+  } catch (e) {}
 })();
 </script>
 <script src="site.js"></script>
