@@ -65,7 +65,6 @@
       <a class="active" href="index.html" data-i18n="nav-index">결론</a>
       <a href="evidence.html" data-i18n="nav-evidence">근거</a>
       <a href="map.html" data-i18n="nav-map">지도</a>
-      <a href="candidates.html" data-i18n="nav-cand">특구 후보</a>
       <a href="proximity.html" data-i18n="nav-prox">입지 추천</a>
       <a href="estimate.html" data-i18n="nav-estimate">잠재량 산정</a>
       <a href="decree.html" data-i18n="nav-decree">시행령 제정안</a>
@@ -341,7 +340,7 @@
       개인을 빼고 법인·국공유만 이어 붙이면 남는 것은
       <b>전국 ${V4.n(R.R0_current.ge50)}곳</b>(제주 서귀포 ${V4.n(cpAnchorTop.mw)}MW) —
       현행법 아래 대규모 영농형 태양광은 사실상 성립하지 않음.`,
-     'candidates.html', '특구 후보 탭 — 소유 구성 상세'],
+     'proximity.html#own', '입지 추천 탭 — 소유 구성 상세'],
     ['③', '두 수단의 증분', `농업보호구역을 부령에 포함하면 정본 농지가
       +${V4.km2((M.R1['정본'].m2 - M.R0['정본'].m2)/1e6)} km²,
       농업진흥구역을 재생에너지지구로 열면 <b>+${V4.km2((M.R2['정본'].m2 - M.R0['정본'].m2)/1e6)} km²</b> —
@@ -350,7 +349,7 @@
       <b>${V4.n(R.R2_promo.ge50)}곳(합 ${V4.n(R.R2_promo.ge50_mw)}MW)</b>이 되고,
       그중 ${V4.n(cpBigRec)}곳이 석문·대호·부사·고흥·영산강 수계의 간척 지구.
       연접 구획 전량은 ${V4.n(R.R2_promo.n_component)}곳·${V4.km2(R.R2_promo.component_km2)} km²임.`,
-     'candidates.html', `특구 후보 탭 — ${V4.n(R.R2_promo.ge50)}곳의 소재와 지도`],
+     'proximity.html#candtbl', `입지 추천 탭 — ${V4.n(R.R2_promo.ge50)}곳의 소재와 지도`],
     ['④', '이격 단서', `주거 이격 200m 상한을 전국에 보수적으로 얹으면 현행법 정본은
       ${V4.km2(R.R0_current.component_km2)} → ${V4.km2(R.R0_current_SB.component_km2)} km²
       (−${drop('R0_current')}%)로 깎임. 그런데 진흥구역 개방분은 −${drop('R2_promo')}%에 그치고,

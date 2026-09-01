@@ -85,7 +85,6 @@ input[type=range]{accent-color:var(--navy)}
       <a href="index.html" data-i18n="nav-index">결론</a>
       <a href="evidence.html" data-i18n="nav-evidence">근거</a>
       <a href="map.html" data-i18n="nav-map">지도</a>
-      <a href="candidates.html" data-i18n="nav-cand">특구 후보</a>
       <a class="active" href="proximity.html" data-i18n="nav-prox">입지 추천</a>
       <a href="estimate.html" data-i18n="nav-estimate">잠재량 산정</a>
       <a href="decree.html" data-i18n="nav-decree">시행령 제정안</a>
@@ -109,7 +108,7 @@ input[type=range]{accent-color:var(--navy)}
     <p class="eyebrow">Proximity · 수요·계통 연계</p>
     <h1>입지 추천 — 특구 후보 × 산업단지 × 계통 여유</h1>
     <p class="lede">특구급 후보 구획<sup class="fnref">[12]</sup>이 전력 수요처(산업단지)와
-    계통 여유(동 단위 접속가능용량)에서 얼마나 가까운지를 한 지도에 세 레이어로 겹쳐 확인.<br>
+    계통 여유(동 단위 접속가능용량)에서 얼마나 가까운지를 한 지도에 세 레이어로 겹쳐 확인.<br>왜 이 25곳인가(소유 구성)부터 시군별 공동 1등·반경 판독까지 입지 판단을 한 탭에 모음.<br>
     <b>폴리곤 = 50MW 이상 후보 25곳</b>(정본 우주 = 법인·국공유, 농업진흥구역 개방 기준) ·
     <b>경계 = 산업단지 전국 <span id="p-ind">—</span>곳</b><sup class="fnref">[23]</sup> ·
     <b>채움 = 읍면동 단위 계통 여유 전국 <span id="p-emd">—</span>곳</b><sup class="fnref">[22]</sup>.</p>
@@ -121,8 +120,32 @@ input[type=range]{accent-color:var(--navy)}
 <article>
 <div class="wrap art" style="max-width:860px">
 
-  <h2 class="art-h">1. 세 레이어를 겹치는 이유</h2>
-  <p>특구급 후보의 소재(<a href="candidates.html" style="color:var(--leaf-deep)">특구 후보 탭</a>)가
+  <h2 class="art-h" id="own">1. 소유 구성 — 특구급 구획의 개인 소유 비중</h2>
+  <p>여기서 특구급은 연접 21m로 병합한 구획 중 <b>≥50MW 등가(1.111km²)</b>인 것을 말함 —
+  병합 자체에는 문턱이 없고 이 크기는 결과를 읽는 눈금임. 병합은 필지 소유를 구분하지 않으므로
+  구획 하나가 수백 명의 개인 소유주로 구성될 수 있음.<br>
+  실제로 현행법 기준 특구급 구획 <b id="c-a50">—</b>곳은 면적의 <b id="c-indiv">—</b>%가
+  개인 소유 필지<sup class="fnref">[1]</sup>.<br>
+  특구급 사업의 조직에는 이 소유주 전원의 동의·임차가 필요 — 개인 필지를 병합에서
+  배제하고(법인 '06' + 국공유 '02' 국유지·'04' 시/도유지·'05' 군유지만 잔류) 다시
+  병합하면 "동의 조직화 없이 성립하는 물량"의 하한이 나옴.</p>
+  <p>결과: 현행법에서 특구급은 <b id="c-cp-a50">—</b>곳(제주 서귀포,
+  <span id="c-cp-a-mw">—</span>MW)·100MW급 <span id="c-cp-a100">—</span>곳으로 감소.<br>
+  농업진흥구역 개방 시 <b id="c-cp-r50">—</b>곳(특구급 합 <span id="c-cp-r-mw50">—</span>MW)으로
+  증가 — 그 25곳이 이 페이지의 대상.<br>
+  이격 200m 보수<sup class="fnref">[11]</sup>를 얹어도 진흥구역 개방분은
+  <span id="c-sb-from">—</span> → <span id="c-sb-to">—</span> km²(−39%)로,
+  현행법분(−53%)보다 덜 깎임 — 구역 × 이격 8칸 전체 표는 근거 탭 표 5.</p>
+
+  <figure class="art-fig">
+    <div class="figbox"><div id="fig1"></div></div>
+    <figcaption>그림 1. 특구급(50MW 이상) 구획 수 — 구역 조합 × 소유 필터 × 이격 전/후.
+    연한 막대 = 이격 미적용, 진한 막대 = 주거 200m 보수 적용<sup class="fnref">[11]</sup>.
+    정본 산출<sup class="fnref">[12]</sup>, 단위 구획 수.</figcaption>
+  </figure>
+
+  <h2 class="art-h">2. 세 레이어를 겹치는 이유</h2>
+  <p>특구급 후보의 소재(§1 소유 구성)가
   정해져도, 실행 단계의 질문은 두 가지가 더 남음 —
   <b>전력을 쓸 수요처가 가까이 있는가</b>, 그리고 <b>계통에 접속할 여유가 있는가</b>.<br>
   이 지도는 그 두 질문을 위치로 확인하는 도구: 구획 폴리곤 위에 산업단지 경계와
@@ -130,7 +153,7 @@ input[type=range]{accent-color:var(--navy)}
   <p>기준 구획은 특구 후보 탭과 같다. 법인·국공유 소유 필지만 병합한 구획<sup class="fnref">[12]</sup>
   가운데 농업진흥구역 개방(R2) 기준으로 50MW 이상에 해당하는 특구급 <b id="p-n">—</b>곳이다.</p>
 
-  <h2 class="art-h">2. 지도 — 구획 · 산업단지 · 계통 여유</h2>
+  <h2 class="art-h">3. 지도 — 구획 · 산업단지 · 계통 여유</h2>
   <p>지도 오른쪽 패널에서 특구급 후보는 하나씩 또는 전체로, 산업단지는 유형별 또는 전체로 선택.<br>
   계통 여유는 슬라이더로 문턱을 조정 — 왼쪽 = 여유 많은 읍면동만, 오른쪽 끝 = 포화까지 전부.<br>
   선택한 후보에는 반경 버퍼가 걸려 그 안의 산업단지 목록이 패널에 나옴.<br>
@@ -167,13 +190,13 @@ input[type=range]{accent-color:var(--navy)}
       <span class="dot" style="background:#0C356A;border:2px solid #fff;box-shadow:0 0 0 1px #0C356A"></span>산업단지 경계·중심점 (색 = 유형: 빨강 국가 · 남색 일반 · 보라 도시첨단 · 청록 농공) ·
       금색 점선 원 = 선택 후보의 반경 버퍼 · 금색 테두리 = 버퍼 안 산업단지
     </div>
-    <figcaption style="font-size:12px;color:var(--muted);margin-top:6px">그림 1. 특구급 후보 25곳 ×
+    <figcaption style="font-size:12px;color:var(--muted);margin-top:6px">그림 2. 특구급 후보 25곳 ×
     산업단지 전국 <span id="p-ind3">—</span>곳 × 읍면동 단위 계통 여유 전국 — 위성 배경 © Esri<sup class="fnref">[19]</sup> ·
     구획 지오메트리 15m 간소화(표시용)<sup class="fnref">[12]</sup> ·
-    계통<sup class="fnref">[22]</sup>·산업단지<sup class="fnref">[23]</sup>는 참고 레이어(성격·한계는 §5).</figcaption>
+    계통<sup class="fnref">[22]</sup>·산업단지<sup class="fnref">[23]</sup>는 참고 레이어(성격·한계는 §6).</figcaption>
   </figure>
 
-  <h2 class="art-h">3. 후보별 최근접 산업단지와 거리</h2>
+  <h2 class="art-h" id="candtbl">4. 특구급 후보 25곳 — 소재·최근접 산업단지·계통</h2>
   <p>거리 = 구획 표시 범위의 중심점과 산업단지 경계 중심점 사이의 측지 직선거리(표시용 파생값).<br>
   도로·선로 경로 거리가 아니며, 전국 산업단지 경계 등재분 기준의 최근접임.</p>
 
@@ -181,14 +204,14 @@ input[type=range]{accent-color:var(--navy)}
     <div class="figbox">
       <div style="overflow-x:auto"><table class="v4" id="t-prox"></table></div>
       <div class="figcap">표 1. 특구급 후보 25곳의 최근접 산업단지·직선거리·소재 읍면동 계통 여유 —
-      행 클릭 = 지도 이동. 거리·계통 여유는 표시용 참고값(§5의 성격·한계 참조).</div>
+      행 클릭 = 지도 이동. 거리·계통 여유는 표시용 참고값(§6의 성격·한계 참조).</div>
     </div>
   </figure>
 
   <div class="callout-v4" id="p-read">—</div>
 
 
-  <h2 class="art-h">4. 시군별 공동 1등 — 세 축 비지배 전선</h2>
+  <h2 class="art-h">5. 시군별 공동 1등 — 세 축 비지배 전선</h2>
   <p>시군을 고르면 그 시군의 연접 구획 전수에서 <b>면적 · 계통 여유 · 산업단지
   거리</b> 세 축 모두 다른 구획에 지지 않는 <b>공동 1등 전원</b>을 보인다.
   가중치도, 우선순위도, 관문도 없다 — 단독 1등을 정하지 않으며, 집합 안에서
@@ -223,7 +246,13 @@ input[type=range]{accent-color:var(--navy)}
       만나는 거리(75분위 반올림, 2–12km). 참고 MW(0.045 kW/㎡)는 표기 전용.</figcaption>
   </figure>
 
-  <h2 class="art-h">5. 단서 — 레이어별 성격과 한계</h2>
+  <h2 class="art-h">6. 단서 — 성격·한계와 미확인 사항</h2>
+  <p><b>소유·법인 관련 미확인.</b> 이 값은 소유 유형 기준의 실측 — "법인·국공유 필지만으로
+  이 정도 연접 규모가 물리적으로 성립한다"까지를 말함. 법인이 농업법인인지는 지적 원장에
+  없어 미확인(명부 조달 시 정밀화). 국공유지의 실제 사용 가능 여부(관리청 협의·용도 제한)와
+  임차·사용승낙의 실행 가능성도 별도 확인 대상. 개인 필지를 임차로 조직하면 물량은 이보다
+  증가 — §1의 값은 상한이 아니라 "가장 어려운 조건에서의 하한".</p>
+
   <p><b>구획(폴리곤)</b> — 정본 2판 산출<sup class="fnref">[12]</sup>.
   진흥구역 개방(정본 우주) 기준 50MW 이상 전부(25곳) — 50MW 등가는 적용된 문턱이 아니라
   읽기 눈금임(연접 구획 전량은 <span id="p-comp">—</span>곳).<br>
@@ -243,7 +272,7 @@ input[type=range]{accent-color:var(--navy)}
   거리는 측지 직선거리로 실제 인입 경로와 다름 — 세 레이어의 겹침은 우선순위 탐색용이며
   개별 사업성 판단은 별도 실사가 필요함.</p>
 
-  <div class="callout-v4">읽는 위치: 이 페이지는 <a href="candidates.html" style="color:var(--leaf-deep)"><b>특구 후보 탭</b></a>의
+  <div class="callout-v4">읽는 위치: 이 페이지는 §1 소유 구성(구 특구 후보 탭)의
   후속 질문(수요·계통 근접성). 후보의 소유 유형별 수치는 <a href="evidence.html#tables" style="color:var(--leaf-deep)"><b>근거 표 4</b></a>,
   시행령 제정안의 부지 한정은 <a href="decree.html" style="color:var(--leaf-deep)"><b>시행령 제정안 탭</b></a>,
   구역·이격 조합 전체는 <a href="map.html" style="color:var(--leaf-deep)"><b>지도 탭</b></a>.</div>
@@ -265,6 +294,45 @@ input[type=range]{accent-color:var(--navy)}
   document.getElementById('art-meta').textContent =
     `PLANiT Institute · 데이터 ${m.data_generation} · 생성 ${m.generated}`;
   const R = N.runs;
+  // ── §1 소유 구성 (구 특구 후보 탭 §1 — 병합 2026-09-01) ──
+  {
+    const R1 = N.runs, put = (id, v) => document.getElementById(id).textContent = v;
+    put('c-a50', V4.n(R1['R0_current@all'].ge50));
+    put('c-indiv', V4.n(N.big_composition['R0_current@all'].indiv_share_pct));
+    put('c-cp-a50', V4.n(R1.R0_current.ge50));
+    put('c-cp-a-mw', V4.n((N.cp_big_anchor[0] || {mw: 0}).mw));
+    put('c-cp-a100', V4.n(R1.R0_current.ge100));
+    put('c-cp-r50', V4.n(R1.R2_promo.ge50));
+    put('c-cp-r-mw50', V4.n(R1.R2_promo.ge50_mw));
+    put('c-sb-from', V4.km2(R1.R2_promo.component_km2));
+    put('c-sb-to', V4.km2(R1.R2_promo_SB.component_km2));
+    const F1 = [
+      ['정본 — 법인·국공유 농지', null, null],
+      ['현행법', R1.R0_current, R1.R0_current_SB],
+      ['+농업보호구역 개방', R1.R1_protect, R1.R1_protect_SB],
+      ['+농업진흥구역 개방', R1.R2_promo, R1.R2_promo_SB],
+      ['둘 다 개방', R1.R3_zone_all, R1.R3_zone_all_SB],
+      ['대조군 — 개인 포함 전 소유 (정책 값 아님)', null, null],
+      ['현행법', R1['R0_current@all'], R1['R0_current_SB@all']],
+      ['+농업진흥구역 개방', R1['R2_promo@all'], R1['R2_promo_SB@all']],
+    ];
+    const mx1 = Math.max(...F1.filter(x => x[1]).map(x => x[1].ge50));
+    document.getElementById('fig1').innerHTML = F1.map(([k, pre, post]) => pre === null
+      ? `<div style="font-size:12px;font-weight:700;color:var(--navy);margin:14px 0 4px;
+          border-bottom:1px solid var(--line);padding-bottom:3px">${k}</div>`
+      : `<div class="bar-row"><div><b>${k}</b></div>
+        <div class="bar-track">
+          <div class="bar-pre" style="width:${Math.max(100 * pre.ge50 / mx1, .5)}%"></div>
+          <div class="bar-post" style="width:${Math.max(100 * post.ge50 / mx1, .5)}%"></div>
+        </div>
+        <div class="bar-num">${V4.n(pre.ge50)} → ${V4.n(post.ge50)}곳
+          <div class="bar-sub">이격 미적용 → 적용</div></div>
+      </div>`).join('') +
+      `<div style="font-size:11.5px;color:var(--muted);margin-top:8px">50MW 이상 = 연접 농지
+       ${V4.n(N.threshold.mw50_m2)}㎡ 이상(0.045kW/㎡ 역산) — 적용된 문턱이 아니라 읽기 눈금.
+       대조군은 정책 값이 아니라 정본이 전체의 얼마인지 가늠하기 위한 것.</div>`;
+  }
+
   const nameOf = c => (names.codes[c] && names.codes[c].name) || c;
   document.getElementById('p-n').textContent = V4.n(R.R2_promo.ge50);
   document.getElementById('p-comp').textContent = V4.n(R.R2_promo.n_component);
@@ -636,6 +704,7 @@ input[type=range]{accent-color:var(--navy)}
   let minKm = null, maxIn20 = null;
   document.getElementById('t-prox').innerHTML =
     `<tr><th>순위</th><th>참고 MW</th><th style="text-align:left">소재</th><th>간척</th>
+     <th>필지 수</th>
      <th style="text-align:left">최근접 산업단지</th><th>직선거리 km</th>
      <th>20km 내 산단</th><th>소재 읍면동 계통 여유 MW</th></tr>` +
     bigList.map((b, i) => {
@@ -651,6 +720,7 @@ input[type=range]{accent-color:var(--navy)}
       return `<tr class="rowbtn" data-id="${b.id}">
         <td>${i + 1}</td><td><b>${V4.n(b.mw)}</b></td><td class="l">${nameOf(b.sgg)}</td>
         <td>${b.reclaim_pct >= 50 ? (b.district || '간척') : '—'}</td>
+        <td>${V4.n(b.n)}</td>
         <td class="l">${nb.best ? nb.best.c.name + ' <span style="color:#888;font-size:11px">' + nb.best.c.t + '</span>' : '—'}</td>
         <td>${nb.best ? V4.km2(nb.best.km, 1) : '—'}</td>
         <td>${nb.best ? V4.n(nb.in20) : '—'}</td>
@@ -670,7 +740,7 @@ input[type=range]{accent-color:var(--navy)}
       ${minKm.c.name} ${V4.km2(minKm.km, 1)} km</b>` : '—'}.` +
     (maxIn20 && maxIn20.n > 0 ? ` 20km 안 산업단지가 가장 많은 후보는 ${nameOf(maxIn20.b.sgg)}
       (${V4.n(maxIn20.n)}곳).` : '') +
-    `<br>산업단지·계통 레이어는 전국 커버 — "알 수 없음" 읍면동만 계통 판단을 보류함(§5).`;
+    `<br>산업단지·계통 레이어는 전국 커버 — "알 수 없음" 읍면동만 계통 판단을 보류함(§6).`;
 
 
   // ── §4 시군별 공동 1등 (recommend_v4 — 발행은 export_recommend_v4.py 게이트 통과분만) ──
