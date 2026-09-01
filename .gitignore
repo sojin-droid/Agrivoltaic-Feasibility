@@ -21,3 +21,6 @@ policy.html
 tmp_*
 .DS_Store
 Thumbs.db
+
+# 편집기 설정 (로컬 전용)
+.vscode/
