@@ -57,19 +57,31 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
         <button type="button" data-lang="ko">KO</button>
         <button type="button" data-lang="en">EN</button>
       </div>
-      <a class="cta" href="mailto:sojin@planit.institute">Contact</a>
+      <a class="nav-cta" href="about.html#contact">Contact</a>
+      <button class="hamburger" aria-label="메뉴 열기" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
     </div>
   </div>
 </header>
 
-<article>
-  <h1>잠재량 산정 — 조건 조합별 적격 면적</h1>
-  <p class="art-meta" id="art-meta">PLANiT Institute · 데이터 생성 <span id="e-built">—</span></p>
+<div class="page-hero">
+  <div class="wrap" style="max-width:860px">
+    <p class="eyebrow">Estimate · 잠재량 산정</p>
+    <h1>잠재량 산정 — 조건 조합별 적격 면적</h1>
+    <p class="lede">소유·구역 개방·이격·간척 범위를 직접 조합해 설치 가능 면적을
+    정본과 같은 방식으로 산정.<br>
+    모든 수치는 정본 판정(경성 제약 통과 적격, "본값")의 필지 단위 사전 집계
+    (<b>큐브</b>)에서 나오며, 발행 전 큐브 합산이 정본 매트릭스 36칸을 정확
+    재현하는지 검사(가산성 항등식)한 자료만 게시<sup class="fnref">[12]</sup>.
+    <b>1차 산출은 면적</b>, MW는 계수 환산 참고 표기<sup class="fnref">[13]</sup>.</p>
+    <p style="font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:14px"
+      id="art-meta">PLANiT Institute · 데이터 생성 <span id="e-built">—</span></p>
+  </div>
+</div>
 
-  <p>모든 수치는 정본 판정(경성 제약 통과 적격, 이하 "본값")의 필지 단위 사전
-  집계(<b>큐브</b>)에서 나옴 — 어떤 조합이든 계산 방식은 정본과 동일.
-  발행 전 큐브 합산이 정본 매트릭스 36칸을 정확 재현하는지 검사(가산성
-  항등식)하며, 통과분만 게시. <b>1차 산출은 면적</b>, MW는 계수 환산 참고 표기.</p>
+<article>
+<div class="wrap art" style="max-width:860px">
+
+  <p class="sec-kicker" style="font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--leaf-deep)">COMPOSER · 조건 조합</p>
 
   <div class="est-grid">
     <div class="est-panel">
@@ -111,6 +123,7 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
     </div>
   </div>
 
+  <p class="sec-kicker" style="font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;color:var(--leaf-deep);margin-top:34px">LAYERS · 산정 층위</p>
   <h2 class="art-h">산정 층위와 한계 — 필지(1층) · 연접 구획(2층)</h2>
   <p><b>1층(필지 면적 합)</b> — 큐브로 즉시 산정. <b>2층(연접 구획 수·규모)</b> —
   필지 간 연접(τ = 21 m) 계산이 필요해 즉석 산정 불가. 조합이 등재 런과 일치하면
@@ -121,6 +134,7 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
 
   <div class="callout-v4" id="e-read">—</div>
 
+</div>
 </article>
 
 <footer class="v4"><div class="wrap"></div></footer>
