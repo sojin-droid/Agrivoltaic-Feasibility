@@ -230,7 +230,9 @@
         <td>${V4.n(r.n_component)}</td>
         <td class="ref">${(() => { const b = (r.size_bands||[]).find(x => Math.abs(x.min_ha-111.1)<1);
                                     return b ? V4.n(b.n) : '—'; })()}</td>
-        <td class="ref">${r.m_total_mw != null ? V4.n(Math.round(r.m_total_mw)) : '—'}</td></tr>`;
+        <td class="ref">${V4.n(Math.round(r.component_area_km2 * 45))}</td></tr>`;
+      // MW 표기는 표 1과 같은 경로(면적×45 = 0.045kW/㎡)로 통일 — 엔진 합계(m_total_mw)는
+      // 구획별 반올림 누적으로 ±1 어긋나 같은 값이 두 표기로 보였음 (2026-09-01 점검)
     }).join('');
   // 표 1 각주: 판정 보류 병기 (T14 v7)
   const pz2 = s.anchor.pending_zone_null;
