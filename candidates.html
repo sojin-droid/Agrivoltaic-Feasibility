@@ -83,7 +83,7 @@
     재클러스터링한 결과<sup class="fnref">[12]</sup>: 개인 동의의 대규모 조직화 없이
     성립하는 물량의 소재와 규모.</p>
     <p style="font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:14px"
-      id="art-meta">PLANiT Institute · 데이터 2판</p>
+      id="art-meta">PLANiT Institute · 데이터 생성 <span id="gen-stamp">—</span></p>
   </div>
 </div>
 
@@ -187,6 +187,7 @@
 (async () => {
   const [N, names] = await Promise.all([V4.data('narrative_v4'), V4.data('sgg_matrix')]);
   const m = await V4.data('meta_v4');
+  document.getElementById('gen-stamp').textContent = m.generated;
   document.getElementById('art-meta').textContent =
     `PLANiT Institute · 데이터 ${m.data_generation} · 생성 ${m.generated}`;
   const R = N.runs;

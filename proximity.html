@@ -114,7 +114,7 @@ input[type=range]{accent-color:var(--navy)}
     <b>경계 = 산업단지 전국 <span id="p-ind">—</span>곳</b><sup class="fnref">[23]</sup> ·
     <b>채움 = 읍면동 단위 계통 여유 전국 <span id="p-emd">—</span>곳</b><sup class="fnref">[22]</sup>.</p>
     <p style="font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:14px"
-      id="art-meta">PLANiT Institute · 데이터 2판</p>
+      id="art-meta">PLANiT Institute · 데이터 생성 <span id="gen-stamp">—</span></p>
   </div>
 </div>
 
@@ -261,6 +261,7 @@ input[type=range]{accent-color:var(--navy)}
 (async () => {
   const [N, names] = await Promise.all([V4.data('narrative_v4'), V4.data('sgg_matrix')]);
   const m = await V4.data('meta_v4');
+  document.getElementById('gen-stamp').textContent = m.generated;
   document.getElementById('art-meta').textContent =
     `PLANiT Institute · 데이터 ${m.data_generation} · 생성 ${m.generated}`;
   const R = N.runs;
