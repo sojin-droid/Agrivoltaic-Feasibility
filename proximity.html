@@ -81,11 +81,17 @@ input[type=range]{accent-color:var(--navy)}
 .cond-pill b{color:var(--navy)}
 #recTbl th,#recTbl td{white-space:nowrap}
 #recTbl tr:nth-child(even) td{background:#FAFBF7}
-#recMap{height:300px;border:1px solid var(--line);border-radius:10px;background:#dfe8df}
+#recMap{height:420px;border:1px solid var(--line);border-radius:10px;background:#dfe8df}
 .cav{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
 @media(max-width:820px){.cav{grid-template-columns:1fr 1fr}}
 .cav .c{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:12.5px;line-height:1.65}
 .cav .c b{display:block;color:var(--navy);margin-bottom:3px;font-size:12.5px}
+.own-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0 22px}
+@media(max-width:820px){.own-kpi{grid-template-columns:1fr 1fr}}
+.own-kpi>div{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px 12px;text-align:center}
+.own-kpi>div.hi{background:var(--sky);border-color:var(--leaf)}
+.own-kpi b{display:block;font-family:var(--serif);font-size:clamp(19px,2.2vw,26px);color:var(--navy);font-variant-numeric:tabular-nums;margin-bottom:4px}
+.own-kpi span{font-size:11.5px;color:var(--muted);line-height:1.5;word-break:keep-all}
 </style>
 </head>
 <body>
@@ -106,7 +112,6 @@ input[type=range]{accent-color:var(--navy)}
       <a href="map.html" data-i18n="nav-map">지도</a>
       <a class="active" href="proximity.html" data-i18n="nav-prox">입지 추천</a>
       <a href="decree.html" data-i18n="nav-decree">시행령 제정안</a>
-      <a href="insight.html" data-i18n="nav-insight">인사이트</a>
       <a href="method.html" data-i18n="nav-method">방법·자료</a>
     </nav>
     <div style="display:flex;gap:12px;align-items:center">
@@ -150,12 +155,16 @@ input[type=range]{accent-color:var(--navy)}
   현행법분(−53%)보다 덜 깎임 — 8칸 전체는 근거 탭 표 5.</p>
   <p style="display:none"><span id="c-cp-a100"></span><span id="c-cp-r-km2"></span><span id="c-cp-r-mw"></span></p>
 
-  <figure class="art-fig">
-    <div class="figbox"><div id="fig1"></div></div>
-    <figcaption>그림 1. 특구급(50MW 이상) 구획 수 — 구역 조합 × 소유 필터 × 이격 전/후.
-    연한 막대 = 이격 미적용, 진한 막대 = 주거 200m 보수 적용<sup class="fnref">[11]</sup>.
-    정본 산출<sup class="fnref">[12]</sup>, 단위 구획 수.</figcaption>
-  </figure>
+  <div class="own-kpi">
+    <div><b><span id="k-a50">—</span>곳 → <span id="k-cp1">—</span>곳</b>
+      <span>개인 포함 → 법인·국공유만<br>(현행법 특구급)</span></div>
+    <div><b><span id="k-indiv">—</span>%</b>
+      <span>특구급 면적 중<br>개인 소유 비중<sup class="fnref">[1]</sup></span></div>
+    <div class="hi"><b><span id="k-r50">—</span>곳 · <span id="k-mw">—</span>MW</b>
+      <span>농업진흥구역 개방 시<br>특구급 (이격 후 <span id="k-r50sb">—</span>곳)</span></div>
+    <div><b>−39%</b>
+      <span>진흥 개방분의 이격 감소<br>(현행법분은 −53%)<sup class="fnref">[11]</sup></span></div>
+  </div>
 
   <h2 class="art-h">2. 지도 — 구획 · 산업단지 · 계통 여유</h2>
   <p>오른쪽 패널에서 후보·산업단지 선택 · 계통 여유는 슬라이더로 문턱 조정 ·
@@ -250,16 +259,16 @@ input[type=range]{accent-color:var(--navy)}
       <select id="recSgg" style="font:inherit;padding:4px 8px"></select>
       <span id="recStamp" style="font-size:12.5px;color:var(--muted)">—</span>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px" class="rec2col">
+    <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin-bottom:12px" class="rec2col">
       <div>
-        <div style="font-size:12.5px;margin-bottom:3px"><b>산점도</b> — x 면적(로그) · y 계통 여유 ·
-          금색 = 공동 1등(클릭 = 지도·표 연동) · 회색 = 지배당한 구획</div>
-        <svg id="recScatter" style="width:100%;height:300px;background:#fff;border:1px solid var(--line);border-radius:10px"></svg>
+        <div style="font-size:12.5px;margin-bottom:3px"><b>위치</b> — 공동 1등의 실제 자리
+          (점 클릭 = 산점도·표 연동)</div>
+        <div id="recMap" style="height:420px"></div>
       </div>
       <div>
-        <div style="font-size:12.5px;margin-bottom:3px"><b>위치</b> — 같은 공동 1등의 실제 자리
-          (점 클릭 = 산점도·표 연동)</div>
-        <div id="recMap"></div>
+        <div style="font-size:12.5px;margin-bottom:3px"><b>산점도</b> — x 면적(로그) · y 계통 여유 ·
+          금색 = 공동 1등 · 회색 = 지배당한 구획</div>
+        <svg id="recScatter" style="width:100%;height:420px;background:#fff;border:1px solid var(--line);border-radius:10px"></svg>
       </div>
     </div>
     <div style="overflow-x:auto"><table class="v4" id="recTbl"></table></div>
@@ -273,34 +282,8 @@ input[type=range]{accent-color:var(--navy)}
       만나는 거리(75분위 반올림, 2–12km). 참고 MW(0.045 kW/㎡)는 표기 전용. 여유 대역이 같은 이웃 구획들(예: 당진 2~5번의 21.6–51.3)은 같은 읍면동·설비의 여유를 나눠 쓰는 사이 — 동시 개발 시 표의 여유를 합산하면 안 됨.</figcaption>
   </figure>
 
-  <h2 class="art-h">5. 단서 — 성격·한계와 미확인 사항</h2>
-  <div class="cav">
-    <div class="c"><b>법인 = 농업법인? 미확인</b>
-      소유는 지적 원장의 유형 구분<sup class="fnref">[1]</sup> — 농업법인 여부·국공유지
-      사용 가능 여부(관리청 협의)는 별도 확인 대상. §1 값은 "가장 어려운 조건의 하한".</div>
-    <div class="c"><b>50MW는 눈금이지 문턱 아님</b>
-      연접 구획 전량은 <span id="p-comp">—</span>곳<sup class="fnref">[12]</sup> — 이 페이지는
-      그중 ≥50MW 등가만 표시. 문턱을 적용해 자른 것이 아님.</div>
-    <div class="c"><b>거리 = 직선</b>
-      구획 중심 ↔ 산단 경계 중심의 측지 직선 — 도로·선로 경로가 아님.
-      개별 사업성은 별도 실사 필요.</div>
-    <div class="c"><b>산업단지 경계</b>
-      산업입지정보시스템 전국 <span id="p-ind2">—</span>곳<sup class="fnref">[23]</sup>.
-      규모·유형만 표기 — 전력 수요 환산은 후속 과제.</div>
-    <div class="c"><b>계통 여유 = 참고 표기</b>
-      읍면동 <span id="p-emd2">—</span>곳<sup class="fnref">[22]</sup>(성공 <span id="p-ok">—</span> ·
-      무응답 <span id="p-unk">—</span>곳 "알 수 없음"). 하한–상한 병기 · 2026-07 스냅숏 ·
-      정본 판정 불사용.</div>
-    <div class="c"><b>기업 검색 = 참고 색인</b>
-      등록공장 <span id="p-fsrc">—</span>사 중 <span id="p-fmat">—</span>사
-      대조<sup class="fnref">[24]</sup> — 잔여 <span id="p-fun">—</span>사는 경계 미등재 단지
-      소재라 제외. 입주 계약 현황 아님.</div>
-  </div>
-
-  <div class="callout-v4">읽는 위치: 이 페이지는 §1 소유 구성(구 특구 후보 탭)의
-  후속 질문(수요·계통 근접성). 후보의 소유 유형별 수치는 <a href="evidence.html#tables" style="color:var(--leaf-deep)"><b>근거 표 4</b></a>,
-  시행령 제정안의 부지 한정은 <a href="decree.html" style="color:var(--leaf-deep)"><b>시행령 제정안 탭</b></a>,
-  구역·이격 조합 전체는 <a href="map.html" style="color:var(--leaf-deep)"><b>지도 탭</b></a>.</div>
+  <p style="font-size:12px;color:var(--muted);margin-top:26px">성격·한계·미확인
+  사항 상세는 방법·자료 탭의 한계 표와 논문(한계·디스커션)으로 이관(2026-09-01).</p>
 
   <div class="fn">특구급 = 50MW 이상 = 연접 농지 <span id="p-th">—</span>㎡부터(0.045 kW/㎡ 환산<sup class="fnref">[13]</sup>) ·
   소유 필터 = 법인('06')·국유지('02')·시/도유지('04')·군유지('05')만 병합<sup class="fnref">[12]</sup> ·
@@ -319,41 +302,23 @@ input[type=range]{accent-color:var(--navy)}
   document.getElementById('art-meta').textContent =
     `PLANiT Institute · 데이터 ${m.data_generation} · 생성 ${m.generated}`;
   const R = N.runs;
-  // ── §1 소유 구성 (구 특구 후보 탭 §1 — 병합 2026-09-01) ──
+  // ── §1 소유 구성 — 타이포 스탯 (막대 그림은 폐지 2026-09-01) ──
   {
     const R1 = N.runs, put = (id, v) => document.getElementById(id).textContent = v;
     put('c-a50', V4.n(R1['R0_current@all'].ge50));
     put('c-indiv', V4.n(N.big_composition['R0_current@all'].indiv_share_pct));
     put('c-cp-a50', V4.n(R1.R0_current.ge50));
     put('c-cp-a-mw', V4.n((N.cp_big_anchor[0] || {mw: 0}).mw));
-    put('c-cp-a100', V4.n(R1.R0_current.ge100));
     put('c-cp-r50', V4.n(R1.R2_promo.ge50));
     put('c-cp-r-mw50', V4.n(R1.R2_promo.ge50_mw));
     put('c-sb-from', V4.km2(R1.R2_promo.component_km2));
     put('c-sb-to', V4.km2(R1.R2_promo_SB.component_km2));
-    const F1 = [
-      ['정본 — 법인·국공유 농지', null, null],
-      ['농업진흥구역 개방 시', R1.R2_promo, R1.R2_promo_SB],
-      ['현행법 (출발점)', R1.R0_current, R1.R0_current_SB],
-      ['대조군 — 개인 포함 전 소유 (정책 값 아님)', null, null],
-      ['농업진흥구역 개방 시', R1['R2_promo@all'], R1['R2_promo_SB@all']],
-      ['현행법', R1['R0_current@all'], R1['R0_current_SB@all']],
-    ];
-    const mx1 = Math.max(...F1.filter(x => x[1]).map(x => x[1].ge50));
-    document.getElementById('fig1').innerHTML = F1.map(([k, pre, post]) => pre === null
-      ? `<div style="font-size:12px;font-weight:700;color:var(--navy);margin:14px 0 4px;
-          border-bottom:1px solid var(--line);padding-bottom:3px">${k}</div>`
-      : `<div class="bar-row"><div><b>${k}</b></div>
-        <div class="bar-track">
-          <div class="bar-pre" style="width:${Math.max(100 * pre.ge50 / mx1, .5)}%"></div>
-          <div class="bar-post" style="width:${Math.max(100 * post.ge50 / mx1, .5)}%"></div>
-        </div>
-        <div class="bar-num">${V4.n(pre.ge50)} → ${V4.n(post.ge50)}곳
-          <div class="bar-sub">이격 미적용 → 적용</div></div>
-      </div>`).join('') +
-      `<div style="font-size:11.5px;color:var(--muted);margin-top:8px">50MW 이상 = 연접 농지
-       ${V4.n(N.threshold.mw50_m2)}㎡ 이상(0.045kW/㎡ 역산) — 적용된 문턱이 아니라 읽기 눈금.
-       대조군은 정책 값이 아니라 정본이 전체의 얼마인지 가늠하기 위한 것. 보호구역만 개방은 특구급 1곳 그대로(+39.5 km²는 근거 표 5) — 규모의 본론은 진흥구역.</div>`;
+    put('k-a50', V4.n(R1['R0_current@all'].ge50));
+    put('k-cp1', V4.n(R1.R0_current.ge50));
+    put('k-indiv', V4.n(N.big_composition['R0_current@all'].indiv_share_pct));
+    put('k-r50', V4.n(R1.R2_promo.ge50));
+    put('k-mw', V4.n(R1.R2_promo.ge50_mw));
+    put('k-r50sb', V4.n(R1.R2_promo_SB.ge50));
   }
 
   const nameOf = c => (names.codes[c] && names.codes[c].name) || c;
@@ -366,12 +331,12 @@ input[type=range]{accent-color:var(--navy)}
   // 색인 본체(1.3 MB)는 첫 검색에서 지연 로드되므로 수만 담은 겉짐을 따로 읽는다
   const FM = await V4.data('ind_firms_meta');
   for (const [id, v] of [['p-fsrc', FM.n_source], ['p-fmat', FM.n_matched],
-                         ['p-fun', FM.n_unmatched]])
-    document.getElementById(id).textContent = V4.n(v);
-  for (const [id, v] of [['p-ind', GS.ind_total], ['p-ind2', GS.ind_total], ['p-ind3', GS.ind_total],
+                         ['p-fun', FM.n_unmatched],
+                         ['p-ind', GS.ind_total], ['p-ind2', GS.ind_total], ['p-ind3', GS.ind_total],
                          ['p-emd', GS.emd_total], ['p-emd2', GS.emd_total],
-                         ['p-ok', GS.emd_ok], ['p-unk', GS.emd_unknown]])
-    document.getElementById(id).textContent = V4.n(v);
+                         ['p-ok', GS.emd_ok], ['p-unk', GS.emd_unknown]]) {
+    const el = document.getElementById(id); if (el) el.textContent = V4.n(v);
+  }
   async function gzfc(path) {
     const r = await fetch(path);
     if (!r.ok) return null;
@@ -863,7 +828,7 @@ input[type=range]{accent-color:var(--navy)}
       .on('click', () => recPick(f)).addTo(layerRec));
     // 산점도
     const svg = document.getElementById('recScatter');
-    const W = svg.clientWidth || 360, H = 300, Pd = 40;
+    const W = svg.clientWidth || 360, H = 420, Pd = 40;
     const AS = S.pts.map(p => p[0]);
     const amin = Math.log10(Math.min(...AS)), amax = Math.log10(Math.max(...AS));
     const lmax = Math.max(...S.pts.map(p => p[1] ?? 0), 1);
