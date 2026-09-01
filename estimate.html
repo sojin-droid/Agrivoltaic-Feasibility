@@ -10,23 +10,22 @@
 <link rel="stylesheet" href="style.css">
 <script src="assets/v4.js"></script>
 <style>
+/* 페이지 전용 배치 — 색·서체는 전부 :root 토큰(style.css)만 사용 */
 .est-grid{display:grid;grid-template-columns:340px 1fr;gap:18px}
 @media(max-width:900px){.est-grid{grid-template-columns:1fr}}
-.est-panel{background:var(--panel,#f4f6f5);border-radius:12px;padding:14px;font-size:13.5px}
-.est-panel h3{margin:12px 0 6px;font-size:13px;color:var(--navy)}
+.est-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:13.5px}
+.est-panel h3{margin:12px 0 6px;font-family:var(--sans);font-size:12px;font-weight:700;color:var(--navy);letter-spacing:.02em}
 .est-panel h3:first-child{margin-top:0}
 .ownrow{display:flex;flex-wrap:wrap;gap:4px 10px}
 .ownrow label{white-space:nowrap;cursor:pointer}
-.presets button{font:inherit;font-size:12px;padding:3px 8px;margin:2px 4px 2px 0;border:1px solid var(--navy);background:#fff;border-radius:6px;cursor:pointer}
+.presets button{font-family:var(--sans);font-size:12px;padding:3px 8px;margin:2px 4px 2px 0;border:1px solid var(--navy);background:var(--white,#fff);color:var(--navy);border-radius:6px;cursor:pointer}
 .presets button.on{background:var(--navy);color:#fff}
 .tgl{display:block;margin:3px 0;cursor:pointer}
-.est-out{border:1px solid #d7ded9;border-radius:12px;padding:16px}
-.est-big{font-family:var(--serif);font-size:34px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.est-out{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--white,#fff)}
+.est-big{font-family:var(--serif);font-size:clamp(26px,3.4vw,34px);font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
 .est-sub{font-size:13.5px;color:var(--muted);margin-top:2px}
-.badge-canon{display:inline-block;background:#1c5f3a;color:#fff;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700}
-.badge-user{display:inline-block;background:#8a1f1f;color:#fff;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700}
-.est-ctl{font-size:12.5px;color:var(--muted);margin-top:8px;border-top:1px dashed #ccd;padding-top:8px}
-input[type=number].coef{width:80px;font:inherit;padding:2px 6px}
+.est-ctl{font-size:12.5px;color:var(--muted);margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
+input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid var(--line);border-radius:6px}
 </style>
 </head>
 <body>
@@ -64,14 +63,13 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px}
 </header>
 
 <article>
-  <h1>잠재량 산정 — 조건을 직접 조합한다</h1>
-  <p class="art-meta" id="art-meta">PLANiT Institute · 데이터 <span id="e-built">—</span>판</p>
+  <h1>잠재량 산정 — 조건 조합별 적격 면적</h1>
+  <p class="art-meta" id="art-meta">PLANiT Institute · 데이터 생성 <span id="e-built">—</span></p>
 
-  <p>이 화면의 모든 수치는 정본 판정(경성 제약 통과 적격, 이하 "본값")을
-  필지 단위로 미리 집계한 <b>큐브</b>에서 나온다. 어떤 조합을 골라도 계산 방식은
-  정본과 같다 — 발행 전에 큐브 합산이 정본 매트릭스 36칸을 정확 재현하는지
-  검사(가산성 항등식)를 통과한 자료만 실린다. <b>1차 산출은 면적</b>이고, MW는
-  계수 환산 참고 표기다.</p>
+  <p>모든 수치는 정본 판정(경성 제약 통과 적격, 이하 "본값")의 필지 단위 사전
+  집계(<b>큐브</b>)에서 나옴 — 어떤 조합이든 계산 방식은 정본과 동일.
+  발행 전 큐브 합산이 정본 매트릭스 36칸을 정확 재현하는지 검사(가산성
+  항등식)하며, 통과분만 게시. <b>1차 산출은 면적</b>, MW는 계수 환산 참고 표기.</p>
 
   <div class="est-grid">
     <div class="est-panel">
@@ -109,18 +107,17 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px}
       <h2 class="art-h" style="font-size:17px;margin-top:18px">이 조합의 시군 상위</h2>
       <div style="overflow-x:auto"><table class="v4" id="eTbl"></table></div>
       <div style="font-size:12px;color:var(--muted)">표시 정렬: 면적(순위 아님) ·
-        시군 귀속은 필지 단위 — 상위 12곳만 표시, 전체는 조합을 시군 범위로 좁혀 확인.</div>
+        시군 귀속은 필지 단위 · 상위 12곳만 표시.</div>
     </div>
   </div>
 
-  <h2 class="art-h">연접 구획(2층)은 이 화면에서 못 만든다</h2>
-  <p>필지 면적 합(1층)은 큐브로 즉시 계산되지만, "그 조합에서 몇 개의 연접 구획이
-  생기는가"(2층)는 필지 간 연접(τ = 21 m) 계산이 필요해 즉석으로는 산출할 수 없다.
-  조합이 <b>등재 런과 일치하면</b> 위 결과 카드에 그 런의 구획 값이 함께 표시되고,
-  등재 밖 조합의 구획 산출이 필요하면 등재 요청(Contact)으로 받는다.
-  τ = 21 m는 적격 필지 710만 개의 4-최근접 거리 곡선(k-distance)의 무릎에서 유도된
-  값으로, 민감도 대역(15–25 m)에서 적격 면적은 변하지 않는다 — 유도 그림과 근거는
-  방법·재현 문서의 그림 자산에 있다.</p>
+  <h2 class="art-h">산정 층위와 한계 — 필지(1층) · 연접 구획(2층)</h2>
+  <p><b>1층(필지 면적 합)</b> — 큐브로 즉시 산정. <b>2층(연접 구획 수·규모)</b> —
+  필지 간 연접(τ = 21 m) 계산이 필요해 즉석 산정 불가. 조합이 등재 런과 일치하면
+  결과 카드에 해당 런의 구획 값 병기, 등재 밖 조합의 구획 산출은 등재 요청(Contact)
+  경로. τ = 21 m는 적격 필지 710만 개의 4-최근접 거리 곡선(k-distance) 무릎에서
+  유도한 값 — 민감도 대역(15–25 m)에서 적격 면적 불변. 유도 그림·근거는 방법·재현
+  문서의 그림 자산 참조.</p>
 
   <div class="callout-v4" id="e-read">—</div>
 
@@ -192,14 +189,14 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px}
     const rn = uni && scope === 0 ? runName(uni, prot, promo, sb) : null;
     const run = rn ? D.runs[rn] : null;
     document.getElementById('eBadge').innerHTML = run
-      ? `<span class="badge-canon">정본 등재 조합 — ${rn}</span>`
-      : `<span class="badge-user">사용자 조합 — 정본 아님</span>
-         <span style="font-size:12px;color:var(--muted)"> 등재 런 밖의 조합입니다. 인용하려면 등재 요청.</span>`;
+      ? `<span class="badge live">정본 등재 — ${rn}</span>`
+      : `<span class="badge gold">사용자 조합 — 정본 아님</span>
+         <span style="font-size:12px;color:var(--muted)"> 등재 런 밖 조합 · 인용에는 등재 요청 필요.</span>`;
     document.getElementById('eRun').innerHTML = run
-      ? `이 조합은 엔진 산출물이 있습니다 — 연접 구획(τ=21m) <b>${V4.n(run.n_comp)}</b>개 ·
+      ? `엔진 산출물 있음 — 연접 구획(τ=21m) <b>${V4.n(run.n_comp)}</b>개 ·
          구획 면적 <b>${run.comp_km2.toLocaleString()}</b> km²
-         <span style="color:var(--muted)">(런 ${rn} · 1층 면적 ${run.km2.toLocaleString()} km²와 큐브 값 대조 가능)</span>`
-      : `연접 구획(2층) 값 없음 — 등재 런 밖 조합은 필지층(1층)까지만 즉석 산정됩니다.`;
+         <span style="color:var(--muted)">(런 ${rn} · 1층 면적 ${run.km2.toLocaleString()} km² — 큐브 값과 대조 가능)</span>`
+      : `연접 구획(2층) 값 없음 — 등재 런 밖 조합은 필지층(1층)까지만 즉석 산정됨.`;
     document.getElementById('eCtl').innerHTML =
       `대조군(소유 무필터 · 같은 구역/이격/범위): ${(cM2 / 1e6).toLocaleString(undefined,
         {maximumFractionDigits: 2})} km² — 선택 조합은 그 ${(m2 / cM2 * 100).toFixed(1)}%
@@ -229,9 +226,9 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px}
   document.querySelectorAll('input[name=eScope]').forEach(e => e.onchange = calc);
 
   document.getElementById('e-read').innerHTML =
-    `읽는 법 — 이 화면의 값은 전부 <b>본값</b>이며 방법은 정본과 같다:
-     ${D.method}. 발행 게이트: ${D.gate}. 사용자 조합에는 "정본 아님" 딱지가 붙고
-     대조군이 항상 병기된다 — 인용 가능한 수치는 정본 등재 조합뿐이다.`;
+    `읽는 법 — 모든 값은 <b>본값</b>(실경작 무관 적격)이며 방법은 정본과 동일:
+     ${D.method}. 발행 게이트: ${D.gate}. 사용자 조합에는 "정본 아님" 딱지 부착 ·
+     대조군 상시 병기 — 인용 가능한 수치는 정본 등재 조합뿐.`;
 
   // 초기값 = 정본 3판 조합 (정본 우주 · 진흥구역 개방 · 이격 미적용)
   document.querySelector('.presets button[data-p=pubcorp]').click();
