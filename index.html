@@ -110,6 +110,87 @@
 </div>
 
 <!-- ═══════════ 다섯 단계로 읽는 결론 (전량 narrative_v4·summary_v4 렌더) ═══════════ -->
+
+<section style="padding:34px 0 8px">
+  <div class="wrap" style="max-width:1080px">
+    <figure class="art-fig" style="margin:0">
+      <div class="figbox" style="padding:0;overflow:hidden">
+        <svg id="agv-hero" viewBox="0 0 980 300" style="width:100%;height:auto;display:block;cursor:ew-resize">
+          <defs>
+            <linearGradient id="agvSky" x1="0" y1="0" x2="0" y2="1">
+              <stop id="agvSky1" offset="0" stop-color="#BFE0F5"/>
+              <stop id="agvSky2" offset="1" stop-color="#EAF4E4"/>
+            </linearGradient>
+          </defs>
+          <rect width="980" height="120" fill="url(#agvSky)"/>
+          <circle id="agvSun" cx="200" cy="70" r="16" fill="#FFC436"/>
+          <g id="agvFld"></g>
+          <rect x="330" y="128" width="420" height="160" rx="10" fill="none"
+                stroke="var(--leaf-deep)" stroke-width="2" stroke-dasharray="8 6"/>
+          <text x="338" y="118" font-family="var(--mono)" font-size="12" fill="var(--leaf-deep)"
+                font-weight="700">농업진흥지역 · 영농형 — 패널 아래에서 농사는 계속됨</text>
+          <g id="agvPn"></g><g id="agvCr"></g>
+          <rect id="agvNight" width="980" height="300" fill="#0A1E3C" opacity="0" pointer-events="none"/>
+          <g><rect x="836" y="16" width="128" height="30" rx="8" fill="#fff" opacity=".92"/>
+             <text id="agvPct" x="900" y="36" text-anchor="middle" font-family="var(--mono)"
+                   font-size="13" font-weight="700" fill="var(--navy)">발전율 0%</text></g>
+        </svg>
+      </div>
+      <figcaption>개념도 — 해가 뜨고 지면 패널이 발전하고, 이랑의 작물은 그대로 자람
+      (마우스로 해를 끌 수 있음). 수치 아님 · 규모·소재는 아래 결론과 각 탭의 정본 값.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<script>
+(() => {   // 구 사이트 위젯 17/17-B(태양-발전 연동 항공뷰) 재구성 — 자족형, 데이터 무의존
+  const $ = id => document.getElementById(id);
+  const PALS = ['#CDE0AE', '#C2D8A0', '#D6E6BC', '#BFD49A', '#D9E3AC', '#E4DCA0', '#CFE2B4'];
+  let f = '<rect y="120" width="980" height="180" fill="#B9C89A"/>';
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 9; c++) {
+    const px = c * 112 - 8, py = 124 + r * 60, col = PALS[(r * 9 + c * 3) % 7];
+    f += `<rect x="${px}" y="${py}" width="105" height="54" rx="4" fill="${col}"/>`;
+    for (let ly = py + 8; ly < py + 50; ly += 8)
+      f += `<line x1="${px + 5}" y1="${ly}" x2="${px + 100}" y2="${ly}" stroke="rgba(90,110,60,.2)" stroke-width="2"/>`;
+  }
+  $('agvFld').innerHTML = f;
+  let pn = '', cr = '';
+  for (let r = 0; r < 4; r++) for (let c = 0; c < 7; c++) {
+    const x = 348 + c * 58, y = 142 + r * 36;
+    pn += `<g transform="translate(${x},${y}) skewX(-14)">
+      <rect class="cell" width="40" height="16" rx="2" fill="#1c2b4a" stroke="#3d5a80" stroke-width="1"/>
+      <rect class="glow" width="40" height="16" rx="2" fill="#FFD84D" opacity="0"/></g>
+      <line x1="${x + 18}" y1="${y + 16}" x2="${x + 18}" y2="${y + 24}" stroke="#556" stroke-width="2"/>`;
+    cr += `<circle cx="${x + 48}" cy="${y + 22}" r="4" fill="#7FBF5A"/>
+           <circle cx="${x + 52}" cy="${y + 24}" r="3" fill="#E4C64B"/>`;
+  }
+  $('agvPn').innerHTML = pn; $('agvCr').innerHTML = cr;
+  const svg = $('agv-hero'), glows = svg.querySelectorAll('.glow');
+  let p = 0.32, auto = true, t = 0;
+  svg.addEventListener('pointermove', e => {
+    auto = false;
+    const r = svg.getBoundingClientRect();
+    p = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+  });
+  svg.addEventListener('pointerleave', () => auto = true);
+  const lerp = (a, b, u) => a + (b - a) * u;
+  function frame() {
+    if (auto) { t += 0.0016; p = (t % 1); }
+    const e = Math.max(0, Math.sin(p * Math.PI));          // 고도 0~1
+    $('agvSun').setAttribute('cx', 60 + p * 860);
+    $('agvSun').setAttribute('cy', 100 - e * 72);
+    $('agvSun').setAttribute('r', 12 + e * 7);
+    $('agvSky1').setAttribute('stop-color', e > .02
+      ? `rgb(${lerp(240, 130, e)},${lerp(190, 200, e)},${lerp(170, 235, e)})` : '#16294a');
+    glows.forEach(g => g.setAttribute('opacity', (e * .8).toFixed(2)));
+    $('agvNight').setAttribute('opacity', ((1 - e) * .55).toFixed(2));
+    $('agvPct').textContent = `발전율 ${Math.round(e * 100)}%`;
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+
 <section class="alt" id="story" style="padding:48px 0 40px">
   <div class="wrap">
     <div class="sec-head"><div><p class="eyebrow">Conclusion · 다섯 단계</p>
