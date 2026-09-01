@@ -70,13 +70,21 @@ dan = gpd.read_file(os.path.join(LR, 'sources', 'ind_complex', 'damdan.gpkg')) \
          .drop_duplicates('dan_id').to_crs(5186)
 w = dan['cat_nam'].map(SCORE).to_numpy(float)
 con = Q.db()
-topo = con.execute("SELECT emd8, dl_key FROM kepco_topo_v3").fetch_df()
-dl_mw = con.execute("SELECT key, vol_min/1000.0 AS mw FROM kepco_dl_v3") \
-           .fetch_df().set_index('key')['mw']            # 원자료 kW → MW
+# 여유 합 = 읍면동 균등배분 하한(lo) 합 — 균등배분은 전국 합 보존(64,020MW 실측
+# 일치)이라 동 단위 합산에 설비 이중계상이 없다. DL vol_min 합은 부적합: 변형 간
+# 최솟값이라 포화 변형이 하나라도 있으면 0으로 붕괴 (해남 실측 2026-09-01)
+emd_lo = con.execute("SELECT emd8, vol3_equal_mw FROM grid_emd_v3 WHERE status='ok'")             .fetch_df().set_index('emd8')['vol3_equal_mw']
 con.close()
 emd = gpd.read_file(os.path.join(LR, 'sources', 'emd_bnd', 'emd_bnd.gpkg')).to_crs(5186)
 emd['emd8'] = emd['emd_cd'].astype(str).str[:8]
-emd2dl = topo.groupby('emd8')['dl_key'].apply(set).to_dict()
+# 신·구 행정코드 다리 — 경계(신 코드)에 없는 구 계통 코드를 이름·공간 대조로 연결
+# (광주·전남 '12' 통합 등 — 다리 없이는 해남 등 신코드 지역의 여유 합이 0으로 붕괴)
+from emd_alias import build_alias
+_c = Q.db()
+_alias = build_alias(_c, emd, set(emd_lo.index))
+_c.close()
+print(f"코드 다리 {len(_alias):,}건 (신 경계 → 구 계통)")
+emd['lo'] = [emd_lo.get(c, emd_lo.get(_alias.get(c))) for c in emd['emd8']]
 from shapely.strtree import STRtree
 etree = STRtree(emd.geometry.values)
 
@@ -88,14 +96,11 @@ for i, lab in enumerate(flabs):
     p = fpts[i]
     cand = etree.query(shapely.buffer(p, (RADII[-1] + 0.5) * 1000))
     ed = shapely.distance(emd.geometry.values[cand], p) / 1000.0
-    e8 = emd['emd8'].values[cand]
+    elo = emd['lo'].values[cand].astype(float)
     sc, gr = [], []
     for r in RADII:
         sc.append(int(w[D[i] <= r].sum()))
-        dls = set()
-        for k in e8[ed <= r]:
-            dls |= emd2dl.get(k, set())
-        gr.append(round(float(dl_mw.reindex(list(dls)).fillna(0).sum()), 1))
+        gr.append(round(float(np.nansum(elo[ed <= r])), 1))
     reader[int(lab)] = {'score': sc, 'grid': gr}
 print(f"판독기 사전계산 — 전선 구획 {len(flabs):,} × 반경 {len(RADII)}눈금")
 
