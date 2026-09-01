@@ -101,27 +101,6 @@
       <div class="repro">직접 확인: ${repro.replace(/^재현: /, '')}</div>
     </div>`);
 
-  // ── I1. 보호 증분 이격 소멸형 (덤벨 차트) ──
-  const wmax = Math.max(...D.wipe.map(w => w.protInc));
-  const dumb = D.wipe.slice(0, 10).map(w => `
-    <div class="dumb-row"><div><b>${w.nm}</b></div>
-      <div class="dumb-track">
-        <div class="dumb-line" style="left:${100*w.protIncS/wmax}%;width:${100*(w.protInc-w.protIncS)/wmax}%"></div>
-        <div class="dumb-a" style="left:calc(${100*w.protInc/wmax}% - 6px)"></div>
-        <div class="dumb-b" style="left:calc(${100*w.protIncS/wmax}% - 6px)"></div>
-      </div>
-      <div style="font-variant-numeric:tabular-nums"><b>${K(w.protInc)}</b> → ${K(w.protIncS)} km²</div>
-    </div>`).join('');
-  card('setback', '이격 × 보호구역',
-    '보호구역 개방 효과가 이격 규제에 전량 상쇄되는 시군이 있다',
-    `보호구역 개방 증분이 이격 200m 적용 시 사실상 소멸하는 시군 <b>${D.wipe.length}곳</b>
-     (증분 0.3km² 이상 ${D.n_base}개 시군 중) — 개방분이 주거 200m 안에 있기 때문.
-     반대 극단은 ${D.keepers.length ? D.keepers[0].nm + `(95% 온존)` : '없다'}.`,
-    `<div style="font-size:11px;color:var(--muted);margin-bottom:4px">
-     <span style="color:var(--leaf-deep)">●</span> 이격 미적용 증분 →
-     <span style="color:#B3261E">●</span> 이격 적용 시 (상위 10곳, km²)</div>` + dumb,
-    `재현: <a href="map.html?sgg=${D.wipe.slice(0,3).map(w=>w.c).join(',')}">지도에서 상위 3곳 보기</a> — 보호구역 개방분 켠 뒤 이격 토글`);
-
   // ── I2. 전국 이격 감소율 구역 비대칭 (막대) ──
   const nmax = Math.max(...D.nat.map(n => n.pre));
   const natBars = D.nat.map(n => `
@@ -133,7 +112,7 @@
       <div class="bar-num">−${n.drop}%<div class="bar-sub">${K(n.pre,0)} → ${K(n.post,0)} km²</div></div>
     </div>`).join('');
   card('setback', '이격 × 구역',
-    '이격 보수의 타격은 구역에 따라 다르다 — 현행 −53% 대 진흥 개방 −39%',
+    '진흥구역 개방분은 이격 규제에 견고하다 — −39%, 현행법분(−53%)보다 완만',
     `주거 이격 200m 보수 적용 시 전국 등재 구획 면적은 현행법 기준에서 ${D.nat[0].drop}%
      감소하는 반면, 진흥구역 개방 조합에서는 ${D.nat[2].drop}% 감소에 그친다 — 농업진흥구역
      농지가 상대적으로 주거에서 먼 대규모 평야에 분포하기 때문이다. 이격 규제 환경에서는
@@ -255,6 +234,27 @@
        <div class="bar-num">${V4.n(v)}<div class="bar-sub">특구급 구획</div></div>
      </div>`).join(''),
     `재현: <a href="proximity.html#candtbl">입지 추천 탭 — 지도·목록</a> · <a href="map.html?cp=1">지도의 소유 필터</a>`);
+
+  // ── I1. 보호 증분 이격 소멸형 (덤벨 차트) ──
+  const wmax = Math.max(...D.wipe.map(w => w.protInc));
+  const dumb = D.wipe.slice(0, 10).map(w => `
+    <div class="dumb-row"><div><b>${w.nm}</b></div>
+      <div class="dumb-track">
+        <div class="dumb-line" style="left:${100*w.protIncS/wmax}%;width:${100*(w.protInc-w.protIncS)/wmax}%"></div>
+        <div class="dumb-a" style="left:calc(${100*w.protInc/wmax}% - 6px)"></div>
+        <div class="dumb-b" style="left:calc(${100*w.protIncS/wmax}% - 6px)"></div>
+      </div>
+      <div style="font-variant-numeric:tabular-nums"><b>${K(w.protInc)}</b> → ${K(w.protIncS)} km²</div>
+    </div>`).join('');
+  card('setback', '이격 × 보호구역',
+    '보호구역만으로는 부족하다 — 개방 증분이 이격에 상쇄되는 시군 존재',
+    `보호구역 개방 증분이 이격 200m 적용 시 사실상 소멸하는 시군 <b>${D.wipe.length}곳</b>
+     (증분 0.3km² 이상 ${D.n_base}개 시군 중) — 개방분이 주거 200m 안에 있기 때문.
+     반대 극단은 ${D.keepers.length ? D.keepers[0].nm + `(95% 온존)` : '없다'}.`,
+    `<div style="font-size:11px;color:var(--muted);margin-bottom:4px">
+     <span style="color:var(--leaf-deep)">●</span> 이격 미적용 증분 →
+     <span style="color:#B3261E">●</span> 이격 적용 시 (상위 10곳, km²)</div>` + dumb,
+    `재현: <a href="map.html?sgg=${D.wipe.slice(0,3).map(w=>w.c).join(',')}">지도에서 상위 3곳 보기</a> — 보호구역 개방분 켠 뒤 이격 토글`);
 
   // ── I10·11. 부정 결과 ──
   card('null', '부정 결과',

@@ -333,13 +333,11 @@ input[type=range]{accent-color:var(--navy)}
     put('c-sb-to', V4.km2(R1.R2_promo_SB.component_km2));
     const F1 = [
       ['정본 — 법인·국공유 농지', null, null],
-      ['현행법', R1.R0_current, R1.R0_current_SB],
-      ['+농업보호구역 개방', R1.R1_protect, R1.R1_protect_SB],
-      ['+농업진흥구역 개방', R1.R2_promo, R1.R2_promo_SB],
-      ['둘 다 개방', R1.R3_zone_all, R1.R3_zone_all_SB],
+      ['농업진흥구역 개방 시', R1.R2_promo, R1.R2_promo_SB],
+      ['현행법 (출발점)', R1.R0_current, R1.R0_current_SB],
       ['대조군 — 개인 포함 전 소유 (정책 값 아님)', null, null],
+      ['농업진흥구역 개방 시', R1['R2_promo@all'], R1['R2_promo_SB@all']],
       ['현행법', R1['R0_current@all'], R1['R0_current_SB@all']],
-      ['+농업진흥구역 개방', R1['R2_promo@all'], R1['R2_promo_SB@all']],
     ];
     const mx1 = Math.max(...F1.filter(x => x[1]).map(x => x[1].ge50));
     document.getElementById('fig1').innerHTML = F1.map(([k, pre, post]) => pre === null
@@ -355,7 +353,7 @@ input[type=range]{accent-color:var(--navy)}
       </div>`).join('') +
       `<div style="font-size:11.5px;color:var(--muted);margin-top:8px">50MW 이상 = 연접 농지
        ${V4.n(N.threshold.mw50_m2)}㎡ 이상(0.045kW/㎡ 역산) — 적용된 문턱이 아니라 읽기 눈금.
-       대조군은 정책 값이 아니라 정본이 전체의 얼마인지 가늠하기 위한 것.</div>`;
+       대조군은 정책 값이 아니라 정본이 전체의 얼마인지 가늠하기 위한 것. 보호구역만 개방은 특구급 1곳 그대로(+39.5 km²는 근거 표 5) — 규모의 본론은 진흥구역.</div>`;
   }
 
   const nameOf = c => (names.codes[c] && names.codes[c].name) || c;
