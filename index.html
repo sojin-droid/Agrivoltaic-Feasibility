@@ -325,48 +325,34 @@
 
   const STEPS = [
     ['①', '현재 수준', `현행법(농업진흥지역 밖 한정)에서 <b>법인·국공유</b> 농지는
-      <b>${V4.km2(M.R0['정본'].km2)} km²</b>(${V4.n(M.R0['정본'].n)}필지)임 —
-      개인을 포함한 전체 ${V4.km2(M.R0['대조군'].km2)} km²의
+      <b>${V4.km2(M.R0['정본'].km2)} km²</b> —
+      전체(개인 포함) ${V4.km2(M.R0['대조군'].km2)} km²의
       <b>${(100*M.R0['정본'].km2/M.R0['대조군'].km2).toFixed(1)}%</b>.
-      연접 21m로 이어 붙이면 ${V4.n(R.R0_current.n_component)}개 덩어리가 되고, 그중
-      50MW 이상은 <b>${V4.n(R.R0_current.ge50)}곳</b>뿐임.`,
+      50MW 이상 구획은 <b>${V4.n(R.R0_current.ge50)}곳</b>뿐임.`,
      'evidence.html#t32', '근거 표 5'],
-    ['②', '왜 늘려야 하는가', `개인을 포함해 세면 50MW 이상(${V4.n(N.threshold.mw50_m2)}㎡)
-      구획이 현행법으로 전국 <b>${V4.n(R['R0_current@all'].ge50)}곳</b> 있음. 그런데 그 면적의
-      <b>${V4.n(N.big_composition['R0_current@all'].indiv_share_pct)}%가 개인 소유</b>라,
-      한 곳을 사업으로 만들려면 수백 명의 동의를 조직해야 함.
-      개인을 빼고 법인·국공유만 이어 붙이면 남는 것은
-      <b>전국 ${V4.n(R.R0_current.ge50)}곳</b>(제주 서귀포 ${V4.n(cpAnchorTop.mw)}MW) —
-      현행법 아래 대규모 영농형 태양광은 사실상 성립하지 않음.`,
+    ['②', '왜 늘려야 하는가', `개인 포함 50MW 이상 구획은 ${V4.n(R['R0_current@all'].ge50)}곳이지만 면적의
+      <b>${V4.n(N.big_composition['R0_current@all'].indiv_share_pct)}%가 개인 소유</b> —
+      수백 명의 동의 조직이 전제. 동의 없이 성립하는 법인·국공유만 세면
+      <b>전국 ${V4.n(R.R0_current.ge50)}곳</b>(제주 서귀포 ${V4.n(cpAnchorTop.mw)}MW).`,
      'proximity.html#own', '입지 추천 탭 — 소유 구성 상세'],
-    ['③', '두 수단의 증분', `농업보호구역을 부령에 포함하면 정본 농지가
-      +${V4.km2((M.R1['정본'].m2 - M.R0['정본'].m2)/1e6)} km²,
-      농업진흥구역을 재생에너지지구로 열면 <b>+${V4.km2((M.R2['정본'].m2 - M.R0['정본'].m2)/1e6)} km²</b> —
-      규모가 열 배 이상 다름.
-      50MW 이상 구획으로 보면 진흥구역 개방이 ${V4.n(R.R0_current.ge50)}곳 →
-      <b>${V4.n(R.R2_promo.ge50)}곳(합 ${V4.n(R.R2_promo.ge50_mw)}MW)</b>이 되고,
-      그중 ${V4.n(cpBigRec)}곳이 석문·대호·부사·고흥·영산강 수계의 간척 지구.
-      연접 구획 전량은 ${V4.n(R.R2_promo.n_component)}곳·${V4.km2(R.R2_promo.component_km2)} km²임.`,
+    ['③', '두 수단의 증분', `보호구역 개방 +${V4.km2((M.R1['정본'].m2 - M.R0['정본'].m2)/1e6)} km² ·
+      진흥구역 개방 <b>+${V4.km2((M.R2['정본'].m2 - M.R0['정본'].m2)/1e6)} km²</b> —
+      규모가 열 배 이상 다름. 진흥구역 개방 시 50MW 이상은
+      <b>${V4.n(R.R2_promo.ge50)}곳(합 ${V4.n(R.R2_promo.ge50_mw)}MW)</b>,
+      그중 ${V4.n(cpBigRec)}곳이 간척 지구.`,
      'proximity.html#candtbl', `입지 추천 탭 — ${V4.n(R.R2_promo.ge50)}곳의 소재와 지도`],
-    ['④', '이격 단서', `주거 이격 200m 상한을 전국에 보수적으로 얹으면 현행법 정본은
-      ${V4.km2(R.R0_current.component_km2)} → ${V4.km2(R.R0_current_SB.component_km2)} km²
-      (−${drop('R0_current')}%)로 깎임. 그런데 진흥구역 개방분은 −${drop('R2_promo')}%에 그치고,
-      <b>50MW 이상 구획은 ${V4.n(R.R2_promo.ge50)} → ${V4.n(R.R2_promo_SB.ge50)}곳으로 하나만
-      줄어듦</b> — 큰 집단 농지, 특히 간척 평야는 애초에 주거에서 멀기 때문.
-      이 값은 하한임: 그 외 이격 17종은 아직 공간 분해 전.`,
+    ['④', '이격 단서', `주거 이격 200m 보수 적용 시 현행법분은 −${drop('R0_current')}%,
+      진흥구역 개방분은 −${drop('R2_promo')}% —
+      <b>50MW 이상은 ${V4.n(R.R2_promo.ge50)} → ${V4.n(R.R2_promo_SB.ge50)}곳으로 하나만
+      줄어듦</b>(간척 평야는 주거에서 멂). 그 외 이격 17종은 공간 분해 전(하한).`,
      'evidence.html#t32', '근거 표 5 · 지도의 이격 토글'],
-    ['⑤', '간척·법인 갭', `시행령 제정안(의견조회판)은 <b>농업회사법인</b>의 부지를
-      매립지등(미매각 간척지 등)으로 한정함(영농조합법인은 해당 없음 — 상세는 시행령 제정안 탭).
-      간척 원장 전체 기준으로, 간척지 밖 법인이
-      잃는 현행 가능 면적은 이격 미적용 <b>${kk(outC.anchor_m2)} km²</b>(약 ${mwK(outC.anchor_m2/1e6)}MW)
-      · 이격 적용 ${kk(outC.anchor_sb_m2)} km², 대신 간척 안 법인의 현행 가능분은 각각
-      ${kk(inC.anchor_m2)}·${kk(inC.anchor_sb_m2)} km²뿐 — 어느 판에서도 접근 면적
-      ${cut(outC.anchor_sb_m2, inC.anchor_sb_m2)}–${cut(outC.anchor_m2, inC.anchor_m2)}% 축소.
-      진흥구역 개방이 동반될 때에만 간척 내 법인 ${kk(inC.all_m2)} km²(이격 후 ${kk(inC.all_sb_m2)})와
-      임차 풀 ${kk(inO.all_m2)} km²(이격 후 ${kk(inO.all_sb_m2)}, 전량 사용승낙 필요)가 열림.<br>
-      간척지가 1차 후보인 이유는 소유 구조에 있음 — 진흥구역 개방분에서 법인·국공유 비중이
-      전국은 ${(100*M.R2['정본'].km2/M.R2['대조군'].km2).toFixed(1)}%인데
-      <b>간척지는 ${(100*K.R2['정본'].km2/K.R2['대조군'].km2).toFixed(1)}%</b>임.`,
+    ['⑤', '간척·법인 갭', `시행령 제정안은 <b>농업회사법인</b>의 부지를 매립지등(미매각 간척지 등)으로
+      한정함 — 현행 접근 가능 면적이 <b>${kk(outC.anchor_m2)} → ${kk(inC.anchor_m2)} km²</b>로
+      ${cut(outC.anchor_m2, inC.anchor_m2)}% 축소. 진흥구역 개방이 동반돼야 간척 내 법인
+      ${kk(inC.all_m2)} km² + 임차 풀 ${kk(inO.all_m2)} km²(사용승낙 필요)가 열림.
+      간척지가 1차 후보인 이유 — 법인·국공유 비중이 전국
+      ${(100*M.R2['정본'].km2/M.R2['대조군'].km2).toFixed(1)}% 대
+      <b>간척지 ${(100*K.R2['정본'].km2/K.R2['대조군'].km2).toFixed(1)}%</b>.`,
      'decree.html', '시행령 제정안 영향 — 부지 한정 조문·수치'],
   ];
   document.getElementById('story-steps').innerHTML = STEPS.map(([no, t, body, href, lk]) => `
