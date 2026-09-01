@@ -67,6 +67,25 @@ input[type=range]{accent-color:var(--navy)}
 .linklbl::before{display:none}
 #t-prox tr.rowbtn{cursor:pointer}
 #t-prox tr.rowbtn:hover td{background:var(--sky)}
+#t-prox th,#t-prox td{white-space:nowrap}
+#t-prox tr:nth-child(even) td{background:#FAFBF7}
+#t-prox tr.rowbtn:hover td{background:var(--sky)}
+#t-prox .rk{font-family:var(--serif);font-weight:700;color:var(--navy)}
+#t-prox tr:nth-child(-n+4) .rk{color:var(--gold)}
+.mwc{display:flex;align-items:center;gap:7px;justify-content:flex-end}
+.mwb{display:inline-block;height:7px;border-radius:4px;background:linear-gradient(90deg,var(--gold),#E4A93B)}
+.chip-rec{display:inline-block;background:#FDF0E3;color:#C96A00;border:1px solid #E8C9A8;
+ border-radius:999px;padding:1px 9px;font-size:11.5px;font-weight:700}
+.cond-pill{display:inline-flex;align-items:center;gap:6px;background:var(--card);
+ border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:12.5px;margin:2px 6px 2px 0}
+.cond-pill b{color:var(--navy)}
+#recTbl th,#recTbl td{white-space:nowrap}
+#recTbl tr:nth-child(even) td{background:#FAFBF7}
+#recMap{height:300px;border:1px solid var(--line);border-radius:10px;background:#dfe8df}
+.cav{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+@media(max-width:820px){.cav{grid-template-columns:1fr 1fr}}
+.cav .c{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:12.5px;line-height:1.65}
+.cav .c b{display:block;color:var(--navy);margin-bottom:3px;font-size:12.5px}
 </style>
 </head>
 <body>
@@ -180,8 +199,15 @@ input[type=range]{accent-color:var(--navy)}
   </figure>
 
   <h2 class="art-h" id="candtbl">3. 특구급 후보 25곳 — 소재·최근접 산업단지·계통</h2>
-  <p>거리 = 구획 표시 범위의 중심점과 산업단지 경계 중심점 사이의 측지 직선거리(표시용 파생값).<br>
-  도로·선로 경로 거리가 아니며, 전국 산업단지 경계 등재분 기준의 최근접임.</p>
+  <p style="margin-bottom:8px">이 25곳은 파레토가 아니라 <b>조건 선별</b> — 다음 세 조건을
+  전부 만족하는 구획 전량(규모순 표시):</p>
+  <p style="margin:0 0 10px">
+    <span class="cond-pill">① 소유 — <b>법인·국공유만 병합</b> (정본 우주)</span>
+    <span class="cond-pill">② 구역 — <b>농업진흥구역 개방(R2)</b> 기준</span>
+    <span class="cond-pill">③ 규모 — <b>≥50MW 등가</b> = 1,111,111㎡ (읽기 눈금, 문턱 아님)</span>
+  </p>
+  <p style="font-size:13px;color:var(--muted)">§4의 시군별 공동 1등은 별개 방식 —
+  규모 눈금 없이 세 축 비지배(파레토)로 뽑음. 거리 = 측지 직선(§5 참조).</p>
 
   <figure class="art-fig">
     <div class="figbox">
@@ -224,24 +250,23 @@ input[type=range]{accent-color:var(--navy)}
       <select id="recSgg" style="font:inherit;padding:4px 8px"></select>
       <span id="recStamp" style="font-size:12.5px;color:var(--muted)">—</span>
     </div>
-    <div style="overflow-x:auto"><table class="v4" id="recTbl"></table></div>
-    <div id="recCtl" style="font-size:12px;color:var(--muted);margin:6px 0 10px">—</div>
-    <div style="display:flex;gap:14px;flex-wrap:wrap">
-      <div style="flex:1 1 340px;min-width:300px">
-        <div style="font-size:12.5px;margin-bottom:2px"><b>산점도</b> — x 면적(로그) · y 계통 여유 ·
-          색 = 산단 거리(가까울수록 진함) · 회색 = 지배당한 구획 · 테두리 = 공동 1등.
-          축이 3개라 2D에서 전선 점이 안쪽에 보일 수 있음 — 해독은 표의 순위 열.</div>
-        <svg id="recScatter" style="width:100%;height:300px"></svg>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px" class="rec2col">
+      <div>
+        <div style="font-size:12.5px;margin-bottom:3px"><b>산점도</b> — x 면적(로그) · y 계통 여유 ·
+          금색 = 공동 1등(클릭 = 지도·표 연동) · 회색 = 지배당한 구획</div>
+        <svg id="recScatter" style="width:100%;height:300px;background:#fff;border:1px solid var(--line);border-radius:10px"></svg>
       </div>
-      <div style="flex:1 1 300px;min-width:280px">
-        <div style="font-size:12.5px;margin-bottom:2px"><b>반경 판독기</b> — 표에서 구획을
-          고르면 반경 안의 산단 점수 합(국가4·일반3·도시첨단2·농공1)과 여유용량 합
-          (읍면동 균등배분 하한의 합 — 균등배분이라 설비 이중계상 없음)을 보인다. 고른 뒤 확인하는 도구다 — 전선 선별에는
-          쓰지 않는다.</div>
-        <div id="recReader" style="background:var(--panel,#f4f6f5);border-radius:8px;padding:10px;font-size:13px">
-          구획을 선택하세요 (표 행 또는 지도·산점도 점 클릭)</div>
+      <div>
+        <div style="font-size:12.5px;margin-bottom:3px"><b>위치</b> — 같은 공동 1등의 실제 자리
+          (점 클릭 = 산점도·표 연동)</div>
+        <div id="recMap"></div>
       </div>
     </div>
+    <div style="overflow-x:auto"><table class="v4" id="recTbl"></table></div>
+    <div id="recCtl" style="font-size:12px;color:var(--muted);margin:6px 0 10px">—</div>
+    <div id="recReader" style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px">
+      <b>반경 판독기</b> — 위 표·산점도·지도에서 구획을 고르면, 반경 안 산단 점수 합과
+      여유용량 합(균등배분 하한 합)을 보임. 고른 뒤 확인하는 도구 — 전선 선별에 불사용.</div>
     <figcaption class="figcap-v4">세 축 비지배 집합 — 여기 있는 구획은 세 축 모두에서
       자기를 이기는 구획이 없다. 후보 전수의 쌍별 지배 비교로 정확히 열거한 것(반복
       근사 아님). 기본 반경은 시군 적응형 — 그 시군 구획의 4분의 3이 첫 산업단지를
@@ -249,30 +274,28 @@ input[type=range]{accent-color:var(--navy)}
   </figure>
 
   <h2 class="art-h">5. 단서 — 성격·한계와 미확인 사항</h2>
-  <p><b>소유·법인 관련 미확인.</b> 이 값은 소유 유형 기준의 실측 — "법인·국공유 필지만으로
-  이 정도 연접 규모가 물리적으로 성립한다"까지를 말함. 법인이 농업법인인지는 지적 원장에
-  없어 미확인(명부 조달 시 정밀화). 국공유지의 실제 사용 가능 여부(관리청 협의·용도 제한)와
-  임차·사용승낙의 실행 가능성도 별도 확인 대상. 개인 필지를 임차로 조직하면 물량은 이보다
-  증가 — §1의 값은 상한이 아니라 "가장 어려운 조건에서의 하한".</p>
-
-  <p><b>구획(폴리곤)</b> — 정본 2판 산출<sup class="fnref">[12]</sup>.
-  진흥구역 개방(정본 우주) 기준 50MW 이상 전부(25곳) — 50MW 등가는 적용된 문턱이 아니라
-  읽기 눈금임(연접 구획 전량은 <span id="p-comp">—</span>곳).<br>
-  <b>산업단지(경계)</b> — 산업입지정보시스템 등재 전국 <span id="p-ind2">—</span>곳
-  전수<sup class="fnref">[23]</sup>(국가·일반·도시첨단·농공). 규모·유형만 표기 — 전력 수요
-  환산은 미포함(후속 과제).<br>
-  <b>계통 여유(채움)</b> — 한전 분산전원 연계정보의 읍면동 단위 잔여 연계가능용량<sup class="fnref">[22]</sup>,
-  전국 <span id="p-emd2">—</span>개 읍면동(조회 성공 <span id="p-ok">—</span> · 원천 무응답
-  <span id="p-unk">—</span>곳은 "알 수 없음" 회색 병기).<br>
-  같은 설비의 값 상이는 최솟값으로 보수 확정 · 균등배분(하한)–공유 미조정(상한)의 두 값을
-  병기 · 2026-07 수집 스냅숏(실시간 아님).<br>
-  <b>입주기업 검색</b> — 전국등록공장현황(2024-12-31 등록분)<sup class="fnref">[24]</sup>의
-  산단 입주 <span id="p-fsrc">—</span>사 중 <span id="p-fmat">—</span>사를 경계 단지명과
-  대조해 색인. 잔여 <span id="p-fun">—</span>사는 경계
-  미등재 단지(연구개발특구·테크노밸리 일부 등) 소재로 검색에서 제외 — 기업 존재의 참고
-  표기이며 입주 계약 현황이 아님.<br>
-  거리는 측지 직선거리로 실제 인입 경로와 다름 — 세 레이어의 겹침은 우선순위 탐색용이며
-  개별 사업성 판단은 별도 실사가 필요함.</p>
+  <div class="cav">
+    <div class="c"><b>법인 = 농업법인? 미확인</b>
+      소유는 지적 원장의 유형 구분<sup class="fnref">[1]</sup> — 농업법인 여부·국공유지
+      사용 가능 여부(관리청 협의)는 별도 확인 대상. §1 값은 "가장 어려운 조건의 하한".</div>
+    <div class="c"><b>50MW는 눈금이지 문턱 아님</b>
+      연접 구획 전량은 <span id="p-comp">—</span>곳<sup class="fnref">[12]</sup> — 이 페이지는
+      그중 ≥50MW 등가만 표시. 문턱을 적용해 자른 것이 아님.</div>
+    <div class="c"><b>거리 = 직선</b>
+      구획 중심 ↔ 산단 경계 중심의 측지 직선 — 도로·선로 경로가 아님.
+      개별 사업성은 별도 실사 필요.</div>
+    <div class="c"><b>산업단지 경계</b>
+      산업입지정보시스템 전국 <span id="p-ind2">—</span>곳<sup class="fnref">[23]</sup>.
+      규모·유형만 표기 — 전력 수요 환산은 후속 과제.</div>
+    <div class="c"><b>계통 여유 = 참고 표기</b>
+      읍면동 <span id="p-emd2">—</span>곳<sup class="fnref">[22]</sup>(성공 <span id="p-ok">—</span> ·
+      무응답 <span id="p-unk">—</span>곳 "알 수 없음"). 하한–상한 병기 · 2026-07 스냅숏 ·
+      정본 판정 불사용.</div>
+    <div class="c"><b>기업 검색 = 참고 색인</b>
+      등록공장 <span id="p-fsrc">—</span>사 중 <span id="p-fmat">—</span>사
+      대조<sup class="fnref">[24]</sup> — 잔여 <span id="p-fun">—</span>사는 경계 미등재 단지
+      소재라 제외. 입주 계약 현황 아님.</div>
+  </div>
 
   <div class="callout-v4">읽는 위치: 이 페이지는 §1 소유 구성(구 특구 후보 탭)의
   후속 질문(수요·계통 근접성). 후보의 소유 유형별 수치는 <a href="evidence.html#tables" style="color:var(--leaf-deep)"><b>근거 표 4</b></a>,
@@ -707,10 +730,10 @@ input[type=range]{accent-color:var(--navy)}
   });
   let minKm = null, maxIn20 = null;
   document.getElementById('t-prox').innerHTML =
-    `<tr><th>순위</th><th>참고 MW</th><th style="text-align:left">소재</th><th>간척</th>
-     <th>필지 수</th>
-     <th style="text-align:left">최근접 산업단지</th><th>직선거리 km</th>
-     <th>20km 내 산단</th><th>소재 읍면동 계통 여유 MW</th></tr>` +
+    `<tr><th>순위</th><th>참고 MW</th><th style="text-align:left">소재</th><th>간척 지구</th>
+     <th>필지</th>
+     <th style="text-align:left">최근접 산단</th><th>거리 km</th>
+     <th>20km 내</th><th>계통 여유 MW</th></tr>` +
     bigList.map((b, i) => {
       const nb = nearestOf[b.id] || {};
       if (nb.best) {
@@ -722,8 +745,10 @@ input[type=range]{accent-color:var(--navy)}
         : (gp.s === 'ok' ? `${V4.n(gp.lo)}–${V4.n(gp.hi)}`
         : (gp.s === 'unknown' ? '알 수 없음' : '—'));
       return `<tr class="rowbtn" data-id="${b.id}">
-        <td>${i + 1}</td><td><b>${V4.n(b.mw)}</b></td><td class="l">${nameOf(b.sgg)}</td>
-        <td>${b.reclaim_pct >= 50 ? (b.district || '간척') : '—'}</td>
+        <td class="rk">${i + 1}</td>
+        <td><div class="mwc"><b>${V4.n(b.mw)}</b><span class="mwb" style="width:${Math.round(44 * b.mw / bigList[0].mw)}px"></span></div></td>
+        <td class="l">${nameOf(b.sgg)}</td>
+        <td>${b.reclaim_pct >= 50 ? `<span class="chip-rec">${(b.district || '간척').replace('지구', '')}</span>` : '<span style="color:#B3261E;font-weight:700">비간척</span>'}</td>
         <td>${V4.n(b.n)}</td>
         <td class="l">${nb.best ? nb.best.c.name + ' <span style="color:#888;font-size:11px">' + nb.best.c.t + '</span>' : '—'}</td>
         <td>${nb.best ? V4.km2(nb.best.km, 1) : '—'}</td>
@@ -752,19 +777,27 @@ input[type=range]{accent-color:var(--navy)}
   const layerRec = L.layerGroup().addTo(map);
   const recSel = document.getElementById('recSgg');
   const fmtA2 = a => a >= 1e6 ? (a / 1e6).toFixed(3) + ' km²' : V4.n(a) + ' ㎡';
-  Object.entries(REC.sgg).sort((x, y) => x[1].label.localeCompare(y[1].label, 'ko'))
-    .forEach(([code, s]) => {
+  const recName = c => (names.codes[c] && names.codes[c].name) || REC.sgg[c].label;
+  Object.entries(REC.sgg).sort((x, y) => recName(x[0]).localeCompare(recName(y[0]), 'ko'))
+    .forEach(([code]) => {
       const o = document.createElement('option');
-      o.value = code; o.textContent = s.label;
+      o.value = code; o.textContent = recName(code);
       recSel.appendChild(o);
     });
   recSel.value = '44270';
   let recCur = null, recSelLab = null;
+  const recGeo = L.map('recMap', {center: [36.3, 127.0], zoom: 8, scrollWheelZoom: false});
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    {maxZoom: 18, attribution: '© Esri'}).addTo(recGeo);
+  const recMk = L.layerGroup().addTo(recGeo);
+  let recMkRef = {};
 
   function recReader(f, r) {
     const ri = REC.reader_radii_km.indexOf(r);
+    const k = recCur.frontier.indexOf(f) + 1, n = recCur.frontier.length;
     document.getElementById('recReader').innerHTML =
-      `<b>구획 #${f.lab}</b> — ${fmtA2(f.a)} · 참고 ${f.mw} MW<br>
+      `<b>${recName(recSel.value)} 공동 1등 ${n}곳 중 ${k}번</b>(면적순 표시 — 순위 아님)
+       — ${fmtA2(f.a)} · 참고 ${f.mw} MW<br>
        반경 <b><span id="recRv">${r}</span> km</b>
        <input type="range" id="recRs" min="${REC.reader_radii_km[0]}"
               max="${REC.reader_radii_km.at(-1)}" step="1" value="${r}" style="width:100%">
@@ -781,7 +814,9 @@ input[type=range]{accent-color:var(--navy)}
     recSelLab = f.lab;
     document.querySelectorAll('#recTbl tr[data-lab]').forEach(tr =>
       tr.style.outline = +tr.dataset.lab === f.lab ? '2px solid #B3261E' : '');
-    map.flyTo([f.lat, f.lon], 13);
+    document.querySelectorAll('#recScatter circle[data-lab]').forEach(c =>
+      c.setAttribute('stroke-width', +c.dataset.lab === f.lab ? 3.6 : 1.8));
+    if (f.lat != null) { recGeo.flyTo([f.lat, f.lon], 12); recMkRef[f.lab]?.openTooltip(); }
     recReader(f, recCur.r_default);
   }
 
@@ -790,11 +825,12 @@ input[type=range]{accent-color:var(--navy)}
     const S = recCur;
     document.getElementById('recStamp').textContent =
       `구획 ${V4.n(S.n_block)}개 전수 · 지배 비교 ${V4.n(S.n_pairs)}회(근사 아님) · 공동 1등 ${S.frontier.length}개`;
-    // 표
-    let h = `<tr><th>구획</th><th>면적</th><th>참고 MW</th><th>여유 MW</th><th>산단 km</th>
+    // 표 — 구획 번호는 "n곳 중 k번(면적순 표시)"
+    const nF = S.frontier.length;
+    let h = `<tr><th>번호</th><th>면적</th><th>참고 MW</th><th>여유 MW</th><th>산단 km</th>
       <th>면적 순위</th><th>계통 순위</th><th>산단 순위</th><th>강한 축</th><th>경작</th><th>간척%</th></tr>`;
-    for (const f of S.frontier) {
-      h += `<tr data-lab="${f.lab}" style="cursor:pointer"><td>#${f.lab}</td>
+    for (const [fi, f] of S.frontier.entries()) {
+      h += `<tr data-lab="${f.lab}" style="cursor:pointer"><td class="rk">${fi + 1}<span style="color:var(--muted);font-weight:400">/${nF}</span></td>
         <td>${fmtA2(f.a)}</td><td>${f.mw}</td>
         <td>${f.lo == null ? '알 수 없음' : f.lo + (f.hi != null ? '–' + f.hi : '')}</td>
         <td>${f.d == null ? '알 수 없음' : f.d.toFixed(1)}</td>
@@ -807,12 +843,25 @@ input[type=range]{accent-color:var(--navy)}
     document.getElementById('recCtl').textContent = S.control_max_m2
       ? `대조군(@all · 개인 포함) 최대 구획 ${fmtA2(S.control_max_m2)} — 정본 최대의 ×${(S.control_max_m2 / S.frontier[0].a).toFixed(1)} (정책 값 아님 · 병기)`
       : '';
-    // 지도 마커 — 공동 1등만 금색
+    // 미니 지도 — 공동 1등 금색 (클릭 = 표·산점도 연동)
+    recMk.clearLayers(); recMkRef = {};
+    const coords = [];
+    S.frontier.forEach((f, fi) => {
+      if (f.lat == null) return;
+      coords.push([f.lat, f.lon]);
+      recMkRef[f.lab] = L.circleMarker([f.lat, f.lon], {
+        radius: Math.max(7, Math.sqrt(f.a) / 180), color: '#B8860B', weight: 2.5,
+        fillColor: '#FFD84D', fillOpacity: .9
+      }).bindTooltip(`${fi + 1}/${S.frontier.length} · ${fmtA2(f.a)} · ${f.strong}`)
+        .on('click', () => recPick(f)).addTo(recMk);
+    });
+    if (coords.length) recGeo.fitBounds(coords, {padding: [30, 30], maxZoom: 12});
+    // 본지도(§2) 마커도 유지
     layerRec.clearLayers();
-    S.frontier.forEach(f => L.circleMarker([f.lat, f.lon], {
+    S.frontier.forEach((f, fi) => f.lat != null && L.circleMarker([f.lat, f.lon], {
       radius: Math.max(6, Math.sqrt(f.a) / 200), color: '#B8860B', weight: 2.5,
       fillColor: '#FFD84D', fillOpacity: .85, pane: 'markerPane'
-    }).bindTooltip(`#${f.lab} · ${fmtA2(f.a)} · ${f.strong}`)
+    }).bindTooltip(`공동 1등 ${fi + 1}/${S.frontier.length} · ${fmtA2(f.a)}`)
       .on('click', () => recPick(f)).addTo(layerRec));
     // 산점도
     const svg = document.getElementById('recScatter');
@@ -827,17 +876,21 @@ input[type=range]{accent-color:var(--navy)}
              <line x1="${Pd}" y1="${H - Pd}" x2="${Pd}" y2="8" stroke="#999"/>
              <text x="${W - 88}" y="${H - Pd + 26}" font-size="10.5">면적(로그) →</text>
              <text x="6" y="16" font-size="10.5">여유 MW ↑</text>`;
-    const fset = new Set(S.frontier.map(f => f.lab));
     S.pts.forEach(p => {
-      const front = p[3];
-      const c = p[2] == null ? '#bbb' : `hsl(${210 - 170 * Math.max(0, 1 - p[2] / dmax)},70%,45%)`;
-      e += `<circle cx="${lx(p[0])}" cy="${ly(p[1])}" r="${front ? 5.5 : 2.6}"
-            fill="${front ? c : '#9AA3AE'}" fill-opacity="${front ? .95 : .3}"
-            stroke="${front ? '#B3261E' : 'none'}" stroke-width="1.8"/>`;
+      if (p[3]) return;                                  // 전선은 아래서 frontier로 직접
+      e += `<circle cx="${lx(p[0])}" cy="${ly(p[1])}" r="2.6"
+            fill="#9AA3AE" fill-opacity=".3"/>`;
+    });
+    S.frontier.forEach((f, fi) => {
+      e += `<circle cx="${lx(f.a)}" cy="${ly(f.lo)}" r="6.5" data-lab="${f.lab}"
+            fill="#FFD84D" stroke="#B8860B" stroke-width="1.8" style="cursor:pointer">
+            <title>${fi + 1}/${S.frontier.length} · ${f.strong}</title></circle>`;
     });
     svg.innerHTML = e;
-    document.getElementById('recReader').textContent =
-      '구획을 선택하세요 (표 행 또는 지도 점 클릭)';
+    svg.querySelectorAll('circle[data-lab]').forEach(c => c.onclick = () =>
+      recPick(S.frontier.find(f => f.lab === +c.dataset.lab)));
+    document.getElementById('recReader').innerHTML =
+      '<b>반경 판독기</b> — 위 표·산점도·지도에서 구획을 고르면, 반경 안 산단 점수 합과 여유용량 합(균등배분 하한 합)을 보임. 고른 뒤 확인하는 도구 — 전선 선별에 불사용.';
   }
   recSel.addEventListener('change', recRender);
   recRender();
