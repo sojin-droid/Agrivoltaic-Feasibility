@@ -130,13 +130,40 @@
           <text x="338" y="118" font-family="var(--mono)" font-size="12" fill="var(--leaf-deep)"
                 font-weight="700">농업진흥지역 · 영농형 — 패널 아래에서 농사는 계속됨</text>
           <g id="agvPn"></g><g id="agvCr"></g>
+          <g id="agvInd">
+            <rect x="790" y="120" width="190" height="180" fill="#E3E4DE"/>
+            <rect x="790" y="196" width="190" height="10" fill="#CACBC4"/>
+            <g stroke="#9aa" stroke-width="1">
+              <rect x="806" y="140" width="66" height="44" fill="#CDD2D8"/>
+              <rect x="884" y="132" width="80" height="52" fill="#C2C8CF"/>
+              <rect x="812" y="218" width="58" height="60" fill="#CDD2D8"/>
+              <rect x="886" y="214" width="78" height="64" fill="#C2C8CF"/>
+              <path d="M806,140 l10,-12 h14 l10,12" fill="#B7BEC6"/>
+              <path d="M884,132 l12,-14 h20 l12,14" fill="#B7BEC6"/>
+            </g>
+            <g id="agvWin" fill="#FFD84D" opacity="0">
+              <rect x="814" y="150" width="10" height="8"/><rect x="832" y="150" width="10" height="8"/>
+              <rect x="850" y="150" width="10" height="8"/><rect x="894" y="144" width="12" height="9"/>
+              <rect x="914" y="144" width="12" height="9"/><rect x="936" y="144" width="12" height="9"/>
+              <rect x="822" y="230" width="10" height="8"/><rect x="842" y="230" width="10" height="8"/>
+              <rect x="896" y="226" width="12" height="9"/><rect x="918" y="226" width="12" height="9"/>
+            </g>
+            <text x="885" y="296" text-anchor="middle" font-family="var(--mono)"
+                  font-size="11.5" fill="#6C757D" font-weight="700">산업단지 — 전력 수요처</text>
+          </g>
+          <g id="agvGridline">
+            <path id="agvWire" d="M752,170 C 776,150 790,178 806,166 S 850,150 884,158"
+                  fill="none" stroke="#FFC436" stroke-width="3" stroke-dasharray="10 9"/>
+            <line x1="758" y1="170" x2="758" y2="196" stroke="#556" stroke-width="3"/>
+            <line x1="806" y1="166" x2="806" y2="196" stroke="#556" stroke-width="3"/>
+          </g>
           <rect id="agvNight" width="980" height="300" fill="#0A1E3C" opacity="0" pointer-events="none"/>
           <g><rect x="836" y="16" width="128" height="30" rx="8" fill="#fff" opacity=".92"/>
              <text id="agvPct" x="900" y="36" text-anchor="middle" font-family="var(--mono)"
                    font-size="13" font-weight="700" fill="var(--navy)">발전율 0%</text></g>
         </svg>
       </div>
-      <figcaption>개념도 — 해가 뜨고 지면 패널이 발전하고, 이랑의 작물은 그대로 자람
+      <figcaption>개념도 — 해가 뜨고 지면 패널이 발전해 이웃 산업단지로 흐르고(선의 흐름 = 발전율), 이랑의 작물은 그대로 자람. 밤에는 도시의 불이 켜짐
       (마우스로 해를 끌 수 있음). 수치 아님 · 규모·소재는 아래 결론과 각 탭의 정본 값.</figcaption>
     </figure>
   </div>
@@ -147,7 +174,7 @@
   const $ = id => document.getElementById(id);
   const PALS = ['#CDE0AE', '#C2D8A0', '#D6E6BC', '#BFD49A', '#D9E3AC', '#E4DCA0', '#CFE2B4'];
   let f = '<rect y="120" width="980" height="180" fill="#B9C89A"/>';
-  for (let r = 0; r < 3; r++) for (let c = 0; c < 9; c++) {
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 7; c++) {
     const px = c * 112 - 8, py = 124 + r * 60, col = PALS[(r * 9 + c * 3) % 7];
     f += `<rect x="${px}" y="${py}" width="105" height="54" rx="4" fill="${col}"/>`;
     for (let ly = py + 8; ly < py + 50; ly += 8)
@@ -166,7 +193,7 @@
   }
   $('agvPn').innerHTML = pn; $('agvCr').innerHTML = cr;
   const svg = $('agv-hero'), glows = svg.querySelectorAll('.glow');
-  let p = 0.32, auto = true, t = 0;
+  let p = 0.32, auto = true, t = 0, wireOff = 0;
   svg.addEventListener('pointermove', e => {
     auto = false;
     const r = svg.getBoundingClientRect();
@@ -185,6 +212,10 @@
     glows.forEach(g => g.setAttribute('opacity', (e * .8).toFixed(2)));
     $('agvNight').setAttribute('opacity', ((1 - e) * .55).toFixed(2));
     $('agvPct').textContent = `발전율 ${Math.round(e * 100)}%`;
+    wireOff -= e * 1.6;                                     // 송전 흐름 속도 ∝ 발전율
+    $('agvWire').setAttribute('stroke-dashoffset', wireOff.toFixed(1));
+    $('agvWire').setAttribute('opacity', (.25 + e * .75).toFixed(2));
+    $('agvWin').setAttribute('opacity', ((1 - e) * .95).toFixed(2));  // 밤 창불빛
     requestAnimationFrame(frame);
   }
   frame();
@@ -203,6 +234,23 @@
       <span id="one-liner" style="font-size:15px;line-height:1.8">—</span>
     </div>
 
+
+<style>
+.strip5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0 20px}
+@media(max-width:760px){.strip5{grid-template-columns:repeat(2,1fr)}}
+.strip5 a{display:block;text-align:center;text-decoration:none;color:var(--ink);
+ background:var(--white);border:1px solid var(--line);border-radius:10px;padding:10px 6px 8px}
+.strip5 a:hover{border-color:var(--leaf-deep)}
+.strip5 .no{font-family:var(--serif);font-weight:700;color:var(--gold);font-size:15px}
+.strip5 .lb{font-size:11.5px;color:var(--muted);word-break:keep-all;line-height:1.4}
+</style>
+<div class="strip5">
+  <a href="#s1"><svg viewBox="0 0 120 74" style="width:100%;height:auto"><g transform="translate(60,10)"><path d="M0,26 L46,0 L92,26 L46,52 Z" transform="translate(-46,0)" fill="#DCE8C8" stroke="#9DB27E" stroke-width="1.4"/><text x="0" y="32" text-anchor="middle" font-size="20" fill="#9DB27E" font-weight="700">?</text></g></svg><div class="no">①</div><div class="lb">현행법 — 법인·국공유<br>50MW 이상 1곳</div></a>
+  <a href="#s2"><svg viewBox="0 0 120 74" style="width:100%;height:auto"><g transform="translate(60,10)"><path d="M0,26 L46,0 L92,26 L46,52 Z" transform="translate(-46,0)" fill="#DCE8C8" stroke="#9DB27E" stroke-width="1.4"/><circle cx="-28" cy="20" r="3" fill="#C96A00"/><circle cx="-17" cy="27" r="3" fill="#C96A00"/><circle cx="-6" cy="34" r="3" fill="#C96A00"/><circle cx="5" cy="20" r="3" fill="#C96A00"/><circle cx="16" cy="27" r="3" fill="#C96A00"/><circle cx="27" cy="34" r="3" fill="#C96A00"/></g></svg><div class="no">②</div><div class="lb">개인 소유 92% —<br>동의 조직이 벽</div></a>
+  <a href="#s3"><svg viewBox="0 0 120 74" style="width:100%;height:auto"><g transform="translate(60,10)"><path d="M0,26 L46,0 L92,26 L46,52 Z" transform="translate(-46,0)" fill="#DCE8C8" stroke="#9DB27E" stroke-width="1.4"/><rect x="-30" y="16" width="11" height="6" rx="1" fill="#1c2b4a" transform="skewX(-12)"/><rect x="-14" y="19" width="11" height="6" rx="1" fill="#1c2b4a" transform="skewX(-12)"/><rect x="2" y="16" width="11" height="6" rx="1" fill="#1c2b4a" transform="skewX(-12)"/><rect x="18" y="19" width="11" height="6" rx="1" fill="#1c2b4a" transform="skewX(-12)"/></g></svg><div class="no">③</div><div class="lb">진흥구역 개방 —<br>25곳 · 2,450MW</div></a>
+  <a href="#s4"><svg viewBox="0 0 120 74" style="width:100%;height:auto"><g transform="translate(60,10)"><path d="M0,26 L46,0 L92,26 L46,52 Z" transform="translate(-46,0)" fill="#DCE8C8" stroke="#9DB27E" stroke-width="1.4"/><rect x="-30" y="16" width="11" height="6" rx="1" fill="#1c2b4a" transform="skewX(-12)"/><rect x="-14" y="19" width="11" height="6" rx="1" fill="#1c2b4a" transform="skewX(-12)"/><rect x="2" y="16" width="11" height="6" rx="1" fill="#1c2b4a" transform="skewX(-12)"/><rect x="18" y="19" width="11" height="6" rx="1" fill="#1c2b4a" transform="skewX(-12)"/><ellipse cx="0" cy="26" rx="52" ry="30" fill="none" stroke="#B3261E" stroke-width="1.6" stroke-dasharray="5 4"/></g></svg><div class="no">④</div><div class="lb">이격 200m 얹어도<br>24곳 잔존</div></a>
+  <a href="#s5"><svg viewBox="0 0 120 74" style="width:100%;height:auto"><g transform="translate(60,10)"><path d="M-46,26 L0,0 L46,26 L0,52 Z" fill="#CFE2E8" stroke="#8FB4BF" stroke-width="1.4"/><path d="M0,26 L46,0 L92,26 L46,52 Z" transform="translate(-38,-6) scale(.84)" fill="#DCE8C8" stroke="#9DB27E" stroke-width="1.4"/><rect x="18" y="10" width="18" height="14" fill="#C2C8CF" stroke="#9aa"/><path d="M18,10 l4,-5 h10 l4,5" fill="#B7BEC6"/></g></svg><div class="no">⑤</div><div class="lb">간척 평야가 1차 후보 —<br>산단 수요 인접</div></a>
+</div>
     <div id="story-steps" style="display:flex;flex-direction:column;gap:12px"></div>
 
     <div class="fn" style="margin-top:14px">특구급 = 재생에너지지구급 사업 규모 50–100MW
@@ -217,6 +265,51 @@
 <!-- ═══════════ 입문 안내 (처음 읽는 독자용) ═══════════ -->
 <section style="padding:44px 0 36px">
   <div class="wrap">
+
+    <figure class="art-fig" style="margin:6px 0 22px">
+      <div class="figbox" style="padding:10px 14px;background:#fff">
+        <svg viewBox="0 0 960 240" style="width:100%;height:auto;display:block" font-family="var(--sans)">
+          <g stroke="#1c2b4a" stroke-width="2" fill="none" stroke-linecap="round">
+            <path d="M20,206 Q 480,198 940,206"/>
+          </g>
+          <path d="M60,196 q 20,-58 52,-64 q 40,-8 52,-40 q 30,26 8,58 q 28,2 20,26 q -10,24 -52,22 z"
+                fill="#BFDB9A" opacity=".85"/>
+          <path d="M96,196 l6,-58" stroke="#1c2b4a" stroke-width="3" fill="none"/>
+          <g fill="#7FBF5A">
+            <path d="M200,206 q6,-26 12,0 M216,206 q6,-30 12,0 M232,206 q6,-24 12,0" stroke="#5A9E43" stroke-width="3" fill="none"/>
+            <path d="M560,206 q6,-26 12,0 M576,206 q6,-30 12,0 M592,206 q6,-24 12,0" stroke="#5A9E43" stroke-width="3" fill="none"/>
+            <path d="M380,206 q6,-22 12,0 M396,206 q6,-26 12,0" stroke="#E4C64B" stroke-width="3" fill="none"/>
+            <path d="M700,206 q6,-22 12,0 M716,206 q6,-26 12,0" stroke="#E4C64B" stroke-width="3" fill="none"/>
+          </g>
+          <g stroke="#1c2b4a" stroke-width="2.4">
+            <line x1="300" y1="206" x2="300" y2="120"/><line x1="470" y1="206" x2="470" y2="108"/>
+            <line x1="640" y1="206" x2="640" y2="120"/>
+          </g>
+          <g transform="rotate(-12 470 96)">
+            <rect x="270" y="88" width="400" height="16" rx="3" fill="#1c2b4a"/>
+            <g stroke="#3d5a80" stroke-width="1.4">
+              <line x1="320" y1="88" x2="320" y2="104"/><line x1="370" y1="88" x2="370" y2="104"/>
+              <line x1="420" y1="88" x2="420" y2="104"/><line x1="470" y1="88" x2="470" y2="104"/>
+              <line x1="520" y1="88" x2="520" y2="104"/><line x1="570" y1="88" x2="570" y2="104"/>
+              <line x1="620" y1="88" x2="620" y2="104"/>
+            </g>
+          </g>
+          <circle cx="880" cy="46" r="20" fill="#FFC436"/>
+          <g stroke="#FFC436" stroke-width="2.4"><line x1="880" y1="14" x2="880" y2="4"/>
+            <line x1="908" y1="24" x2="916" y2="16"/><line x1="912" y1="46" x2="924" y2="46"/></g>
+          <g stroke="#1c2b4a" stroke-width="2.4" fill="none" stroke-linecap="round">
+            <circle cx="770" cy="160" r="7" fill="#1c2b4a"/>
+            <path d="M770,167 v20 M770,174 l-9,8 M770,174 l10,6 M770,187 l-7,16 M770,187 l8,15"/>
+          </g>
+          <g font-size="12.5" fill="#6C757D">
+            <text x="330" y="150">패널 아래 통과 높이 — 농기계·사람</text>
+            <text x="200" y="230">벼·밭작물 이랑은 그대로</text>
+            <text x="700" y="230">일반 태양광과 달리 농지가 농지로 유지됨</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption>개념 단면 — 영농형 태양광: 기둥 위 패널, 그 아래에서 영농 병행. 수치 아님.</figcaption>
+    </figure>
     <div class="sec-head"><div><p class="eyebrow">Primer · 기본 개념</p>
     <h2>처음 읽는 분을 위한 네 가지 개념</h2></div>
     <span style="font-size:12.5px;color:var(--muted)">이 네 가지만 알면 모든 탭을 읽을 수 있음</span></div>
@@ -436,8 +529,8 @@
       <b>간척지 ${(100*K.R2['정본'].km2/K.R2['대조군'].km2).toFixed(1)}%</b>.`,
      'decree.html', '시행령 제정안 영향 — 부지 한정 조문·수치'],
   ];
-  document.getElementById('story-steps').innerHTML = STEPS.map(([no, t, body, href, lk]) => `
-    <div class="figbox reveal" style="display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start">
+  document.getElementById('story-steps').innerHTML = STEPS.map(([no, t, body, href, lk], _i) => `
+    <div class="figbox reveal" id="s${_i + 1}" style="display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start">
       <div style="font-family:var(--serif);font-size:26px;font-weight:700;color:var(--gold);line-height:1.2">${no}</div>
       <div style="font-size:13.5px;line-height:1.85;word-break:keep-all">
         <b style="font-family:var(--serif);font-size:15px;color:var(--navy)">${t}</b><br>${body}
