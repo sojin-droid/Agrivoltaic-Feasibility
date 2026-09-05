@@ -73,7 +73,7 @@
     <p class="eyebrow">Map · 구획 지도</p>
     <h1 style="font-size:clamp(24px,3vw,34px)">지도 — 시나리오별 연접 구획</h1>
     <p class="lede" style="margin-top:6px">법인·국공유 소유(정본) 연접 구획(21m 병합,
-    문턱 없이 전량)의 지도. 노랑 = 현행법(항상 표시), 주황 = +보호구역 개방분,
+    문턱 없이 전량)의 지도. 노랑 = 진흥✕·보호✕(항상 표시), 주황 = +보호구역 개방분,
     빨강 = +진흥구역 개방분 — 켜면 노랑 밖으로 번지는 <b>증분</b>이 보임.
     <b>대조군 겹쳐 보기</b>(회색) = 개인 포함 전 소유 — 회색만 있는 자리가 개인 소유라
     정본에서 빠진 곳(비교용, 정책 값 아님<sup class="fnref">※</sup>).</p>
@@ -87,7 +87,7 @@
       <div id="mapChips" style="margin-bottom:8px"></div>
       <div class="scn-btns">
         <button disabled style="cursor:default;background:var(--sky);border-color:var(--line)">
-          현행법 기준 — 항상 표시<small>농업진흥지역 밖 · 노랑</small></button>
+          진흥✕·보호✕ — 항상 표시<small>농업진흥지역 밖 · 노랑</small></button>
         <button id="chkProt">＋ 농업보호구역 개방분<small>수단 A (부령) · 주황으로 추가</small></button>
         <button id="chkProm">＋ 농업진흥구역 개방분<small>수단 B (재생에너지지구) · 빨강으로 추가</small></button>
         <button id="chkAll">대조군 겹쳐 보기 — 개인 포함 전 소유<small>회색 윤곽 · 정본이 비어 있는 자리의 이유를 확인</small></button>
@@ -102,7 +102,7 @@
       <div id="stats"></div>
       <div class="leg">
         <span class="sw" style="background:rgba(154,163,174,.55);border:1px solid #6B7480"></span>대조군 — 개인 포함 전 소유 (회색, 겹쳐 보기 시)<br>
-        <span class="sw" style="background:rgba(255,216,77,.8);border:1px solid #B8860B"></span>현행법 기준 연접 구획 (노랑)<br>
+        <span class="sw" style="background:rgba(255,216,77,.8);border:1px solid #B8860B"></span>진흥✕·보호✕ 연접 구획 (노랑)<br>
         <span class="sw" style="background:rgba(255,155,61,.8);border:1px solid #C96A00"></span>보호구역 개방으로 늘어나는 부분 (주황)<br>
         <span class="sw" style="background:rgba(255,80,70,.8);border:1px solid #B3261E"></span>진흥구역 개방으로 늘어나는 부분 (빨강)<br>
         노랑 밖으로 번진 색 = 그 개방의 증분 · 구획 클릭 = 면적·필지 수 · 점선 = 시군 경계 걸침
@@ -244,7 +244,7 @@
     let html = '';
     if (picked.length && idx) {
       const b = sumIdx(baseCell());
-      html += line(`선택 시군 · 현행법${cpTag}${picked.length > 1 ? ' (합계)' : ''}`,
+      html += line(`선택 시군 · 진흥✕·보호✕${cpTag}${picked.length > 1 ? ' (합계)' : ''}`,
                    `${V4.n(b.k)}개 · ${V4.km2(b.km2)} km²`);
       if (onProt) {
         const p = sumIdx(protCell());
@@ -263,7 +263,7 @@
                      (cur.km2 > 0 ? ` (×${(a.km2 / cur.km2).toFixed(1)})` : ''));
       }
     }
-    if (natB) html += line(`전국 · 현행법${cpTag}`,
+    if (natB) html += line(`전국 · 진흥✕·보호✕${cpTag}`,
       `${V4.n(natB.n_component)}구획 · ${V4.km2(natB.component_area_km2)} km²`);
     if (onProt && natP) html += line('전국 ＋보호구역',
       `+${V4.km2(natP.component_area_km2 - natB.component_area_km2)} → ${V4.km2(natP.component_area_km2)} km²`);
@@ -280,7 +280,7 @@
 
   const LAYER_STYLE = {
     ctrl: {fill: '#9AA3AE', line: '#6B7480', label: '대조군(개인 포함) — 정책 값 아님'},
-    base: {fill: '#FFD84D', line: '#B8860B', label: '현행법 기준'},
+    base: {fill: '#FFD84D', line: '#B8860B', label: '진흥✕·보호✕'},
     prot: {fill: '#FF9B3D', line: '#C96A00', label: '＋보호구역 개방 시'},
     prom: {fill: '#FF5046', line: '#B3261E', label: '＋진흥구역 개방 시'},
   };

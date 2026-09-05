@@ -1,5 +1,5 @@
 {
-"generated": "2026-08-31 19:14",
+"generated": "2026-09-06 00:32",
 "edition": "ADR-0040+0041",
 "grid": "adr0041_25",
 "grid_sha12": "b3b25860ef5b",
@@ -10,8 +10,8 @@
 "decl": "R0_current",
 "role": "policy",
 "group": "정본 정책",
-"label": "R0 현행법 기준",
-"label_short": "현행법 기준",
+"label": "R0 진흥✕·보호✕",
+"label_short": "진흥✕·보호✕",
 "universe": null,
 "tau": null
 },
@@ -21,7 +21,7 @@
 "role": "policy",
 "group": "정본 정책",
 "label": "R0 + 이격 보수",
-"label_short": "현행법 + 이격 보수",
+"label_short": "진흥✕·보호✕ + 이격 보수",
 "universe": null,
 "tau": null
 },
@@ -92,8 +92,8 @@
 "decl": "R0_current",
 "role": "control",
 "group": "무필터 대조군",
-"label": "R0 현행법 기준",
-"label_short": "현행법 기준",
+"label": "R0 진흥✕·보호✕",
+"label_short": "진흥✕·보호✕",
 "universe": "all",
 "tau": null
 },

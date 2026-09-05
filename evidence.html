@@ -67,7 +67,7 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
     <h1>근거·산정 — 전체 수치와 조건 조합</h1>
     <p class="lede">모든 표는 정본 DB 조회값<sup class="fnref">[12]</sup>.<br>필지 수와 면적(km²)이 1차 산출,
     MW는 참고 환산(0.045 kW/㎡ 가정<sup class="fnref">[13]</sup>).<br>
-    <b>R0–R3은 구역 조합 번호</b> — R0 현행법(농업진흥지역 밖) · R1 +농업보호구역 개방 ·
+    <b>R0–R3은 구역 조합 번호</b> — R0 진흥✕·보호✕(농업진흥지역 밖) · R1 +농업보호구역 개방 ·
     R2 +농업진흥구역 개방 · R3 둘 다 개방<sup class="fnref">[5]</sup>.</p>
     <div style="margin-top:14px">
       <a class="pill" href="#diag">시군별 조회</a>
@@ -98,7 +98,7 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
       </div>
       <div id="dg-chips" style="margin:2px 0 8px"></div>
       <div class="dz-cards">
-        <div class="dz-card"><span class="k">R0 현행법 기준</span><div class="v" id="dg0">—</div><div class="d">농업진흥지역 밖</div></div>
+        <div class="dz-card"><span class="k">R0 진흥✕·보호✕</span><div class="v" id="dg0">—</div><div class="d">농업진흥지역 밖</div></div>
         <div class="dz-card"><span class="k">R1 +보호구역</span><div class="v" id="dg1">—</div><div class="d" id="dg1d">보호구역 개방 시</div></div>
         <div class="dz-card"><span class="k">R2 +진흥구역</span><div class="v" id="dg2">—</div><div class="d" id="dg2d">진흥구역 개방 시</div></div>
         <div class="dz-card"><span class="k">R3 둘 다</span><div class="v" id="dg3">—</div><div class="d">진흥지역 전체 포함</div></div>
@@ -180,7 +180,7 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
       <h3>구역 개방</h3>
       <label class="tgl"><input type="checkbox" id="eProt"> 농업보호구역 개방</label>
       <label class="tgl"><input type="checkbox" id="ePromo" checked> 농업진흥구역 개방</label>
-      <div style="font-size:11.5px;color:var(--muted)">둘 다 끄면 현행(농업진흥지역 밖의 농지)</div>
+      <div style="font-size:11.5px;color:var(--muted)">둘 다 끄면 진흥✕·보호✕(농업진흥지역 밖의 농지)</div>
       <h3>이격 보수</h3>
       <label class="tgl"><input type="checkbox" id="eSb"> 주거 이격 200m 보수 하한 적용(대상 필지 제외)</label>
       <h3>범위</h3>
@@ -253,7 +253,7 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
   const P = s.pools, M0 = s.matrix;
   document.getElementById('t-pools').innerHTML = `
     <tr><th>구역</th><th>전국 필지</th><th>전국 km²</th><th>간척 필지</th><th>간척 km²</th></tr>
-    <tr><td class="l">농업진흥지역 밖 (현행 = R0)</td>
+    <tr><td class="l">농업진흥지역 밖 (진흥✕·보호✕ = R0)</td>
       <td>${V4.n(M0['전국'].R0['정본'].n)}</td><td>${V4.km2(M0['전국'].R0['정본'].km2)}</td>
       <td>${V4.n(M0['간척'].R0['정본'].n)}</td><td>${V4.km2(M0['간척'].R0['정본'].km2)}</td></tr>
     <tr><td class="l">농업보호구역 증분 (R1−R0)</td>
@@ -267,7 +267,7 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
   const z = (g, k) => g.zones[k] ? V4.km2(g.zones[k].km2) : '0.0';
   document.getElementById('t-owner').innerHTML = `
     <tr><th>소유 유형</th><th>필지</th><th>전체 km²</th><th>진흥 밖<br>km²</th><th>보호구역<br>km²</th>
-        <th>진흥구역<br>km²</th><th>현행법 적격<br>km²</th></tr>` +
+        <th>진흥구역<br>km²</th><th>진흥✕·보호✕ 적격<br>km²</th></tr>` +
     og.map(g => `<tr><td class="l">${g.group}</td>
       <td>${V4.n(g.n)}</td><td><b>${V4.km2(g.km2)}</b></td>
       <td>${z(g, '진흥 밖')}</td><td>${z(g, '보호구역')}</td><td>${z(g, '진흥구역')}</td>
@@ -365,7 +365,7 @@ input[type=number].coef{width:80px;font:inherit;padding:2px 6px;border:1px solid
     const mapLink = picked[0] === 'ALL' ? ''
       : ` — <a href="map.html?sgg=${picked.join(',')}" style="color:var(--leaf-deep)"><b>지도에서 이 선택의 구획 보기 →</b></a>`;
     document.getElementById('dg-vt').innerHTML =
-      `<b>${label}</b> — 현행법 기준 ${V4.km2(r0.km2, 2)} km² (${V4.n(r0.n)}필지).<br>
+      `<b>${label}</b> — 진흥✕·보호✕ 기준 ${V4.km2(r0.km2, 2)} km² (${V4.n(r0.n)}필지).<br>
        두 제도 변수 중 <b>${bigger}</b> 개방의 효과가 커서 +${V4.km2(Math.max(dProm, dProt), 2)} km²가 더해지고,
        둘 다 개방하면 ${V4.km2(r3.km2, 2)} km²가 됨.<br>
        (보호구역 증분 +${V4.km2(dProt, 2)} · 진흥구역 증분 +${V4.km2(dProm, 2)},

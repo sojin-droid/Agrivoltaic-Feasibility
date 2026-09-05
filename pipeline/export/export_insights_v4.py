@@ -76,7 +76,7 @@ conv.sort(key=lambda x: x['pct'])
 # ② 전국 이격 감소율
 nat = [dict(t=t, pre=_ca(a), post=_ca(b),
             drop=round(100*(_ca(a)-_ca(b)) / _ca(a), 1))
-       for a, b, t in [('R0_current', 'R0_current_SB', '현행법'),
+       for a, b, t in [('R0_current', 'R0_current_SB', '진흥✕·보호✕'),
                        ('R1_protect', 'R1_protect_SB', '+보호구역'),
                        ('R2_promo', 'R2_promo_SB', '+진흥구역'),
                        ('R3_zone_all', 'R3_zone_all_SB', '둘 다')]]

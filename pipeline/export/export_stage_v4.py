@@ -101,7 +101,7 @@ out = {
          'path': paths(L1)},
         {'k': 'L2', 't': '물리·경사 통과', 'd': f"{int(flags['live'].sum()):,}필지 — 건물·수역·산단 없음, 경사 15° 이하",
          'path': paths(L2)},
-        {'k': 'L3', 't': '현행법 적격', 'd': f"{int(flags['anchor'].fillna(False).sum()):,}필지 — 구조·경사·용도 3종 통과, 농업진흥지역 밖",
+        {'k': 'L3', 't': '진흥✕·보호✕ 적격', 'd': f"{int(flags['anchor'].fillna(False).sum()):,}필지 — 구조·경사·용도 3종 통과, 농업진흥지역 밖",
          'path': paths(L3)},
         {'k': 'L4', 't': '연접 구획 ≥66,667㎡ (현행)', 'd': f"{ANC['k']:,}구획 · {ANC['km2']:,}km² — 66,667㎡는 3MW 등가의 읽기 눈금(문턱 아님)",
          'path': paths(L4)},

@@ -34,6 +34,21 @@ for r in rows:
 # 칸 목록을 함께 낸다 — 화면이 이름 배열을 들고 있으면 격자에 칸이 늘어도 모른다.
 _g = load_grid(DEFAULT_GRID)
 cells = {role: _g.cells(role) for role in ['policy', 'control']}
+# 표기 교정 (2026-09-06 용어 방침) — "현행법"은 시한부·모호 용어라 화면에서
+# 구역 기호(진흥✕·보호✕)로 적는다. 선언 yaml 라벨은 격자 해시(파일 바이트)
+# 보존을 위해 그대로 두고, 발행 층에서만 치환한다.
+_FIX = [('R0 현행법 기준', 'R0 진흥✕·보호✕'), ('현행법 기준', '진흥✕·보호✕'),
+        ('현행법 + 이격 보수', '진흥✕·보호✕ + 이격 보수'), ('현행법', '진흥✕·보호✕')]
+def _fix(t):
+    for o, w in _FIX:
+        if o in t:
+            return t.replace(o, w)
+    return t
+for role in cells:
+    for c in cells[role]:
+        for k in ('label', 'label_short'):
+            if c.get(k):
+                c[k] = _fix(c[k])
 out = {'generated': datetime.datetime.now().strftime('%Y-%m-%d %H:%M'),
        'edition': _g.edition, 'grid': _g.name, 'grid_sha12': _g.sha12,
        'cells': cells,
