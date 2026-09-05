@@ -100,6 +100,10 @@ input[type=range]{accent-color:var(--navy)}
 .jsi b{display:block;font-family:var(--serif);font-size:clamp(22px,2.4vw,28px);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:4px}
 .jsi b small{font-family:var(--mono);font-size:12.5px;color:var(--muted);font-weight:400}
 .jsi>div>span{font-size:11.5px;color:var(--muted);line-height:1.5;word-break:keep-all}
+.key2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.key2{grid-template-columns:1fr}}
+.key2>div{font-size:13px;line-height:1.7;word-break:keep-all}
+.key2 i{display:block;font-style:normal;font-family:var(--sans);font-size:12px;font-weight:700;color:var(--navy);margin-bottom:2px}
 </style>
 </head>
 <body>
@@ -151,7 +155,7 @@ input[type=range]{accent-color:var(--navy)}
 <div class="wrap art" style="max-width:860px">
 
   <h2 class="art-h" id="own">1. 소유 구성 — 특구급 구획의 개인 소유 비중</h2>
-  <p>특구급(≥50MW 등가 = 1.111km², 읽기 눈금) 구획은 현행법 기준
+  <p>특구급(≥50MW 등가 = 1.111km², 읽기 눈금) 구획은 개방 전(진흥✕·보호✕) 기준
   <b id="c-a50">—</b>곳 있지만 면적의 <b id="c-indiv">—</b>%가 개인
   소유<sup class="fnref">[1]</sup> — 수백 명의 동의 조직이 전제.
   법인·국공유만 병합하면 <b id="c-cp-a50">—</b>곳(제주 서귀포
@@ -160,18 +164,18 @@ input[type=range]{accent-color:var(--navy)}
   그 25곳이 이 페이지의 대상.<br>
   이격 200m 보수<sup class="fnref">[11]</sup>를 얹어도
   <span id="c-sb-from">—</span> → <span id="c-sb-to">—</span> km²(−39%)로
-  현행법분(−53%)보다 덜 깎임 — 8칸 전체는 근거 탭 표 5.</p>
+  개방 전 분(−53%)보다 덜 깎임 — 8칸 전체는 근거 탭 표 5.</p>
   <p style="display:none"><span id="c-cp-a100"></span><span id="c-cp-r-km2"></span><span id="c-cp-r-mw"></span></p>
 
   <div class="own-kpi">
     <div><b><span id="k-a50">—</span><small>곳</small> <small>→</small> <span id="k-cp1">—</span><small>곳</small></b>
-      <span>개인 포함 → 법인·국공유만<br>(현행법 특구급)</span></div>
+      <span>개인 포함 → 법인·국공유만<br>(개방 전 특구급)</span></div>
     <div><b><span id="k-indiv">—</span><small>%</small></b>
       <span>특구급 면적 중<br>개인 소유 비중<sup class="fnref">[1]</sup></span></div>
     <div class="hi"><b><span id="k-r50">—</span><small>곳</small> <small>·</small> <span id="k-mw">—</span><small>MW</small></b>
       <span>농업진흥구역 개방 시<br>특구급 (이격 후 <span id="k-r50sb">—</span>곳)</span></div>
     <div><b>−39<small>%</small></b>
-      <span>진흥 개방분의 이격 감소<br>(현행법분은 −53%)<sup class="fnref">[11]</sup></span></div>
+      <span>진흥 개방분의 이격 감소<br>(개방 전 분은 −53%)<sup class="fnref">[11]</sup></span></div>
   </div>
 
   <h2 class="art-h">2. 지도 — 구획 · 산업단지 · 계통 여유</h2>
@@ -239,10 +243,7 @@ input[type=range]{accent-color:var(--navy)}
   <h2 class="art-h" id="jisan">4. 지산지소 대조 — 구획 발전량 × 시군 전력수요</h2>
   <p>만든 전기가 그 시군 안에서 소비되는가를 시군 연간 전력사용량<sup class="fnref">[28]</sup>
   대비로 읽음. 카드 다섯 = 후보 25곳 안의 최대·최소 — 왼쪽 셋은 비지배 세 축(규모·계통·거리),
-  오른쪽 둘은 시군 수요 대비의 양 끝.<br>
-  제도 경로 — 제1차 분산에너지 특화지역 7곳<sup class="fnref">[29]</sup> 중
-  <b>전남 해남·충남 서산</b>이 후보 25곳의 소재 시군: 직접거래 특례(분산에너지법
-  §43)와 특구급 부지가 함께 준비된 사례.</p>
+  오른쪽 둘은 시군 수요 대비의 양 끝. 제도 경로는 아래 열쇠 두 개 표.</p>
   <div class="jsi" id="jsi"></div>
   <figure class="art-fig">
     <div class="figbox">
@@ -253,6 +254,21 @@ input[type=range]{accent-color:var(--navy)}
       판정·선별 불사용 · 유형 구분선 없음(문턱을 두지 않음).</div>
     </div>
   </figure>
+
+  <div class="figbox" style="padding:16px 18px;margin:14px 0 4px">
+    <div style="font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--leaf-deep);margin-bottom:8px">TWO KEYS · 지산지소가 성립하는 조건</div>
+    <div class="key2">
+      <div><i>열쇠 ① 부지</i>영농형 태양광 발전사업법 제6조제1항제2호의
+        <b>재생에너지지구</b> — 농업진흥구역 안 설치를 여는 제도. 지정 사례 없음 —
+        이 지도의 후보 목록이 그 지정 근거 자료.</div>
+      <div><i>열쇠 ② 판로</i>분산에너지 활성화 특별법 제43조의 <b>특화지역
+        직접거래</b>(1차 7곳<sup class="fnref">[29]</sup>) 또는
+        <b>직접PPA</b>(발전 1MW 초과 · 사용자 300kW 이상) — 만든 전기를 지역이
+        직접 사는 계약 경로.</div>
+    </div>
+    <div style="overflow-x:auto;margin-top:10px"><table class="v4" id="key2Tbl"></table></div>
+    <div style="font-size:12px;color:var(--muted);margin-top:6px" id="key2Read">—</div>
+  </div>
 
 
   <h2 class="art-h">5. 시군별 공동 1등 — 세 축 비지배 전선</h2>
@@ -829,6 +845,35 @@ input[type=range]{accent-color:var(--navy)}
           font-size="11.5" font-weight="700" fill="var(--navy)">${LAB[r.s]} ${r.v}%</text>`;
     });
     document.getElementById('jsiStrip').innerHTML = g + '</svg>';
+
+    // 열쇠 두 개 교차 — 1차 분산특구 7곳 [29] × 전선 1등 (값은 전량 데이터 렌더)
+    const Z7 = [
+      ['전남 해남군', ['46820']], ['충남 서산시', ['44210']],
+      ['제주 (도 전역)', ['50110', '50130']], ['경북 포항시', ['47111', '47113']],
+      ['경기 의왕시', ['41430']], ['울산 (미포산단)', ['31140', '31170']],
+      ['부산 서구', ['26140']]];
+    const topOf = cs => cs
+      .map(c => (REC.sgg[c] && REC.sgg[c].frontier[0]) || null)
+      .filter(Boolean).sort((a, b) => b.a - a.a)[0] || null;
+    const rows7 = Z7.map(([nm, cs]) => ({nm, t: topOf(cs)}));
+    let kh = `<tr><th style="text-align:left">특구 사업지</th><th>전선 1등 구획</th>
+      <th>시군 수요 대비</th><th>부지 판독</th></tr>`;
+    for (const {nm, t} of rows7) {
+      kh += `<tr><td class="l">${nm}</td>
+        <td>${t ? V4.n(t.mw) + 'MW' + (t.recl >= 50 ? ' <span class="chip-rec">간척</span>' : '') : '등재 구획 없음'}</td>
+        <td>${t && t.dsh != null ? t.dsh + '%' : '—'}</td>
+        <td>${t && t.mw >= 50 ? '<b style="color:var(--leaf-deep)">특구급 부지 준비</b>' : '특구급 부지 없음'}</td></tr>`;
+    }
+    document.getElementById('key2Tbl').innerHTML = kh;
+    const nReady = rows7.filter(r => r.t && r.t.mw >= 50).length;
+    document.getElementById('key2Read').innerHTML =
+      `읽기 — 판로(②)가 열린 7곳 중 특구급(≥50MW 읽기 눈금) 부지가 있는 곳은
+       <b>${nReady}곳</b>. 해남·서산은 열쇠 ①(재생에너지지구 지정)만 남고,
+       <b>제주 서귀포</b>는 개방 전(진흥✕·보호✕) 기준 특구급이 있는 유일 시군(§1)이자 특구 안 —
+       지금 제도로 두 열쇠를 모두 갖춘 사례. 역으로 부지 최대(당진)·수요 대비
+       최대(고흥)는 특구 밖 — 두 제도는 대체가 아니라 보완.
+       "특구급"(규모 눈금)과 "분산 특구"(법정 지정)는 다른 말 · 지정 현황은
+       2025년 말 1차 기준<sup class="fnref">[29]</sup>.`;
   })();
   const recSel = document.getElementById('recSgg');
   const fmtA2 = a => a >= 1e6 ? (a / 1e6).toFixed(3) + ' km²' : V4.n(a) + ' ㎡';
@@ -865,6 +910,10 @@ input[type=range]{accent-color:var(--navy)}
       e => recReader(f, +e.target.value));
   }
 
+  const ZONE_LBL = {'46820': '전남 해남', '44210': '충남 서산', '50110': '제주(도 전역)',
+    '50130': '제주(도 전역)', '47111': '경북 포항', '47113': '경북 포항', '41430': '경기 의왕',
+    '26140': '부산 서구', '31140': '울산 미포산단', '31170': '울산 미포산단'};
+
   function demBar(f) {
     const el = document.getElementById('recDem');
     if (!f || f.dsh == null) { el.innerHTML = ''; return; }
@@ -876,7 +925,12 @@ input[type=range]{accent-color:var(--navy)}
       = ${f.dsh}%</b>${f.dsc ? `<sup title="${f.dsc}">†</sup>` : ''}
       <span style="color:var(--muted)">${f.dmf != null ? `· 그 수요의 ${f.dmf}%가 제조업 ` : ''}(지산지소 참고 표기 — 판정 불사용)</span></div>
       <div style="height:14px;background:var(--card);border:1px solid var(--line);border-radius:7px;overflow:hidden">
-        <div style="height:100%;width:${w}%;background:var(--gold);min-width:2px"></div></div>`;
+        <div style="height:100%;width:${w}%;background:var(--gold);min-width:2px"></div></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px">열쇠 판독 —
+        부지(①): 농업진흥구역 개방(재생에너지지구 지정) 시 이 구획 ·
+        판로(②): ${ZONE_LBL[recSel.value]
+          ? `<b>${ZONE_LBL[recSel.value]} — 1차 분산특구</b>의 직접거래 특례`
+          : '직접PPA 경로(발전 1MW 초과 · 사용자 300kW 이상)'}<sup class="fnref">[29]</sup></div>`;
   }
 
   function recPick(f) {
