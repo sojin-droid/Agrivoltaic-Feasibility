@@ -130,6 +130,7 @@ for sgg, grp in rows.groupby('sgg'):
                    'recl': _n(r['reclaim_pct']),
                    # 지산지소 대조 — 표기 전용 (query 산출 그대로, 판정 불사용)
                    'dem': _r(r['demand_gwh'], 0), 'dsh': _r(r['demand_share_pct'], 1),
+                   'dmf': _r(r['demand_manuf_pct'], 0),
                    'dsc': (None if (pd.isna(r['demand_scope']) or not r['demand_scope'])
                            else str(r['demand_scope'])),
                    # 좌표 결손이면 판독기도 결손 표기 — 0으로 가장하지 않는다

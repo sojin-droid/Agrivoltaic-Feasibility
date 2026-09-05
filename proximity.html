@@ -138,7 +138,7 @@ input[type=range]{accent-color:var(--navy)}
     <p class="eyebrow">Proximity · 수요·계통 연계</p>
     <h1>입지 추천 — 특구 후보 × 산업단지 × 계통 여유</h1>
     <p class="lede">특구급 후보 구획<sup class="fnref">[12]</sup>이 전력 수요처(산업단지)와
-    계통 여유(동 단위 접속가능용량)에서 얼마나 가까운지를 한 지도에 세 레이어로 겹쳐 확인.<br>왜 이 25곳인가(소유 구성)부터 시군별 공동 1등·반경 판독까지 입지 판단을 한 탭에 모음.<br>
+    계통 여유(동 단위 접속가능용량)에서 얼마나 가까운지를 한 지도에 세 레이어로 겹쳐 확인.<br>왜 이 25곳인가(소유 구성)부터 지산지소 대조(시군 수요 대비)·시군별 공동 1등·반경 판독까지 입지 판단을 한 탭에 모음.<br>
     <b>폴리곤 = 50MW 이상 후보 25곳</b>(정본 우주 = 법인·국공유, 농업진흥구역 개방 기준) ·
     <b>경계 = 산업단지 전국 <span id="p-ind">—</span>곳</b><sup class="fnref">[23]</sup> ·
     <b>채움 = 읍면동 단위 계통 여유 전국 <span id="p-emd">—</span>곳</b><sup class="fnref">[22]</sup>.</p>
@@ -212,7 +212,7 @@ input[type=range]{accent-color:var(--navy)}
     <figcaption style="font-size:12px;color:var(--muted);margin-top:6px">그림 2. 특구급 후보 25곳 ×
     산업단지 전국 <span id="p-ind3">—</span>곳 × 읍면동 단위 계통 여유 전국 — 위성 배경 © Esri<sup class="fnref">[19]</sup> ·
     구획 지오메트리 15m 간소화(표시용)<sup class="fnref">[12]</sup> ·
-    계통<sup class="fnref">[22]</sup>·산업단지<sup class="fnref">[23]</sup>는 참고 레이어(성격·한계는 §5).</figcaption>
+    계통<sup class="fnref">[22]</sup>·산업단지<sup class="fnref">[23]</sup>는 참고 레이어(성격·한계는 방법·자료 탭).</figcaption>
   </figure>
 
   <h2 class="art-h" id="candtbl">3. 특구급 후보 25곳 — 소재·최근접 산업단지·계통</h2>
@@ -223,27 +223,36 @@ input[type=range]{accent-color:var(--navy)}
     <span class="cond-pill">② 구역 — <b>농업진흥구역 개방(R2)</b> 기준</span>
     <span class="cond-pill">③ 규모 — <b>≥50MW 등가</b> = 1,111,111㎡ (읽기 눈금, 문턱 아님)</span>
   </p>
-  <p style="font-size:13px;color:var(--muted)">§4의 시군별 공동 1등은 별개 방식 —
-  규모 눈금 없이 세 축 비지배(파레토)로 뽑음. 거리 = 측지 직선(§5 참조).</p>
+  <p style="font-size:13px;color:var(--muted)">§5의 시군별 공동 1등은 별개 방식 —
+  규모 눈금 없이 세 축 비지배(파레토)로 뽑음. 거리 = 측지 직선(방법·자료 탭 참조).</p>
 
   <figure class="art-fig">
     <div class="figbox">
       <div style="overflow-x:auto"><table class="v4" id="t-prox"></table></div>
       <div class="figcap">표 1. 특구급 후보 25곳의 최근접 산업단지·직선거리·소재 읍면동 계통 여유 —
-      행 클릭 = 지도 이동. 거리·계통 여유는 표시용 참고값(§5 참조).</div>
+      행 클릭 = 지도 이동. 거리·계통 여유는 표시용 참고값(방법·자료 탭 참조).</div>
     </div>
   </figure>
 
   <div class="callout-v4" id="p-read">—</div>
 
-  <h2 class="art-h" style="font-size:17px">지산지소 읽기 — 만든 전기는 어디로 가는가</h2>
+  <h2 class="art-h" id="jisan">4. 지산지소 대조 — 구획 발전량 × 시군 전력수요</h2>
+  <p>만든 전기가 그 시군 안에서 소비되는가를 시군 연간 전력사용량<sup class="fnref">[28]</sup>
+  대비로 읽음. 카드 다섯 = 후보 25곳 안의 최대·최소 — 왼쪽 셋은 비지배 세 축(규모·계통·거리),
+  오른쪽 둘은 시군 수요 대비의 양 끝.</p>
   <div class="jsi" id="jsi"></div>
-  <div style="font-size:12px;color:var(--muted);margin:-12px 0 10px">후보 25곳 안의
-    최대·최소 — 왼쪽 셋은 비지배 세 축(규모·계통·거리), 오른쪽 둘은 시군 수요
-    대비<sup class="fnref">[28]</sup>의 양 끝. 계통·수요 값은 참고 표기 · 판정·선별 불사용.</div>
+  <figure class="art-fig">
+    <div class="figbox">
+      <div id="jsiStrip"></div>
+      <div class="figcap">그림. 전국 209개 시군 — 각 시군 최대 구획(면적 1위)의 참고 발전량이
+      그 시군 연간 전력사용량에서 차지하는 비중(로그 눈금). 중앙값 부근의 다수와 오른쪽
+      꼬리(농어촌 군 지역)가 한 축 위에 있음 — 값은 참고 표기<sup class="fnref">[28]</sup> ·
+      판정·선별 불사용 · 유형 구분선 없음(문턱을 두지 않음).</div>
+    </div>
+  </figure>
 
 
-  <h2 class="art-h">4. 시군별 공동 1등 — 세 축 비지배 전선</h2>
+  <h2 class="art-h">5. 시군별 공동 1등 — 세 축 비지배 전선</h2>
 
   <div class="figbox" style="display:grid;grid-template-columns:1fr 200px;gap:14px;align-items:center;margin:12px 0 16px">
     <div style="font-size:13px;line-height:2">
@@ -751,10 +760,10 @@ input[type=range]{accent-color:var(--navy)}
       ${minKm.c.name} ${V4.km2(minKm.km, 1)} km</b>` : '—'}.` +
     (maxIn20 && maxIn20.n > 0 ? ` 20km 안 산업단지가 가장 많은 후보는 ${nameOf(maxIn20.b.sgg)}
       (${V4.n(maxIn20.n)}곳).` : '') +
-    `<br>산업단지·계통 레이어는 전국 커버 — "알 수 없음" 읍면동만 계통 판단을 보류함(§5).`;
+    `<br>산업단지·계통 레이어는 전국 커버 — "알 수 없음" 읍면동만 계통 판단을 보류함(방법·자료 탭).`;
 
 
-  // ── §4 시군별 공동 1등 (recommend_v4 — 발행은 export_recommend_v4.py 게이트 통과분만) ──
+  // ── §5 시군별 공동 1등 (recommend_v4 — 발행은 export_recommend_v4.py 게이트 통과분만) ──
   const REC = await gzfc('data_v4/recommend_v4.json.gz');
   const layerRec = L.layerGroup().addTo(map);
 
@@ -790,6 +799,33 @@ input[type=range]{accent-color:var(--navy)}
       ['시군 수요의 큰 몫을 채우는 곳', `${P(c5.dsh)}<small>%</small>`,
        `${nameOf(c5.b.sgg)} ${V4.n(c5.b.mw)}MW —<br>시군 연간 수요 ${V4.n(c5.dem)}GWh 대비`],
     ].map(([t, v, s]) => `<div><i>${t}</i><b>${v}</b><span>${s}</span></div>`).join('');
+
+    // 분포 스트립 — 209개 시군 최대 구획의 수요 대비 (로그 눈금 · 문턱 없음)
+    const sv = Object.entries(REC.sgg)
+      .map(([s, d]) => ({s, v: d.frontier[0] && d.frontier[0].dsh}))
+      .filter(r => r.v != null && r.v > 0);
+    const lo10 = Math.log10(0.01), hi10 = Math.log10(60);
+    const X = v => 30 + (Math.log10(v) - lo10) / (hi10 - lo10) * 800;
+    const LAB = {'44270': '당진', '44210': '서산', '46770': '고흥', '41220': '평택', '46820': '해남'};
+    let g = `<svg viewBox="0 0 860 132" style="width:100%;height:auto;display:block" role="img"
+      aria-label="시군별 최대 구획의 수요 대비 분포">`;
+    [[0.1, '0.1%'], [1, '1%'], [10, '10%']].forEach(([t, lb]) => {
+      g += `<line x1="${X(t)}" y1="18" x2="${X(t)}" y2="98" stroke="var(--line)"/>
+        <text x="${X(t)}" y="114" text-anchor="middle" font-family="var(--mono)"
+          font-size="11" fill="var(--muted)">${lb}</text>`;
+    });
+    sv.forEach((r, i) => {
+      g += `<circle cx="${X(r.v).toFixed(1)}" cy="${46 + (i % 8) * 6}" r="3.2"
+        fill="var(--leaf-deep)" opacity=".5">
+        <title>${nameOf(r.s)} — 최대 구획 수요 대비 ${r.v}%</title></circle>`;
+    });
+    sv.filter(r => LAB[r.s]).forEach((r, li) => {
+      const ty = li % 2 ? 12 : 26;                     // 라벨 두 단 교차 — 로그축 겹침 방지
+      g += `<line x1="${X(r.v)}" y1="${ty + 4}" x2="${X(r.v)}" y2="42" stroke="var(--gold)" stroke-width="2"/>
+        <text x="${X(r.v)}" y="${ty}" text-anchor="middle" font-family="var(--sans)"
+          font-size="11.5" font-weight="700" fill="var(--navy)">${LAB[r.s]} ${r.v}%</text>`;
+    });
+    document.getElementById('jsiStrip').innerHTML = g + '</svg>';
   })();
   const recSel = document.getElementById('recSgg');
   const fmtA2 = a => a >= 1e6 ? (a / 1e6).toFixed(3) + ' km²' : V4.n(a) + ' ㎡';
@@ -835,7 +871,7 @@ input[type=range]{accent-color:var(--navy)}
       <b>${recName(recSel.value)}</b> 연간 전력사용량 <b>${V4.n(f.dem)} GWh</b> 눈금 위의
       이 구획 참고 발전량 <b>${gen.toLocaleString('ko-KR', {maximumFractionDigits: 0})} GWh
       = ${f.dsh}%</b>${f.dsc ? `<sup title="${f.dsc}">†</sup>` : ''}
-      <span style="color:var(--muted)">(지산지소 참고 표기 — 판정 불사용)</span></div>
+      <span style="color:var(--muted)">${f.dmf != null ? `· 그 수요의 ${f.dmf}%가 제조업 ` : ''}(지산지소 참고 표기 — 판정 불사용)</span></div>
       <div style="height:14px;background:var(--card);border:1px solid var(--line);border-radius:7px;overflow:hidden">
         <div style="height:100%;width:${w}%;background:var(--gold);min-width:2px"></div></div>`;
   }
