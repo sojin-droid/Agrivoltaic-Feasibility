@@ -93,6 +93,13 @@ input[type=range]{accent-color:var(--navy)}
 .own-kpi b{display:block;font-family:var(--serif);font-size:clamp(24px,2.8vw,32px);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:4px}
 .own-kpi b small{font-family:var(--mono);font-size:13px;color:var(--muted);font-weight:400}
 .own-kpi>div>span{font-size:11.5px;color:var(--muted);line-height:1.5;word-break:keep-all}
+.jsi{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0 18px}
+@media(max-width:900px){.jsi{grid-template-columns:1fr 1fr}}
+.jsi>div{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:13px 10px;text-align:center}
+.jsi>div>i{display:block;font-style:normal;font-family:var(--sans);font-size:12px;font-weight:700;color:var(--navy);margin-bottom:6px;word-break:keep-all}
+.jsi b{display:block;font-family:var(--serif);font-size:clamp(22px,2.4vw,28px);font-weight:700;color:var(--navy);line-height:1.15;margin-bottom:4px}
+.jsi b small{font-family:var(--mono);font-size:12.5px;color:var(--muted);font-weight:400}
+.jsi>div>span{font-size:11.5px;color:var(--muted);line-height:1.5;word-break:keep-all}
 </style>
 </head>
 <body>
@@ -229,6 +236,12 @@ input[type=range]{accent-color:var(--navy)}
 
   <div class="callout-v4" id="p-read">—</div>
 
+  <h2 class="art-h" style="font-size:17px">지산지소 읽기 — 만든 전기는 어디로 가는가</h2>
+  <div class="jsi" id="jsi"></div>
+  <div style="font-size:12px;color:var(--muted);margin:-12px 0 10px">후보 25곳 안의
+    최대·최소 — 왼쪽 셋은 비지배 세 축(규모·계통·거리), 오른쪽 둘은 시군 수요
+    대비<sup class="fnref">[28]</sup>의 양 끝. 계통·수요 값은 참고 표기 · 판정·선별 불사용.</div>
+
 
   <h2 class="art-h">4. 시군별 공동 1등 — 세 축 비지배 전선</h2>
 
@@ -278,6 +291,7 @@ input[type=range]{accent-color:var(--navy)}
       지산지소 참고 표기<sup class="fnref">[28]</sup> · 판정·선별 불사용 ·
       † = 시 전체 배정 등 각주 · — = 수요 미수집.</div>
     <div id="recCtl" style="font-size:12px;color:var(--muted);margin:6px 0 10px">—</div>
+    <div id="recDem" style="margin:2px 0 12px"></div>
     <div id="recReader" style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px">
       <b>반경 판독기</b> — 위 표·산점도·지도에서 구획을 고르면, 반경 안 산단 점수 합과
       여유용량 합(균등배분 하한 합)을 보임. 고른 뒤 확인하는 도구 — 전선 선별에 불사용.</div>
@@ -743,6 +757,40 @@ input[type=range]{accent-color:var(--navy)}
   // ── §4 시군별 공동 1등 (recommend_v4 — 발행은 export_recommend_v4.py 게이트 통과분만) ──
   const REC = await gzfc('data_v4/recommend_v4.json.gz');
   const layerRec = L.layerGroup().addTo(map);
+
+  // ── 지산지소 카드 5장 — 후보 25곳 안의 최대·최소 (모두 표기 전용) ──
+  (() => {
+    const demOf = s => {
+      const fr = REC.sgg[s] && REC.sgg[s].frontier;
+      return fr && fr.length ? fr[0].dem : null;
+    };
+    const rows = bigList.map(b => {
+      const nb = nearestOf[b.id] || {};
+      const gp = nb.ctr ? gridAt(nb.ctr) : null;
+      const dem = demOf(b.sgg);
+      return {b, km: nb.best ? nb.best.km : null, ind: nb.best ? nb.best.c.name : null,
+              lo: gp && gp.s === 'ok' ? gp.lo : null,
+              dem, dsh: dem ? b.mw * 1.314 / dem * 100 : null};
+    });
+    const by = (f, min) => rows.filter(r => f(r) != null)
+      .sort((x, y) => min ? f(x) - f(y) : f(y) - f(x))[0];
+    const c1 = rows[0];                                // 규모순 표시 — 첫 행이 최대
+    const c2 = by(r => r.lo, false), c3 = by(r => r.km, true);
+    const c4 = by(r => r.dsh, true), c5 = by(r => r.dsh, false);
+    const P = v => v.toLocaleString('ko-KR', {maximumFractionDigits: 1});
+    document.getElementById('jsi').innerHTML = [
+      ['규모가 가장 큰 곳', `${V4.n(c1.b.mw)}<small>MW</small>`,
+       `${nameOf(c1.b.sgg)} — 후보 최대 구획<br>(시군 수요 대비 ${P(c1.dsh)}%)`],
+      ['계통 여유가 가장 큰 곳', `${V4.n(c2.lo)}<small>MW</small>`,
+       `${nameOf(c2.b.sgg)} ${V4.n(c2.b.mw)}MW 후보<br>소재 읍면동 여유 하한`],
+      ['수요처가 바로 옆인 곳', `${P(c3.km)}<small>km</small>`,
+       `${nameOf(c3.b.sgg)} ${V4.n(c3.b.mw)}MW 후보<br>→ ${c3.ind}`],
+      ['시군 안에서 다 쓰는 곳', `${P(c4.dsh)}<small>%</small>`,
+       `${nameOf(c4.b.sgg)} ${V4.n(c4.b.mw)}MW —<br>수요 대비 최소 = 전량 지역 소비`],
+      ['시군 수요의 큰 몫을 채우는 곳', `${P(c5.dsh)}<small>%</small>`,
+       `${nameOf(c5.b.sgg)} ${V4.n(c5.b.mw)}MW —<br>시군 연간 수요 ${V4.n(c5.dem)}GWh 대비`],
+    ].map(([t, v, s]) => `<div><i>${t}</i><b>${v}</b><span>${s}</span></div>`).join('');
+  })();
   const recSel = document.getElementById('recSgg');
   const fmtA2 = a => a >= 1e6 ? (a / 1e6).toFixed(3) + ' km²' : V4.n(a) + ' ㎡';
   const recName = c => (names.codes[c] && names.codes[c].name) || REC.sgg[c].label;
@@ -778,6 +826,20 @@ input[type=range]{accent-color:var(--navy)}
       e => recReader(f, +e.target.value));
   }
 
+  function demBar(f) {
+    const el = document.getElementById('recDem');
+    if (!f || f.dsh == null) { el.innerHTML = ''; return; }
+    const gen = f.mw * 1.314;                          // GWh/년 = MW × 1,314h [28]
+    const w = Math.min(100, f.dsh);
+    el.innerHTML = `<div style="font-size:12.5px;margin-bottom:4px">
+      <b>${recName(recSel.value)}</b> 연간 전력사용량 <b>${V4.n(f.dem)} GWh</b> 눈금 위의
+      이 구획 참고 발전량 <b>${gen.toLocaleString('ko-KR', {maximumFractionDigits: 0})} GWh
+      = ${f.dsh}%</b>${f.dsc ? `<sup title="${f.dsc}">†</sup>` : ''}
+      <span style="color:var(--muted)">(지산지소 참고 표기 — 판정 불사용)</span></div>
+      <div style="height:14px;background:var(--card);border:1px solid var(--line);border-radius:7px;overflow:hidden">
+        <div style="height:100%;width:${w}%;background:var(--gold);min-width:2px"></div></div>`;
+  }
+
   function recPick(f) {
     recSelLab = f.lab;
     document.querySelectorAll('#recTbl tr[data-lab]').forEach(tr =>
@@ -786,6 +848,7 @@ input[type=range]{accent-color:var(--navy)}
       c.setAttribute('stroke-width', +c.dataset.lab === f.lab ? 3.6 : 1.8));
     if (f.lat != null) { recGeo.flyTo([f.lat, f.lon], 12); recMkRef[f.lab]?.openTooltip(); }
     recReader(f, recCur.r_default);
+    demBar(f);
   }
 
   function recRender() {
@@ -815,6 +878,7 @@ input[type=range]{accent-color:var(--navy)}
     document.getElementById('recCtl').textContent = S.control_max_m2
       ? `대조군(@all · 개인 포함) 최대 구획 ${fmtA2(S.control_max_m2)} — 정본 최대의 ×${(S.control_max_m2 / S.frontier[0].a).toFixed(1)} (정책 값 아님 · 병기)`
       : '';
+    demBar(S.frontier[0]);                             // 기본 = 1번(면적순 표시)
     // 미니 지도 — 공동 1등 금색 (클릭 = 표·산점도 연동)
     recMk.clearLayers(); recMkRef = {};
     const coords = [];
@@ -824,7 +888,7 @@ input[type=range]{accent-color:var(--navy)}
       recMkRef[f.lab] = L.circleMarker([f.lat, f.lon], {
         radius: Math.max(7, Math.sqrt(f.a) / 180), color: '#B8860B', weight: 2.5,
         fillColor: '#FFD84D', fillOpacity: .9
-      }).bindTooltip(`${fi + 1}/${S.frontier.length} · ${fmtA2(f.a)} · ${f.strong}`)
+      }).bindTooltip(`${fi + 1}/${S.frontier.length} · ${fmtA2(f.a)} · ${f.strong}${f.dsh != null ? ' · 수요 ' + f.dsh + '%' : ''}`)
         .on('click', () => recPick(f)).addTo(recMk);
     });
     if (coords.length) recGeo.fitBounds(coords, {padding: [30, 30], maxZoom: 12});
