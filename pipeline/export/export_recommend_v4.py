@@ -128,6 +128,10 @@ for sgg, grp in rows.groupby('sgg'):
                    'ra': int(r['r_area']), 'rl': int(r['r_lo']), 'ri': int(r['r_ind']),
                    'strong': r['strong'], 'farm': _n(r['farm_ratio']),
                    'recl': _n(r['reclaim_pct']),
+                   # 지산지소 대조 — 표기 전용 (query 산출 그대로, 판정 불사용)
+                   'dem': _r(r['demand_gwh'], 0), 'dsh': _r(r['demand_share_pct'], 1),
+                   'dsc': (None if (pd.isna(r['demand_scope']) or not r['demand_scope'])
+                           else str(r['demand_scope'])),
                    # 좌표 결손이면 판독기도 결손 표기 — 0으로 가장하지 않는다
                    'reader': (reader[lab] if has_xy else None)})
     pts = [[round(float(a)), (None if pd.isna(l) else round(float(l), 1)),

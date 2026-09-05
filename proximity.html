@@ -273,6 +273,10 @@ input[type=range]{accent-color:var(--navy)}
       </div>
     </div>
     <div style="overflow-x:auto"><table class="v4" id="recTbl"></table></div>
+    <div style="font-size:12px;color:var(--muted);margin:6px 0 0">시군 수요 대비 =
+      구획 참고 발전량(MW × 1,314h) ÷ 시군 연간 전력사용량(한전 2023–25 평균) —
+      지산지소 참고 표기<sup class="fnref">[28]</sup> · 판정·선별 불사용 ·
+      † = 시 전체 배정 등 각주 · — = 수요 미수집.</div>
     <div id="recCtl" style="font-size:12px;color:var(--muted);margin:6px 0 10px">—</div>
     <div id="recReader" style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px">
       <b>반경 판독기</b> — 위 표·산점도·지도에서 구획을 고르면, 반경 안 산단 점수 합과
@@ -792,12 +796,16 @@ input[type=range]{accent-color:var(--navy)}
     // 표 — 구획 번호는 "n곳 중 k번(면적순 표시)"
     const nF = S.frontier.length;
     let h = `<tr><th>번호</th><th>면적</th><th>참고 MW</th><th>여유 MW</th><th>산단 km</th>
+      <th>시군 수요 대비</th>
       <th>면적 순위</th><th>계통 순위</th><th>산단 순위</th><th>강한 축</th><th>경작</th><th>간척%</th></tr>`;
     for (const [fi, f] of S.frontier.entries()) {
+      const dsh = f.dsh == null ? '—'
+        : `${f.dsh}%` + (f.dsc ? `<sup title="${f.dsc}">†</sup>` : '');
       h += `<tr data-lab="${f.lab}" style="cursor:pointer"><td class="rk">${fi + 1}<span style="color:var(--muted);font-weight:400">/${nF}</span></td>
         <td>${fmtA2(f.a)}</td><td>${f.mw}</td>
         <td>${f.lo == null ? '알 수 없음' : f.lo + (f.hi != null ? '–' + f.hi : '')}</td>
         <td>${f.d == null ? '알 수 없음' : f.d.toFixed(1)}</td>
+        <td>${dsh}</td>
         <td>${f.ra}</td><td>${f.rl}</td><td>${f.ri}</td><td>${f.strong}</td>
         <td>${f.farm ?? '—'}</td><td>${f.recl ?? '—'}</td></tr>`;
     }
